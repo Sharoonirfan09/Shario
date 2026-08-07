@@ -1,26 +1,218 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------------------------------
+   SHARIO design tokens
+   Palette and type roles are fixed by SHARIO_Brand_Guidelines.pdf.
+   Limestone leads, Porcelain carries space, Carbon carries type,
+   Powder Mist Blue is a selective accent, Platinum finishes.
+--------------------------------------------------------------------------- */
+
+@theme {
+  --color-limestone: #d6cec2;
+  --color-porcelain: #f1eee7;
+  --color-carbon: #252525;
+  --color-mist: #a8c4cd;
+  --color-platinum: #b8b8b3;
+
+  /* Tints derived from the master palette for rules and muted type. */
+  --color-limestone-deep: #c7bdaf;
+  --color-carbon-60: #6f6d69;
+  --color-carbon-40: #9b9994;
+  --color-rule: #cdc6ba;
+
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-body: var(--font-eb-garamond), Georgia, serif;
+  --font-label: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+
+  --spacing-gutter: clamp(1.5rem, 5vw, 6rem);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-porcelain);
+  color: var(--color-carbon);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.72;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--color-mist);
+  color: var(--color-carbon);
+}
+
+:focus-visible {
+  outline: 1px solid var(--color-carbon);
+  outline-offset: 4px;
+}
+
+/* ---------------------------------------------------------------------------
+   Type roles
+--------------------------------------------------------------------------- */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.018em;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.012em;
+}
+
+/* Jost, uppercase, widely tracked — every label, eyebrow and control. */
+.label {
+  font-family: var(--font-label);
+  font-weight: 400;
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.label-sm {
+  font-family: var(--font-label);
+  font-weight: 400;
+  font-size: 0.625rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.lede {
+  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  line-height: 1.62;
+}
+
+/* ---------------------------------------------------------------------------
+   Signature: the ledger measure.
+   Figures are set in the display serif over a hairline, with a Jost micro-label
+   above — an accountant's rule rather than a stat card. No boxes, no shadows.
+--------------------------------------------------------------------------- */
+
+.ledger {
+  border-top: 1px solid var(--color-rule);
+  padding-top: 1.125rem;
+}
+
+.ledger-figure {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.5rem, 4.4vw, 4rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* Tight four-across summary row: sized so "AED 35M+" holds one line. */
+.ledger-figure-sm {
+  font-size: clamp(1.85rem, 2.9vw, 2.6rem);
+}
+
+/* Hairline that spans a section edge. */
+.rule {
+  border-top: 1px solid var(--color-rule);
+}
+
+/* Native select stripped to a hairline, with its own chevron restored —
+   `appearance: none` removes the browser arrow, and without a replacement
+   the control no longer reads as a dropdown. */
+.select-field {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23252525' stroke-width='1'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.15rem center;
+  background-size: 10px 6px;
+  padding-right: 1.75rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Quiet motion — brand direction is "quiet motion", so reveals are slow,
+   short-travel and fade-led. Nothing bounces.
+--------------------------------------------------------------------------- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.rise {
+  animation: rise 1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.draw {
+  transform-origin: left;
+  animation: draw 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+/* Scroll reveal: hidden until observed, then rises.
+   Gated on `.js` so the content is visible by default. Without JavaScript —
+   or for a crawler or print view that never scrolls — nothing stays hidden. */
+.js .reveal {
+  opacity: 0;
+}
+
+.js .reveal[data-shown="true"] {
+  animation: rise 0.95s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@media print {
+  .reveal,
+  .rise,
+  .draw {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .rise,
+  .draw,
+  .js .reveal[data-shown="true"] {
+    animation: none;
+  }
+
+  .js .reveal,
+  .js .reveal[data-shown="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
 }
