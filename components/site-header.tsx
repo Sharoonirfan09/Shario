@@ -70,8 +70,9 @@ export function SiteHeader() {
 
         {/* Desktop navigation */}
         <nav aria-label="Primary" className="hidden lg:block">
-          <ul className="flex items-center gap-10">
-            {nav.slice(1).map((item) => {
+          {/* Seven items now that Home is named, so the tracking tightens. */}
+          <ul className="flex items-center gap-7 xl:gap-9">
+            {nav.map((item) => {
               // Services stays marked while you are on any of its sub-pages.
               const active =
                 item.href === "/services"
@@ -121,7 +122,7 @@ export function SiteHeader() {
                         className="absolute right-0 top-[calc(100%+1.35rem)] w-[22rem] border border-rule bg-porcelain p-7 shadow-[0_1px_40px_rgba(37,37,37,0.06)]"
                       >
                         <p className="label-sm mb-5 text-carbon-40">
-                          The full funnel
+                          Capabilities
                         </p>
                         <ul className="space-y-4">
                           {services.map((service) => (
@@ -134,7 +135,7 @@ export function SiteHeader() {
                                   {service.name}
                                 </span>
                                 <span className="mt-0.5 block text-[0.9rem] leading-snug text-carbon-60">
-                                  {service.summary}
+                                  {service.descriptor}
                                 </span>
                               </Link>
                             </li>
@@ -164,7 +165,7 @@ export function SiteHeader() {
                 href="/contact"
                 className="label border border-carbon px-5 py-2.5 text-carbon transition-colors duration-500 hover:bg-carbon hover:text-porcelain"
               >
-                Book a call
+                Let’s connect
               </Link>
             </li>
           </ul>
@@ -219,7 +220,7 @@ export function SiteHeader() {
             href="/contact"
             className="label mt-8 inline-block border border-carbon px-6 py-3 text-carbon"
           >
-            Book a strategy call
+            Let’s connect
           </Link>
         </nav>
       )}

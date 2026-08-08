@@ -1,43 +1,82 @@
 /**
  * Single source of truth for site content and contact details.
- * Copy is taken from the client-supplied "Shario content" document.
+ *
+ * Copy and navigation follow "Shario Creative Studio Brand Book" (2026) and the
+ * client mockups. The Brand Book's tone rules govern every line here: clear,
+ * precise, composed — never "game-changing", "world-class" or "best-in-class".
  */
 
 export const site = {
   name: "Shario",
   domain: "https://shario.ae",
   tagline: "A Symphony of Identity.",
+  taglineAr: "سيمفونية الهوية",
+  /** Brand Book p27, "Company introduction". */
   description:
-    "Shario is a founder-led digital marketing company in Dubai that turns spend into revenue — performance marketing, SEO, websites and CRM attribution.",
+    "Shario is a boutique creative studio in Dubai composing coherent brand identities across strategy, design and technology.",
   location: "Dubai, UAE",
-  phone: "+971 56 121 7647",
-  phoneHref: "+971561217647",
-  email: "sharoon.irfan99@gmail.com",
+  // Brand Book closing page (p32) and the invoice, letterhead and folder
+  // mockups all carry these. They supersede the content document's details.
+  phone: "+971 50 467 9095",
+  phoneHref: "+971504679095",
+  email: "info@shario.ae",
+  website: "www.shario.ae",
   linkedin: "https://linkedin.com/in/sharoonirfan",
   linkedinLabel: "linkedin.com/in/sharoonirfan",
   founder: "Sharoon Irfan",
+  /** Brand Book p06. */
+  promise: "One vision. Every touchpoint.",
+  vision:
+    "To build identities recognised not by volume, but by clarity, character and coherence.",
+  mission:
+    "To unite strategy, design, communication and technology into complete brand systems that support meaningful growth.",
 } as const;
 
+/** Navigation as the client mockups set it (assets/mockups/m08.jpg). */
 export const nav = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
-  { href: "/results", label: "Results" },
+  { href: "/work", label: "Work" },
+  { href: "/approach", label: "Approach" },
+  { href: "/journal", label: "Journal" },
   { href: "/contact", label: "Contact" },
+] as const;
+
+/**
+ * Brand Book p03 — the five elements that make a brand coherent. The Approach
+ * page is built on these; the order is the Brand Book's.
+ */
+export const essence = [
+  { name: "Strategy", note: "Provides direction." },
+  { name: "Design", note: "Creates recognition." },
+  { name: "Communication", note: "Builds connection." },
+  { name: "Technology", note: "Enables experience." },
+  { name: "Growth", note: "Gives momentum." },
+] as const;
+
+/** Brand Book p07 — the five standards, applied without exception. */
+export const values = [
+  { numeral: "I", name: "Clarity", note: "Nothing said that isn’t needed." },
+  { numeral: "II", name: "Restraint", note: "Confidence without excess." },
+  { numeral: "III", name: "Relevance", note: "Ideas suited to their moment." },
+  { numeral: "IV", name: "Consistency", note: "The same standard, everywhere." },
+  { numeral: "V", name: "Craft", note: "Attention paid to every detail." },
 ] as const;
 
 export type Service = {
   slug: string;
   /** Short name used in navigation and the enquiry form. */
   name: string;
-  /** Full heading as written in the content document. */
+  /** Full heading. */
   title: string;
+  /** The one-line descriptor the mockups set beneath each capability. */
+  descriptor: string;
+  /** Opening image for the capability's own page. */
+  hero: string;
   summary: string;
   body: string;
-  /**
-   * What the engagement covers. Every entry is lifted from the sentences in
-   * the client's content document — nothing here is invented.
-   */
+  /** What the engagement covers. */
   includes: string[];
   /** Search description for the service's own page. */
   metaDescription: string;
@@ -45,88 +84,84 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    slug: "performance-marketing",
-    name: "Performance Marketing",
-    title: "Performance Marketing (Google Ads and Meta Ads)",
+    slug: "brand-strategy",
+    name: "Brand Strategy",
+    title: "Brand Strategy",
+    descriptor: "Meaningful foundations",
+    hero: "/images/book/photo-desk.jpg",
     summary:
-      "Google Ads and Meta Ads engineered for qualified leads at below-target cost per lead.",
-    body: "We manage paid media across Google Search, Display, YouTube, Facebook, and Instagram, engineered for qualified leads at below-target cost per lead. We run multi-million AED budgets with above-benchmark ROAS in Dubai's most competitive verticals.",
+      "Positioning, architecture and messaging that give every later decision a reason.",
+    body: "Strategy provides direction. We establish what a brand stands for, who it speaks to and where it sits against everyone else — then write the positioning and messaging that hold that in place. Nothing downstream is decided by taste alone.",
     includes: [
-      "Google Search",
-      "Google Display",
-      "YouTube",
-      "Facebook",
-      "Instagram",
-      "Multi-million AED budget management",
+      "Positioning",
+      "Brand architecture",
+      "Audience definition",
+      "Messaging framework",
+      "Naming",
+      "Tone of voice",
     ],
     metaDescription:
-      "Google Ads and Meta Ads management in Dubai, engineered for qualified leads at below-target cost per lead, with above-benchmark ROAS.",
+      "Brand strategy in Dubai — positioning, brand architecture, audience definition and messaging frameworks that give every later decision a reason.",
   },
   {
-    slug: "seo-and-content",
-    name: "SEO and Content",
-    title: "SEO and Content Marketing",
+    slug: "visual-identity",
+    name: "Visual Identity",
+    title: "Visual Identity",
+    descriptor: "Distinct by intention",
+    hero: "/images/book/stat-card.jpg",
     summary:
-      "Technical SEO, on-page optimization, and content that ranks and converts across Dubai search.",
-    body: "We deliver technical SEO, on-page optimization, and content built to rank in Dubai search and win AI-driven results. We fix what blocks indexing and build content clusters that pull qualified organic traffic month after month.",
+      "A complete identity system — mark, palette, typography and the rules that keep them coherent.",
+    body: "Design creates recognition. We build the logo system, colour palette, typographic hierarchy and layout grid as one set of rules, documented so the identity survives contact with every team that has to use it.",
     includes: [
-      "Technical SEO",
-      "On-page optimization",
-      "Indexing fixes",
-      "Content clusters",
-      "AI search visibility",
+      "Logo system",
+      "Colour palette",
+      "Typographic hierarchy",
+      "Grid and layout",
+      "Brand guidelines",
+      "Collateral and stationery",
     ],
     metaDescription:
-      "Technical SEO, on-page optimization and content built to rank in Dubai search and win AI-driven results, pulling qualified organic traffic month after month.",
+      "Visual identity design in Dubai — logo systems, colour palettes, typographic hierarchy and complete brand guidelines built to stay coherent in use.",
   },
   {
-    slug: "websites-and-conversion",
-    name: "Websites and Conversion",
-    title: "Website Development and Conversion Rate Optimization",
+    slug: "creative-direction",
+    name: "Creative Direction",
+    title: "Creative Direction",
+    descriptor: "Thoughtful storytelling",
+    hero: "/images/book/photo-shelf.jpg",
     summary:
-      "High-converting websites with SEO-ready architecture and CRM-integrated funnels.",
-    body: "We build high-converting websites with SEO-ready architecture, custom landing pages, and CRM-integrated funnels designed around your sales process.",
+      "Art direction, photography and campaign work held to one standard across every channel.",
+    body: "Communication builds connection. We set the visual language — photography direction, art direction, campaign concepts — and hold every piece of output to it, so the brand reads as one voice rather than a series of unrelated executions.",
     includes: [
-      "SEO-ready architecture",
-      "Custom landing pages",
-      "CRM-integrated funnels",
-      "Conversion rate optimization",
+      "Art direction",
+      "Photography direction",
+      "Campaign concepts",
+      "Content direction",
+      "Social systems",
+      "Launch collateral",
     ],
     metaDescription:
-      "High-converting website development and CRO in Dubai — SEO-ready architecture, custom landing pages and CRM-integrated funnels built around your sales process.",
+      "Creative direction in Dubai — art direction, photography direction and campaign concepts held to a single standard across every channel.",
   },
   {
-    slug: "crm-and-attribution",
-    name: "CRM and Attribution",
-    title: "CRM Integration and Marketing Automation",
+    slug: "digital-experience",
+    name: "Digital Experience",
+    title: "Digital Experience",
+    descriptor: "Seamless by design",
+    hero: "/images/book/digital-laptop.jpg",
     summary:
-      "Tracking that ties every dirham of spend to pipeline and closed revenue.",
-    body: "We connect your marketing to your pipeline with attribution tracking and automation, so every lead is captured, scored, and followed up.",
+      "Websites and digital products where the identity holds at every screen.",
+    body: "Technology enables experience. We design and build the digital surfaces a brand is judged on — websites, landing pages, digital products — carrying the identity into interface, motion and performance rather than leaving it at the logo.",
     includes: [
-      "Attribution tracking",
-      "Marketing automation",
-      "Lead capture",
-      "Lead scoring",
-      "Follow-up workflows",
+      "Website design",
+      "Website development",
+      "Design systems",
+      "Interface and motion",
+      "Performance and accessibility",
+      "Analytics and measurement",
     ],
     metaDescription:
-      "CRM integration and marketing automation in Dubai — attribution tracking that connects marketing to pipeline, so every lead is captured, scored and followed up.",
-  },
-  {
-    slug: "brand-and-creative",
-    name: "Brand and Creative",
-    title: "Brand and Creative",
-    summary:
-      "Brand identity, campaign visuals and collateral held to a launch standard.",
-    body: "We produce brand identity, campaign visuals, social creative, and marketing collateral to a launch standard, keeping your brand consistent and credible across every channel.",
-    includes: [
-      "Brand identity",
-      "Campaign visuals",
-      "Social creative",
-      "Marketing collateral",
-    ],
-    metaDescription:
-      "Brand identity, campaign visuals, social creative and marketing collateral produced to a launch standard, keeping your brand consistent across every channel.",
+      "Digital experience design and development in Dubai — websites, design systems and digital products that carry the brand identity into every screen.",
   },
 ];
 
@@ -146,7 +181,7 @@ export function adjacentServices(slug: string) {
 
 /**
  * The ledger — proof figures, set as a measure rather than as stat cards.
- * The first four are the set the home page carries; Results shows all five.
+ * The first four are the set the home page carries; Work shows all five.
  */
 export const proof = [
   {

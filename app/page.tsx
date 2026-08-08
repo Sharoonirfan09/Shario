@@ -4,17 +4,30 @@ import {
   ArrowLink,
   Button,
   CallToAction,
-  Container,
+  GridPlate,
+  ImagePlate,
   LedgerEntry,
+  Plate,
+  SplitPlate,
 } from "@/components/ui";
 import { industries, proof, services, site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Shario — Digital Marketing Company in Dubai",
+  title: "Shario — A Symphony of Identity",
   description:
-    "Shario is a founder-led digital marketing company in Dubai that turns spend into revenue. AED 35M+ in CRM-attributed revenue across real estate and B2B.",
+    "Shario is a boutique creative studio in Dubai composing coherent brand identities across strategy, design and technology.",
   alternates: { canonical: "/" },
 };
+
+/** Brand Book p23 — the photographic language, in the book's own frames. */
+const direction = [
+  { src: "/images/book/photo-plinth.jpg", caption: "Clean crop, negative space" },
+  { src: "/images/book/photo-lounge.jpg", caption: "Calm, even tone" },
+  { src: "/images/book/photo-desk.jpg", caption: "Material, close" },
+  { src: "/images/book/photo-book.jpg", caption: "The mark, in hand" },
+  { src: "/images/book/photo-shelf.jpg", caption: "Text sits in quiet zones" },
+  { src: "/images/book/digital-tablet.jpg", caption: "Identity on screen" },
+];
 
 /** The four capabilities named on the home page, in the order the brief sets them. */
 const homeServices = services.slice(0, 4);
@@ -22,98 +35,77 @@ const homeServices = services.slice(0, 4);
 export default function HomePage() {
   return (
     <>
-      {/* Hero — the thesis: spend becomes revenue. */}
-      <section className="border-b border-rule">
-        <Container className="pt-20 pb-16 md:pt-28 md:pb-20">
-          <p className="label rise text-carbon-40">
-            {site.location} · Founder-led
-          </p>
+      {/*
+       * Cover — the Brand Book opens on a full-bleed field with the statement
+       * centred over it (p01, p32). The site opens the same way.
+       */}
+      <ImagePlate
+        src="/images/reception.jpg"
+        focus="object-[72%_78%] sm:object-center"
+        label={`${site.location} · Creative studio`}
+        footnote="Independent thinking. Sharper execution."
+        index="Cover"
+        title="A Symphony of Identity."
+        standfirst="One vision, composed across every touchpoint. A boutique creative studio in Dubai."
+      >
+        <Button href="/contact">Let’s connect</Button>
+        <ArrowLink href="/work">Explore our work</ArrowLink>
+      </ImagePlate>
 
-          <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-12">
-            <h1
-              className="display rise text-balance text-[clamp(2.6rem,6.2vw,5.25rem)] lg:col-span-8"
-              style={{ animationDelay: "110ms" }}
-            >
-              A Dubai digital marketing company that turns spend into{" "}
-              <em className="italic">revenue</em>.
-            </h1>
+      {/* The ledger — its own plate, the way the book gives one idea one page. */}
+      <Plate
+        label="The measure"
+        footnote="Clarity before expression."
+        index="01 / 06"
+      >
+        <div className="grid gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">
+          {proof.slice(0, 4).map((entry, i) => (
+            <LedgerEntry
+              key={entry.label}
+              figure={entry.figure}
+              label={entry.label}
+              delay={i * 110}
+              size="sm"
+            />
+          ))}
+        </div>
+      </Plate>
 
-            <div
-              className="rise flex flex-col justify-end lg:col-span-4"
-              style={{ animationDelay: "260ms" }}
-            >
-              <p className="lede max-w-xl text-carbon-60">
-                Shario is a founder-led digital marketing company in Dubai,
-                built by an operator who has generated AED 35M+ in tracked
-                revenue for real estate and B2B brands. We build marketing
-                systems that produce sales.
-              </p>
-              <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
-                <Button href="/contact">Book a strategy call</Button>
-                <ArrowLink href="/results">See the results</ArrowLink>
-              </div>
-            </div>
-          </div>
-        </Container>
+      {/*
+       * Positioning — the Brand Book's split spread (p02): the frame narrows
+       * into a column on the left, the photograph takes the rest.
+       */}
+      <SplitPlate
+        src="/images/book/photo-stair.jpg"
+        label="Introduction"
+        footnote="Clarity before expression."
+        index="02 / 06"
+        title="A system for coherence."
+      >
+        <p className="text-carbon-60">
+          Positioning, identity and digital presence, composed as one
+          system — so every expression carries the same intent.
+        </p>
+        <div className="mt-10">
+          <ArrowLink href="/about">About the studio</ArrowLink>
+        </div>
+      </SplitPlate>
 
-        {/* The hairline that carries the eye into the ledger. */}
-        <div className="draw h-px w-full bg-rule" style={{ animationDelay: "620ms" }} />
-
-        {/* Signature: the ledger measure. */}
-        <Container className="py-16 md:py-20">
-          <div className="grid gap-x-12 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
-            {proof.slice(0, 4).map((entry, i) => (
-              <LedgerEntry
-                key={entry.label}
-                figure={entry.figure}
-                label={entry.label}
-                delay={i * 110}
-                size="sm"
-              />
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Founder-led */}
-      <section className="border-b border-rule bg-limestone">
-        <Container className="py-24 md:py-32">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-5">
-              <p className="label-sm text-carbon-60">Founder-led from day one</p>
-              <h2 className="title reveal mt-7 text-[clamp(2rem,4.4vw,3.25rem)]">
-                Senior thinking on every campaign.
-              </h2>
-            </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <p className="lede reveal text-carbon" data-delay="90">
-                Shario runs on a senior model. Every strategy is set to the
-                standard of a founder who has personally built and launched
-                full-funnel marketing systems for developer-led projects in
-                Dubai. You get senior thinking on every campaign, from a team
-                that stays with your account.
-              </p>
-              <div className="reveal mt-9" data-delay="180">
-                <ArrowLink href="/about">About Shario</ArrowLink>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* What we do */}
-      <section className="border-b border-rule">
-        <Container className="py-24 md:py-32">
+      {/* Capabilities */}
+      <Plate
+        label="Capabilities"
+        footnote="One connected system."
+        index="03 / 06"
+      >
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
-              <p className="label-sm text-carbon-40">What we do</p>
+              <p className="label-sm text-carbon-40">Capabilities</p>
               <h2 className="title reveal mt-7 text-[clamp(2rem,4.4vw,3.25rem)]">
                 One connected system.
               </h2>
               <p className="reveal mt-7 max-w-sm text-carbon-60" data-delay="90">
-                Brand, traffic, conversion and CRM are handled together — never
-                as separate campaigns that cannot be measured against each
-                other.
+                Strategy, design, communication and technology, handled
+                together — never as separate pieces.
               </p>
             </div>
 
@@ -129,7 +121,7 @@ export default function HomePage() {
                       <h3 className="title shrink-0 text-[1.5rem] sm:w-[13rem]">
                         {service.name}
                       </h3>
-                      <p className="text-carbon-60">{service.summary}</p>
+                      <p className="text-carbon-60">{service.descriptor}</p>
                       <span
                         aria-hidden="true"
                         className="label hidden shrink-0 self-center text-carbon-40 transition-transform duration-500 group-hover:translate-x-1.5 sm:block"
@@ -141,20 +133,29 @@ export default function HomePage() {
                 ))}
               </ul>
               <div className="reveal mt-10 border-t border-rule pt-8">
-                <ArrowLink href="/services">All services</ArrowLink>
+                <ArrowLink href="/services">All capabilities</ArrowLink>
               </div>
             </div>
           </div>
-        </Container>
-      </section>
+      </Plate>
 
-      {/* Proof, in full */}
-      <section className="border-b border-rule">
-        <Container className="py-24 md:py-32">
+      <GridPlate
+        label="Photographic direction"
+        footnote="Warm, cinematic, quietly international."
+        index="04 / 06"
+        frames={direction}
+      />
+
+      {/* Standards, in full */}
+      <Plate
+        label="Standards"
+        footnote="Purpose before decoration."
+        index="05 / 06"
+      >
           <div className="max-w-2xl">
-            <p className="label-sm text-carbon-40">Proof over promises</p>
+            <p className="label-sm text-carbon-40">Standards</p>
             <h2 className="title reveal mt-7 text-[clamp(2rem,4.4vw,3.25rem)]">
-              Measured in revenue, not impressions.
+              Harmony is a discipline, not an accident.
             </h2>
           </div>
 
@@ -169,37 +170,47 @@ export default function HomePage() {
               />
             ))}
           </div>
-        </Container>
-      </section>
+      </Plate>
 
-      {/* Who we work with */}
-      <section className="border-b border-rule bg-limestone">
-        <Container className="py-24 md:py-32">
+      {/* Sectors */}
+      <Plate
+        label="Sectors"
+        footnote="Across Dubai and the wider UAE."
+        index="06 / 06"
+        tone="limestone"
+      >
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
-              <p className="label-sm text-carbon-60">Who we work with</p>
+              <p className="label-sm text-carbon-60">Sectors</p>
               <h2 className="title reveal mt-7 text-[clamp(2rem,4.4vw,3.25rem)]">
                 Across Dubai and the wider UAE.
               </h2>
             </div>
             <ul className="lg:col-span-7 lg:col-start-6">
               {industries.slice(0, 7).map((industry, i) => (
-                <li
-                  key={industry}
-                  className="reveal title border-t border-limestone-deep py-5 text-[clamp(1.35rem,2.6vw,1.9rem)]"
-                  data-delay={i * 60}
-                >
-                  {industry}
+                <li key={industry}>
+                  <Link
+                    href={`/contact?sector=${encodeURIComponent(industry)}`}
+                    className="reveal title group flex items-baseline justify-between gap-6 border-t border-limestone-deep py-5 text-[clamp(1.35rem,2.6vw,1.9rem)] transition-colors duration-500 hover:text-carbon-60"
+                    data-delay={i * 60}
+                  >
+                    {industry}
+                    <span
+                      aria-hidden="true"
+                      className="label shrink-0 self-center opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100 sm:-translate-x-2"
+                    >
+                      →
+                    </span>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
-        </Container>
-      </section>
+      </Plate>
 
       <CallToAction
-        title="Book a strategy call."
-        body="In fifteen minutes we will map where your marketing can win more revenue and how to unlock it."
+        title="Begin a conversation."
+        body="Independent thinking. Sharper execution. How every engagement begins."
       />
     </>
   );

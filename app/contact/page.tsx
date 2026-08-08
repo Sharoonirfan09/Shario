@@ -1,40 +1,47 @@
 import type { Metadata } from "next";
-import { Container, PageHeader } from "@/components/ui";
+import { Suspense } from "react";
+import { ImagePlate, Plate } from "@/components/ui";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Book a strategy call with Shario. Fifteen minutes to map where your marketing can win more revenue in Dubai and the UAE.",
+    "Begin a conversation with Shario — a boutique creative studio in Dubai composing coherent brand identities.",
   alternates: { canonical: "/contact" },
 };
 
 const afterYouReachOut = [
-  "We schedule a short call to understand your goals and current numbers.",
-  "We map the funnel and identify the highest-leverage wins.",
-  "We send a clear proposal with scope, timeline, and expected outcomes.",
+  "We schedule a short call to understand the brand and what it needs to become.",
+  "We audit the identity as it stands and mark where it fragments.",
+  "We send a clear proposal with scope, timeline and expected outcomes.",
 ];
 
 export default function ContactPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="Work with Shario"
+      <ImagePlate
+        src="/images/corridor.jpg"
+        label="Work with Shario"
+        footnote="One vision. Every touchpoint."
+        index="Cover"
         title="Begin a conversation."
-        standfirst="Whether you are launching a project, scaling lead flow, or improving marketing that should convert better, the first step is a conversation."
+        standfirst="Building an identity, correcting one that has drifted, or composing the digital experience around it — it starts with a conversation."
       />
 
       {/* Details and what happens next */}
-      <section className="border-b border-rule bg-limestone">
-        <Container className="py-20 md:py-24">
+      <Plate
+        label="Get in touch"
+        footnote="One vision. Every touchpoint."
+        index="01 / 02"
+        tone="limestone"
+      >
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-5">
-              <p className="label-sm text-carbon-60">Book a strategy call</p>
+              <p className="label-sm text-carbon-60">Begin a conversation</p>
               <p className="lede reveal mt-6 max-w-md text-carbon">
-                In fifteen minutes we will look at where your marketing can win
-                more revenue and outline how Shario would unlock it. It is free,
-                focused, and specific to your business.
+                Bring the brand as it stands. We will show you where the
+                coherence breaks, and what it takes to hold it.
               </p>
 
               <dl className="mt-12 space-y-5">
@@ -101,14 +108,17 @@ export default function ContactPage() {
                   </li>
                 ))}
               </ol>
+
             </div>
           </div>
-        </Container>
-      </section>
+      </Plate>
 
       {/* Enquiry form */}
-      <section>
-        <Container className="py-24 md:py-32">
+      <Plate
+        label="Enquiry"
+        footnote="We respond within one business day."
+        index="02 / 02"
+      >
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-4">
               <p className="label-sm text-carbon-40">Send an enquiry</p>
@@ -121,11 +131,12 @@ export default function ContactPage() {
             </div>
 
             <div className="lg:col-span-7 lg:col-start-6">
-              <EnquiryForm />
+              <Suspense fallback={null}>
+                <EnquiryForm />
+              </Suspense>
             </div>
           </div>
-        </Container>
-      </section>
+      </Plate>
     </>
   );
 }

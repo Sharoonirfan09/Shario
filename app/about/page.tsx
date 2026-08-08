@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { CallToAction, Container, PageHeader } from "@/components/ui";
+import { CallToAction, GridPlate, ImagePlate, Plate } from "@/components/ui";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Shario was built by Sharoon Irfan, a performance marketer with 6+ years across Dubai real estate, hospitality and B2B, and AED 35M+ in CRM-attributed sales.",
+    "Shario is a boutique creative studio in Dubai, founded by Sharoon Irfan to unify strategy, design, communication and technology into one coherent brand system.",
   alternates: { canonical: "/about" },
 };
 
@@ -14,57 +14,71 @@ export const metadata: Metadata = {
 const principles = [
   {
     title: "Senior ownership",
-    body: "Your account is run to a founder's standard and stays in senior hands.",
+    body: "Every engagement is run to a founder’s standard and stays in senior hands.",
   },
   {
-    title: "Revenue accountability",
-    body: "We align on pipeline and closed sales, the metrics that matter.",
+    title: "Accountability",
+    body: "We align on what the brand must achieve, not on output volume.",
   },
   {
-    title: "Full-funnel thinking",
-    body: "Brand, traffic, conversion, and CRM are handled as one connected system.",
+    title: "Whole-system thinking",
+    body: "Strategy, design, communication and technology are handled as one connected system.",
   },
   {
     title: "Direct access",
-    body: "You talk to the people building your campaigns.",
+    body: "You talk to the people composing the work.",
   },
 ];
 
 /** How we work — an actual ordered process, which is what earns the numbering. */
 const process = [
   {
-    title: "We start with your numbers",
-    body: "Including cost per lead, close rate, and revenue per channel.",
+    title: "We start with meaning",
+    body: "What the brand stands for, who it is for, and where it sits against everyone else.",
   },
   {
     title: "We build the system",
-    body: "With ads, SEO, website, and CRM working together.",
+    body: "Identity, language and digital surfaces designed as one set of rules.",
   },
   {
-    title: "We track everything",
-    body: "So every campaign ties back to attributable revenue.",
+    title: "We document the standard",
+    body: "Guidelines precise enough that the identity survives every team that uses it.",
   },
   {
-    title: "We optimize relentlessly",
-    body: "Every week, against the metrics that move money.",
+    title: "We hold it in place",
+    body: "Every new touchpoint is composed against the system, not alongside it.",
   },
+];
+
+/** Brand Book p30 — the identity in place. */
+const environments = [
+  { src: "/images/book/sign-exterior.jpg", caption: "Exterior signage" },
+  { src: "/images/book/sign-glass.jpg", caption: "Glass door" },
+  { src: "/images/book/reception-wall.jpg", caption: "Reception wall" },
+  { src: "/images/book/sign-tablet.jpg", caption: "In room" },
 ];
 
 export default function AboutPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="About Shario"
-        title="Built by an operator who has carried a revenue number."
-        standfirst="Shario was founded on a simple belief. Brands in Dubai deserve marketing that delivers real results, measured in revenue. Sharoon Irfan built Shario to deliver exactly that."
+      <ImagePlate
+        src="/images/book/photo-lounge.jpg"
+        label="About the studio"
+        footnote="A Symphony of Identity."
+        index="Cover"
+        title="To make identity coherent, distinctive and meaningful."
+        standfirst="Unifying the fragmented pieces of a brand into one legible, purposeful system."
       />
 
       {/* The founder */}
-      <section className="border-b border-rule">
-        <Container className="py-24 md:py-32">
+      <Plate
+        label="The founder"
+        footnote="A Symphony of Identity."
+        index="01 / 04"
+      >
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-4">
-              <p className="label-sm text-carbon-40">The founder</p>
+              <p className="label-sm text-carbon-40">The name</p>
               <div className="reveal mt-9 max-w-[200px]">
                 {/* The S monogram, used here as a portrait-slot placeholder
                     until a photograph of the founder is supplied. */}
@@ -76,64 +90,86 @@ export default function AboutPage() {
                   className="h-auto w-[86px] opacity-90"
                 />
               </div>
-              <p className="title mt-8 text-[1.75rem]">{site.founder}</p>
-              <p className="label-sm mt-3 text-carbon-40">
-                Founder · Performance marketer
+              <p className="title mt-8 text-[1.75rem]">{site.tagline}</p>
+              <p className="label-sm mt-3 text-carbon-40" dir="rtl" lang="ar">
+                {site.taglineAr}
               </p>
             </div>
 
             <div className="lg:col-span-7 lg:col-start-6">
               <p className="lede reveal text-carbon">
-                Sharoon Irfan is a performance marketer and digital growth
-                strategist with 6+ years of experience building revenue-focused
-                marketing across Dubai&apos;s real estate, hospitality, and B2B
-                sectors.
+                <strong className="font-normal">Shar</strong> — from Sharoon.
+                Founder-led vision, creative ownership, individual direction.
               </p>
-              <p className="reveal mt-7 text-carbon-60" data-delay="90">
-                Before founding Shario, Sharoon led marketing for developer-led
-                real estate launches and generated AED 35M+ in CRM-attributed
-                sales, earning a Marketing Excellence Award for campaign ROI.
+              <p className="lede reveal mt-7 text-carbon" data-delay="90">
+                <strong className="font-normal">io</strong> — input and output.
+                The exchange that turns ideas into results.
               </p>
-              <p className="reveal mt-7 text-carbon-60" data-delay="150">
-                That operator background shapes everything Shario does. Strategy
-                is written by someone who has carried a revenue target and
-                delivered on it.
+              <p className="reveal mt-9 text-carbon-60" data-delay="150">
+                Together: where ideas enter, creativity intervenes, and
+                distinctive identities emerge.
+              </p>
+              <p className="reveal mt-7 text-carbon-60" data-delay="210">
+                Led by {site.founder} — AED 35M+ in CRM-attributed sales and
+                a Marketing Excellence Award behind him. Growth is part of the
+                brand system here, not an afterthought.
               </p>
             </div>
           </div>
-        </Container>
-      </section>
+      </Plate>
 
       {/* What founder-led means for you */}
-      <section className="border-b border-rule bg-limestone">
-        <Container className="py-24 md:py-32">
-          <div className="max-w-2xl">
-            <p className="label-sm text-carbon-60">
-              What founder-led means for you
-            </p>
-            <h2 className="title reveal mt-7 text-[clamp(2rem,4.4vw,3.25rem)]">
-              Four commitments, on every account.
-            </h2>
-          </div>
+      <Plate
+        label="Commitments"
+        footnote="The same standard, everywhere."
+        index="02 / 04"
+        tone="limestone"
+      >
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="frame reveal relative aspect-[3/2] sm:aspect-[3/4] lg:col-span-4">
+              <Image
+                src="/images/pedestal.jpg"
+                alt=""
+                fill
+                sizes="(min-width: 1024px) 30vw, 100vw"
+                className="object-cover"
+              />
+            </div>
 
-          <div className="mt-16 grid gap-x-12 gap-y-12 sm:grid-cols-2">
-            {principles.map((item, i) => (
-              <div
-                key={item.title}
-                className="reveal border-t border-limestone-deep pt-7"
-                data-delay={i * 90}
-              >
-                <h3 className="title text-[1.65rem]">{item.title}</h3>
-                <p className="mt-3 max-w-md text-carbon-60">{item.body}</p>
+            <div className="lg:col-span-7 lg:col-start-6">
+              <p className="label-sm text-carbon-60">
+                What independence means for you
+              </p>
+              <h2 className="title reveal mt-7 text-[clamp(2rem,4.4vw,3.25rem)]">
+                Four commitments, on every engagement.
+              </h2>
+
+              <div className="mt-14 grid gap-x-12 gap-y-12 sm:grid-cols-2">
+                {principles.map((item, i) => (
+                  <div
+                    key={item.title}
+                    className="reveal border-t border-limestone-deep pt-7"
+                    data-delay={i * 90}
+                  >
+                    <h3 className="title text-[1.65rem]">{item.title}</h3>
+                    <p className="mt-3 max-w-md text-carbon-60">{item.body}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
-        </Container>
-      </section>
+      </Plate>
 
       {/* How we work — numbered, because the order is the point */}
-      <section className="border-b border-rule">
-        <Container className="py-24 md:py-32">
+      <GridPlate
+        label="Brand collateral"
+        footnote="Minimal and realistic in every context."
+        index="03 / 04"
+        columns={4}
+        frames={environments}
+      />
+
+      <Plate label="Method" footnote="A sequence, not a menu." index="04 / 04">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-4">
               <p className="label-sm text-carbon-40">How we work</p>
@@ -163,13 +199,12 @@ export default function AboutPage() {
               ))}
             </ol>
           </div>
-        </Container>
-      </section>
+      </Plate>
 
       <CallToAction
         title="See if Shario is the right fit for your brand."
-        body="A short call is the fastest way to find out. No pitch deck, just your numbers and where the leverage is."
-        action="Book a call"
+        body="No pitch deck — just the brand as it stands, and where the coherence breaks."
+        action="Let’s connect"
       />
     </>
   );

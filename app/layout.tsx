@@ -54,6 +54,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       // The inline script below adds `js` to this element before hydration,
       // so the server and client className differ by design.
       suppressHydrationWarning
+      /*
+       * Tells Next that the smooth scrolling in globals.css is intentional, so
+       * it suppresses it during route transitions. Without this the browser
+       * animates all the way back to the top of a very tall page on every
+       * navigation, which reads as the site hanging.
+       */
+      data-scroll-behavior="smooth"
       className={`${cormorant.variable} ${ebGaramond.variable} ${jost.variable} h-full antialiased`}
     >
       <head>

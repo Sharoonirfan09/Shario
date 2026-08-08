@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CallToAction, Container, PageHeader } from "@/components/ui";
+import { CallToAction, Container, ImagePlate } from "@/components/ui";
 import { adjacentServices, getService, services, site } from "@/lib/site";
 
-/** All five service pages are known at build time, so prerender them. */
+/** Every capability page is known at build time, so prerender them. */
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
 }
@@ -39,8 +39,11 @@ export default async function ServicePage({
 
   return (
     <>
-      <PageHeader
-        eyebrow="Services"
+      <ImagePlate
+        src={service.hero}
+        label="Capabilities"
+        footnote={service.descriptor}
+        index="Cover"
         title={service.title}
         standfirst={service.summary}
       />
@@ -72,16 +75,15 @@ export default async function ServicePage({
               <div className="reveal mt-14 border-t border-rule pt-8" data-delay="120">
                 <p className="label-sm text-carbon-40">Engagement</p>
                 <p className="lede mt-5 max-w-xl text-carbon-60">
-                  Engage this on its own, or as one part of the full funnel.
-                  Either way it is measured against pipeline and closed revenue,
-                  not activity.
+                  On its own, or as part of the whole — held to the same
+                  standard either way, and documented.
                 </p>
                 <div className="mt-8">
                   <Link
                     href="/contact"
                     className="label inline-block border border-carbon bg-carbon px-8 py-4 text-porcelain transition-colors duration-500 hover:bg-transparent hover:text-carbon"
                   >
-                    Discuss this service
+                    Discuss this capability
                   </Link>
                 </div>
               </div>
@@ -122,7 +124,7 @@ export default async function ServicePage({
             <div className="lg:col-span-4">
               <p className="label-sm text-carbon-60">The rest of the system</p>
               <h2 className="title reveal mt-7 text-[clamp(1.8rem,3.6vw,2.75rem)]">
-                One service, or the entire funnel.
+                One capability, or the whole system.
               </h2>
             </div>
 
@@ -155,8 +157,9 @@ export default async function ServicePage({
       </section>
 
       <CallToAction
-        title="Tell us your goal and we will tell you which services get you there."
-        body="Bring the number you need to hit. We will map the shortest route to it and say plainly what we would not bother doing."
+        title="Tell us what the brand needs to become."
+        body="We will say plainly which capabilities get it there, and which we would leave alone."
+        action="Let’s connect"
       />
     </>
   );

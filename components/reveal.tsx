@@ -20,49 +20,52 @@ export function Reveal() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const targets = new Set(
-      document.querySelectorAll<HTMLElement>(".reveal:not([data-shown])")
-    );
-    if (targets.size === 0) return;
-
-    const show = (el: HTMLElement, animate: boolean) => {
-      if (animate) el.style.animationDelay = `${el.dataset.delay ?? 0}ms`;
-      el.setAttribute("data-shown", "true");
-      targets.delete(el);
-    };
-
-    // Reduced motion: nothing to stagger, just show it all.
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      targets.forEach((el) => show(el, false));
-      return;
-    }
-
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let frame = 0;
 
+    /*
+     * Targets are re-queried on every pass rather than captured once.
+     *
+     * The document is marked `js` before first paint, which puts every
+     * `.reveal` at opacity 0 — so this effect is the *only* thing that can
+     * make that content visible again. Capturing the list once meant that any
+     * content not yet in the DOM when the effect ran (streamed HTML, a client
+     * route transition) was never tracked, and stayed invisible permanently.
+     * A querySelectorAll per animation frame is nothing next to that risk, and
+     * `:not([data-shown])` shrinks the match set to empty almost immediately.
+     */
     const sweep = () => {
       frame = 0;
       const limit = window.innerHeight * 0.92;
-      targets.forEach((el) => {
-        if (el.getBoundingClientRect().top < limit) show(el, true);
-      });
-      if (targets.size === 0) teardown();
+      document
+        .querySelectorAll<HTMLElement>(".reveal:not([data-shown])")
+        .forEach((el) => {
+          if (!reduce && el.getBoundingClientRect().top >= limit) return;
+          if (!reduce) el.style.setProperty("--reveal-delay", `${el.dataset.delay ?? 0}ms`);
+          el.setAttribute("data-shown", "true");
+        });
     };
 
     const schedule = () => {
       if (frame === 0) frame = requestAnimationFrame(sweep);
     };
 
-    function teardown() {
-      if (frame) cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-    }
-
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule, { passive: true });
+
+    // Sweep again as late content arrives and as layout settles once fonts
+    // and images have loaded — each can move a target across the trigger line.
+    const timers = [0, 120, 600, 1600].map((ms) =>
+      window.setTimeout(sweep, ms)
+    );
     sweep();
 
-    return teardown;
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      timers.forEach(clearTimeout);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
   }, [pathname]);
 
   return null;

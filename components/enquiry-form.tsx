@@ -1,5 +1,6 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { submitEnquiry, type EnquiryState } from "@/app/actions";
@@ -25,6 +26,13 @@ function SubmitButton() {
 
 export function EnquiryForm() {
   const [state, formAction] = useActionState(submitEnquiry, initialState);
+
+  /*
+   * The sector lists link here as `?sector=…`, so the message starts with the
+   * visitor's own context already filled in. The form is wrapped in a Suspense
+   * boundary on the page, which keeps the rest of the route prerendered.
+   */
+  const sector = useSearchParams().get("sector") ?? "";
 
   if (state.status === "success") {
     return (
@@ -140,6 +148,8 @@ export function EnquiryForm() {
           <textarea
             id="message"
             name="message"
+            defaultValue={sector ? `We are in ${sector}. ` : undefined}
+            key={sector}
             rows={4}
             required
             aria-describedby={

@@ -1,26 +1,42 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CallToAction, Container, PageHeader } from "@/components/ui";
+import { CallToAction, GridPlate, ImagePlate, Plate } from "@/components/ui";
 import { services } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Performance marketing, SEO and content, website development and CRO, CRM integration, and brand and creative — the full marketing system for Dubai brands.",
+    "Brand strategy, visual identity, creative direction and digital experience — the complete brand system, or any part of it.",
   alternates: { canonical: "/services" },
 };
+
+/** Brand Book p29 — the identity on screen. */
+const digital = [
+  { src: "/images/book/digital-laptop.jpg", caption: "Website" },
+  { src: "/images/book/digital-monitor.jpg", caption: "Desktop" },
+  { src: "/images/book/digital-tablet.jpg", caption: "Tablet" },
+  { src: "/images/book/digital-phone.jpg", caption: "Mobile" },
+  { src: "/images/book/digital-instagram.jpg", caption: "Instagram" },
+  { src: "/images/book/digital-linkedin.jpg", caption: "LinkedIn" },
+];
 
 export default function ServicesPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="Digital marketing services in Dubai"
-        title="The full marketing system, or any part of it."
-        standfirst="Shario delivers the full marketing system a Dubai brand needs to generate demand and convert it into revenue. You can engage one service or the entire funnel."
+      <ImagePlate
+        src="/images/travertine-wall.jpg"
+        label="Capabilities"
+        footnote="One connected system."
+        index="Cover"
+        title="The complete system, or any part of it."
+        standfirst="Strategy, identity, creative direction and digital experience, as one connected system. Engage a single capability, or the whole of it."
       />
 
-      <section className="border-b border-rule">
-        <Container>
+      <Plate
+        label="The system"
+        footnote="Purpose before decoration."
+        index="01 / 02"
+      >
           {services.map((service, i) => (
             <Link
               key={service.slug}
@@ -62,12 +78,18 @@ export default function ServicesPage() {
               </div>
             </Link>
           ))}
-        </Container>
-      </section>
+      </Plate>
+
+      <GridPlate
+        label="Identity on screen"
+        footnote="Seamless by design."
+        index="02 / 02"
+        frames={digital}
+      />
 
       <CallToAction
-        title="Tell us your goal and we will tell you which services get you there."
-        body="Bring the number you need to hit. We will map the shortest route to it and say plainly what we would not bother doing."
+        title="Tell us what the brand needs to become."
+        body="We will say plainly which capabilities get it there, and which to leave alone."
       />
     </>
   );
