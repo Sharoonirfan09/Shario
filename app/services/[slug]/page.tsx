@@ -1,8 +1,28 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CallToAction, Container, ImagePlate } from "@/components/ui";
-import { adjacentServices, getService, services, site } from "@/lib/site";
+import { Faq } from "@/components/faq";
+import {
+  Band,
+  Divider,
+  DotList,
+  Eyebrow,
+  FinalCta,
+  Hero,
+  MarkerColumns,
+  PillLink,
+  ProcessSteps,
+  SectionHead,
+  SectionLabel,
+  WorkCard,
+} from "@/components/ui";
+import {
+  getCaseStudy,
+  getService,
+  processSteps,
+  services,
+  site,
+  techStack,
+} from "@/lib/site";
 
 /** Every capability page is known at build time, so prerender them. */
 export function generateStaticParams() {
@@ -34,133 +54,145 @@ export default async function ServicePage({
   const service = getService(slug);
   if (!service) notFound();
 
-  const { previous, next } = adjacentServices(service.slug);
-  const others = services.filter((s) => s.slug !== service.slug);
+  const related = service.relatedWork
+    .map(getCaseStudy)
+    .filter((s) => s !== undefined);
 
   return (
     <>
-      <ImagePlate
+      <Hero
         src={service.hero}
-        label="Capabilities"
-        footnote={service.descriptor}
-        index="Cover"
+        focus={service.focus}
+        eyebrow={`Service — ${service.num} / ${service.name}`}
         title={service.title}
-        standfirst={service.summary}
-      />
+        subhead={service.subhead}
+        scale="service"
+        priority
+      >
+        <PillLink href="/contact" tone="outlineLight">
+          Start a Conversation
+        </PillLink>
+      </Hero>
 
-      {/* The service itself */}
-      <section className="border-b border-rule">
-        <Container className="py-24 md:py-32">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-12">
-            <div className="lg:col-span-4">
-              <p className="label-sm text-carbon-40">What this covers</p>
-              <ul className="mt-8">
-                {service.includes.map((item, i) => (
-                  <li
-                    key={item}
-                    className="reveal title border-t border-rule py-4 text-[1.3rem]"
-                    data-delay={i * 60}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+      {/* 01 — What We Do */}
+      <Band>
+        <MarkerColumns marker="01 / What We Do" heading="What we do">
+          <p className="reveal mb-8 max-w-[780px] font-display text-[1.75rem] font-normal leading-[1.3] wide:text-[clamp(1.75rem,3vw,2.5rem)]">
+            {service.lead}
+          </p>
+          <DotList items={service.whatWeDo} />
+        </MarkerColumns>
+      </Band>
 
-            <div className="lg:col-span-7 lg:col-start-6">
-              <p className="display reveal text-[clamp(1.7rem,3.4vw,2.6rem)]">
-                {service.body}
-              </p>
+      <Divider />
 
-              <div className="reveal mt-14 border-t border-rule pt-8" data-delay="120">
-                <p className="label-sm text-carbon-40">Engagement</p>
-                <p className="lede mt-5 max-w-xl text-carbon-60">
-                  On its own, or as part of the whole — held to the same
-                  standard either way, and documented.
-                </p>
-                <div className="mt-8">
-                  <Link
-                    href="/contact"
-                    className="label inline-block border border-carbon bg-carbon px-8 py-4 text-porcelain transition-colors duration-500 hover:bg-transparent hover:text-carbon"
-                  >
-                    Discuss this capability
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Walk to the neighbouring services */}
-      <section className="border-b border-rule">
-        <Container className="py-14">
-          <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
-            <Link href={`/services/${previous.slug}`} className="group max-w-xs">
-              <span className="label-sm text-carbon-40">Previous</span>
-              <span className="title mt-3 block text-[1.4rem] transition-opacity duration-300 group-hover:opacity-60">
-                <span aria-hidden="true">← </span>
-                {previous.name}
-              </span>
-            </Link>
-            <Link
-              href={`/services/${next.slug}`}
-              className="group max-w-xs sm:text-right"
+      {/* 02 — Business Benefits */}
+      <Band>
+        <SectionHead
+          title="Business Benefits."
+          marker="02 / Outcomes"
+          scale="md"
+        />
+        <div className="grid border-t border-carbon/12 wide:grid-cols-4 wide:border-l">
+          {service.benefits.map((benefit, i) => (
+            <div
+              key={benefit.title}
+              className="reveal flex min-h-[180px] flex-col gap-3.5 border-b border-r border-carbon/12 px-7 py-8"
+              data-delay={i * 60}
             >
-              <span className="label-sm text-carbon-40">Next</span>
-              <span className="title mt-3 block text-[1.4rem] transition-opacity duration-300 group-hover:opacity-60">
-                {next.name}
-                <span aria-hidden="true"> →</span>
-              </span>
-            </Link>
-          </div>
-        </Container>
-      </section>
-
-      {/* The rest of the system */}
-      <section className="border-b border-rule bg-limestone">
-        <Container className="py-24 md:py-28">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-12">
-            <div className="lg:col-span-4">
-              <p className="label-sm text-carbon-60">The rest of the system</p>
-              <h2 className="title reveal mt-7 text-[clamp(1.8rem,3.6vw,2.75rem)]">
-                One capability, or the whole system.
-              </h2>
+              <p className="font-display text-[1.375rem] font-medium">
+                {benefit.title}
+              </p>
+              <p className="text-sm leading-[1.7] text-carbon/70">
+                {benefit.desc}
+              </p>
             </div>
+          ))}
+        </div>
+      </Band>
 
-            <ul className="lg:col-span-7 lg:col-start-6">
-              {others.map((other, i) => (
-                <li key={other.slug}>
-                  <Link
-                    href={`/services/${other.slug}`}
-                    className="reveal group flex flex-col gap-1.5 border-t border-limestone-deep py-6 sm:flex-row sm:items-baseline sm:gap-10"
-                    data-delay={i * 70}
-                  >
-                    <span className="title shrink-0 text-[1.4rem] sm:w-[12rem]">
-                      {other.name}
-                    </span>
-                    <span className="text-[0.98rem] text-carbon-60">
-                      {other.summary}
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="label hidden shrink-0 self-center text-carbon-60 transition-transform duration-500 group-hover:translate-x-1.5 sm:block"
-                    >
-                      →
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+      {/* 03 — Process */}
+      <Band tone="carbon">
+        <SectionHead
+          title="Process."
+          marker="03 / Workflow"
+          scale="md"
+          tone="carbon"
+        />
+        <ProcessSteps steps={processSteps} tone="carbon" />
+      </Band>
+
+      {/*
+       * Deliverables and the tool row share one band. Apart they were two
+       * near-empty sections; the lists are short enough that pairing them
+       * reads as one deliberate spread rather than a page running out.
+       * The industries pill row that sat between them is gone — the same six
+       * pills already appear on the homepage, /work and every industry page,
+       * and on a capability page they said nothing the reader needed.
+       */}
+      <Band>
+        <div className="grid gap-12 wide:grid-cols-[1.35fr_1fr] wide:gap-20">
+          <div>
+            <SectionLabel>Deliverables</SectionLabel>
+            <Eyebrow className="mb-8">04 / Deliverables</Eyebrow>
+            <DotList items={service.deliverables} columns={1} accent={false} />
           </div>
-        </Container>
-      </section>
+          <div>
+            <SectionLabel>Technology and tools</SectionLabel>
+            <Eyebrow className="mb-8">05 / Technology &amp; Tools</Eyebrow>
+            <div className="flex flex-wrap gap-x-8 gap-y-5">
+              {techStack.map((tool, i) => (
+                <span
+                  key={tool}
+                  className="reveal font-display text-[1.375rem] text-carbon/55"
+                  data-delay={i * 50}
+                >
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Band>
 
-      <CallToAction
-        title="Tell us what the brand needs to become."
-        body="We will say plainly which capabilities get it there, and which we would leave alone."
-        action="Let’s connect"
-      />
+      {/* 07 — Related Work */}
+      <Band tone="carbon">
+        <SectionHead
+          title="Related Work."
+          marker="06 / Case Studies"
+          scale="md"
+          tone="carbon"
+        />
+        <div className="grid gap-10 wide:grid-cols-2">
+          {related.map((item, i) => (
+            <WorkCard
+              key={item.slug}
+              href={`/work/${item.slug}`}
+              image={item.card}
+              category={item.category}
+              title={item.title}
+              ratio="aspect-[4/3]"
+              delay={i * 90}
+            />
+          ))}
+        </div>
+      </Band>
+
+      {/*
+       * The prototype centres the FAQ in its own 1000px column, which pushes
+       * its marker 200px right of every other marker on the page. It sits in
+       * the standard container here; the accordion keeps a readable measure
+       * from its own max-width instead.
+       */}
+      <Band>
+        <SectionLabel>Frequently asked questions</SectionLabel>
+        <Eyebrow className="mb-10 wide:mb-16">07 / FAQ</Eyebrow>
+        <div className="max-w-[900px]">
+          <Faq items={service.faqs} />
+        </div>
+      </Band>
+
+      <FinalCta lines={service.ctaTitle} />
     </>
   );
 }

@@ -1,217 +1,256 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  ArrowLink,
-  Button,
-  CallToAction,
-  GridPlate,
-  ImagePlate,
-  LedgerEntry,
-  Plate,
-  SplitPlate,
+  Band,
+  Divider,
+  DotList,
+  Eyebrow,
+  FinalCta,
+  Frame,
+  Hero,
+  MarkerColumns,
+  NumberedRows,
+  Pill,
+  PillLink,
+  ProcessSteps,
+  SectionHead,
+  SectionLabel,
+  StatementImage,
+  WorkCard,
 } from "@/components/ui";
-import { industries, proof, services, site } from "@/lib/site";
+import {
+  creativeTechnology,
+  industries,
+  insights,
+  principles,
+  processSteps,
+  services,
+  site,
+  testimonial,
+  work,
+} from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Shario — A Symphony of Identity",
-  description:
-    "Shario is a boutique creative studio in Dubai composing coherent brand identities across strategy, design and technology.",
+  description: site.description,
   alternates: { canonical: "/" },
 };
-
-/** Brand Book p23 — the photographic language, in the book's own frames. */
-const direction = [
-  { src: "/images/book/photo-plinth.jpg", caption: "Clean crop, negative space" },
-  { src: "/images/book/photo-lounge.jpg", caption: "Calm, even tone" },
-  { src: "/images/book/photo-desk.jpg", caption: "Material, close" },
-  { src: "/images/book/photo-book.jpg", caption: "The mark, in hand" },
-  { src: "/images/book/photo-shelf.jpg", caption: "Text sits in quiet zones" },
-  { src: "/images/book/digital-tablet.jpg", caption: "Identity on screen" },
-];
-
-/** The four capabilities named on the home page, in the order the brief sets them. */
-const homeServices = services.slice(0, 4);
 
 export default function HomePage() {
   return (
     <>
-      {/*
-       * Cover — the Brand Book opens on a full-bleed field with the statement
-       * centred over it (p01, p32). The site opens the same way.
-       */}
-      <ImagePlate
-        src="/images/reception.jpg"
-        focus="object-[72%_78%] sm:object-center"
-        label={`${site.location} · Creative studio`}
-        footnote="Independent thinking. Sharper execution."
-        index="Cover"
-        title="A Symphony of Identity."
-        standfirst="One vision, composed across every touchpoint. A boutique creative studio in Dubai."
-      >
-        <Button href="/contact">Let’s connect</Button>
-        <ArrowLink href="/work">Explore our work</ArrowLink>
-      </ImagePlate>
+      <Hero
+        src="/images/book/reception-wall.jpg"
+        /*
+         * A phone crops this 4:5 photograph hard from both sides, which cut the
+         * wordmark on the reception wall in half. Anchoring the crop right
+         * keeps the lockup whole; the desktop box is wide enough to centre.
+         */
+        focus="object-right wide:object-center"
+        eyebrow="Shario — Creative Studio — Dubai"
+        title={
+          <>
+            A Symphony
+            <br />
+            of Identity.
+          </>
+        }
+        subhead="One vision, composed across every touchpoint."
+        scale="home"
+        priority
+      />
 
-      {/* The ledger — its own plate, the way the book gives one idea one page. */}
-      <Plate
-        label="The measure"
-        footnote="Clarity before expression."
-        index="01 / 06"
-      >
-        <div className="grid gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">
-          {proof.slice(0, 4).map((entry, i) => (
-            <LedgerEntry
-              key={entry.label}
-              figure={entry.figure}
-              label={entry.label}
-              delay={i * 110}
-              size="sm"
+      {/* 01 — Introduction */}
+      <Band>
+        <MarkerColumns marker="01 / Introduction" heading="Introduction">
+          <p className="reveal max-w-[820px] font-display text-[1.875rem] font-normal leading-[1.3] wide:text-[clamp(1.875rem,3.4vw,2.875rem)]">
+            SHARIO is a boutique creative studio composing coherent brand
+            identities across strategy, design and technology.
+          </p>
+          <p
+            className="reveal mt-8 max-w-[620px] font-body text-[1.1875rem] leading-[1.7] text-carbon/80"
+            data-delay="120"
+          >
+            Clarity before expression. Purpose before decoration. Every
+            engagement receives close creative direction, considered
+            decision-making and a high level of attention — building complete
+            brand ecosystems where positioning, identity, digital presence and
+            communication support one another.
+          </p>
+        </MarkerColumns>
+      </Band>
+
+      <Divider />
+
+      {/* 02 — Capabilities */}
+      <Band>
+        <SectionHead
+          title={
+            <>
+              A Complete
+              <br />
+              Creative System.
+            </>
+          }
+          marker="02 / Capabilities"
+        />
+        {/*
+         * The grid draws its own rules: a top and left edge on the container,
+         * a bottom and right edge on every cell. Below the breakpoint the left
+         * edge is dropped so a single column does not gain a stray rule.
+         */}
+        <div className="grid border-t border-carbon/12 wide:grid-cols-3 wide:border-l">
+          {services.map((service, i) => (
+            <Link
+              key={service.slug}
+              href={`/services/${service.slug}`}
+              className="reveal group flex min-h-[220px] flex-col gap-4 border-b border-r border-carbon/12 px-8 py-9 transition-colors duration-500 hover:bg-limestone/40"
+              data-delay={i * 60}
+            >
+              <span className="font-display text-sm text-carbon/50">
+                {service.num}
+              </span>
+              <span className="font-display text-[1.625rem] font-medium">
+                {service.name}
+              </span>
+              <span className="text-sm leading-[1.7] text-carbon/70">
+                {service.descriptor}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </Band>
+
+      <StatementImage src="/images/travertine-wall.jpg">
+        Harmony is a discipline, not an accident.
+      </StatementImage>
+
+      {/* 03 — What Defines Us */}
+      <Band>
+        <SectionLabel>What defines us</SectionLabel>
+        <Eyebrow className="mb-10 wide:mb-16">03 / What Defines Us</Eyebrow>
+        <NumberedRows rows={principles} />
+      </Band>
+
+      {/* 04 — Selected Work */}
+      <Band tone="carbon">
+        <SectionHead
+          title="Selected Work."
+          marker="04 / Portfolio"
+          tone="carbon"
+        />
+        <div className="grid gap-12 wide:grid-cols-3 wide:gap-10">
+          {work.map((item, i) => (
+            <WorkCard
+              key={item.slug}
+              href={`/work/${item.slug}`}
+              image={item.card}
+              category={item.category}
+              title={item.title}
+              scope={item.scope}
+              delay={i * 90}
             />
           ))}
         </div>
-      </Plate>
-
-      {/*
-       * Positioning — the Brand Book's split spread (p02): the frame narrows
-       * into a column on the left, the photograph takes the rest.
-       */}
-      <SplitPlate
-        src="/images/book/photo-stair.jpg"
-        label="Introduction"
-        footnote="Clarity before expression."
-        index="02 / 06"
-        title="A system for coherence."
-      >
-        <p className="text-carbon-60">
-          Positioning, identity and digital presence, composed as one
-          system — so every expression carries the same intent.
-        </p>
-        <div className="mt-10">
-          <ArrowLink href="/about">About the studio</ArrowLink>
+        <div className="mt-10 text-center wide:mt-16">
+          <PillLink href="/work" tone="outlineLight">
+            View All Work
+          </PillLink>
         </div>
-      </SplitPlate>
+      </Band>
 
-      {/* Capabilities */}
-      <Plate
-        label="Capabilities"
-        footnote="One connected system."
-        index="03 / 06"
-      >
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-4">
-              <p className="label-sm text-carbon-40">Capabilities</p>
-              <h2 className="title reveal mt-7 text-[clamp(2rem,4.4vw,3.25rem)]">
-                One connected system.
-              </h2>
-              <p className="reveal mt-7 max-w-sm text-carbon-60" data-delay="90">
-                Strategy, design, communication and technology, handled
-                together — never as separate pieces.
+      {/* 05 — Industries */}
+      <Band id="industries">
+        <SectionHead
+          title={
+            <>
+              Designed for
+              <br />
+              ambitious brands.
+            </>
+          }
+          marker="05 / Industries"
+        />
+        <div className="flex flex-wrap gap-3.5">
+          {industries.map((industry) => (
+            <Pill key={industry.slug} href={`/industries/${industry.slug}`}>
+              {industry.name}
+            </Pill>
+          ))}
+        </div>
+      </Band>
+
+      <Divider />
+
+      {/* 06 — Process */}
+      <Band>
+        <SectionHead
+          title={
+            <>
+              One Vision.
+              <br />
+              Every Touchpoint.
+            </>
+          }
+          marker="06 / Process"
+        />
+        <ProcessSteps steps={processSteps} />
+        <p className="eyebrow mt-10 text-center text-carbon/50 wide:mt-16">
+          Continuous, Not Linear
+        </p>
+      </Band>
+
+      {/* 07 — Creative Technology */}
+      <Band tone="carbon">
+        <MarkerColumns
+          marker="07 / Creative Technology"
+          heading="Creative technology"
+          tone="carbon"
+        >
+          <p className="reveal max-w-[780px] font-display text-[1.875rem] font-normal leading-[1.3] wide:text-[clamp(1.875rem,3.4vw,2.875rem)]">
+            Visibility is only valuable when it is earned by substance.
+          </p>
+          <div className="mt-10">
+            <DotList items={creativeTechnology} tone="carbon" />
+          </div>
+        </MarkerColumns>
+      </Band>
+
+      {/* Testimonial */}
+      <section>
+        <div className="mx-auto max-w-[960px] px-6 py-16 text-center wide:px-12 wide:py-[clamp(5rem,9vw,8.75rem)]">
+          <blockquote className="reveal font-body text-2xl italic leading-[1.5] wide:text-[2rem]">
+            “{testimonial.quote}”
+          </blockquote>
+          <p className="mt-8 text-xs uppercase tracking-[0.08em] text-carbon/60">
+            {testimonial.attribution}
+          </p>
+        </div>
+      </section>
+
+      {/* 08 — Insights */}
+      <Band id="insights">
+        <SectionHead title="Insights." marker="08 / Journal" />
+        <div className="grid gap-12 wide:grid-cols-3 wide:gap-10">
+          {insights.map((article, i) => (
+            <article
+              key={article.id}
+              className="reveal flex flex-col gap-4"
+              data-delay={i * 90}
+            >
+              <Frame src={article.image} ratio="aspect-[16/10]" />
+              <p className="eyebrow text-carbon/50">
+                {article.category} · {article.date}
               </p>
-            </div>
+              <h3 className="font-display text-[1.375rem] font-medium leading-[1.25]">
+                {article.title}
+              </h3>
+            </article>
+          ))}
+        </div>
+      </Band>
 
-            <div className="lg:col-span-7 lg:col-start-6">
-              <ul>
-                {homeServices.map((service, i) => (
-                  <li key={service.slug}>
-                    <Link
-                      href={`/services/${service.slug}`}
-                      className="reveal group flex flex-col gap-2 border-t border-rule py-8 transition-colors duration-500 hover:bg-limestone/40 sm:flex-row sm:items-baseline sm:gap-10"
-                      data-delay={i * 80}
-                    >
-                      <h3 className="title shrink-0 text-[1.5rem] sm:w-[13rem]">
-                        {service.name}
-                      </h3>
-                      <p className="text-carbon-60">{service.descriptor}</p>
-                      <span
-                        aria-hidden="true"
-                        className="label hidden shrink-0 self-center text-carbon-40 transition-transform duration-500 group-hover:translate-x-1.5 sm:block"
-                      >
-                        →
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <div className="reveal mt-10 border-t border-rule pt-8">
-                <ArrowLink href="/services">All capabilities</ArrowLink>
-              </div>
-            </div>
-          </div>
-      </Plate>
-
-      <GridPlate
-        label="Photographic direction"
-        footnote="Warm, cinematic, quietly international."
-        index="04 / 06"
-        frames={direction}
-      />
-
-      {/* Standards, in full */}
-      <Plate
-        label="Standards"
-        footnote="Purpose before decoration."
-        index="05 / 06"
-      >
-          <div className="max-w-2xl">
-            <p className="label-sm text-carbon-40">Standards</p>
-            <h2 className="title reveal mt-7 text-[clamp(2rem,4.4vw,3.25rem)]">
-              Harmony is a discipline, not an accident.
-            </h2>
-          </div>
-
-          <div className="mt-16 grid gap-x-12 gap-y-14 sm:grid-cols-2">
-            {proof.slice(0, 4).map((entry, i) => (
-              <LedgerEntry
-                key={entry.label}
-                figure={entry.figure}
-                label={entry.label}
-                note={entry.note}
-                delay={i * 90}
-              />
-            ))}
-          </div>
-      </Plate>
-
-      {/* Sectors */}
-      <Plate
-        label="Sectors"
-        footnote="Across Dubai and the wider UAE."
-        index="06 / 06"
-        tone="limestone"
-      >
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-4">
-              <p className="label-sm text-carbon-60">Sectors</p>
-              <h2 className="title reveal mt-7 text-[clamp(2rem,4.4vw,3.25rem)]">
-                Across Dubai and the wider UAE.
-              </h2>
-            </div>
-            <ul className="lg:col-span-7 lg:col-start-6">
-              {industries.slice(0, 7).map((industry, i) => (
-                <li key={industry}>
-                  <Link
-                    href={`/contact?sector=${encodeURIComponent(industry)}`}
-                    className="reveal title group flex items-baseline justify-between gap-6 border-t border-limestone-deep py-5 text-[clamp(1.35rem,2.6vw,1.9rem)] transition-colors duration-500 hover:text-carbon-60"
-                    data-delay={i * 60}
-                  >
-                    {industry}
-                    <span
-                      aria-hidden="true"
-                      className="label shrink-0 self-center opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100 sm:-translate-x-2"
-                    >
-                      →
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-      </Plate>
-
-      <CallToAction
-        title="Begin a conversation."
-        body="Independent thinking. Sharper execution. How every engagement begins."
-      />
+      <FinalCta lines={["Let’s compose", "something distinctive."]} />
     </>
   );
 }

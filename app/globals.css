@@ -28,6 +28,11 @@
   --font-label: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
 
   --spacing-gutter: clamp(1.5rem, 5vw, 6rem);
+
+  /* The design handoff runs on a single breakpoint at 880px — below it the nav
+     collapses to a hamburger and every grid drops to one column. Named rather
+     than reached for via `md:`/`lg:` so the one rule stays legible in markup. */
+  --breakpoint-wide: 55rem;
 }
 
 /* ---------------------------------------------------------------------------
@@ -39,12 +44,16 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Jost carries body copy, not EB Garamond. The design files set Jost on the
+   page root and reach for EB Garamond only where a passage is explicitly
+   italic — leads, pull-quotes, the founder line. */
 body {
   background-color: var(--color-porcelain);
   color: var(--color-carbon);
-  font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.72;
+  font-family: var(--font-label);
+  font-weight: 300;
+  font-size: 0.9375rem;
+  line-height: 1.7;
   text-rendering: optimizeLegibility;
 }
 
@@ -74,6 +83,23 @@ body {
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -0.012em;
+}
+
+/* The section marker the design handoff repeats on every page — "01 / Introduction",
+   "04 / Portfolio". Jost 11px at 0.15em; the hero variant steps up to 12/0.2em.
+   Opacity is left to the caller so it can sit on either ground. */
+.eyebrow {
+  font-family: var(--font-label);
+  font-weight: 400;
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.eyebrow-hero {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
 }
 
 /* Jost, uppercase, widely tracked — every label, eyebrow and control. */

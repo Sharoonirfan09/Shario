@@ -1,229 +1,170 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import { nav, services } from "@/lib/site";
+import { useEffect, useState } from "react";
+import { nav, site } from "@/lib/site";
 
+/**
+ * Sticky translucent nav, and the full-screen overlay it collapses to below
+ * 880px — both exactly as the design handoff sets them.
+ *
+ * The wordmark is typeset in Cormorant Garamond rather than served as an
+ * image, which is what the handoff specifies (`README.md` — "Logo is
+ * wordmark-only, no logomark/icon file provided"). `public/brand/wordmark.png`
+ * remains available if the printed lockup is preferred later.
+ */
 export function SiteHeader() {
   const pathname = usePathname();
-  const [servicesOpen, setServicesOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const servicesRef = useRef<HTMLLIElement>(null);
 
-  // Close both menus whenever the route changes. Adjusting state during render
-  // is the supported way to reset on a changed input — an effect here would
-  // cause a cascading render, and this also covers browser back/forward.
+  // Reset on navigation. Adjusting state during render is the supported way to
+  // respond to a changed input, and it also covers browser back/forward.
   const [lastPath, setLastPath] = useState(pathname);
   if (pathname !== lastPath) {
     setLastPath(pathname);
-    setServicesOpen(false);
     setMenuOpen(false);
   }
 
-  // Dismiss the services dropdown on outside click or Escape.
+  // The overlay covers the document, so the page behind it must not scroll.
   useEffect(() => {
-    if (!servicesOpen) return;
+    if (!menuOpen) return;
 
-    function onPointerDown(event: PointerEvent) {
-      if (!servicesRef.current?.contains(event.target as Node)) {
-        setServicesOpen(false);
-      }
-    }
+    const { overflow } = document.body.style;
+    document.body.style.overflow = "hidden";
+
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setServicesOpen(false);
+      if (event.key === "Escape") setMenuOpen(false);
     }
-
-    document.addEventListener("pointerdown", onPointerDown);
     document.addEventListener("keydown", onKeyDown);
+
     return () => {
-      document.removeEventListener("pointerdown", onPointerDown);
+      document.body.style.overflow = overflow;
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [servicesOpen]);
+  }, [menuOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-rule bg-porcelain/92 backdrop-blur-sm">
-      <a
-        href="#main"
-        className="label sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:bg-carbon focus:px-4 focus:py-2 focus:text-porcelain"
-      >
-        Skip to content
-      </a>
-
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between px-gutter py-5">
-        <Link
-          href="/"
-          aria-label="Shario — home"
-          className="shrink-0 transition-opacity duration-500 hover:opacity-60"
+    <>
+      <header className="sticky top-0 z-50 border-b border-carbon/10 bg-porcelain/92 backdrop-blur-[14px]">
+        <a
+          href="#main"
+          className="label sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:bg-carbon focus:px-4 focus:py-2 focus:text-porcelain"
         >
-          <Image
-            src="/brand/wordmark.png"
-            alt="Shario"
-            width={1535}
-            height={284}
-            priority
-            className="h-[15px] w-auto sm:h-[17px]"
-          />
-        </Link>
+          Skip to content
+        </a>
 
-        {/* Desktop navigation */}
-        <nav aria-label="Primary" className="hidden lg:block">
-          {/* Seven items now that Home is named, so the tracking tightens. */}
-          <ul className="flex items-center gap-7 xl:gap-9">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-8 px-6 py-5 wide:px-12 wide:py-[22px]">
+          <Link
+            href="/"
+            aria-label={`${site.name} — home`}
+            className="shrink-0 whitespace-nowrap font-display text-2xl font-medium tracking-[0.14em] transition-opacity duration-500 hover:opacity-70"
+          >
+            SHARIO
+          </Link>
+
+          {/* Desktop navigation */}
+          <nav
+            aria-label="Primary"
+            className="hidden items-center gap-[clamp(20px,3vw,40px)] wide:flex"
+          >
             {nav.map((item) => {
-              // Services stays marked while you are on any of its sub-pages.
+              // Industries and Insights are homepage anchors, never a route.
+              // Services and Work stay marked across their detail pages.
               const active =
-                item.href === "/services"
-                  ? pathname.startsWith("/services")
-                  : pathname === item.href;
-
-              if (item.href === "/services") {
-                return (
-                  <li key={item.href} ref={servicesRef} className="relative">
-                    <div className="flex items-center gap-1.5">
-                      <Link
-                        href={item.href}
-                        className={`label transition-colors duration-300 hover:text-carbon ${
-                          active ? "text-carbon" : "text-carbon-60"
-                        }`}
-                      >
-                        {item.label}
-                      </Link>
-                      <button
-                        type="button"
-                        aria-expanded={servicesOpen}
-                        aria-controls="services-menu"
-                        aria-label="Show all services"
-                        onClick={() => setServicesOpen((open) => !open)}
-                        className="grid h-4 w-4 place-items-center text-carbon-40 transition-colors duration-300 hover:text-carbon"
-                      >
-                        <svg
-                          viewBox="0 0 10 6"
-                          className={`h-[6px] w-[10px] transition-transform duration-300 ${
-                            servicesOpen ? "rotate-180" : ""
-                          }`}
-                          fill="none"
-                          aria-hidden="true"
-                        >
-                          <path
-                            d="M1 1l4 4 4-4"
-                            stroke="currentColor"
-                            strokeWidth="1"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-
-                    {servicesOpen && (
-                      <div
-                        id="services-menu"
-                        className="absolute right-0 top-[calc(100%+1.35rem)] w-[22rem] border border-rule bg-porcelain p-7 shadow-[0_1px_40px_rgba(37,37,37,0.06)]"
-                      >
-                        <p className="label-sm mb-5 text-carbon-40">
-                          Capabilities
-                        </p>
-                        <ul className="space-y-4">
-                          {services.map((service) => (
-                            <li key={service.slug}>
-                              <Link
-                                href={`/services/${service.slug}`}
-                                className="group block"
-                              >
-                                <span className="title block text-[1.2rem] transition-colors duration-300 group-hover:text-carbon-60">
-                                  {service.name}
-                                </span>
-                                <span className="mt-0.5 block text-[0.9rem] leading-snug text-carbon-60">
-                                  {service.descriptor}
-                                </span>
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </li>
-                );
-              }
+                !item.href.startsWith("/#") && pathname.startsWith(item.href);
 
               return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={`label transition-colors duration-300 hover:text-carbon ${
-                      active ? "text-carbon" : "text-carbon-60"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              );
-            })}
-            <li>
-              <Link
-                href="/contact"
-                className="label border border-carbon px-5 py-2.5 text-carbon transition-colors duration-500 hover:bg-carbon hover:text-porcelain"
-              >
-                Let’s connect
-              </Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* Mobile trigger */}
-        <button
-          type="button"
-          onClick={() => setMenuOpen((open) => !open)}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-          className="label text-carbon lg:hidden"
-        >
-          {menuOpen ? "Close" : "Menu"}
-        </button>
-      </div>
-
-      {/* Mobile navigation */}
-      {menuOpen && (
-        <nav
-          id="mobile-menu"
-          aria-label="Primary"
-          className="border-t border-rule bg-porcelain px-gutter py-8 lg:hidden"
-        >
-          <ul className="space-y-5">
-            {nav.map((item) => (
-              <li key={item.href}>
                 <Link
+                  key={item.href}
                   href={item.href}
-                  className="title block text-[1.9rem] text-carbon"
+                  aria-current={active ? "page" : undefined}
+                  className={`whitespace-nowrap text-xs uppercase tracking-[0.08em] transition-opacity duration-300 hover:opacity-100 ${
+                    active ? "opacity-100" : "opacity-80"
+                  }`}
                 >
                   {item.label}
                 </Link>
-              </li>
-            ))}
-          </ul>
+              );
+            })}
+            <Link
+              href="/contact"
+              className="shrink-0 whitespace-nowrap rounded-full border border-carbon px-[22px] py-3 text-[11px] uppercase tracking-[0.08em] transition-colors duration-500 hover:bg-carbon hover:text-porcelain"
+            >
+              Start a Conversation
+            </Link>
+          </nav>
 
-          <ul className="mt-8 space-y-3 border-t border-rule pt-7">
-            {services.map((service) => (
-              <li key={service.slug}>
-                <Link
-                  href={`/services/${service.slug}`}
-                  className="label text-carbon-60"
-                >
-                  {service.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          <Link
-            href="/contact"
-            className="label mt-8 inline-block border border-carbon px-6 py-3 text-carbon"
+          {/* Mobile trigger — the handoff's two-rule mark */}
+          <button
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            aria-label="Open menu"
+            className="flex cursor-pointer flex-col gap-[5px] p-2 wide:hidden"
           >
-            Let’s connect
-          </Link>
-        </nav>
+            <span className="block h-px w-[26px] bg-carbon" />
+            <span className="block h-px w-[26px] bg-carbon" />
+          </button>
+        </div>
+      </header>
+
+      {/* Full-screen overlay menu */}
+      {menuOpen && (
+        <div
+          id="mobile-menu"
+          className="fixed inset-0 z-[200] flex flex-col bg-carbon text-porcelain wide:hidden"
+        >
+          {/*
+           * The wordmark and the close control sit on the same padding as the
+           * header bar behind them, so opening the menu does not make the logo
+           * disappear or jump — it simply changes ground.
+           */}
+          <div className="flex shrink-0 items-center justify-between px-6 py-5">
+            <Link
+              href="/"
+              onClick={() => setMenuOpen(false)}
+              aria-label={`${site.name} — home`}
+              className="font-display text-2xl font-medium tracking-[0.14em] text-porcelain"
+            >
+              SHARIO
+            </Link>
+            <button
+              type="button"
+              onClick={() => setMenuOpen(false)}
+              // Padded for the touch target, pulled back by an equal negative
+              // margin so it cannot grow the row and nudge the wordmark down.
+              className="-my-2 cursor-pointer p-2 text-sm tracking-[0.1em] text-porcelain"
+            >
+              CLOSE
+            </button>
+          </div>
+
+          <div className="flex flex-1 flex-col justify-center gap-7 overflow-y-auto px-10 pb-16">
+            <nav aria-label="Primary" className="flex flex-col gap-7">
+              {nav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="font-display text-[2.375rem] leading-none text-porcelain"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+
+            <Link
+              href="/contact"
+              onClick={() => setMenuOpen(false)}
+              className="mt-5 border-t border-porcelain/25 py-3.5 text-xs uppercase tracking-[0.1em] text-mist"
+            >
+              Start a Conversation →
+            </Link>
+          </div>
+        </div>
       )}
-    </header>
+    </>
   );
 }

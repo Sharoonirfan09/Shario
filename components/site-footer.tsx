@@ -1,149 +1,104 @@
-import Image from "next/image";
 import Link from "next/link";
-import { nav, services, site } from "@/lib/site";
+import { footerLinks, site } from "@/lib/site";
 
+/** Dark four-column footer, shared by every page in the design handoff. */
 export function SiteFooter() {
   return (
-    <>
-      {/*
-       * The back cover — Brand Book p32. A full-bleed field, the mark centred
-       * over it with the bilingual tagline, the location and the contact line.
-       * The book closes on this, so the site does too.
-       */}
-      <section className="relative border-t border-rule">
-        <Image
-          src="/images/book/corridor-dusk.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-carbon/70" />
-
-        <div className="relative mx-auto flex min-h-[78svh] max-w-[1440px] flex-col items-center justify-center px-gutter py-24 text-center text-porcelain">
-          <Image
-            src="/brand/wordmark.png"
-            alt="Shario"
-            width={1535}
-            height={284}
-            className="h-[26px] w-auto brightness-0 invert sm:h-[30px]"
-          />
-          <p className="title mt-8 text-[clamp(1.15rem,2.2vw,1.6rem)]">
-            {site.tagline}
-          </p>
-          <p
-            className="title mt-4 text-[clamp(1rem,1.9vw,1.35rem)] text-porcelain/70"
-            dir="rtl"
-            lang="ar"
-          >
-            {site.taglineAr}
-          </p>
-
-          <p className="label-sm mt-12 text-porcelain/60">
-            Dubai · United Arab Emirates
-          </p>
-          <p className="label-sm mt-5 text-porcelain/50">
-            {site.website} · {site.email} · {site.phone}
-          </p>
-        </div>
-      </section>
-
-      <footer className="border-t border-rule bg-limestone text-carbon">
-      <div className="mx-auto max-w-[1440px] px-gutter py-20">
-        <div className="grid gap-14 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <Image
-              src="/brand/wordmark.png"
-              alt="Shario"
-              width={1535}
-              height={284}
-              className="h-[19px] w-auto"
-            />
-            <p className="title mt-7 max-w-sm text-[1.5rem] italic text-carbon">
-              A Symphony of Identity.
+    <footer className="bg-carbon text-porcelain">
+      <div className="mx-auto max-w-[1400px] px-6 pb-8 pt-14 wide:px-12 wide:pb-10 wide:pt-[90px]">
+        <div className="grid gap-10 pb-14 wide:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          <div>
+            <p className="font-display text-[1.625rem] tracking-[0.14em]">
+              SHARIO
             </p>
-            <p className="mt-5 max-w-sm text-[0.95rem] leading-relaxed text-carbon-60">
-              A boutique creative studio in Dubai, composing coherent brand
-              identities across strategy, design and technology.
+            <p className="mt-4 max-w-[220px] font-body text-base italic text-porcelain/70">
+              {site.tagline}
+            </p>
+            {/*
+             * The Arabic lockup. `dir` is set explicitly so the phrase renders
+             * right-to-left inside an `lang="en"` document rather than relying
+             * on the bidi algorithm's first-strong character alone.
+             */}
+            <p
+              lang="ar"
+              dir="rtl"
+              className="mt-5 text-[1.375rem] text-porcelain/30"
+            >
+              {site.taglineAr}
             </p>
           </div>
 
-          <nav aria-label="Footer" className="lg:col-span-3">
-            <h2 className="label-sm text-carbon-60">Pages</h2>
-            <ul className="mt-6 space-y-3">
-              {nav.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="inline-block py-1.5 text-[0.98rem] text-carbon transition-opacity duration-300 hover:opacity-55"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <FooterColumn title="Studio">
+            {footerLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </FooterColumn>
 
-          <div className="lg:col-span-2">
-            <h2 className="label-sm text-carbon-60">Capabilities</h2>
-            <ul className="mt-6 space-y-3">
-              {services.map((service) => (
-                <li key={service.slug}>
-                  <Link
-                    href={`/services/${service.slug}`}
-                    className="inline-block py-1.5 text-[0.98rem] leading-snug text-carbon transition-opacity duration-300 hover:opacity-55"
-                  >
-                    {service.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <FooterColumn title="Contact">
+            <a
+              href={`mailto:${site.email}`}
+              className="text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"
+            >
+              {site.email}
+            </a>
+            <a
+              href={`tel:${site.phoneHref}`}
+              className="text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"
+            >
+              {site.phone}
+            </a>
+            <span className="text-sm text-porcelain/80">{site.location}</span>
+          </FooterColumn>
 
-          <div className="lg:col-span-2">
-            <h2 className="label-sm text-carbon-60">Get in touch</h2>
-            <ul className="mt-6 space-y-3 text-[0.98rem]">
-              <li>{site.location}</li>
-              <li>
-                <a
-                  href={`tel:${site.phoneHref}`}
-                  className="transition-opacity duration-300 hover:opacity-55"
-                >
-                  {site.phone}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${site.email}`}
-                  className="break-all transition-opacity duration-300 hover:opacity-55"
-                >
-                  {site.email}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={site.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-opacity duration-300 hover:opacity-55"
-                >
-                  LinkedIn
-                </a>
-              </li>
-            </ul>
-          </div>
+          <FooterColumn title="Follow">
+            <a
+              href={site.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"
+            >
+              Instagram
+            </a>
+            <a
+              href={site.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"
+            >
+              LinkedIn
+            </a>
+          </FooterColumn>
         </div>
 
-        <div className="mt-16 flex flex-col gap-3 border-t border-limestone-deep pt-7 sm:flex-row sm:items-center sm:justify-between">
-          <p className="label-sm text-carbon-60">
-            © {new Date().getFullYear()} Shario · Dubai, UAE
-          </p>
-          <p className="label-sm text-carbon-60">
-            Brand strategy · Digital experience · Creative direction
-          </p>
-          </div>
+        {/* The handoff's bottom bar also carries Privacy and Terms. Those pages
+            do not exist, so the links are omitted rather than shipped as 404s. */}
+        <div className="border-t border-porcelain/15 pt-6 text-xs text-porcelain/50">
+          <p>© {new Date().getFullYear()} SHARIO. All rights reserved.</p>
         </div>
-      </footer>
-    </>
+      </div>
+    </footer>
+  );
+}
+
+function FooterColumn({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex flex-col gap-3">
+      <p className="mb-2 text-[11px] uppercase tracking-[0.1em] text-porcelain/50">
+        {title}
+      </p>
+      {children}
+    </div>
   );
 }

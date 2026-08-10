@@ -1,142 +1,123 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Suspense } from "react";
-import { ImagePlate, Plate } from "@/components/ui";
 import { EnquiryForm } from "@/components/enquiry-form";
+import { Container } from "@/components/ui";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Begin a conversation with Shario — a boutique creative studio in Dubai composing coherent brand identities.",
+    "Tell us about your brand — Shario replies within one business day. Dubai, United Arab Emirates.",
   alternates: { canonical: "/contact" },
 };
-
-const afterYouReachOut = [
-  "We schedule a short call to understand the brand and what it needs to become.",
-  "We audit the identity as it stands and mark where it fragments.",
-  "We send a clear proposal with scope, timeline and expected outcomes.",
-];
 
 export default function ContactPage() {
   return (
     <>
-      <ImagePlate
-        src="/images/corridor.jpg"
-        label="Work with Shario"
-        footnote="One vision. Every touchpoint."
-        index="Cover"
-        title="Begin a conversation."
-        standfirst="Building an identity, correcting one that has drifted, or composing the digital experience around it — it starts with a conversation."
-      />
+      {/* Hero — the only page in the set that opens on type rather than a photograph */}
+      <Container className="pb-10 pt-14 wide:pb-[60px] wide:pt-20">
+        <p className="eyebrow eyebrow-hero text-carbon/60">Contact</p>
+        <h1 className="mt-6 max-w-[900px] font-display text-[2.75rem] font-normal leading-[1.05] wide:text-[clamp(3.25rem,6vw,5.25rem)]">
+          Let’s compose
+          <br />
+          something distinctive.
+        </h1>
+        <p className="mt-7 max-w-[560px] font-body text-lg italic text-carbon/80 wide:text-[1.3125rem]">
+          Tell us about your brand — we’ll respond within one business day.
+        </p>
+      </Container>
 
-      {/* Details and what happens next */}
-      <Plate
-        label="Get in touch"
-        footnote="One vision. Every touchpoint."
-        index="01 / 02"
-        tone="limestone"
-      >
-          <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
-            <div className="lg:col-span-5">
-              <p className="label-sm text-carbon-60">Begin a conversation</p>
-              <p className="lede reveal mt-6 max-w-md text-carbon">
-                Bring the brand as it stands. We will show you where the
-                coherence breaks, and what it takes to hold it.
-              </p>
+      {/* Form + studio details */}
+      <Container className="pb-12 wide:pb-[clamp(3.75rem,7vw,6.875rem)]">
+        <div className="grid gap-14 wide:grid-cols-[1.3fr_1fr] wide:gap-20">
+          {/*
+           * The form reads `?sector=` from the URL, so it must be able to
+           * suspend. The boundary keeps the rest of this route prerendered.
+           */}
+          <Suspense fallback={<div className="min-h-[520px]" />}>
+            <EnquiryForm />
+          </Suspense>
 
-              <dl className="mt-12 space-y-5">
-                <div className="border-t border-limestone-deep pt-4">
-                  <dt className="label-sm text-carbon-60">Location</dt>
-                  <dd className="mt-1.5 text-[1.05rem]">{site.location}</dd>
-                </div>
-                <div className="border-t border-limestone-deep pt-4">
-                  <dt className="label-sm text-carbon-60">Phone</dt>
-                  <dd className="mt-1.5 text-[1.05rem]">
-                    <a
-                      href={`tel:${site.phoneHref}`}
-                      className="transition-opacity duration-300 hover:opacity-60"
-                    >
-                      {site.phone}
-                    </a>
-                  </dd>
-                </div>
-                <div className="border-t border-limestone-deep pt-4">
-                  <dt className="label-sm text-carbon-60">Email</dt>
-                  <dd className="mt-1.5 break-all text-[1.05rem]">
-                    <a
-                      href={`mailto:${site.email}`}
-                      className="transition-opacity duration-300 hover:opacity-60"
-                    >
-                      {site.email}
-                    </a>
-                  </dd>
-                </div>
-                <div className="border-t border-limestone-deep pt-4">
-                  <dt className="label-sm text-carbon-60">LinkedIn</dt>
-                  <dd className="mt-1.5 text-[1.05rem]">
-                    <a
-                      href={site.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="break-all transition-opacity duration-300 hover:opacity-60"
-                    >
-                      {site.linkedinLabel}
-                    </a>
-                  </dd>
-                </div>
-              </dl>
-            </div>
-
-            <div className="lg:col-span-6 lg:col-start-7">
-              <p className="label-sm text-carbon-60">
-                What happens after you reach out
-              </p>
-              <ol className="mt-8">
-                {afterYouReachOut.map((step, i) => (
-                  <li
-                    key={step}
-                    className="reveal flex gap-7 border-t border-limestone-deep py-6"
-                    data-delay={i * 90}
-                  >
-                    <span
-                      className="label-sm shrink-0 pt-1.5 text-carbon-60"
-                      aria-hidden="true"
-                    >
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <p className="text-[1.05rem] leading-relaxed">{step}</p>
-                  </li>
-                ))}
-              </ol>
-
-            </div>
+          <div className="flex flex-col gap-8 wide:gap-12">
+            <Detail label="Email">
+              <a
+                href={`mailto:${site.email}`}
+                className="font-display text-2xl transition-opacity duration-300 hover:opacity-70"
+              >
+                {site.email}
+              </a>
+            </Detail>
+            <Detail label="Phone">
+              <a
+                href={`tel:${site.phoneHref}`}
+                className="font-display text-2xl transition-opacity duration-300 hover:opacity-70"
+              >
+                {site.phone}
+              </a>
+            </Detail>
+            <Detail label="Studio">
+              <p className="font-display text-2xl">{site.studio}</p>
+            </Detail>
+            <Detail label="Follow">
+              <div className="flex gap-5">
+                <a
+                  href={site.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm transition-opacity duration-300 hover:opacity-70"
+                >
+                  Instagram
+                </a>
+                <a
+                  href={site.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm transition-opacity duration-300 hover:opacity-70"
+                >
+                  LinkedIn
+                </a>
+              </div>
+            </Detail>
           </div>
-      </Plate>
+        </div>
+      </Container>
 
-      {/* Enquiry form */}
-      <Plate
-        label="Enquiry"
-        footnote="We respond within one business day."
-        index="02 / 02"
-      >
-          <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
-            <div className="lg:col-span-4">
-              <p className="label-sm text-carbon-40">Send an enquiry</p>
-              <h2 className="title reveal mt-7 text-[clamp(2rem,4.4vw,3.25rem)]">
-                Tell us what you need.
-              </h2>
-              <p className="mt-6 max-w-sm text-carbon-60">
-                Send your details and we will respond within one business day.
-              </p>
-            </div>
-
-            <div className="lg:col-span-7 lg:col-start-6">
-              <Suspense fallback={null}>
-                <EnquiryForm />
-              </Suspense>
-            </div>
-          </div>
-      </Plate>
+      {/*
+       * Location strip. The handoff leaves this as a map drop-zone; no map
+       * asset or embed has been supplied, so the studio exterior stands in and
+       * carries the location as a caption.
+       */}
+      <section className="relative h-[280px] w-full wide:h-[420px]">
+        <Image
+          src="/images/book/sign-exterior.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-carbon/25" />
+        <p className="eyebrow absolute bottom-8 left-6 text-porcelain wide:left-12">
+          {site.studio}
+        </p>
+      </section>
     </>
+  );
+}
+
+function Detail({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <p className="mb-3.5 text-[11px] uppercase tracking-[0.1em] text-carbon/50">
+        {label}
+      </p>
+      {children}
+    </div>
   );
 }

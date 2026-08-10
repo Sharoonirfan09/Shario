@@ -75,7 +75,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-porcelain text-carbon">
+      {/*
+        `overflow-x-hidden` matches the design files, whose page root carries it
+        too. It absorbs the sub-pixel width the hero's settle transform borrows
+        while it plays, which otherwise lets a phone scroll a pixel sideways.
+      */}
+      <body className="min-h-full flex flex-col overflow-x-hidden bg-porcelain text-carbon">
         <SiteHeader />
         <main id="main" className="flex-1">
           {children}

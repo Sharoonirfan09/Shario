@@ -23,16 +23,17 @@ export function StructuredData() {
       addressLocality: "Dubai",
       addressCountry: "AE",
     },
-    sameAs: [site.linkedin],
+    sameAs: [site.linkedin, site.instagram],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Digital marketing services",
+      name: "Creative studio services",
       itemListElement: services.map((service) => ({
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: service.title,
-          description: service.summary,
+          name: service.name,
+          description: service.descriptor,
+          url: `${site.domain}/services/${service.slug}`,
         },
       })),
     },

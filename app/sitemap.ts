@@ -1,14 +1,28 @@
 import type { MetadataRoute } from "next";
-import { nav, services, site } from "@/lib/site";
+import { industries, services, site, work } from "@/lib/site";
+
+/**
+ * Built from the routes themselves rather than from `nav` — Insights is still
+ * a homepage anchor, and an anchor is not a URL a crawler should be handed
+ * separately.
+ */
+const routes = [
+  "/",
+  "/about",
+  "/services",
+  "/work",
+  "/industries",
+  "/contact",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
-  const pages = nav.map((item) => ({
-    url: `${site.domain}${item.href === "/" ? "" : item.href}`,
+  const pages = routes.map((path) => ({
+    url: `${site.domain}${path === "/" ? "" : path}`,
     lastModified,
     changeFrequency: "monthly" as const,
-    priority: item.href === "/" ? 1 : 0.8,
+    priority: path === "/" ? 1 : 0.8,
   }));
 
   const servicePages = services.map((service) => ({
@@ -18,5 +32,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...pages, ...servicePages];
+  const workPages = work.map((item) => ({
+    url: `${site.domain}/work/${item.slug}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  const industryPages = industries.map((industry) => ({
+    url: `${site.domain}/industries/${industry.slug}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...pages, ...servicePages, ...workPages, ...industryPages];
 }

@@ -1,211 +1,222 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { CallToAction, GridPlate, ImagePlate, Plate } from "@/components/ui";
-import { site } from "@/lib/site";
+import {
+  Band,
+  Divider,
+  Eyebrow,
+  FinalCta,
+  Hero,
+  MarkerColumns,
+  NumberedRows,
+  Pill,
+  SectionHead,
+  SectionLabel,
+  StatementImage,
+} from "@/components/ui";
+import { personality, site, values } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Shario is a boutique creative studio in Dubai, founded by Sharoon Irfan to unify strategy, design, communication and technology into one coherent brand system.",
+    "SHARIO is a boutique, founder-led creative studio in Dubai at the intersection of strategy, creativity and technology.",
   alternates: { canonical: "/about" },
 };
-
-/** What founder-led means — qualities, not a sequence, so no numbering. */
-const principles = [
-  {
-    title: "Senior ownership",
-    body: "Every engagement is run to a founder’s standard and stays in senior hands.",
-  },
-  {
-    title: "Accountability",
-    body: "We align on what the brand must achieve, not on output volume.",
-  },
-  {
-    title: "Whole-system thinking",
-    body: "Strategy, design, communication and technology are handled as one connected system.",
-  },
-  {
-    title: "Direct access",
-    body: "You talk to the people composing the work.",
-  },
-];
-
-/** How we work — an actual ordered process, which is what earns the numbering. */
-const process = [
-  {
-    title: "We start with meaning",
-    body: "What the brand stands for, who it is for, and where it sits against everyone else.",
-  },
-  {
-    title: "We build the system",
-    body: "Identity, language and digital surfaces designed as one set of rules.",
-  },
-  {
-    title: "We document the standard",
-    body: "Guidelines precise enough that the identity survives every team that uses it.",
-  },
-  {
-    title: "We hold it in place",
-    body: "Every new touchpoint is composed against the system, not alongside it.",
-  },
-];
-
-/** Brand Book p30 — the identity in place. */
-const environments = [
-  { src: "/images/book/sign-exterior.jpg", caption: "Exterior signage" },
-  { src: "/images/book/sign-glass.jpg", caption: "Glass door" },
-  { src: "/images/book/reception-wall.jpg", caption: "Reception wall" },
-  { src: "/images/book/sign-tablet.jpg", caption: "In room" },
-];
 
 export default function AboutPage() {
   return (
     <>
-      <ImagePlate
-        src="/images/book/photo-lounge.jpg"
-        label="About the studio"
-        footnote="A Symphony of Identity."
-        index="Cover"
-        title="To make identity coherent, distinctive and meaningful."
-        standfirst="Unifying the fragmented pieces of a brand into one legible, purposeful system."
+      <Hero
+        src="/images/book/corridor-dusk.jpg"
+        eyebrow="Shario — About"
+        title={
+          <>
+            Personal in vision.
+            <br />
+            Intelligent in process.
+          </>
+        }
+        subhead="Distinctive in expression."
+        priority
       />
 
-      {/* The founder */}
-      <Plate
-        label="The founder"
-        footnote="A Symphony of Identity."
-        index="01 / 04"
-      >
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-12">
-            <div className="lg:col-span-4">
-              <p className="label-sm text-carbon-40">The name</p>
-              <div className="reveal mt-9 max-w-[200px]">
-                {/* The S monogram, used here as a portrait-slot placeholder
-                    until a photograph of the founder is supplied. */}
-                <Image
-                  src="/brand/monogram.png"
-                  alt=""
-                  width={397}
-                  height={772}
-                  className="h-auto w-[86px] opacity-90"
-                />
-              </div>
-              <p className="title mt-8 text-[1.75rem]">{site.tagline}</p>
-              <p className="label-sm mt-3 text-carbon-40" dir="rtl" lang="ar">
-                {site.taglineAr}
-              </p>
-            </div>
-
-            <div className="lg:col-span-7 lg:col-start-6">
-              <p className="lede reveal text-carbon">
-                <strong className="font-normal">Shar</strong> — from Sharoon.
-                Founder-led vision, creative ownership, individual direction.
-              </p>
-              <p className="lede reveal mt-7 text-carbon" data-delay="90">
-                <strong className="font-normal">io</strong> — input and output.
-                The exchange that turns ideas into results.
-              </p>
-              <p className="reveal mt-9 text-carbon-60" data-delay="150">
-                Together: where ideas enter, creativity intervenes, and
-                distinctive identities emerge.
-              </p>
-              <p className="reveal mt-7 text-carbon-60" data-delay="210">
-                Led by {site.founder} — AED 35M+ in CRM-attributed sales and
-                a Marketing Excellence Award behind him. Growth is part of the
-                brand system here, not an afterthought.
-              </p>
-            </div>
+      {/* 01 — The Meaning Behind Shario */}
+      <Band>
+        <SectionLabel>The meaning behind Shario</SectionLabel>
+        <Eyebrow className="mb-10 wide:mb-16">
+          01 / The Meaning Behind Shario
+        </Eyebrow>
+        {/* The rail is narrow by design — SHAR sits in the 260px column the
+            handoff gives every marker rail, IO takes the remainder. */}
+        <div className="grid gap-6 wide:grid-cols-[260px_1fr] wide:gap-[60px]">
+          <div className="reveal">
+            <p className="mb-4 font-display text-[1.75rem] font-medium wide:text-[clamp(1.75rem,3.2vw,2.625rem)]">
+              SHAR
+            </p>
+            <p className="max-w-[380px] text-[0.9375rem] leading-[1.7] text-carbon/75">
+              Derived from Sharoon — the name and perspective behind the studio.
+              It represents personal vision, creative ownership and founder-led
+              direction.
+            </p>
           </div>
-      </Plate>
-
-      {/* What founder-led means for you */}
-      <Plate
-        label="Commitments"
-        footnote="The same standard, everywhere."
-        index="02 / 04"
-        tone="limestone"
-      >
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="frame reveal relative aspect-[3/2] sm:aspect-[3/4] lg:col-span-4">
-              <Image
-                src="/images/pedestal.jpg"
-                alt=""
-                fill
-                sizes="(min-width: 1024px) 30vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-
-            <div className="lg:col-span-7 lg:col-start-6">
-              <p className="label-sm text-carbon-60">
-                What independence means for you
-              </p>
-              <h2 className="title reveal mt-7 text-[clamp(2rem,4.4vw,3.25rem)]">
-                Four commitments, on every engagement.
-              </h2>
-
-              <div className="mt-14 grid gap-x-12 gap-y-12 sm:grid-cols-2">
-                {principles.map((item, i) => (
-                  <div
-                    key={item.title}
-                    className="reveal border-t border-limestone-deep pt-7"
-                    data-delay={i * 90}
-                  >
-                    <h3 className="title text-[1.65rem]">{item.title}</h3>
-                    <p className="mt-3 max-w-md text-carbon-60">{item.body}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="reveal" data-delay="120">
+            <p className="mb-4 font-display text-[1.75rem] font-medium wide:text-[clamp(1.75rem,3.2vw,2.625rem)]">
+              IO
+            </p>
+            <p className="max-w-[380px] text-[0.9375rem] leading-[1.7] text-carbon/75">
+              Inspired by input and output — the fundamental exchange through
+              which information, ideas and intention are transformed into
+              meaningful results.
+            </p>
           </div>
-      </Plate>
+        </div>
+        <p className="reveal mt-10 max-w-[760px] font-body text-xl italic leading-[1.6] text-carbon/85 wide:mt-16">
+          Together, SHARIO represents the relationship between individual vision
+          and intelligent execution — where ideas enter, creativity intervenes
+          and distinctive identities emerge.
+        </p>
+      </Band>
 
-      {/* How we work — numbered, because the order is the point */}
-      <GridPlate
-        label="Brand collateral"
-        footnote="Minimal and realistic in every context."
-        index="03 / 04"
-        columns={4}
-        frames={environments}
-      />
+      <Divider />
 
-      <Plate label="Method" footnote="A sequence, not a menu." index="04 / 04">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-12">
-            <div className="lg:col-span-4">
-              <p className="label-sm text-carbon-40">How we work</p>
-              <h2 className="title reveal mt-7 text-[clamp(2rem,4.4vw,3.25rem)]">
-                A sequence, not a menu.
-              </h2>
-            </div>
+      {/* 02 — Who We Are */}
+      <Band>
+        <MarkerColumns marker="02 / Who We Are" heading="Who we are">
+          <p className="reveal max-w-[820px] font-display text-[1.75rem] font-normal leading-[1.3] wide:text-[clamp(1.75rem,3.2vw,2.625rem)]">
+            A boutique, founder-led studio at the intersection of strategy,
+            creativity and technology.
+          </p>
+          <p
+            className="reveal mt-8 max-w-[640px] font-body text-[1.1875rem] leading-[1.7] text-carbon/80"
+            data-delay="120"
+          >
+            SHARIO creates coherent brand ecosystems in which positioning,
+            identity, digital presence, content, communication, creative
+            technology and growth work together as one connected system.
+            Independent in structure. International in outlook. Selective by
+            choice.
+          </p>
+        </MarkerColumns>
+      </Band>
 
-            <ol className="lg:col-span-7 lg:col-start-6">
-              {process.map((step, i) => (
-                <li
-                  key={step.title}
-                  className="reveal flex gap-8 border-t border-rule py-8"
-                  data-delay={i * 90}
-                >
-                  <span
-                    className="label-sm shrink-0 pt-2 text-carbon-40"
-                    aria-hidden="true"
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h3 className="title text-[1.65rem]">{step.title}</h3>
-                    <p className="mt-2 text-carbon-60">{step.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+      {/* Vision / Mission */}
+      <Band tone="carbon">
+        <div className="grid gap-10 wide:grid-cols-2 wide:gap-16">
+          <div className="reveal">
+            <Eyebrow tone="carbon" className="mb-5">
+              Vision
+            </Eyebrow>
+            <p className="font-display text-[1.625rem] font-normal leading-[1.3] wide:text-[2.125rem]">
+              {site.vision}
+            </p>
           </div>
-      </Plate>
+          <div className="reveal" data-delay="120">
+            <Eyebrow tone="carbon" className="mb-5">
+              Mission
+            </Eyebrow>
+            <p className="font-display text-[1.625rem] font-normal leading-[1.3] wide:text-[2.125rem]">
+              {site.mission}
+            </p>
+          </div>
+        </div>
+      </Band>
 
-      <CallToAction
-        title="See if Shario is the right fit for your brand."
-        body="No pitch deck — just the brand as it stands, and where the coherence breaks."
-        action="Let’s connect"
+      {/* 03 — Values */}
+      <Band>
+        <SectionHead
+          title={
+            <>
+              Our Standard
+              <br />
+              Is Coherence.
+            </>
+          }
+          marker="03 / Values"
+          scale="md"
+        />
+        <NumberedRows rows={values} />
+      </Band>
+
+      {/* 04 — Personality */}
+      <Band>
+        <SectionLabel>Personality</SectionLabel>
+        <Eyebrow className="mb-10 wide:mb-16">04 / Personality</Eyebrow>
+        <div className="grid gap-6 wide:grid-cols-[260px_1fr] wide:gap-[60px]">
+          <PersonalityList title="SHARIO Is" words={personality.is} />
+          <PersonalityList
+            title="SHARIO Is Never"
+            words={personality.isNever}
+            dim
+          />
+        </div>
+      </Band>
+
+      {/* 05 — Leadership */}
+      <Band tone="limestone">
+        <SectionLabel>Leadership</SectionLabel>
+        <Eyebrow className="mb-10 wide:mb-16">05 / Leadership</Eyebrow>
+        <div className="grid items-center gap-6 wide:grid-cols-[220px_1fr] wide:gap-[60px]">
+          {/*
+           * No founder portrait has been supplied — the handoff leaves this as
+           * a drop-zone. The monogram stands in on the brand's own ground so
+           * the section reads as finished rather than broken; swap the Image
+           * for the portrait when it arrives.
+           */}
+          <div className="reveal relative h-[140px] w-[140px] overflow-hidden rounded-full bg-limestone-deep wide:h-[220px] wide:w-[220px]">
+            <Image
+              src="/brand/monogram.png"
+              alt=""
+              fill
+              sizes="220px"
+              className="scale-[0.45] object-contain"
+            />
+          </div>
+          <div className="reveal" data-delay="120">
+            <p className="mb-2 font-display text-[2rem] font-medium">
+              {site.founder}
+            </p>
+            <p className="mb-6 text-[0.8125rem] uppercase tracking-[0.08em] text-carbon/60">
+              {site.founderRole}
+            </p>
+            <p className="max-w-[560px] font-body text-xl italic leading-[1.6]">
+              “{site.founderQuote}”
+            </p>
+          </div>
+        </div>
+      </Band>
+
+      <StatementImage src="/images/book/photo-plinth.jpg">
+        Clarity before expression. Purpose before decoration.
+      </StatementImage>
+
+      <FinalCta
+        lines={["Let’s compose", "something distinctive."]}
+        tone="porcelain"
       />
     </>
+  );
+}
+
+function PersonalityList({
+  title,
+  words,
+  dim = false,
+}: {
+  title: string;
+  words: readonly string[];
+  dim?: boolean;
+}) {
+  return (
+    <div>
+      <p className="mb-5 text-[0.8125rem] uppercase tracking-[0.1em] text-carbon/60">
+        {title}
+      </p>
+      <div className="flex flex-wrap gap-3">
+        {words.map((word) => (
+          <Pill key={word} dim={dim}>
+            {word}
+          </Pill>
+        ))}
+      </div>
+    </div>
   );
 }

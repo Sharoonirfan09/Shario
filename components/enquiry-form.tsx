@@ -8,8 +8,12 @@ import { services } from "@/lib/site";
 
 const initialState: EnquiryState = { status: "idle", message: "" };
 
+/** Underline-only fields — the handoff uses no boxes or borders on the form. */
 const fieldClass =
-  "mt-3 w-full border-b border-rule bg-transparent pb-3 text-[1.05rem] text-carbon outline-none transition-colors duration-300 placeholder:text-carbon-40 focus:border-carbon";
+  "w-full border-0 border-b border-carbon/25 bg-transparent py-3.5 text-base text-carbon outline-none transition-colors duration-300 placeholder:text-carbon/40 focus:border-carbon";
+
+const labelClass =
+  "mb-2.5 block text-[11px] uppercase tracking-[0.08em] text-carbon/60";
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -17,9 +21,9 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="label border border-carbon bg-carbon px-8 py-4 text-porcelain transition-colors duration-500 hover:bg-transparent hover:text-carbon disabled:cursor-not-allowed disabled:opacity-50"
+      className="mt-3 cursor-pointer self-start rounded-full bg-carbon px-10 py-4 text-xs uppercase tracking-[0.08em] text-porcelain transition-colors duration-500 hover:bg-black disabled:cursor-not-allowed disabled:opacity-50"
     >
-      {pending ? "Sending…" : "Send your details"}
+      {pending ? "Sending…" : "Send Message"}
     </button>
   );
 }
@@ -28,7 +32,7 @@ export function EnquiryForm() {
   const [state, formAction] = useActionState(submitEnquiry, initialState);
 
   /*
-   * The sector lists link here as `?sector=…`, so the message starts with the
+   * Service pages can link here as `?sector=…`, so the message starts with the
    * visitor's own context already filled in. The form is wrapped in a Suspense
    * boundary on the page, which keeps the rest of the route prerendered.
    */
@@ -37,33 +41,35 @@ export function EnquiryForm() {
   if (state.status === "success") {
     return (
       <div className="border-t border-carbon pt-8" role="status">
-        <p className="title text-[1.9rem]">{state.message}</p>
-        <p className="mt-4 max-w-md text-carbon-60">
-          If it is urgent, call or send a message on WhatsApp and we will pick
-          it up sooner.
+        <p className="font-display text-[1.875rem] font-normal">
+          {state.message}
+        </p>
+        <p className="mt-4 max-w-md text-carbon/70">
+          If it is urgent, call the studio and we will pick it up sooner.
         </p>
       </div>
     );
   }
 
   return (
-    <form action={formAction} noValidate>
+    <form action={formAction} noValidate className="flex flex-col gap-6">
       {/* Honeypot — hidden from people, tempting to bots. */}
       <div aria-hidden="true" className="absolute h-0 w-0 overflow-hidden">
         <label htmlFor="website">Website</label>
         <input id="website" name="website" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="grid gap-x-12 gap-y-9 sm:grid-cols-2">
+      <div className="grid gap-5 wide:grid-cols-2">
         <div>
-          <label htmlFor="name" className="label-sm text-carbon-40">
-            Name <span aria-hidden="true">*</span>
+          <label htmlFor="name" className={labelClass}>
+            Name
           </label>
           <input
             id="name"
             name="name"
             required
             autoComplete="name"
+            placeholder="Your full name"
             aria-describedby={state.errors?.name ? "name-error" : undefined}
             aria-invalid={state.errors?.name ? true : undefined}
             className={fieldClass}
@@ -76,20 +82,8 @@ export function EnquiryForm() {
         </div>
 
         <div>
-          <label htmlFor="company" className="label-sm text-carbon-40">
-            Company
-          </label>
-          <input
-            id="company"
-            name="company"
-            autoComplete="organization"
-            className={fieldClass}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="email" className="label-sm text-carbon-40">
-            Email <span aria-hidden="true">*</span>
+          <label htmlFor="email" className={labelClass}>
+            Email
           </label>
           <input
             id="email"
@@ -97,6 +91,7 @@ export function EnquiryForm() {
             type="email"
             required
             autoComplete="email"
+            placeholder="you@company.com"
             aria-describedby={state.errors?.email ? "email-error" : undefined}
             aria-invalid={state.errors?.email ? true : undefined}
             className={fieldClass}
@@ -107,75 +102,76 @@ export function EnquiryForm() {
             </p>
           )}
         </div>
+      </div>
 
-        <div>
-          <label htmlFor="phone" className="label-sm text-carbon-40">
-            Phone
-          </label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            autoComplete="tel"
-            className={fieldClass}
-          />
-        </div>
+      <div>
+        <label htmlFor="company" className={labelClass}>
+          Company
+        </label>
+        <input
+          id="company"
+          name="company"
+          autoComplete="organization"
+          placeholder="Company or brand name"
+          className={fieldClass}
+        />
+      </div>
 
-        <div className="sm:col-span-2">
-          <label htmlFor="service" className="label-sm text-carbon-40">
-            Service you are interested in
-          </label>
-          <select
-            id="service"
-            name="service"
-            defaultValue=""
-            className={`${fieldClass} select-field appearance-none rounded-none`}
-          >
-            <option value="">Select a service</option>
-            {services.map((service) => (
-              <option key={service.slug} value={service.name}>
-                {service.name}
-              </option>
-            ))}
-            <option value="Not sure yet">Not sure yet</option>
-          </select>
-        </div>
+      <div>
+        <label htmlFor="service" className={labelClass}>
+          Area of Interest
+        </label>
+        {/*
+         * A leading empty option, which the prototype omits. Without it the
+         * control submits "Brand Strategy" for every visitor who never opened
+         * it, and the enquiry data stops meaning anything.
+         */}
+        <select
+          id="service"
+          name="service"
+          defaultValue=""
+          className={`${fieldClass} select-field appearance-none rounded-none`}
+        >
+          <option value="">Select an area of interest</option>
+          {services.map((service) => (
+            <option key={service.slug} value={service.name}>
+              {service.name}
+            </option>
+          ))}
+          <option value="Not sure yet">Not sure yet</option>
+        </select>
+      </div>
 
-        <div className="sm:col-span-2">
-          <label htmlFor="message" className="label-sm text-carbon-40">
-            Message <span aria-hidden="true">*</span>
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            defaultValue={sector ? `We are in ${sector}. ` : undefined}
-            key={sector}
-            rows={4}
-            required
-            aria-describedby={
-              state.errors?.message ? "message-error" : undefined
-            }
-            aria-invalid={state.errors?.message ? true : undefined}
-            className={`${fieldClass} resize-y`}
-            placeholder="What are you trying to achieve, and by when?"
-          />
-          {state.errors?.message && (
-            <p id="message-error" className="mt-2 text-[0.85rem] text-carbon">
-              {state.errors.message}
-            </p>
-          )}
-        </div>
+      <div>
+        <label htmlFor="message" className={labelClass}>
+          Message
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          defaultValue={sector ? `We are in ${sector}. ` : undefined}
+          key={sector}
+          rows={4}
+          required
+          placeholder="A little about your brand and what you’re looking to achieve"
+          aria-describedby={state.errors?.message ? "message-error" : undefined}
+          aria-invalid={state.errors?.message ? true : undefined}
+          className={`${fieldClass} resize-none`}
+        />
+        {state.errors?.message && (
+          <p id="message-error" className="mt-2 text-[0.85rem] text-carbon">
+            {state.errors.message}
+          </p>
+        )}
       </div>
 
       {state.status === "error" && (
-        <p role="alert" className="mt-8 border-l-2 border-carbon pl-4 text-carbon">
+        <p role="alert" className="border-l-2 border-carbon pl-4 text-carbon">
           {state.message}
         </p>
       )}
 
-      <div className="mt-10">
-        <SubmitButton />
-      </div>
+      <SubmitButton />
     </form>
   );
 }
