@@ -303,6 +303,25 @@ body {
   animation: settle 2.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
+/* The hero panel drifts, slowly and vertically only. This is the one piece of
+   continuous motion on the site, so it stays under a pixel of travel per
+   frame — enough to read as buoyancy, not enough to pull the eye off the
+   headline beside it. Sits on its own element so the entrance animation on the
+   wrapper is not fighting it for `transform`. */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.drift {
+  animation: drift 7s ease-in-out infinite;
+}
+
 /* The corner hairlines draw themselves as a plate arrives. */
 .js .reveal.rule-draw {
   transform: none;
@@ -319,6 +338,7 @@ body {
   .rise,
   .draw,
   .settle,
+  .drift,
   .frame img {
     opacity: 1 !important;
     transform: none !important;
@@ -334,7 +354,8 @@ body {
 
   .rise,
   .draw,
-  .settle {
+  .settle,
+  .drift {
     animation: none;
   }
 

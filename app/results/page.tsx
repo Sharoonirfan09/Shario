@@ -5,10 +5,10 @@ import {
   CardGrid,
   CtaBand,
   Figure,
-  Hero,
   Pill,
   PillLink,
   SectionIntro,
+  SplitHero,
   StatBand,
   StatementImage,
 } from "@/components/ui";
@@ -24,18 +24,25 @@ export const metadata: Metadata = {
 export default function ResultsPage() {
   return (
     <>
-      <Hero
-        src="/images/book/photo-aperture.jpg"
-        focus="object-[50%_45%]"
+      {/* The homepage's opening, repeated — Limestone ground, type left,
+          one photograph panelled right. `photo-plinth` was freed when the
+          contact page's location strip came out. */}
+      <SplitHero
+        src="/images/book/photo-plinth.jpg"
+        focus="object-[50%_42%]"
         eyebrow="Results"
         title="Results that show up in revenue."
         subhead="A track record of measurable outcomes across real estate and B2B marketing in Dubai and the wider UAE."
-        priority
+        href="/services"
+        linkLabel="See the services"
       >
-        <PillLink href={cta.href} tone="solidLight">
+        <PillLink href={cta.href} tone="solid" size="lg">
           {cta.label}
         </PillLink>
-      </Hero>
+        <PillLink href="/about" tone="outline" size="lg">
+          About Shario
+        </PillLink>
+      </SplitHero>
 
       {/*
        * The evidence. There are no case studies here by design: the three that
@@ -49,13 +56,27 @@ export default function ResultsPage() {
           title="The numbers."
           sub="Every figure below is attributable — tracked in a CRM from first click to closed sale, not modelled or estimated."
         />
-        <div className="mb-14 wide:mb-20">
+        {/*
+         * A pair, each at its own full proportion. Both photographs are 4:5,
+         * so `width`/`height` are passed rather than a ratio — the frame takes
+         * the picture's real shape and nothing is cropped out of either.
+         */}
+        <div className="mb-14 grid gap-8 wide:mb-20 wide:grid-cols-2 wide:gap-10">
+          <Figure
+            src="/images/book/photo-aperture.jpg"
+            width={1122}
+            height={1402}
+            label="Tracked to the sale"
+            caption="Every figure below is reconciled against CRM records at the close of the engagement it belongs to."
+            sizes="(min-width: 880px) 46vw, 100vw"
+          />
           <Figure
             src="/images/book/pen-cover.jpg"
-            label="Signed off, not estimated"
-            caption="Each figure was reconciled against CRM records at the close of the engagement it belongs to."
-            ratio="aspect-[21/9]"
-            sizes="(min-width: 880px) 90vw, 100vw"
+            width={1120}
+            height={1402}
+            label="Reported weekly"
+            caption="Against pipeline and closed revenue — never impressions, and never at the end of the quarter."
+            sizes="(min-width: 880px) 46vw, 100vw"
           />
         </div>
         <CardGrid columns={3}>

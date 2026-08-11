@@ -516,6 +516,113 @@ export function Hero({
   );
 }
 
+/**
+ * The split hero: type on the left, one photograph panelled on the right, over
+ * a flat ground.
+ *
+ * This is the reference site's opening exactly — it floats an image beside the
+ * headline rather than running it full bleed — rendered on Limestone, the
+ * palette's light brown, instead of its near-black. Limestone runs up behind
+ * the header, which is why the section pulls itself up by the bar's height and
+ * pads its content back down.
+ */
+export function SplitHero({
+  src,
+  eyebrow,
+  title,
+  subhead,
+  focus,
+  href,
+  linkLabel,
+  children,
+}: {
+  src: string;
+  eyebrow: string;
+  title: ReactNode;
+  subhead?: string;
+  focus?: string;
+  /** Where the panel leads. */
+  href: string;
+  /** Names the destination — the panel's accessible name and its visible label. */
+  linkLabel: string;
+  children?: ReactNode;
+}) {
+  return (
+    <section className="bg-limestone mt-[calc(-1*var(--header-h))]">
+      <Container className="pb-16 pt-[calc(var(--header-h)+3rem)] wide:pb-24 wide:pt-[calc(var(--header-h)+4.5rem)]">
+        <div className="grid items-center gap-12 wide:grid-cols-[1.05fr_1fr] wide:gap-20">
+          <div>
+            <p className="eyebrow eyebrow-hero rise flex items-center gap-3 text-carbon/60">
+              <span aria-hidden="true" className="h-px w-7 bg-carbon/40" />
+              {eyebrow}
+            </p>
+            <h1
+              className="rise mt-6 max-w-[720px] font-display text-[2.75rem] font-normal leading-[1.04] wide:text-[clamp(3.25rem,5.2vw,4.75rem)]"
+              style={{ animationDelay: "140ms" }}
+            >
+              {title}
+            </h1>
+            {subhead && (
+              <p
+                className="rise mt-7 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75 wide:text-[1.1875rem]"
+                style={{ animationDelay: "280ms" }}
+              >
+                {subhead}
+              </p>
+            )}
+            {children && (
+              <div
+                className="rise mt-10 flex flex-wrap gap-3.5"
+                style={{ animationDelay: "400ms" }}
+              >
+                {children}
+              </div>
+            )}
+          </div>
+
+          {/*
+           * Square, as the reference sets it. The library is 4:5, so the crop
+           * is anchored by `focus` rather than centred — a centred square crop
+           * of a tall interior loses the floor and the ceiling at once.
+           *
+           * `drift` sits on the wrapper and `rise` is left off it, because two
+           * animations on one element fight over `transform`. The panel is a
+           * link, so it carries a standing label rather than only a hover
+           * state: an image that does something has to look like it does.
+           */}
+          <div className="drift">
+            <Link
+              href={href}
+              aria-label={linkLabel}
+              className="group relative block"
+            >
+              <div className="frame relative aspect-square w-full">
+                <Image
+                  src={src}
+                  alt=""
+                  fill
+                  sizes="(min-width: 880px) 46vw, 100vw"
+                  priority
+                  className={`object-cover ${focus ?? ""}`}
+                />
+              </div>
+              <span
+                aria-hidden="true"
+                className="absolute bottom-5 right-5 inline-flex items-center gap-2.5 rounded-full bg-porcelain/92 px-5 py-3 text-[11px] uppercase tracking-[0.08em] text-carbon backdrop-blur-[6px] transition-colors duration-500 group-hover:bg-carbon group-hover:text-porcelain"
+              >
+                {linkLabel}
+                <span className="transition-transform duration-500 group-hover:translate-x-1">
+                  →
+                </span>
+              </span>
+            </Link>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
 /** Breadcrumb trail, as the reference sets it above an inner-page headline. */
 export function Breadcrumb({
   items,
@@ -753,6 +860,8 @@ export function Figure({
   label,
   caption,
   ratio = "aspect-[16/9]",
+  width,
+  height,
   sizes = "(min-width: 880px) 60vw, 100vw",
   tone = "porcelain",
 }: {
@@ -762,12 +871,34 @@ export function Figure({
   /** Why it is on this page. */
   caption: string;
   ratio?: string;
+  /**
+   * The photograph's own pixel dimensions. Supply both and the frame takes the
+   * picture's real proportion instead of a fixed ratio — nothing is cropped,
+   * which is what a photograph chosen for its composition needs.
+   */
+  width?: number;
+  height?: number;
   sizes?: string;
   tone?: Tone;
 }) {
+  const natural = width !== undefined && height !== undefined;
+
   return (
     <figure className="reveal flex flex-col gap-4">
-      <Frame src={src} ratio={ratio} sizes={sizes} tone={tone} />
+      {natural ? (
+        <div className="frame relative w-full">
+          <Image
+            src={src}
+            alt=""
+            width={width}
+            height={height}
+            sizes={sizes}
+            className="h-auto w-full"
+          />
+        </div>
+      ) : (
+        <Frame src={src} ratio={ratio} sizes={sizes} tone={tone} />
+      )}
       <figcaption
         className={`flex flex-col gap-1.5 border-l-2 pl-4 ${
           tone === "carbon" ? "border-mist/60" : "border-mist"

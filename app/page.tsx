@@ -7,10 +7,10 @@ import {
   Container,
   CtaBand,
   Frame,
-  Hero,
   Heading,
   PillLink,
   SectionIntro,
+  SplitHero,
   StatBand,
 } from "@/components/ui";
 import {
@@ -63,22 +63,22 @@ export default function HomePage() {
        * the retired tagline — that one, `sign-exterior`, `sign-glass` and
        * `photo-lounge`. None are used anywhere on the site.
        */}
-      <Hero
+      <SplitHero
         src="/images/book/photo-stair.jpg"
         focus="object-[50%_45%]"
         eyebrow="Digital Marketing Company — Dubai"
         title="Marketing that turns spend into revenue."
         subhead="Shario is a founder-led digital marketing company in Dubai, built by an operator who has generated AED 35M+ in tracked revenue for real estate and B2B brands."
-        scale="home"
-        priority
+        href="/results"
+        linkLabel="See the record"
       >
-        <PillLink href={cta.href} tone="solidLight" size="lg">
+        <PillLink href={cta.href} tone="solid" size="lg">
           {cta.label}
         </PillLink>
-        <PillLink href="/services" tone="outlineLight" size="lg">
+        <PillLink href="/services" tone="outline" size="lg">
           Our Services
         </PillLink>
-      </Hero>
+      </SplitHero>
 
       {/*
        * The reference puts a client logo wall here. Shario has no logo
@@ -86,7 +86,9 @@ export default function HomePage() {
        * same job — credibility before any prose is asked for. A single line,
        * not a grid: the figures band further down is where numbers belong.
        */}
-      <section className="border-b border-carbon/12 bg-limestone/40">
+      {/* Porcelain, not Limestone — the hero above it is now Limestone, and
+          two adjacent bands of the same field read as one. */}
+      <section className="border-b border-carbon/12">
         <Container className="flex flex-wrap items-center justify-center gap-x-12 gap-y-5 py-8 wide:gap-x-20 wide:py-10">
           {proof.map((item, i) => (
             <p

@@ -4,7 +4,6 @@ import {
   Card,
   CardGrid,
   CtaBand,
-  Figure,
   PillLink,
   SectionIntro,
   StatBand,
@@ -58,15 +57,6 @@ export default function ServicesPage() {
           title="Five services. One connected system."
           sub="Each stands on its own, and each is stronger when the others are carrying their part of the funnel."
         />
-        <div className="mb-14 wide:mb-20">
-          <Figure
-            src="/images/detail/anthology.jpg"
-            label="One standard across the funnel"
-            caption="Whether the work is a campaign, a page or a CRM rule, it is held to the same standard and reported the same way."
-            ratio="aspect-[21/9]"
-            sizes="(min-width: 880px) 90vw, 100vw"
-          />
-        </div>
         <CardGrid columns={3}>
           {services.map((service, i) => (
             <Card

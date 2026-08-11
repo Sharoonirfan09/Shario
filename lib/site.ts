@@ -277,10 +277,18 @@ export type Service = {
   deliverables: string[];
   faqs: { q: string; a: string }[];
   /**
-   * The page's one photograph, with the label and caption it carries. No
-   * image appears on more than one page — `npm run check:images` enforces it.
+   * The page's two photographs, shown side by side. Each carries its own
+   * pixel dimensions so the frame takes the picture's real proportion and
+   * nothing is cropped, and both in a pair share a ratio so the row is even.
+   * No image appears on more than one page — `check:images` enforces it.
    */
-  image: { src: string; label: string; caption: string };
+  images: {
+    src: string;
+    label: string;
+    caption: string;
+    width: number;
+    height: number;
+  }[];
   /** Closing CTA heading, split across two lines. */
   ctaTitle: [string, string];
   metaDescription: string;
@@ -348,11 +356,22 @@ export const services: Service[] = [
         a: "Yes — real estate is the most contested auction in the market and it is where most of the AED 35M+ was generated.",
       },
     ],
-    image: {
-      src: "/images/book/desk-shelving.jpg",
-      label: "The account room",
-      caption: "Campaigns are reviewed weekly against pipeline, not monthly against impressions.",
-    },
+    images: [
+      {
+        src: "/images/book/desk-shelving.jpg",
+        label: "The account room",
+        caption: "Campaigns are reviewed weekly against pipeline, not monthly against impressions.",
+        width: 1122,
+        height: 1402,
+      },
+      {
+        src: "/images/detail/pair-performance.jpg",
+        label: "Held to a number",
+        caption: "Every campaign carries a target cost per lead, agreed before it goes live.",
+        width: 314,
+        height: 392,
+      },
+    ],
     ctaTitle: ["Let's put the spend", "where it returns."],
     metaDescription:
       "Performance marketing in Dubai — Google Ads and Meta Ads managed for qualified leads at below-target cost per lead, reported against pipeline and closed revenue.",
@@ -418,11 +437,22 @@ export const services: Service[] = [
         a: "Usually yes. Where the platform itself is what blocks indexing, we will say so rather than bill months of work around it.",
       },
     ],
-    image: {
-      src: "/images/detail/sketches.jpg",
-      label: "Structure first",
-      caption: "Indexing, architecture and internal linking are planned before a word is written.",
-    },
+    images: [
+      {
+        src: "/images/detail/sketches.jpg",
+        label: "Structure first",
+        caption: "Indexing, architecture and internal linking are planned before a word is written.",
+        width: 651,
+        height: 631,
+      },
+      {
+        src: "/images/detail/pair-seo.jpg",
+        label: "Written to be read",
+        caption: "Content is commissioned against what buyers actually search, not against a volume list.",
+        width: 505,
+        height: 489,
+      },
+    ],
     ctaTitle: ["Let's make the brand", "easier to find."],
     metaDescription:
       "SEO and content marketing in Dubai — technical SEO, on-page optimisation and content clusters built to rank in Dubai search and win AI-driven results.",
@@ -488,11 +518,22 @@ export const services: Service[] = [
         a: "Yes, on a retained basis — or we hand over documentation and train your team, which costs you less if you have someone in-house.",
       },
     ],
-    image: {
-      src: "/images/detail/workspace.jpg",
-      label: "Built around the sale",
-      caption: "Every build starts from how your sales team actually closes, not from the sitemap.",
-    },
+    images: [
+      {
+        src: "/images/detail/workspace.jpg",
+        label: "Built around the sale",
+        caption: "Every build starts from how your sales team actually closes, not from the sitemap.",
+        width: 785,
+        height: 771,
+      },
+      {
+        src: "/images/detail/pair-web.jpg",
+        label: "Tested, then kept",
+        caption: "Layout and copy changes ship behind measurement, so a win can be told from a hunch.",
+        width: 426,
+        height: 418,
+      },
+    ],
     ctaTitle: ["Let's build the site", "that actually converts."],
     metaDescription:
       "Website development and conversion rate optimisation in Dubai — high-converting websites with SEO-ready architecture, landing pages and CRM-integrated funnels.",
@@ -558,11 +599,22 @@ export const services: Service[] = [
         a: "You do. It is built in your account, documented, and your team is trained on it. Nothing depends on us to keep running.",
       },
     ],
-    image: {
-      src: "/images/book/stat-letterhead.jpg",
-      label: "Documented, then handed over",
-      caption: "The configuration is built in your account and written down, so nothing depends on us.",
-    },
+    images: [
+      {
+        src: "/images/book/stat-letterhead.jpg",
+        label: "Documented, then handed over",
+        caption: "The configuration is built in your account and written down, so nothing depends on us.",
+        width: 1086,
+        height: 1448,
+      },
+      {
+        src: "/images/detail/pair-crm.jpg",
+        label: "One record per lead",
+        caption: "Source, score and outcome held in one place — which is what makes attribution possible.",
+        width: 449,
+        height: 599,
+      },
+    ],
     ctaTitle: ["Let's connect the spend", "to the pipeline."],
     metaDescription:
       "CRM integration and marketing automation in Dubai — attribution tracking, lead scoring and automated follow-up that tie marketing spend to closed revenue.",
@@ -628,11 +680,22 @@ export const services: Service[] = [
         a: "Yes, though it is strongest alongside the channels that will carry it — brand work priced against a campaign has a clearer measure of success.",
       },
     ],
-    image: {
-      src: "/images/detail/materials.jpg",
-      label: "Direction before production",
-      caption: "Material, colour and typographic direction are set before a single asset is made.",
-    },
+    images: [
+      {
+        src: "/images/detail/materials.jpg",
+        label: "Direction before production",
+        caption: "Material, colour and typographic direction are set before a single asset is made.",
+        width: 583,
+        height: 771,
+      },
+      {
+        src: "/images/detail/pair-brand.jpg",
+        label: "Made to be tested",
+        caption: "Creative ships in variants, because the winning execution is rarely the first one.",
+        width: 292,
+        height: 386,
+      },
+    ],
     ctaTitle: ["Let's make the creative", "worth the spend."],
     metaDescription:
       "Brand and creative in Dubai — brand identity, campaign visuals, social and paid ad creative and marketing collateral produced to a launch standard.",

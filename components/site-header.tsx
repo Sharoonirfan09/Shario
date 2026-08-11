@@ -43,6 +43,16 @@ export function SiteHeader() {
   // not also be transparent or the wordmark doubles up.
   const overHero = !scrolled && !menuOpen;
 
+  /*
+   * Home and Results open on a light Limestone split hero; the rest open dark.
+   * Derived from the route rather than measured from the DOM so the server and
+   * the first client paint agree — reading it after mount made the bar flip
+   * colour a frame late on every navigation. Add a route here whenever a page
+   * moves to `SplitHero`.
+   */
+  const lightHero = pathname === "/" || pathname === "/results";
+  const lightInk = overHero && !lightHero;
+
   // Reset on navigation. Adjusting state during render is the supported way to
   // respond to a changed input, and it also covers browser back/forward.
   const [lastPath, setLastPath] = useState(pathname);
@@ -88,7 +98,9 @@ export function SiteHeader() {
       <header
         className={`sticky top-0 z-50 border-b transition-colors duration-500 ${
           overHero
-            ? "border-transparent bg-transparent text-porcelain"
+            ? `border-transparent bg-transparent ${
+                lightHero ? "text-carbon" : "text-porcelain"
+              }`
             : "border-carbon/10 bg-porcelain/92 text-carbon backdrop-blur-[14px]"
         }`}
       >
@@ -226,7 +238,7 @@ export function SiteHeader() {
             <Link
               href={cta.href}
               className={`shrink-0 whitespace-nowrap rounded-full border px-[22px] py-3 text-[11px] uppercase tracking-[0.08em] transition-colors duration-500 ${
-                overHero
+                lightInk
                   ? "border-porcelain bg-porcelain text-carbon hover:border-mist hover:bg-mist"
                   : "border-carbon bg-carbon text-porcelain hover:bg-black"
               }`}
@@ -246,12 +258,12 @@ export function SiteHeader() {
           >
             <span
               className={`block h-px w-[26px] transition-colors duration-500 ${
-                overHero ? "bg-porcelain" : "bg-carbon"
+                lightInk ? "bg-porcelain" : "bg-carbon"
               }`}
             />
             <span
               className={`block h-px w-[26px] transition-colors duration-500 ${
-                overHero ? "bg-porcelain" : "bg-carbon"
+                lightInk ? "bg-porcelain" : "bg-carbon"
               }`}
             />
           </button>
