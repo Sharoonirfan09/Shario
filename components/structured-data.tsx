@@ -3,6 +3,8 @@ import { services, site } from "@/lib/site";
 /**
  * Organization + LocalBusiness markup. Shario competes on Dubai-local search,
  * so the address, service catalogue and founder are all worth declaring.
+ * `sameAs` carries LinkedIn only — it is the one profile the content document
+ * lists, and asserting an unverified handle here is worse than omitting it.
  */
 export function StructuredData() {
   const data = {
@@ -13,7 +15,12 @@ export function StructuredData() {
     url: site.domain,
     email: site.email,
     telephone: site.phone,
-    founder: { "@type": "Person", name: site.founder },
+    founder: {
+      "@type": "Person",
+      name: site.founder,
+      jobTitle: site.founderRole,
+      sameAs: site.linkedin,
+    },
     areaServed: [
       { "@type": "City", name: "Dubai" },
       { "@type": "Country", name: "United Arab Emirates" },
@@ -23,10 +30,10 @@ export function StructuredData() {
       addressLocality: "Dubai",
       addressCountry: "AE",
     },
-    sameAs: [site.linkedin, site.instagram],
+    sameAs: [site.linkedin],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Creative studio services",
+      name: "Digital marketing services",
       itemListElement: services.map((service) => ({
         "@type": "Offer",
         itemOffered: {

@@ -1,112 +1,117 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
   Band,
-  Divider,
-  FinalCta,
-  Hero,
-  MarkerColumns,
-  Pill,
-  ProcessSteps,
-  SectionHead,
+  Card,
+  CardGrid,
+  CtaBand,
+  Figure,
+  PillLink,
+  SectionIntro,
+  StatBand,
+  TypeHero,
 } from "@/components/ui";
-import { industries, processSteps, services } from "@/lib/site";
+import { cta, services, stats } from "@/lib/site";
+
+/**
+ * Card grounds for this page.
+ *
+ * The homepage renders the same five services and has its own set — no
+ * photograph may appear twice anywhere on the site, so the two grids cannot
+ * share. These are cut from six further originals; the clean part of the
+ * library is now spent.
+ */
+const cardTextures: Record<string, string> = {
+  "performance-marketing": "/images/texture/idx-performance.jpg",
+  "seo-and-content": "/images/texture/idx-seo.jpg",
+  "websites-and-cro": "/images/texture/idx-web.jpg",
+  "crm-and-automation": "/images/texture/idx-crm.jpg",
+  "brand-and-creative": "/images/texture/idx-brand.jpg",
+};
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Six capabilities composing one creative system — brand strategy, brand identity, digital experiences, content, growth and creative technology.",
+    "Digital marketing services in Dubai — performance marketing, SEO and content, websites and CRO, CRM and automation, brand and creative. Engage one service or the entire funnel.",
   alternates: { canonical: "/services" },
 };
 
-/**
- * The handoff supplies a single service template rather than an index. This
- * page is assembled from the same parts — the homepage capability grid, the
- * shared process row and the standard closing action — so the set has a
- * landing page without inventing a new pattern.
- */
 export default function ServicesPage() {
   return (
     <>
-      <Hero
-        src="/images/book/desk-poster.jpg"
-        focus="object-[55%_45%]"
-        eyebrow="Shario — Services"
-        title={
-          <>
-            A Complete
-            <br />
-            Creative System.
-          </>
-        }
-        subhead="Six capabilities, composed to support one another."
-        priority
-      />
+      {/* Carbon, like every other hero on the site — the header overlays the
+          hero and sets its type in Porcelain, so a light hero would swallow
+          the navigation. */}
+      <TypeHero
+        tone="carbon"
+        eyebrow="Services"
+        title="Digital marketing services in Dubai."
+        subhead="Shario delivers the full marketing system a Dubai brand needs to generate demand and convert it into revenue. Engage one service, or the entire funnel."
+      >
+        <PillLink href={cta.href} tone="solidLight">
+          {cta.label}
+        </PillLink>
+      </TypeHero>
 
-      {/* 01 — Capabilities */}
       <Band>
-        <SectionHead title="Capabilities." marker="01 / Services" scale="md" />
-        <div className="grid border-t border-carbon/12 wide:grid-cols-3 wide:border-l">
+        <SectionIntro
+          eyebrow="What We Do"
+          title="Five services. One connected system."
+          sub="Each stands on its own, and each is stronger when the others are carrying their part of the funnel."
+        />
+        <div className="mb-14 wide:mb-20">
+          <Figure
+            src="/images/detail/anthology.jpg"
+            label="One standard across the funnel"
+            caption="Whether the work is a campaign, a page or a CRM rule, it is held to the same standard and reported the same way."
+            ratio="aspect-[21/9]"
+            sizes="(min-width: 880px) 90vw, 100vw"
+          />
+        </div>
+        <CardGrid columns={3}>
           {services.map((service, i) => (
-            <Link
+            <Card
               key={service.slug}
               href={`/services/${service.slug}`}
-              className="reveal group flex min-h-[220px] flex-col gap-4 border-b border-r border-carbon/12 px-8 py-9 transition-colors duration-500 hover:bg-limestone/40"
-              data-delay={i * 60}
-            >
-              <span className="font-display text-sm text-carbon/50">
-                {service.num}
-              </span>
-              <span className="font-display text-[1.625rem] font-medium">
-                {service.name}
-              </span>
-              <span className="text-sm leading-[1.7] text-carbon/70">
-                {service.descriptor}
-              </span>
-              <span className="mt-auto pt-4 text-[11px] uppercase tracking-[0.08em] text-carbon/50 transition-opacity duration-500 group-hover:text-carbon">
-                View capability →
-              </span>
-            </Link>
+              badge={service.num}
+              title={service.name}
+              titleAs="h3"
+              desc={service.descriptor}
+              action="Explore"
+              background={cardTextures[service.slug]}
+              delay={i * 60}
+            />
           ))}
-        </div>
+          <Card
+            href={cta.href}
+            title="Tell us your goal."
+            desc="We will tell you which of these gets you there, and which you can leave until later."
+            action={cta.label}
+            background="/images/texture/idx-cta.jpg"
+            delay={services.length * 60}
+          />
+        </CardGrid>
       </Band>
 
-      <Divider />
+      <StatBand
+        eyebrow="Why It Works"
+        title="Every service is measured against revenue."
+        body="Not impressions, not rankings for their own sake. Each engagement reports weekly against pipeline and closed sales."
+        stats={stats}
+        action={
+          <PillLink href="/results" tone="solidLight">
+            See the record
+          </PillLink>
+        }
+      />
 
-      {/* 02 — Process */}
-      <Band>
-        <SectionHead
-          title={
-            <>
-              One Vision.
-              <br />
-              Every Touchpoint.
-            </>
-          }
-          marker="02 / Process"
-          scale="md"
-        />
-        <ProcessSteps steps={processSteps} />
-      </Band>
-
-      {/* 03 — Industries */}
-      <Band tone="carbon">
-        <MarkerColumns marker="03 / Industries" tone="carbon">
-          <div className="flex flex-wrap gap-3.5">
-            {industries.map((industry) => (
-              <Pill
-                key={industry.slug}
-                href={`/industries/${industry.slug}`}
-                tone="carbon"
-              >
-                {industry.name}
-              </Pill>
-            ))}
-          </div>
-        </MarkerColumns>
-      </Band>
-
-      <FinalCta lines={["Let’s compose", "something distinctive."]} />
+      <CtaBand
+        title="Book a strategy call."
+        sub="Fifteen minutes on where your marketing can win more revenue, and how Shario would unlock it."
+      >
+        <PillLink href={cta.href} tone="solid" size="lg">
+          {cta.label}
+        </PillLink>
+      </CtaBand>
     </>
   );
 }

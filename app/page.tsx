@@ -1,256 +1,239 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Faq } from "@/components/faq";
 import {
   Band,
-  Divider,
-  DotList,
-  Eyebrow,
-  FinalCta,
+  Card,
+  CardGrid,
+  Container,
+  CtaBand,
   Frame,
   Hero,
-  MarkerColumns,
-  NumberedRows,
-  Pill,
+  Heading,
   PillLink,
-  ProcessSteps,
-  SectionHead,
-  SectionLabel,
-  StatementImage,
-  WorkCard,
+  SectionIntro,
+  StatBand,
 } from "@/components/ui";
 import {
-  creativeTechnology,
-  industries,
-  insights,
-  principles,
-  processSteps,
+  cta,
+  homeFaqs,
+  howWeWork,
+  proof,
   services,
   site,
-  testimonial,
-  work,
+  stats,
 } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Shario — A Symphony of Identity",
+  title: "Shario — Digital Marketing Company in Dubai",
   description: site.description,
   alternates: { canonical: "/" },
+};
+
+/**
+ * Card grounds. Every one is a distinct photograph used nowhere else on the
+ * site — `npm run check:images` fails the build if any of them repeats.
+ *
+ * They live here rather than in `lib/site.ts` because the services grid also
+ * renders on `/services`, and giving both pages the same backgrounds would
+ * break that rule — that page carries its own set, cut from different
+ * originals.
+ */
+const stepTextures = [
+  "/images/texture/stone.jpg",
+  "/images/texture/build.jpg",
+  "/images/texture/interior.jpg",
+  "/images/texture/desk.jpg",
+];
+
+const serviceTextures: Record<string, string> = {
+  "performance-marketing": "/images/texture/svc-performance.jpg",
+  "seo-and-content": "/images/texture/svc-seo.jpg",
+  "websites-and-cro": "/images/texture/svc-web.jpg",
+  "crm-and-automation": "/images/texture/svc-crm.jpg",
+  "brand-and-creative": "/images/texture/svc-brand.jpg",
 };
 
 export default function HomePage() {
   return (
     <>
+      {/*
+       * Not `reception-wall.jpg`, which was the hero until the positioning
+       * changed: it has "SHARIO — A Symphony of Identity" and the Arabic
+       * lockup painted across the wall. Four photographs in the library carry
+       * the retired tagline — that one, `sign-exterior`, `sign-glass` and
+       * `photo-lounge`. None are used anywhere on the site.
+       */}
       <Hero
-        src="/images/book/reception-wall.jpg"
-        /*
-         * A phone crops this 4:5 photograph hard from both sides, which cut the
-         * wordmark on the reception wall in half. Anchoring the crop right
-         * keeps the lockup whole; the desktop box is wide enough to centre.
-         */
-        focus="object-right wide:object-center"
-        eyebrow="Shario — Creative Studio — Dubai"
-        title={
-          <>
-            A Symphony
-            <br />
-            of Identity.
-          </>
-        }
-        subhead="One vision, composed across every touchpoint."
+        src="/images/book/photo-stair.jpg"
+        focus="object-[50%_45%]"
+        eyebrow="Digital Marketing Company — Dubai"
+        title="Marketing that turns spend into revenue."
+        subhead="Shario is a founder-led digital marketing company in Dubai, built by an operator who has generated AED 35M+ in tracked revenue for real estate and B2B brands."
         scale="home"
         priority
-      />
+      >
+        <PillLink href={cta.href} tone="solidLight" size="lg">
+          {cta.label}
+        </PillLink>
+        <PillLink href="/services" tone="outlineLight" size="lg">
+          Our Services
+        </PillLink>
+      </Hero>
 
-      {/* 01 — Introduction */}
-      <Band>
-        <MarkerColumns marker="01 / Introduction" heading="Introduction">
-          <p className="reveal max-w-[820px] font-display text-[1.875rem] font-normal leading-[1.3] wide:text-[clamp(1.875rem,3.4vw,2.875rem)]">
-            SHARIO is a boutique creative studio composing coherent brand
-            identities across strategy, design and technology.
-          </p>
-          <p
-            className="reveal mt-8 max-w-[620px] font-body text-[1.1875rem] leading-[1.7] text-carbon/80"
-            data-delay="120"
-          >
-            Clarity before expression. Purpose before decoration. Every
-            engagement receives close creative direction, considered
-            decision-making and a high level of attention — building complete
-            brand ecosystems where positioning, identity, digital presence and
-            communication support one another.
-          </p>
-        </MarkerColumns>
-      </Band>
-
-      <Divider />
-
-      {/* 02 — Capabilities */}
-      <Band>
-        <SectionHead
-          title={
-            <>
-              A Complete
-              <br />
-              Creative System.
-            </>
-          }
-          marker="02 / Capabilities"
-        />
-        {/*
-         * The grid draws its own rules: a top and left edge on the container,
-         * a bottom and right edge on every cell. Below the breakpoint the left
-         * edge is dropped so a single column does not gain a stray rule.
-         */}
-        <div className="grid border-t border-carbon/12 wide:grid-cols-3 wide:border-l">
-          {services.map((service, i) => (
-            <Link
-              key={service.slug}
-              href={`/services/${service.slug}`}
-              className="reveal group flex min-h-[220px] flex-col gap-4 border-b border-r border-carbon/12 px-8 py-9 transition-colors duration-500 hover:bg-limestone/40"
-              data-delay={i * 60}
+      {/*
+       * The reference puts a client logo wall here. Shario has no logo
+       * permissions, so the same slot carries the three claims that do the
+       * same job — credibility before any prose is asked for. A single line,
+       * not a grid: the figures band further down is where numbers belong.
+       */}
+      <section className="border-b border-carbon/12 bg-limestone/40">
+        <Container className="flex flex-wrap items-center justify-center gap-x-12 gap-y-5 py-8 wide:gap-x-20 wide:py-10">
+          {proof.map((item, i) => (
+            <p
+              key={item.title}
+              className="reveal flex items-center gap-3 font-display text-[1.0625rem] leading-none text-carbon wide:text-[1.3125rem]"
+              data-delay={i * 110}
             >
-              <span className="font-display text-sm text-carbon/50">
-                {service.num}
-              </span>
-              <span className="font-display text-[1.625rem] font-medium">
-                {service.name}
-              </span>
-              <span className="text-sm leading-[1.7] text-carbon/70">
-                {service.descriptor}
-              </span>
-            </Link>
+              <span
+                aria-hidden="true"
+                className="h-1.5 w-1.5 shrink-0 rounded-full bg-mist"
+              />
+              {item.title}
+            </p>
           ))}
-        </div>
-      </Band>
-
-      <StatementImage src="/images/travertine-wall.jpg">
-        Harmony is a discipline, not an accident.
-      </StatementImage>
-
-      {/* 03 — What Defines Us */}
-      <Band>
-        <SectionLabel>What defines us</SectionLabel>
-        <Eyebrow className="mb-10 wide:mb-16">03 / What Defines Us</Eyebrow>
-        <NumberedRows rows={principles} />
-      </Band>
-
-      {/* 04 — Selected Work */}
-      <Band tone="carbon">
-        <SectionHead
-          title="Selected Work."
-          marker="04 / Portfolio"
-          tone="carbon"
-        />
-        <div className="grid gap-12 wide:grid-cols-3 wide:gap-10">
-          {work.map((item, i) => (
-            <WorkCard
-              key={item.slug}
-              href={`/work/${item.slug}`}
-              image={item.card}
-              category={item.category}
-              title={item.title}
-              scope={item.scope}
-              delay={i * 90}
-            />
-          ))}
-        </div>
-        <div className="mt-10 text-center wide:mt-16">
-          <PillLink href="/work" tone="outlineLight">
-            View All Work
-          </PillLink>
-        </div>
-      </Band>
-
-      {/* 05 — Industries */}
-      <Band id="industries">
-        <SectionHead
-          title={
-            <>
-              Designed for
-              <br />
-              ambitious brands.
-            </>
-          }
-          marker="05 / Industries"
-        />
-        <div className="flex flex-wrap gap-3.5">
-          {industries.map((industry) => (
-            <Pill key={industry.slug} href={`/industries/${industry.slug}`}>
-              {industry.name}
-            </Pill>
-          ))}
-        </div>
-      </Band>
-
-      <Divider />
-
-      {/* 06 — Process */}
-      <Band>
-        <SectionHead
-          title={
-            <>
-              One Vision.
-              <br />
-              Every Touchpoint.
-            </>
-          }
-          marker="06 / Process"
-        />
-        <ProcessSteps steps={processSteps} />
-        <p className="eyebrow mt-10 text-center text-carbon/50 wide:mt-16">
-          Continuous, Not Linear
-        </p>
-      </Band>
-
-      {/* 07 — Creative Technology */}
-      <Band tone="carbon">
-        <MarkerColumns
-          marker="07 / Creative Technology"
-          heading="Creative technology"
-          tone="carbon"
-        >
-          <p className="reveal max-w-[780px] font-display text-[1.875rem] font-normal leading-[1.3] wide:text-[clamp(1.875rem,3.4vw,2.875rem)]">
-            Visibility is only valuable when it is earned by substance.
-          </p>
-          <div className="mt-10">
-            <DotList items={creativeTechnology} tone="carbon" />
-          </div>
-        </MarkerColumns>
-      </Band>
-
-      {/* Testimonial */}
-      <section>
-        <div className="mx-auto max-w-[960px] px-6 py-16 text-center wide:px-12 wide:py-[clamp(5rem,9vw,8.75rem)]">
-          <blockquote className="reveal font-body text-2xl italic leading-[1.5] wide:text-[2rem]">
-            “{testimonial.quote}”
-          </blockquote>
-          <p className="mt-8 text-xs uppercase tracking-[0.08em] text-carbon/60">
-            {testimonial.attribution}
-          </p>
-        </div>
+        </Container>
       </section>
 
-      {/* 08 — Insights */}
-      <Band id="insights">
-        <SectionHead title="Insights." marker="08 / Journal" />
-        <div className="grid gap-12 wide:grid-cols-3 wide:gap-10">
-          {insights.map((article, i) => (
-            <article
-              key={article.id}
-              className="reveal flex flex-col gap-4"
-              data-delay={i * 90}
+      {/* About — image beside text, as the reference sets it */}
+      <Band>
+        <div className="grid items-center gap-12 wide:grid-cols-[1fr_1.05fr] wide:gap-20">
+          <Frame src="/images/book/photo-desk.jpg" ratio="aspect-[4/3]" />
+          <div>
+            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+              <span aria-hidden="true" className="h-px w-6 bg-mist" />
+              About Shario
+            </p>
+            <Heading scale="md" className="mt-5">
+              Founder-led from day one.
+            </Heading>
+            <p className="reveal mt-6 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75">
+              Shario runs on a senior model. Every strategy is set to the
+              standard of a founder who has personally built and launched
+              full-funnel marketing systems for developer-led projects in Dubai.
+            </p>
+            <p
+              className="reveal mt-4 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75"
+              data-delay="90"
             >
-              <Frame src={article.image} ratio="aspect-[16/10]" />
-              <p className="eyebrow text-carbon/50">
-                {article.category} · {article.date}
-              </p>
-              <h3 className="font-display text-[1.375rem] font-medium leading-[1.25]">
-                {article.title}
-              </h3>
-            </article>
-          ))}
+              You get senior thinking on every campaign, from a team that stays
+              with your account.
+            </p>
+            <div className="reveal mt-9" data-delay="160">
+              <PillLink href="/about">Learn More</PillLink>
+            </div>
+          </div>
         </div>
       </Band>
 
-      <FinalCta lines={["Let’s compose", "something distinctive."]} />
+      {/* Services */}
+      <Band className="bg-limestone/30">
+        <SectionIntro
+          eyebrow="Our Services"
+          title={
+            <>
+              Everything you need to grow,
+              <br className="hidden wide:block" /> handled by one team.
+            </>
+          }
+          sub="From paid media and search to websites, CRM and creative — the full marketing system a Dubai brand needs to generate demand and convert it into revenue."
+        />
+        <CardGrid columns={3}>
+          {services.map((service, i) => (
+            <Card
+              key={service.slug}
+              href={`/services/${service.slug}`}
+              badge={service.num}
+              title={service.name}
+              titleAs="h3"
+              desc={service.descriptor}
+              action="Learn more"
+              background={serviceTextures[service.slug]}
+              delay={i * 60}
+            />
+          ))}
+          <Card
+            href={cta.href}
+            title="Not sure which you need?"
+            desc="Tell us your goal and we will tell you which of these gets you there — and which you can leave until later."
+            action={cta.label}
+            background="/images/texture/svc-cta.jpg"
+            delay={services.length * 60}
+          />
+        </CardGrid>
+      </Band>
+
+      {/* What makes us different — the engagement, as the reference frames it */}
+      <Band>
+        <SectionIntro
+          eyebrow="What Makes Us Different"
+          title="This is how we work."
+          sub="Four steps, run every week rather than every quarter."
+        />
+        {/*
+         * One texture per card, each used nowhere else on the site. They are
+         * crops of material — stone, paper, an interior, a desk — rather than
+         * photographs with a subject, so they read as the card's ground and
+         * leave the type at full contrast.
+         */}
+        <CardGrid columns={4}>
+          {howWeWork.map((step, i) => (
+            <Card
+              key={step.num}
+              badge={step.num}
+              title={step.title}
+              titleAs="h3"
+              desc={step.desc}
+              background={stepTextures[i]}
+              delay={i * 60}
+            />
+          ))}
+        </CardGrid>
+      </Band>
+
+      <StatBand
+        eyebrow="Leading With Revenue"
+        title="Built on a record you can check."
+        body="Every engagement is run to a founder's standard and measured against revenue. That focus is what turns marketing into real growth."
+        stats={stats}
+        action={
+          <PillLink href="/results" tone="solidLight">
+            See the full record
+          </PillLink>
+        }
+      />
+
+      {/* FAQ */}
+      <Band>
+        <SectionIntro
+          eyebrow="FAQ"
+          title="Frequently asked questions."
+        />
+        <div className="mx-auto max-w-[880px]">
+          <Faq items={homeFaqs} />
+        </div>
+      </Band>
+
+      <CtaBand
+        title="Book a strategy call."
+        sub="In fifteen minutes we will map where your marketing can win more revenue and how to unlock it. Free, focused and specific to your business."
+        >
+        <PillLink href={cta.href} tone="solid" size="lg">
+          {cta.label}
+        </PillLink>
+        <PillLink href={`mailto:${site.email}`} tone="outline" size="lg">
+          Email Us
+        </PillLink>
+      </CtaBand>
     </>
   );
 }

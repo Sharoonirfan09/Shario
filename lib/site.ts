@@ -1,350 +1,252 @@
 /**
  * Single source of truth for site content and contact details.
  *
- * Copy, section order and navigation follow the design handoff
- * (`design_handoff_shario_website`, five hifi HTML prototypes) which supersedes
- * the earlier Brand Book page structure. The Brand Book still governs tone and
- * palette: clear, precise, composed — never "game-changing" or "world-class".
+ * Copy follows `Shario content (1).pdf` — the client's content document, which
+ * positions Shario as a founder-led *performance marketing* company: "A Dubai
+ * Digital Marketing Company That Turns Spend Into Revenue". That document
+ * supersedes the earlier Brand Book positioning ("A Symphony of Identity", a
+ * boutique creative studio), and the tagline, the Arabic lockup and the six
+ * creative-studio capabilities retired with it.
  *
- * The handoff supplies finished copy for the homepage, About, Contact, the
- * Brand Identity service and the Meridian Residences case study. The remaining
- * five services and two case studies are written here to the same pattern.
+ * The Brand Book still governs the *visual* system only — palette, typography
+ * and the composed, unhurried tone. Never "game-changing" or "world-class".
+ *
+ * The content document supplies finished copy for five pages: Home, About,
+ * Services, Results and Contact. The five service detail pages are written
+ * here to the same voice, expanding the one-paragraph summary the document
+ * gives each service into outcomes, deliverables and FAQs.
+ *
+ * Structure rule, and the reason this file is much shorter than it was: every
+ * block appears on exactly one page. The process steps live on About, the
+ * industry list lives on Results, the FAQs live on service pages. Nothing is
+ * repeated across templates.
  */
 
 export const site = {
   name: "Shario",
   domain: "https://shario.ae",
-  tagline: "A Symphony of Identity.",
-  taglineAr: "الهوية سيمفونية",
+  tagline: "Marketing that turns spend into revenue.",
   description:
-    "Shario is a boutique creative studio in Dubai composing coherent brand identities across strategy, design and technology.",
+    "Shario is a founder-led digital marketing company in Dubai building marketing systems that produce sales — performance marketing, SEO, websites and CRM attribution.",
   location: "Dubai, UAE",
   studio: "Dubai, United Arab Emirates",
-  phone: "+971 50 467 9095",
-  phoneHref: "+971504679095",
-  email: "info@shario.ae",
+  phone: "+971 56 121 7647",
+  phoneHref: "+971561217647",
+  email: "sharoon.irfan99@gmail.com",
   website: "www.shario.ae",
   linkedin: "https://linkedin.com/in/sharoonirfan",
-  instagram: "https://instagram.com/shario.ae",
   founder: "Sharoon Irfan",
-  founderRole: "Founder & Creative Director",
-  founderQuote:
-    "Independent thinking. Sharper execution. This is how SHARIO begins every engagement.",
-  promise: "One vision. Every touchpoint.",
-  vision:
-    "To build identities recognised not by volume, but by clarity, character and coherence.",
-  mission:
-    "To unite strategy, design, communication and technology into complete brand systems that support meaningful growth.",
+  founderRole: "Founder & Digital Growth Strategist",
+  /** The headline claim, cited on Home, About and Results. */
+  revenue: "AED 35M+",
+  experience: "6+ years",
 } as const;
 
-/**
- * Primary navigation, exactly as the handoff sets it. Industries and Insights
- * are homepage sections rather than pages, so they resolve to anchors.
- */
+/** Primary navigation. Four pages; the CTA button beside them is not a nav item. */
 export const nav = [
   { href: "/services", label: "Services" },
-  { href: "/work", label: "Work" },
-  { href: "/industries", label: "Industries" },
+  { href: "/results", label: "Results" },
   { href: "/about", label: "About" },
-  { href: "/#insights", label: "Insights" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
-/** Footer "Studio" column. */
-export const footerLinks = [
-  { href: "/services", label: "Services" },
-  { href: "/work", label: "Work" },
-  { href: "/industries", label: "Industries" },
-  { href: "/about", label: "About" },
-  { href: "/#insights", label: "Insights" },
-] as const;
+/** The action repeated in the header, every hero and every closing band. */
+export const cta = {
+  label: "Book a Strategy Call",
+  href: "/contact",
+} as const;
 
 /* -------------------------------------------------------------------------- */
-/* Industries                                                                  */
+/* Home                                                                        */
 /* -------------------------------------------------------------------------- */
-
-export type Industry = {
-  slug: string;
-  num: string;
-  /** The label used in every pill row across the site. */
-  name: string;
-  /** Hero heading, with the closing full stop the handoff sets. */
-  title: string;
-  subhead: string;
-  /** The large serif statement that opens the overview. */
-  lead: string;
-  body: string;
-  /** "What this sector demands". */
-  demands: string[];
-  /** Service slugs, most relevant first. */
-  capabilities: string[];
-  ctaTitle: [string, string];
-  metaDescription: string;
-};
 
 /**
- * The handoff renders industries as a pill row and nothing more. They are
- * pages here because the sector terms are what this studio's buyers actually
- * search for, and because the pills appeared in three places linking nowhere.
+ * The stat row beneath the hero. Four figures, each defensible: two are the
+ * founder's tracked results, two describe how the company is staffed.
  */
-export const industries: Industry[] = [
-  {
-    slug: "real-estate-development",
-    num: "01",
-    name: "Real Estate & Development",
-    title: "Real Estate & Development.",
-    subhead: "Sold on a name, a brochure and a sales gallery.",
-    lead: "A development is sold long before it is built.",
-    body: "Multi-phase projects carry an unusual burden: the brand has to hold across years, agencies and international buyer audiences while the product itself is still a render. We build identities that draw their palette and proportion from the site’s own materials, then document them tightly enough that a launch in phase four still reads as the same development as phase one.",
-    demands: [
-      "An identity that survives a multi-year sales cycle",
-      "Collateral that performs in print and in a sales gallery",
-      "Material and photographic direction drawn from the site itself",
-      "Positioning that holds for an international buyer audience",
-      "Lead journeys that connect campaign spend to closed units",
-    ],
-    capabilities: ["brand-identity", "digital-experiences", "growth-visibility"],
-    ctaTitle: ["Let’s brand", "the development."],
-    metaDescription:
-      "Branding for real estate and development in Dubai — identity, collateral and digital experience built to hold across a multi-phase, multi-year sales cycle.",
-  },
-  {
-    slug: "architecture-interiors",
-    num: "02",
-    name: "Architecture & Interiors",
-    title: "Architecture & Interiors.",
-    subhead: "A brand as disciplined as the practice behind it.",
-    lead: "Practices whose work is disciplined, and whose brand is not.",
-    body: "Architecture and interiors studios grow through referral and rarely stop to state a position. The result is a brand quieter and less certain than the buildings. We start with what the practice actually believes about material and restraint, then rebuild the identity and the website around the work rather than around a services list — so projects a decade apart sit on one page without arguing.",
-    demands: [
-      "A stated position on material, method and restraint",
-      "Photography direction that unifies a long back catalogue",
-      "A website built around projects, not service lists",
-      "Typography and layout equal to the work they present",
-      "Credentials and awards presented without noise",
-    ],
-    capabilities: ["brand-strategy", "brand-identity", "digital-experiences"],
-    ctaTitle: ["Let’s give the practice", "a position."],
-    metaDescription:
-      "Branding for architecture and interiors practices in Dubai — positioning, identity and websites built around the work rather than the services list.",
-  },
-  {
-    slug: "hospitality-lifestyle",
-    num: "03",
-    name: "Hospitality & Lifestyle",
-    title: "Hospitality & Lifestyle.",
-    subhead: "Recognised long before it can be named.",
-    lead: "Guests recognise a group long before they can name it.",
-    body: "Hospitality brands are judged in a hundred small places — signage, a menu, a confirmation email, the staff handbook. Where a group runs several venues, the harder question is architecture: how much each venue is allowed to differ before the group stops being visible at all. We set that boundary first, then rebuild every touchpoint against it.",
-    demands: [
-      "Brand architecture across multiple venues",
-      "Signage, menus and print held to one standard",
-      "A visual language that survives a hundred small applications",
-      "Content and social direction that reads as one voice",
-      "A digital presence that turns a browser into a booking",
-    ],
-    capabilities: [
-      "brand-strategy",
-      "brand-identity",
-      "content-communication",
-    ],
-    ctaTitle: ["Let’s compose", "the guest experience."],
-    metaDescription:
-      "Branding for hospitality and lifestyle groups in Dubai — brand architecture, signage, menus and content held to one standard across every venue.",
-  },
-  {
-    slug: "fashion-beauty",
-    num: "04",
-    name: "Fashion & Beauty",
-    title: "Fashion & Beauty.",
-    subhead: "Styled everywhere. Composed almost nowhere.",
-    lead: "A category where everything is styled, and almost nothing is composed.",
-    body: "Fashion and beauty brands rarely lack imagery — they lack a system that makes the imagery add up. We define the art direction, the typographic voice and the rules governing how a seasonal campaign relates to the house identity, so the work can move at the pace the category demands without the brand loosening underneath it.",
-    demands: [
-      "A house identity that seasonal campaigns can sit inside",
-      "Art direction consistent across shoot, social and retail",
-      "Packaging and collateral held to one system",
-      "A voice distinctive enough to be recognised before the logo",
-      "Commerce and content working from the same design language",
-    ],
-    capabilities: [
-      "brand-identity",
-      "content-communication",
-      "digital-experiences",
-    ],
-    ctaTitle: ["Let’s build", "the house identity."],
-    metaDescription:
-      "Branding for fashion and beauty in Dubai — house identity, art direction and packaging systems that hold while seasonal campaigns move quickly.",
-  },
-  {
-    slug: "professional-services",
-    num: "05",
-    name: "Professional Services",
-    title: "Professional Services.",
-    subhead: "Expertise is assumed. Composure is what gets judged.",
-    lead: "Expertise is assumed. What is being judged is the composure around it.",
-    body: "Law, finance, consulting and advisory firms compete on trust, and trust is read from small signals — a proposal template, a pitch deck, the way a partner’s profile is set. We build identities that carry seniority without stiffness, and the document systems that let every partner produce work looking like it came from one firm.",
-    demands: [
-      "An identity that signals seniority without corporate cliché",
-      "Proposal, pitch and report templates the whole firm can use",
-      "Partner and team profiles presented consistently",
-      "Thought leadership with an editorial standard behind it",
-      "A website that survives procurement and due diligence",
-    ],
-    capabilities: ["brand-strategy", "brand-identity", "growth-visibility"],
-    ctaTitle: ["Let’s make the firm", "read as one."],
-    metaDescription:
-      "Branding for professional services firms in Dubai — identity, proposal and pitch systems that let every partner produce work from one firm.",
-  },
-  {
-    slug: "founder-personal-brands",
-    num: "06",
-    name: "Founder & Personal Brands",
-    title: "Founder & Personal Brands.",
-    subhead: "Visible without being the only thing holding it together.",
-    lead: "The founder is the brand — which is precisely why it needs a system.",
-    body: "A personal brand built only on presence does not survive delegation. We separate what is genuinely the founder’s voice from what belongs to the business, then build the identity, the content system and the digital presence that let a founder stay visible without being the only thing keeping the brand upright.",
-    demands: [
-      "A clear line between the founder’s voice and the company’s",
-      "An identity that works on stage, on social and in print",
-      "A content system that does not depend on daily founder input",
-      "Digital presence built on credibility, not vanity metrics",
-      "Positioning that outlasts a change in the founder’s role",
-    ],
-    capabilities: [
-      "brand-strategy",
-      "content-communication",
-      "creative-technology",
-    ],
-    ctaTitle: ["Let’s build it", "beyond the founder."],
-    metaDescription:
-      "Founder and personal brand building in Dubai — positioning, identity and content systems that let a founder stay visible without carrying the brand alone.",
-  },
-];
+export const stats = [
+  { figure: "AED 35M+", label: "CRM-attributed revenue" },
+  { figure: "6+", label: "Years in Dubai marketing" },
+  { figure: "5", label: "Services, one connected system" },
+  { figure: "1", label: "Senior team, founder-led" },
+] as const;
 
-export function getIndustry(slug: string): Industry | undefined {
-  return industries.find((industry) => industry.slug === slug);
-}
-
-/** The four-step engagement, repeated on the homepage and every service page. */
-export const processSteps = [
+/**
+ * "Proof Over Promises" — the homepage's short form. The Results page carries
+ * the same evidence at full length; these stay to one line each so the two
+ * pages are not reading the same paragraphs back to the visitor.
+ */
+export const proof = [
   {
-    num: "01",
-    title: "Discover",
-    desc: "Understanding the business, audience, market and ambition.",
+    title: "AED 35M+ attributed",
+    desc: "CRM-attributed revenue generated across real estate and B2B campaigns.",
   },
   {
-    num: "02",
-    title: "Define",
-    desc: "Establishing positioning, strategy, voice and creative direction.",
+    title: "Award-winning ROI",
+    desc: "A Marketing Excellence Award for campaign ROI on flagship Dubai projects.",
   },
   {
-    num: "03",
-    title: "Design",
-    desc: "Translating strategy into a coherent visual and digital identity.",
+    title: "40%+ organic growth",
+    desc: "Organic traffic growth delivered through a structured SEO overhaul.",
   },
   {
-    num: "04",
-    title: "Deliver",
-    desc: "Launching, managing and continuously refining every touchpoint.",
+    title: "Zero to launch",
+    desc: "Complete marketing systems built for developer-led real estate projects.",
   },
 ] as const;
 
-/** Homepage — "What Defines Us". */
-export const principles = [
+/**
+ * The homepage FAQ. The reference site answers the four questions a buyer asks
+ * before enquiring; these are the Dubai equivalents. Kept distinct from the
+ * per-service FAQs — those answer "how does this service work", these answer
+ * "should I talk to you at all".
+ */
+export const homeFaqs = [
+  {
+    q: "How long until I see results?",
+    a: "Paid campaigns produce leads in the first fortnight, and the first six to eight weeks are spent finding what holds up at volume. SEO and content compound over three to six months. Anyone promising faster on organic is guessing.",
+  },
+  {
+    q: "Do you actually know the Dubai market?",
+    a: "The AED 35M+ was generated here, in developer-led real estate — the most contested advertising auction in the region. That is the market this company was built in, not one it expanded into.",
+  },
+  {
+    q: "How do you report on performance?",
+    a: "Weekly, against pipeline and closed revenue rather than impressions. Every campaign is tied back to attributable revenue through the CRM, so you can see what each dirham bought.",
+  },
+  {
+    q: "Can we start with one service?",
+    a: "Yes. Most engagements start with the single channel where the leverage is clearest, then extend once it is returning. You are not asked to buy the whole funnel to begin.",
+  },
+] as const;
+
+/* -------------------------------------------------------------------------- */
+/* About                                                                       */
+/* -------------------------------------------------------------------------- */
+
+/** "What Founder-Led Means for You". */
+export const founderLed = [
   {
     num: "01",
-    title: "Think With Precision",
-    desc: "Every decision begins with understanding.",
+    title: "Senior ownership",
+    desc: "Your account is run to a founder's standard and stays in senior hands.",
   },
   {
     num: "02",
-    title: "Design With Intention",
-    desc: "Every visual element must serve a purpose.",
+    title: "Revenue accountability",
+    desc: "We align on pipeline and closed sales — the metrics that matter.",
   },
   {
     num: "03",
-    title: "Communicate With Clarity",
-    desc: "Strong brands make their value easy to understand.",
+    title: "Full-funnel thinking",
+    desc: "Brand, traffic, conversion and CRM handled as one connected system.",
   },
   {
     num: "04",
-    title: "Execute With Consistency",
-    desc: "Recognition is built through disciplined repetition.",
+    title: "Direct access",
+    desc: "You talk to the people building your campaigns.",
+  },
+] as const;
+
+/**
+ * "How We Work" — the four-step engagement, the homepage's "what makes us
+ * different" band. It appears there and nowhere else; it previously ran on the
+ * homepage, the services index, the industries index and all six service
+ * pages at once.
+ */
+export const howWeWork = [
+  {
+    num: "01",
+    title: "Start with your numbers",
+    desc: "Cost per lead, close rate and revenue per channel, before anything is built.",
+  },
+  {
+    num: "02",
+    title: "Build the system",
+    desc: "Ads, SEO, website and CRM working together rather than in separate silos.",
+  },
+  {
+    num: "03",
+    title: "Track everything",
+    desc: "Every campaign tied back to attributable revenue, not to impressions.",
+  },
+  {
+    num: "04",
+    title: "Optimise relentlessly",
+    desc: "Every week, against the metrics that move money.",
+  },
+] as const;
+
+/* -------------------------------------------------------------------------- */
+/* Results                                                                     */
+/* -------------------------------------------------------------------------- */
+
+/** "The Numbers" — the full evidence, carried only here. */
+export const results = [
+  {
+    num: "01",
+    title: "AED 35M+ in CRM-attributed revenue",
+    desc: "Multi-channel campaigns across Google Ads, Meta Ads and SEO, tracked from first click to closed sale for Dubai real estate.",
+  },
+  {
+    num: "02",
+    title: "A Marketing Excellence Award",
+    desc: "Earned for campaign ROI on flagship developer-led projects.",
+  },
+  {
+    num: "03",
+    title: "40%+ organic traffic growth",
+    desc: "Delivered in a single quarter through a structured SEO and content overhaul.",
+  },
+  {
+    num: "04",
+    title: "Zero-to-launch marketing systems",
+    desc: "Full-stack builds for developer-led real estate projects — CRM integration, campaign infrastructure, websites and attribution.",
   },
   {
     num: "05",
-    title: "Grow With Purpose",
-    desc: "Creative work should support meaningful business outcomes.",
+    title: "Below-target cost per lead",
+    desc: "Delivered consistently across Search, Display, YouTube, Facebook and Instagram for high-value real estate and B2B clients.",
   },
 ] as const;
 
-/** About — the five standards, applied without exception. */
-export const values = [
-  { num: "01", title: "Clarity", desc: "Nothing said that isn’t needed." },
-  { num: "02", title: "Restraint", desc: "Confidence without excess." },
-  { num: "03", title: "Relevance", desc: "Ideas suited to their moment." },
-  { num: "04", title: "Consistency", desc: "The same standard, everywhere." },
-  { num: "05", title: "Craft", desc: "Attention paid to every detail." },
+/**
+ * The sectors Shario delivers in. Plain strings rather than routes — the six
+ * industry pages they used to link to restated the service pages and are gone.
+ */
+export const industries = [
+  "Real Estate Development",
+  "Hospitality",
+  "B2B & SaaS",
+  "Professional Services",
+  "E-commerce",
+  "Healthcare",
+  "Retail",
+  "Education",
 ] as const;
 
-/** About — personality, set as two opposing pill lists. */
-export const personality = {
-  is: [
-    "Intelligent",
-    "Refined",
-    "Distinctive",
-    "Composed",
-    "Contemporary",
-    "Founder-led",
-    "International",
-    "Selective",
-    "Quietly confident",
-    "Detail-oriented",
-    "Culturally sophisticated",
-    "Commercially relevant",
-  ],
-  isNever: [
-    "Loud",
-    "Generic",
-    "Trend-dependent",
-    "Mass-market",
-    "Overdecorated",
-    "Playful",
-    "Highly corporate",
-    "Flashy",
-    "Template-based",
-    "Artificially luxurious",
-    "Technology-heavy",
-    "Excessively futuristic",
-  ],
-} as const;
+/* -------------------------------------------------------------------------- */
+/* Contact                                                                     */
+/* -------------------------------------------------------------------------- */
 
-/** Homepage — Creative Technology list. */
-export const creativeTechnology = [
-  "AI-powered creative production",
-  "Creative workflow automation",
-  "AI-generated visuals and video",
-  "Digital prototyping and innovation",
+/** "What Happens After You Reach Out". */
+export const nextSteps = [
+  {
+    num: "01",
+    title: "A short call",
+    desc: "We schedule fifteen minutes to understand your goals and current numbers.",
+  },
+  {
+    num: "02",
+    title: "We map the funnel",
+    desc: "We identify where the leverage is and which wins come first.",
+  },
+  {
+    num: "03",
+    title: "A clear proposal",
+    desc: "Scope, timeline and expected outcomes, written down.",
+  },
 ] as const;
-
-/** Shared across every service page. */
-export const techStack = [
-  "Figma",
-  "Adobe Creative Cloud",
-  "Webflow",
-  "WordPress",
-  "Shopify",
-  "HubSpot",
-  "OpenAI",
-  "Notion",
-] as const;
-
-export const testimonial = {
-  quote:
-    "SHARIO gave our brand a language it didn’t have before — restrained, precise, and unmistakably ours across every touchpoint.",
-  attribution: "Founder, Real Estate Development Group",
-} as const;
 
 /* -------------------------------------------------------------------------- */
 /* Services                                                                    */
@@ -352,19 +254,22 @@ export const testimonial = {
 
 export type Service = {
   slug: string;
-  /** Two-digit index — the capability grid and the service hero both show it. */
+  /** Two-digit index — the services grid and the service hero both show it. */
   num: string;
   /** Short name used in navigation, cards and the enquiry form. */
   name: string;
-  /** Hero heading, with the handoff's closing full stop. */
+  /**
+   * The group this service belongs to. The reference site organises its
+   * catalogue into four such groups and labels each service page with its
+   * group rather than repeating the service name under the breadcrumb.
+   */
+  category: string;
+  /** Hero heading. */
   title: string;
-  /** The one-line description shown in the homepage capability grid. */
+  /** The one-line description shown in the services grid. */
   descriptor: string;
   /** Italic hero subhead. */
   subhead: string;
-  hero: string;
-  /** Object-position for the wide crop, keeping the wordmark clear of the type. */
-  focus?: string;
   /** The large serif statement that opens "What We Do". */
   lead: string;
   whatWeDo: string[];
@@ -372,422 +277,386 @@ export type Service = {
   deliverables: string[];
   faqs: { q: string; a: string }[];
   /**
-   * The two case studies this capability is best evidenced by. Chosen per
-   * service rather than derived — rotating by index paired Brand Identity with
-   * studies that never mention identity work.
+   * The page's one photograph, with the label and caption it carries. No
+   * image appears on more than one page — `npm run check:images` enforces it.
    */
-  relatedWork: [string, string];
-  /** Closing CTA heading, split across two lines on the design's break. */
+  image: { src: string; label: string; caption: string };
+  /** Closing CTA heading, split across two lines. */
   ctaTitle: [string, string];
   metaDescription: string;
 };
 
 export const services: Service[] = [
   {
-    slug: "brand-strategy",
+    slug: "performance-marketing",
     num: "01",
-    name: "Brand Strategy",
-    title: "Brand Strategy.",
+    name: "Performance Marketing",
+    category: "Reach & Performance",
+    title: "Performance Marketing.",
     descriptor:
-      "Positioning and differentiation, tone of voice, brand architecture, creative direction, naming and messaging.",
-    subhead: "Direction set before a single decision is made on taste.",
-    hero: "/images/book/stat-proposal.jpg",
-    focus: "object-[50%_35%]",
-    lead: "Strategy is what makes every later decision defensible — the reason a brand looks and sounds the way it does.",
+      "Google Ads and Meta Ads engineered for qualified leads at below-target cost per lead.",
+    subhead: "Paid media judged on pipeline, not impressions.",
+    lead: "Paid media works when every dirham can be traced to a lead the sales team actually wants.",
     whatWeDo: [
-      "Positioning and differentiation",
-      "Tone of voice",
-      "Brand architecture",
-      "Creative direction",
-      "Naming and messaging",
+      "Google Search, Display and Performance Max",
+      "Meta campaigns across Facebook and Instagram",
+      "YouTube and video demand generation",
+      "Audience, offer and creative testing",
+      "Budget pacing and bid strategy",
     ],
     benefits: [
       {
-        title: "Direction",
-        desc: "A clear position that tells every team what to build and what to leave alone.",
+        title: "Qualified leads",
+        desc: "Campaigns tuned to the lead your sales team can close, not the cheapest click available.",
       },
       {
-        title: "Differentiation",
-        desc: "A defensible place in the market rather than a variation on the category.",
+        title: "Cost control",
+        desc: "Cost per lead held below the number your unit economics need to work.",
       },
       {
-        title: "Alignment",
-        desc: "One agreed story, so leadership, sales and marketing say the same thing.",
+        title: "Scale",
+        desc: "Multi-million AED budgets managed without return on ad spend falling away.",
       },
       {
-        title: "Commercial relevance",
-        desc: "Positioning grounded in the audience that actually buys, not the one that flatters.",
+        title: "Honest reporting",
+        desc: "Spend read against pipeline and closed revenue, reviewed every week.",
       },
     ],
     deliverables: [
-      "Positioning statement",
-      "Audience and market definition",
-      "Brand architecture map",
-      "Messaging framework",
-      "Tone of voice guide",
-      "Naming rationale",
+      "Account audit and restructure",
+      "Campaign build and conversion tracking",
+      "Ad creative and copy",
+      "Audience and remarketing strategy",
+      "Weekly optimisation cycle",
+      "Spend-to-revenue reporting",
     ],
     faqs: [
       {
-        q: "How long does a brand strategy engagement take?",
-        a: "Typically four to eight weeks, depending on how much research is required and how many stakeholders need to be interviewed.",
+        q: "What budget do you work with?",
+        a: "We run accounts from roughly AED 20,000 a month upward. Below that, media spend is usually better placed into SEO and conversion work first.",
       },
       {
-        q: "Do we need strategy if we already have a logo?",
-        a: "Usually yes. A logo is an outcome, not a position — strategy is what tells you whether the identity you own is the one you need.",
+        q: "How quickly will we see leads?",
+        a: "Search campaigns typically produce leads in the first fortnight. The first six to eight weeks are spent finding which audiences and offers hold up at volume.",
       },
       {
-        q: "Who from our side needs to be involved?",
-        a: "Whoever holds the commercial ambition — normally the founder or managing director, plus whoever owns sales and marketing.",
+        q: "Is media spend included in your fee?",
+        a: "No. Media budget is paid to the platforms at cost and reported separately from our management fee, so you can always see what bought what.",
       },
       {
-        q: "Can strategy run alongside an existing campaign?",
-        a: "Yes. We work in parallel with live activity and stage the changes so nothing in market has to stop while the work is done.",
+        q: "Do you work in competitive Dubai verticals?",
+        a: "Yes — real estate is the most contested auction in the market and it is where most of the AED 35M+ was generated.",
       },
     ],
-    relatedWork: ["aalto-house", "faro-hospitality-group"],
-    ctaTitle: ["Let’s establish", "where the brand stands."],
+    image: {
+      src: "/images/book/desk-shelving.jpg",
+      label: "The account room",
+      caption: "Campaigns are reviewed weekly against pipeline, not monthly against impressions.",
+    },
+    ctaTitle: ["Let's put the spend", "where it returns."],
     metaDescription:
-      "Brand strategy in Dubai — positioning, differentiation, brand architecture, tone of voice and messaging frameworks that give every later decision a reason.",
+      "Performance marketing in Dubai — Google Ads and Meta Ads managed for qualified leads at below-target cost per lead, reported against pipeline and closed revenue.",
   },
   {
-    slug: "brand-identity",
+    slug: "seo-and-content",
     num: "02",
-    name: "Brand Identity",
-    title: "Brand Identity.",
+    name: "SEO & Content",
+    category: "Reach & Performance",
+    title: "SEO & Content.",
     descriptor:
-      "Visual identity systems, campaign identities, brand guidelines, marketing collateral, corporate profiles.",
-    subhead: "Visual systems built for recognition, not decoration.",
-    hero: "/images/book/stat-letterhead.jpg",
-    focus: "object-[50%_30%]",
-    lead: "A coherent visual identity gives a brand a language it can be recognised by — in any format, at any scale.",
+      "Technical SEO, on-page optimisation and content built to rank in Dubai search and win AI-driven results.",
+    subhead: "Demand that keeps arriving after the budget stops.",
+    lead: "Organic is the only channel that compounds — every month of work keeps paying after it is done.",
     whatWeDo: [
-      "Visual identity systems",
-      "Campaign identities",
-      "Brand guidelines",
-      "Marketing collateral",
-      "Corporate profiles",
+      "Technical SEO and indexing fixes",
+      "On-page and site architecture optimisation",
+      "Content clusters built around buyer intent",
+      "Local and Dubai-specific search",
+      "Visibility in AI-driven search results",
     ],
     benefits: [
       {
-        title: "Recognition",
-        desc: "A distinctive visual language your audience remembers and identifies instantly.",
+        title: "Compounding traffic",
+        desc: "Organic foundations that keep returning long after the campaign budget stops.",
       },
       {
-        title: "Consistency",
-        desc: "A system that holds together across every application, team and touchpoint.",
+        title: "Qualified intent",
+        desc: "Rankings on the terms buyers search before they enquire, not on vanity keywords.",
       },
       {
-        title: "Confidence",
-        desc: "A composed identity that signals credibility to clients, partners and investors.",
+        title: "Lower blended cost",
+        desc: "Organic volume that reduces what paid has to carry to hit the same pipeline.",
       },
       {
-        title: "Commercial relevance",
-        desc: "Design decisions grounded in business outcomes, not decoration alone.",
+        title: "Durability",
+        desc: "Technical foundations that survive algorithm changes and site redesigns.",
       },
     ],
     deliverables: [
-      "Logo suite & clear space guide",
-      "Color & typography system",
-      "Brand guidelines document",
-      "Stationery & collateral templates",
-      "Social & digital templates",
-      "Presentation & proposal templates",
+      "Technical and content SEO audit",
+      "Keyword and intent mapping",
+      "On-page optimisation",
+      "Content plan and production",
+      "Internal linking and site structure",
+      "Monthly ranking and traffic reporting",
     ],
     faqs: [
       {
-        q: "How long does a brand identity project take?",
-        a: "Typically eight to twelve weeks from discovery through final delivery, depending on scope and the number of touchpoints involved.",
+        q: "How quickly does SEO show results?",
+        a: "Technical fixes can move rankings within weeks. Content and authority typically take three to six months to compound meaningfully — a 40%+ traffic gain in one quarter is the fast end, not the norm.",
       },
       {
-        q: "Do you design the guidelines as well as the logo?",
-        a: "Yes. Every identity project includes a complete brand guidelines document covering usage, spacing, color and application.",
+        q: "Do you write the content or only plan it?",
+        a: "Both. We map the clusters and write them, with your input on anything that requires genuine sector knowledge.",
       },
       {
-        q: "Can you work alongside our existing marketing team?",
-        a: "Absolutely. We regularly collaborate with in-house teams, providing creative direction while your team executes day to day.",
+        q: "Does SEO still matter with AI search?",
+        a: "It matters more. AI answers are assembled from indexed, well-structured pages — the same technical work that wins rankings is what gets a brand cited.",
       },
       {
-        q: "What if we already have a logo we want to keep?",
-        a: "We can build a full identity system around an existing mark, provided it’s structurally sound — or refine it as part of the engagement.",
+        q: "Can you work on our existing site?",
+        a: "Usually yes. Where the platform itself is what blocks indexing, we will say so rather than bill months of work around it.",
       },
     ],
-    relatedWork: ["meridian-residences", "faro-hospitality-group"],
-    ctaTitle: ["Let’s talk about", "your brand identity."],
+    image: {
+      src: "/images/detail/sketches.jpg",
+      label: "Structure first",
+      caption: "Indexing, architecture and internal linking are planned before a word is written.",
+    },
+    ctaTitle: ["Let's make the brand", "easier to find."],
     metaDescription:
-      "Brand identity design in Dubai — visual identity systems, campaign identities, brand guidelines and marketing collateral built to stay coherent in use.",
+      "SEO and content marketing in Dubai — technical SEO, on-page optimisation and content clusters built to rank in Dubai search and win AI-driven results.",
   },
   {
-    slug: "digital-experiences",
+    slug: "websites-and-cro",
     num: "03",
-    name: "Digital Experiences",
-    title: "Digital Experiences.",
+    name: "Websites & CRO",
+    category: "Web & Build",
+    title: "Websites & CRO.",
     descriptor:
-      "Website strategy and design, landing pages, website development and management, UI/UX direction.",
-    subhead: "The identity, holding at every screen.",
-    hero: "/images/book/digital-monitor.jpg",
-    focus: "object-[50%_40%]",
-    lead: "A website is where most people meet the brand first — and the only place the identity has to survive interaction.",
+      "High-converting websites with SEO-ready architecture, custom landing pages and CRM-integrated funnels.",
+    subhead: "Built around the sales process, not the sitemap.",
+    lead: "A website earns its cost at one moment — when a visitor who was going to leave decides to enquire instead.",
     whatWeDo: [
-      "Website strategy and design",
-      "Landing pages",
-      "Website development and management",
-      "UI/UX direction",
-      "Design systems",
+      "Website design and development",
+      "Campaign and project landing pages",
+      "SEO-ready site architecture",
+      "CRM-integrated enquiry funnels",
+      "Conversion rate optimisation and testing",
     ],
     benefits: [
+      {
+        title: "More enquiries",
+        desc: "The same traffic converting at a higher rate, which costs nothing extra to acquire.",
+      },
+      {
+        title: "Search-ready",
+        desc: "Structure, speed and markup that let the SEO work rank rather than fight the build.",
+      },
+      {
+        title: "Connected",
+        desc: "Every enquiry landing in the CRM with its source attached, not in an inbox.",
+      },
       {
         title: "Credibility",
-        desc: "A digital presence that matches the standard of the work it represents.",
-      },
-      {
-        title: "Clarity",
-        desc: "Structure and hierarchy that let a visitor understand the offer without effort.",
-      },
-      {
-        title: "Conversion",
-        desc: "Journeys designed around the enquiry, not around the sitemap.",
-      },
-      {
-        title: "Longevity",
-        desc: "A documented system your team can extend without the design drifting.",
+        desc: "A presence that matches the standard of the projects it is selling.",
       },
     ],
     deliverables: [
-      "Sitemap & content structure",
-      "UI design system",
-      "Responsive page designs",
+      "Sitemap and content structure",
+      "Responsive design system",
       "Built and deployed website",
-      "CMS setup & handover",
-      "Analytics & measurement setup",
+      "Landing page templates",
+      "CRM and form integration",
+      "Analytics, tracking and A/B testing setup",
     ],
     faqs: [
       {
-        q: "How long does a website project take?",
-        a: "Ten to sixteen weeks for a full marketing site, from structure through build and launch. Landing pages are considerably faster.",
+        q: "How long does a website take?",
+        a: "Eight to twelve weeks for a full marketing site, from structure through build and launch. A campaign landing page is usually two to three.",
       },
       {
-        q: "Do you build the site or only design it?",
-        a: "Both. We design and build, then hand over a documented system — or work to your development team’s stack if one is already in place.",
+        q: "Can you improve our current site instead?",
+        a: "Often that is the better spend. We audit first and rebuild only what the conversion data says is worth rebuilding.",
       },
       {
-        q: "Can you work with our existing platform?",
-        a: "Yes. We regularly work in WordPress, Webflow and Shopify, as well as custom builds where the requirements justify one.",
+        q: "Which platform do you build on?",
+        a: "WordPress, Webflow and Shopify most often, and custom where the requirements justify it. The choice follows who has to maintain it after launch.",
       },
       {
-        q: "Who manages the site after launch?",
-        a: "Either party. We offer ongoing management, or we train your team and step back — the handover documentation is the same in both cases.",
+        q: "Do you handle hosting and maintenance?",
+        a: "Yes, on a retained basis — or we hand over documentation and train your team, which costs you less if you have someone in-house.",
       },
     ],
-    relatedWork: ["meridian-residences", "aalto-house"],
-    ctaTitle: ["Let’s build the", "digital presence."],
+    image: {
+      src: "/images/detail/workspace.jpg",
+      label: "Built around the sale",
+      caption: "Every build starts from how your sales team actually closes, not from the sitemap.",
+    },
+    ctaTitle: ["Let's build the site", "that actually converts."],
     metaDescription:
-      "Website design and development in Dubai — website strategy, landing pages, UI/UX direction and design systems that carry the brand identity into every screen.",
+      "Website development and conversion rate optimisation in Dubai — high-converting websites with SEO-ready architecture, landing pages and CRM-integrated funnels.",
   },
   {
-    slug: "content-communication",
+    slug: "crm-and-automation",
     num: "04",
-    name: "Content & Communication",
-    title: "Content & Communication.",
+    name: "CRM & Automation",
+    category: "Data & Systems",
+    title: "CRM & Automation.",
     descriptor:
-      "Social media strategy, copywriting, creative campaigns, video concepts and scripts, content direction.",
-    subhead: "One voice, held across every channel.",
-    hero: "/images/book/digital-instagram.jpg",
-    focus: "object-[72%_35%]",
-    lead: "Communication is where a brand is judged most often — and where consistency is hardest to hold.",
+      "Attribution tracking and marketing automation that tie every dirham of spend to pipeline and closed revenue.",
+    subhead: "Every dirham of spend, traced to a closed sale.",
+    lead: "Marketing stops being an argument the moment the pipeline can be read back to the campaign that filled it.",
     whatWeDo: [
-      "Social media strategy",
-      "Copywriting",
-      "Creative campaigns",
-      "Video concepts and scripts",
-      "Content direction",
+      "CRM setup, migration and configuration",
+      "End-to-end attribution tracking",
+      "Lead capture, scoring and routing",
+      "Automated nurture and follow-up",
+      "Pipeline and revenue reporting",
     ],
     benefits: [
-      {
-        title: "Coherence",
-        desc: "Every post, page and film reading as one brand rather than several.",
-      },
-      {
-        title: "Relevance",
-        desc: "Content built for the audience’s moment, not for the calendar’s convenience.",
-      },
-      {
-        title: "Efficiency",
-        desc: "A content system that makes the next month’s output faster to produce.",
-      },
-      {
-        title: "Recall",
-        desc: "A voice distinctive enough to be recognised before the logo appears.",
-      },
-    ],
-    deliverables: [
-      "Content strategy & pillars",
-      "Editorial calendar",
-      "Campaign concepts",
-      "Copy for key touchpoints",
-      "Video concepts & scripts",
-      "Social templates & art direction",
-    ],
-    faqs: [
-      {
-        q: "Do you produce content or only direct it?",
-        a: "Both. We set the direction and templates, and we produce where it matters — campaigns, launch films, flagship copy.",
-      },
-      {
-        q: "Can you manage our social channels day to day?",
-        a: "Yes, on a retained basis. Many clients prefer we hold the direction while their team handles daily publishing.",
-      },
-      {
-        q: "How do you keep tone consistent across writers?",
-        a: "A tone of voice guide with worked examples, plus review on the first cycles until the pattern holds without us.",
-      },
-      {
-        q: "Do you work in Arabic as well as English?",
-        a: "Yes, through trusted bilingual collaborators — with the same editorial review applied to both languages.",
-      },
-    ],
-    relatedWork: ["faro-hospitality-group", "aalto-house"],
-    ctaTitle: ["Let’s give the brand", "something to say."],
-    metaDescription:
-      "Content and communication in Dubai — social media strategy, copywriting, creative campaigns and video direction held to a single brand voice.",
-  },
-  {
-    slug: "growth-visibility",
-    num: "05",
-    name: "Growth & Visibility",
-    title: "Growth & Visibility.",
-    descriptor:
-      "Search engine optimization, CRM and lead journeys, performance marketing, analytics and reporting.",
-    subhead: "Visibility earned by substance.",
-    hero: "/images/book/invoice-desk.jpg",
-    focus: "object-[50%_45%]",
-    lead: "Growth work only compounds when the brand underneath it is already clear about what it offers and to whom.",
-    whatWeDo: [
-      "Search engine optimization",
-      "CRM and lead journeys",
-      "Performance marketing",
-      "Analytics and reporting",
-      "Conversion optimisation",
-    ],
-    benefits: [
-      {
-        title: "Qualified demand",
-        desc: "Enquiries from the audience you want, not volume for its own sake.",
-      },
       {
         title: "Attribution",
         desc: "A clear line from first click to closed sale, so spend can be judged honestly.",
       },
       {
-        title: "Compounding",
-        desc: "Organic foundations that keep returning after the campaign budget stops.",
+        title: "No leaked leads",
+        desc: "Every enquiry captured, scored and routed to someone accountable for it.",
       },
       {
-        title: "Control",
+        title: "Faster follow-up",
+        desc: "Automated response in minutes, which is where most Dubai enquiries are won or lost.",
+      },
+      {
+        title: "Clarity",
         desc: "Reporting your team can read without a translator sitting next to them.",
       },
     ],
     deliverables: [
-      "Technical & content SEO audit",
-      "Keyword and content plan",
-      "Campaign structure & setup",
-      "CRM and lead journey mapping",
-      "Conversion tracking & dashboards",
-      "Monthly performance reporting",
+      "CRM audit and configuration",
+      "Conversion and offline tracking setup",
+      "Lead scoring and routing rules",
+      "Automated nurture sequences",
+      "Pipeline and attribution dashboards",
+      "Team training and documentation",
     ],
     faqs: [
       {
-        q: "How quickly does SEO show results?",
-        a: "Technical fixes can move within weeks; content and authority typically take three to six months to compound meaningfully.",
+        q: "Which CRMs do you work with?",
+        a: "HubSpot and Salesforce most often, and Zoho and Bitrix where they are already in place. We map to the system you have rather than sell you a new one.",
       },
       {
-        q: "Do you manage ad spend directly?",
-        a: "Yes, across Search, Meta and LinkedIn. Media budget is billed at cost and reported separately from our fee.",
+        q: "We already have a CRM nobody uses. Can you fix that?",
+        a: "Usually the problem is routing and data entry, not the software. We audit how leads actually move through it before recommending anything be replaced.",
       },
       {
-        q: "Can you work with our existing CRM?",
-        a: "Yes. We regularly work in HubSpot and Salesforce, and will map the lead journey to whatever system is already in place.",
+        q: "Can you attribute offline and phone sales?",
+        a: "Yes — call tracking and offline conversion imports close the loop on deals that never touch a web form, which in real estate is most of them.",
       },
       {
-        q: "What do you report on?",
-        a: "Qualified enquiries, cost per lead and attributed revenue — not impressions. Vanity metrics are available but never lead the report.",
+        q: "Who owns the setup afterwards?",
+        a: "You do. It is built in your account, documented, and your team is trained on it. Nothing depends on us to keep running.",
       },
     ],
-    relatedWork: ["meridian-residences", "faro-hospitality-group"],
-    ctaTitle: ["Let’s make the brand", "easier to find."],
+    image: {
+      src: "/images/book/stat-letterhead.jpg",
+      label: "Documented, then handed over",
+      caption: "The configuration is built in your account and written down, so nothing depends on us.",
+    },
+    ctaTitle: ["Let's connect the spend", "to the pipeline."],
     metaDescription:
-      "Growth and visibility in Dubai — SEO, CRM and lead journeys, performance marketing and honest attribution reporting for ambitious brands.",
+      "CRM integration and marketing automation in Dubai — attribution tracking, lead scoring and automated follow-up that tie marketing spend to closed revenue.",
   },
   {
-    slug: "creative-technology",
-    num: "06",
-    name: "Creative Technology",
-    title: "Creative Technology.",
+    slug: "brand-and-creative",
+    num: "05",
+    name: "Brand & Creative",
+    category: "Brand & Creative",
+    title: "Brand & Creative.",
     descriptor:
-      "AI-powered creative production, workflow automation, AI-generated visuals and digital prototyping.",
-    subhead: "AI as craft, not shortcut.",
-    hero: "/images/book/digital-tablet.jpg",
-    focus: "object-[70%_42%]",
-    lead: "Technology should compress the distance between an idea and the thing itself — without loosening the standard applied to either.",
+      "Brand identity, campaign visuals, social creative and marketing collateral produced to a launch standard.",
+    subhead: "Creative held to the standard the campaign is spending at.",
+    lead: "Creative is the variable with the widest range in paid media — the same budget behind better work buys a different result.",
     whatWeDo: [
-      "AI-powered creative production",
-      "Creative workflow automation",
-      "AI-generated visuals and video",
-      "Digital prototyping and innovation",
+      "Brand identity and visual systems",
+      "Campaign concepts and key visuals",
+      "Social and paid ad creative",
+      "Marketing collateral and brochures",
+      "Launch and project branding",
     ],
     benefits: [
       {
-        title: "Speed",
-        desc: "More directions explored inside the same timeline, and rejected faster.",
+        title: "Better performing ads",
+        desc: "Creative is the largest lever in a paid account once targeting is settled.",
       },
       {
         title: "Consistency",
-        desc: "Automated production that applies the brand rules the same way every time.",
+        desc: "One standard across every channel, so the brand reads as one company.",
       },
       {
-        title: "Scale",
-        desc: "Variant-heavy campaigns produced without a proportional increase in cost.",
+        title: "Launch-ready",
+        desc: "Collateral produced to the standard a developer-led launch is judged at.",
       },
       {
-        title: "Judgement",
-        desc: "Human direction over every output — the tools accelerate, they do not decide.",
+        title: "Speed",
+        desc: "Variants produced fast enough to keep testing without the brand loosening.",
       },
     ],
     deliverables: [
-      "AI production workflow design",
-      "Prompt and asset libraries",
-      "Automated template systems",
-      "Generated visual & video assets",
-      "Interactive prototypes",
-      "Team training & documentation",
+      "Brand identity and guidelines",
+      "Campaign key visuals",
+      "Paid and social ad creative sets",
+      "Brochures and sales collateral",
+      "Presentation and proposal templates",
+      "Asset library and handover",
     ],
     faqs: [
       {
-        q: "Do you use AI to replace design work?",
-        a: "No. It removes repetition and widens exploration. Direction, judgement and final craft stay human, and are reviewed the same way.",
+        q: "Can you work with our existing brand guidelines?",
+        a: "Yes. Most engagements start that way — we produce inside your system and flag only where it is genuinely blocking performance.",
       },
       {
-        q: "Is AI-generated imagery safe to use commercially?",
-        a: "We work only with tools whose licensing permits commercial use, and we document provenance for every asset we deliver.",
+        q: "How many ad creative variants do we get?",
+        a: "Enough to test properly, which is usually six to twelve concepts per campaign, then iterations on whichever hold up.",
       },
       {
-        q: "Can you automate our existing production process?",
-        a: "Usually. We audit the current workflow first, then automate the steps that are genuinely repetitive rather than the ones that look it.",
+        q: "Do you produce video?",
+        a: "We concept, script and direct it, and produce through trusted Dubai production partners where a shoot is required.",
       },
       {
-        q: "Will our team be able to run it after handover?",
-        a: "Yes. Every automation ships with documentation and a training session, and nothing depends on us to keep running.",
+        q: "Do you do brand work on its own?",
+        a: "Yes, though it is strongest alongside the channels that will carry it — brand work priced against a campaign has a clearer measure of success.",
       },
     ],
-    relatedWork: ["aalto-house", "meridian-residences"],
-    ctaTitle: ["Let’s put the tools", "to proper use."],
+    image: {
+      src: "/images/detail/materials.jpg",
+      label: "Direction before production",
+      caption: "Material, colour and typographic direction are set before a single asset is made.",
+    },
+    ctaTitle: ["Let's make the creative", "worth the spend."],
     metaDescription:
-      "Creative technology in Dubai — AI-powered creative production, workflow automation, AI-generated visuals and digital prototyping under human direction.",
+      "Brand and creative in Dubai — brand identity, campaign visuals, social and paid ad creative and marketing collateral produced to a launch standard.",
   },
 ];
 
 export function getService(slug: string): Service | undefined {
   return services.find((service) => service.slug === slug);
+}
+
+/**
+ * The catalogue grouped by category, in first-appearance order — the shape the
+ * navigation dropdown renders.
+ */
+export function servicesByCategory(): { category: string; items: Service[] }[] {
+  const groups: { category: string; items: Service[] }[] = [];
+
+  for (const service of services) {
+    const group = groups.find((g) => g.category === service.category);
+    if (group) group.items.push(service);
+    else groups.push({ category: service.category, items: [service] });
+  }
+
+  return groups;
 }
 
 /** Previous and next service, for walking the set from any one page. */
@@ -798,149 +667,3 @@ export function adjacentServices(slug: string) {
     next: i < services.length - 1 ? services[i + 1] : services[0],
   };
 }
-
-/* -------------------------------------------------------------------------- */
-/* Work                                                                        */
-/* -------------------------------------------------------------------------- */
-
-export type CaseStudy = {
-  slug: string;
-  category: string;
-  title: string;
-  /** Shown under the title on the Selected Work cards. */
-  scope: string;
-  client: string;
-  industry: string;
-  year: string;
-  hero: string;
-  /** Card image — the 4:5 crop used on the homepage and Work index. */
-  card: string;
-  /** The large serif statement that opens the overview. */
-  lead: string;
-  body: string;
-  /** One wide frame, then a pair. */
-  gallery: { wide: string; left: string; right: string };
-  quote: string;
-  metaDescription: string;
-};
-
-export const work: CaseStudy[] = [
-  {
-    slug: "meridian-residences",
-    category: "Real Estate & Development",
-    title: "Meridian Residences",
-    scope: "Brand Identity & Digital Experience",
-    client: "Meridian Residences",
-    industry: "Real Estate & Development",
-    year: "2026",
-    hero: "/images/book/photo-aperture.jpg",
-    card: "/images/book/materials-flatlay.jpg",
-    lead: "A composed identity for a residential development where architecture, land and brand needed to speak the same language.",
-    body: "Meridian approached SHARIO to establish a brand identity and digital presence capable of representing a multi-phase residential development to an international buyer audience. The resulting system draws its palette and proportion directly from the site’s materials — limestone, concrete and natural light — carried consistently from marketing collateral through to the sales website.",
-    gallery: {
-      wide: "/images/book/proposal-anthology.jpg",
-      left: "/images/book/stat-card.jpg",
-      right: "/images/book/stat-envelope.jpg",
-    },
-    quote:
-      "The identity gave the sales gallery a single, confident voice — the same restraint clients now recognise across every phase of the development.",
-    metaDescription:
-      "Meridian Residences — brand identity and digital experience for a multi-phase residential development, composed by Shario in Dubai.",
-  },
-  {
-    slug: "aalto-house",
-    category: "Architecture & Interiors",
-    title: "Aalto House",
-    scope: "Brand Strategy & Website",
-    client: "Aalto House",
-    industry: "Architecture & Interiors",
-    year: "2025",
-    hero: "/images/book/photo-stair.jpg",
-    card: "/images/book/photo-book.jpg",
-    lead: "A studio whose work was quieter than its positioning — and a brand rebuilt to match the discipline of the practice.",
-    body: "Aalto House had grown through referral without ever setting out what it stood for. We began with positioning, establishing the practice’s point of view on material and restraint, then rebuilt the website around the work rather than around the services list. Photography direction was tightened to a single, even register so that projects a decade apart now sit on the same page without argument.",
-    gallery: {
-      wide: "/images/book/photo-desk.jpg",
-      left: "/images/book/proposal-cover.jpg",
-      right: "/images/book/pen-cover.jpg",
-    },
-    quote:
-      "For the first time the practice reads the way the buildings do — considered, unhurried, and completely sure of itself.",
-    metaDescription:
-      "Aalto House — brand strategy and website for an architecture and interiors practice, composed by Shario in Dubai.",
-  },
-  {
-    slug: "faro-hospitality-group",
-    category: "Hospitality & Lifestyle",
-    title: "Faro Hospitality Group",
-    scope: "Full Brand Ecosystem",
-    client: "Faro Hospitality Group",
-    industry: "Hospitality & Lifestyle",
-    year: "2025",
-    hero: "/images/book/photo-lounge.jpg",
-    card: "/images/book/sign-glass.jpg",
-    lead: "A group of venues that behaved like strangers to one another, resolved into a single brand architecture.",
-    body: "Faro operates four venues under one ownership, each with its own following. Rather than flatten them into a house style, we set a brand architecture that gives the group a visible parent and each venue a defined amount of room to differ. Signage, menus, digital and staff-facing material were rebuilt against that architecture, so a guest recognises the group without any venue losing what made it work.",
-    gallery: {
-      wide: "/images/book/sign-tablet.jpg",
-      left: "/images/book/cover-arabic.jpg",
-      right: "/images/book/folder-copy.jpg",
-    },
-    quote:
-      "Four venues that used to compete for attention now build the same reputation — and none of them had to give up their character to do it.",
-    metaDescription:
-      "Faro Hospitality Group — a complete brand ecosystem and brand architecture for a multi-venue hospitality group, composed by Shario in Dubai.",
-  },
-];
-
-export function getCaseStudy(slug: string): CaseStudy | undefined {
-  return work.find((item) => item.slug === slug);
-}
-
-/** The following project, for the "Next Project" link at the foot of a study. */
-export function nextCaseStudy(slug: string): CaseStudy {
-  const i = work.findIndex((item) => item.slug === slug);
-  return work[(i + 1) % work.length];
-}
-
-/**
- * Studies for an industry page. Three of the six sectors have a matching case
- * study; the rest fall back to two from the wider set rather than showing an
- * empty section.
- */
-export function workForIndustry(name: string): CaseStudy[] {
-  const matches = work.filter((item) => item.category === name);
-  return matches.length > 0 ? matches : work.slice(0, 2);
-}
-
-/* -------------------------------------------------------------------------- */
-/* Insights                                                                    */
-/* -------------------------------------------------------------------------- */
-
-/**
- * The handoff renders these as unlinked editorial cards in a homepage section.
- * They stay unlinked here until the articles themselves exist.
- */
-export const insights = [
-  {
-    id: "coherence",
-    category: "Brand Strategy",
-    date: "Jul 2026",
-    title: "On Coherence: Why Fragmented Brands Fail",
-    image: "/images/book/emboss-monogram.jpg",
-  },
-  {
-    id: "quiet-confidence",
-    category: "Case Study",
-    date: "Jun 2026",
-    title: "Designing Quiet Confidence in Hospitality",
-    image: "/images/book/brand-book-floor.jpg",
-  },
-  {
-    id: "ai-as-craft",
-    category: "Creative Technology",
-    date: "May 2026",
-    title: "AI as Craft, Not Shortcut",
-    image: "/images/book/digital-laptop.jpg",
-  },
-] as const;

@@ -1,21 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { CountUp } from "@/components/count-up";
 
 /**
- * Layout and display primitives for the design handoff
- * (`design_handoff_shario_website`).
+ * Layout and display primitives.
  *
- * Two notes on fidelity, both deliberate:
+ * Composition follows the reference the client supplied
+ * (`upscale-digital.com`): a centred eyebrow over a centred heading on every
+ * section, hairline card grids with numbered badges, dark bands of figures
+ * breaking up the light ones, and an accent band carrying the call to action
+ * immediately before the footer.
  *
- *  - The prototypes put the 1400px cap *outside* the 48px gutter on light
- *    sections and *inside* it on dark ones, so on a viewport wider than
- *    ~1500px the dark bands run 96px wider than the light ones and the section
- *    edges stop lining up. Here the gutter always sits inside the cap, so every
- *    band shares one content column.
- *  - The prototypes drive layout from a `window.innerWidth < 880` boolean.
- *    That is reproduced as the `wide:` breakpoint (55rem) in CSS, so the
- *    layout is correct in the served HTML rather than after hydration.
+ * The material is Shario's own, not the reference's — Porcelain ground,
+ * Limestone cards, Carbon dark bands, Mist where the reference uses purple,
+ * Cormorant Garamond for headings and figures, Jost for labels and body.
+ *
+ * One deliberate divergence: the reference's cards are soft-rounded. This
+ * system declares 999px as its only radius, reserved for pills, so cards take
+ * their definition from hairlines and padding and stay square. A borrowed
+ * corner radius would read as borrowed.
  */
 
 /** The content column — 1400px including its gutter, centred. */
@@ -43,18 +47,15 @@ const toneField: Record<Tone, string> = {
 
 /** Hairline colour for the ground a section sits on. */
 export function hairline(tone: Tone) {
-  return tone === "carbon" ? "border-porcelain/15" : "border-carbon/12";
+  return tone === "carbon" ? "border-porcelain/20" : "border-carbon/15";
 }
 
 /** Muted ink for the ground a section sits on. */
 export function muted(tone: Tone) {
-  return tone === "carbon" ? "text-porcelain/55" : "text-carbon/55";
+  return tone === "carbon" ? "text-porcelain/60" : "text-carbon/60";
 }
 
-/**
- * A full-width band of one section. Vertical rhythm is the handoff's
- * `clamp(80px,9vw,140px)` desktop / `64px` mobile.
- */
+/** A full-width band of one section. */
 export function Band({
   children,
   tone = "porcelain",
@@ -75,7 +76,7 @@ export function Band({
   );
 }
 
-/** The hairline the handoff sets between two light sections. */
+/** A hairline between two sections on the same ground. */
 export function Divider() {
   return (
     <Container>
@@ -84,37 +85,22 @@ export function Divider() {
   );
 }
 
-/** "01 / Introduction" — the recurring section marker. */
-export function Eyebrow({
-  children,
-  tone = "porcelain",
-  className = "",
-}: {
-  children: ReactNode;
-  tone?: Tone;
-  className?: string;
-}) {
-  return (
-    <p className={`eyebrow ${muted(tone)} ${className}`}>{children}</p>
-  );
-}
-
 const h2Scale = {
   lg: "text-[2.5rem] wide:text-[clamp(2.5rem,4.5vw,4rem)]",
-  md: "text-[2.375rem] wide:text-[clamp(2.375rem,4.2vw,3.75rem)]",
-  sm: "text-[2rem] wide:text-[2.75rem]",
+  md: "text-[2.25rem] wide:text-[clamp(2.25rem,3.8vw,3.375rem)]",
+  sm: "text-[1.875rem] wide:text-[2.5rem]",
 };
 
-/** Display serif heading at the handoff's three section scales. */
+/** Display serif heading at the three section scales. */
 export function Heading({
   children,
-  scale = "lg",
+  scale = "md",
   as: Tag = "h2",
   className = "",
 }: {
   children: ReactNode;
   scale?: keyof typeof h2Scale;
-  as?: "h1" | "h2" | "p";
+  as?: "h1" | "h2" | "h3" | "p";
   className?: string;
 }) {
   return (
@@ -126,63 +112,62 @@ export function Heading({
   );
 }
 
-/** Heading left, section marker right — the handoff's standard section header. */
-export function SectionHead({
-  title,
-  marker,
-  scale = "lg",
-  tone = "porcelain",
-}: {
-  title: ReactNode;
-  marker: string;
-  scale?: keyof typeof h2Scale;
-  tone?: Tone;
-}) {
-  return (
-    <div className="mb-10 flex flex-wrap items-end justify-between gap-6 wide:mb-16">
-      <Heading scale={scale}>{title}</Heading>
-      <Eyebrow tone={tone} className="wide:text-right">
-        {marker}
-      </Eyebrow>
-    </div>
-  );
-}
-
 /**
- * Two-column section: marker in a fixed 260px rail, content beside it.
- * Collapses to a single column below the breakpoint.
- */
-export function MarkerColumns({
-  marker,
-  heading,
-  children,
-  tone = "porcelain",
-}: {
-  marker: string;
-  /** @see SectionLabel — names the section for assistive tech and crawlers. */
-  heading?: string;
-  children: ReactNode;
-  tone?: Tone;
-}) {
-  return (
-    <div className="grid gap-6 wide:grid-cols-[260px_1fr] wide:gap-[60px]">
-      <div>
-        {heading && <SectionLabel>{heading}</SectionLabel>}
-        <Eyebrow tone={tone}>{marker}</Eyebrow>
-      </div>
-      <div>{children}</div>
-    </div>
-  );
-}
-
-/**
- * A heading that exists only in the accessibility tree.
+ * The section opener the reference repeats on every band: a short label above
+ * a heading, both centred, with an optional supporting line beneath.
  *
- * Most sections in the design are labelled by an eyebrow marker alone —
- * "04 / Deliverables" set as body text. That reads fine, but it leaves the
- * document outline with an `h1` and then nothing, so a screen reader cannot
- * navigate the page by section and a crawler sees most of it as unlabelled.
- * This restores the outline without altering a pixel.
+ * The label is set in Mist rather than the reference's purple. On Porcelain
+ * that is too pale to read as text at 11px, so it carries a Carbon tint and
+ * uses Mist only for the rule beside it.
+ */
+export function SectionIntro({
+  eyebrow,
+  title,
+  sub,
+  align = "center",
+  tone = "porcelain",
+  scale = "md",
+}: {
+  eyebrow: string;
+  title: ReactNode;
+  sub?: string;
+  align?: "center" | "left";
+  tone?: Tone;
+  scale?: keyof typeof h2Scale;
+}) {
+  const centred = align === "center";
+
+  return (
+    <div
+      className={`mb-12 wide:mb-16 ${centred ? "mx-auto max-w-[820px] text-center" : "max-w-[820px]"}`}
+    >
+      <p
+        className={`eyebrow flex items-center gap-3 ${
+          tone === "carbon" ? "text-porcelain/70" : "text-carbon/55"
+        } ${centred ? "justify-center" : ""}`}
+      >
+        <span aria-hidden="true" className="h-px w-6 bg-mist" />
+        {eyebrow}
+      </p>
+      <Heading scale={scale} className="mt-5">
+        {title}
+      </Heading>
+      {sub && (
+        <p
+          className={`mt-6 text-[1.0625rem] leading-[1.7] ${
+            tone === "carbon" ? "text-porcelain/70" : "text-carbon/70"
+          } ${centred ? "mx-auto max-w-[640px]" : "max-w-[640px]"}`}
+        >
+          {sub}
+        </p>
+      )}
+    </div>
+  );
+}
+
+/**
+ * A heading that exists only in the accessibility tree, for sections whose
+ * visible label is set as body text.
  */
 export function SectionLabel({ children }: { children: ReactNode }) {
   return <h2 className="sr-only">{children}</h2>;
@@ -193,14 +178,13 @@ export function SectionLabel({ children }: { children: ReactNode }) {
 /* -------------------------------------------------------------------------- */
 
 const pillTone = {
-  /** Outlined dark — the nav CTA and light-ground tags. */
-  outline:
-    "border-carbon text-carbon hover:bg-carbon hover:text-porcelain",
-  /** Outlined light — over photography and on carbon. */
+  outline: "border-carbon text-carbon hover:bg-carbon hover:text-porcelain",
   outlineLight:
-    "border-porcelain/40 text-porcelain hover:border-porcelain hover:bg-porcelain hover:text-carbon",
-  /** Solid carbon — the closing action on every page. */
+    "border-porcelain/45 text-porcelain hover:border-porcelain hover:bg-porcelain hover:text-carbon",
   solid: "border-carbon bg-carbon text-porcelain hover:bg-black",
+  /** Solid light — the action on a carbon band. */
+  solidLight:
+    "border-porcelain bg-porcelain text-carbon hover:border-mist hover:bg-mist",
 };
 
 /** A pill link. `999px` is the only radius in the system. */
@@ -223,35 +207,37 @@ export function PillLink({
     lg: "px-11 py-[18px] text-xs",
   };
 
+  const classes = `inline-block rounded-full border uppercase tracking-[0.08em] transition-colors duration-500 ${sizes[size]} ${pillTone[tone]} ${className}`;
+
+  // `mailto:` and `tel:` are not routes — Link would prefetch them.
+  if (/^(mailto:|tel:|https?:)/.test(href)) {
+    return (
+      <a href={href} className={classes}>
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <Link
-      href={href}
-      className={`inline-block rounded-full border uppercase tracking-[0.08em] transition-colors duration-500 ${sizes[size]} ${pillTone[tone]} ${className}`}
-    >
+    <Link href={href} className={classes}>
       {children}
     </Link>
   );
 }
 
-/**
- * A pill tag. Static by default — the personality lists on About are not
- * navigation — and a link when given an `href`, which is how every industry
- * pill reaches its sector page.
- */
+/** A pill tag — static, or a link when given an `href`. */
 export function Pill({
   children,
   href,
   tone = "porcelain",
-  dim = false,
 }: {
   children: ReactNode;
   href?: string;
   tone?: Tone;
-  dim?: boolean;
 }) {
   const className = `inline-block rounded-full border px-[22px] py-3 text-sm ${
     tone === "carbon" ? "border-porcelain/25" : "border-carbon/20"
-  } ${dim ? "border-carbon/12 text-carbon/50" : ""}`;
+  }`;
 
   if (!href) return <span className={className}>{children}</span>;
 
@@ -270,35 +256,191 @@ export function Pill({
 }
 
 /* -------------------------------------------------------------------------- */
+/* Cards                                                                       */
+/* -------------------------------------------------------------------------- */
+
+const gridCols = {
+  2: "wide:grid-cols-2",
+  3: "wide:grid-cols-3",
+  4: "wide:grid-cols-4",
+};
+
+/** The reference's card grid — separate cards with their own edges, not a ruled table. */
+export function CardGrid({
+  children,
+  columns = 3,
+}: {
+  children: ReactNode;
+  columns?: 2 | 3 | 4;
+}) {
+  return (
+    <div className={`grid gap-5 wide:gap-6 ${gridCols[columns]}`}>
+      {children}
+    </div>
+  );
+}
+
+/**
+ * A card: hairline edge, numbered badge, title, description, optional action.
+ *
+ * The badge carries the item's real index. The reference uses decorative
+ * icons; a number is honest here because these sets are genuinely ordered —
+ * the service catalogue and the engagement steps both have a fixed sequence.
+ */
+export function Card({
+  badge,
+  title,
+  desc,
+  href,
+  action,
+  background,
+  titleAs: Title = "p",
+  tone = "porcelain",
+  delay = 0,
+}: {
+  badge?: string;
+  title: string;
+  desc: string;
+  href?: string;
+  /** Link text, e.g. "Learn more". */
+  action?: string;
+  /**
+   * A texture held behind the card at low opacity, under a scrim that keeps
+   * the ink at full contrast. Material, not imagery — a photograph with a
+   * subject would compete with the text sitting on it.
+   */
+  background?: string;
+  titleAs?: "p" | "h3";
+  tone?: Tone;
+  delay?: number;
+}) {
+  const dark = tone === "carbon";
+
+  const body = (
+    <>
+      {background && (
+        <>
+          <Image
+            src={background}
+            alt=""
+            fill
+            sizes="(min-width: 880px) 25vw, 100vw"
+            className="pointer-events-none -z-10 object-cover"
+          />
+          {/*
+           * The scrim goes fully solid halfway up the card and clears towards
+           * the head, so the photograph reads at close to full strength behind
+           * the badge and has faded out before any text reaches it. An evenly
+           * scrimmed card turns the image into a tonal wash; a weaker one puts
+           * the title on top of the photograph.
+           */}
+          <div
+            aria-hidden="true"
+            className={`pointer-events-none absolute inset-0 -z-10 ${
+              dark
+                ? "bg-gradient-to-t from-carbon from-50% via-carbon/95 to-carbon/35"
+                : "bg-gradient-to-t from-porcelain from-50% via-porcelain/95 to-porcelain/35"
+            }`}
+          />
+        </>
+      )}
+      {/*
+       * A card with a photograph but no badge — the closing action card —
+       * would otherwise start its title where the badge cards start their
+       * number, which is the one part of the card the image still occupies.
+       * This holds the same opening space so every card in the row aligns.
+       */}
+      {background && !badge && (
+        <>
+          <span aria-hidden="true" className="mb-6 block h-11" />
+        </>
+      )}
+      {badge && (
+        <span
+          aria-hidden="true"
+          className={`mb-6 flex h-11 w-11 shrink-0 items-center justify-center font-display text-[1.0625rem] ${
+            dark ? "bg-mist/20 text-porcelain" : "bg-mist/35 text-carbon"
+          }`}
+        >
+          {badge}
+        </span>
+      )}
+      <Title className="font-display text-[1.5rem] font-medium leading-[1.2] wide:text-[1.625rem]">
+        {title}
+      </Title>
+      <p
+        className={`mt-3 flex-1 text-[0.9375rem] leading-[1.7] ${
+          dark ? "text-porcelain/70" : "text-carbon/70"
+        }`}
+      >
+        {desc}
+      </p>
+      {action && (
+        <span
+          className={`eyebrow mt-6 inline-flex items-center gap-2 ${
+            dark ? "text-porcelain" : "text-carbon"
+          }`}
+        >
+          {action}
+          <span
+            aria-hidden="true"
+            className="transition-transform duration-500 group-hover:translate-x-1"
+          >
+            →
+          </span>
+        </span>
+      )}
+    </>
+  );
+
+  // `relative` and `isolate` so the texture and its scrim clip to the card and
+  // stay behind the content rather than escaping into the grid gap.
+  const className = `reveal relative isolate flex h-full flex-col overflow-hidden border p-7 wide:p-8 ${hairline(
+    tone,
+  )} ${dark ? "bg-porcelain/[0.04]" : "bg-limestone/25"}`;
+
+  if (!href) {
+    return (
+      <div className={className} data-delay={delay}>
+        {body}
+      </div>
+    );
+  }
+
+  return (
+    <Link
+      href={href}
+      className={`${className} group transition-colors duration-500 ${
+        dark ? "hover:bg-porcelain/10" : "hover:bg-limestone/60"
+      }`}
+      data-delay={delay}
+    >
+      {body}
+    </Link>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
 /* Heroes                                                                      */
 /* -------------------------------------------------------------------------- */
 
 const heroScale = {
-  /** Homepage. */
   home: {
-    box: "h-[80vh] min-h-[560px] wide:h-[92vh]",
-    title: "text-[3.25rem] wide:text-[clamp(4rem,8.5vw,8rem)]",
+    box: "min-h-[620px] wide:min-h-[86vh]",
+    title: "text-[2.875rem] wide:text-[clamp(3.5rem,6.4vw,5.75rem)]",
   },
-  /** About. */
   page: {
-    box: "h-[70vh] min-h-[480px] wide:h-[78vh]",
-    title: "text-[2.875rem] wide:text-[clamp(3.5rem,7vw,6.25rem)]",
-  },
-  /** Service template. */
-  service: {
-    box: "h-[64vh] min-h-[460px] wide:h-[74vh]",
-    title: "text-[2.625rem] wide:text-[clamp(3.25rem,6.5vw,5.625rem)]",
-  },
-  /** Case study template. */
-  study: {
-    box: "h-[64vh] min-h-[480px] wide:h-[76vh]",
-    title: "text-[2.875rem] wide:text-[clamp(3.5rem,7vw,6rem)]",
+    box: "min-h-[440px] wide:min-h-[60vh]",
+    title: "text-[2.5rem] wide:text-[clamp(3rem,5.4vw,4.75rem)]",
   },
 };
 
 /**
- * Full-bleed photographic hero. Type sits bottom-left over a downward
- * gradient — the handoff never centres a hero.
+ * Full-bleed photographic hero, type bottom-left over a scrim.
+ *
+ * The reference sets its hero on a flat dark ground with an image floated to
+ * one side. Here the photograph *is* the ground — the library is the strongest
+ * asset this site has, and reducing it to a floated thumbnail would waste it.
  */
 export function Hero({
   src,
@@ -308,28 +450,28 @@ export function Hero({
   scale = "page",
   focus,
   priority = false,
+  breadcrumb,
   children,
 }: {
   src: string;
   eyebrow: string;
-  /** Line breaks are the design's; pass a fragment with `<br />`. */
   title: ReactNode;
   subhead?: string;
   scale?: keyof typeof heroScale;
-  /**
-   * Focal point for the crop, as Tailwind object-position classes. Every
-   * photograph in the library is 4:5, so a wide hero keeps only a horizontal
-   * band of it — set this where the band worth keeping is not the middle.
-   */
   focus?: string;
   priority?: boolean;
-  /** Optional action beneath the subhead. */
+  breadcrumb?: ReactNode;
   children?: ReactNode;
 }) {
   const s = heroScale[scale];
 
   return (
-    <section className={`relative flex items-end ${s.box}`}>
+    // Pulled up by the header's height so the bar overlays the photograph
+    // rather than sitting on a cream slab above it. The container below pads
+    // the type back down past the bar.
+    <section
+      className={`relative flex items-end mt-[calc(-1*var(--header-h))] ${s.box}`}
+    >
       <Image
         src={src}
         alt=""
@@ -338,34 +480,34 @@ export function Hero({
         priority={priority}
         className={`settle object-cover ${focus ?? ""}`}
       />
-      {/*
-       * Two scrims, not one. The design's vertical gradient assumes calm
-       * architectural photography; several heroes now carry collateral and
-       * screen mockups whose own type sits exactly where the headline goes.
-       * The horizontal scrim guarantees a dark ground under the type block on
-       * the left while leaving the right of the frame readable.
-       */}
-      <div className="absolute inset-0 bg-gradient-to-b from-carbon/15 to-carbon/55" />
-      <div className="absolute inset-0 bg-gradient-to-r from-carbon/75 via-carbon/25 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-carbon/20 to-carbon/70" />
+      <div className="absolute inset-0 bg-gradient-to-r from-carbon/80 via-carbon/30 to-transparent" />
 
-      <Container className="relative z-10 w-full pb-12 pt-12 text-porcelain wide:pb-24 wide:pt-0">
-        <p className="eyebrow eyebrow-hero rise text-porcelain/85">{eyebrow}</p>
+      <Container className="relative z-10 w-full pb-14 pt-[calc(var(--header-h)+3.5rem)] text-porcelain wide:pb-20 wide:pt-[calc(var(--header-h)+5rem)]">
+        {breadcrumb}
+        <p className="eyebrow eyebrow-hero rise mt-1 flex items-center gap-3 text-porcelain/85">
+          <span aria-hidden="true" className="h-px w-7 bg-mist" />
+          {eyebrow}
+        </p>
         <h1
-          className={`rise mt-6 max-w-[1000px] font-display font-normal leading-[1.03] ${s.title}`}
+          className={`rise mt-6 max-w-[1000px] font-display font-normal leading-[1.04] ${s.title}`}
           style={{ animationDelay: "140ms" }}
         >
           {title}
         </h1>
         {subhead && (
           <p
-            className="rise mt-7 max-w-[560px] font-body text-lg italic leading-[1.5] text-porcelain/90 wide:text-[1.375rem]"
+            className="rise mt-7 max-w-[600px] text-[1.0625rem] leading-[1.7] text-porcelain/85 wide:text-[1.1875rem]"
             style={{ animationDelay: "280ms" }}
           >
             {subhead}
           </p>
         )}
         {children && (
-          <div className="rise mt-9" style={{ animationDelay: "400ms" }}>
+          <div
+            className="rise mt-10 flex flex-wrap gap-3.5"
+            style={{ animationDelay: "400ms" }}
+          >
             {children}
           </div>
         )}
@@ -374,46 +516,109 @@ export function Hero({
   );
 }
 
+/** Breadcrumb trail, as the reference sets it above an inner-page headline. */
+export function Breadcrumb({
+  items,
+}: {
+  items: readonly { href?: string; label: string }[];
+}) {
+  return (
+    <nav aria-label="Breadcrumb" className="rise">
+      <ol className="eyebrow flex flex-wrap items-center gap-2 text-porcelain/60">
+        {items.map((item, i) => (
+          <li key={item.label} className="flex items-center gap-2">
+            {i > 0 && <span aria-hidden="true">/</span>}
+            {item.href ? (
+              <Link
+                href={item.href}
+                className="transition-colors duration-300 hover:text-porcelain"
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <span className="text-porcelain/85">{item.label}</span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+}
+
 /**
- * A hero with no photograph — the treatment the handoff already uses on
- * Contact, extended to the service and industry templates.
+ * A hero with no photograph.
  *
- * Those twelve pages had photographic heroes, but the only images available
- * for them are brand-collateral mockups with the SHARIO wordmark in frame,
- * which collided with the headline on every one. Type on porcelain is both
- * legible and honest about what photography exists.
+ * The reference opens inner pages on a flat dark ground. That is what
+ * `tone="carbon"` gives, and it is what the twelve service pages use — the
+ * only images left in the library for them are collateral mockups carrying the
+ * wordmark, or worse the retired tagline, and both collide with a headline
+ * laid over them. Type on a dark ground is honest about what photography
+ * exists and matches the reference besides.
  */
 export function TypeHero({
   eyebrow,
   title,
   subhead,
+  tone = "porcelain",
+  breadcrumb,
   children,
 }: {
   eyebrow: string;
   title: ReactNode;
   subhead?: string;
+  tone?: "porcelain" | "carbon";
+  breadcrumb?: ReactNode;
   children?: ReactNode;
 }) {
+  const dark = tone === "carbon";
+
   return (
-    <section className="border-b border-carbon/12">
-      <Container className="pb-14 pt-12 wide:pb-24 wide:pt-20">
-        <p className="eyebrow eyebrow-hero rise text-carbon/60">{eyebrow}</p>
+    // The carbon variant carries the header the same way a photographic hero
+    // does — pulled up under the bar, then padded back down.
+    <section
+      className={
+        dark
+          ? "bg-carbon text-porcelain mt-[calc(-1*var(--header-h))]"
+          : "border-b border-carbon/12"
+      }
+    >
+      <Container
+        className={
+          dark
+            ? "pb-14 pt-[calc(var(--header-h)+3rem)] wide:pb-24 wide:pt-[calc(var(--header-h)+4.5rem)]"
+            : "pb-14 pt-12 wide:pb-24 wide:pt-20"
+        }
+      >
+        {breadcrumb}
+        <p
+          className={`eyebrow eyebrow-hero rise mt-1 flex items-center gap-3 ${
+            dark ? "text-porcelain/80" : "text-carbon/60"
+          }`}
+        >
+          <span aria-hidden="true" className="h-px w-7 bg-mist" />
+          {eyebrow}
+        </p>
         <h1
-          className="rise mt-6 max-w-[900px] font-display text-[2.625rem] font-normal leading-[1.05] wide:text-[clamp(3.25rem,6vw,5.25rem)]"
+          className="rise mt-6 max-w-[900px] font-display text-[2.5rem] font-normal leading-[1.05] wide:text-[clamp(3rem,5.4vw,4.75rem)]"
           style={{ animationDelay: "140ms" }}
         >
           {title}
         </h1>
         {subhead && (
           <p
-            className="rise mt-7 max-w-[560px] font-body text-lg italic leading-[1.5] text-carbon/80 wide:text-[1.3125rem]"
+            className={`rise mt-7 max-w-[620px] text-[1.0625rem] leading-[1.7] wide:text-[1.1875rem] ${
+              dark ? "text-porcelain/80" : "text-carbon/75"
+            }`}
             style={{ animationDelay: "280ms" }}
           >
             {subhead}
           </p>
         )}
         {children && (
-          <div className="rise mt-9" style={{ animationDelay: "400ms" }}>
+          <div
+            className="rise mt-10 flex flex-wrap gap-3.5"
+            style={{ animationDelay: "400ms" }}
+          >
             {children}
           </div>
         )}
@@ -422,10 +627,99 @@ export function TypeHero({
   );
 }
 
+/* -------------------------------------------------------------------------- */
+/* Bands                                                                       */
+/* -------------------------------------------------------------------------- */
+
 /**
- * A full-bleed photograph with one centred serif line over it — the handoff's
- * punctuation between sections.
+ * The dark figures band — the reference's stat block, set in this system's
+ * ledger measure: Cormorant numerals over a hairline with a Jost micro-label,
+ * rather than the reference's bordered tiles.
+ *
+ * This is the page's signature. It is the one place figures are allowed to run
+ * large, and it is why the surrounding sections stay quiet.
  */
+export function StatBand({
+  eyebrow,
+  title,
+  body,
+  stats,
+  action,
+}: {
+  eyebrow: string;
+  title: ReactNode;
+  body?: string;
+  stats: readonly { figure: string; label: string }[];
+  action?: ReactNode;
+}) {
+  return (
+    <Band tone="carbon">
+      <div className="grid gap-12 wide:grid-cols-[1fr_1.15fr] wide:items-center wide:gap-24">
+        <div>
+          <p className="eyebrow flex items-center gap-3 text-porcelain/70">
+            <span aria-hidden="true" className="h-px w-6 bg-mist" />
+            {eyebrow}
+          </p>
+          <Heading scale="md" className="mt-5">
+            {title}
+          </Heading>
+          {body && (
+            <p className="mt-6 max-w-[480px] text-[0.9375rem] leading-[1.7] text-porcelain/70">
+              {body}
+            </p>
+          )}
+          {action && <div className="mt-9">{action}</div>}
+        </div>
+
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 wide:gap-x-12">
+          {stats.map((stat, i) => (
+            <div key={stat.label} className="reveal ledger" data-delay={i * 70}>
+              <p className="ledger-figure ledger-figure-sm">
+                <CountUp value={stat.figure} />
+              </p>
+              <p className="label-sm mt-4 text-porcelain/60">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Band>
+  );
+}
+
+/**
+ * The closing band. The reference puts a saturated accent field here; Limestone
+ * is this palette's equivalent weight against Porcelain, and Carbon is already
+ * spent on the figures band above it.
+ */
+export function CtaBand({
+  title,
+  sub,
+  children,
+}: {
+  title: ReactNode;
+  sub?: string;
+  children: ReactNode;
+}) {
+  return (
+    <section className="bg-limestone">
+      <Container className="py-16 text-center wide:py-[clamp(4.5rem,8vw,7.5rem)]">
+        <Heading as="p" scale="md" className="mx-auto max-w-[820px]">
+          {title}
+        </Heading>
+        {sub && (
+          <p className="mx-auto mt-6 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75">
+            {sub}
+          </p>
+        )}
+        <div className="mt-10 flex flex-wrap justify-center gap-3.5">
+          {children}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/** A full-bleed photograph with one centred serif line over it. */
 export function StatementImage({
   src,
   children,
@@ -434,29 +728,76 @@ export function StatementImage({
   children: ReactNode;
 }) {
   return (
-    <section className="relative flex h-[46vh] items-center justify-center wide:h-[60vh]">
+    <section className="relative flex h-[46vh] items-center justify-center wide:h-[58vh]">
       <Image src={src} alt="" fill sizes="100vw" className="object-cover" />
-      <div className="absolute inset-0 bg-carbon/40" />
-      <p className="reveal relative z-10 max-w-[900px] px-6 text-center font-display text-[1.875rem] font-normal leading-[1.15] text-porcelain wide:text-[clamp(1.875rem,4vw,3.25rem)]">
+      <div className="absolute inset-0 bg-carbon/45" />
+      <p className="reveal relative z-10 max-w-[900px] px-6 text-center font-display text-[1.875rem] font-normal leading-[1.2] text-porcelain wide:text-[clamp(1.875rem,3.6vw,3rem)]">
         {children}
       </p>
     </section>
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* Repeating blocks                                                            */
-/* -------------------------------------------------------------------------- */
+/**
+ * A photograph with a caption — the only way an image is allowed onto a page
+ * that is not a hero or a full-bleed statement.
+ *
+ * The rule this enforces: no picture stands bare. Each one carries a label
+ * naming what it shows and a line saying why it is there, so the imagery reads
+ * as evidence rather than decoration. Combined with `npm run check:images`,
+ * which forbids any photograph appearing in two places, that keeps a small
+ * library working hard without repeating itself.
+ */
+export function Figure({
+  src,
+  label,
+  caption,
+  ratio = "aspect-[16/9]",
+  sizes = "(min-width: 880px) 60vw, 100vw",
+  tone = "porcelain",
+}: {
+  src: string;
+  /** What the photograph is. */
+  label: string;
+  /** Why it is on this page. */
+  caption: string;
+  ratio?: string;
+  sizes?: string;
+  tone?: Tone;
+}) {
+  return (
+    <figure className="reveal flex flex-col gap-4">
+      <Frame src={src} ratio={ratio} sizes={sizes} tone={tone} />
+      <figcaption
+        className={`flex flex-col gap-1.5 border-l-2 pl-4 ${
+          tone === "carbon" ? "border-mist/60" : "border-mist"
+        }`}
+      >
+        <span
+          className={`eyebrow ${tone === "carbon" ? "text-porcelain/70" : "text-carbon/55"}`}
+        >
+          {label}
+        </span>
+        <span
+          className={`max-w-[46ch] text-[0.9375rem] leading-[1.6] ${
+            tone === "carbon" ? "text-porcelain/80" : "text-carbon/75"
+          }`}
+        >
+          {caption}
+        </span>
+      </figcaption>
+    </figure>
+  );
+}
 
 /** A photograph in a fixed ratio, with the frame's slow settle on reveal. */
 export function Frame({
   src,
   ratio,
-  sizes = "(min-width: 880px) 33vw, 100vw",
+  sizes = "(min-width: 880px) 50vw, 100vw",
   tone = "porcelain",
 }: {
   src: string;
-  /** Tailwind aspect class, e.g. `aspect-[4/5]`. */
   ratio: string;
   sizes?: string;
   tone?: Tone;
@@ -472,94 +813,6 @@ export function Frame({
   );
 }
 
-/**
- * Numbered rows over hairlines — "What Defines Us" on the homepage and
- * "Values" on About share this exactly.
- */
-export function NumberedRows({
-  rows,
-  tone = "porcelain",
-}: {
-  rows: readonly { num: string; title: string; desc: string }[];
-  tone?: Tone;
-}) {
-  const rule = hairline(tone);
-
-  return (
-    <div className="flex flex-col">
-      {rows.map((row, i) => (
-        <div
-          key={row.num}
-          className={`reveal grid grid-cols-[40px_1fr] items-baseline gap-4 border-t py-7 wide:grid-cols-[80px_320px_1fr] wide:gap-10 wide:py-9 ${rule}`}
-          data-delay={i * 70}
-        >
-          <span
-            className={`font-display text-[1.75rem] font-light wide:text-4xl ${
-              tone === "carbon" ? "text-porcelain/35" : "text-carbon/35"
-            }`}
-          >
-            {row.num}
-          </span>
-          <span className="font-display text-xl font-medium wide:text-[1.75rem]">
-            {row.title}
-          </span>
-          {/* On one column the number occupies the first cell, so the
-              description starts in the second and spans to the edge. */}
-          <span
-            className={`col-start-2 max-w-[340px] text-[0.9375rem] leading-[1.6] wide:col-start-3 ${
-              tone === "carbon" ? "text-porcelain/70" : "text-carbon/70"
-            }`}
-          >
-            {row.desc}
-          </span>
-        </div>
-      ))}
-      <div className={`border-t ${rule}`} />
-    </div>
-  );
-}
-
-/** The four-step process row — horizontal on desktop, stacked below. */
-export function ProcessSteps({
-  steps,
-  tone = "porcelain",
-}: {
-  steps: readonly { num: string; title: string; desc: string }[];
-  tone?: Tone;
-}) {
-  return (
-    <div className="flex flex-col gap-8 wide:flex-row wide:gap-10">
-      {steps.map((step, i) => (
-        <div
-          key={step.num}
-          className={`reveal flex flex-1 flex-col gap-3.5 border-t pt-6 ${
-            tone === "carbon" ? "border-porcelain/30" : "border-carbon"
-          }`}
-          data-delay={i * 80}
-        >
-          <span
-            className={`font-display text-sm ${
-              tone === "carbon" ? "text-porcelain/50" : "text-carbon/50"
-            }`}
-          >
-            {step.num}
-          </span>
-          <span className="font-display text-2xl font-medium">
-            {step.title}
-          </span>
-          <span
-            className={`text-sm leading-[1.6] ${
-              tone === "carbon" ? "text-porcelain/70" : "text-carbon/70"
-            }`}
-          >
-            {step.desc}
-          </span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 /** Dot-bulleted list over hairlines. Two columns on desktop. */
 export function DotList({
   items,
@@ -569,20 +822,17 @@ export function DotList({
 }: {
   items: readonly string[];
   tone?: Tone;
-  /** Mist dot for capability lists; a dimmed dot for deliverables. */
   accent?: boolean;
   columns?: 1 | 2;
 }) {
   const rule = hairline(tone);
 
   return (
-    <div
-      className={`grid gap-x-10 ${columns === 2 ? "wide:grid-cols-2" : ""}`}
-    >
+    <div className={`grid gap-x-10 ${columns === 2 ? "wide:grid-cols-2" : ""}`}>
       {items.map((item, i) => (
         <div
           key={item}
-          className={`reveal flex items-baseline gap-3.5 border-t py-3.5 ${rule}`}
+          className={`reveal flex items-baseline gap-3.5 border-t py-4 ${rule}`}
           data-delay={i * 50}
         >
           <span
@@ -605,74 +855,5 @@ export function DotList({
         </div>
       ))}
     </div>
-  );
-}
-
-/** A project card — 4:5 frame over category, title and scope. */
-export function WorkCard({
-  href,
-  image,
-  category,
-  title,
-  scope,
-  tone = "carbon",
-  delay = 0,
-  ratio = "aspect-[4/5]",
-}: {
-  href: string;
-  image: string;
-  category: string;
-  title: string;
-  scope?: string;
-  tone?: Tone;
-  delay?: number;
-  ratio?: string;
-}) {
-  return (
-    <Link href={href} className="reveal group block" data-delay={delay}>
-      <Frame src={image} ratio={ratio} tone={tone} />
-      <p className={`eyebrow mt-5 ${muted(tone)}`}>{category}</p>
-      <p className="mt-2.5 font-display text-2xl font-medium transition-opacity duration-500 group-hover:opacity-70 wide:text-[1.625rem]">
-        {title}
-      </p>
-      {scope && (
-        <p
-          className={`mt-2 text-[0.8125rem] ${
-            tone === "carbon" ? "text-porcelain/60" : "text-carbon/60"
-          }`}
-        >
-          {scope}
-        </p>
-      )}
-    </Link>
-  );
-}
-
-/**
- * The closing call to action, repeated at the foot of every page.
- * Limestone on the homepage and service pages; porcelain on About.
- */
-export function FinalCta({
-  lines,
-  tone = "limestone",
-  action = "Start a Conversation",
-}: {
-  lines: readonly [string, string];
-  tone?: "limestone" | "porcelain";
-  action?: string;
-}) {
-  return (
-    <section className={tone === "limestone" ? "bg-limestone" : ""}>
-      <Container className="py-16 text-center wide:py-[clamp(5rem,9vw,8.75rem)]">
-        <Heading as="p" className="mb-10">
-          {lines[0]}
-          <br />
-          {lines[1]}
-        </Heading>
-        <PillLink href="/contact" tone="solid" size="lg">
-          {action}
-        </PillLink>
-      </Container>
-    </section>
   );
 }

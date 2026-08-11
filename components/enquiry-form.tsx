@@ -32,11 +32,15 @@ export function EnquiryForm() {
   const [state, formAction] = useActionState(submitEnquiry, initialState);
 
   /*
-   * Service pages can link here as `?sector=…`, so the message starts with the
-   * visitor's own context already filled in. The form is wrapped in a Suspense
-   * boundary on the page, which keeps the rest of the route prerendered.
+   * Service pages link here as `?service=<name>`, so the dropdown opens on the
+   * service the visitor was reading about. Matched against the catalogue
+   * rather than trusted, so a hand-edited URL cannot inject an option value.
+   * The form is wrapped in a Suspense boundary on the page, which keeps the
+   * rest of the route prerendered.
    */
-  const sector = useSearchParams().get("sector") ?? "";
+  const requested = useSearchParams().get("service") ?? "";
+  const preselected =
+    services.find((service) => service.name === requested)?.name ?? "";
 
   if (state.status === "success") {
     return (
@@ -45,7 +49,7 @@ export function EnquiryForm() {
           {state.message}
         </p>
         <p className="mt-4 max-w-md text-carbon/70">
-          If it is urgent, call the studio and we will pick it up sooner.
+          If it is urgent, call us and we will pick it up sooner.
         </p>
       </div>
     );
@@ -104,32 +108,49 @@ export function EnquiryForm() {
         </div>
       </div>
 
-      <div>
-        <label htmlFor="company" className={labelClass}>
-          Company
-        </label>
-        <input
-          id="company"
-          name="company"
-          autoComplete="organization"
-          placeholder="Company or brand name"
-          className={fieldClass}
-        />
+      <div className="grid gap-5 wide:grid-cols-2">
+        <div>
+          <label htmlFor="company" className={labelClass}>
+            Company
+          </label>
+          <input
+            id="company"
+            name="company"
+            autoComplete="organization"
+            placeholder="Company or brand name"
+            className={fieldClass}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="phone" className={labelClass}>
+            Phone
+          </label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            placeholder="+971 50 000 0000"
+            className={fieldClass}
+          />
+        </div>
       </div>
 
       <div>
         <label htmlFor="service" className={labelClass}>
-          Area of Interest
+          Service You Are Interested In
         </label>
         {/*
-         * A leading empty option, which the prototype omits. Without it the
-         * control submits "Brand Strategy" for every visitor who never opened
-         * it, and the enquiry data stops meaning anything.
+         * A leading empty option. Without it the control submits the first
+         * service for every visitor who never opened it, and the enquiry data
+         * stops meaning anything.
          */}
         <select
           id="service"
           name="service"
-          defaultValue=""
+          defaultValue={preselected}
+          key={preselected}
           className={`${fieldClass} select-field appearance-none rounded-none`}
         >
           <option value="">Select an area of interest</option>
@@ -149,11 +170,9 @@ export function EnquiryForm() {
         <textarea
           id="message"
           name="message"
-          defaultValue={sector ? `We are in ${sector}. ` : undefined}
-          key={sector}
           rows={4}
           required
-          placeholder="A little about your brand and what you’re looking to achieve"
+          placeholder="What you’re running now, and what you need it to do"
           aria-describedby={state.errors?.message ? "message-error" : undefined}
           aria-invalid={state.errors?.message ? true : undefined}
           className={`${fieldClass} resize-none`}

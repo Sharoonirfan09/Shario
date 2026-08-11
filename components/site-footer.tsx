@@ -1,49 +1,51 @@
 import Link from "next/link";
-import { footerLinks, site } from "@/lib/site";
+import { nav, services, site } from "@/lib/site";
 
-/** Dark four-column footer, shared by every page in the design handoff. */
+/**
+ * Dark four-column footer.
+ *
+ * The Arabic lockup and the "Symphony of Identity" line that used to sit here
+ * belonged to the creative-studio positioning and retired with it. The Studio
+ * column is now split in two — the services, which is what visitors navigate
+ * to from a footer, and the pages.
+ */
 export function SiteFooter() {
   return (
     <footer className="bg-carbon text-porcelain">
       <div className="mx-auto max-w-[1400px] px-6 pb-8 pt-14 wide:px-12 wide:pb-10 wide:pt-[90px]">
-        <div className="grid gap-10 pb-14 wide:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-10 pb-14 wide:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
           <div>
             <p className="font-display text-[1.625rem] tracking-[0.14em]">
               SHARIO
             </p>
-            <p className="mt-4 max-w-[220px] font-body text-base italic text-porcelain/70">
+            <p className="mt-4 max-w-[240px] font-body text-base italic text-porcelain/70">
               {site.tagline}
             </p>
-            {/*
-             * The Arabic lockup. `dir` is set explicitly so the phrase renders
-             * right-to-left inside an `lang="en"` document rather than relying
-             * on the bidi algorithm's first-strong character alone.
-             */}
-            <p
-              lang="ar"
-              dir="rtl"
-              className="mt-5 text-[1.375rem] text-porcelain/30"
-            >
-              {site.taglineAr}
+            <p className="mt-5 max-w-[240px] text-[0.8125rem] leading-[1.7] text-porcelain/50">
+              Founder-led digital marketing in Dubai.
             </p>
           </div>
 
-          <FooterColumn title="Studio">
-            {footerLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"
-              >
-                {item.label}
-              </Link>
+          <FooterColumn title="Services">
+            {services.map((service) => (
+              <FooterLink
+                key={service.slug}
+                href={`/services/${service.slug}`}
+                label={service.name}
+              />
+            ))}
+          </FooterColumn>
+
+          <FooterColumn title="Company">
+            {nav.map((item) => (
+              <FooterLink key={item.href} href={item.href} label={item.label} />
             ))}
           </FooterColumn>
 
           <FooterColumn title="Contact">
             <a
               href={`mailto:${site.email}`}
-              className="text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"
+              className="break-all text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"
             >
               {site.email}
             </a>
@@ -54,17 +56,6 @@ export function SiteFooter() {
               {site.phone}
             </a>
             <span className="text-sm text-porcelain/80">{site.location}</span>
-          </FooterColumn>
-
-          <FooterColumn title="Follow">
-            <a
-              href={site.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"
-            >
-              Instagram
-            </a>
             <a
               href={site.linkedin}
               target="_blank"
@@ -76,13 +67,22 @@ export function SiteFooter() {
           </FooterColumn>
         </div>
 
-        {/* The handoff's bottom bar also carries Privacy and Terms. Those pages
-            do not exist, so the links are omitted rather than shipped as 404s. */}
         <div className="border-t border-porcelain/15 pt-6 text-xs text-porcelain/50">
           <p>© {new Date().getFullYear()} SHARIO. All rights reserved.</p>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterLink({ href, label }: { href: string; label: string }) {
+  return (
+    <Link
+      href={href}
+      className="text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"
+    >
+      {label}
+    </Link>
   );
 }
 

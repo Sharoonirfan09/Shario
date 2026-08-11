@@ -44,6 +44,19 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* The header overlays the hero rather than sitting above it, so its height has
+   to be a number both sides agree on: the bar sets it, and every dark hero
+   pulls itself up by exactly this much and pads its content back down. */
+:root {
+  --header-h: 73px;
+}
+
+@media (min-width: 55rem) {
+  :root {
+    --header-h: 78px;
+  }
+}
+
 /* Jost carries body copy, not EB Garamond. The design files set Jost on the
    page root and reach for EB Garamond only where a passage is explicitly
    italic — leads, pull-quotes, the founder line. */
