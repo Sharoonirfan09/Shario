@@ -17,11 +17,10 @@ npm run lint
 
 | Route                    | Contents                                               |
 | ------------------------ | ------------------------------------------------------ |
-| `/`                      | Hero, proof ledger, founder-led, what we do, industries |
+| `/`                      | Hero, founder-led, what we do, how we work, figures, FAQ |
 | `/about`                 | The founder, four commitments, how we work              |
 | `/services`              | Index of the five services                              |
 | `/services/[slug]`       | One page per service, prerendered from `services`       |
-| `/results`               | The numbers, industries, why it works                   |
 | `/contact`               | Contact details, what happens next, enquiry form        |
 
 Adding a service means adding one entry to `services` in `lib/site.ts` — the
@@ -29,13 +28,15 @@ page, its metadata, the two service grids, the footer, the sitemap, the
 enquiry form's dropdown and the prev/next links all follow from it.
 
 Every block appears on exactly **one** page: the four-step engagement is on
-`/about`, the sector list is on `/results`, the FAQs are on the service pages.
-Repeating one across templates is what made the previous structure feel
-padded — resist it.
+`/about`, the FAQs are on the service pages. Repeating one across templates is
+what made the previous structure feel padded — resist it.
+
+`/results` was retired along with its numbers ledger and sector list, and
+`/results`, `/work` and `/work/:slug` now redirect to `/about`.
 
 All copy comes from the client's `Shario content` document. Edit it in one
-place: **`lib/site.ts`** holds contact details, the service list, the proof
-figures and the industries. Page-specific prose lives in the page files.
+place: **`lib/site.ts`** holds contact details, the service list and the figures
+band. Page-specific prose lives in the page files.
 
 ## Design system
 

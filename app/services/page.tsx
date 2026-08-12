@@ -87,11 +87,6 @@ export default function ServicesPage() {
         title="Every service is measured against revenue."
         body="Not impressions, not rankings for their own sake. Each engagement reports weekly against pipeline and closed sales."
         stats={stats}
-        action={
-          <PillLink href="/results" tone="solidLight">
-            See the record
-          </PillLink>
-        }
       />
 
       <CtaBand

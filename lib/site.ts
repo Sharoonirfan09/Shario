@@ -11,15 +11,14 @@
  * The Brand Book still governs the *visual* system only — palette, typography
  * and the composed, unhurried tone. Never "game-changing" or "world-class".
  *
- * The content document supplies finished copy for five pages: Home, About,
- * Services, Results and Contact. The five service detail pages are written
- * here to the same voice, expanding the one-paragraph summary the document
- * gives each service into outcomes, deliverables and FAQs.
+ * The content document supplies finished copy for Home, About, Services and
+ * Contact. The five service detail pages are written here to the same voice,
+ * expanding the one-paragraph summary the document gives each service into
+ * outcomes, deliverables and FAQs.
  *
  * Structure rule, and the reason this file is much shorter than it was: every
- * block appears on exactly one page. The process steps live on About, the
- * industry list lives on Results, the FAQs live on service pages. Nothing is
- * repeated across templates.
+ * block appears on exactly one page. The process steps live on About, the FAQs
+ * live on service pages. Nothing is repeated across templates.
  */
 
 export const site = {
@@ -37,15 +36,14 @@ export const site = {
   linkedin: "https://linkedin.com/in/sharoonirfan",
   founder: "Sharoon Irfan",
   founderRole: "Founder & Digital Growth Strategist",
-  /** The headline claim, cited on Home, About and Results. */
+  /** The headline claim, cited on Home and About. */
   revenue: "AED 35M+",
   experience: "6+ years",
 } as const;
 
-/** Primary navigation. Four pages; the CTA button beside them is not a nav item. */
+/** Primary navigation. Three pages; the CTA button beside them is not a nav item. */
 export const nav = [
   { href: "/services", label: "Services" },
-  { href: "/results", label: "Results" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;
@@ -69,30 +67,6 @@ export const stats = [
   { figure: "6+", label: "Years in Dubai marketing" },
   { figure: "5", label: "Services, one connected system" },
   { figure: "1", label: "Senior team, founder-led" },
-] as const;
-
-/**
- * "Proof Over Promises" — the homepage's short form. The Results page carries
- * the same evidence at full length; these stay to one line each so the two
- * pages are not reading the same paragraphs back to the visitor.
- */
-export const proof = [
-  {
-    title: "AED 35M+ attributed",
-    desc: "CRM-attributed revenue generated across real estate and B2B campaigns.",
-  },
-  {
-    title: "Award-winning ROI",
-    desc: "A Marketing Excellence Award for campaign ROI on flagship Dubai projects.",
-  },
-  {
-    title: "40%+ organic growth",
-    desc: "Organic traffic growth delivered through a structured SEO overhaul.",
-  },
-  {
-    title: "Zero to launch",
-    desc: "Complete marketing systems built for developer-led real estate projects.",
-  },
 ] as const;
 
 /**
@@ -175,54 +149,6 @@ export const howWeWork = [
     title: "Optimise relentlessly",
     desc: "Every week, against the metrics that move money.",
   },
-] as const;
-
-/* -------------------------------------------------------------------------- */
-/* Results                                                                     */
-/* -------------------------------------------------------------------------- */
-
-/** "The Numbers" — the full evidence, carried only here. */
-export const results = [
-  {
-    num: "01",
-    title: "AED 35M+ in CRM-attributed revenue",
-    desc: "Multi-channel campaigns across Google Ads, Meta Ads and SEO, tracked from first click to closed sale for Dubai real estate.",
-  },
-  {
-    num: "02",
-    title: "A Marketing Excellence Award",
-    desc: "Earned for campaign ROI on flagship developer-led projects.",
-  },
-  {
-    num: "03",
-    title: "40%+ organic traffic growth",
-    desc: "Delivered in a single quarter through a structured SEO and content overhaul.",
-  },
-  {
-    num: "04",
-    title: "Zero-to-launch marketing systems",
-    desc: "Full-stack builds for developer-led real estate projects — CRM integration, campaign infrastructure, websites and attribution.",
-  },
-  {
-    num: "05",
-    title: "Below-target cost per lead",
-    desc: "Delivered consistently across Search, Display, YouTube, Facebook and Instagram for high-value real estate and B2B clients.",
-  },
-] as const;
-
-/**
- * The sectors Shario delivers in. Plain strings rather than routes — the six
- * industry pages they used to link to restated the service pages and are gone.
- */
-export const industries = [
-  "Real Estate Development",
-  "Hospitality",
-  "B2B & SaaS",
-  "Professional Services",
-  "E-commerce",
-  "Healthcare",
-  "Retail",
-  "Education",
 ] as const;
 
 /* -------------------------------------------------------------------------- */

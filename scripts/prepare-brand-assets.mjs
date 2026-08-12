@@ -45,8 +45,29 @@ async function knockOutBackground(input, output, { tolerance = 42, feather = 26 
   console.log(`${output} — ${meta.width}x${meta.height}`);
 }
 
+/**
+ * A display-sized cut of the master, for the header and footer.
+ *
+ * The wordmark is painted through a CSS mask so it can take the ink colour the
+ * header switches between, and a mask URL never reaches Next's image optimiser
+ * — whatever is on disk is what every page downloads. The master is 1535px
+ * wide for a mark that sets at ~120, so it ships its own web size rather than
+ * making every visit carry 160KB of unused resolution.
+ */
+async function webCut(input, output, width) {
+  await sharp(input)
+    .resize({ width, kernel: "lanczos3" })
+    .png({ compressionLevel: 9, palette: true })
+    .toFile(output);
+
+  const meta = await sharp(output).metadata();
+  console.log(`${output} — ${meta.width}x${meta.height}`);
+}
+
 await mkdir(OUT, { recursive: true });
 
 await knockOutBackground(`${SRC}/wordmark.png`, `${OUT}/wordmark.png`);
 await knockOutBackground(`${SRC}/monogram.jpg`, `${OUT}/monogram.png`);
 await knockOutBackground(`${SRC}/wordmark-ar.jpg`, `${OUT}/wordmark-ar.png`);
+
+await webCut(`${OUT}/wordmark.png`, `${OUT}/wordmark-web.png`, 400);

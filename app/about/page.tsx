@@ -115,11 +115,6 @@ export default function AboutPage() {
         title="Dubai is the hardest auction in the region."
         body="Competing here means going up against agencies with larger budgets and developers running their own in-house teams. The only durable advantage is knowing precisely what a lead is worth and refusing to pay more than that for it."
         stats={stats}
-        action={
-          <PillLink href="/results" tone="solidLight">
-            See the record
-          </PillLink>
-        }
       />
 
       <CtaBand

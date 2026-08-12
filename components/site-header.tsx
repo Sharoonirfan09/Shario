@@ -44,13 +44,13 @@ export function SiteHeader() {
   const overHero = !scrolled && !menuOpen;
 
   /*
-   * Home and Results open on a light Limestone split hero; the rest open dark.
-   * Derived from the route rather than measured from the DOM so the server and
-   * the first client paint agree — reading it after mount made the bar flip
-   * colour a frame late on every navigation. Add a route here whenever a page
-   * moves to `SplitHero`.
+   * Home opens on a light Limestone split hero; the rest open dark. Derived
+   * from the route rather than measured from the DOM so the server and the
+   * first client paint agree — reading it after mount made the bar flip colour
+   * a frame late on every navigation. Add a route here whenever a page moves to
+   * `SplitHero`.
    */
-  const lightHero = pathname === "/" || pathname === "/results";
+  const lightHero = pathname === "/";
   const lightInk = overHero && !lightHero;
 
   // Reset on navigation. Adjusting state during render is the supported way to
@@ -115,9 +115,9 @@ export function SiteHeader() {
           <Link
             href="/"
             aria-label={`${site.name} — home`}
-            className="shrink-0 whitespace-nowrap font-display text-2xl font-medium tracking-[0.14em] transition-opacity duration-500 hover:opacity-70"
+            className="shrink-0 transition-opacity duration-500 hover:opacity-70"
           >
-            SHARIO
+            <span aria-hidden="true" className="wordmark w-[116px]" />
           </Link>
 
           {/* Desktop navigation */}
@@ -281,9 +281,9 @@ export function SiteHeader() {
               href="/"
               onClick={() => setMenuOpen(false)}
               aria-label={`${site.name} — home`}
-              className="font-display text-2xl font-medium tracking-[0.14em] text-porcelain"
+              className="text-porcelain"
             >
-              SHARIO
+              <span aria-hidden="true" className="wordmark w-[116px]" />
             </Link>
             <button
               type="button"

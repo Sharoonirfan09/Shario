@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { CountUp } from "@/components/count-up";
 
 /**
@@ -517,14 +517,21 @@ export function Hero({
 }
 
 /**
- * The split hero: type on the left, one photograph panelled on the right, over
- * a flat ground.
+ * The split hero: type on the left, one photograph filling the right, over a
+ * flat ground.
  *
- * This is the reference site's opening exactly — it floats an image beside the
- * headline rather than running it full bleed — rendered on Limestone, the
- * palette's light brown, instead of its near-black. Limestone runs up behind
- * the header, which is why the section pulls itself up by the bar's height and
- * pads its content back down.
+ * This is the client's reference opening. The photograph is not a panel floated
+ * beside the headline — it covers the whole right side of the section, flush to
+ * the right edge and running the full height between the header and the
+ * section's bottom, which is what makes the hero read as one image rather than
+ * a picture placed on a page. Limestone runs up behind the header, which is why
+ * the section pulls itself up by the bar's height and pads its content back
+ * down; the image starts *below* the bar so the wordmark and nav keep a flat
+ * ground, as the reference sets it.
+ *
+ * Below `wide` the same photograph stacks under the type at 4:5. One DOM node,
+ * repositioned at the breakpoint rather than rendered twice — two copies would
+ * put two links to the same page in the markup and fetch the image twice.
  */
 export function SplitHero({
   src,
@@ -532,15 +539,29 @@ export function SplitHero({
   title,
   subhead,
   focus,
+  shift,
   href,
   linkLabel,
   children,
 }: {
   src: string;
-  eyebrow: string;
+  /** Optional: the reference opens straight on the headline, with nothing above it. */
+  eyebrow?: string;
   title: ReactNode;
-  subhead?: string;
+  /** Takes a node, not a string: the reference sets it on two lines. */
+  subhead?: ReactNode;
   focus?: string;
+  /**
+   * How far the figure is nudged inside the frame. Any CSS length; negative
+   * moves her left, which is the direction the client wanted.
+   *
+   * A negative value slides the image off its own right edge, and on a wide
+   * window it fills the column exactly, so there is nothing behind it — hence
+   * the mask fades the right edge as well as the left. Keep the offset smaller
+   * than that right fade or the photograph ends on a hard vertical line
+   * against the limestone.
+   */
+  shift?: string;
   /** Where the panel leads. */
   href: string;
   /** Names the destination — the panel's accessible name and its visible label. */
@@ -548,77 +569,111 @@ export function SplitHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="bg-limestone mt-[calc(-1*var(--header-h))]">
-      <Container className="pb-16 pt-[calc(var(--header-h)+3rem)] wide:pb-24 wide:pt-[calc(var(--header-h)+4.5rem)]">
-        <div className="grid items-center gap-12 wide:grid-cols-[1.05fr_1fr] wide:gap-20">
-          <div>
+    <section className="relative bg-limestone mt-[calc(-1*var(--header-h))]">
+      {/*
+       * `min-h` rather than a fixed height: the type sets the floor on a phone,
+       * and on a laptop the section fills the viewport so the photograph has
+       * the full height the reference gives it. `svh` because `vh` measures the
+       * chrome-less viewport on mobile Safari and leaves the hero taller than
+       * the screen.
+       */}
+      <Container className="relative flex flex-col justify-center pb-16 pt-[calc(var(--header-h)+3rem)] wide:min-h-[100svh] wide:pb-24 wide:pt-[calc(var(--header-h)+2rem)]">
+        {/* Half the section, so the statement never runs under the image. */}
+        <div className="wide:w-[52%] wide:pr-10">
+          {eyebrow && (
             <p className="eyebrow eyebrow-hero rise flex items-center gap-3 text-carbon/60">
               <span aria-hidden="true" className="h-px w-7 bg-carbon/40" />
               {eyebrow}
             </p>
-            <h1
-              className="rise mt-6 max-w-[720px] font-display text-[2.75rem] font-normal leading-[1.04] wide:text-[clamp(3.25rem,5.2vw,4.75rem)]"
-              style={{ animationDelay: "140ms" }}
-            >
-              {title}
-            </h1>
-            {subhead && (
-              <p
-                className="rise mt-7 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75 wide:text-[1.1875rem]"
-                style={{ animationDelay: "280ms" }}
-              >
-                {subhead}
-              </p>
-            )}
-            {children && (
-              <div
-                className="rise mt-10 flex flex-wrap gap-3.5"
-                style={{ animationDelay: "400ms" }}
-              >
-                {children}
-              </div>
-            )}
-          </div>
-
+          )}
           {/*
-           * Square, as the reference sets it. The library is 4:5, so the crop
-           * is anchored by `focus` rather than centred — a centred square crop
-           * of a tall interior loses the floor and the ceiling at once.
+           * `hero-display`, not `font-display` — the client asked for the
+           * reference's heavy condensed uppercase headline here specifically.
+           * The measure holds the block near the reference's width, but the
+           * three lines are broken in the `title` itself: the reference splits
+           * on sense rather than on fit, and a character measure wide enough
+           * for its longest line lets the first two words ride up together.
            *
-           * `drift` sits on the wrapper and `rise` is left off it, because two
-           * animations on one element fight over `transform`. The panel is a
-           * link, so it carries a standing label rather than only a hover
-           * state: an image that does something has to look like it does.
+           * The top margin belongs to the eyebrow above it, so it goes when the
+           * eyebrow does — otherwise the headline sits low in a hero that is
+           * meant to open on it.
            */}
-          <div className="drift">
-            <Link
-              href={href}
-              aria-label={linkLabel}
-              className="group relative block"
+          <h1
+            className={`hero-display rise max-w-[13ch] text-[3rem] wide:text-[clamp(3.75rem,6.4vw,6rem)] ${
+              eyebrow ? "mt-7" : ""
+            }`}
+            style={{ animationDelay: "140ms" }}
+          >
+            {title}
+          </h1>
+          {subhead && (
+            <p
+              className="rise mt-7 max-w-[440px] font-display text-[1.1875rem] leading-[1.55] text-carbon/65 wide:text-[1.3125rem]"
+              style={{ animationDelay: "280ms" }}
             >
-              <div className="frame relative aspect-square w-full">
-                <Image
-                  src={src}
-                  alt=""
-                  fill
-                  sizes="(min-width: 880px) 46vw, 100vw"
-                  priority
-                  className={`object-cover ${focus ?? ""}`}
-                />
-              </div>
-              <span
-                aria-hidden="true"
-                className="absolute bottom-5 right-5 inline-flex items-center gap-2.5 rounded-full bg-porcelain/92 px-5 py-3 text-[11px] uppercase tracking-[0.08em] text-carbon backdrop-blur-[6px] transition-colors duration-500 group-hover:bg-carbon group-hover:text-porcelain"
-              >
-                {linkLabel}
-                <span className="transition-transform duration-500 group-hover:translate-x-1">
-                  →
-                </span>
-              </span>
-            </Link>
-          </div>
+              {subhead}
+            </p>
+          )}
+          {children && (
+            <div
+              className="rise mt-10 flex flex-wrap gap-3.5"
+              style={{ animationDelay: "400ms" }}
+            >
+              {children}
+            </div>
+          )}
         </div>
       </Container>
+
+      {/*
+       * The photograph. Absolute and full-height from `wide` up, stacked and
+       * 4:5 below it. `focus` anchors the crop — a landscape original cropped
+       * to a tall column loses the subject if it is centred.
+       *
+       * Both edges are masked to transparent so the photograph dissolves into
+       * the limestone instead of butting against it on a hard vertical seam.
+       * The left fade is the one that matters compositionally; the right fade
+       * exists so `--hero-shift` can pull the figure left — it covers the band
+       * the image vacates at the screen edge, which would otherwise read as a
+       * mistake rather than as the same dissolve. Both live in `.hero-shift` in
+       * `globals.css`, not here, because the stops have to be computed against
+       * the offset.
+       *
+       * The reference reads as one image because its photograph is shot on the
+       * same cream as the page; ours is not, and the fade is what buys the same
+       * read without repainting the section. It runs only from `wide` up —
+       * stacked under the type on a phone the image is full-bleed, and a fade
+       * there would only look like a printing fault.
+       *
+       * The image is a link, so it carries a standing label rather than only a
+       * hover state: an image that does something has to look like it does.
+       */}
+      <div className="relative aspect-[4/5] w-full wide:absolute wide:bottom-0 wide:right-0 wide:top-[var(--header-h)] wide:aspect-auto wide:w-[46%]">
+        <Link
+          href={href}
+          aria-label={linkLabel}
+          className="group frame relative block h-full w-full"
+        >
+          <Image
+            src={src}
+            alt=""
+            fill
+            sizes="(min-width: 880px) 46vw, 100vw"
+            priority
+            className={`hero-shift object-cover ${focus ?? ""}`}
+            style={{ "--hero-shift": shift ?? "-6%" } as CSSProperties}
+          />
+          <span
+            aria-hidden="true"
+            className="absolute bottom-5 right-5 inline-flex items-center gap-2.5 rounded-full bg-porcelain/92 px-5 py-3 text-[11px] uppercase tracking-[0.08em] text-carbon backdrop-blur-[6px] transition-colors duration-500 group-hover:bg-carbon group-hover:text-porcelain"
+          >
+            {linkLabel}
+            <span className="transition-transform duration-500 group-hover:translate-x-1">
+              →
+            </span>
+          </span>
+        </Link>
+      </div>
     </section>
   );
 }

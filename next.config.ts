@@ -9,11 +9,13 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
-      // --- Pages retired when the site returned to the content document's
-      // five-page structure. Work and Industries restated the service pages;
-      // the case studies on /work were written for clients that do not exist.
-      { source: "/work", destination: "/results", permanent: true },
-      { source: "/work/:slug", destination: "/results", permanent: true },
+      // --- Pages retired as the structure narrowed. Work and Industries
+      // restated the service pages; the case studies on /work were written for
+      // clients that do not exist. Results went last — /work and /work/:slug
+      // pointed at it, and are repointed here so neither chain ends in a 404.
+      { source: "/results", destination: "/about", permanent: true },
+      { source: "/work", destination: "/about", permanent: true },
+      { source: "/work/:slug", destination: "/about", permanent: true },
       { source: "/industries", destination: "/services", permanent: true },
       { source: "/industries/:slug", destination: "/services", permanent: true },
 

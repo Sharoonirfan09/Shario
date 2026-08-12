@@ -26,6 +26,8 @@
   --font-display: var(--font-cormorant), Georgia, serif;
   --font-body: var(--font-eb-garamond), Georgia, serif;
   --font-label: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+  /* Home hero headline only — see `.hero-display`. */
+  --font-condensed: var(--font-anton), "Arial Narrow", Impact, sans-serif;
 
   --spacing-gutter: clamp(1.5rem, 5vw, 6rem);
 
@@ -91,6 +93,23 @@ body {
   letter-spacing: -0.018em;
 }
 
+/* The home hero's opening statement, and nothing else on the site. The client's
+   reference sets it in a heavy condensed uppercase sans; every other headline
+   stays in `.display`/`.title`. Scoped to one class so it cannot leak. */
+.hero-display {
+  font-family: var(--font-condensed);
+  font-weight: 400;
+  text-transform: uppercase;
+  /* Anton's caps stand ~0.87em tall, so 0.86 made the line advance shorter than
+     the letters themselves and the three lines closed up into one solid block
+     of ink — no daylight between them at any size. The reference leaves a gap
+     of about 0.18 of the cap height, which needs roughly 1.02. Measured off the
+     reference rather than guessed: the naive figure from Anton's nominal
+     cap-height metric is ~0.85, and it is wrong for what actually renders. */
+  line-height: 1.02;
+  letter-spacing: 0.004em;
+}
+
 .title {
   font-family: var(--font-display);
   font-weight: 300;
@@ -113,6 +132,30 @@ body {
 .eyebrow-hero {
   font-size: 0.75rem;
   letter-spacing: 0.2em;
+}
+
+/* The wordmark, as the client's master artwork rather than "SHARIO" set in the
+   display face. The two are not the same drawing — the master has a crossbarless
+   triangular A and a far finer stroke than Cormorant can be tracked into.
+
+   Painted as `currentColor` through a mask instead of placed as an image, so it
+   inherits the ink the header is already switching between over a dark hero and
+   over the body, and so the footer's Porcelain-on-Carbon lockup needs no second
+   file. `wordmark-web.png` is the display-sized cut from `npm run brand:assets`;
+   a mask URL never reaches Next's image optimiser, so the master's full 1535px
+   would otherwise be downloaded on every page. */
+.wordmark {
+  display: block;
+  aspect-ratio: 1535 / 284;
+  background-color: currentColor;
+  -webkit-mask-image: url("/brand/wordmark-web.png");
+  mask-image: url("/brand/wordmark-web.png");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: left center;
+  mask-position: left center;
 }
 
 /* Jost, uppercase, widely tracked — every label, eyebrow and control. */
@@ -286,6 +329,73 @@ body {
   a:hover .frame img,
   .group:hover .frame img {
     transform: scale(1.04);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   The hero figure is seated left of centre inside her own frame, which on a
+   wide monitor stands her closer to the headline than the client wants. She is
+   nudged right here rather than with `object-position`, which cannot do it: the
+   column is proportionally wider than the file above ~1.0, so `object-cover`
+   binds on width, the image fills the column exactly, and there is no
+   horizontal overflow left for `object-position` to slide her within. A
+   translate moves her without touching her scale.
+
+   Only from `wide` up — below it the photograph is full-bleed under the type,
+   where an offset would just open a strip of bare ground down one side.
+--------------------------------------------------------------------------- */
+
+@media (min-width: 55rem) {
+  .hero-shift {
+    /*
+     * The offset the figure is actually drawn with. Zero by default and only
+     * raised to the requested `--hero-shift` on a genuinely wide monitor: from
+     * 880px to about 1500px the column is far taller than it is wide, the cover
+     * crop already takes a fifth of the frame, and spending more of the
+     * remainder on an offset walks her face into the left fade. She stays put
+     * there and the shift is a wide-screen refinement.
+     */
+    --shift-applied: 0%;
+    transform: translateX(var(--shift-applied));
+    /*
+     * Both edges dissolve into the limestone. The stops are measured on the
+     * image, but what matters is where they land on screen once the offset has
+     * moved it — so the left stop subtracts the offset, which is negative and
+     * therefore lengthens it. Without that, pulling the figure left drags most
+     * of the left fade off the side of the screen and the photograph resumes
+     * meeting the ground on a hard vertical line.
+     */
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 calc(10% - var(--shift-applied)),
+      #000 92%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 calc(10% - var(--shift-applied)),
+      #000 92%,
+      transparent 100%
+    );
+  }
+}
+
+/* Wide enough for the offset to cost nothing. */
+@media (min-width: 96rem) {
+  .hero-shift {
+    --shift-applied: var(--hero-shift, 0%);
+  }
+}
+
+/* Composed into the hover lift, or hovering the panel would drop the offset and
+   snap her back to centre — `transform` is one property, not two. */
+@media (min-width: 55rem) and (hover: hover) {
+  .frame:hover img.hero-shift,
+  a:hover .frame img.hero-shift,
+  .group:hover .frame img.hero-shift {
+    transform: translateX(var(--shift-applied)) scale(1.04);
   }
 }
 

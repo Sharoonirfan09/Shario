@@ -15,8 +15,11 @@ export function SiteFooter() {
       <div className="mx-auto max-w-[1400px] px-6 pb-8 pt-14 wide:px-12 wide:pb-10 wide:pt-[90px]">
         <div className="grid gap-10 pb-14 wide:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
           <div>
-            <p className="font-display text-[1.625rem] tracking-[0.14em]">
-              SHARIO
+            {/* No surrounding link to carry an `aria-label` here, so the name
+                stays in the markup for screen readers behind the mark. */}
+            <p>
+              <span className="sr-only">SHARIO</span>
+              <span aria-hidden="true" className="wordmark w-[126px]" />
             </p>
             <p className="mt-4 max-w-[240px] font-body text-base italic text-porcelain/70">
               {site.tagline}
