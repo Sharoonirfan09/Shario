@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Anton, Cormorant_Garamond, EB_Garamond, Jost } from "next/font/google";
+import { Cormorant_Garamond, EB_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -20,19 +20,6 @@ const ebGaramond = EB_Garamond({
   subsets: ["latin"],
   weight: ["400", "500"],
   style: ["normal", "italic"],
-  display: "swap",
-});
-
-/*
- * The home hero's headline only. The client supplied a reference whose opening
- * statement is a heavy condensed uppercase sans, and asked for that exactly —
- * so it sits outside the Brand Guidelines' three type roles rather than
- * replacing any of them. One weight, because Anton ships one.
- */
-const anton = Anton({
-  variable: "--font-anton",
-  subsets: ["latin"],
-  weight: "400",
   display: "swap",
 });
 
@@ -74,7 +61,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
        * navigation, which reads as the site hanging.
        */
       data-scroll-behavior="smooth"
-      className={`${cormorant.variable} ${ebGaramond.variable} ${jost.variable} ${anton.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${ebGaramond.variable} ${jost.variable} h-full antialiased`}
     >
       <head>
         {/*

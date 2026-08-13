@@ -10,16 +10,8 @@ import {
   PillLink,
   SectionIntro,
   SplitHero,
-  StatBand,
 } from "@/components/ui";
-import {
-  cta,
-  homeFaqs,
-  howWeWork,
-  services,
-  site,
-  stats,
-} from "@/lib/site";
+import { cta, homeFaqs, howWeWork, services, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Shario — Digital Marketing Company in Dubai",
@@ -43,12 +35,13 @@ const stepTextures = [
   "/images/texture/desk.jpg",
 ];
 
-const serviceTextures: Record<string, string> = {
+const serviceImages: Record<string, string> = {
   "performance-marketing": "/images/texture/svc-performance.jpg",
   "seo-and-content": "/images/texture/svc-seo.jpg",
   "websites-and-cro": "/images/texture/svc-web.jpg",
   "crm-and-automation": "/images/texture/svc-crm.jpg",
   "brand-and-creative": "/images/texture/svc-brand.jpg",
+  "strategy-consulting": "/images/texture/svc-strategy.jpg",
 };
 
 export default function HomePage() {
@@ -84,19 +77,16 @@ export default function HomePage() {
         focus="object-[50%_28%]"
         title={
           <>
-            Identities
+            A Dubai Digital
             <br />
-            that break
+            Marketing Company
             <br />
-            the mold.
+            That Turns Spend
+            <br />
+            Into Revenue
           </>
         }
-        subhead={
-          <>
-            Strategy. Design. Digital.
-            <br />A Symphony of Identity.
-          </>
-        }
+        subhead={<em className="italic">A Symphony of Identity.</em>}
         href="/about"
         linkLabel="Inside Shario"
       >
@@ -167,18 +157,10 @@ export default function HomePage() {
               titleAs="h3"
               desc={service.descriptor}
               action="Learn more"
-              background={serviceTextures[service.slug]}
+              image={serviceImages[service.slug]}
               delay={i * 60}
             />
           ))}
-          <Card
-            href={cta.href}
-            title="Not sure which you need?"
-            desc="Tell us your goal and we will tell you which of these gets you there — and which you can leave until later."
-            action={cta.label}
-            background="/images/texture/svc-cta.jpg"
-            delay={services.length * 60}
-          />
         </CardGrid>
       </Band>
 
@@ -190,10 +172,10 @@ export default function HomePage() {
           sub="Four steps, run every week rather than every quarter."
         />
         {/*
-         * One texture per card, each used nowhere else on the site. They are
-         * crops of material — stone, paper, an interior, a desk — rather than
-         * photographs with a subject, so they read as the card's ground and
-         * leave the type at full contrast.
+         * One texture per card, each used nowhere else on the site — crops of
+         * material (stone, paper, an interior, a desk) shown at full clarity
+         * in their own block, the type held in a clean ground below rather
+         * than washed over the photograph.
          */}
         <CardGrid columns={4}>
           {howWeWork.map((step, i) => (
@@ -203,24 +185,12 @@ export default function HomePage() {
               title={step.title}
               titleAs="h3"
               desc={step.desc}
-              background={stepTextures[i]}
+              image={stepTextures[i]}
               delay={i * 60}
             />
           ))}
         </CardGrid>
       </Band>
-
-      <StatBand
-        eyebrow="Leading With Revenue"
-        title="Built on a record you can check."
-        body="Every engagement is run to a founder's standard and measured against revenue. That focus is what turns marketing into real growth."
-        stats={stats}
-        action={
-          <PillLink href={cta.href} tone="solidLight">
-            {cta.label}
-          </PillLink>
-        }
-      />
 
       {/* FAQ */}
       <Band>
@@ -229,19 +199,13 @@ export default function HomePage() {
           title="Frequently asked questions."
         />
         <div className="mx-auto max-w-[880px]">
-          <Faq items={homeFaqs} />
+          <Faq items={homeFaqs} answerClassName="font-body" />
         </div>
       </Band>
 
-      <CtaBand
-        title="Book a strategy call."
-        sub="In fifteen minutes we will map where your marketing can win more revenue and how to unlock it. Free, focused and specific to your business."
-        >
+      <CtaBand title="Have a question we haven't answered?">
         <PillLink href={cta.href} tone="solid" size="lg">
           {cta.label}
-        </PillLink>
-        <PillLink href={`mailto:${site.email}`} tone="outline" size="lg">
-          Email Us
         </PillLink>
       </CtaBand>
     </>

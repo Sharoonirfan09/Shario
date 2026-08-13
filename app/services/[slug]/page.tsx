@@ -14,7 +14,7 @@ import {
   SectionIntro,
   TypeHero,
 } from "@/components/ui";
-import { cta, getService, services, site } from "@/lib/site";
+import { cta, getService, homeFaqs, services, site } from "@/lib/site";
 
 /** Every service page is known at build time, so prerender them. */
 export function generateStaticParams() {
@@ -51,6 +51,7 @@ export default async function ServicePage({
   return (
     <>
       <TypeHero
+        src={service.heroImage}
         tone="carbon"
         eyebrow={service.category}
         title={service.title}
@@ -64,14 +65,7 @@ export default async function ServicePage({
             ]}
           />
         }
-      >
-        <PillLink
-          href={`${cta.href}?service=${encodeURIComponent(service.name)}`}
-          tone="solidLight"
-        >
-          {cta.label}
-        </PillLink>
-      </TypeHero>
+      />
 
       {/* What you get. The heading takes the service name unchanged —
           lower-casing it turns "SEO & Content" into "seo & content". */}
@@ -167,11 +161,13 @@ export default async function ServicePage({
         </CardGrid>
       </Band>
 
-      {/* FAQ */}
+      {/* FAQ — the same 26 questions as the homepage, not this service's own
+          four, so every service page shares one FAQ source and one set of
+          answers rather than each carrying a different subset. */}
       <Band className="bg-limestone/30">
         <SectionIntro eyebrow="FAQ" title="Questions, answered." />
         <div className="mx-auto max-w-[880px]">
-          <Faq items={service.faqs} />
+          <Faq items={homeFaqs} answerClassName="font-body" />
         </div>
       </Band>
 

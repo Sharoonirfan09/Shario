@@ -9,9 +9,8 @@ import {
   Hero,
   PillLink,
   SectionIntro,
-  StatBand,
 } from "@/components/ui";
-import { cta, founderLed, site, stats } from "@/lib/site";
+import { cta, founderLed, site, workPrinciples } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -24,24 +23,18 @@ export default function AboutPage() {
   return (
     <>
       <Hero
-        src="/images/book/corridor-dusk.jpg"
-        focus="object-[50%_55%]"
+        src="/images/book/about-frames.jpg"
+        focus="object-[50%_50%]"
         eyebrow="About Shario"
-        title="Built by an operator who has carried a revenue number."
-        subhead="Brands in Dubai deserve marketing that delivers real results, measured in revenue. Shario exists to deliver exactly that."
         priority
-      >
-        <PillLink href={cta.href} tone="solidLight">
-          {cta.label}
-        </PillLink>
-      </Hero>
+      />
 
       {/* The founder */}
       <Band>
         <div className="grid items-center gap-12 wide:grid-cols-[1fr_1.05fr] wide:gap-20">
           {/* Not `photo-lounge.jpg` — it has the retired positioning statement
               painted across the back wall. */}
-          <Frame src="/images/book/photo-shelf.jpg" ratio="aspect-[4/5]" />
+          <Frame src="/images/book/founder-stable.jpg" ratio="aspect-[4/5]" />
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
@@ -51,29 +44,42 @@ export default function AboutPage() {
               {site.founder}
             </Heading>
             <p className="reveal mt-6 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75">
-              A performance marketer and digital growth strategist with{" "}
-              {site.experience} of experience building revenue-focused marketing
-              across Dubai&rsquo;s real estate, hospitality and B2B sectors.
+              A performance marketer and digital growth strategist focused on
+              building brands that are clear, relevant and built to grow.
             </p>
             <p
               className="reveal mt-4 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75"
-              data-delay="90"
+              data-delay="80"
             >
-              Before founding Shario, he led marketing for developer-led real
-              estate launches and generated {site.revenue} in CRM-attributed
-              sales, earning a Marketing Excellence Award for campaign ROI. That
-              operator background shapes everything Shario does — strategy here
-              is written by someone who has carried a revenue target and
-              delivered on it.
+              Before founding SHARIO, Sharoon worked across Dubai&rsquo;s real
+              estate, hospitality and B2B sectors, leading marketing, digital
+              strategy and growth initiatives for ambitious businesses and
+              brands.
+            </p>
+            <p
+              className="reveal mt-4 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75"
+              data-delay="160"
+            >
+              That experience shaped SHARIO around a simple belief: good
+              marketing is not just about being seen. It is about knowing what
+              to say, where to say it, and why it matters.
+            </p>
+            <p
+              className="reveal mt-4 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75"
+              data-delay="240"
+            >
+              Today, that thinking sits at the heart of SHARIO — bringing
+              strategy, identity, digital and growth together under one clear
+              direction.
             </p>
             <div
               className="reveal mt-9 flex flex-wrap items-center gap-6"
-              data-delay="160"
+              data-delay="320"
             >
               <div>
                 <p className="font-display text-xl">{site.founder}</p>
                 <p className="mt-1 text-[0.8125rem] text-carbon/60">
-                  {site.founderRole}
+                  Revenue Marketing Architect
                 </p>
               </div>
               <a
@@ -110,12 +116,42 @@ export default function AboutPage() {
         </CardGrid>
       </Band>
 
-      <StatBand
-        eyebrow="Where We Work"
-        title="Dubai is the hardest auction in the region."
-        body="Competing here means going up against agencies with larger budgets and developers running their own in-house teams. The only durable advantage is knowing precisely what a lead is worth and refusing to pay more than that for it."
-        stats={stats}
-      />
+      {/* Where We Work — principles, not stats, so this sits outside StatBand's
+          figure/CountUp mechanism rather than repurposing it: "01"–"04" would
+          lose their leading zero the moment CountUp's animation finished. */}
+      <Band tone="carbon">
+        <div className="grid gap-12 wide:grid-cols-[1fr_1.15fr] wide:items-center wide:gap-24">
+          <div>
+            <p className="eyebrow flex items-center gap-3 text-porcelain/70">
+              <span aria-hidden="true" className="h-px w-6 bg-mist" />
+              Where We Work
+            </p>
+            <Heading scale="md" className="mt-5">
+              Built for brands ready to move with clarity.
+            </Heading>
+            <p className="mt-6 max-w-[480px] text-[0.9375rem] leading-[1.7] text-porcelain/70">
+              We work with ambitious businesses that understand growth takes
+              more than visibility. It takes a clear position, a strong
+              identity and a marketing system built to move people from
+              attention to action.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-x-8 gap-y-10 wide:gap-x-12">
+            {workPrinciples.map((item, i) => (
+              <div key={item.num} className="reveal ledger" data-delay={i * 70}>
+                <p className="ledger-figure ledger-figure-sm">{item.num}</p>
+                <p className="label-sm mt-4 text-porcelain/60">
+                  {item.title}
+                </p>
+                <p className="mt-2 text-[0.8125rem] leading-[1.6] text-porcelain/50">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Band>
 
       <CtaBand
         title="See if Shario is the right fit for your brand."

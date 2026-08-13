@@ -142,25 +142,39 @@ export function SiteHeader() {
                       }
                     }}
                   >
-                    <button
-                      type="button"
-                      onClick={() => setServicesOpen((open) => !open)}
-                      aria-expanded={servicesOpen}
-                      aria-current={active ? "page" : undefined}
-                      className={`flex cursor-pointer items-center gap-1.5 whitespace-nowrap text-xs uppercase tracking-[0.08em] transition-opacity duration-300 hover:opacity-100 ${
+                    <span
+                      className={`flex items-center gap-1.5 whitespace-nowrap text-xs uppercase tracking-[0.08em] ${
                         active ? "opacity-100" : "opacity-80"
                       }`}
                     >
-                      {item.label}
-                      <span
-                        aria-hidden="true"
-                        className={`text-[9px] transition-transform duration-300 ${
-                          servicesOpen ? "rotate-180" : ""
-                        }`}
+                      {/* The label navigates — the reference's "click Services,
+                          land on the index" — while the arrow stays a separate
+                          toggle so touch and keyboard can still open the
+                          dropdown without leaving the page. */}
+                      <Link
+                        href="/services"
+                        aria-current={active ? "page" : undefined}
+                        className="transition-opacity duration-300 hover:opacity-100"
                       >
-                        ▾
-                      </span>
-                    </button>
+                        {item.label}
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() => setServicesOpen((open) => !open)}
+                        aria-expanded={servicesOpen}
+                        aria-label="Toggle services menu"
+                        className="cursor-pointer p-1 transition-opacity duration-300 hover:opacity-100"
+                      >
+                        <span
+                          aria-hidden="true"
+                          className={`block text-[9px] transition-transform duration-300 ${
+                            servicesOpen ? "rotate-180" : ""
+                          }`}
+                        >
+                          ▾
+                        </span>
+                      </button>
+                    </span>
 
                     {servicesOpen && (
                       <div className="absolute left-1/2 top-full w-[620px] -translate-x-1/2 pt-5">

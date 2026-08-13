@@ -294,6 +294,7 @@ export function Card({
   href,
   action,
   background,
+  image,
   titleAs: Title = "p",
   tone = "porcelain",
   delay = 0,
@@ -310,6 +311,13 @@ export function Card({
    * subject would compete with the text sitting on it.
    */
   background?: string;
+  /**
+   * An editorial photograph in its own bounded block at the card's head,
+   * full clarity rather than washed behind a scrim — for sets where the
+   * image is the subject, not the ground. Mutually exclusive with
+   * `background`.
+   */
+  image?: string;
   titleAs?: "p" | "h3";
   tone?: Tone;
   delay?: number;
@@ -318,6 +326,37 @@ export function Card({
 
   const body = (
     <>
+      {image && (
+        <div className="relative -mx-7 -mt-7 mb-6 aspect-[4/3] overflow-hidden wide:-mx-8 wide:-mt-8 wide:mb-7">
+          <Image
+            src={image}
+            alt=""
+            fill
+            sizes="(min-width: 880px) 33vw, 100vw"
+            className="object-cover"
+          />
+          {badge && (
+            <span
+              aria-hidden="true"
+              className="absolute left-7 top-7 flex h-11 w-11 shrink-0 items-center justify-center bg-porcelain/80 font-display text-[1.0625rem] text-carbon backdrop-blur-sm wide:left-8 wide:top-8"
+            >
+              {badge}
+            </span>
+          )}
+          {/*
+           * Only the seam gets an overlay — a short fade at the image's foot
+           * so it meets the card's ground on a soft edge rather than a hard
+           * line. The photograph itself stays at full clarity; nothing washes
+           * over the subject.
+           */}
+          <div
+            aria-hidden="true"
+            className={`pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t ${
+              dark ? "from-carbon" : "from-porcelain"
+            } to-transparent`}
+          />
+        </div>
+      )}
       {background && (
         <>
           <Image
@@ -355,7 +394,7 @@ export function Card({
           <span aria-hidden="true" className="mb-6 block h-11" />
         </>
       )}
-      {badge && (
+      {badge && !image && (
         <span
           aria-hidden="true"
           className={`mb-6 flex h-11 w-11 shrink-0 items-center justify-center font-display text-[1.0625rem] ${
@@ -455,7 +494,7 @@ export function Hero({
 }: {
   src: string;
   eyebrow: string;
-  title: ReactNode;
+  title?: ReactNode;
   subhead?: string;
   scale?: keyof typeof heroScale;
   focus?: string;
@@ -489,12 +528,14 @@ export function Hero({
           <span aria-hidden="true" className="h-px w-7 bg-mist" />
           {eyebrow}
         </p>
-        <h1
-          className={`rise mt-6 max-w-[1000px] font-display font-normal leading-[1.04] ${s.title}`}
-          style={{ animationDelay: "140ms" }}
-        >
-          {title}
-        </h1>
+        {title && (
+          <h1
+            className={`rise mt-6 max-w-[1000px] font-display font-normal leading-[1.04] ${s.title}`}
+            style={{ animationDelay: "140ms" }}
+          >
+            {title}
+          </h1>
+        )}
         {subhead && (
           <p
             className="rise mt-7 max-w-[600px] text-[1.0625rem] leading-[1.7] text-porcelain/85 wide:text-[1.1875rem]"
@@ -587,19 +628,20 @@ export function SplitHero({
             </p>
           )}
           {/*
-           * `hero-display`, not `font-display` — the client asked for the
-           * reference's heavy condensed uppercase headline here specifically.
-           * The measure holds the block near the reference's width, but the
-           * three lines are broken in the `title` itself: the reference splits
-           * on sense rather than on fit, and a character measure wide enough
-           * for its longest line lets the first two words ride up together.
+           * `hero-display`, not `font-display` — the SHARIO type system's
+           * editorial serif headline treatment, scoped to this one hero.
+           * Lines are broken on sense in the `title` itself rather than left
+           * to wrap: no character-measure cap here, since one was tuned to a
+           * previous headline's width and just forces an extra, unwanted
+           * break on any other copy. The column (`wide:w-[52%]` above) is
+           * what actually bounds the width once past mobile.
            *
            * The top margin belongs to the eyebrow above it, so it goes when the
            * eyebrow does — otherwise the headline sits low in a hero that is
            * meant to open on it.
            */}
           <h1
-            className={`hero-display rise max-w-[13ch] text-[3rem] wide:text-[clamp(3.75rem,6.4vw,6rem)] ${
+            className={`hero-display rise text-[2.25rem] wide:text-[clamp(2.625rem,3.125vw,3rem)] ${
               eyebrow ? "mt-7" : ""
             }`}
             style={{ animationDelay: "140ms" }}
@@ -608,7 +650,7 @@ export function SplitHero({
           </h1>
           {subhead && (
             <p
-              className="rise mt-7 max-w-[440px] font-display text-[1.1875rem] leading-[1.55] text-carbon/65 wide:text-[1.3125rem]"
+              className="rise mt-7 max-w-[440px] font-body text-[1.1875rem] leading-[1.55] text-carbon/65 wide:text-[1.3125rem]"
               style={{ animationDelay: "280ms" }}
             >
               {subhead}
@@ -718,6 +760,8 @@ export function Breadcrumb({
  * exists and matches the reference besides.
  */
 export function TypeHero({
+  src,
+  focus,
   eyebrow,
   title,
   subhead,
@@ -725,6 +769,9 @@ export function TypeHero({
   breadcrumb,
   children,
 }: {
+  /** An optional photograph behind the band, dark carbon text always wins over it. */
+  src?: string;
+  focus?: string;
   eyebrow: string;
   title: ReactNode;
   subhead?: string;
@@ -732,24 +779,37 @@ export function TypeHero({
   breadcrumb?: ReactNode;
   children?: ReactNode;
 }) {
-  const dark = tone === "carbon";
+  const dark = tone === "carbon" || Boolean(src);
 
   return (
     // The carbon variant carries the header the same way a photographic hero
     // does — pulled up under the bar, then padded back down.
     <section
-      className={
+      className={`relative ${
         dark
           ? "bg-carbon text-porcelain mt-[calc(-1*var(--header-h))]"
           : "border-b border-carbon/12"
-      }
+      }`}
     >
+      {src && (
+        <>
+          <Image
+            src={src}
+            alt=""
+            fill
+            sizes="100vw"
+            className={`object-cover ${focus ?? ""}`}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-carbon/20 to-carbon/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-carbon/80 via-carbon/30 to-transparent" />
+        </>
+      )}
       <Container
-        className={
+        className={`relative z-10 ${
           dark
             ? "pb-14 pt-[calc(var(--header-h)+3rem)] wide:pb-24 wide:pt-[calc(var(--header-h)+4.5rem)]"
             : "pb-14 pt-12 wide:pb-24 wide:pt-20"
-        }
+        }`}
       >
         {breadcrumb}
         <p

@@ -5,7 +5,6 @@ import {
   Band,
   Card,
   CardGrid,
-  Figure,
   Heading,
   PillLink,
   SectionIntro,
@@ -24,6 +23,8 @@ export default function ContactPage() {
   return (
     <>
       <TypeHero
+        src="/images/book/contact-archway.jpg"
+        focus="object-[50%_40%]"
         tone="carbon"
         eyebrow="Contact"
         title="Work with Shario."
@@ -60,13 +61,6 @@ export default function ContactPage() {
           </div>
 
           <div className="flex flex-col gap-8 border-carbon/15 wide:gap-10 wide:border-l wide:pl-16">
-            <Figure
-              src="/images/book/stat-envelope.jpg"
-              label="One business day"
-              caption="Enquiries are answered by the person who would run the account, not by a form autoresponder."
-              ratio="aspect-[4/3]"
-              sizes="(min-width: 880px) 32vw, 100vw"
-            />
             <Detail label="Email">
               <a
                 href={`mailto:${site.email}`}

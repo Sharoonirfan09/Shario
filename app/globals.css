@@ -26,8 +26,6 @@
   --font-display: var(--font-cormorant), Georgia, serif;
   --font-body: var(--font-eb-garamond), Georgia, serif;
   --font-label: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
-  /* Home hero headline only — see `.hero-display`. */
-  --font-condensed: var(--font-anton), "Arial Narrow", Impact, sans-serif;
 
   --spacing-gutter: clamp(1.5rem, 5vw, 6rem);
 
@@ -93,21 +91,14 @@ body {
   letter-spacing: -0.018em;
 }
 
-/* The home hero's opening statement, and nothing else on the site. The client's
-   reference sets it in a heavy condensed uppercase sans; every other headline
-   stays in `.display`/`.title`. Scoped to one class so it cannot leak. */
+/* The home hero's opening statement, and nothing else on the site. Set in the
+   SHARIO type system's editorial display serif. Scoped to one class so it
+   cannot leak. */
 .hero-display {
-  font-family: var(--font-condensed);
+  font-family: var(--font-display);
   font-weight: 400;
-  text-transform: uppercase;
-  /* Anton's caps stand ~0.87em tall, so 0.86 made the line advance shorter than
-     the letters themselves and the three lines closed up into one solid block
-     of ink — no daylight between them at any size. The reference leaves a gap
-     of about 0.18 of the cap height, which needs roughly 1.02. Measured off the
-     reference rather than guessed: the naive figure from Anton's nominal
-     cap-height metric is ~0.85, and it is wrong for what actually renders. */
-  line-height: 1.02;
-  letter-spacing: 0.004em;
+  line-height: 1.1;
+  letter-spacing: 0.012em;
 }
 
 .title {

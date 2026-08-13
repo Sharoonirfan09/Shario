@@ -6,10 +6,9 @@ import {
   CtaBand,
   PillLink,
   SectionIntro,
-  StatBand,
   TypeHero,
 } from "@/components/ui";
-import { cta, services, stats } from "@/lib/site";
+import { cta, services } from "@/lib/site";
 
 /**
  * Card grounds for this page.
@@ -41,15 +40,13 @@ export default function ServicesPage() {
           hero and sets its type in Porcelain, so a light hero would swallow
           the navigation. */}
       <TypeHero
+        src="/images/book/services-lounge.jpg"
+        focus="object-[50%_60%]"
         tone="carbon"
         eyebrow="Services"
         title="Digital marketing services in Dubai."
         subhead="Shario delivers the full marketing system a Dubai brand needs to generate demand and convert it into revenue. Engage one service, or the entire funnel."
-      >
-        <PillLink href={cta.href} tone="solidLight">
-          {cta.label}
-        </PillLink>
-      </TypeHero>
+      />
 
       <Band>
         <SectionIntro
@@ -81,13 +78,6 @@ export default function ServicesPage() {
           />
         </CardGrid>
       </Band>
-
-      <StatBand
-        eyebrow="Why It Works"
-        title="Every service is measured against revenue."
-        body="Not impressions, not rankings for their own sake. Each engagement reports weekly against pipeline and closed sales."
-        stats={stats}
-      />
 
       <CtaBand
         title="Book a strategy call."

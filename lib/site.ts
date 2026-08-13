@@ -29,9 +29,9 @@ export const site = {
     "Shario is a founder-led digital marketing company in Dubai building marketing systems that produce sales — performance marketing, SEO, websites and CRM attribution.",
   location: "Dubai, UAE",
   studio: "Dubai, United Arab Emirates",
-  phone: "+971 56 121 7647",
-  phoneHref: "+971561217647",
-  email: "sharoon.irfan99@gmail.com",
+  phone: "+971 50 467 9095",
+  phoneHref: "+971504679095",
+  email: "info@shario.ae",
   website: "www.shario.ae",
   linkedin: "https://linkedin.com/in/sharoonirfan",
   founder: "Sharoon Irfan",
@@ -70,33 +70,143 @@ export const stats = [
 ] as const;
 
 /**
- * The homepage FAQ. The reference site answers the four questions a buyer asks
- * before enquiring; these are the Dubai equivalents. Kept distinct from the
- * per-service FAQs — those answer "how does this service work", these answer
- * "should I talk to you at all".
+ * The homepage FAQ. Kept distinct from the per-service FAQs — those answer
+ * "how does this service work", these answer "should I talk to you at all".
  */
 export const homeFaqs = [
   {
-    q: "How long until I see results?",
-    a: "Paid campaigns produce leads in the first fortnight, and the first six to eight weeks are spent finding what holds up at volume. SEO and content compound over three to six months. Anyone promising faster on organic is guessing.",
+    q: "What does SHARIO do?",
+    a: "SHARIO brings strategy, digital, creative and growth together to build clearer brands and stronger marketing systems.",
   },
   {
-    q: "Do you actually know the Dubai market?",
-    a: "The AED 35M+ was generated here, in developer-led real estate — the most contested advertising auction in the region. That is the market this company was built in, not one it expanded into.",
+    q: "What services do you offer?",
+    a: "Our core services include Performance Marketing, SEO & Content, Websites & CRO, CRM & Automation, Brand & Creative, and Strategy & Consulting.",
   },
   {
-    q: "How do you report on performance?",
-    a: "Weekly, against pipeline and closed revenue rather than impressions. Every campaign is tied back to attributable revenue through the CRM, so you can see what each dirham bought.",
+    q: "Do you work with businesses in Dubai only?",
+    a: "SHARIO is based in Dubai and works with brands across the UAE and beyond.",
   },
   {
-    q: "Can we start with one service?",
-    a: "Yes. Most engagements start with the single channel where the leverage is clearest, then extend once it is returning. You are not asked to buy the whole funnel to begin.",
+    q: "How do we start working with SHARIO?",
+    a: "Every engagement starts with a conversation. We first understand your goals, challenges and current marketing setup, then recommend the right direction.",
+  },
+  {
+    q: "Do you offer individual services or complete marketing systems?",
+    a: "Both. We can support a specific need or bring multiple disciplines together into one connected system.",
+  },
+  {
+    q: "How long does an engagement typically take?",
+    a: "It depends on the scope. After understanding your requirements, we define the appropriate timeline and deliverables before work begins.",
+  },
+  {
+    q: "Do you work with existing brands?",
+    a: "Yes. We work with brands that need clearer positioning, stronger digital experiences, better performance or a more connected marketing system.",
+  },
+  {
+    q: "Can SHARIO build and manage our website?",
+    a: "Yes. Website work can cover strategy, structure, design, development, SEO-ready architecture, conversion and ongoing optimisation.",
+  },
+  {
+    q: "Do you provide ongoing marketing support?",
+    a: "Yes. Depending on the engagement, SHARIO can support ongoing strategy, performance, SEO, creative, CRM and digital growth.",
+  },
+  {
+    q: "How do I know which service I need?",
+    a: "You don't have to figure it out alone. Tell us what you're trying to achieve, and we'll identify the most relevant starting point.",
+  },
+  {
+    q: "What industries does SHARIO work with?",
+    a: "We work with ambitious businesses and brands across sectors where positioning, digital presence and measurable growth matter.",
+  },
+  {
+    q: "Can you work with our existing marketing team?",
+    a: "Yes. SHARIO can work alongside internal teams, existing partners or specialist suppliers.",
+  },
+  {
+    q: "Do you provide strategy before execution?",
+    a: "Yes. We believe execution is stronger when it is built around a clear strategic direction.",
+  },
+  {
+    q: "Can you help reposition an existing brand?",
+    a: "Yes. We can help clarify positioning, refine messaging and create a stronger expression of the brand.",
+  },
+  {
+    q: "Can you improve an existing website rather than build a new one?",
+    a: "Yes. We can assess the existing experience and identify opportunities across structure, UX, SEO, conversion and performance.",
+  },
+  {
+    q: "Do you provide SEO as a standalone service?",
+    a: "Yes. SEO can be approached as a standalone engagement or integrated with content, website and broader digital strategy.",
+  },
+  {
+    q: "Do you manage paid advertising?",
+    a: "Yes. Performance Marketing covers paid media across relevant platforms, with a focus on qualified demand and measurable outcomes.",
+  },
+  {
+    q: "Can you create content for our brand?",
+    a: "Yes. Content can include strategic messaging, social content, campaign creative and marketing collateral.",
+  },
+  {
+    q: "Do you offer CRM and marketing automation?",
+    a: "Yes. We can help connect marketing activity, CRM and automation so leads and customer journeys are managed more effectively.",
+  },
+  {
+    q: "What happens after the initial strategy?",
+    a: "The strategy becomes the foundation for the next stage — whether that means brand work, digital execution, performance marketing, website development or ongoing growth support.",
+  },
+  {
+    q: "Do you offer custom solutions?",
+    a: "Yes. We build the scope around the problem that needs solving.",
+  },
+  {
+    q: "Can SHARIO work on a project basis?",
+    a: "Yes. Specific projects can be scoped around defined objectives, deliverables and timelines.",
+  },
+  {
+    q: "Can we start with just one service?",
+    a: "Yes. You can begin with a specific requirement and expand into other areas as your needs evolve.",
+  },
+  {
+    q: "How do you measure success?",
+    a: "Success depends on the objective. We focus on meaningful business and marketing outcomes rather than vanity metrics alone.",
+  },
+  {
+    q: "What makes SHARIO different?",
+    a: "We connect strategy, identity, digital and growth instead of treating them as isolated pieces.",
+  },
+  {
+    q: "How can I speak with SHARIO?",
+    a: "Book a strategy call and tell us what you're trying to achieve. We'll take it from there.",
   },
 ] as const;
 
 /* -------------------------------------------------------------------------- */
 /* About                                                                       */
 /* -------------------------------------------------------------------------- */
+
+/** The four principles in the About page's "Where We Work" band. */
+export const workPrinciples = [
+  {
+    num: "01",
+    title: "Strategy first",
+    desc: "Every strong outcome begins with knowing what matters, who it is for and where to focus.",
+  },
+  {
+    num: "02",
+    title: "Built to connect",
+    desc: "Strategy, identity, digital and growth work together rather than in isolation.",
+  },
+  {
+    num: "03",
+    title: "Made for momentum",
+    desc: "We create systems that can evolve with the brand, the market and the next stage of growth.",
+  },
+  {
+    num: "04",
+    title: "Founder-led thinking",
+    desc: "SHARIO stays close to the decisions that shape the brand and the business.",
+  },
+] as const;
 
 /** "What Founder-Led Means for You". */
 export const founderLed = [
@@ -192,6 +302,8 @@ export type Service = {
   category: string;
   /** Hero heading. */
   title: string;
+  /** The banner photograph behind the hero. Never used anywhere else on the site. */
+  heroImage: string;
   /** The one-line description shown in the services grid. */
   descriptor: string;
   /** Italic hero subhead. */
@@ -227,6 +339,7 @@ export const services: Service[] = [
     name: "Performance Marketing",
     category: "Reach & Performance",
     title: "Performance Marketing.",
+    heroImage: "/images/book/hero-performance.jpg",
     descriptor:
       "Google Ads and Meta Ads engineered for qualified leads at below-target cost per lead.",
     subhead: "Paid media judged on pipeline, not impressions.",
@@ -284,18 +397,18 @@ export const services: Service[] = [
     ],
     images: [
       {
-        src: "/images/book/desk-shelving.jpg",
+        src: "/images/detail/performance-1.jpg",
         label: "The account room",
         caption: "Campaigns are reviewed weekly against pipeline, not monthly against impressions.",
-        width: 1122,
-        height: 1402,
+        width: 933,
+        height: 1400,
       },
       {
-        src: "/images/detail/pair-performance.jpg",
+        src: "/images/detail/performance-2.jpg",
         label: "Held to a number",
         caption: "Every campaign carries a target cost per lead, agreed before it goes live.",
-        width: 314,
-        height: 392,
+        width: 933,
+        height: 1400,
       },
     ],
     ctaTitle: ["Let's put the spend", "where it returns."],
@@ -308,6 +421,7 @@ export const services: Service[] = [
     name: "SEO & Content",
     category: "Reach & Performance",
     title: "SEO & Content.",
+    heroImage: "/images/book/hero-seo.jpg",
     descriptor:
       "Technical SEO, on-page optimisation and content built to rank in Dubai search and win AI-driven results.",
     subhead: "Demand that keeps arriving after the budget stops.",
@@ -365,18 +479,18 @@ export const services: Service[] = [
     ],
     images: [
       {
-        src: "/images/detail/sketches.jpg",
+        src: "/images/detail/seo-1.jpg",
         label: "Structure first",
         caption: "Indexing, architecture and internal linking are planned before a word is written.",
-        width: 651,
-        height: 631,
+        width: 933,
+        height: 1400,
       },
       {
-        src: "/images/detail/pair-seo.jpg",
+        src: "/images/detail/seo-2.jpg",
         label: "Written to be read",
         caption: "Content is commissioned against what buyers actually search, not against a volume list.",
-        width: 505,
-        height: 489,
+        width: 1120,
+        height: 1400,
       },
     ],
     ctaTitle: ["Let's make the brand", "easier to find."],
@@ -389,6 +503,7 @@ export const services: Service[] = [
     name: "Websites & CRO",
     category: "Web & Build",
     title: "Websites & CRO.",
+    heroImage: "/images/book/hero-web.jpg",
     descriptor:
       "High-converting websites with SEO-ready architecture, custom landing pages and CRM-integrated funnels.",
     subhead: "Built around the sales process, not the sitemap.",
@@ -446,18 +561,18 @@ export const services: Service[] = [
     ],
     images: [
       {
-        src: "/images/detail/workspace.jpg",
+        src: "/images/detail/web-1.jpg",
         label: "Built around the sale",
         caption: "Every build starts from how your sales team actually closes, not from the sitemap.",
-        width: 785,
-        height: 771,
+        width: 1050,
+        height: 1400,
       },
       {
-        src: "/images/detail/pair-web.jpg",
+        src: "/images/detail/web-2.jpg",
         label: "Tested, then kept",
         caption: "Layout and copy changes ship behind measurement, so a win can be told from a hunch.",
-        width: 426,
-        height: 418,
+        width: 933,
+        height: 1400,
       },
     ],
     ctaTitle: ["Let's build the site", "that actually converts."],
@@ -470,6 +585,7 @@ export const services: Service[] = [
     name: "CRM & Automation",
     category: "Data & Systems",
     title: "CRM & Automation.",
+    heroImage: "/images/book/hero-crm.jpg",
     descriptor:
       "Attribution tracking and marketing automation that tie every dirham of spend to pipeline and closed revenue.",
     subhead: "Every dirham of spend, traced to a closed sale.",
@@ -527,18 +643,18 @@ export const services: Service[] = [
     ],
     images: [
       {
-        src: "/images/book/stat-letterhead.jpg",
+        src: "/images/detail/crm-1.jpg",
         label: "Documented, then handed over",
         caption: "The configuration is built in your account and written down, so nothing depends on us.",
-        width: 1086,
-        height: 1448,
+        width: 1056,
+        height: 1400,
       },
       {
-        src: "/images/detail/pair-crm.jpg",
+        src: "/images/detail/crm-2.jpg",
         label: "One record per lead",
         caption: "Source, score and outcome held in one place — which is what makes attribution possible.",
-        width: 449,
-        height: 599,
+        width: 934,
+        height: 1400,
       },
     ],
     ctaTitle: ["Let's connect the spend", "to the pipeline."],
@@ -551,6 +667,7 @@ export const services: Service[] = [
     name: "Brand & Creative",
     category: "Brand & Creative",
     title: "Brand & Creative.",
+    heroImage: "/images/book/hero-brand.jpg",
     descriptor:
       "Brand identity, campaign visuals, social creative and marketing collateral produced to a launch standard.",
     subhead: "Creative held to the standard the campaign is spending at.",
@@ -608,23 +725,108 @@ export const services: Service[] = [
     ],
     images: [
       {
-        src: "/images/detail/materials.jpg",
+        src: "/images/detail/brand-1.jpg",
         label: "Direction before production",
         caption: "Material, colour and typographic direction are set before a single asset is made.",
-        width: 583,
-        height: 771,
+        width: 1001,
+        height: 1400,
       },
       {
-        src: "/images/detail/pair-brand.jpg",
+        src: "/images/detail/brand-2.jpg",
         label: "Made to be tested",
         caption: "Creative ships in variants, because the winning execution is rarely the first one.",
-        width: 292,
-        height: 386,
+        width: 788,
+        height: 1400,
       },
     ],
     ctaTitle: ["Let's make the creative", "worth the spend."],
     metaDescription:
       "Brand and creative in Dubai — brand identity, campaign visuals, social and paid ad creative and marketing collateral produced to a launch standard.",
+  },
+  {
+    slug: "strategy-consulting",
+    num: "06",
+    name: "Strategy & Consulting",
+    category: "Strategy & Growth",
+    title: "Strategy & Consulting.",
+    // Pending a replacement photo — the one supplied for this hero duplicated
+    // Brand & Creative's card image (`svc-brand.jpg`), which `check:images`
+    // forbids. Empty string renders no hero background, same as before.
+    heroImage: "",
+    descriptor:
+      "Go-to-market strategy, marketing audits and channel planning that turn a fragmented budget into one coherent plan.",
+    subhead: "A plan before the spend, not instead of it.",
+    lead: "Most marketing budgets are not underfunded — they are unplanned, spread across channels that were never asked to work together.",
+    whatWeDo: [
+      "Go-to-market and channel strategy",
+      "Marketing audits and diagnostics",
+      "Budget planning and channel mix",
+      "Quarterly roadmaps and OKRs",
+      "Leadership reporting and advisory",
+    ],
+    benefits: [
+      {
+        title: "One plan",
+        desc: "Every channel working from the same targets, instead of several teams optimising in isolation.",
+      },
+      {
+        title: "Clear priorities",
+        desc: "A roadmap that says what to fund first and what to leave until it has earned the budget.",
+      },
+      {
+        title: "Faster decisions",
+        desc: "A standing point of reference, so spend decisions do not wait on a quarterly review.",
+      },
+      {
+        title: "Senior input",
+        desc: "Direct access to the strategist accountable for the plan, not an account manager relaying it.",
+      },
+    ],
+    deliverables: [
+      "Marketing and channel audit",
+      "Go-to-market strategy document",
+      "Budget and channel allocation plan",
+      "Quarterly roadmap and OKRs",
+      "Monthly strategy and performance review",
+      "Leadership-ready reporting",
+    ],
+    faqs: [
+      {
+        q: "Do we need this if we already work with your other teams?",
+        a: "Not always — most clients bring this in once the channels are already running but nobody owns how they fit together. If you are starting from zero, the strategy is usually built into the first engagement instead.",
+      },
+      {
+        q: "Is this a one-off project or ongoing?",
+        a: "Both are available. Most engagements start with a one-off audit and roadmap, then move to a monthly retainer once the plan is being executed.",
+      },
+      {
+        q: "Can you advise without running the channels yourselves?",
+        a: "Yes. Some clients want an independent read on an in-house or multi-agency setup — we advise on the plan without needing to hold the media budget.",
+      },
+      {
+        q: "Who do you report to?",
+        a: "Whoever owns the number — usually a founder or marketing lead. Reporting is built to be read in a leadership meeting, not decoded afterward.",
+      },
+    ],
+    images: [
+      {
+        src: "/images/detail/strategy-1.jpg",
+        label: "Where the plan gets made",
+        caption: "Strategy is set at a desk, then handed to the channels built to run it.",
+        width: 934,
+        height: 1400,
+      },
+      {
+        src: "/images/detail/strategy-2.jpg",
+        label: "Written down, not assumed",
+        caption: "Every roadmap is documented, so the plan survives past whoever is in the room.",
+        width: 1120,
+        height: 1400,
+      },
+    ],
+    ctaTitle: ["Let's build the plan", "the spend can follow."],
+    metaDescription:
+      "Marketing strategy and consulting in Dubai — go-to-market strategy, marketing audits and channel planning that turn a fragmented budget into one coherent plan.",
   },
 ];
 
