@@ -50,7 +50,7 @@ export const nav = [
 
 /** The action repeated in the header, every hero and every closing band. */
 export const cta = {
-  label: "Book a Strategy Call",
+  label: "Let's Connect",
   href: "/contact",
 } as const;
 
@@ -176,7 +176,7 @@ export const homeFaqs = [
   },
   {
     q: "How can I speak with SHARIO?",
-    a: "Book a strategy call and tell us what you're trying to achieve. We'll take it from there.",
+    a: "Let's connect — tell us what you're trying to achieve and we'll take it from there.",
   },
 ] as const;
 

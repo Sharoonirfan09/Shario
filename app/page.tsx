@@ -77,9 +77,7 @@ export default function HomePage() {
         focus="object-[50%_28%]"
         title={
           <>
-            A Dubai Digital
-            <br />
-            Marketing Company
+            Digital Marketing
             <br />
             That Turns Spend
             <br />

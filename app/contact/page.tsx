@@ -27,8 +27,6 @@ export default function ContactPage() {
         focus="object-[50%_40%]"
         tone="carbon"
         eyebrow="Contact"
-        title="Work with Shario."
-        subhead="Whether you are launching a project, scaling lead flow, or improving marketing that should convert better — the first step is a conversation."
       >
         <PillLink href={`tel:${site.phoneHref}`} tone="solidLight">
           Call {site.phone}
@@ -41,7 +39,7 @@ export default function ContactPage() {
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
-              Book a Strategy Call
+              Let&rsquo;s Connect
             </p>
             <Heading scale="sm" className="mt-5">
               Fifteen minutes, free.

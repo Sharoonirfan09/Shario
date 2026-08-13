@@ -55,7 +55,6 @@ export default async function ServicePage({
         tone="carbon"
         eyebrow={service.category}
         title={service.title}
-        subhead={service.lead}
         breadcrumb={
           <Breadcrumb
             items={[
@@ -89,20 +88,17 @@ export default async function ServicePage({
         </CardGrid>
       </Band>
 
-      {/* Scope and deliverables, opened by this page's one photograph */}
+      {/* Scope and deliverables, opened by this page's photograph pair.
+          Both frames are held to the same 2:3 ratio — a fixed system rather
+          than each image's own proportion — so every one of the six service
+          pages shows the identical pair layout. */}
       <Band className="bg-limestone/30">
-        {/*
-         * A pair, never a single full-width band. Each is rendered at its own
-         * pixel dimensions so nothing is cropped, and the two in a row share a
-         * ratio so their bottoms line up.
-         */}
         <div className="mb-14 grid gap-8 wide:mb-20 wide:grid-cols-2 wide:gap-10">
           {service.images.map((image) => (
             <Figure
               key={image.src}
               src={image.src}
-              width={image.width}
-              height={image.height}
+              ratio="aspect-[2/3]"
               label={image.label}
               caption={image.caption}
               sizes="(min-width: 880px) 46vw, 100vw"

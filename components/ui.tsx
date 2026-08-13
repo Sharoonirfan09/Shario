@@ -773,7 +773,8 @@ export function TypeHero({
   src?: string;
   focus?: string;
   eyebrow: string;
-  title: ReactNode;
+  /** Omit on pages whose hero should show only the page name — About's pattern. */
+  title?: ReactNode;
   subhead?: string;
   tone?: "porcelain" | "carbon";
   breadcrumb?: ReactNode;
@@ -820,12 +821,14 @@ export function TypeHero({
           <span aria-hidden="true" className="h-px w-7 bg-mist" />
           {eyebrow}
         </p>
-        <h1
-          className="rise mt-6 max-w-[900px] font-display text-[2.5rem] font-normal leading-[1.05] wide:text-[clamp(3rem,5.4vw,4.75rem)]"
-          style={{ animationDelay: "140ms" }}
-        >
-          {title}
-        </h1>
+        {title && (
+          <h1
+            className="rise mt-6 max-w-[900px] font-display text-[2.25rem] font-normal leading-[1.08] wide:text-[clamp(2.5rem,3.8vw,3.5rem)]"
+            style={{ animationDelay: "140ms" }}
+          >
+            {title}
+          </h1>
+        )}
         {subhead && (
           <p
             className={`rise mt-7 max-w-[620px] text-[1.0625rem] leading-[1.7] wide:text-[1.1875rem] ${

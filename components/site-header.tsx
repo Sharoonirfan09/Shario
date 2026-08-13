@@ -177,7 +177,7 @@ export function SiteHeader() {
                     </span>
 
                     {servicesOpen && (
-                      <div className="absolute left-1/2 top-full w-[620px] -translate-x-1/2 pt-5">
+                      <div className="absolute left-1/2 top-full w-[640px] -translate-x-1/2 pt-5">
                         {/* Grouped by category, as the reference's mega menu
                             sets it — two columns of labelled groups. */}
                         {/*
@@ -187,8 +187,8 @@ export function SiteHeader() {
                          * explicit ink the service names inherit Porcelain and
                          * disappear into it.
                          */}
-                        <div className="border border-carbon/12 bg-porcelain p-7 text-carbon shadow-[0_24px_60px_-24px_rgba(37,37,37,0.35)]">
-                          <div className="grid grid-cols-2 gap-x-8 gap-y-7">
+                        <div className="border border-carbon/12 bg-porcelain p-8 text-carbon shadow-[0_28px_70px_-24px_rgba(37,37,37,0.4)]">
+                          <div className="grid grid-cols-2 gap-x-10 gap-y-8">
                             {servicesByCategory().map((group) => (
                               <div key={group.category}>
                                 <p className="eyebrow mb-3 flex items-center gap-2.5 text-carbon/50">
@@ -198,34 +198,41 @@ export function SiteHeader() {
                                   />
                                   {group.category}
                                 </p>
-                                {group.items.map((service) => (
-                                  <Link
-                                    key={service.slug}
-                                    href={`/services/${service.slug}`}
-                                    className="-mx-3 flex items-baseline gap-3 px-3 py-2 transition-colors duration-300 hover:bg-limestone/40"
-                                  >
-                                    <span className="font-display text-[0.8125rem] text-carbon/40">
-                                      {service.num}
-                                    </span>
-                                    <span className="font-display text-[1.0625rem]">
-                                      {service.name}
-                                    </span>
-                                  </Link>
-                                ))}
+                                <div className="flex flex-col">
+                                  {group.items.map((service) => (
+                                    <Link
+                                      key={service.slug}
+                                      href={`/services/${service.slug}`}
+                                      className="group/item -mx-3 flex items-baseline gap-3 border-l-2 border-transparent px-3 py-2.5 transition-colors duration-300 hover:border-mist hover:bg-mist/15"
+                                    >
+                                      <span className="font-display text-[0.8125rem] text-carbon/40 transition-colors duration-300 group-hover/item:text-carbon/70">
+                                        {service.num}
+                                      </span>
+                                      <span className="font-display text-[1.0625rem] text-carbon">
+                                        {service.name}
+                                      </span>
+                                    </Link>
+                                  ))}
+                                </div>
                               </div>
                             ))}
                           </div>
 
-                          <div className="mt-6 flex items-center justify-between gap-6 border-t border-carbon/12 pt-5">
+                          <div className="mt-7 flex items-center justify-between gap-6 border-t border-carbon/12 pt-6">
                             <p className="text-[0.8125rem] text-carbon/60">
                               Full-funnel marketing, end to end.
                             </p>
                             <Link
                               href="/services"
-                              className="eyebrow flex shrink-0 items-center gap-2 text-carbon/70 transition-colors duration-300 hover:text-carbon"
+                              className="group/all eyebrow flex shrink-0 items-center gap-2 text-carbon/70 transition-colors duration-300 hover:text-carbon"
                             >
                               See all services
-                              <span aria-hidden="true">→</span>
+                              <span
+                                aria-hidden="true"
+                                className="transition-transform duration-300 group-hover/all:translate-x-1"
+                              >
+                                →
+                              </span>
                             </Link>
                           </div>
                         </div>
