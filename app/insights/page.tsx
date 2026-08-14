@@ -24,9 +24,9 @@ const DEFAULT_DESCRIPTION =
  * fallback) reuses the same reference instead of quoting the path again —
  * `check:images` flags any path quoted more than once.
  */
-export const HERO_IMAGE = "/images/insights/insights-banner-editorial-walk.jpg";
+export const HERO_IMAGE = "/images/insights/insights-banner-sunlit-wall.jpg";
 export const HERO_IMAGE_ALT =
-  "A woman in a wide-brimmed hat walking past a stone colonnade, in black and white";
+  "A woman in a beige trench coat and sunglasses standing against a sunlit stone wall, sharp diagonal shadows cast across the scene";
 
 /**
  * Generated rather than static, so each category — reached via `?category=`
@@ -87,7 +87,7 @@ export default async function InsightsPage({
       <Hero
         src={HERO_IMAGE}
         alt={HERO_IMAGE_ALT}
-        focus="object-[50%_35%]"
+        focus="object-[58%_28%]"
         eyebrow="Insights"
         priority
       />
