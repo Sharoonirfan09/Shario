@@ -1,18 +1,28 @@
 import Link from "next/link";
-import { nav, services, site } from "@/lib/site";
+import { SocialIcon } from "@/components/social-icons";
+import { nav, services, site, social } from "@/lib/site";
 
 /**
  * Dark four-column footer.
  *
- * The Arabic lockup and the "Symphony of Identity" line that used to sit here
- * belonged to the creative-studio positioning and retired with it. The Studio
- * column is now split in two — the services, which is what visitors navigate
- * to from a footer, and the pages.
+ * The "Symphony of Identity" line that used to sit here belonged to the
+ * creative-studio positioning and retired with it. The Studio column is now
+ * split in two — the services, which is what visitors navigate to from a
+ * footer, and the pages. The Arabic lockup is back, though, as the site's
+ * closing signature — large, Mist-toned and bled off the bottom-right
+ * corner — large and in Porcelain rather than Mist, a lighter touch than a
+ * saturated colour needs at this size, and sized to actually read rather
+ * than disappear into the Carbon ground the way a near-invisible watermark
+ * would.
  */
 export function SiteFooter() {
   return (
-    <footer className="bg-carbon text-porcelain">
-      <div className="mx-auto max-w-[1400px] px-6 pb-8 pt-14 wide:px-12 wide:pb-10 wide:pt-[90px]">
+    <footer className="relative overflow-hidden bg-carbon text-porcelain">
+      <span
+        aria-hidden="true"
+        className="wordmark-ar pointer-events-none absolute -bottom-10 -right-8 z-0 w-64 text-porcelain/[0.14] wide:-bottom-16 wide:-right-10 wide:w-[26rem]"
+      />
+      <div className="relative z-10 mx-auto max-w-[1400px] px-6 pb-8 pt-14 wide:px-12 wide:pb-10 wide:pt-[90px]">
         <div className="grid gap-10 pb-14 wide:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
           <div>
             {/* No surrounding link to carry an `aria-label` here, so the name
@@ -70,8 +80,25 @@ export function SiteFooter() {
           </FooterColumn>
         </div>
 
-        <div className="border-t border-porcelain/15 pt-6 text-xs text-porcelain/50">
+        <div className="flex flex-col-reverse items-center gap-6 border-t border-porcelain/15 pt-6 text-xs text-porcelain/50 wide:flex-row wide:justify-between">
           <p>© {new Date().getFullYear()} SHARIO. All rights reserved.</p>
+
+          <div className="flex items-center gap-4">
+            {social.map((item) => (
+              <a
+                key={item.platform}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={item.label}
+                className="text-porcelain/60 transition-colors duration-300 hover:text-porcelain"
+              >
+                <span className="block h-[18px] w-[18px]">
+                  <SocialIcon platform={item.platform} />
+                </span>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

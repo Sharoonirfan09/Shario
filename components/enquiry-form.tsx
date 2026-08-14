@@ -8,9 +8,13 @@ import { services } from "@/lib/site";
 
 const initialState: EnquiryState = { status: "idle", message: "" };
 
-/** Underline-only fields — the handoff uses no boxes or borders on the form. */
+/**
+ * Underline-only fields — the handoff uses no boxes or borders on the form.
+ * Focus carries a faint Mist glow beneath the line, the accent's one
+ * appearance in the form — everything else on it stays Carbon and Porcelain.
+ */
 const fieldClass =
-  "w-full border-0 border-b border-carbon/25 bg-transparent py-3.5 text-base text-carbon outline-none transition-colors duration-300 placeholder:text-carbon/40 focus:border-carbon";
+  "w-full border-0 border-b border-carbon/25 bg-transparent py-3.5 text-base text-carbon outline-none transition-[color,border-color,box-shadow] duration-300 placeholder:text-carbon/40 focus:border-carbon focus:shadow-[0_5px_14px_-9px_rgba(171,191,199,0.85)]";
 
 const labelClass =
   "mb-2.5 block text-[11px] uppercase tracking-[0.08em] text-carbon/60";

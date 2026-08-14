@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
-import { services, site } from "@/lib/site";
+import { insightArticles, services, site } from "@/lib/site";
 
-const routes = ["/", "/services", "/about", "/contact"];
+const routes = ["/", "/services", "/insights", "/about", "/contact"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
@@ -20,5 +20,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...pages, ...servicePages];
+  const insightPages = insightArticles.map((article) => ({
+    url: `${site.domain}/insights/${article.slug}`,
+    // The article's own publish date, not build time — a real, distinct
+    // signal per URL rather than every page in the sitemap sharing one
+    // "now" timestamp that means nothing to a crawler.
+    lastModified: new Date(article.date),
+    changeFrequency: "monthly" as const,
+    priority: article.featured ? 0.7 : 0.6,
+  }));
+
+  return [...pages, ...servicePages, ...insightPages];
 }

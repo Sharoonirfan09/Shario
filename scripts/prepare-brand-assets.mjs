@@ -71,3 +71,7 @@ await knockOutBackground(`${SRC}/monogram.jpg`, `${OUT}/monogram.png`);
 await knockOutBackground(`${SRC}/wordmark-ar.jpg`, `${OUT}/wordmark-ar.png`);
 
 await webCut(`${OUT}/wordmark.png`, `${OUT}/wordmark-web.png`, 400);
+// Cut wide rather than to the Latin mark's ~120px display size — this one
+// is used large, as a low-opacity watermark behind a section, not as a
+// small header lockup, so it keeps most of the master's resolution.
+await webCut(`${OUT}/wordmark-ar.png`, `${OUT}/wordmark-ar-web.png`, 1100);

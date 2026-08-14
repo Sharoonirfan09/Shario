@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
   Band,
   Card,
@@ -8,39 +9,211 @@ import {
   Heading,
   Hero,
   PillLink,
-  SectionIntro,
 } from "@/components/ui";
-import { cta, founderLed, site, workPrinciples } from "@/lib/site";
+import { aboutApproach, cta, services, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Shario was founded by Sharoon Irfan, a Dubai performance marketer with 6+ years building revenue-focused marketing and AED 35M+ in CRM-attributed sales.",
+    "SHARIO is a Dubai digital marketing agency and creative studio connecting performance marketing, SEO, brand and strategy and consulting into one system for ambitious businesses.",
   alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {
   return (
     <>
+      {/* `Hero` here carries no visible `title` — every page banner is
+          label-only now, Services is the reference. A screen-reader-only H1
+          gives the page the one real heading every page needs without
+          adding anything to what a sighted visitor sees. */}
+      <h1 className="sr-only">
+        About Shario — Digital Marketing Agency &amp; Creative Studio in
+        Dubai
+      </h1>
       <Hero
         src="/images/book/about-frames.jpg"
+        alt="Framed prints and objects arranged on a warm, minimal wall"
         focus="object-[50%_50%]"
-        eyebrow="About Shario"
+        eyebrow="About"
         priority
       />
 
-      {/* The founder */}
+      {/* About SHARIO — the company, first. Text-only and centred, the one
+          section on this page built for whitespace over structure. */}
+      <Band>
+        <div className="mx-auto max-w-[760px] text-center">
+          <p className="eyebrow flex items-center justify-center gap-3 text-carbon/55">
+            <span aria-hidden="true" className="h-px w-6 bg-mist" />
+            About Shario
+          </p>
+          <Heading as="h2" scale="lg" className="mt-5">
+            SHARIO
+          </Heading>
+          <p className="reveal mt-5 font-display text-[1.25rem] italic text-carbon/80 wide:text-[1.4375rem]">
+            A digital marketing and creative studio built around clarity,
+            performance and identity.
+          </p>
+          <p
+            className="reveal mt-8 text-[1.0625rem] leading-[1.75] text-carbon/75"
+            data-delay="80"
+          >
+            SHARIO brings together strategy, performance marketing, SEO,
+            content, websites, CRM, automation, branding and creative under
+            one connected approach.
+          </p>
+          <p
+            className="reveal mt-5 text-[1.0625rem] leading-[1.75] text-carbon/75"
+            data-delay="160"
+          >
+            We believe good marketing should do more than create attention.
+            It should create clarity, build relevance and move the business
+            forward.
+          </p>
+        </div>
+      </Band>
+
+      {/* Philosophy, Mission, Vision — three distinct statements the company
+          runs on, held side by side rather than as three separate full
+          bands, so the page doesn't spend three scrolls saying what fits in
+          one considered pause. Carries the Arabic mark centred and very
+          large behind all three columns, fainter than anywhere else it
+          appears on the site — this band's own text spans the full width,
+          so the mark has to sit further back than the cornered or
+          edge-bled versions elsewhere. */}
+      <Band className="relative overflow-hidden bg-limestone/30">
+        <span
+          aria-hidden="true"
+          className="wordmark-ar pointer-events-none absolute left-1/2 top-1/2 z-0 w-[70%] -translate-x-1/2 -translate-y-1/2 text-carbon/[0.035] wide:w-[42%]"
+        />
+        <div className="relative z-10 grid gap-14 wide:grid-cols-3 wide:gap-12">
+          <div className="reveal">
+            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+              <span aria-hidden="true" className="h-px w-6 bg-mist" />
+              Philosophy
+            </p>
+            <Heading as="h2" scale="sm" className="mt-5">
+              Marketing should move something.
+            </Heading>
+            <p className="mt-5 text-[0.9375rem] leading-[1.75] text-carbon/70">
+              SHARIO connects creative thinking with measurable performance —
+              brand, digital and growth held as one system, not three
+              disconnected services run in parallel.
+            </p>
+          </div>
+          <div className="reveal" data-delay="80">
+            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+              <span aria-hidden="true" className="h-px w-6 bg-mist" />
+              Our Mission
+            </p>
+            <Heading as="h2" scale="sm" className="mt-5">
+              To make modern marketing clearer, more connected and more
+              effective.
+            </Heading>
+            <p className="mt-5 text-[0.9375rem] leading-[1.75] text-carbon/70">
+              We build thoughtful marketing systems where strategy, creative,
+              digital execution and performance work together, rather than
+              arriving from separate directions.
+            </p>
+          </div>
+          <div className="reveal" data-delay="160">
+            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+              <span aria-hidden="true" className="h-px w-6 bg-mist" />
+              Our Vision
+            </p>
+            <Heading as="h2" scale="sm" className="mt-5">
+              To build a more intelligent standard for how ambitious
+              businesses approach marketing.
+            </Heading>
+            <p className="mt-5 text-[0.9375rem] leading-[1.75] text-carbon/70">
+              Beyond disconnected campaigns — marketing ecosystems where
+              identity, technology, content and performance are built to
+              work together from the start.
+            </p>
+          </div>
+        </div>
+      </Band>
+
+      {/* How We Work — the method the company runs on, one level up from a
+          single engagement's own four-step rhythm on the homepage. Same
+          numbered-card system as the rest of the site rather than a bespoke
+          layout for four short steps. */}
+      <Band>
+        <div className="mb-12 max-w-[820px] wide:mb-16">
+          <p className="eyebrow flex items-center gap-3 text-carbon/55">
+            <span aria-hidden="true" className="h-px w-6 bg-mist" />
+            How We Work
+          </p>
+          <Heading as="h2" scale="md" className="mt-5">
+            Understand. Build. Measure. Refine.
+          </Heading>
+        </div>
+        <CardGrid columns={4}>
+          {aboutApproach.map((step, i) => (
+            <Card
+              key={step.num}
+              badge={step.num}
+              title={step.title}
+              titleAs="h3"
+              desc={step.desc}
+              delay={i * 60}
+            />
+          ))}
+        </CardGrid>
+      </Band>
+
+      {/* What We Do — named and linked, not catalogued again; the full
+          six-service grid with its own imagery already lives on the
+          homepage and `/services`. */}
+      <Band className="bg-limestone/30">
+        <div className="mb-10 max-w-[820px] wide:mb-14">
+          <p className="eyebrow flex items-center gap-3 text-carbon/55">
+            <span aria-hidden="true" className="h-px w-6 bg-mist" />
+            What We Do
+          </p>
+          <Heading as="h2" scale="md" className="mt-5">
+            One team, across every part of the system.
+          </Heading>
+        </div>
+        <div className="grid gap-x-10 wide:grid-cols-2">
+          {services.map((service, i) => (
+            <Link
+              key={service.slug}
+              href={`/services/${service.slug}`}
+              className="group reveal flex items-center justify-between gap-6 border-t border-carbon/15 py-5 transition-colors duration-300 hover:border-carbon/40"
+              data-delay={i * 50}
+            >
+              <span className="font-display text-[1.25rem] font-normal text-carbon transition-colors duration-300 group-hover:text-carbon/70 wide:text-[1.375rem]">
+                {service.name}
+              </span>
+              <span
+                aria-hidden="true"
+                className="text-carbon/40 transition-all duration-300 group-hover:translate-x-1 group-hover:text-carbon"
+              >
+                →
+              </span>
+            </Link>
+          ))}
+        </div>
+      </Band>
+
+      {/* The Founder — after the company, not instead of it. Same image,
+          same story, same layout as before; only its position on the page
+          and the heading introducing it have changed. */}
       <Band>
         <div className="grid items-center gap-12 wide:grid-cols-[1fr_1.05fr] wide:gap-20">
           {/* Not `photo-lounge.jpg` — it has the retired positioning statement
               painted across the back wall. */}
-          <Frame src="/images/book/founder-stable.jpg" ratio="aspect-[4/5]" />
+          <Frame
+            src="/images/book/founder-stable.jpg"
+            ratio="aspect-[4/5]"
+            alt={`${site.founder}, founder of Shario`}
+          />
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
               The Founder
             </p>
-            <Heading scale="md" className="mt-5">
+            <Heading as="h2" scale="md" className="mt-5">
               {site.founder}
             </Heading>
             <p className="reveal mt-6 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75">
@@ -95,67 +268,9 @@ export default function AboutPage() {
         </div>
       </Band>
 
-      {/* What founder-led means */}
-      <Band className="bg-limestone/30">
-        <SectionIntro
-          eyebrow="The Model"
-          title="What founder-led means for you."
-          sub="Four commitments that follow from a senior team running the account rather than handing it down."
-        />
-        <CardGrid columns={4}>
-          {founderLed.map((item, i) => (
-            <Card
-              key={item.num}
-              badge={item.num}
-              title={item.title}
-              titleAs="h3"
-              desc={item.desc}
-              delay={i * 60}
-            />
-          ))}
-        </CardGrid>
-      </Band>
-
-      {/* Where We Work — principles, not stats, so this sits outside StatBand's
-          figure/CountUp mechanism rather than repurposing it: "01"–"04" would
-          lose their leading zero the moment CountUp's animation finished. */}
-      <Band tone="carbon">
-        <div className="grid gap-12 wide:grid-cols-[1fr_1.15fr] wide:items-center wide:gap-24">
-          <div>
-            <p className="eyebrow flex items-center gap-3 text-porcelain/70">
-              <span aria-hidden="true" className="h-px w-6 bg-mist" />
-              Where We Work
-            </p>
-            <Heading scale="md" className="mt-5">
-              Built for brands ready to move with clarity.
-            </Heading>
-            <p className="mt-6 max-w-[480px] text-[0.9375rem] leading-[1.7] text-porcelain/70">
-              We work with ambitious businesses that understand growth takes
-              more than visibility. It takes a clear position, a strong
-              identity and a marketing system built to move people from
-              attention to action.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-x-8 gap-y-10 wide:gap-x-12">
-            {workPrinciples.map((item, i) => (
-              <div key={item.num} className="reveal ledger" data-delay={i * 70}>
-                <p className="ledger-figure ledger-figure-sm">{item.num}</p>
-                <p className="label-sm mt-4 text-porcelain/60">
-                  {item.title}
-                </p>
-                <p className="mt-2 text-[0.8125rem] leading-[1.6] text-porcelain/50">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Band>
-
       <CtaBand
-        title="See if Shario is the right fit for your brand."
-        sub="A short call, your current numbers, and an honest answer on where the leverage is."
+        title="Good marketing starts with clarity."
+        sub="If you know there is more potential in your marketing, let's find where it is."
       >
         <PillLink href={cta.href} tone="solid" size="lg">
           {cta.label}

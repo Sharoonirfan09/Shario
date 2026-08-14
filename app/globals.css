@@ -149,6 +149,27 @@ body {
   mask-position: left center;
 }
 
+/* The Arabic lockup — "شاريو" — the same master-artwork-as-mask technique as
+   `.wordmark` above, painted in `currentColor` so it can sit tinted Carbon
+   (a quiet watermark) or Mist (a small, refined accent) depending on where
+   it's placed, rather than needing a separate file per colour. Used sparingly,
+   as a secondary mark behind or beside content — never as the primary
+   lockup, which stays the Latin wordmark everywhere the header and footer
+   already set it. */
+.wordmark-ar {
+  display: block;
+  aspect-ratio: 1100 / 572;
+  background-color: currentColor;
+  -webkit-mask-image: url("/brand/wordmark-ar-web.png");
+  mask-image: url("/brand/wordmark-ar-web.png");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
 /* Jost, uppercase, widely tracked — every label, eyebrow and control. */
 .label {
   font-family: var(--font-label);

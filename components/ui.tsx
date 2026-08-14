@@ -1,6 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { CSSProperties, ReactNode } from "react";
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  type CSSProperties,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 import { CountUp } from "@/components/count-up";
 
 /**
@@ -261,11 +268,21 @@ export function Pill({
 
 const gridCols = {
   2: "wide:grid-cols-2",
-  3: "wide:grid-cols-3",
-  4: "wide:grid-cols-4",
+  3: "sm:grid-cols-2 wide:grid-cols-3",
+  4: "sm:grid-cols-2 wide:grid-cols-4",
 };
 
-/** The reference's card grid — separate cards with their own edges, not a ruled table. */
+/**
+ * The reference's card grid — separate cards with their own edges, not a
+ * ruled table.
+ *
+ * Assigns each `Card` child its tone automatically — Limestone and Porcelain
+ * alternating, Carbon reserved for the set's closing card — so every grid on
+ * the site gets the same controlled rhythm without each call site choosing
+ * colours by hand. A card that sets its own `tone` keeps it; this only fills
+ * in the ones that don't. Non-`Card` children (the Insights grid renders its
+ * own `InsightCard`) pass through untouched.
+ */
 export function CardGrid({
   children,
   columns = 3,
@@ -273,32 +290,75 @@ export function CardGrid({
   children: ReactNode;
   columns?: 2 | 3 | 4;
 }) {
+  const items = Children.toArray(children);
+  const total = items.length;
+
   return (
-    <div className={`grid gap-5 wide:gap-6 ${gridCols[columns]}`}>
-      {children}
+    <div className={`grid gap-6 wide:gap-8 ${gridCols[columns]}`}>
+      {items.map((child, i) => {
+        if (!isValidElement(child) || child.type !== Card) return child;
+        const element = child as ReactElement<CardProps>;
+        const isLast = i === total - 1 && total > 1;
+        const tone = element.props.tone ?? (isLast ? "carbon" : i % 2 === 0 ? "limestone" : "porcelain");
+        return cloneElement(element, { tone });
+      })}
     </div>
   );
 }
 
-/**
- * A card: hairline edge, numbered badge, title, description, optional action.
- *
- * The badge carries the item's real index. The reference uses decorative
- * icons; a number is honest here because these sets are genuinely ordered —
- * the service catalogue and the engagement steps both have a fixed sequence.
- */
-export function Card({
-  badge,
-  title,
-  desc,
-  href,
-  action,
-  background,
-  image,
-  titleAs: Title = "p",
-  tone = "porcelain",
-  delay = 0,
-}: {
+/** Per-tone surface, badge, text and hover treatment — the one place a Card's colour is decided. */
+const cardTone: Record<
+  Tone,
+  {
+    surface: string;
+    hover: string;
+    badge: string;
+    badgeHover: string;
+    desc: string;
+    divider: string;
+    action: string;
+    /** Foot-of-image fade, into this tone's own ground. */
+    fade: string;
+    /** Full-bleed scrim for the `background` texture variant. */
+    scrim: string;
+  }
+> = {
+  porcelain: {
+    surface: "border-platinum/50 bg-porcelain text-carbon",
+    hover: "hover:border-mist hover:bg-mist/[0.06]",
+    badge: "bg-mist/35 text-carbon",
+    badgeHover: "group-hover:bg-mist/60",
+    desc: "text-carbon/72",
+    divider: "border-carbon/12",
+    action: "text-carbon",
+    fade: "from-porcelain",
+    scrim: "bg-gradient-to-t from-porcelain from-50% via-porcelain/95 to-porcelain/35",
+  },
+  limestone: {
+    surface: "border-carbon/12 bg-limestone/40 text-carbon",
+    hover: "hover:border-mist hover:bg-limestone/65",
+    badge: "bg-mist/40 text-carbon",
+    badgeHover: "group-hover:bg-mist/65",
+    desc: "text-carbon/72",
+    divider: "border-carbon/15",
+    action: "text-carbon",
+    fade: "from-limestone",
+    scrim: "bg-gradient-to-t from-limestone from-50% via-limestone/95 to-limestone/35",
+  },
+  carbon: {
+    surface: "border-porcelain/15 bg-carbon text-porcelain",
+    hover: "hover:border-mist/60 hover:bg-black",
+    badge: "bg-mist/25 text-porcelain",
+    badgeHover: "group-hover:bg-mist/45",
+    desc: "text-porcelain/72",
+    divider: "border-porcelain/15",
+    action: "text-porcelain",
+    fade: "from-carbon",
+    scrim: "bg-gradient-to-t from-carbon from-50% via-carbon/95 to-carbon/35",
+  },
+};
+
+type CardProps = {
   badge?: string;
   title: string;
   desc: string;
@@ -319,18 +379,42 @@ export function Card({
    */
   image?: string;
   titleAs?: "p" | "h3";
+  /** Set explicitly to opt out of `CardGrid`'s automatic Limestone/Porcelain/Carbon rhythm. */
   tone?: Tone;
   delay?: number;
-}) {
-  const dark = tone === "carbon";
+};
+
+/**
+ * A card: hairline edge, numbered badge, title, description, optional action.
+ *
+ * The badge carries the item's real index. The reference uses decorative
+ * icons; a number is honest here because these sets are genuinely ordered —
+ * the service catalogue and the engagement steps both have a fixed sequence.
+ *
+ * Colour is assigned by the parent `CardGrid`, not chosen here — this
+ * component only renders whichever `Tone` it is given.
+ */
+export function Card({
+  badge,
+  title,
+  desc,
+  href,
+  action,
+  background,
+  image,
+  titleAs: Title = "p",
+  tone = "porcelain",
+  delay = 0,
+}: CardProps) {
+  const t = cardTone[tone];
 
   const body = (
     <>
       {image && (
-        <div className="relative -mx-7 -mt-7 mb-6 aspect-[4/3] overflow-hidden wide:-mx-8 wide:-mt-8 wide:mb-7">
+        <div className="frame relative -mx-8 -mt-8 mb-7 aspect-[4/3] overflow-hidden wide:-mx-10 wide:-mt-10 wide:mb-8">
           <Image
             src={image}
-            alt=""
+            alt={title}
             fill
             sizes="(min-width: 880px) 33vw, 100vw"
             className="object-cover"
@@ -338,7 +422,7 @@ export function Card({
           {badge && (
             <span
               aria-hidden="true"
-              className="absolute left-7 top-7 flex h-11 w-11 shrink-0 items-center justify-center bg-porcelain/80 font-display text-[1.0625rem] text-carbon backdrop-blur-sm wide:left-8 wide:top-8"
+              className="absolute left-8 top-8 flex h-11 w-11 shrink-0 items-center justify-center bg-porcelain/80 font-display text-[1.0625rem] text-carbon backdrop-blur-sm wide:left-10 wide:top-10"
             >
               {badge}
             </span>
@@ -351,9 +435,7 @@ export function Card({
            */}
           <div
             aria-hidden="true"
-            className={`pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t ${
-              dark ? "from-carbon" : "from-porcelain"
-            } to-transparent`}
+            className={`pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t ${t.fade} to-transparent`}
           />
         </div>
       )}
@@ -375,11 +457,7 @@ export function Card({
            */}
           <div
             aria-hidden="true"
-            className={`pointer-events-none absolute inset-0 -z-10 ${
-              dark
-                ? "bg-gradient-to-t from-carbon from-50% via-carbon/95 to-carbon/35"
-                : "bg-gradient-to-t from-porcelain from-50% via-porcelain/95 to-porcelain/35"
-            }`}
+            className={`pointer-events-none absolute inset-0 -z-10 ${t.scrim}`}
           />
         </>
       )}
@@ -391,39 +469,31 @@ export function Card({
        */}
       {background && !badge && (
         <>
-          <span aria-hidden="true" className="mb-6 block h-11" />
+          <span aria-hidden="true" className="mb-7 block h-11" />
         </>
       )}
       {badge && !image && (
         <span
           aria-hidden="true"
-          className={`mb-6 flex h-11 w-11 shrink-0 items-center justify-center font-display text-[1.0625rem] ${
-            dark ? "bg-mist/20 text-porcelain" : "bg-mist/35 text-carbon"
-          }`}
+          className={`mb-7 flex h-11 w-11 shrink-0 items-center justify-center font-display text-[1.0625rem] transition-colors duration-500 ${t.badge} ${t.badgeHover}`}
         >
           {badge}
         </span>
       )}
-      <Title className="font-display text-[1.5rem] font-medium leading-[1.2] wide:text-[1.625rem]">
+      <Title className="font-display text-[1.5rem] font-medium leading-[1.22] wide:text-[1.625rem]">
         {title}
       </Title>
-      <p
-        className={`mt-3 flex-1 text-[0.9375rem] leading-[1.7] ${
-          dark ? "text-porcelain/70" : "text-carbon/70"
-        }`}
-      >
+      <p className={`mt-3.5 flex-1 text-[0.9375rem] leading-[1.75] ${t.desc}`}>
         {desc}
       </p>
       {action && (
         <span
-          className={`eyebrow mt-6 inline-flex items-center gap-2 ${
-            dark ? "text-porcelain" : "text-carbon"
-          }`}
+          className={`eyebrow mt-7 flex items-center gap-2 border-t pt-6 ${t.divider} ${t.action}`}
         >
           {action}
           <span
             aria-hidden="true"
-            className="transition-transform duration-500 group-hover:translate-x-1"
+            className="transition-transform duration-500 group-hover:translate-x-1.5 group-hover:text-mist"
           >
             →
           </span>
@@ -433,10 +503,10 @@ export function Card({
   );
 
   // `relative` and `isolate` so the texture and its scrim clip to the card and
-  // stay behind the content rather than escaping into the grid gap.
-  const className = `reveal relative isolate flex h-full flex-col overflow-hidden border p-7 wide:p-8 ${hairline(
-    tone,
-  )} ${dark ? "bg-porcelain/[0.04]" : "bg-limestone/25"}`;
+  // stay behind the content rather than escaping into the grid gap. The
+  // hover lift and its soft shadow are the one piece of motion every card
+  // shares, whether or not it links anywhere.
+  const className = `reveal group relative isolate flex h-full flex-col overflow-hidden border p-8 wide:p-10 transition-[background-color,border-color,box-shadow,transform] duration-500 hover:-translate-y-1 hover:shadow-[0_24px_48px_-32px_rgba(37,37,37,0.35)] ${t.surface} ${t.hover}`;
 
   if (!href) {
     return (
@@ -447,13 +517,7 @@ export function Card({
   }
 
   return (
-    <Link
-      href={href}
-      className={`${className} group transition-colors duration-500 ${
-        dark ? "hover:bg-porcelain/10" : "hover:bg-limestone/60"
-      }`}
-      data-delay={delay}
-    >
+    <Link href={href} className={className} data-delay={delay}>
       {body}
     </Link>
   );
@@ -483,6 +547,7 @@ const heroScale = {
  */
 export function Hero({
   src,
+  alt = "",
   eyebrow,
   title,
   subhead,
@@ -492,7 +557,13 @@ export function Hero({
   breadcrumb,
   children,
 }: {
-  src: string;
+  /** Optional — pages without dedicated photography (e.g. Insights) still get
+   *  the same box height, padding and text-reveal treatment on a flat Carbon
+   *  ground, rather than forcing a photograph onto a page that has none. */
+  src?: string;
+  /** Empty by default. Every Hero photograph is real editorial content, not
+   *  a texture, so callers should pass a real description of it. */
+  alt?: string;
   eyebrow: string;
   title?: ReactNode;
   subhead?: string;
@@ -509,18 +580,22 @@ export function Hero({
     // rather than sitting on a cream slab above it. The container below pads
     // the type back down past the bar.
     <section
-      className={`relative flex items-end mt-[calc(-1*var(--header-h))] ${s.box}`}
+      className={`relative flex items-end mt-[calc(-1*var(--header-h))] ${s.box} ${src ? "" : "bg-carbon"}`}
     >
-      <Image
-        src={src}
-        alt=""
-        fill
-        sizes="100vw"
-        priority={priority}
-        className={`settle object-cover ${focus ?? ""}`}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-carbon/20 to-carbon/70" />
-      <div className="absolute inset-0 bg-gradient-to-r from-carbon/80 via-carbon/30 to-transparent" />
+      {src && (
+        <>
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes="100vw"
+            priority={priority}
+            className={`settle object-cover ${focus ?? ""}`}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-carbon/20 to-carbon/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-carbon/80 via-carbon/30 to-transparent" />
+        </>
+      )}
 
       <Container className="relative z-10 w-full pb-14 pt-[calc(var(--header-h)+3.5rem)] text-porcelain wide:pb-20 wide:pt-[calc(var(--header-h)+5rem)]">
         {breadcrumb}
@@ -576,6 +651,7 @@ export function Hero({
  */
 export function SplitHero({
   src,
+  alt = "",
   eyebrow,
   title,
   subhead,
@@ -586,6 +662,9 @@ export function SplitHero({
   children,
 }: {
   src: string;
+  /** Empty by default, but this is the homepage's single most prominent
+   *  photograph — callers should always pass a real description. */
+  alt?: string;
   /** Optional: the reference opens straight on the headline, with nothing above it. */
   eyebrow?: string;
   title: ReactNode;
@@ -698,7 +777,7 @@ export function SplitHero({
         >
           <Image
             src={src}
-            alt=""
+            alt={alt}
             fill
             sizes="(min-width: 880px) 46vw, 100vw"
             priority
@@ -759,13 +838,22 @@ export function Breadcrumb({
  * laid over them. Type on a dark ground is honest about what photography
  * exists and matches the reference besides.
  */
+const typeHeroTitleScale = {
+  /** The service detail pages — a heading, not the hero's whole statement. */
+  md: "text-[2.25rem] font-normal leading-[1.08] wide:text-[clamp(2.5rem,3.8vw,3.5rem)]",
+  /** Contact — the one TypeHero page still carrying the hero's full statement. */
+  lg: "text-[2.5rem] font-normal leading-[1.05] wide:text-[clamp(3rem,5.4vw,4.75rem)]",
+};
+
 export function TypeHero({
   src,
   focus,
   eyebrow,
   title,
+  titleScale = "md",
   subhead,
   tone = "porcelain",
+  size = "auto",
   breadcrumb,
   children,
 }: {
@@ -775,18 +863,27 @@ export function TypeHero({
   eyebrow: string;
   /** Omit on pages whose hero should show only the page name — About's pattern. */
   title?: ReactNode;
+  titleScale?: keyof typeof typeHeroTitleScale;
   subhead?: string;
   tone?: "porcelain" | "carbon";
+  /**
+   * `tall` matches the photographic `Hero`'s minimum height, for the one
+   * TypeHero page whose statement needs to read as a full editorial hero
+   * rather than a page-title band — everywhere else the section still sizes
+   * to its content, unchanged.
+   */
+  size?: "auto" | "tall";
   breadcrumb?: ReactNode;
   children?: ReactNode;
 }) {
   const dark = tone === "carbon" || Boolean(src);
+  const tall = size === "tall";
 
   return (
     // The carbon variant carries the header the same way a photographic hero
     // does — pulled up under the bar, then padded back down.
     <section
-      className={`relative ${
+      className={`relative ${tall ? "flex min-h-[440px] items-end wide:min-h-[60vh]" : ""} ${
         dark
           ? "bg-carbon text-porcelain mt-[calc(-1*var(--header-h))]"
           : "border-b border-carbon/12"
@@ -799,14 +896,15 @@ export function TypeHero({
             alt=""
             fill
             sizes="100vw"
-            className={`object-cover ${focus ?? ""}`}
+            priority={tall}
+            className={`${tall ? "settle" : ""} object-cover ${focus ?? ""}`}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-carbon/20 to-carbon/70" />
           <div className="absolute inset-0 bg-gradient-to-r from-carbon/80 via-carbon/30 to-transparent" />
         </>
       )}
       <Container
-        className={`relative z-10 ${
+        className={`relative z-10 w-full ${
           dark
             ? "pb-14 pt-[calc(var(--header-h)+3rem)] wide:pb-24 wide:pt-[calc(var(--header-h)+4.5rem)]"
             : "pb-14 pt-12 wide:pb-24 wide:pt-20"
@@ -823,7 +921,7 @@ export function TypeHero({
         </p>
         {title && (
           <h1
-            className="rise mt-6 max-w-[900px] font-display text-[2.25rem] font-normal leading-[1.08] wide:text-[clamp(2.5rem,3.8vw,3.5rem)]"
+            className={`rise mt-6 max-w-[900px] font-display ${typeHeroTitleScale[titleScale]}`}
             style={{ animationDelay: "140ms" }}
           >
             {title}
@@ -920,14 +1018,29 @@ export function CtaBand({
   title,
   sub,
   children,
+  arabicAccent = false,
 }: {
   title: ReactNode;
   sub?: string;
   children: ReactNode;
+  /**
+   * Opt-in only. `CtaBand` closes nearly every page on the site, so the
+   * Arabic mark recurring here by default would make it the opposite of
+   * selective — each caller that wants it turns it on for that one page.
+   */
+  arabicAccent?: boolean;
 }) {
   return (
-    <section className="bg-limestone">
-      <Container className="py-16 text-center wide:py-[clamp(4.5rem,8vw,7.5rem)]">
+    <section
+      className={`relative bg-limestone ${arabicAccent ? "overflow-hidden" : ""}`}
+    >
+      {arabicAccent && (
+        <span
+          aria-hidden="true"
+          className="wordmark-ar pointer-events-none absolute -right-[6%] top-1/2 z-0 w-[38%] -translate-y-1/2 text-carbon/[0.05] wide:-right-[2%] wide:w-[20%]"
+        />
+      )}
+      <Container className="relative z-10 py-16 text-center wide:py-[clamp(4.5rem,8vw,7.5rem)]">
         <Heading as="p" scale="md" className="mx-auto max-w-[820px]">
           {title}
         </Heading>
@@ -1007,7 +1120,7 @@ export function Figure({
         <div className="frame relative w-full">
           <Image
             src={src}
-            alt=""
+            alt={label}
             width={width}
             height={height}
             sizes={sizes}
@@ -1015,7 +1128,7 @@ export function Figure({
           />
         </div>
       ) : (
-        <Frame src={src} ratio={ratio} sizes={sizes} tone={tone} />
+        <Frame src={src} alt={label} ratio={ratio} sizes={sizes} tone={tone} />
       )}
       <figcaption
         className={`flex flex-col gap-1.5 border-l-2 pl-4 ${
@@ -1045,11 +1158,20 @@ export function Frame({
   ratio,
   sizes = "(min-width: 880px) 50vw, 100vw",
   tone = "porcelain",
+  /**
+   * Empty by default — most `Frame` usages are the site's own material
+   * "grounds" (texture crops, card backgrounds) rather than photographs with
+   * content of their own, and an empty alt is the correct call for those.
+   * Callers showing an actual subject (a portrait, a real interior) should
+   * pass a real description instead.
+   */
+  alt = "",
 }: {
   src: string;
   ratio: string;
   sizes?: string;
   tone?: Tone;
+  alt?: string;
 }) {
   return (
     <div
@@ -1057,7 +1179,45 @@ export function Frame({
         tone === "carbon" ? "bg-porcelain/10" : "bg-limestone/60"
       }`}
     >
-      <Image src={src} alt="" fill sizes={sizes} className="object-cover" />
+      <Image src={src} alt={alt} fill sizes={sizes} className="object-cover" />
+    </div>
+  );
+}
+
+/**
+ * A toned placeholder panel for slots awaiting real photography — Insights
+ * cards, shipped before dedicated imagery exists for them. Carries the same
+ * numbered-badge motif the rest of the site uses (`Card`, `StatBand`) rather
+ * than a blank grey box, so an empty slot still reads as part of this design
+ * system and not as a broken image.
+ */
+export function TonePanel({
+  index,
+  ratio = "aspect-[4/3]",
+  tone = "limestone",
+  className = "",
+}: {
+  index: string;
+  ratio?: string;
+  tone?: "limestone" | "carbon";
+  className?: string;
+}) {
+  const dark = tone === "carbon";
+
+  return (
+    <div
+      className={`relative flex w-full items-center justify-center overflow-hidden ${ratio} ${
+        dark ? "bg-carbon" : "bg-limestone/50"
+      } ${className}`}
+    >
+      <span
+        aria-hidden="true"
+        className={`font-display text-[4.5rem] leading-none wide:text-[6.5rem] ${
+          dark ? "text-porcelain/10" : "text-carbon/10"
+        }`}
+      >
+        {index}
+      </span>
     </div>
   );
 }

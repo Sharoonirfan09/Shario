@@ -117,7 +117,7 @@ export function SiteHeader() {
             aria-label={`${site.name} — home`}
             className="shrink-0 transition-opacity duration-500 hover:opacity-70"
           >
-            <span aria-hidden="true" className="wordmark w-[116px]" />
+            <span aria-hidden="true" className="wordmark w-[96px] wide:w-[116px]" />
           </Link>
 
           {/* Desktop navigation */}
@@ -126,7 +126,12 @@ export function SiteHeader() {
             className="hidden items-center gap-[clamp(20px,3vw,40px)] wide:flex"
           >
             {nav.map((item) => {
-              const active = pathname.startsWith(item.href);
+              // "/" would `startsWith` on every route, so Home needs an exact
+              // match rather than the prefix check the other pages use.
+              const active =
+                item.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(item.href);
 
               if (item.href === "/services") {
                 return (
@@ -142,39 +147,23 @@ export function SiteHeader() {
                       }
                     }}
                   >
-                    <span
-                      className={`flex items-center gap-1.5 whitespace-nowrap text-xs uppercase tracking-[0.08em] ${
+                    {/* Plain text link, matching every other nav item — no
+                        toggle glyph beside it. The dropdown still opens on
+                        hover (the wrapping div above) for pointers; `onFocus`
+                        here is what replaces the old toggle button for
+                        keyboard users tabbing through, so removing the icon
+                        doesn't cost keyboard access to the menu. */}
+                    <Link
+                      href="/services"
+                      aria-current={active ? "page" : undefined}
+                      aria-expanded={servicesOpen}
+                      onFocus={() => setServicesOpen(true)}
+                      className={`whitespace-nowrap text-xs uppercase tracking-[0.08em] transition-opacity duration-300 hover:opacity-100 ${
                         active ? "opacity-100" : "opacity-80"
                       }`}
                     >
-                      {/* The label navigates — the reference's "click Services,
-                          land on the index" — while the arrow stays a separate
-                          toggle so touch and keyboard can still open the
-                          dropdown without leaving the page. */}
-                      <Link
-                        href="/services"
-                        aria-current={active ? "page" : undefined}
-                        className="transition-opacity duration-300 hover:opacity-100"
-                      >
-                        {item.label}
-                      </Link>
-                      <button
-                        type="button"
-                        onClick={() => setServicesOpen((open) => !open)}
-                        aria-expanded={servicesOpen}
-                        aria-label="Toggle services menu"
-                        className="cursor-pointer p-1 transition-opacity duration-300 hover:opacity-100"
-                      >
-                        <span
-                          aria-hidden="true"
-                          className={`block text-[9px] transition-transform duration-300 ${
-                            servicesOpen ? "rotate-180" : ""
-                          }`}
-                        >
-                          ▾
-                        </span>
-                      </button>
-                    </span>
+                      {item.label}
+                    </Link>
 
                     {servicesOpen && (
                       <div className="absolute left-1/2 top-full w-[640px] -translate-x-1/2 pt-5">
@@ -304,7 +293,7 @@ export function SiteHeader() {
               aria-label={`${site.name} — home`}
               className="text-porcelain"
             >
-              <span aria-hidden="true" className="wordmark w-[116px]" />
+              <span aria-hidden="true" className="wordmark w-[96px] wide:w-[116px]" />
             </Link>
             <button
               type="button"

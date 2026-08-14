@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Faq } from "@/components/faq";
+import { InsightCard } from "@/components/insights";
+import { SixServices } from "@/components/six-services";
 import {
   Band,
   Card,
@@ -11,7 +13,14 @@ import {
   SectionIntro,
   SplitHero,
 } from "@/components/ui";
-import { cta, homeFaqs, howWeWork, services, site } from "@/lib/site";
+import {
+  cta,
+  homeFaqs,
+  howWeWork,
+  insightCategories,
+  latestInsightArticles,
+  site,
+} from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Shario — Digital Marketing Company in Dubai",
@@ -20,13 +29,9 @@ export const metadata: Metadata = {
 };
 
 /**
- * Card grounds. Every one is a distinct photograph used nowhere else on the
- * site — `npm run check:images` fails the build if any of them repeats.
- *
- * They live here rather than in `lib/site.ts` because the services grid also
- * renders on `/services`, and giving both pages the same backgrounds would
- * break that rule — that page carries its own set, cut from different
- * originals.
+ * Card grounds for "How We Work". Every one is a distinct photograph used
+ * nowhere else on the site — `npm run check:images` fails the build if any
+ * of them repeats.
  */
 const stepTextures = [
   "/images/texture/stone.jpg",
@@ -34,15 +39,6 @@ const stepTextures = [
   "/images/texture/interior.jpg",
   "/images/texture/desk.jpg",
 ];
-
-const serviceImages: Record<string, string> = {
-  "performance-marketing": "/images/texture/svc-performance.jpg",
-  "seo-and-content": "/images/texture/svc-seo.jpg",
-  "websites-and-cro": "/images/texture/svc-web.jpg",
-  "crm-and-automation": "/images/texture/svc-crm.jpg",
-  "brand-and-creative": "/images/texture/svc-brand.jpg",
-  "strategy-consulting": "/images/texture/svc-strategy.jpg",
-};
 
 export default function HomePage() {
   return (
@@ -74,14 +70,19 @@ export default function HomePage() {
        */}
       <SplitHero
         src="/images/hero/portrait.jpg"
+        alt={`${site.founder}, founder of Shario`}
         focus="object-[50%_28%]"
         title={
           <>
-            Digital Marketing
-            <br />
-            That Turns Spend
-            <br />
-            Into Revenue
+            <span className="block">Digital Marketing</span>
+            {/* The "T" in Cormorant Garamond carries a top serif that
+                overhangs further left than "D" or "I"'s stems do, so this
+                line's box edge sits in the same place as the other two but
+                visually reads a hair further left. A small optical nudge —
+                not a layout change — brings the letterforms themselves,
+                not just their bounding boxes, to one true left edge. */}
+            <span className="block ml-[0.045em]">That Turns Spend</span>
+            <span className="block">Into Revenue</span>
           </>
         }
         subhead={<em className="italic">A Symphony of Identity.</em>}
@@ -96,8 +97,20 @@ export default function HomePage() {
         </PillLink>
       </SplitHero>
 
+      {/* Services — moved directly after the hero, ahead of the Founder
+          band below, so the page reads hero → what we do → who's behind it.
+          The tint moved with the Founder band rather than staying here: two
+          Limestone grounds back to back (this section's old wash sitting
+          right under the hero's own solid Limestone) read as one section
+          failing to end, not two.
+
+          `SixServices` is shared with `/services`, which renders this exact
+          same section rather than its own copy — the homepage is the master
+          reference; changing this section here changes it there too. */}
+      <SixServices />
+
       {/* About — image beside text, as the reference sets it */}
-      <Band>
+      <Band className="bg-limestone/30">
         <div className="grid items-center gap-12 wide:grid-cols-[1fr_1.05fr] wide:gap-20">
           {/*
            * Cut to 4:3 in prep rather than left to `object-cover`: the original
@@ -105,7 +118,11 @@ export default function HomePage() {
            * and a centred crop takes the top off the figure's head. Anchored to
            * hold the horizon and the whole seated figure.
            */}
-          <Frame src="/images/about/horizon.jpg" ratio="aspect-[4/3]" />
+          <Frame
+            src="/images/about/horizon.jpg"
+            ratio="aspect-[4/3]"
+            alt={`${site.founder}, founder of Shario`}
+          />
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
@@ -133,61 +150,79 @@ export default function HomePage() {
         </div>
       </Band>
 
-      {/* Services */}
-      <Band className="bg-limestone/30">
-        <SectionIntro
-          eyebrow="Our Services"
-          title={
-            <>
-              Everything you need to grow,
-              <br className="hidden wide:block" /> handled by one team.
-            </>
-          }
-          sub="From paid media and search to websites, CRM and creative — the full marketing system a Dubai brand needs to generate demand and convert it into revenue."
+      {/* What makes us different — the engagement, as the reference frames it.
+          Carries the Arabic lockup as a large, very quiet watermark — Carbon
+          at 6% rather than Mist, so it reads as a shadow in the ground, not
+          a coloured accent competing with the cards in front of it. One of
+          only two places this mark appears on the site (the other is small
+          and Mist-toned, on About's "Where We Work"); it isn't meant to
+          repeat everywhere the Latin wordmark does. */}
+      <Band className="relative overflow-hidden">
+        <span
+          aria-hidden="true"
+          className="wordmark-ar pointer-events-none absolute right-[4%] top-6 z-0 w-[46%] text-carbon/[0.07] wide:right-[6%] wide:top-10 wide:w-[26%]"
         />
-        <CardGrid columns={3}>
-          {services.map((service, i) => (
-            <Card
-              key={service.slug}
-              href={`/services/${service.slug}`}
-              badge={service.num}
-              title={service.name}
-              titleAs="h3"
-              desc={service.descriptor}
-              action="Learn more"
-              image={serviceImages[service.slug]}
-              delay={i * 60}
-            />
-          ))}
-        </CardGrid>
+        <div className="relative z-10">
+          <SectionIntro
+            eyebrow="What Makes Us Different"
+            title="This is how we work."
+            sub="Four steps, run every week rather than every quarter."
+          />
+          {/*
+           * One texture per card, each used nowhere else on the site — crops of
+           * material (stone, paper, an interior, a desk) shown at full clarity
+           * in their own block, the type held in a clean ground below rather
+           * than washed over the photograph.
+           */}
+          <CardGrid columns={4}>
+            {howWeWork.map((step, i) => (
+              <Card
+                key={step.num}
+                badge={step.num}
+                title={step.title}
+                titleAs="h3"
+                desc={step.desc}
+                image={stepTextures[i]}
+                delay={i * 60}
+              />
+            ))}
+          </CardGrid>
+        </div>
       </Band>
 
-      {/* What makes us different — the engagement, as the reference frames it */}
-      <Band>
-        <SectionIntro
-          eyebrow="What Makes Us Different"
-          title="This is how we work."
-          sub="Four steps, run every week rather than every quarter."
-        />
-        {/*
-         * One texture per card, each used nowhere else on the site — crops of
-         * material (stone, paper, an interior, a desk) shown at full clarity
-         * in their own block, the type held in a clean ground below rather
-         * than washed over the photograph.
-         */}
-        <CardGrid columns={4}>
-          {howWeWork.map((step, i) => (
-            <Card
-              key={step.num}
-              badge={step.num}
-              title={step.title}
-              titleAs="h3"
-              desc={step.desc}
-              image={stepTextures[i]}
+      {/* Insights — the Insights page's own "Featured" and Archive cards,
+          reused at a larger size rather than a bespoke blog teaser, so this
+          reads as an extension of that page and not a second design. Pulled
+          from `insightArticles` via `latestInsightArticles`, so a new piece
+          published there appears here on its own. Limestone, the same way
+          Services' own grid sits on Limestone against Porcelain bands either
+          side of it, so this reads as its own section rather than a
+          continuation of How We Work above it. */}
+      <Band className="bg-limestone/30">
+        <div className="mb-12 flex flex-wrap items-end justify-between gap-6 wide:mb-16">
+          <div>
+            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+              <span aria-hidden="true" className="h-px w-6 bg-mist" />
+              From The Journal
+            </p>
+            <Heading scale="md" className="mt-5">
+              Ideas worth your time.
+            </Heading>
+          </div>
+          <PillLink href="/insights">View all insights →</PillLink>
+        </div>
+
+        <div className="grid gap-x-8 gap-y-14 wide:grid-cols-3">
+          {latestInsightArticles(3).map((article, i) => (
+            <InsightCard
+              key={article.slug}
+              article={article}
+              categories={insightCategories}
+              size="large"
               delay={i * 60}
             />
           ))}
-        </CardGrid>
+        </div>
       </Band>
 
       {/* FAQ */}

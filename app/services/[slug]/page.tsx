@@ -10,9 +10,9 @@ import {
   DotList,
   Figure,
   Heading,
+  Hero,
   PillLink,
   SectionIntro,
-  TypeHero,
 } from "@/components/ui";
 import { cta, getService, homeFaqs, services, site } from "@/lib/site";
 
@@ -50,11 +50,12 @@ export default async function ServicePage({
 
   return (
     <>
-      <TypeHero
+      <Hero
         src={service.heroImage}
-        tone="carbon"
+        alt={`${service.name} — ${site.name}`}
         eyebrow={service.category}
         title={service.title}
+        priority
         breadcrumb={
           <Breadcrumb
             items={[
@@ -105,6 +106,11 @@ export default async function ServicePage({
             />
           ))}
         </div>
+        {/* `service.lead` — modelled in the data as the statement that opens
+            this section, but never actually rendered until now. */}
+        <p className="lede reveal mb-12 max-w-[760px] text-carbon/80 wide:mb-14">
+          {service.lead}
+        </p>
         <div className="grid gap-14 wide:grid-cols-2 wide:gap-20">
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">
@@ -133,8 +139,15 @@ export default async function ServicePage({
         </div>
       </Band>
 
-      {/* Related services */}
-      <Band>
+      {/* Related services — a small corner detail rather than a full-width
+          watermark, since this band's own cards already carry photographs
+          of their own; the mark sits in the quiet margin above them instead
+          of behind them. */}
+      <Band className="relative overflow-hidden">
+        <span
+          aria-hidden="true"
+          className="wordmark-ar pointer-events-none absolute -top-4 right-4 z-0 w-16 text-carbon/[0.06] wide:right-8 wide:w-20"
+        />
         <SectionIntro
           eyebrow="Keep Going"
           title="Related services."
