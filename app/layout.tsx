@@ -7,10 +7,18 @@ import { Reveal } from "@/components/reveal";
 import { StructuredData } from "@/components/structured-data";
 import { site } from "@/lib/site";
 
+/**
+ * Weight/style arrays are trimmed to what the site actually renders, not the
+ * family's full range — every `font-medium` in the codebase pairs with
+ * Cormorant (never Jost or EB Garamond), and nothing sets 600. Verified by
+ * grepping every `font-display`/`font-body`/`font-label` and weight-utility
+ * usage across `app` and `components` before trimming; re-check that sweep
+ * before adding a heavier weight back rather than assuming it's unused.
+ */
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -18,7 +26,7 @@ const cormorant = Cormorant_Garamond({
 const ebGaramond = EB_Garamond({
   variable: "--font-eb-garamond",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -26,7 +34,7 @@ const ebGaramond = EB_Garamond({
 const jost = Jost({
   variable: "--font-jost",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["300", "400"],
   display: "swap",
 });
 

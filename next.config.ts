@@ -7,6 +7,26 @@ import type { NextConfig } from "next";
  * the 404.
  */
 const nextConfig: NextConfig = {
+  /**
+   * Every image on the site already goes through `next/image` (no raw
+   * `<img>` anywhere — checked). The optimizer only serves WebP by default;
+   * adding AVIF lets it serve the smaller format first to browsers that
+   * support it, falling back to WebP then the original, all via content
+   * negotiation. No source assets change.
+   */
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
+  /**
+   * The project sits inside a parent folder that also holds a stray
+   * package-lock.json (not this repo, not a workspace). Without this,
+   * Turbopack walks up looking for a workspace root, finds that lockfile
+   * first, and warns on every build; pinning the root to this directory
+   * stops the misdetection.
+   */
+  turbopack: {
+    root: __dirname,
+  },
   async redirects() {
     return [
       // --- Pages retired as the structure narrowed. Work and Industries
