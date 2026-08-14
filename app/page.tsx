@@ -74,14 +74,18 @@ export default function HomePage() {
         focus="object-[50%_28%]"
         title={
           <>
+            {/* Flush `block` spans, no per-line offsets: measured against the
+                rendered glyph ink (canvas actualBoundingBoxLeft, not just
+                each span's box edge), "D", "T" and "I" in Cormorant Garamond
+                already land within half a pixel of one another at every
+                hero size. A manual nudge used to sit on this second line on
+                the assumption that "T"'s serif overhangs further left than
+                "D" or "I"'s stems — measurement shows the opposite: "T"'s
+                ink starts very slightly further right, so the nudge was
+                pushing this line visibly right of the other two instead of
+                correcting it. */}
             <span className="block">Digital Marketing</span>
-            {/* The "T" in Cormorant Garamond carries a top serif that
-                overhangs further left than "D" or "I"'s stems do, so this
-                line's box edge sits in the same place as the other two but
-                visually reads a hair further left. A small optical nudge —
-                not a layout change — brings the letterforms themselves,
-                not just their bounding boxes, to one true left edge. */}
-            <span className="block ml-[0.045em]">That Turns Spend</span>
+            <span className="block">That Turns Spend</span>
             <span className="block">Into Revenue</span>
           </>
         }
