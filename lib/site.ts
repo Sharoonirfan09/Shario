@@ -4,9 +4,11 @@
  * Copy follows `Shario content (1).pdf` — the client's content document, which
  * positions Shario as a founder-led *performance marketing* company: "A Dubai
  * Digital Marketing Company That Turns Spend Into Revenue". That document
- * supersedes the earlier Brand Book positioning ("A Symphony of Identity", a
- * boutique creative studio), and the tagline, the Arabic lockup and the six
- * creative-studio capabilities retired with it.
+ * supersedes the earlier Brand Book positioning (a boutique creative studio),
+ * and the Arabic lockup and the six creative-studio capabilities retired with
+ * it. The tagline itself, "A Symphony of Identity", was later reinstated by
+ * the client as the brand line under the hero and in the footer — set without
+ * a trailing period everywhere it appears.
  *
  * The Brand Book still governs the *visual* system only — palette, typography
  * and the composed, unhurried tone. Never "game-changing" or "world-class".
@@ -24,7 +26,7 @@
 export const site = {
   name: "Shario",
   domain: "https://shario.ae",
-  tagline: "Marketing that turns spend into revenue.",
+  tagline: "A Symphony of Identity",
   description:
     "Shario is a founder-led digital marketing company in Dubai building marketing systems that produce sales — performance marketing, SEO, websites and CRM attribution.",
   location: "Dubai, UAE",

@@ -89,7 +89,7 @@ export default function HomePage() {
             <span className="block">Into Revenue</span>
           </>
         }
-        subhead={<em className="italic">A Symphony of Identity.</em>}
+        subhead={<em className="italic">A Symphony of Identity</em>}
         href="/about"
         linkLabel="Inside Shario"
       >

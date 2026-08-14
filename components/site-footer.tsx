@@ -5,15 +5,17 @@ import { nav, services, site, social } from "@/lib/site";
 /**
  * Dark four-column footer.
  *
- * The "Symphony of Identity" line that used to sit here belonged to the
- * creative-studio positioning and retired with it. The Studio column is now
- * split in two — the services, which is what visitors navigate to from a
- * footer, and the pages. The Arabic lockup is back, though, as the site's
- * closing signature — large, Mist-toned and bled off the bottom-right
- * corner — large and in Porcelain rather than Mist, a lighter touch than a
- * saturated colour needs at this size, and sized to actually read rather
- * than disappear into the Carbon ground the way a near-invisible watermark
- * would.
+ * The tagline ("A Symphony of Identity", `site.tagline`) leads the first
+ * column as the primary brand line, set larger and italic; the descriptor
+ * beneath it is deliberately smaller and lower-opacity so it reads as
+ * secondary. Neither carries a trailing period — the tagline never does,
+ * anywhere on the site. The Studio column is split in two — the services,
+ * which is what visitors navigate to from a footer, and the pages. The
+ * Arabic lockup is the site's closing signature — large, Mist-toned and bled
+ * off the bottom-right corner — large and in Porcelain rather than Mist, a
+ * lighter touch than a saturated colour needs at this size, and sized to
+ * actually read rather than disappear into the Carbon ground the way a
+ * near-invisible watermark would.
  */
 export function SiteFooter() {
   return (
@@ -35,7 +37,7 @@ export function SiteFooter() {
               {site.tagline}
             </p>
             <p className="mt-5 max-w-[240px] text-[0.8125rem] leading-[1.7] text-porcelain/50">
-              Founder-led digital marketing in Dubai.
+              Digital marketing and creative studio in Dubai.
             </p>
           </div>
 
