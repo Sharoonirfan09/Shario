@@ -25,7 +25,17 @@
 
 export const site = {
   name: "Shario",
-  domain: "https://shario.ae",
+  /**
+   * The apex domain 308-redirects here at the Vercel edge (domain-alias
+   * config, not this app) — every route, verified. `metadataBase` and every
+   * canonical/og:url/og:image/sitemap URL derive from this one constant, so
+   * it has to be the host that serves directly with zero redirect hops.
+   * Pointing it at the apex instead is what broke WhatsApp/Facebook link
+   * previews: their crawlers fetch og:image once and don't reliably follow
+   * a redirect to get there. If the Vercel domain config ever flips which
+   * host is primary, this is the one line to change back.
+   */
+  domain: "https://www.shario.ae",
   tagline: "A Symphony of Identity",
   description:
     "Shario is a founder-led digital marketing company in Dubai building marketing systems that produce sales — performance marketing, SEO, websites and CRM attribution.",
