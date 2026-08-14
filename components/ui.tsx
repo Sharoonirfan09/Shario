@@ -609,6 +609,18 @@ export function Hero({
               banner photo and only deepens toward the bottom edge, just
               enough to hold the porcelain type legible. */}
           <div className="absolute inset-0 bg-gradient-to-t from-carbon/65 via-carbon/10 via-45% to-transparent" />
+          {/* A second, separate scrim scoped to the header's own strip.
+              `SiteHeader` decides its ink (Porcelain vs Carbon) per route,
+              trusting that every non-home hero photo is dark enough right
+              behind the bar to hold Porcelain legible — true of the bottom
+              scrim's own corner, but the bottom scrim clears completely well
+              before it reaches the top edge, so without this a bright photo
+              (a pale wall, direct sun) sits directly behind the header with
+              nothing darkening it. Sized to the bar's own height plus a
+              short fade, not the whole photograph, so it reads as the bar's
+              shadow rather than reintroducing the haze the bottom scrim
+              replaced. */}
+          <div className="absolute inset-x-0 top-0 h-[calc(var(--header-h)+64px)] bg-gradient-to-b from-carbon/70 via-carbon/25 to-transparent" />
         </>
       )}
 
@@ -914,8 +926,9 @@ export function TypeHero({
             priority={tall}
             className={`${tall ? "settle" : ""} object-cover ${focus ?? ""}`}
           />
-          {/* Same single bottom scrim as `Hero` — see the comment there. */}
+          {/* Same bottom scrim as `Hero`, plus the same header-strip scrim — see the comments there. Currently no caller passes `src` here, but keeping the two components symmetric means a future photo TypeHero doesn't quietly reintroduce the header-contrast bug the strip scrim exists to prevent. */}
           <div className="absolute inset-0 bg-gradient-to-t from-carbon/65 via-carbon/10 via-45% to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-[calc(var(--header-h)+64px)] bg-gradient-to-b from-carbon/70 via-carbon/25 to-transparent" />
         </>
       )}
       <Container

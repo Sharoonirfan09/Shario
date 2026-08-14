@@ -51,7 +51,32 @@ export function SiteHeader() {
    * `SplitHero`.
    */
   const lightHero = pathname === "/";
-  const lightInk = overHero && !lightHero;
+
+  /**
+   * Three states, matching what a visitor actually sees behind the bar:
+   *
+   * - "transparent-light": at the top of a page whose hero sits on a flat
+   *   light ground the bar never leaves — currently only Home's `SplitHero`,
+   *   whose photo panel starts below the bar rather than under it (see
+   *   `components/ui.tsx`). Carbon ink reads correctly with no backing
+   *   colour at all.
+   * - "transparent-dark": at the top of every other page, whose hero
+   *   (`Hero`/`TypeHero`) fills the whole section with a photograph,
+   *   including the strip directly behind the bar. Porcelain ink here
+   *   depends on that photo being dark enough right at the top — which is
+   *   not guaranteed by the photo itself (a bright wall, direct sun), so
+   *   `Hero`/`TypeHero` paint a scrim scoped to the bar's own height,
+   *   independent of the wider scrim their own type sits on lower down.
+   *   Changing this state's ink without keeping that scrim is what breaks
+   *   contrast — the two are one fix, not two.
+   * - "scrolled": past the hero, at any scroll depth on any page. A solid,
+   *   blurred, near-opaque Porcelain bar with Carbon ink — safe regardless
+   *   of whatever is beneath it, so it never needs a per-page or per-section
+   *   decision the way the transparent states do.
+   */
+  const headerState: "transparent-light" | "transparent-dark" | "scrolled" =
+    !overHero ? "scrolled" : lightHero ? "transparent-light" : "transparent-dark";
+  const lightInk = headerState === "transparent-dark";
 
   // Reset on navigation. Adjusting state during render is the supported way to
   // respond to a changed input, and it also covers browser back/forward.
@@ -97,11 +122,11 @@ export function SiteHeader() {
     <>
       <header
         className={`sticky top-0 z-50 border-b transition-colors duration-500 ${
-          overHero
-            ? `border-transparent bg-transparent ${
-                lightHero ? "text-carbon" : "text-porcelain"
+          headerState === "scrolled"
+            ? "border-carbon/10 bg-porcelain/92 text-carbon backdrop-blur-[14px]"
+            : `border-transparent bg-transparent ${
+                headerState === "transparent-light" ? "text-carbon" : "text-porcelain"
               }`
-            : "border-carbon/10 bg-porcelain/92 text-carbon backdrop-blur-[14px]"
         }`}
       >
         <a
