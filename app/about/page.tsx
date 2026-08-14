@@ -10,7 +10,7 @@ import {
   Hero,
   PillLink,
 } from "@/components/ui";
-import { aboutApproach, cta, services, site } from "@/lib/site";
+import { aboutApproach, cta, ogDefaults, services, site } from "@/lib/site";
 
 const description =
   "SHARIO is a Dubai digital marketing agency and creative studio connecting performance marketing, SEO, brand and strategy and consulting into one system for ambitious businesses.";
@@ -24,6 +24,7 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: "/about" },
   openGraph: {
+    ...ogDefaults,
     url: "/about",
     type: "website",
     title: "About — Shario",

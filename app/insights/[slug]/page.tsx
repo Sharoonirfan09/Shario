@@ -21,6 +21,7 @@ import {
   getInsightCategory,
   insightArticles,
   insightCategories,
+  ogDefaults,
   site,
 } from "@/lib/site";
 
@@ -44,6 +45,7 @@ export async function generateMetadata({
     description,
     alternates: { canonical: `/insights/${article.slug}` },
     openGraph: {
+      ...ogDefaults,
       url: `/insights/${article.slug}`,
       type: "article",
       title,

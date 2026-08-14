@@ -1,17 +1,17 @@
-import { buildBrandOgImage, ogContentType, ogSize } from "@/lib/og";
+import { buildHomeOgImage, ogContentType, ogSize } from "@/lib/og";
+import { HERO_IMAGE_ALT } from "./page";
 
 /**
- * Root card: the site's default share preview, and the fallback every page
- * without its own `opengraph-image.tsx` inherits (currently none — every
- * route below defines its own — but this is what a future page would get
- * before someone adds one). Replaces a static PNG that had gone stale: it
- * still quoted the retired "Marketing that turns spend into revenue." line
- * after the footer and hero moved back to `site.tagline`.
+ * Home's card: the live `SplitHero` recreated — headline, tagline and the
+ * hero photograph — via `buildHomeOgImage`, not the plain wordmark card
+ * `buildBrandOgImage` used to render here. A share of the homepage should
+ * look like the homepage; the wordmark-only treatment now lives at
+ * `buildBrandOgImage` for any future page that wants it instead.
  */
 export const size = ogSize;
 export const contentType = ogContentType;
-export const alt = "SHARIO — A Symphony of Identity";
+export const alt = `Digital Marketing That Turns Spend Into Revenue — A Symphony of Identity. ${HERO_IMAGE_ALT}.`;
 
 export default async function Image() {
-  return buildBrandOgImage();
+  return buildHomeOgImage();
 }

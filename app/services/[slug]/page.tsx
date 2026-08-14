@@ -14,7 +14,7 @@ import {
   PillLink,
   SectionIntro,
 } from "@/components/ui";
-import { cta, getService, homeFaqs, services, site } from "@/lib/site";
+import { cta, getService, homeFaqs, ogDefaults, services, site } from "@/lib/site";
 
 /** Every service page is known at build time, so prerender them. */
 export function generateStaticParams() {
@@ -33,6 +33,7 @@ export async function generateMetadata({
     description: service.metaDescription,
     alternates: { canonical: `/services/${service.slug}` },
     openGraph: {
+      ...ogDefaults,
       url: `/services/${service.slug}`,
       type: "website",
       title: `${service.name} — ${site.name}`,

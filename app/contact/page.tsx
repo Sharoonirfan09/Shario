@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { SocialIcon } from "@/components/social-icons";
 import { Band, Frame, Heading, Hero, SectionIntro } from "@/components/ui";
-import { nextSteps, site, social } from "@/lib/site";
+import { nextSteps, ogDefaults, site, social } from "@/lib/site";
 
 const description =
   "Book a free fifteen-minute strategy call with Shario. Dubai, UAE — we respond within one business day.";
@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: "/contact" },
   openGraph: {
+    ...ogDefaults,
     url: "/contact",
     type: "website",
     title: "Contact — Shario",

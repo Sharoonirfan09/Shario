@@ -55,6 +55,21 @@ export const site = {
   experience: "6+ years",
 } as const;
 
+/**
+ * Spread into every page's `openGraph` object, not set once at the root.
+ * Next resolves `openGraph` per route segment as a full reassignment, not a
+ * deep merge — a page that sets its own `openGraph.title`/`description`
+ * silently drops whatever the root layout set (`siteName`, `locale`), which
+ * is how `og:site_name` went missing on every page despite the root layout
+ * declaring it. Verified against node_modules/next's own resolve-metadata.js
+ * (the `case 'openGraph':` branch assigns rather than merging) before
+ * concluding this wasn't fixable by relying on inheritance.
+ */
+export const ogDefaults = {
+  siteName: site.name,
+  locale: "en_AE",
+} as const;
+
 /** Primary navigation. The CTA button beside it is not a nav item. */
 export const nav = [
   { href: "/", label: "Home" },

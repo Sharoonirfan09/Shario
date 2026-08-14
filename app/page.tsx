@@ -20,6 +20,7 @@ import {
   howWeWork,
   insightCategories,
   latestInsightArticles,
+  ogDefaults,
   site,
 } from "@/lib/site";
 
@@ -28,12 +29,26 @@ export const metadata: Metadata = {
   description: site.description,
   alternates: { canonical: "/" },
   openGraph: {
+    ...ogDefaults,
     url: "/",
     type: "website",
     title: "Shario — Digital Marketing Company in Dubai",
     description: site.description,
   },
 };
+
+/** Shared with `opengraph-image.tsx` so the hero photo's path is a literal in exactly one file — `check:images` flags any path quoted more than once. */
+export const HERO_IMAGE = "/images/hero/portrait.jpg";
+export const HERO_IMAGE_ALT = `${site.founder}, founder of Shario`;
+/**
+ * Same crop bias as the live `focus="object-[50%_28%]"` below, kept as a
+ * separate literal rather than derived from this constant: Tailwind's JIT
+ * only generates a utility for a class name it can find verbatim as source
+ * text, so building `object-[...]` from a template string would silently
+ * produce a class with no CSS behind it. `lib/og.tsx` reads this one as a
+ * plain `objectPosition` value instead, which has no such constraint.
+ */
+export const HERO_FOCUS = "50% 28%";
 
 /**
  * Card grounds for "How We Work". Every one is a distinct photograph used
@@ -76,8 +91,8 @@ export default function HomePage() {
        * used anywhere on the site.
        */}
       <SplitHero
-        src="/images/hero/portrait.jpg"
-        alt={`${site.founder}, founder of Shario`}
+        src={HERO_IMAGE}
+        alt={HERO_IMAGE_ALT}
         focus="object-[50%_28%]"
         title={
           <>

@@ -9,6 +9,7 @@ import {
   getInsightCategory,
   insightArticles,
   insightCategories,
+  ogDefaults,
 } from "@/lib/site";
 
 const DEFAULT_TITLE = "Insights";
@@ -50,6 +51,7 @@ export async function generateMetadata({
     description,
     alternates: { canonical },
     openGraph: {
+      ...ogDefaults,
       url: canonical,
       type: "website",
       title: `${title} — Shario`,

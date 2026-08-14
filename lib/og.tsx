@@ -8,6 +8,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import sharp from "sharp";
+import { HERO_FOCUS, HERO_IMAGE } from "@/app/page";
 import { site } from "@/lib/site";
 
 /**
@@ -57,9 +58,12 @@ async function toJpegResponse(image: ImageResponse): Promise<Response> {
 
 const CORMORANT_CHARS =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 —–.,&:'’\"?!/";
+const EB_GARAMOND_CHARS =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz —–.,&:'’\"?!/";
 
 let cormorantRegular: Promise<ArrayBuffer> | null = null;
 let cormorantMedium: Promise<ArrayBuffer> | null = null;
+let ebGaramondItalic: Promise<ArrayBuffer> | null = null;
 
 /**
  * Google's CSS2 endpoint returns a stylesheet with a single `src: url(...)`
@@ -89,6 +93,26 @@ async function loadCormorant(weight: 400 | 500): Promise<ArrayBuffer> {
   if (weight === 400) cormorantRegular = promise;
   else cormorantMedium = promise;
   return promise;
+}
+
+/** Same fetch recipe as `loadCormorant`, for the one italic line the Home card sets in EB Garamond (the same font `<em className="italic">` sets on the live hero's subhead). */
+async function loadEBGaramondItalic(): Promise<ArrayBuffer> {
+  if (ebGaramondItalic) return ebGaramondItalic;
+
+  ebGaramondItalic = (async () => {
+    const css = await fetch(
+      `https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,400&text=${encodeURIComponent(EB_GARAMOND_CHARS)}`,
+      { headers: { "User-Agent": "Mozilla/5.0" } },
+    ).then((res) => res.text());
+    const match = css.match(/src: url\(([^)]+)\)/);
+    if (!match) {
+      throw new Error("og: could not resolve EB Garamond italic font URL");
+    }
+    const fontRes = await fetch(match[1]);
+    return fontRes.arrayBuffer();
+  })();
+
+  return ebGaramondItalic;
 }
 
 async function loadPublicImage(publicPath: string): Promise<string> {
@@ -153,6 +177,112 @@ export async function buildBrandOgImage() {
       </div>
     ),
     { ...ogSize, fonts: [{ name: "Cormorant Garamond", data: cormorant, style: "normal", weight: 400 }] },
+  );
+  return toJpegResponse(image);
+}
+
+/**
+ * The Home card: a recreation of the live `SplitHero` itself — the headline,
+ * the italic tagline and the hero photograph, side by side on Limestone,
+ * rather than the wordmark-only brand card `buildBrandOgImage` renders.
+ * Replaces that card as Home's `opengraph-image.tsx` specifically because a
+ * share of the homepage should look like the homepage, not a logo card —
+ * `buildBrandOgImage` is kept for any future page that wants the plain
+ * brand treatment instead.
+ */
+export async function buildHomeOgImage() {
+  const [cormorant, ebGaramondItalicFont, wordmark, photoDataUri] = await Promise.all([
+    loadCormorant(400),
+    loadEBGaramondItalic(),
+    loadWordmark(),
+    loadPublicImage(HERO_IMAGE),
+  ]);
+
+  const PHOTO_WIDTH = 520;
+
+  const image = new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          position: "relative",
+          background: "#D6CEC2",
+        }}
+      >
+        <img
+          src={wordmark}
+          width={150}
+          height={28}
+          style={{
+            position: "absolute",
+            left: 64,
+            top: 56,
+            objectFit: "contain",
+          }}
+        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            width: ogSize.width - PHOTO_WIDTH,
+            height: "100%",
+            paddingLeft: 64,
+            paddingRight: 48,
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              fontFamily: "Cormorant Garamond",
+              fontWeight: 400,
+              fontSize: 46,
+              lineHeight: 1.12,
+              letterSpacing: 0.6,
+              color: "#252525",
+            }}
+          >
+            <div style={{ display: "flex" }}>Digital Marketing</div>
+            <div style={{ display: "flex" }}>That Turns Spend</div>
+            <div style={{ display: "flex" }}>Into Revenue</div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              marginTop: 28,
+              fontFamily: "EB Garamond",
+              fontStyle: "italic",
+              fontSize: 25,
+              color: "rgba(37,37,37,0.68)",
+            }}
+          >
+            A Symphony of Identity
+          </div>
+        </div>
+        <img
+          src={photoDataUri}
+          width={PHOTO_WIDTH}
+          height={ogSize.height}
+          style={{
+            position: "absolute",
+            right: 0,
+            top: 0,
+            objectFit: "cover",
+            objectPosition: HERO_FOCUS,
+          }}
+        />
+      </div>
+    ),
+    {
+      ...ogSize,
+      fonts: [
+        { name: "Cormorant Garamond", data: cormorant, style: "normal", weight: 400 },
+        { name: "EB Garamond", data: ebGaramondItalicFont, style: "italic", weight: 400 },
+      ],
+    },
   );
   return toJpegResponse(image);
 }
