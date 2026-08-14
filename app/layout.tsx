@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, EB_Garamond, Jost } from "next/font/google";
+import { Amiri, Cormorant_Garamond, EB_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -35,6 +35,20 @@ const jost = Jost({
   variable: "--font-jost",
   subsets: ["latin"],
   weight: ["300", "400"],
+  display: "swap",
+});
+
+/**
+ * Carries exactly one line on the site: the Arabic tagline in
+ * `ArabicStatement` (`components/ui.tsx`). A classical Naskh revival —
+ * Cormorant's counterpart on the Arabic side rather than a plain sans —
+ * subset to `arabic` only, since it's never set in Latin here.
+ */
+const amiri = Amiri({
+  variable: "--font-amiri",
+  subsets: ["arabic"],
+  weight: ["400"],
+  style: ["normal"],
   display: "swap",
 });
 
@@ -81,7 +95,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
        * navigation, which reads as the site hanging.
        */
       data-scroll-behavior="smooth"
-      className={`${cormorant.variable} ${ebGaramond.variable} ${jost.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${ebGaramond.variable} ${jost.variable} ${amiri.variable} h-full antialiased`}
     >
       <head>
         {/*

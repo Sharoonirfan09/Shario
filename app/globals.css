@@ -26,6 +26,7 @@
   --font-display: var(--font-cormorant), Georgia, serif;
   --font-body: var(--font-eb-garamond), Georgia, serif;
   --font-label: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: var(--font-amiri), "Traditional Arabic", serif;
 
   --spacing-gutter: clamp(1.5rem, 5vw, 6rem);
 

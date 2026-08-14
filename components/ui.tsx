@@ -1072,6 +1072,37 @@ export function CtaBand({
   );
 }
 
+/**
+ * The Arabic brand accent: "سيمفونية الهوية" — the exact Arabic rendering of
+ * the site's own tagline, "A Symphony of Identity" — set alone, large, on
+ * the one field in the palette built for exactly this. The Brand Book calls
+ * Mist a "selective accent"; it's spent nowhere else as a full section
+ * ground, which is what keeps this reading as a deliberate pause rather than
+ * a colour the site happens to reach for again.
+ *
+ * No translation sits beside it, the same way the Arabic wordmark elsewhere
+ * on the site carries no gloss — it's a mark of the brand's bilingual
+ * identity, not a caption asking to be read.
+ *
+ * `dir="rtl"` and no `letter-spacing`: Arabic letterforms join contextually
+ * (initial/medial/final/isolated), so any positive tracking severs those
+ * connections and reads as visibly broken, not just loose — never add it
+ * here even to match another line's rhythm.
+ */
+export function ArabicStatement() {
+  return (
+    <Band className="bg-mist">
+      <p
+        dir="rtl"
+        lang="ar"
+        className="reveal mx-auto max-w-[900px] text-center font-arabic text-[2.25rem] leading-[1.9] text-carbon wide:text-[clamp(2.75rem,5.4vw,4.75rem)] wide:leading-[1.7]"
+      >
+        سيمفونية الهوية
+      </p>
+    </Band>
+  );
+}
+
 /** A full-bleed photograph with one centred serif line over it. */
 export function StatementImage({
   src,

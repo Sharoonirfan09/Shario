@@ -3,6 +3,7 @@ import { Faq } from "@/components/faq";
 import { InsightCard } from "@/components/insights";
 import { SixServices } from "@/components/six-services";
 import {
+  ArabicStatement,
   Band,
   Card,
   CardGrid,
@@ -159,6 +160,12 @@ export default function HomePage() {
           </div>
         </div>
       </Band>
+
+      {/* The Arabic brand accent — a quiet full-width pause between the
+          Founder band above and What Makes Us Different below, on the one
+          section of the page that spends Mist as a ground rather than a
+          hairline or hover state. See `ArabicStatement` for why. */}
+      <ArabicStatement />
 
       {/* What makes us different — the engagement, as the reference frames it.
           Carries the Arabic lockup as a large, very quiet watermark — Carbon
