@@ -602,8 +602,13 @@ export function Hero({
             priority={priority}
             className={`settle object-cover ${focus ?? ""}`}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-carbon/20 to-carbon/70" />
-          <div className="absolute inset-0 bg-gradient-to-r from-carbon/80 via-carbon/30 to-transparent" />
+          {/* One gentle bottom scrim, not the two stacked full-bleed gradients
+              this used to carry — those compounded (each covers most of the
+              frame) to darken the whole photograph, not just the corner the
+              type sits over. This clears through the top and middle of every
+              banner photo and only deepens toward the bottom edge, just
+              enough to hold the porcelain type legible. */}
+          <div className="absolute inset-0 bg-gradient-to-t from-carbon/65 via-carbon/10 via-45% to-transparent" />
         </>
       )}
 
@@ -909,8 +914,8 @@ export function TypeHero({
             priority={tall}
             className={`${tall ? "settle" : ""} object-cover ${focus ?? ""}`}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-carbon/20 to-carbon/70" />
-          <div className="absolute inset-0 bg-gradient-to-r from-carbon/80 via-carbon/30 to-transparent" />
+          {/* Same single bottom scrim as `Hero` — see the comment there. */}
+          <div className="absolute inset-0 bg-gradient-to-t from-carbon/65 via-carbon/10 via-45% to-transparent" />
         </>
       )}
       <Container
