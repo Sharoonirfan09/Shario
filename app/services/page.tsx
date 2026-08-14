@@ -6,6 +6,11 @@ import { cta } from "@/lib/site";
 const description =
   "SHARIO is a performance marketing agency in Dubai offering performance marketing, SEO and content, websites and CRO, CRM and automation, brand and creative. Engage one service or the entire funnel.";
 
+/** Shared with `opengraph-image.tsx` (and `[slug]`'s not-found fallback) so the banner path is a literal in exactly one file — `check:images` flags any path quoted more than once. */
+export const HERO_IMAGE = "/images/book/services-drive.jpg";
+export const HERO_IMAGE_ALT =
+  "The cream leather interior of a classic convertible in warm afternoon light, a bow and a leather shoe resting on the seat";
+
 export const metadata: Metadata = {
   title: "Performance Marketing Agency Services in Dubai",
   description,
@@ -30,9 +35,9 @@ export default function ServicesPage() {
         Performance Marketing Agency Services in Dubai
       </h1>
       <Hero
-        src="/images/book/services-lounge.jpg"
-        alt="A minimal, warmly lit lounge interior"
-        focus="object-[50%_60%]"
+        src={HERO_IMAGE}
+        alt={HERO_IMAGE_ALT}
+        focus="object-[38%_45%]"
         eyebrow="Services"
         priority
       />

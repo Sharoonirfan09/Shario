@@ -8,6 +8,10 @@ import { nextSteps, site, social } from "@/lib/site";
 const description =
   "Book a free fifteen-minute strategy call with Shario. Dubai, UAE — we respond within one business day.";
 
+/** Shared with `opengraph-image.tsx` so the banner path is a literal in exactly one file — `check:images` flags any path quoted more than once. */
+export const HERO_IMAGE = "/images/travertine-wall.jpg";
+export const HERO_IMAGE_ALT = "A travertine wall lit by warm, angled daylight";
+
 export const metadata: Metadata = {
   title: "Contact",
   description,
@@ -32,8 +36,8 @@ export default function ContactPage() {
           "contact" prop. */}
       <h1 className="sr-only">Contact Shario</h1>
       <Hero
-        src="/images/travertine-wall.jpg"
-        alt="A travertine wall lit by warm, angled daylight"
+        src={HERO_IMAGE}
+        alt={HERO_IMAGE_ALT}
         focus="object-[62%_50%]"
         eyebrow="Contact"
         priority

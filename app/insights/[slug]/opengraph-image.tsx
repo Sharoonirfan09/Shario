@@ -1,5 +1,6 @@
 import { buildPageOgImage, ogContentType, ogSize } from "@/lib/og";
 import { getInsightArticle, getInsightCategory, insightArticles } from "@/lib/site";
+import { HERO_IMAGE } from "../page";
 
 export const size = ogSize;
 export const contentType = ogContentType;
@@ -20,7 +21,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const article = getInsightArticle(slug);
   if (!article) {
     return buildPageOgImage({
-      photo: "/images/insights/insights-banner-editorial-walk.jpg",
+      photo: HERO_IMAGE,
       eyebrow: "Insights",
       title: "Insights",
     });

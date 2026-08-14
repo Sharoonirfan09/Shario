@@ -169,7 +169,7 @@ export async function buildPageOgImage({
   eyebrow,
   title,
 }: {
-  /** Public-relative path, e.g. "/images/book/about-frames.jpg". */
+  /** Public-relative path under `/images` — pass a page's existing `HERO_IMAGE` constant, never a new literal (`check:images` flags any path quoted more than once). */
   photo: string;
   eyebrow: string;
   title: string;

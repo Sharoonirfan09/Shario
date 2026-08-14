@@ -1,9 +1,9 @@
 import { buildPageOgImage, ogContentType, ogSize } from "@/lib/og";
+import { HERO_IMAGE, HERO_IMAGE_ALT } from "./page";
 
 export const size = ogSize;
 export const contentType = ogContentType;
-export const alt =
-  "A woman in a wide-brimmed hat walking past a stone colonnade, in black and white";
+export const alt = HERO_IMAGE_ALT;
 
 /**
  * One card for the whole listing, not per `?category=` — `generateMetadata`
@@ -13,7 +13,7 @@ export const alt =
  */
 export default async function Image() {
   return buildPageOgImage({
-    photo: "/images/insights/insights-banner-editorial-walk.jpg",
+    photo: HERO_IMAGE,
     eyebrow: "Insights",
     title: "Ideas that move marketing forward.",
   });

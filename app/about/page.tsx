@@ -15,6 +15,10 @@ import { aboutApproach, cta, services, site } from "@/lib/site";
 const description =
   "SHARIO is a Dubai digital marketing agency and creative studio connecting performance marketing, SEO, brand and strategy and consulting into one system for ambitious businesses.";
 
+/** Shared with `opengraph-image.tsx` so the banner path is a literal in exactly one file — `check:images` flags any path quoted more than once. */
+export const HERO_IMAGE = "/images/book/about-frames.jpg";
+export const HERO_IMAGE_ALT = "Framed prints and objects arranged on a warm, minimal wall";
+
 export const metadata: Metadata = {
   title: "About",
   description,
@@ -39,8 +43,8 @@ export default function AboutPage() {
         Dubai
       </h1>
       <Hero
-        src="/images/book/about-frames.jpg"
-        alt="Framed prints and objects arranged on a warm, minimal wall"
+        src={HERO_IMAGE}
+        alt={HERO_IMAGE_ALT}
         focus="object-[50%_50%]"
         eyebrow="About"
         priority

@@ -20,10 +20,12 @@ const DEFAULT_DESCRIPTION =
  * one-line edit here, not a layout change. `Hero` (the same component
  * About and Contact use) handles the box height, padding and `settle`
  * entrance animation on its own; this file only ever needs to change the
- * path.
+ * path. Exported so `opengraph-image.tsx` (here and in `[slug]`'s not-found
+ * fallback) reuses the same reference instead of quoting the path again —
+ * `check:images` flags any path quoted more than once.
  */
-const HERO_IMAGE = "/images/insights/insights-banner-editorial-walk.jpg";
-const HERO_IMAGE_ALT =
+export const HERO_IMAGE = "/images/insights/insights-banner-editorial-walk.jpg";
+export const HERO_IMAGE_ALT =
   "A woman in a wide-brimmed hat walking past a stone colonnade, in black and white";
 
 /**
