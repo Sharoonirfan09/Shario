@@ -33,6 +33,8 @@ export async function generateMetadata({
     description: service.metaDescription,
     alternates: { canonical: `/services/${service.slug}` },
     openGraph: {
+      url: `/services/${service.slug}`,
+      type: "website",
       title: `${service.name} — ${site.name}`,
       description: service.metaDescription,
     },

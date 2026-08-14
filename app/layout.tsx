@@ -52,6 +52,18 @@ export const metadata: Metadata = {
     title: "Shario — Digital Marketing Company in Dubai",
     description: site.description,
   },
+  /**
+   * `card` has to be set here explicitly, not inferred: Next decides the
+   * default ("summary" vs "summary_large_image") once, at this root
+   * object's own resolution, based only on what's in *this* object — it
+   * never revisits that decision after a page's own `opengraph-image.tsx`
+   * gets auto-filled in later. Every route has its own OG image, so this is
+   * always the large card.
+   */
+  twitter: {
+    card: "summary_large_image",
+    site: "@shario_ae",
+  },
   robots: { index: true, follow: true },
 };
 

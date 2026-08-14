@@ -3,11 +3,19 @@ import { SixServices } from "@/components/six-services";
 import { CtaBand, Hero, PillLink } from "@/components/ui";
 import { cta } from "@/lib/site";
 
+const description =
+  "SHARIO is a performance marketing agency in Dubai offering performance marketing, SEO and content, websites and CRO, CRM and automation, brand and creative. Engage one service or the entire funnel.";
+
 export const metadata: Metadata = {
   title: "Performance Marketing Agency Services in Dubai",
-  description:
-    "SHARIO is a performance marketing agency in Dubai offering performance marketing, SEO and content, websites and CRO, CRM and automation, brand and creative. Engage one service or the entire funnel.",
+  description,
   alternates: { canonical: "/services" },
+  openGraph: {
+    url: "/services",
+    type: "website",
+    title: "Performance Marketing Agency Services in Dubai — Shario",
+    description,
+  },
 };
 
 export default function ServicesPage() {

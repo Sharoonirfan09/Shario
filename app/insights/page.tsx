@@ -39,11 +39,19 @@ export async function generateMetadata({
   const requested = typeof sp.category === "string" ? sp.category : undefined;
   const category = requested ? getInsightCategory(requested) : undefined;
 
+  const canonical = category ? `/insights?category=${category.slug}` : "/insights";
+  const title = category ? `${category.name} — Insights` : DEFAULT_TITLE;
+  const description = category?.description ?? DEFAULT_DESCRIPTION;
+
   return {
-    title: category ? `${category.name} — Insights` : DEFAULT_TITLE,
-    description: category?.description ?? DEFAULT_DESCRIPTION,
-    alternates: {
-      canonical: category ? `/insights?category=${category.slug}` : "/insights",
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      url: canonical,
+      type: "website",
+      title: `${title} — Shario`,
+      description,
     },
   };
 }

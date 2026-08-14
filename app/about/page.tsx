@@ -12,11 +12,19 @@ import {
 } from "@/components/ui";
 import { aboutApproach, cta, services, site } from "@/lib/site";
 
+const description =
+  "SHARIO is a Dubai digital marketing agency and creative studio connecting performance marketing, SEO, brand and strategy and consulting into one system for ambitious businesses.";
+
 export const metadata: Metadata = {
   title: "About",
-  description:
-    "SHARIO is a Dubai digital marketing agency and creative studio connecting performance marketing, SEO, brand and strategy and consulting into one system for ambitious businesses.",
+  description,
   alternates: { canonical: "/about" },
+  openGraph: {
+    url: "/about",
+    type: "website",
+    title: "About — Shario",
+    description,
+  },
 };
 
 export default function AboutPage() {

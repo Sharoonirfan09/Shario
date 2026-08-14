@@ -5,11 +5,19 @@ import { SocialIcon } from "@/components/social-icons";
 import { Band, Frame, Heading, Hero, SectionIntro } from "@/components/ui";
 import { nextSteps, site, social } from "@/lib/site";
 
+const description =
+  "Book a free fifteen-minute strategy call with Shario. Dubai, UAE — we respond within one business day.";
+
 export const metadata: Metadata = {
   title: "Contact",
-  description:
-    "Book a free fifteen-minute strategy call with Shario. Dubai, UAE — we respond within one business day.",
+  description,
   alternates: { canonical: "/contact" },
+  openGraph: {
+    url: "/contact",
+    type: "website",
+    title: "Contact — Shario",
+    description,
+  },
 };
 
 export default function ContactPage() {

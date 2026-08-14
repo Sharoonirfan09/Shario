@@ -26,6 +26,12 @@ export const metadata: Metadata = {
   title: "Shario — Digital Marketing Company in Dubai",
   description: site.description,
   alternates: { canonical: "/" },
+  openGraph: {
+    url: "/",
+    type: "website",
+    title: "Shario — Digital Marketing Company in Dubai",
+    description: site.description,
+  },
 };
 
 /**
