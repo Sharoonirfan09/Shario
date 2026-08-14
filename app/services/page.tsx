@@ -7,9 +7,9 @@ const description =
   "SHARIO is a performance marketing agency in Dubai offering performance marketing, SEO and content, websites and CRO, CRM and automation, brand and creative. Engage one service or the entire funnel.";
 
 /** Shared with `opengraph-image.tsx` (and `[slug]`'s not-found fallback) so the banner path is a literal in exactly one file — `check:images` flags any path quoted more than once. */
-export const HERO_IMAGE = "/images/book/services-drive.jpg";
+export const HERO_IMAGE = "/images/book/services-portrait.jpg";
 export const HERO_IMAGE_ALT =
-  "The cream leather interior of a classic convertible in warm afternoon light, a bow and a leather shoe resting on the seat";
+  "A framed painting of a woman in a wide-brimmed hat and a pleated cream dress, leaning against a deep red canvas in a sunlit, panelled room";
 
 export const metadata: Metadata = {
   title: "Performance Marketing Agency Services in Dubai",
@@ -37,7 +37,7 @@ export default function ServicesPage() {
       <Hero
         src={HERO_IMAGE}
         alt={HERO_IMAGE_ALT}
-        focus="object-[38%_45%]"
+        focus="object-[48%_30%]"
         eyebrow="Services"
         priority
       />
