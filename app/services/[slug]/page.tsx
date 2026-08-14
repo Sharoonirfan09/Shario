@@ -185,7 +185,7 @@ export default async function ServicePage({
         sub="Book a free call and we will come back with a clear, no-obligation plan."
       >
         <PillLink
-          href={`${cta.href}?service=${encodeURIComponent(service.name)}`}
+          href={`${cta.href}?text=${encodeURIComponent(`Hi, I'm interested in ${service.name}.`)}`}
           tone="solid"
           size="lg"
         >

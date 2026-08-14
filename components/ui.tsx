@@ -216,8 +216,18 @@ export function PillLink({
 
   const classes = `inline-block rounded-full border uppercase tracking-[0.08em] transition-colors duration-500 ${sizes[size]} ${pillTone[tone]} ${className}`;
 
-  // `mailto:` and `tel:` are not routes — Link would prefetch them.
-  if (/^(mailto:|tel:|https?:)/.test(href)) {
+  // `mailto:` and `tel:` are not routes — Link would prefetch them. A real
+  // `http(s)` URL is a link off the site (WhatsApp, LinkedIn), so it opens
+  // in a new tab rather than navigating the visitor away from SHARIO;
+  // `mailto:`/`tel:` hand off to a native app instead and don't need that.
+  if (/^https?:/.test(href)) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
+        {children}
+      </a>
+    );
+  }
+  if (/^(mailto:|tel:)/.test(href)) {
     return (
       <a href={href} className={classes}>
         {children}

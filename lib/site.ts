@@ -31,6 +31,8 @@ export const site = {
   studio: "Dubai, United Arab Emirates",
   phone: "+971 50 467 9095",
   phoneHref: "+971504679095",
+  /** wa.me's click-to-chat format: country code + number, no "+", no spaces. */
+  whatsapp: "https://wa.me/971504679095",
   email: "info@shario.ae",
   website: "www.shario.ae",
   linkedin: "https://linkedin.com/in/sharoonirfan",
@@ -91,9 +93,16 @@ export const social = [
 ] as const;
 
 /** The action repeated in the header, every hero and every closing band. */
+/**
+ * The "Let's Connect" pill — header, every hero and every closing band.
+ * Opens WhatsApp directly rather than the Contact page: the fastest path to
+ * a reply for a visitor who already knows they want to talk. The Contact
+ * page itself (nav link, form, phone, email) is unchanged and still there
+ * for anyone who wants it instead.
+ */
 export const cta = {
   label: "Let's Connect",
-  href: "/contact",
+  href: site.whatsapp,
 } as const;
 
 /* -------------------------------------------------------------------------- */

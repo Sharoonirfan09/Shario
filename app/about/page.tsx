@@ -72,59 +72,59 @@ export default function AboutPage() {
         </div>
       </Band>
 
-      {/* Philosophy, Mission, Vision — three distinct statements the company
-          runs on, held side by side rather than as three separate full
-          bands, so the page doesn't spend three scrolls saying what fits in
-          one considered pause. Carries the Arabic mark centred and very
-          large behind all three columns, fainter than anywhere else it
-          appears on the site — this band's own text spans the full width,
-          so the mark has to sit further back than the cornered or
-          edge-bled versions elsewhere. */}
+      {/* Philosophy, Mission, Vision — the ledger measure (globals.css:
+          figures in the display serif over a hairline, no boxes, no
+          shadows) rather than another hairline-eyebrow-and-heading block.
+          The rest of this page already opens every section that way —
+          About SHARIO, How We Work, What We Do, the Founder — so three
+          more of them back to back would read as the same block repeated,
+          not three distinct ideas. The numerals also give three full
+          sentences a real anchor to sit under, instead of a heading set at
+          section-title size trying to hold a sentence in a column narrow
+          enough to break it into a ragged four or five lines. Carries the
+          Arabic mark centred and very large behind all three columns,
+          fainter than anywhere else it appears on the site — this band's
+          own text spans the full width, so the mark has to sit further
+          back than the cornered or edge-bled versions elsewhere. */}
       <Band className="relative overflow-hidden bg-limestone/30">
         <span
           aria-hidden="true"
           className="wordmark-ar pointer-events-none absolute left-1/2 top-1/2 z-0 w-[70%] -translate-x-1/2 -translate-y-1/2 text-carbon/[0.035] wide:w-[42%]"
         />
-        <div className="relative z-10 grid gap-14 wide:grid-cols-3 wide:gap-12">
-          <div className="reveal">
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
-              <span aria-hidden="true" className="h-px w-6 bg-mist" />
-              Philosophy
-            </p>
-            <Heading as="h2" scale="sm" className="mt-5">
+        <div className="relative z-10 grid gap-14 wide:grid-cols-3 wide:gap-16">
+          <div className="reveal ledger">
+            <p className="ledger-figure">01</p>
+            <p className="label-sm mt-5 text-carbon/50">Philosophy</p>
+            <h2 className="mt-4 font-display text-[1.4375rem] font-normal leading-[1.3] text-carbon">
               Marketing should move something.
-            </Heading>
-            <p className="mt-5 text-[0.9375rem] leading-[1.75] text-carbon/70">
+            </h2>
+            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/70">
               SHARIO connects creative thinking with measurable performance —
               brand, digital and growth held as one system, not three
               disconnected services run in parallel.
             </p>
           </div>
-          <div className="reveal" data-delay="80">
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
-              <span aria-hidden="true" className="h-px w-6 bg-mist" />
-              Our Mission
-            </p>
-            <Heading as="h2" scale="sm" className="mt-5">
+          <div className="reveal ledger" data-delay="80">
+            <p className="ledger-figure">02</p>
+            <p className="label-sm mt-5 text-carbon/50">Our Mission</p>
+            <h2 className="mt-4 font-display text-[1.4375rem] font-normal leading-[1.3] text-carbon">
               To make modern marketing clearer, more connected and more
               effective.
-            </Heading>
-            <p className="mt-5 text-[0.9375rem] leading-[1.75] text-carbon/70">
+            </h2>
+            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/70">
               We build thoughtful marketing systems where strategy, creative,
               digital execution and performance work together, rather than
               arriving from separate directions.
             </p>
           </div>
-          <div className="reveal" data-delay="160">
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
-              <span aria-hidden="true" className="h-px w-6 bg-mist" />
-              Our Vision
-            </p>
-            <Heading as="h2" scale="sm" className="mt-5">
+          <div className="reveal ledger" data-delay="160">
+            <p className="ledger-figure">03</p>
+            <p className="label-sm mt-5 text-carbon/50">Our Vision</p>
+            <h2 className="mt-4 font-display text-[1.4375rem] font-normal leading-[1.3] text-carbon">
               To build a more intelligent standard for how ambitious
               businesses approach marketing.
-            </Heading>
-            <p className="mt-5 text-[0.9375rem] leading-[1.75] text-carbon/70">
+            </h2>
+            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/70">
               Beyond disconnected campaigns — marketing ecosystems where
               identity, technology, content and performance are built to
               work together from the start.

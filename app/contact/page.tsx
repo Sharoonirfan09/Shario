@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { EnquiryForm } from "@/components/enquiry-form";
+import { SocialIcon } from "@/components/social-icons";
 import { Band, Frame, Heading, Hero, SectionIntro } from "@/components/ui";
-import { nextSteps, site } from "@/lib/site";
+import { nextSteps, site, social } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -93,15 +94,23 @@ export default function ContactPage() {
                 <Detail index="03" label="Location">
                   <p className="font-display text-[1.375rem]">{site.studio}</p>
                 </Detail>
-                <Detail index="04" label="LinkedIn">
-                  <a
-                    href={site.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm transition-colors duration-300 hover:text-mist"
-                  >
-                    linkedin.com/in/sharoonirfan
-                  </a>
+                <Detail index="04" label="Social">
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+                    {social.map((item) => (
+                      <a
+                        key={item.platform}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={item.label}
+                        className="text-carbon/50 transition-colors duration-300 hover:text-mist"
+                      >
+                        <span className="block h-[18px] w-[18px]">
+                          <SocialIcon platform={item.platform} />
+                        </span>
+                      </a>
+                    ))}
+                  </div>
                 </Detail>
               </div>
             </div>

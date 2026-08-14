@@ -245,8 +245,10 @@ export function SiteHeader() {
               );
             })}
 
-            <Link
+            <a
               href={cta.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`shrink-0 whitespace-nowrap rounded-full border px-[22px] py-3 text-[11px] uppercase tracking-[0.08em] transition-colors duration-500 ${
                 lightInk
                   ? "border-porcelain bg-porcelain text-carbon hover:border-mist hover:bg-mist"
@@ -254,7 +256,7 @@ export function SiteHeader() {
               }`}
             >
               {cta.label}
-            </Link>
+            </a>
           </nav>
 
           {/* Mobile trigger */}
@@ -338,13 +340,15 @@ export function SiteHeader() {
               </div>
             </div>
 
-            <Link
+            <a
               href={cta.href}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
               className="mt-auto rounded-full border border-porcelain bg-porcelain px-8 py-4 text-center text-[11px] uppercase tracking-[0.08em] text-carbon"
             >
               {cta.label}
-            </Link>
+            </a>
           </div>
         </div>
       )}
