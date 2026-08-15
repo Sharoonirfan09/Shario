@@ -15,9 +15,13 @@ const INITIAL_COUNT = 4;
  * it collapses to an instant toggle under `prefers-reduced-motion` via the
  * global transition reset in `globals.css`.
  *
- * Sets past `INITIAL_COUNT` start collapsed behind "Load More" — the service
- * pages sit at four questions each and never trigger it, only the longer
- * homepage list does.
+ * Sets past `INITIAL_COUNT` start collapsed behind "Load More" — every call
+ * site shares the same 26-question `homeFaqs` list, so this always triggers.
+ * Items past `INITIAL_COUNT` are always rendered — hidden with `className`,
+ * not filtered out of the array — so the full, already-written answer text
+ * for every question is present in the server-rendered HTML (and so crawled
+ * and counted as real page content) whether or not a visitor ever clicks
+ * "Load More".
  */
 export function Faq({
   items,
@@ -36,16 +40,19 @@ export function Faq({
   const isRu = locale === "ru";
 
   const hasMore = items.length > INITIAL_COUNT;
-  const visible = expanded ? items : items.slice(0, INITIAL_COUNT);
 
   return (
     <div className="flex flex-col">
-      {visible.map((item, i) => {
+      {items.map((item, i) => {
         const isOpen = open === i;
         const panelId = `${id}-panel-${i}`;
+        const isOverflow = i >= INITIAL_COUNT;
 
         return (
-          <div key={item.q} className="border-t border-carbon/15">
+          <div
+            key={item.q}
+            className={`border-t border-carbon/15 ${isOverflow && !expanded ? "hidden" : ""}`}
+          >
             <h3>
               <button
                 type="button"

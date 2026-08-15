@@ -107,7 +107,8 @@ export default function ArabicHomePage() {
               data-delay="90"
             >
               تحصلون على تفكير على مستوى أول في كل حملة، من فريق يبقى مع
-              حسابكم.
+              حسابكم — وصول مباشر إلى صانع الاستراتيجية نفسه، لا فريق حسابات
+              متغيّر ينقلها إليكم بالنيابة.
             </p>
             <div className="reveal mt-9" data-delay="160">
               <PillLink href="/ar/about">اعرفوا المزيد</PillLink>

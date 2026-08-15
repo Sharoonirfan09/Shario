@@ -161,7 +161,8 @@ export default function HomePage() {
               data-delay="90"
             >
               You get senior thinking on every campaign, from a team that stays
-              with your account.
+              with your account — direct access to the person setting the
+              strategy, not a rotating account team relaying it secondhand.
             </p>
             <div className="reveal mt-9" data-delay="160">
               <PillLink href="/about">Learn More</PillLink>
