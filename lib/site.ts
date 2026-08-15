@@ -45,12 +45,18 @@ export const site = {
   taglineAr: "سيمفونية الهوية",
   /** Russian counterpart to `taglineAr` — a natural adaptation ("Symphony of Identity"), not a stiffer literal rendering. */
   taglineRu: "Симфония идентичности",
+  /**
+   * ~150–160 characters — the practical ceiling before Google truncates a
+   * snippet in search results. All three language versions below are held
+   * to the same range for the same reason; `descriptionAr`/`descriptionRu`
+   * previously ran to 174/211 characters respectively.
+   */
   description:
-    "Shario is a founder-led digital marketing company in Dubai building marketing systems that produce sales — performance marketing, SEO, websites and CRM attribution.",
+    "Shario is a founder-led digital marketing company in Dubai building marketing systems — performance marketing, SEO, websites and CRM — that produce sales.",
   descriptionAr:
-    "شاريو شركة تسويق رقمي في دبي يقودها مؤسسها، تبني أنظمة تسويقية تحقق مبيعات فعلية — التسويق الأدائي، تحسين محركات البحث، المواقع الإلكترونية، وربط بيانات إدارة علاقات العملاء.",
+    "شاريو شركة تسويق رقمي في دبي يقودها مؤسسها، تبني أنظمة تسويقية تحقق مبيعات: التسويق الأدائي، تحسين محركات البحث، المواقع الإلكترونية، وإدارة علاقات العملاء.",
   descriptionRu:
-    "SHARIO — агентство цифрового маркетинга в Дубае под личным руководством основателя. Мы выстраиваем маркетинговые системы, которые приносят реальные продажи: performance-маркетинг, SEO, веб-сайты и CRM-аналитику.",
+    "SHARIO — агентство цифрового маркетинга в Дубае под руководством основателя. Строим системы, которые приносят продажи: performance-маркетинг, SEO, сайты, CRM.",
   location: "Dubai, UAE",
   locationAr: "دبي، الإمارات العربية المتحدة",
   locationRu: "Дубай, ОАЭ",
@@ -60,6 +66,9 @@ export const site = {
   /** wa.me's click-to-chat format: country code + number, no "+", no spaces. */
   whatsapp: "https://wa.me/971504679095",
   email: "info@shario.ae",
+  /** Split for `<ObfuscatedEmail>` (`components/obfuscated-email.tsx`), the same way `phoneHref` is `phone` in the one format `tel:` needs. */
+  emailUser: "info",
+  emailDomain: "shario.ae",
   website: "www.shario.ae",
   linkedin: "https://linkedin.com/in/sharoonirfan",
   founder: "Sharoon Irfan",
@@ -3025,7 +3034,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Putting This Into Practice"),
       p(
-        "If you're weighing whether to brief us or another team, [our strategy and consulting work](/services/strategy-consulting) starts from exactly this list before a single recommendation gets made. You're welcome to send the numbers first and see what comes back — [reach out here](/contact) whenever you're ready.",
+        "If you're weighing whether to brief us or another team, [our strategy and consulting work](/services/strategy-consulting) starts from exactly this list before a single recommendation gets made — whether the brief is for [performance marketing](/services/performance-marketing) specifically or a broader system. You're welcome to send the numbers first and see what comes back — [reach out here](/contact) whenever you're ready.",
       ),
     ],
     bodyAr: [
@@ -3063,7 +3072,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("تطبيق هذا عملياً"),
       p(
-        "إذا كنتم تفكرون في توجيه إحاطة لنا أو لفريق آخر، [عملنا في الاستراتيجية والاستشارات](/ar/services/strategy-consulting) يبدأ من هذه القائمة بالضبط قبل تقديم أي توصية واحدة. يسعدنا أن ترسلوا الأرقام أولاً وتروا ما سيصلكم — [تواصلوا معنا هنا](/ar/contact) متى كنتم مستعدين.",
+        "إذا كنتم تفكرون في توجيه إحاطة لنا أو لفريق آخر، [عملنا في الاستراتيجية والاستشارات](/ar/services/strategy-consulting) يبدأ من هذه القائمة بالضبط قبل تقديم أي توصية واحدة — سواء كانت الإحاطة لـ[التسويق الأدائي](/ar/services/performance-marketing) تحديداً أو لنظام أوسع. يسعدنا أن ترسلوا الأرقام أولاً وتروا ما سيصلكم — [تواصلوا معنا هنا](/ar/contact) متى كنتم مستعدين.",
       ),
     ],
     bodyRu: [
@@ -3101,7 +3110,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Как применить это на практике"),
       p(
-        "Если вы решаете, отправить бриф нам или другой команде: [наша работа в области стратегии и консалтинга](/ru/services/strategy-consulting) начинается именно с этого списка, прежде чем прозвучит хоть одна рекомендация. Присылайте цифры первыми и смотрите, что вернётся в ответ, — [обращайтесь сюда](/ru/contact), когда будете готовы.",
+        "Если вы решаете, отправить бриф нам или другой команде: [наша работа в области стратегии и консалтинга](/ru/services/strategy-consulting) начинается именно с этого списка, прежде чем прозвучит хоть одна рекомендация — будь то бриф именно для [performance-маркетинга](/ru/services/performance-marketing) или для более широкой системы. Присылайте цифры первыми и смотрите, что вернётся в ответ, — [обращайтесь сюда](/ru/contact), когда будете готовы.",
       ),
     ],
   },

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { EnquiryForm } from "@/components/enquiry-form";
+import { ObfuscatedEmail } from "@/components/obfuscated-email";
 import { SocialIcon } from "@/components/social-icons";
 import { Band, Frame, Heading, Hero, SectionIntro } from "@/components/ui";
 import { heroImages, nextSteps, ogDefaultsRu, sharedImages, site, social } from "@/lib/site";
@@ -72,13 +73,12 @@ export default function RussianContactPage() {
               </p>
               <div className="mt-6 grid grid-cols-2 gap-x-8 gap-y-8">
                 <Detail index="01" label="Email">
-                  <a
-                    href={`mailto:${site.email}`}
+                  <ObfuscatedEmail
+                    user={site.emailUser}
+                    domain={site.emailDomain}
                     dir="ltr"
                     className="break-all font-display text-[1.375rem] transition-colors duration-300 hover:text-mist"
-                  >
-                    {site.email}
-                  </a>
+                  />
                 </Detail>
                 <Detail index="02" label="Телефон">
                   <a

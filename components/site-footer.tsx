@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ObfuscatedEmail } from "@/components/obfuscated-email";
 import { SocialIcon } from "@/components/social-icons";
 import type { Locale } from "@/lib/locale";
 import { localizedPath } from "@/lib/locale";
@@ -82,12 +83,11 @@ export function SiteFooter({ locale = "en" }: { locale?: Locale }) {
           </FooterColumn>
 
           <FooterColumn title={isAr ? "تواصل" : isRu ? "Контакты" : "Contact"} isAr={isAr}>
-            <a
-              href={`mailto:${site.email}`}
+            <ObfuscatedEmail
+              user={site.emailUser}
+              domain={site.emailDomain}
               className="break-all text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"
-            >
-              {site.email}
-            </a>
+            />
             <a
               href={`tel:${site.phoneHref}`}
               className="text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"

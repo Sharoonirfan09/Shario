@@ -27,7 +27,10 @@ import {
 } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "شاريو — شركة تسويق رقمي في دبي",
+  // Written out in full rather than relying on `app/ar/layout.tsx`'s
+  // `title.template`: a layout's template does not apply to a page in that
+  // same route segment, and this page is the index of `app/ar` itself.
+  title: "شركة تسويق رقمي في دبي — شاريو",
   description: site.descriptionAr,
   alternates: {
     canonical: "/ar",

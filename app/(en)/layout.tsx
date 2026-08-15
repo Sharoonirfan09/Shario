@@ -1,6 +1,21 @@
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+
+/**
+ * Every English page sets a plain string `title` (e.g. `"About"`); this is
+ * the closest ancestor template that turns it into `"About — Shario"` in
+ * the `<title>` tag. Kept here rather than on the root layout so `/ar` and
+ * `/ru` can each resolve their own, correctly-scripted suffix instead of
+ * this one — see the note on `title` in `app/layout.tsx`.
+ */
+export const metadata: Metadata = {
+  title: {
+    template: "%s — Shario",
+    default: "Shario — Digital Marketing Company in Dubai",
+  },
+};
 
 /**
  * Everything the root layout used to render directly (`SiteHeader`, the

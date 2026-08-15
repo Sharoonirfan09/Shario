@@ -1,6 +1,22 @@
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+
+/**
+ * The closest-ancestor `title.template` for every `/ar` page — resolves a
+ * page's plain string title (e.g. `"من نحن"`) to `"من نحن — شاريو"`. Living
+ * here rather than on the root layout is what lets this suffix read in
+ * Arabic at all: a template set at the root is global and can't vary by
+ * locale, which is how every `/ar` `<title>` ended up suffixed `— Shario`
+ * (Latin) instead — see the note on `title` in `app/layout.tsx`.
+ */
+export const metadata: Metadata = {
+  title: {
+    template: "%s — شاريو",
+    default: "شاريو — شركة تسويق رقمي في دبي",
+  },
+};
 
 /**
  * The Arabic counterpart to `app/(en)/layout.tsx`. Only the root layout may

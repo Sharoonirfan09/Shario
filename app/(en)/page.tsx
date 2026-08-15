@@ -27,7 +27,14 @@ import {
 } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Shario — Digital Marketing Company in Dubai",
+  // Written out in full rather than relying on the layout's
+  // `title.template`: per Next's own docs, a template defined in a layout
+  // does not apply to a page in that *same* route segment, and this page is
+  // the index of `app/(en)` — the same segment as `app/(en)/layout.tsx`.
+  // (Verified: leaving just the bare phrase here rendered with no suffix at
+  // all once the old root-level template — which did apply, being higher up
+  // the tree — was removed.)
+  title: "Digital Marketing Company in Dubai — Shario",
   description: site.description,
   alternates: {
     canonical: "/",

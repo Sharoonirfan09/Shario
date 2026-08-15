@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Amiri, Cormorant_Garamond, EB_Garamond, Jost } from "next/font/google";
 import "./globals.css";
+import { FacebookPixel, GoogleAnalytics } from "@/components/analytics";
 import { Reveal } from "@/components/reveal";
-import { StructuredData } from "@/components/structured-data";
+import { StructuredData, WebsiteStructuredData } from "@/components/structured-data";
 import { site } from "@/lib/site";
 
 /**
@@ -60,10 +61,19 @@ const amiri = Amiri({
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
-  title: {
-    default: "Shario — Digital Marketing Company in Dubai",
-    template: "%s — Shario",
-  },
+  /**
+   * A plain string, not `{ default, template }` — a template set here would
+   * be global and Latin-only, which is wrong for `/ar` and `/ru`: their own
+   * pages already suffix themselves correctly (`— شاريو`, `— SHARIO`) in
+   * `openGraph.title`, but every plain `<title>` was silently getting this
+   * root template's `— Shario` appended on top, on every locale. Each
+   * locale layout (`app/(en)/layout.tsx`, `app/ar/layout.tsx`,
+   * `app/ru/layout.tsx`) now sets its own `title.template`, which — being
+   * the closest ancestor to every page in that subtree — is what actually
+   * resolves; this string only exists as the ultimate fallback for a route
+   * that somehow renders outside all three (none currently do).
+   */
+  title: "Shario — Digital Marketing Company in Dubai",
   description: site.description,
   openGraph: {
     type: "website",
@@ -124,6 +134,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <Reveal />
         <StructuredData />
+        <WebsiteStructuredData />
+        <GoogleAnalytics />
+        <FacebookPixel />
       </body>
     </html>
   );

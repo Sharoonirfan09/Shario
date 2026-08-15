@@ -1,20 +1,34 @@
 import type { Locale } from "@/lib/locale";
 import type { InsightArticle, InsightCategory } from "@/lib/site";
-import { insightArticles, services, site } from "@/lib/site";
+import { insightArticles, services, site, social } from "@/lib/site";
 
 /**
  * Organization + LocalBusiness markup. Shario competes on Dubai-local search,
  * so the address, service catalogue and founder are all worth declaring.
- * `sameAs` carries LinkedIn only — it is the one profile the content document
- * lists, and asserting an unverified handle here is worse than omitting it.
+ *
+ * No street address or `LocalBusiness` `@type`: Shario doesn't operate from
+ * a public-facing storefront, so `ProfessionalService` (itself a
+ * schema.org subtype of `LocalBusiness`, carrying the same local-search
+ * semantics without implying walk-in premises) is the honest fit — inventing
+ * a street address just to qualify for a different `@type` would be worse
+ * than the schema this site actually has grounds to claim.
+ *
+ * `sameAs` lists every profile in `social` (`lib/site.ts`) — the same set
+ * already live, clickable, in the footer — plus the founder's own personal
+ * profile stays scoped to the `founder` object below rather than mixed into
+ * the organization's.
  */
 export function StructuredData() {
   const data = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: site.name,
+    alternateName: "SHARIO",
     description: site.description,
+    slogan: site.tagline,
     url: site.domain,
+    logo: `${site.domain}/brand/monogram.png`,
+    image: `${site.domain}/brand/monogram.png`,
     email: site.email,
     telephone: site.phone,
     founder: {
@@ -32,7 +46,17 @@ export function StructuredData() {
       addressLocality: "Dubai",
       addressCountry: "AE",
     },
-    sameAs: [site.linkedin],
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer service",
+        telephone: site.phone,
+        email: site.email,
+        areaServed: "AE",
+        availableLanguage: ["English", "Arabic", "Russian"],
+      },
+    ],
+    sameAs: social.map((item) => item.href),
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Digital marketing services",
@@ -46,6 +70,24 @@ export function StructuredData() {
         },
       })),
     },
+  };
+
+  return <JsonLd data={data} />;
+}
+
+/**
+ * WebSite markup — the site as a whole, distinct from the `ProfessionalService`
+ * business entity above. No `potentialAction`/`SearchAction`: the site has no
+ * search feature, and declaring one Google can't actually run would be
+ * exactly the kind of misleading schema this pass is checking for.
+ */
+export function WebsiteStructuredData() {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: site.name,
+    url: site.domain,
+    inLanguage: ["en", "ar", "ru"],
   };
 
   return <JsonLd data={data} />;
