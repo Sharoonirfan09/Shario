@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
 import { SixServices } from "@/components/six-services";
 import { CtaBand, Hero, PillLink } from "@/components/ui";
-import { cta, ogDefaults } from "@/lib/site";
+import { cta, heroImages, ogDefaults } from "@/lib/site";
 
 const description =
   "SHARIO is a performance marketing agency in Dubai offering performance marketing, SEO and content, websites and CRO, CRM and automation, brand and creative. Engage one service or the entire funnel.";
 
-/** Shared with `opengraph-image.tsx` (and `[slug]`'s not-found fallback) so the banner path is a literal in exactly one file — `check:images` flags any path quoted more than once. */
-export const HERO_IMAGE = "/images/book/services-portrait.jpg";
+/** Path/crop live in `lib/site.ts` as `heroImages.services`, shared with the Arabic page, both locales' `opengraph-image.tsx`, and `[slug]`'s not-found fallback. */
+export const HERO_IMAGE = heroImages.services.src;
 export const HERO_IMAGE_ALT =
   "A framed painting of a woman in a wide-brimmed hat and a pleated cream dress, leaning against a deep red canvas in a sunlit, panelled room";
 
 export const metadata: Metadata = {
   title: "Performance Marketing Agency Services in Dubai",
   description,
-  alternates: { canonical: "/services" },
+  alternates: {
+    canonical: "/services",
+    languages: { en: "/services", ar: "/ar/services", "x-default": "/services" },
+  },
   openGraph: {
     ...ogDefaults,
     url: "/services",

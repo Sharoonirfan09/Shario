@@ -1,4 +1,6 @@
 import { Band, Card, CardGrid, SectionIntro } from "@/components/ui";
+import type { Locale } from "@/lib/locale";
+import { localizedPath } from "@/lib/locale";
 import { services } from "@/lib/site";
 
 /**
@@ -33,34 +35,46 @@ const serviceTones = ["limestone", "porcelain", "carbon"] as const;
  * "Everything you need to grow, handled by one team." — the six-service
  * grid. Homepage is the master reference; `/services` renders this exact
  * same component rather than a page-specific copy, so the two can never
- * drift apart.
+ * drift apart. `locale` (default `"en"`) extends that sharing to the
+ * Arabic homepage and `/ar/services`, same reasoning.
  */
-export function SixServices() {
+export function SixServices({ locale = "en" }: { locale?: Locale }) {
+  const isAr = locale === "ar";
+
   return (
     <Band>
       <SectionIntro
-        eyebrow="Our Services"
+        eyebrow={isAr ? "خدماتنا" : "Our Services"}
         title={
-          <>
-            Everything you need to grow,
-            <br className="hidden wide:block" /> handled by one team.
-          </>
+          isAr ? (
+            "كل ما تحتاجه للنمو، يديره فريق واحد."
+          ) : (
+            <>
+              Everything you need to grow,
+              <br className="hidden wide:block" /> handled by one team.
+            </>
+          )
         }
-        sub="From paid media and search to websites, CRM and creative — the full marketing system a Dubai brand needs to generate demand and convert it into revenue."
+        sub={
+          isAr
+            ? "من الإعلانات المدفوعة والبحث إلى المواقع الإلكترونية وإدارة علاقات العملاء والإبداع — النظام التسويقي الكامل الذي تحتاجه علامة تجارية في دبي لخلق الطلب وتحويله إلى إيرادات."
+            : "From paid media and search to websites, CRM and creative — the full marketing system a Dubai brand needs to generate demand and convert it into revenue."
+        }
       />
       <CardGrid columns={3}>
         {services.map((service, i) => (
           <Card
             key={service.slug}
-            href={`/services/${service.slug}`}
+            href={isAr ? localizedPath(`/services/${service.slug}`, "ar") : `/services/${service.slug}`}
             badge={service.num}
-            title={service.name}
+            title={isAr ? service.nameAr : service.name}
             titleAs="h3"
-            desc={service.descriptor}
-            action="Learn more"
+            desc={isAr ? service.descriptorAr : service.descriptor}
+            action={isAr ? "اعرف المزيد" : "Learn more"}
             image={serviceImages[service.slug]}
             tone={serviceTones[i % serviceTones.length]}
             delay={i * 60}
+            locale={locale}
           />
         ))}
       </CardGrid>

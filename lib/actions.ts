@@ -15,13 +15,34 @@ function clean(value: FormDataEntryValue | null, max = 2000) {
   return typeof value === "string" ? value.trim().slice(0, max) : "";
 }
 
+/** English/Arabic pairs for every status and validation message this action can return. */
+const copy = {
+  honeypotSuccess: { en: "Thank you — we will be in touch.", ar: "شكراً لكم — سنتواصل معكم قريباً." },
+  nameRequired: { en: "Enter your name.", ar: "أدخلوا اسمكم." },
+  emailRequired: { en: "Enter your email address.", ar: "أدخلوا بريدكم الإلكتروني." },
+  emailInvalid: { en: "Enter a valid email address.", ar: "أدخلوا بريداً إلكترونياً صحيحاً." },
+  messageRequired: { en: "Tell us briefly what you need.", ar: "أخبرونا باختصار عما تحتاجونه." },
+  checkFields: { en: "Check the highlighted fields and send again.", ar: "راجعوا الحقول المُظلَّلة وأرسلوا مجدداً." },
+  deliveryError: (locale: "en" | "ar") =>
+    locale === "ar"
+      ? `حدث خطأ أثناء إرسال استفساركم. يرجى مراسلتنا على ${site.email} أو الاتصال بنا على ${site.phone}.`
+      : `Something went wrong sending your enquiry. Please email ${site.email} or call ${site.phone}.`,
+  success: { en: "Thank you — we will respond within one business day.", ar: "شكراً لكم — سنرد خلال يوم عمل واحد." },
+} as const;
+
+function t(pair: { en: string; ar: string }, locale: "en" | "ar") {
+  return locale === "ar" ? pair.ar : pair.en;
+}
+
 export async function submitEnquiry(
   _prev: EnquiryState,
   formData: FormData
 ): Promise<EnquiryState> {
+  const locale = clean(formData.get("locale")) === "ar" ? "ar" : "en";
+
   // Honeypot: real people never fill a hidden field.
   if (clean(formData.get("website"))) {
-    return { status: "success", message: "Thank you — we will be in touch." };
+    return { status: "success", message: t(copy.honeypotSuccess, locale) };
   }
 
   const name = clean(formData.get("name"), 120);
@@ -32,20 +53,20 @@ export async function submitEnquiry(
   const message = clean(formData.get("message"));
 
   const errors: Record<string, string> = {};
-  if (!name) errors.name = "Enter your name.";
-  if (!email) errors.email = "Enter your email address.";
-  else if (!EMAIL.test(email)) errors.email = "Enter a valid email address.";
-  if (!message) errors.message = "Tell us briefly what you need.";
+  if (!name) errors.name = t(copy.nameRequired, locale);
+  if (!email) errors.email = t(copy.emailRequired, locale);
+  else if (!EMAIL.test(email)) errors.email = t(copy.emailInvalid, locale);
+  if (!message) errors.message = t(copy.messageRequired, locale);
 
   if (Object.keys(errors).length > 0) {
     return {
       status: "error",
-      message: "Check the highlighted fields and send again.",
+      message: t(copy.checkFields, locale),
       errors,
     };
   }
 
-  const known = services.some((s) => s.name === service);
+  const known = services.some((s) => s.name === service || s.nameAr === service);
   const interest = known ? service : "Not specified";
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -60,7 +81,7 @@ export async function submitEnquiry(
     );
     return {
       status: "error",
-      message: `Something went wrong sending your enquiry. Please email ${site.email} or call ${site.phone}.`,
+      message: copy.deliveryError(locale),
     };
   }
 
@@ -95,19 +116,19 @@ export async function submitEnquiry(
       console.error("Resend rejected the enquiry:", await response.text());
       return {
         status: "error",
-        message: `Something went wrong sending your enquiry. Please email ${site.email} or call ${site.phone}.`,
+        message: copy.deliveryError(locale),
       };
     }
   } catch (error) {
     console.error("Could not reach the email provider:", error);
     return {
       status: "error",
-      message: `Something went wrong sending your enquiry. Please email ${site.email} or call ${site.phone}.`,
+      message: copy.deliveryError(locale),
     };
   }
 
   return {
     status: "success",
-    message: "Thank you — we will respond within one business day.",
+    message: t(copy.success, locale),
   };
 }

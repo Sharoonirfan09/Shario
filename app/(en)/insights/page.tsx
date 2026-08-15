@@ -7,6 +7,7 @@ import { Band, CtaBand, Heading, Hero, PillLink, SectionIntro } from "@/componen
 import {
   cta,
   getInsightCategory,
+  heroImages,
   insightArticles,
   insightCategories,
   ogDefaults,
@@ -16,16 +17,8 @@ const DEFAULT_TITLE = "Insights";
 const DEFAULT_DESCRIPTION =
   "SHARIO's editorial hub — market news, articles, case studies, trends and guides on performance marketing, SEO, websites and CRM in Dubai.";
 
-/**
- * A single constant, so swapping this banner's photograph later is a
- * one-line edit here, not a layout change. `Hero` (the same component
- * About and Contact use) handles the box height, padding and `settle`
- * entrance animation on its own; this file only ever needs to change the
- * path. Exported so `opengraph-image.tsx` (here and in `[slug]`'s not-found
- * fallback) reuses the same reference instead of quoting the path again —
- * `check:images` flags any path quoted more than once.
- */
-export const HERO_IMAGE = "/images/insights/insights-banner-sunlit-wall.jpg";
+/** Path/crop live in `lib/site.ts` as `heroImages.insights`, shared with the Arabic page, both locales' `opengraph-image.tsx`, and `[slug]`'s not-found fallback. */
+export const HERO_IMAGE = heroImages.insights.src;
 export const HERO_IMAGE_ALT =
   "A woman in a beige trench coat and sunglasses standing against a sunlit stone wall, sharp diagonal shadows cast across the scene";
 
@@ -43,13 +36,17 @@ export async function generateMetadata({
   const category = requested ? getInsightCategory(requested) : undefined;
 
   const canonical = category ? `/insights?category=${category.slug}` : "/insights";
+  const arCanonical = category ? `/ar/insights?category=${category.slug}` : "/ar/insights";
   const title = category ? `${category.name} — Insights` : DEFAULT_TITLE;
   const description = category?.description ?? DEFAULT_DESCRIPTION;
 
   return {
     title,
     description,
-    alternates: { canonical },
+    alternates: {
+      canonical,
+      languages: { en: canonical, ar: arCanonical, "x-default": canonical },
+    },
     openGraph: {
       ...ogDefaults,
       url: canonical,

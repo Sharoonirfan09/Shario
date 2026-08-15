@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { SocialIcon } from "@/components/social-icons";
+import type { Locale } from "@/lib/locale";
+import { localizedPath } from "@/lib/locale";
 import { nav, services, site, social } from "@/lib/site";
 
 /**
@@ -16,8 +18,15 @@ import { nav, services, site, social } from "@/lib/site";
  * lighter touch than a saturated colour needs at this size, and sized to
  * actually read rather than disappear into the Carbon ground the way a
  * near-invisible watermark would.
+ *
+ * `locale` (default `"en"`) mirrors `SiteHeader`'s: `app/(en)/layout.tsx`
+ * renders this with no prop (unchanged English output), `app/ar/layout.tsx`
+ * passes `locale="ar"`.
  */
-export function SiteFooter() {
+export function SiteFooter({ locale = "en" }: { locale?: Locale }) {
+  const isAr = locale === "ar";
+  const href = (path: string) => (isAr ? localizedPath(path, "ar") : path);
+
   return (
     <footer className="relative overflow-hidden bg-carbon text-porcelain">
       <span
@@ -33,31 +42,43 @@ export function SiteFooter() {
               <span className="sr-only">SHARIO</span>
               <span aria-hidden="true" className="wordmark w-[126px]" />
             </p>
-            <p className="mt-4 max-w-[240px] font-body text-base italic text-porcelain/70">
-              {site.tagline}
+            <p
+              className={`mt-4 max-w-[240px] text-base italic text-porcelain/70 ${isAr ? "font-arabic" : "font-body"}`}
+            >
+              {isAr ? site.taglineAr : site.tagline}
             </p>
-            <p className="mt-5 max-w-[240px] text-[0.8125rem] leading-[1.7] text-porcelain/50">
-              Digital marketing and creative studio in Dubai.
+            <p
+              className={`mt-5 max-w-[240px] text-[0.8125rem] leading-[1.7] text-porcelain/50 ${isAr ? "font-arabic" : ""}`}
+            >
+              {isAr
+                ? "تسويق رقمي واستوديو إبداعي في دبي."
+                : "Digital marketing and creative studio in Dubai."}
             </p>
           </div>
 
-          <FooterColumn title="Services">
+          <FooterColumn title={isAr ? "الخدمات" : "Services"} isAr={isAr}>
             {services.map((service) => (
               <FooterLink
                 key={service.slug}
-                href={`/services/${service.slug}`}
-                label={service.name}
+                href={href(`/services/${service.slug}`)}
+                label={isAr ? service.nameAr : service.name}
+                isAr={isAr}
               />
             ))}
           </FooterColumn>
 
-          <FooterColumn title="Company">
+          <FooterColumn title={isAr ? "الشركة" : "Company"} isAr={isAr}>
             {nav.map((item) => (
-              <FooterLink key={item.href} href={item.href} label={item.label} />
+              <FooterLink
+                key={item.href}
+                href={href(item.href)}
+                label={isAr ? item.labelAr : item.label}
+                isAr={isAr}
+              />
             ))}
           </FooterColumn>
 
-          <FooterColumn title="Contact">
+          <FooterColumn title={isAr ? "تواصل" : "Contact"} isAr={isAr}>
             <a
               href={`mailto:${site.email}`}
               className="break-all text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"
@@ -67,10 +88,13 @@ export function SiteFooter() {
             <a
               href={`tel:${site.phoneHref}`}
               className="text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"
+              dir="ltr"
             >
               {site.phone}
             </a>
-            <span className="text-sm text-porcelain/80">{site.location}</span>
+            <span className={`text-sm text-porcelain/80 ${isAr ? "font-arabic" : ""}`}>
+              {isAr ? site.locationAr : site.location}
+            </span>
             <a
               href={site.linkedin}
               target="_blank"
@@ -83,7 +107,11 @@ export function SiteFooter() {
         </div>
 
         <div className="flex flex-col-reverse items-center gap-6 border-t border-porcelain/15 pt-6 text-xs text-porcelain/50 wide:flex-row wide:justify-between">
-          <p>© {new Date().getFullYear()} SHARIO. All rights reserved.</p>
+          <p className={isAr ? "font-arabic" : ""}>
+            {isAr
+              ? `© ${new Date().getFullYear()} SHARIO. جميع الحقوق محفوظة.`
+              : `© ${new Date().getFullYear()} SHARIO. All rights reserved.`}
+          </p>
 
           <div className="flex items-center gap-4">
             {social.map((item) => (
@@ -107,11 +135,19 @@ export function SiteFooter() {
   );
 }
 
-function FooterLink({ href, label }: { href: string; label: string }) {
+function FooterLink({
+  href,
+  label,
+  isAr,
+}: {
+  href: string;
+  label: string;
+  isAr?: boolean;
+}) {
   return (
     <Link
       href={href}
-      className="text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"
+      className={`text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100 ${isAr ? "font-arabic" : ""}`}
     >
       {label}
     </Link>
@@ -120,14 +156,18 @@ function FooterLink({ href, label }: { href: string; label: string }) {
 
 function FooterColumn({
   title,
+  isAr,
   children,
 }: {
   title: string;
+  isAr?: boolean;
   children: React.ReactNode;
 }) {
   return (
     <div className="flex flex-col gap-3">
-      <p className="mb-2 text-[11px] uppercase tracking-[0.1em] text-porcelain/50">
+      <p
+        className={`mb-2 text-[11px] text-porcelain/50 ${isAr ? "font-arabic" : "uppercase tracking-[0.1em]"}`}
+      >
         {title}
       </p>
       {children}

@@ -8,8 +8,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import sharp from "sharp";
-import { HERO_FOCUS, HERO_IMAGE } from "@/app/page";
-import { site } from "@/lib/site";
+import { heroImages, site } from "@/lib/site";
 
 /**
  * Shared social-preview image generator.
@@ -195,7 +194,7 @@ export async function buildHomeOgImage() {
     loadCormorant(400),
     loadEBGaramondItalic(),
     loadWordmark(),
-    loadPublicImage(HERO_IMAGE),
+    loadPublicImage(heroImages.home.src),
   ]);
 
   const PHOTO_WIDTH = 520;
@@ -271,7 +270,7 @@ export async function buildHomeOgImage() {
             right: 0,
             top: 0,
             objectFit: "cover",
-            objectPosition: HERO_FOCUS,
+            objectPosition: heroImages.home.focus,
           }}
         />
       </div>

@@ -10,19 +10,22 @@ import {
   Hero,
   PillLink,
 } from "@/components/ui";
-import { aboutApproach, cta, ogDefaults, services, site } from "@/lib/site";
+import { aboutApproach, cta, heroImages, ogDefaults, services, sharedImages, site } from "@/lib/site";
 
 const description =
   "SHARIO is a Dubai digital marketing agency and creative studio connecting performance marketing, SEO, brand and strategy and consulting into one system for ambitious businesses.";
 
-/** Shared with `opengraph-image.tsx` so the banner path is a literal in exactly one file — `check:images` flags any path quoted more than once. */
-export const HERO_IMAGE = "/images/book/about-frames.jpg";
+/** Path/crop live in `lib/site.ts` as `heroImages.about`, shared with the Arabic page and both locales' `opengraph-image.tsx`. */
+export const HERO_IMAGE = heroImages.about.src;
 export const HERO_IMAGE_ALT = "Framed prints and objects arranged on a warm, minimal wall";
 
 export const metadata: Metadata = {
   title: "About",
   description,
-  alternates: { canonical: "/about" },
+  alternates: {
+    canonical: "/about",
+    languages: { en: "/about", ar: "/ar/about", "x-default": "/about" },
+  },
   openGraph: {
     ...ogDefaults,
     url: "/about",
@@ -217,7 +220,7 @@ export default function AboutPage() {
           {/* Not `photo-lounge.jpg` — it has the retired positioning statement
               painted across the back wall. */}
           <Frame
-            src="/images/book/founder-stable.jpg"
+            src={sharedImages.founderPortrait}
             ratio="aspect-[4/5]"
             alt={`${site.founder}, founder of Shario`}
           />

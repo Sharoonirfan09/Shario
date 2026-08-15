@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Amiri, Cormorant_Garamond, EB_Garamond, Jost } from "next/font/google";
 import "./globals.css";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
 import { StructuredData } from "@/components/structured-data";
 import { site } from "@/lib/site";
@@ -39,15 +37,18 @@ const jost = Jost({
 });
 
 /**
- * Carries exactly one line on the site: the Arabic tagline in
- * `ArabicStatement` (`components/ui.tsx`). A classical Naskh revival —
- * Cormorant's counterpart on the Arabic side rather than a plain sans —
- * subset to `arabic` only, since it's never set in Latin here.
+ * The Arabic type system, in full since the `/ar` site's launch: a
+ * classical Naskh revival, Cormorant's counterpart on the Arabic side.
+ * Originally loaded just for the one tagline line in `ArabicStatement`
+ * (`components/ui.tsx`) at weight 400; now also carries every Arabic page's
+ * headlines at 700, mirroring how Cormorant itself steps up in weight for
+ * emphasis rather than switching family. Subset to `arabic` only — never
+ * set in Latin anywhere on the site.
  */
 const amiri = Amiri({
   variable: "--font-amiri",
   subsets: ["arabic"],
-  weight: ["400"],
+  weight: ["400", "700"],
   style: ["normal"],
   display: "swap",
 });
@@ -115,11 +116,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         while it plays, which otherwise lets a phone scroll a pixel sideways.
       */}
       <body className="min-h-full flex flex-col overflow-x-hidden bg-porcelain text-carbon">
-        <SiteHeader />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <SiteFooter />
+        {children}
         <Reveal />
         <StructuredData />
       </body>

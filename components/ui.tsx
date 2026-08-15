@@ -8,6 +8,8 @@ import {
   type ReactElement,
   type ReactNode,
 } from "react";
+import type { Locale } from "@/lib/locale";
+import { site } from "@/lib/site";
 import { CountUp } from "@/components/count-up";
 
 /**
@@ -392,6 +394,8 @@ type CardProps = {
   /** Set explicitly to opt out of `CardGrid`'s automatic Limestone/Porcelain/Carbon rhythm. */
   tone?: Tone;
   delay?: number;
+  /** Flips the action row's arrow and drops the Latin-only `eyebrow` (uppercase/tracking) treatment for Arabic callers. Default `"en"`. */
+  locale?: Locale;
 };
 
 /**
@@ -415,8 +419,10 @@ export function Card({
   titleAs: Title = "p",
   tone = "porcelain",
   delay = 0,
+  locale = "en",
 }: CardProps) {
   const t = cardTone[tone];
+  const isAr = locale === "ar";
 
   const body = (
     <>
@@ -490,22 +496,24 @@ export function Card({
           {badge}
         </span>
       )}
-      <Title className="font-display text-[1.5rem] font-medium leading-[1.22] wide:text-[1.625rem]">
+      <Title
+        className={`text-[1.5rem] leading-[1.22] wide:text-[1.625rem] ${isAr ? "font-arabic font-bold" : "font-display font-medium"}`}
+      >
         {title}
       </Title>
-      <p className={`mt-3.5 flex-1 text-[0.9375rem] leading-[1.75] ${t.desc}`}>
+      <p className={`mt-3.5 flex-1 text-[0.9375rem] leading-[1.75] ${isAr ? "font-arabic" : ""} ${t.desc}`}>
         {desc}
       </p>
       {action && (
         <span
-          className={`eyebrow mt-7 flex items-center gap-2 border-t pt-6 ${t.divider} ${t.action}`}
+          className={`mt-7 flex items-center gap-2 border-t pt-6 ${t.divider} ${t.action} ${isAr ? "font-arabic text-[0.75rem]" : "eyebrow"}`}
         >
           {action}
           <span
             aria-hidden="true"
-            className="transition-transform duration-500 group-hover:translate-x-1.5 group-hover:text-mist"
+            className={`transition-transform duration-500 group-hover:text-mist ${isAr ? "group-hover:-translate-x-1.5" : "group-hover:translate-x-1.5"}`}
           >
-            →
+            {isAr ? "←" : "→"}
           </span>
         </span>
       )}
@@ -687,6 +695,7 @@ export function SplitHero({
   href,
   linkLabel,
   children,
+  locale = "en",
 }: {
   src: string;
   /** Empty by default, but this is the homepage's single most prominent
@@ -714,9 +723,25 @@ export function SplitHero({
   /** Names the destination — the panel's accessible name and its visible label. */
   linkLabel: string;
   children?: ReactNode;
+  /**
+   * The text column is the sole child of a `flex` container, so its cross-axis
+   * position (which physical side it starts on) flips with the ambient `dir`
+   * the same way any flex child does — but the photograph beside it is a
+   * separate, absolutely positioned sibling pinned to the physical right via
+   * `right-0`, which never flips. Left un-forced, the Arabic homepage's RTL
+   * context would slide the text column onto the same right-hand side as the
+   * photograph, burying it underneath. Hardcoding `dir="ltr"` on the section
+   * keeps the two-panel composition identical in both languages (photo right,
+   * text left — the brief's own "images stay put" guidance), while the text
+   * column re-declares `dir="rtl"` on itself so Arabic content still reads
+   * and aligns correctly within its slot.
+   */
+  locale?: Locale;
 }) {
+  const isAr = locale === "ar";
+
   return (
-    <section className="relative bg-limestone mt-[calc(-1*var(--header-h))]">
+    <section className="relative bg-limestone mt-[calc(-1*var(--header-h))]" dir="ltr">
       {/*
        * `min-h` rather than a fixed height: the type sets the floor on a phone,
        * and on a laptop the section fills the viewport so the photograph has
@@ -726,7 +751,11 @@ export function SplitHero({
        */}
       <Container className="relative flex flex-col justify-center pb-16 pt-[calc(var(--header-h)+3rem)] wide:min-h-[100svh] wide:pb-24 wide:pt-[calc(var(--header-h)+2rem)]">
         {/* Half the section, so the statement never runs under the image. */}
-        <div className="wide:w-[52%] wide:pr-10">
+        <div
+          className={`wide:w-[52%] wide:pr-10 ${isAr ? "text-right" : ""}`}
+          dir={isAr ? "rtl" : undefined}
+          lang={isAr ? "ar" : undefined}
+        >
           {eyebrow && (
             <p className="eyebrow eyebrow-hero rise flex items-center gap-3 text-carbon/60">
               <span aria-hidden="true" className="h-px w-7 bg-carbon/40" />
@@ -756,7 +785,7 @@ export function SplitHero({
           </h1>
           {subhead && (
             <p
-              className="rise mt-7 max-w-[440px] font-body text-[1.1875rem] leading-[1.55] text-carbon/65 wide:text-[1.3125rem]"
+              className={`rise mt-7 max-w-[440px] text-[1.1875rem] leading-[1.55] text-carbon/65 wide:text-[1.3125rem] ${isAr ? "font-arabic" : "font-body"}`}
               style={{ animationDelay: "280ms" }}
             >
               {subhead}
@@ -813,11 +842,14 @@ export function SplitHero({
           />
           <span
             aria-hidden="true"
-            className="absolute bottom-5 right-5 inline-flex items-center gap-2.5 rounded-full bg-porcelain/92 px-5 py-3 text-[11px] uppercase tracking-[0.08em] text-carbon backdrop-blur-[6px] transition-colors duration-500 group-hover:bg-carbon group-hover:text-porcelain"
+            dir={isAr ? "rtl" : undefined}
+            className={`absolute bottom-5 right-5 inline-flex items-center gap-2.5 rounded-full bg-porcelain/92 px-5 py-3 text-carbon backdrop-blur-[6px] transition-colors duration-500 group-hover:bg-carbon group-hover:text-porcelain ${isAr ? "font-arabic text-[0.75rem]" : "text-[11px] uppercase tracking-[0.08em]"}`}
           >
             {linkLabel}
-            <span className="transition-transform duration-500 group-hover:translate-x-1">
-              →
+            <span
+              className={`transition-transform duration-500 ${isAr ? "group-hover:-translate-x-1" : "group-hover:translate-x-1"}`}
+            >
+              {isAr ? "←" : "→"}
             </span>
           </span>
         </Link>
@@ -829,12 +861,18 @@ export function SplitHero({
 /** Breadcrumb trail, as the reference sets it above an inner-page headline. */
 export function Breadcrumb({
   items,
+  locale = "en",
 }: {
   items: readonly { href?: string; label: string }[];
+  locale?: Locale;
 }) {
+  const isAr = locale === "ar";
+
   return (
-    <nav aria-label="Breadcrumb" className="rise">
-      <ol className="eyebrow flex flex-wrap items-center gap-2 text-porcelain/60">
+    <nav aria-label={isAr ? "مسار التصفح" : "Breadcrumb"} className="rise">
+      <ol
+        className={`flex flex-wrap items-center gap-2 text-porcelain/60 ${isAr ? "font-arabic text-[0.6875rem]" : "eyebrow"}`}
+      >
         {items.map((item, i) => (
           <li key={item.label} className="flex items-center gap-2">
             {i > 0 && <span aria-hidden="true">/</span>}
@@ -1110,7 +1148,7 @@ export function ArabicStatement() {
         lang="ar"
         className="reveal mx-auto max-w-[900px] text-center font-arabic text-[2.25rem] leading-[1.9] text-carbon wide:text-[clamp(2.75rem,5.4vw,4.75rem)] wide:leading-[1.7]"
       >
-        سيمفونية الهوية
+        {site.taglineAr}
       </p>
     </Band>
   );

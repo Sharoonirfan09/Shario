@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import type { Locale } from "@/lib/locale";
 
 /** Lists longer than this start collapsed behind "Load More". */
 const INITIAL_COUNT = 4;
@@ -21,14 +22,17 @@ const INITIAL_COUNT = 4;
 export function Faq({
   items,
   answerClassName = "",
+  locale = "en",
 }: {
   items: readonly { q: string; a: string }[];
   /** Extra classes on the answer paragraph — e.g. a font override for one call site. */
   answerClassName?: string;
+  locale?: Locale;
 }) {
   const [open, setOpen] = useState(-1);
   const [expanded, setExpanded] = useState(false);
   const id = useId();
+  const isAr = locale === "ar";
 
   const hasMore = items.length > INITIAL_COUNT;
   const visible = expanded ? items : items.slice(0, INITIAL_COUNT);
@@ -49,7 +53,9 @@ export function Faq({
                 aria-controls={panelId}
                 className="flex w-full cursor-pointer items-center justify-between gap-5 py-6 text-left"
               >
-                <span className="font-display text-[1.3125rem] font-medium text-carbon">
+                <span
+                  className={`text-[1.3125rem] text-carbon ${isAr ? "font-arabic font-bold" : "font-display font-medium"}`}
+                >
                   {item.q}
                 </span>
                 <span aria-hidden="true" className="shrink-0 text-xl text-carbon">
@@ -67,7 +73,7 @@ export function Faq({
               {/* The overflow clip is what makes the 0fr row hide its content. */}
               <div className="overflow-hidden">
                 <p
-                  className={`max-w-[720px] pb-7 text-[0.9375rem] leading-[1.7] text-carbon/75 ${answerClassName}`}
+                  className={`max-w-[720px] pb-7 text-[0.9375rem] leading-[1.7] text-carbon/75 ${isAr ? "font-arabic" : ""} ${answerClassName}`}
                 >
                   {item.a}
                 </p>
@@ -83,9 +89,15 @@ export function Faq({
             type="button"
             onClick={() => setExpanded((e) => !e)}
             aria-expanded={expanded}
-            className="inline-block cursor-pointer rounded-full border border-carbon px-8 py-3.5 text-[11px] uppercase tracking-[0.08em] text-carbon transition-colors duration-500 hover:bg-carbon hover:text-porcelain"
+            className={`inline-block cursor-pointer rounded-full border border-carbon px-8 py-3.5 text-[11px] text-carbon transition-colors duration-500 hover:bg-carbon hover:text-porcelain ${isAr ? "font-arabic" : "uppercase tracking-[0.08em]"}`}
           >
-            {expanded ? "Show Less" : "Load More"}
+            {isAr
+              ? expanded
+                ? "عرض أقل"
+                : "عرض المزيد"
+              : expanded
+                ? "Show Less"
+                : "Load More"}
           </button>
         </div>
       )}

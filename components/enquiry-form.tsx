@@ -3,7 +3,8 @@
 import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
-import { submitEnquiry, type EnquiryState } from "@/app/actions";
+import { submitEnquiry, type EnquiryState } from "@/lib/actions";
+import type { Locale } from "@/lib/locale";
 import { services } from "@/lib/site";
 
 const initialState: EnquiryState = { status: "idle", message: "" };
@@ -18,22 +19,25 @@ const fieldClass =
 
 const labelClass =
   "mb-2.5 block text-[11px] uppercase tracking-[0.08em] text-carbon/60";
+const labelClassAr = "mb-2.5 block font-arabic text-[0.8125rem] text-carbon/60";
 
-function SubmitButton() {
+function SubmitButton({ isAr }: { isAr: boolean }) {
   const { pending } = useFormStatus();
   return (
     <button
       type="submit"
       disabled={pending}
-      className="mt-3 cursor-pointer self-start rounded-full bg-carbon px-10 py-4 text-xs uppercase tracking-[0.08em] text-porcelain transition-colors duration-500 hover:bg-black disabled:cursor-not-allowed disabled:opacity-50"
+      className={`mt-3 cursor-pointer self-start rounded-full bg-carbon px-10 py-4 text-porcelain transition-colors duration-500 hover:bg-black disabled:cursor-not-allowed disabled:opacity-50 ${isAr ? "font-arabic text-[0.8125rem]" : "text-xs uppercase tracking-[0.08em]"}`}
     >
-      {pending ? "Sending…" : "Send Message"}
+      {isAr ? (pending ? "جارٍ الإرسال…" : "إرسال الرسالة") : pending ? "Sending…" : "Send Message"}
     </button>
   );
 }
 
-export function EnquiryForm() {
+export function EnquiryForm({ locale = "en" }: { locale?: Locale }) {
+  const isAr = locale === "ar";
   const [state, formAction] = useActionState(submitEnquiry, initialState);
+  const label = isAr ? labelClassAr : labelClass;
 
   /*
    * Service pages link here as `?service=<name>`, so the dropdown opens on the
@@ -44,16 +48,17 @@ export function EnquiryForm() {
    */
   const requested = useSearchParams().get("service") ?? "";
   const preselected =
-    services.find((service) => service.name === requested)?.name ?? "";
+    services.find((service) => service.name === requested || service.nameAr === requested)
+      ?.[isAr ? "nameAr" : "name"] ?? "";
 
   if (state.status === "success") {
     return (
       <div className="border-t border-carbon pt-8" role="status">
-        <p className="font-display text-[1.875rem] font-normal">
+        <p className={isAr ? "font-arabic text-[1.625rem] font-bold" : "font-display text-[1.875rem] font-normal"}>
           {state.message}
         </p>
-        <p className="mt-4 max-w-md text-carbon/70">
-          If it is urgent, call us and we will pick it up sooner.
+        <p className={`mt-4 max-w-md text-carbon/70 ${isAr ? "font-arabic" : ""}`}>
+          {isAr ? "إذا كان الأمر عاجلاً، اتصلوا بنا وسنتعامل معه بسرعة أكبر." : "If it is urgent, call us and we will pick it up sooner."}
         </p>
       </div>
     );
@@ -61,6 +66,8 @@ export function EnquiryForm() {
 
   return (
     <form action={formAction} noValidate className="flex flex-col gap-6">
+      <input type="hidden" name="locale" value={locale} />
+
       {/* Honeypot — hidden from people, tempting to bots. */}
       <div aria-hidden="true" className="absolute h-0 w-0 overflow-hidden">
         <label htmlFor="website">Website</label>
@@ -69,29 +76,29 @@ export function EnquiryForm() {
 
       <div className="grid gap-5 wide:grid-cols-2">
         <div>
-          <label htmlFor="name" className={labelClass}>
-            Name
+          <label htmlFor="name" className={label}>
+            {isAr ? "الاسم" : "Name"}
           </label>
           <input
             id="name"
             name="name"
             required
             autoComplete="name"
-            placeholder="Your full name"
+            placeholder={isAr ? "اسمكم الكامل" : "Your full name"}
             aria-describedby={state.errors?.name ? "name-error" : undefined}
             aria-invalid={state.errors?.name ? true : undefined}
             className={fieldClass}
           />
           {state.errors?.name && (
-            <p id="name-error" className="mt-2 text-[0.85rem] text-carbon">
+            <p id="name-error" className={`mt-2 text-[0.85rem] text-carbon ${isAr ? "font-arabic" : ""}`}>
               {state.errors.name}
             </p>
           )}
         </div>
 
         <div>
-          <label htmlFor="email" className={labelClass}>
-            Email
+          <label htmlFor="email" className={label}>
+            {isAr ? "البريد الإلكتروني" : "Email"}
           </label>
           <input
             id="email"
@@ -100,12 +107,13 @@ export function EnquiryForm() {
             required
             autoComplete="email"
             placeholder="you@company.com"
+            dir="ltr"
             aria-describedby={state.errors?.email ? "email-error" : undefined}
             aria-invalid={state.errors?.email ? true : undefined}
             className={fieldClass}
           />
           {state.errors?.email && (
-            <p id="email-error" className="mt-2 text-[0.85rem] text-carbon">
+            <p id="email-error" className={`mt-2 text-[0.85rem] text-carbon ${isAr ? "font-arabic" : ""}`}>
               {state.errors.email}
             </p>
           )}
@@ -114,21 +122,21 @@ export function EnquiryForm() {
 
       <div className="grid gap-5 wide:grid-cols-2">
         <div>
-          <label htmlFor="company" className={labelClass}>
-            Company
+          <label htmlFor="company" className={label}>
+            {isAr ? "الشركة" : "Company"}
           </label>
           <input
             id="company"
             name="company"
             autoComplete="organization"
-            placeholder="Company or brand name"
+            placeholder={isAr ? "اسم الشركة أو العلامة التجارية" : "Company or brand name"}
             className={fieldClass}
           />
         </div>
 
         <div>
-          <label htmlFor="phone" className={labelClass}>
-            Phone
+          <label htmlFor="phone" className={label}>
+            {isAr ? "الهاتف" : "Phone"}
           </label>
           <input
             id="phone"
@@ -136,14 +144,15 @@ export function EnquiryForm() {
             type="tel"
             autoComplete="tel"
             placeholder="+971 50 000 0000"
+            dir="ltr"
             className={fieldClass}
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="service" className={labelClass}>
-          Service You Are Interested In
+        <label htmlFor="service" className={label}>
+          {isAr ? "الخدمة التي تهتمون بها" : "Service You Are Interested In"}
         </label>
         {/*
          * A leading empty option. Without it the control submits the first
@@ -155,46 +164,55 @@ export function EnquiryForm() {
           name="service"
           defaultValue={preselected}
           key={preselected}
-          className={`${fieldClass} select-field appearance-none rounded-none`}
+          className={`${fieldClass} select-field appearance-none rounded-none ${isAr ? "font-arabic" : ""}`}
         >
-          <option value="">Select an area of interest</option>
+          <option value="">{isAr ? "اختاروا مجال الاهتمام" : "Select an area of interest"}</option>
           {services.map((service) => (
-            <option key={service.slug} value={service.name}>
-              {service.name}
+            <option key={service.slug} value={isAr ? service.nameAr : service.name}>
+              {isAr ? service.nameAr : service.name}
             </option>
           ))}
-          <option value="Not sure yet">Not sure yet</option>
+          <option value={isAr ? "لست متأكداً بعد" : "Not sure yet"}>
+            {isAr ? "لست متأكداً بعد" : "Not sure yet"}
+          </option>
         </select>
       </div>
 
       <div>
-        <label htmlFor="message" className={labelClass}>
-          Message
+        <label htmlFor="message" className={label}>
+          {isAr ? "الرسالة" : "Message"}
         </label>
         <textarea
           id="message"
           name="message"
           rows={4}
           required
-          placeholder="What you’re running now, and what you need it to do"
+          placeholder={isAr ? "ما الذي تديرونه حالياً، وما الذي تحتاجونه منه" : "What you’re running now, and what you need it to do"}
           aria-describedby={state.errors?.message ? "message-error" : undefined}
           aria-invalid={state.errors?.message ? true : undefined}
-          className={`${fieldClass} resize-none`}
+          className={`${fieldClass} resize-none ${isAr ? "font-arabic" : ""}`}
         />
         {state.errors?.message && (
-          <p id="message-error" className="mt-2 text-[0.85rem] text-carbon">
+          <p id="message-error" className={`mt-2 text-[0.85rem] text-carbon ${isAr ? "font-arabic" : ""}`}>
             {state.errors.message}
           </p>
         )}
       </div>
 
       {state.status === "error" && (
-        <p role="alert" className="border-l-2 border-carbon pl-4 text-carbon">
+        <p
+          role="alert"
+          className={
+            isAr
+              ? "border-r-2 border-carbon pr-4 font-arabic text-carbon"
+              : "border-l-2 border-carbon pl-4 text-carbon"
+          }
+        >
           {state.message}
         </p>
       )}
 
-      <SubmitButton />
+      <SubmitButton isAr={isAr} />
     </form>
   );
 }

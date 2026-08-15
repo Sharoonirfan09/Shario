@@ -209,6 +209,38 @@ body {
   }
 }
 
+/*
+ * `.eyebrow`/`.eyebrow-hero`/`.label`/`.label-sm`/`.label-plate` all set a
+ * Latin display convention baked into the class itself: Jost, wide letter-
+ * spacing, forced uppercase. `text-transform: uppercase` is a harmless no-op
+ * on Arabic script (it has no case), but the tracking is not — positive
+ * letter-spacing visibly severs Arabic's contextual glyph joining, the same
+ * reason `ArabicStatement` and every hand-adjusted component this session
+ * avoid it. Rather than thread a `locale` prop through every one of the ~10
+ * components that reach for these classes, this rule catches all of them at
+ * once: everything under `app/ar/layout.tsx`'s `dir="rtl"` wrapper gets
+ * Amiri and normal tracking automatically, including any future component
+ * that uses these classes without knowing this rule exists.
+ */
+[dir="rtl"] .eyebrow,
+[dir="rtl"] .eyebrow-hero,
+[dir="rtl"] .label,
+[dir="rtl"] .label-sm,
+[dir="rtl"] .label-plate {
+  font-family: var(--font-arabic);
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* Same reasoning as above, for the home hero's `.hero-display` — its
+   positive tracking breaks Arabic glyph joining the same way, so the
+   Arabic homepage's headline needs Amiri and normal tracking here too. */
+[dir="rtl"] .hero-display {
+  font-family: var(--font-arabic);
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
 .lede {
   font-size: clamp(1.125rem, 1.6vw, 1.375rem);
   line-height: 1.62;

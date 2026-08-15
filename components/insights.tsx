@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { ReactNode } from "react";
+import type { Locale } from "@/lib/locale";
+import { localizedPath } from "@/lib/locale";
 import type { ArticleBlock, InsightArticle, InsightCategory } from "@/lib/site";
 
 /**
@@ -18,12 +20,15 @@ export function InsightsExplorer({
   articles,
   categories,
   initialCategory = "all",
+  locale = "en",
 }: {
   articles: InsightArticle[];
   categories: InsightCategory[];
   initialCategory?: string;
+  locale?: Locale;
 }) {
   const [active, setActive] = useState(initialCategory);
+  const isAr = locale === "ar";
 
   const filtered = useMemo(
     () =>
@@ -34,34 +39,38 @@ export function InsightsExplorer({
   );
 
   const activeCategory = categories.find((category) => category.slug === active);
+  const activeCategoryLabel = isAr
+    ? (activeCategory?.nameAr ?? "المقالات")
+    : (activeCategory?.name.toLowerCase() ?? "articles");
 
   return (
     <div>
       <div
         role="tablist"
-        aria-label="Filter by category"
+        aria-label={isAr ? "تصفية حسب الفئة" : "Filter by category"}
         className="mb-12 flex flex-wrap gap-3 wide:mb-16"
       >
         <CategoryTab
-          label="All"
+          label={isAr ? "الكل" : "All"}
           active={active === "all"}
           onClick={() => setActive("all")}
+          isAr={isAr}
         />
         {categories.map((category) => (
           <CategoryTab
             key={category.slug}
-            label={category.name}
+            label={isAr ? category.nameAr : category.name}
             active={active === category.slug}
             onClick={() => setActive(category.slug)}
+            isAr={isAr}
           />
         ))}
       </div>
 
       {filtered.length === 0 ? (
         <div className="border-t border-carbon/15 py-20 text-center">
-          <p className="text-[1.0625rem] text-carbon/60">
-            More {activeCategory?.name.toLowerCase() ?? "articles"} are on the
-            way.
+          <p className={`text-[1.0625rem] text-carbon/60 ${isAr ? "font-arabic" : ""}`}>
+            {isAr ? `المزيد من ${activeCategoryLabel} في الطريق.` : `More ${activeCategoryLabel} are on the way.`}
           </p>
         </div>
       ) : (
@@ -72,6 +81,7 @@ export function InsightsExplorer({
               article={article}
               categories={categories}
               delay={i * 60}
+              locale={locale}
             />
           ))}
         </div>
@@ -84,10 +94,12 @@ function CategoryTab({
   label,
   active,
   onClick,
+  isAr,
 }: {
   label: string;
   active: boolean;
   onClick: () => void;
+  isAr?: boolean;
 }) {
   return (
     <button
@@ -95,7 +107,7 @@ function CategoryTab({
       role="tab"
       aria-selected={active}
       onClick={onClick}
-      className={`eyebrow rounded-full border px-5 py-2.5 transition-colors duration-300 ${
+      className={`rounded-full border px-5 py-2.5 transition-colors duration-300 ${isAr ? "font-arabic text-[0.6875rem]" : "eyebrow"} ${
         active
           ? "border-carbon bg-carbon text-porcelain"
           : "border-carbon/20 text-carbon/60 hover:border-mist hover:bg-mist/15 hover:text-carbon"
@@ -111,6 +123,7 @@ export function InsightCard({
   categories,
   delay = 0,
   size = "default",
+  locale = "en",
 }: {
   article: InsightArticle;
   categories: InsightCategory[];
@@ -118,20 +131,19 @@ export function InsightCard({
   /** `large` — the homepage's editorial band: bigger type, more air, the
    *  same card the Archive grid uses underneath rather than a bespoke one. */
   size?: "default" | "large";
+  locale?: Locale;
 }) {
   const category = categories.find((c) => c.slug === article.category);
   const large = size === "large";
+  const isAr = locale === "ar";
+  const href = isAr ? localizedPath(`/insights/${article.slug}`, "ar") : `/insights/${article.slug}`;
 
   return (
-    <Link
-      href={`/insights/${article.slug}`}
-      className="group reveal flex flex-col"
-      data-delay={delay}
-    >
+    <Link href={href} className="group reveal flex flex-col" data-delay={delay}>
       <div className="frame relative aspect-[4/3] overflow-hidden">
         <Image
           src={article.image}
-          alt={article.imageAlt}
+          alt={isAr ? article.imageAltAr : article.imageAlt}
           fill
           sizes="(min-width: 880px) 33vw, 100vw"
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
@@ -144,33 +156,41 @@ export function InsightCard({
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-carbon/85 via-carbon/15 to-transparent"
         />
-        <p className="absolute bottom-5 left-5 right-5 font-display text-[1.1875rem] font-normal leading-[1.25] text-porcelain wide:bottom-6 wide:left-6 wide:right-6 wide:text-[1.3125rem]">
-          {article.imageTopic}
+        <p
+          className={`absolute bottom-5 left-5 right-5 text-[1.1875rem] leading-[1.25] text-porcelain wide:bottom-6 wide:left-6 wide:right-6 wide:text-[1.3125rem] ${isAr ? "font-arabic" : "font-display font-normal"}`}
+        >
+          {isAr ? article.imageTopicAr : article.imageTopic}
         </p>
       </div>
       <div className={`flex flex-1 flex-col ${large ? "pt-7" : "pt-6"}`}>
-        <p className="eyebrow flex items-center gap-3 text-carbon/50">
+        <p
+          className={`flex items-center gap-3 text-carbon/50 ${isAr ? "font-arabic text-[0.6875rem]" : "eyebrow"}`}
+        >
           <span aria-hidden="true" className="h-px w-4 bg-mist" />
-          {category?.name}
+          {isAr ? category?.nameAr : category?.name}
         </p>
         <h3
-          className={`mt-3 font-display font-medium leading-[1.2] transition-colors duration-300 group-hover:text-carbon/70 ${
-            large
-              ? "text-[1.625rem] wide:text-[1.75rem]"
-              : "text-[1.375rem]"
+          className={`mt-3 leading-[1.2] transition-colors duration-300 group-hover:text-carbon/70 ${isAr ? "font-arabic font-bold" : "font-display font-medium"} ${
+            large ? "text-[1.625rem] wide:text-[1.75rem]" : "text-[1.375rem]"
           }`}
         >
-          {article.title}
+          {isAr ? article.titleAr : article.title}
         </h3>
         <p
-          className={`mt-3 flex-1 leading-[1.7] text-carbon/70 ${
+          className={`mt-3 flex-1 leading-[1.7] text-carbon/70 ${isAr ? "font-arabic" : ""} ${
             large ? "text-[1rem]" : "text-[0.9375rem]"
           }`}
         >
-          {article.excerpt}
+          {isAr ? article.excerptAr : article.excerpt}
         </p>
-        <p className="mt-5 text-[0.8125rem] text-carbon/45">
-          {article.date} · {article.readingTime}
+        <p className={`mt-5 text-[0.8125rem] text-carbon/45 ${isAr ? "font-arabic" : ""}`}>
+          {isAr ? (
+            <>
+              <span dir="ltr">{article.date}</span> · {article.readingTimeAr}
+            </>
+          ) : (
+            `${article.date} · ${article.readingTime}`
+          )}
         </p>
       </div>
     </Link>
@@ -226,9 +246,14 @@ function renderInline(text: string): ReactNode[] {
 /**
  * Renders an article's `body` blocks — H2/H3 headings and prose paragraphs
  * with inline links — sharing the same `reveal` scroll-in treatment every
- * other text block on the site uses.
+ * other text block on the site uses. `locale` (default `"en"`) only affects
+ * typography (Amiri, no Latin `font-display`); the caller passes either
+ * `article.body` or `article.bodyAr` — the blocks themselves are already in
+ * the right language by the time they reach this component.
  */
-export function ArticleBody({ blocks }: { blocks: ArticleBlock[] }) {
+export function ArticleBody({ blocks, locale = "en" }: { blocks: ArticleBlock[]; locale?: Locale }) {
+  const isAr = locale === "ar";
+
   return (
     <div className="mt-8">
       {blocks.map((block, i) => {
@@ -238,7 +263,7 @@ export function ArticleBody({ blocks }: { blocks: ArticleBlock[] }) {
           return (
             <h2
               key={i}
-              className="reveal mt-12 font-display text-[1.5rem] font-normal leading-[1.3] text-carbon first:mt-0 wide:text-[1.75rem]"
+              className={`reveal mt-12 text-[1.5rem] leading-[1.3] text-carbon first:mt-0 wide:text-[1.75rem] ${isAr ? "font-arabic font-bold" : "font-display font-normal"}`}
               data-delay={delay}
             >
               {block.text}
@@ -250,7 +275,7 @@ export function ArticleBody({ blocks }: { blocks: ArticleBlock[] }) {
           return (
             <h3
               key={i}
-              className="reveal mt-8 font-display text-[1.1875rem] font-medium leading-[1.35] text-carbon first:mt-0"
+              className={`reveal mt-8 text-[1.1875rem] leading-[1.35] text-carbon first:mt-0 ${isAr ? "font-arabic font-bold" : "font-display font-medium"}`}
               data-delay={delay}
             >
               {block.text}
@@ -261,7 +286,7 @@ export function ArticleBody({ blocks }: { blocks: ArticleBlock[] }) {
         return (
           <p
             key={i}
-            className="reveal mt-5 text-[1.0625rem] leading-[1.8] text-carbon/80 first:mt-0"
+            className={`reveal mt-5 text-[1.0625rem] leading-[1.8] text-carbon/80 first:mt-0 ${isAr ? "font-arabic" : ""}`}
             data-delay={delay}
           >
             {renderInline(block.text)}
