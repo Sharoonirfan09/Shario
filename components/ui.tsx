@@ -607,7 +607,8 @@ export function Hero({
             alt={alt}
             fill
             sizes="100vw"
-            priority={priority}
+            preload={priority}
+            fetchPriority={priority ? "high" : undefined}
             className={`settle object-cover ${focus ?? ""}`}
           />
           {/* One gentle bottom scrim, not the two stacked full-bleed gradients
@@ -640,25 +641,18 @@ export function Hero({
         </p>
         {title && (
           <h1
-            className={`rise mt-6 max-w-[1000px] font-display font-normal leading-[1.04] ${s.title}`}
-            style={{ animationDelay: "140ms" }}
+            className={`rise rise-delay-1 mt-6 max-w-[1000px] font-display font-normal leading-[1.04] ${s.title}`}
           >
             {title}
           </h1>
         )}
         {subhead && (
-          <p
-            className="rise mt-7 max-w-[600px] text-[1.0625rem] leading-[1.7] text-porcelain/85 wide:text-[1.1875rem]"
-            style={{ animationDelay: "280ms" }}
-          >
+          <p className="rise rise-delay-2 mt-7 max-w-[600px] text-[1.0625rem] leading-[1.7] text-porcelain/85 wide:text-[1.1875rem]">
             {subhead}
           </p>
         )}
         {children && (
-          <div
-            className="rise mt-10 flex flex-wrap gap-3.5"
-            style={{ animationDelay: "400ms" }}
-          >
+          <div className="rise rise-delay-3 mt-10 flex flex-wrap gap-3.5">
             {children}
           </div>
         )}
@@ -776,26 +770,21 @@ export function SplitHero({
            * meant to open on it.
            */}
           <h1
-            className={`hero-display rise text-[2.25rem] wide:text-[clamp(2.625rem,3.125vw,3rem)] ${
+            className={`hero-display rise rise-delay-1 text-[2.25rem] wide:text-[clamp(2.625rem,3.125vw,3rem)] ${
               eyebrow ? "mt-7" : ""
             }`}
-            style={{ animationDelay: "140ms" }}
           >
             {title}
           </h1>
           {subhead && (
             <p
-              className={`rise mt-7 max-w-[440px] text-[1.1875rem] leading-[1.55] text-carbon/65 wide:text-[1.3125rem] ${isAr ? "font-arabic" : "font-body"}`}
-              style={{ animationDelay: "280ms" }}
+              className={`rise rise-delay-2 mt-7 max-w-[440px] text-[1.1875rem] leading-[1.55] text-carbon/65 wide:text-[1.3125rem] ${isAr ? "font-arabic" : "font-body"}`}
             >
               {subhead}
             </p>
           )}
           {children && (
-            <div
-              className="rise mt-10 flex flex-wrap gap-3.5"
-              style={{ animationDelay: "400ms" }}
-            >
+            <div className="rise rise-delay-3 mt-10 flex flex-wrap gap-3.5">
               {children}
             </div>
           )}
@@ -836,7 +825,8 @@ export function SplitHero({
             alt={alt}
             fill
             sizes="(min-width: 880px) 46vw, 100vw"
-            priority
+            preload
+            fetchPriority="high"
             className={`hero-shift object-cover ${focus ?? ""}`}
             style={{ "--hero-shift": shift ?? "-6%" } as CSSProperties}
           />
@@ -965,7 +955,8 @@ export function TypeHero({
             alt=""
             fill
             sizes="100vw"
-            priority={tall}
+            preload={tall}
+            fetchPriority={tall ? "high" : undefined}
             className={`${tall ? "settle" : ""} object-cover ${focus ?? ""}`}
           />
           {/* Same bottom scrim as `Hero`, plus the same header-strip scrim — see the comments there. Currently no caller passes `src` here, but keeping the two components symmetric means a future photo TypeHero doesn't quietly reintroduce the header-contrast bug the strip scrim exists to prevent. */}
@@ -991,27 +982,22 @@ export function TypeHero({
         </p>
         {title && (
           <h1
-            className={`rise mt-6 max-w-[900px] font-display ${typeHeroTitleScale[titleScale]}`}
-            style={{ animationDelay: "140ms" }}
+            className={`rise rise-delay-1 mt-6 max-w-[900px] font-display ${typeHeroTitleScale[titleScale]}`}
           >
             {title}
           </h1>
         )}
         {subhead && (
           <p
-            className={`rise mt-7 max-w-[620px] text-[1.0625rem] leading-[1.7] wide:text-[1.1875rem] ${
+            className={`rise rise-delay-2 mt-7 max-w-[620px] text-[1.0625rem] leading-[1.7] wide:text-[1.1875rem] ${
               dark ? "text-porcelain/80" : "text-carbon/75"
             }`}
-            style={{ animationDelay: "280ms" }}
           >
             {subhead}
           </p>
         )}
         {children && (
-          <div
-            className="rise mt-10 flex flex-wrap gap-3.5"
-            style={{ animationDelay: "400ms" }}
-          >
+          <div className="rise rise-delay-3 mt-10 flex flex-wrap gap-3.5">
             {children}
           </div>
         )}

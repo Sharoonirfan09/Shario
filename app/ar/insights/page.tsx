@@ -103,7 +103,8 @@ export default async function ArabicInsightsPage({
                   alt={featured.imageAltAr}
                   fill
                   sizes="(min-width: 880px) 50vw, 100vw"
-                  priority
+                  preload
+                  fetchPriority="high"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
                 <div

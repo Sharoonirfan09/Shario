@@ -107,7 +107,8 @@ export default async function InsightArticlePage({
               alt={article.imageAlt}
               fill
               sizes="(min-width: 880px) 760px, 100vw"
-              priority
+              preload
+              fetchPriority="high"
               className="object-cover"
             />
             <div

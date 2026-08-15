@@ -107,7 +107,8 @@ export default async function RussianInsightArticlePage({
               alt={article.imageAltRu}
               fill
               sizes="(min-width: 880px) 760px, 100vw"
-              priority
+              preload
+              fetchPriority="high"
               className="object-cover"
             />
             <div

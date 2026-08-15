@@ -316,6 +316,20 @@ body {
   animation: rise 1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
+/* Fixed stagger steps for a `.rise` title/subhead/CTA group — every hero
+   variant (Hero, TypeHero) stages the same three elements at the same three
+   delays, so these replace what were identical inline `animationDelay`
+   styles at each of those call sites. */
+.rise-delay-1 {
+  animation-delay: 140ms;
+}
+.rise-delay-2 {
+  animation-delay: 280ms;
+}
+.rise-delay-3 {
+  animation-delay: 400ms;
+}
+
 .draw {
   transform-origin: left;
   animation: draw 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) both;

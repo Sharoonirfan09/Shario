@@ -78,7 +78,7 @@ export function FacebookPixel() {
           height="1"
           width="1"
           alt=""
-          style={{ display: "none" }}
+          className="hidden"
           src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
         />
       </noscript>
