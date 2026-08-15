@@ -4,7 +4,7 @@ import { CtaBand, Hero, PillLink } from "@/components/ui";
 import { cta, heroImages, ogDefaultsAr } from "@/lib/site";
 
 const descriptionAr =
-  "شاريو وكالة تسويق أدائي في دبي تقدم التسويق الأدائي وتحسين محركات البحث والمحتوى والمواقع الإلكترونية وتحسين معدل التحويل وإدارة علاقات العملاء والأتمتة والعلامة التجارية والإبداع. اشتركوا في خدمة واحدة أو القمع الكامل.";
+  "شاريو وكالة تسويق أدائي في دبي تقدم التسويق الأدائي وتحسين محركات البحث والمحتوى والمواقع الإلكترونية وتحسين معدل التحويل وإدارة علاقات العملاء والأتمتة والعلامة التجارية والإبداع. استعينوا بخدمة واحدة أو بالقمع الكامل.";
 
 const HERO_IMAGE = heroImages.services.src;
 const HERO_IMAGE_ALT =
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: descriptionAr,
   alternates: {
     canonical: "/ar/services",
-    languages: { en: "/services", ar: "/ar/services", "x-default": "/services" },
+    languages: { en: "/services", ar: "/ar/services", ru: "/ru/services", "x-default": "/services" },
   },
   openGraph: {
     ...ogDefaultsAr,

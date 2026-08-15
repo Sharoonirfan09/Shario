@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description,
   alternates: {
     canonical: "/services",
-    languages: { en: "/services", ar: "/ar/services", "x-default": "/services" },
+    languages: { en: "/services", ar: "/ar/services", ru: "/ru/services", "x-default": "/services" },
   },
   openGraph: {
     ...ogDefaults,

@@ -40,14 +40,17 @@ const serviceTones = ["limestone", "porcelain", "carbon"] as const;
  */
 export function SixServices({ locale = "en" }: { locale?: Locale }) {
   const isAr = locale === "ar";
+  const isRu = locale === "ru";
 
   return (
     <Band>
       <SectionIntro
-        eyebrow={isAr ? "خدماتنا" : "Our Services"}
+        eyebrow={isAr ? "خدماتنا" : isRu ? "Наши услуги" : "Our Services"}
         title={
           isAr ? (
             "كل ما تحتاجه للنمو، يديره فريق واحد."
+          ) : isRu ? (
+            "Всё, что нужно для роста, — в руках одной команды."
           ) : (
             <>
               Everything you need to grow,
@@ -58,19 +61,25 @@ export function SixServices({ locale = "en" }: { locale?: Locale }) {
         sub={
           isAr
             ? "من الإعلانات المدفوعة والبحث إلى المواقع الإلكترونية وإدارة علاقات العملاء والإبداع — النظام التسويقي الكامل الذي تحتاجه علامة تجارية في دبي لخلق الطلب وتحويله إلى إيرادات."
-            : "From paid media and search to websites, CRM and creative — the full marketing system a Dubai brand needs to generate demand and convert it into revenue."
+            : isRu
+              ? "От платной рекламы и поиска до сайтов, CRM и креатива — полная маркетинговая система, которая нужна бренду в Дубае, чтобы формировать спрос и превращать его в выручку."
+              : "From paid media and search to websites, CRM and creative — the full marketing system a Dubai brand needs to generate demand and convert it into revenue."
         }
       />
       <CardGrid columns={3}>
         {services.map((service, i) => (
           <Card
             key={service.slug}
-            href={isAr ? localizedPath(`/services/${service.slug}`, "ar") : `/services/${service.slug}`}
+            href={
+              isAr || isRu
+                ? localizedPath(`/services/${service.slug}`, locale)
+                : `/services/${service.slug}`
+            }
             badge={service.num}
-            title={isAr ? service.nameAr : service.name}
+            title={isAr ? service.nameAr : isRu ? service.nameRu : service.name}
             titleAs="h3"
-            desc={isAr ? service.descriptorAr : service.descriptor}
-            action={isAr ? "اعرف المزيد" : "Learn more"}
+            desc={isAr ? service.descriptorAr : isRu ? service.descriptorRu : service.descriptor}
+            action={isAr ? "اعرف المزيد" : isRu ? "Узнать больше" : "Learn more"}
             image={serviceImages[service.slug]}
             tone={serviceTones[i % serviceTones.length]}
             delay={i * 60}

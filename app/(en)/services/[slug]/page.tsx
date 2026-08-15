@@ -36,6 +36,7 @@ export async function generateMetadata({
       languages: {
         en: `/services/${service.slug}`,
         ar: `/ar/services/${service.slug}`,
+        ru: `/ru/services/${service.slug}`,
         "x-default": `/services/${service.slug}`,
       },
     },

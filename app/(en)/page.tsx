@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   description: site.description,
   alternates: {
     canonical: "/",
-    languages: { en: "/", ar: "/ar", "x-default": "/" },
+    languages: { en: "/", ar: "/ar", ru: "/ru", "x-default": "/" },
   },
   openGraph: {
     ...ogDefaults,

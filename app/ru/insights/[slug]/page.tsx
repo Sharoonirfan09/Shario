@@ -21,7 +21,7 @@ import {
   getInsightCategory,
   insightArticles,
   insightCategories,
-  ogDefaultsAr,
+  ogDefaultsRu,
   site,
 } from "@/lib/site";
 
@@ -32,19 +32,19 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: PageProps<"/ar/insights/[slug]">): Promise<Metadata> {
+}: PageProps<"/ru/insights/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const article = getInsightArticle(slug);
   if (!article) return {};
 
-  const title = article.seoTitleAr ?? article.titleAr;
-  const description = article.metaDescriptionAr ?? article.excerptAr;
+  const title = article.seoTitleRu ?? article.titleRu;
+  const description = article.metaDescriptionRu ?? article.excerptRu;
 
   return {
     title,
     description,
     alternates: {
-      canonical: `/ar/insights/${article.slug}`,
+      canonical: `/ru/insights/${article.slug}`,
       languages: {
         en: `/insights/${article.slug}`,
         ar: `/ar/insights/${article.slug}`,
@@ -53,20 +53,20 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      ...ogDefaultsAr,
-      url: `/ar/insights/${article.slug}`,
+      ...ogDefaultsRu,
+      url: `/ru/insights/${article.slug}`,
       type: "article",
       title,
       description,
       publishedTime: new Date(article.date).toISOString(),
-      authors: [site.founderAr],
+      authors: [site.founderRu],
     },
   };
 }
 
-export default async function ArabicInsightArticlePage({
+export default async function RussianInsightArticlePage({
   params,
-}: PageProps<"/ar/insights/[slug]">) {
+}: PageProps<"/ru/insights/[slug]">) {
   const { slug } = await params;
   const article = getInsightArticle(slug);
   if (!article) notFound();
@@ -78,33 +78,33 @@ export default async function ArabicInsightArticlePage({
     .slice(0, 3);
 
   const breadcrumbItems = [
-    { href: "/ar", label: "الرئيسية" },
-    { href: "/ar/insights", label: "رؤى" },
-    { label: article.titleAr },
+    { href: "/ru", label: "Главная" },
+    { href: "/ru/insights", label: "Инсайты" },
+    { label: article.titleRu },
   ];
 
   return (
     <>
-      <ArticleStructuredData article={article} category={category} locale="ar" />
+      <ArticleStructuredData article={article} category={category} locale="ru" />
       <BreadcrumbStructuredData items={breadcrumbItems} />
 
       <TypeHero
         tone="carbon"
-        eyebrow={category?.nameAr ?? "رؤى"}
-        title={article.titleAr}
-        breadcrumb={<Breadcrumb locale="ar" items={breadcrumbItems} />}
+        eyebrow={category?.nameRu ?? "Инсайты"}
+        title={article.titleRu}
+        breadcrumb={<Breadcrumb locale="ru" items={breadcrumbItems} />}
       />
 
       <Band>
         <div className="mx-auto max-w-[760px]">
           <p className="mb-10 text-[0.8125rem] text-carbon/50">
-            <span dir="ltr">{article.date}</span> · {article.readingTimeAr}
+            {article.date} · {article.readingTimeRu}
           </p>
 
           <div className="frame relative mb-12 aspect-[16/9] overflow-hidden">
             <Image
               src={article.image}
-              alt={article.imageAltAr}
+              alt={article.imageAltRu}
               fill
               sizes="(min-width: 880px) 760px, 100vw"
               priority
@@ -114,24 +114,24 @@ export default async function ArabicInsightArticlePage({
               aria-hidden="true"
               className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-carbon/85 via-carbon/15 to-transparent"
             />
-            <p className="absolute bottom-6 left-6 right-6 font-arabic text-[1.25rem] font-bold leading-[1.25] text-porcelain wide:bottom-8 wide:left-8 wide:right-8 wide:text-[1.5rem]">
-              {article.imageTopicAr}
+            <p className="absolute bottom-6 left-6 right-6 font-display text-[1.375rem] font-normal leading-[1.25] text-porcelain wide:bottom-8 wide:left-8 wide:right-8 wide:text-[1.625rem]">
+              {article.imageTopicRu}
             </p>
           </div>
 
-          <p className="reveal font-arabic text-[1.375rem] font-bold leading-[1.5] text-carbon wide:text-[1.625rem]">
-            {article.excerptAr}
+          <p className="reveal font-display text-[1.5rem] font-normal leading-[1.4] text-carbon wide:text-[1.75rem]">
+            {article.excerptRu}
           </p>
 
-          <ArticleBody blocks={article.bodyAr} locale="ar" />
+          <ArticleBody blocks={article.bodyRu} locale="ru" />
         </div>
       </Band>
 
       {related.length > 0 && (
         <Band className="bg-limestone/30">
           <SectionIntro
-            eyebrow="تابعوا القراءة"
-            title="المزيد من رؤى شاريو."
+            eyebrow="Продолжить чтение"
+            title="Больше материалов из Инсайтов."
             align="left"
             scale="sm"
           />
@@ -142,7 +142,7 @@ export default async function ArabicInsightArticlePage({
                 article={item}
                 categories={insightCategories}
                 delay={i * 60}
-                locale="ar"
+                locale="ru"
               />
             ))}
           </CardGrid>
@@ -150,12 +150,12 @@ export default async function ArabicInsightArticlePage({
       )}
 
       <CtaBand
-        title="هل لديكم مشروع يثير أسئلة كهذه؟"
-        sub="خمس عشرة دقيقة حول أين يمكن لتسويقكم كسب المزيد من الإيرادات، وكيف ستحقق شاريو ذلك."
+        title="Есть проект, который поднимает подобные вопросы?"
+        sub="Пятнадцать минут о том, где ваш маркетинг может приносить больше выручки, и как SHARIO этого добьётся."
         arabicAccent
       >
         <PillLink href={cta.href} tone="solid" size="lg">
-          {cta.labelAr}
+          {cta.labelRu}
         </PillLink>
       </CtaBand>
     </>

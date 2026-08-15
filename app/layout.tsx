@@ -15,7 +15,11 @@ import { site } from "@/lib/site";
  */
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
-  subsets: ["latin"],
+  // "cyrillic" added for the Russian site: Cormorant Garamond ships a real
+  // Cyrillic cut (verified against next/font's own google/font-data.json), so
+  // Russian headings render in the same premium serif as English rather than
+  // falling back to a system font — no separate Russian type system needed.
+  subsets: ["latin", "cyrillic"],
   weight: ["300", "400", "500"],
   style: ["normal", "italic"],
   display: "swap",
@@ -23,7 +27,7 @@ const cormorant = Cormorant_Garamond({
 
 const ebGaramond = EB_Garamond({
   variable: "--font-eb-garamond",
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   weight: ["400"],
   style: ["normal", "italic"],
   display: "swap",
@@ -31,7 +35,8 @@ const ebGaramond = EB_Garamond({
 
 const jost = Jost({
   variable: "--font-jost",
-  subsets: ["latin"],
+  // Jost also ships Cyrillic — same reasoning as Cormorant above.
+  subsets: ["latin", "cyrillic"],
   weight: ["300", "400"],
   display: "swap",
 });

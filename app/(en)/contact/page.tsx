@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description,
   alternates: {
     canonical: "/contact",
-    languages: { en: "/contact", ar: "/ar/contact", "x-default": "/contact" },
+    languages: { en: "/contact", ar: "/ar/contact", ru: "/ru/contact", "x-default": "/contact" },
   },
   openGraph: {
     ...ogDefaults,

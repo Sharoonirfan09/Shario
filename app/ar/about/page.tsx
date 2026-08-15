@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   description: descriptionAr,
   alternates: {
     canonical: "/ar/about",
-    languages: { en: "/about", ar: "/ar/about", "x-default": "/about" },
+    languages: { en: "/about", ar: "/ar/about", ru: "/ru/about", "x-default": "/about" },
   },
   openGraph: {
     ...ogDefaultsAr,

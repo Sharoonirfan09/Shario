@@ -25,7 +25,8 @@ import { nav, services, site, social } from "@/lib/site";
  */
 export function SiteFooter({ locale = "en" }: { locale?: Locale }) {
   const isAr = locale === "ar";
-  const href = (path: string) => (isAr ? localizedPath(path, "ar") : path);
+  const isRu = locale === "ru";
+  const href = (path: string) => (isAr || isRu ? localizedPath(path, locale) : path);
 
   return (
     <footer className="relative overflow-hidden bg-carbon text-porcelain">
@@ -45,40 +46,42 @@ export function SiteFooter({ locale = "en" }: { locale?: Locale }) {
             <p
               className={`mt-4 max-w-[240px] text-base italic text-porcelain/70 ${isAr ? "font-arabic" : "font-body"}`}
             >
-              {isAr ? site.taglineAr : site.tagline}
+              {isAr ? site.taglineAr : isRu ? site.taglineRu : site.tagline}
             </p>
             <p
               className={`mt-5 max-w-[240px] text-[0.8125rem] leading-[1.7] text-porcelain/50 ${isAr ? "font-arabic" : ""}`}
             >
               {isAr
                 ? "تسويق رقمي واستوديو إبداعي في دبي."
-                : "Digital marketing and creative studio in Dubai."}
+                : isRu
+                  ? "Цифровой маркетинг и креативная студия в Дубае."
+                  : "Digital marketing and creative studio in Dubai."}
             </p>
           </div>
 
-          <FooterColumn title={isAr ? "الخدمات" : "Services"} isAr={isAr}>
+          <FooterColumn title={isAr ? "الخدمات" : isRu ? "Услуги" : "Services"} isAr={isAr}>
             {services.map((service) => (
               <FooterLink
                 key={service.slug}
                 href={href(`/services/${service.slug}`)}
-                label={isAr ? service.nameAr : service.name}
+                label={isAr ? service.nameAr : isRu ? service.nameRu : service.name}
                 isAr={isAr}
               />
             ))}
           </FooterColumn>
 
-          <FooterColumn title={isAr ? "الشركة" : "Company"} isAr={isAr}>
+          <FooterColumn title={isAr ? "الشركة" : isRu ? "Компания" : "Company"} isAr={isAr}>
             {nav.map((item) => (
               <FooterLink
                 key={item.href}
                 href={href(item.href)}
-                label={isAr ? item.labelAr : item.label}
+                label={isAr ? item.labelAr : isRu ? item.labelRu : item.label}
                 isAr={isAr}
               />
             ))}
           </FooterColumn>
 
-          <FooterColumn title={isAr ? "تواصل" : "Contact"} isAr={isAr}>
+          <FooterColumn title={isAr ? "تواصل" : isRu ? "Контакты" : "Contact"} isAr={isAr}>
             <a
               href={`mailto:${site.email}`}
               className="break-all text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"
@@ -93,7 +96,7 @@ export function SiteFooter({ locale = "en" }: { locale?: Locale }) {
               {site.phone}
             </a>
             <span className={`text-sm text-porcelain/80 ${isAr ? "font-arabic" : ""}`}>
-              {isAr ? site.locationAr : site.location}
+              {isAr ? site.locationAr : isRu ? site.locationRu : site.location}
             </span>
             <a
               href={site.linkedin}
@@ -110,7 +113,9 @@ export function SiteFooter({ locale = "en" }: { locale?: Locale }) {
           <p className={isAr ? "font-arabic" : ""}>
             {isAr
               ? `© ${new Date().getFullYear()} SHARIO. جميع الحقوق محفوظة.`
-              : `© ${new Date().getFullYear()} SHARIO. All rights reserved.`}
+              : isRu
+                ? `© ${new Date().getFullYear()} SHARIO. Все права защищены.`
+                : `© ${new Date().getFullYear()} SHARIO. All rights reserved.`}
           </p>
 
           <div className="flex items-center gap-4">

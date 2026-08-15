@@ -29,6 +29,7 @@ export function InsightsExplorer({
 }) {
   const [active, setActive] = useState(initialCategory);
   const isAr = locale === "ar";
+  const isRu = locale === "ru";
 
   const filtered = useMemo(
     () =>
@@ -41,17 +42,19 @@ export function InsightsExplorer({
   const activeCategory = categories.find((category) => category.slug === active);
   const activeCategoryLabel = isAr
     ? (activeCategory?.nameAr ?? "المقالات")
-    : (activeCategory?.name.toLowerCase() ?? "articles");
+    : isRu
+      ? (activeCategory?.nameRu ?? "материалы")
+      : (activeCategory?.name.toLowerCase() ?? "articles");
 
   return (
     <div>
       <div
         role="tablist"
-        aria-label={isAr ? "تصفية حسب الفئة" : "Filter by category"}
+        aria-label={isAr ? "تصفية حسب الفئة" : isRu ? "Фильтр по категории" : "Filter by category"}
         className="mb-12 flex flex-wrap gap-3 wide:mb-16"
       >
         <CategoryTab
-          label={isAr ? "الكل" : "All"}
+          label={isAr ? "الكل" : isRu ? "Все" : "All"}
           active={active === "all"}
           onClick={() => setActive("all")}
           isAr={isAr}
@@ -59,7 +62,7 @@ export function InsightsExplorer({
         {categories.map((category) => (
           <CategoryTab
             key={category.slug}
-            label={isAr ? category.nameAr : category.name}
+            label={isAr ? category.nameAr : isRu ? category.nameRu : category.name}
             active={active === category.slug}
             onClick={() => setActive(category.slug)}
             isAr={isAr}
@@ -70,7 +73,11 @@ export function InsightsExplorer({
       {filtered.length === 0 ? (
         <div className="border-t border-carbon/15 py-20 text-center">
           <p className={`text-[1.0625rem] text-carbon/60 ${isAr ? "font-arabic" : ""}`}>
-            {isAr ? `المزيد من ${activeCategoryLabel} في الطريق.` : `More ${activeCategoryLabel} are on the way.`}
+            {isAr
+              ? `المزيد من ${activeCategoryLabel} في الطريق.`
+              : isRu
+                ? `Больше материалов из раздела «${activeCategoryLabel}» уже скоро.`
+                : `More ${activeCategoryLabel} are on the way.`}
           </p>
         </div>
       ) : (
@@ -136,14 +143,16 @@ export function InsightCard({
   const category = categories.find((c) => c.slug === article.category);
   const large = size === "large";
   const isAr = locale === "ar";
-  const href = isAr ? localizedPath(`/insights/${article.slug}`, "ar") : `/insights/${article.slug}`;
+  const isRu = locale === "ru";
+  const href =
+    isAr || isRu ? localizedPath(`/insights/${article.slug}`, locale) : `/insights/${article.slug}`;
 
   return (
     <Link href={href} className="group reveal flex flex-col" data-delay={delay}>
       <div className="frame relative aspect-[4/3] overflow-hidden">
         <Image
           src={article.image}
-          alt={isAr ? article.imageAltAr : article.imageAlt}
+          alt={isAr ? article.imageAltAr : isRu ? article.imageAltRu : article.imageAlt}
           fill
           sizes="(min-width: 880px) 33vw, 100vw"
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
@@ -159,7 +168,7 @@ export function InsightCard({
         <p
           className={`absolute bottom-5 left-5 right-5 text-[1.1875rem] leading-[1.25] text-porcelain wide:bottom-6 wide:left-6 wide:right-6 wide:text-[1.3125rem] ${isAr ? "font-arabic" : "font-display font-normal"}`}
         >
-          {isAr ? article.imageTopicAr : article.imageTopic}
+          {isAr ? article.imageTopicAr : isRu ? article.imageTopicRu : article.imageTopic}
         </p>
       </div>
       <div className={`flex flex-1 flex-col ${large ? "pt-7" : "pt-6"}`}>
@@ -167,26 +176,30 @@ export function InsightCard({
           className={`flex items-center gap-3 text-carbon/50 ${isAr ? "font-arabic text-[0.6875rem]" : "eyebrow"}`}
         >
           <span aria-hidden="true" className="h-px w-4 bg-mist" />
-          {isAr ? category?.nameAr : category?.name}
+          {isAr ? category?.nameAr : isRu ? category?.nameRu : category?.name}
         </p>
         <h3
           className={`mt-3 leading-[1.2] transition-colors duration-300 group-hover:text-carbon/70 ${isAr ? "font-arabic font-bold" : "font-display font-medium"} ${
             large ? "text-[1.625rem] wide:text-[1.75rem]" : "text-[1.375rem]"
           }`}
         >
-          {isAr ? article.titleAr : article.title}
+          {isAr ? article.titleAr : isRu ? article.titleRu : article.title}
         </h3>
         <p
           className={`mt-3 flex-1 leading-[1.7] text-carbon/70 ${isAr ? "font-arabic" : ""} ${
             large ? "text-[1rem]" : "text-[0.9375rem]"
           }`}
         >
-          {isAr ? article.excerptAr : article.excerpt}
+          {isAr ? article.excerptAr : isRu ? article.excerptRu : article.excerpt}
         </p>
         <p className={`mt-5 text-[0.8125rem] text-carbon/45 ${isAr ? "font-arabic" : ""}`}>
           {isAr ? (
             <>
               <span dir="ltr">{article.date}</span> · {article.readingTimeAr}
+            </>
+          ) : isRu ? (
+            <>
+              {article.date} · {article.readingTimeRu}
             </>
           ) : (
             `${article.date} · ${article.readingTime}`

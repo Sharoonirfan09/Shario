@@ -14,7 +14,7 @@ import {
   PillLink,
   SectionIntro,
 } from "@/components/ui";
-import { cta, getService, homeFaqs, ogDefaultsAr, services, site } from "@/lib/site";
+import { cta, getService, homeFaqs, ogDefaultsRu, services, site } from "@/lib/site";
 
 /** Every service page is known at build time, so prerender them. */
 export function generateStaticParams() {
@@ -23,16 +23,16 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: PageProps<"/ar/services/[slug]">): Promise<Metadata> {
+}: PageProps<"/ru/services/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const service = getService(slug);
   if (!service) return {};
 
   return {
-    title: service.nameAr,
-    description: service.metaDescriptionAr,
+    title: service.nameRu,
+    description: service.metaDescriptionRu,
     alternates: {
-      canonical: `/ar/services/${service.slug}`,
+      canonical: `/ru/services/${service.slug}`,
       languages: {
         en: `/services/${service.slug}`,
         ar: `/ar/services/${service.slug}`,
@@ -41,18 +41,18 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      ...ogDefaultsAr,
-      url: `/ar/services/${service.slug}`,
+      ...ogDefaultsRu,
+      url: `/ru/services/${service.slug}`,
       type: "website",
-      title: `${service.nameAr} — ${site.name}`,
-      description: service.metaDescriptionAr,
+      title: `${service.nameRu} — ${site.name}`,
+      description: service.metaDescriptionRu,
     },
   };
 }
 
-export default async function ArabicServicePage({
+export default async function RussianServicePage({
   params,
-}: PageProps<"/ar/services/[slug]">) {
+}: PageProps<"/ru/services/[slug]">) {
   const { slug } = await params;
   const service = getService(slug);
   if (!service) notFound();
@@ -63,17 +63,17 @@ export default async function ArabicServicePage({
     <>
       <Hero
         src={service.heroImage}
-        alt={`${service.nameAr} — ${site.name}`}
-        eyebrow={service.categoryAr}
-        title={service.titleAr}
+        alt={`${service.nameRu} — ${site.name}`}
+        eyebrow={service.categoryRu}
+        title={service.titleRu}
         priority
         breadcrumb={
           <Breadcrumb
-            locale="ar"
+            locale="ru"
             items={[
-              { href: "/ar", label: "الرئيسية" },
-              { href: "/ar/services", label: "الخدمات" },
-              { label: service.nameAr },
+              { href: "/ru", label: "Главная" },
+              { href: "/ru/services", label: "Услуги" },
+              { label: service.nameRu },
             ]}
           />
         }
@@ -82,12 +82,12 @@ export default async function ArabicServicePage({
       {/* What you get */}
       <Band>
         <SectionIntro
-          eyebrow="ما الذي ستحصلون عليه"
-          title={`كيف نقدّم ${service.nameAr}.`}
-          sub={service.subheadAr}
+          eyebrow="Что вы получите"
+          title={`Как мы реализуем ${service.nameRu}.`}
+          sub={service.subheadRu}
         />
         <CardGrid columns={4}>
-          {service.benefitsAr.map((benefit, i) => (
+          {service.benefitsRu.map((benefit, i) => (
             <Card
               key={benefit.title}
               badge={String(i + 1).padStart(2, "0")}
@@ -95,7 +95,7 @@ export default async function ArabicServicePage({
               titleAs="h3"
               desc={benefit.desc}
               delay={i * 60}
-              locale="ar"
+              locale="ru"
             />
           ))}
         </CardGrid>
@@ -109,35 +109,35 @@ export default async function ArabicServicePage({
               key={image.src}
               src={image.src}
               ratio="aspect-[2/3]"
-              label={image.labelAr}
-              caption={image.captionAr}
+              label={image.labelRu}
+              caption={image.captionRu}
               sizes="(min-width: 880px) 46vw, 100vw"
             />
           ))}
         </div>
-        <p className="lede reveal mb-12 max-w-[760px] font-arabic text-carbon/80 wide:mb-14">
-          {service.leadAr}
+        <p className="lede reveal mb-12 max-w-[760px] text-carbon/80 wide:mb-14">
+          {service.leadRu}
         </p>
         <div className="grid gap-14 wide:grid-cols-2 wide:gap-20">
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
-              العمل
+              Работа
             </p>
             <Heading scale="sm" className="mb-8 mt-5">
-              ماذا نفعل.
+              Что мы делаем.
             </Heading>
-            <DotList items={service.whatWeDoAr} columns={1} />
+            <DotList items={service.whatWeDoRu} columns={1} />
           </div>
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
-              المخرجات
+              Результаты
             </p>
             <Heading scale="sm" className="mb-8 mt-5">
-              ما الذي ستستلمونه.
+              Что вы получаете.
             </Heading>
-            <DotList items={service.deliverablesAr} columns={1} accent={false} />
+            <DotList items={service.deliverablesRu} columns={1} accent={false} />
           </div>
         </div>
       </Band>
@@ -146,11 +146,11 @@ export default async function ArabicServicePage({
       <Band className="relative overflow-hidden">
         <span
           aria-hidden="true"
-          className="wordmark-ar pointer-events-none absolute -top-4 left-4 z-0 w-16 text-carbon/[0.06] wide:left-8 wide:w-20"
+          className="wordmark-ar pointer-events-none absolute -top-4 right-4 z-0 w-16 text-carbon/[0.06] wide:right-8 wide:w-20"
         />
         <SectionIntro
-          eyebrow="تابعوا القراءة"
-          title="خدمات ذات صلة."
+          eyebrow="Смотрите также"
+          title="Похожие услуги."
           align="left"
           scale="sm"
         />
@@ -158,14 +158,14 @@ export default async function ArabicServicePage({
           {related.map((item, i) => (
             <Card
               key={item.slug}
-              href={`/ar/services/${item.slug}`}
+              href={`/ru/services/${item.slug}`}
               badge={item.num}
-              title={item.nameAr}
+              title={item.nameRu}
               titleAs="h3"
-              desc={item.descriptorAr}
-              action="استكشفوا"
+              desc={item.descriptorRu}
+              action="Подробнее"
               delay={i * 60}
-              locale="ar"
+              locale="ru"
             />
           ))}
         </CardGrid>
@@ -173,26 +173,26 @@ export default async function ArabicServicePage({
 
       {/* FAQ — the same shared set as the homepage */}
       <Band className="bg-limestone/30">
-        <SectionIntro eyebrow="الأسئلة الشائعة" title="أسئلة، مُجابة." />
+        <SectionIntro eyebrow="FAQ" title="Вопросы и ответы." />
         <div className="mx-auto max-w-[880px]">
           <Faq
-            items={homeFaqs.map((item) => ({ q: item.qAr, a: item.aAr }))}
-            answerClassName="font-arabic"
-            locale="ar"
+            items={homeFaqs.map((item) => ({ q: item.qRu, a: item.aRu }))}
+            answerClassName="font-body"
+            locale="ru"
           />
         </div>
       </Band>
 
       <CtaBand
-        title={`${service.ctaTitleAr[0]} ${service.ctaTitleAr[1]}`}
-        sub="احجزوا مكالمة مجانية وسنعود إليكم بخطة واضحة وبلا التزام."
+        title={`${service.ctaTitleRu[0]} ${service.ctaTitleRu[1]}`}
+        sub="Забронируйте бесплатный звонок, и мы вернёмся к вам с чётким планом без каких-либо обязательств."
       >
         <PillLink
-          href={`${cta.href}?text=${encodeURIComponent(`مرحباً، أنا مهتم بـ ${service.nameAr}.`)}`}
+          href={`${cta.href}?text=${encodeURIComponent(`Здравствуйте, меня интересует услуга «${service.nameRu}».`)}`}
           tone="solid"
           size="lg"
         >
-          {cta.labelAr}
+          {cta.labelRu}
         </PillLink>
       </CtaBand>
     </>

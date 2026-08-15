@@ -32,6 +32,7 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
   const [scrolled, setScrolled] = useState(false);
   const servicesRef = useRef<HTMLDivElement>(null);
   const isAr = locale === "ar";
+  const isRu = locale === "ru";
 
   /*
    * Every page opens on a dark hero — a photograph or a carbon type band — and
@@ -60,9 +61,10 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
    * from the route rather than measured from the DOM so the server and the
    * first client paint agree — reading it after mount made the bar flip colour
    * a frame late on every navigation. Add a route here whenever a page moves to
-   * `SplitHero`. `/ar` is Arabic's Home — same `SplitHero`, same reasoning.
+   * `SplitHero`. `/ar` and `/ru` are Arabic's and Russian's Home — same
+   * `SplitHero`, same reasoning.
    */
-  const lightHero = pathname === "/" || pathname === "/ar";
+  const lightHero = pathname === "/" || pathname === "/ar" || pathname === "/ru";
 
   /**
    * Three states, matching what a visitor actually sees behind the bar:
@@ -137,7 +139,9 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
    * text carries it: `uppercase` is a silent no-op on Arabic script (it has
    * no case), but positive letter-spacing is not — it visibly severs
    * Arabic's contextual glyph joining, so the class has to actually change,
-   * not just render harmlessly.
+   * not just render harmlessly. Russian keeps English's Latin-style
+   * treatment (uppercase, tracking) since Cyrillic has no such conflict —
+   * same visual system as English, only the strings differ.
    */
   const copy = isAr
     ? {
@@ -151,21 +155,34 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
         theServicesLabel: "الخدمات",
         navLinkClass: "whitespace-nowrap text-sm transition-opacity duration-300 hover:opacity-100",
       }
-    : {
-        skipToContent: "Skip to content",
-        homeAriaSuffix: "home",
-        primaryNavLabel: "Primary",
-        servicesFooterNote: "Full-funnel marketing, end to end.",
-        seeAllServices: "See all services",
-        openMenuAriaLabel: "Open menu",
-        closeLabel: "CLOSE",
-        theServicesLabel: "The Services",
-        navLinkClass:
-          "whitespace-nowrap text-xs uppercase tracking-[0.08em] transition-opacity duration-300 hover:opacity-100",
-      };
+    : isRu
+      ? {
+          skipToContent: "Перейти к содержимому",
+          homeAriaSuffix: "главная",
+          primaryNavLabel: "Основная навигация",
+          servicesFooterNote: "Комплексный маркетинг, от начала до конца.",
+          seeAllServices: "Все услуги",
+          openMenuAriaLabel: "Открыть меню",
+          closeLabel: "ЗАКРЫТЬ",
+          theServicesLabel: "Услуги",
+          navLinkClass:
+            "whitespace-nowrap text-xs uppercase tracking-[0.08em] transition-opacity duration-300 hover:opacity-100",
+        }
+      : {
+          skipToContent: "Skip to content",
+          homeAriaSuffix: "home",
+          primaryNavLabel: "Primary",
+          servicesFooterNote: "Full-funnel marketing, end to end.",
+          seeAllServices: "See all services",
+          openMenuAriaLabel: "Open menu",
+          closeLabel: "CLOSE",
+          theServicesLabel: "The Services",
+          navLinkClass:
+            "whitespace-nowrap text-xs uppercase tracking-[0.08em] transition-opacity duration-300 hover:opacity-100",
+        };
 
-  /** `/services` → `/ar/services` etc. — every nav href goes through this in Arabic mode. */
-  const href = (path: string) => (isAr ? localizedPath(path, "ar") : path);
+  /** `/services` → `/ar/services` or `/ru/services` etc. — every nav href goes through this in a non-English locale. */
+  const href = (path: string) => (isAr || isRu ? localizedPath(path, locale) : path);
 
   return (
     <>
@@ -209,7 +226,7 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
                 item.href === "/"
                   ? pathname === itemHref
                   : pathname.startsWith(itemHref);
-              const label = isAr ? item.labelAr : item.label;
+              const label = isAr ? item.labelAr : isRu ? item.labelRu : item.label;
 
               if (item.href === "/services") {
                 return (
@@ -263,7 +280,7 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
                                     aria-hidden="true"
                                     className="h-px w-4 bg-mist"
                                   />
-                                  {isAr ? group.categoryAr : group.category}
+                                  {isAr ? group.categoryAr : isRu ? group.categoryRu : group.category}
                                 </p>
                                 <div className="flex flex-col">
                                   {group.items.map((service) => (
@@ -278,7 +295,7 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
                                       <span
                                         className={`text-[1.0625rem] text-carbon ${isAr ? "font-arabic" : "font-display"}`}
                                       >
-                                        {isAr ? service.nameAr : service.name}
+                                        {isAr ? service.nameAr : isRu ? service.nameRu : service.name}
                                       </span>
                                     </Link>
                                   ))}
@@ -326,12 +343,25 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
             {/* Language switcher — one more nav item, not a separate UI
                 element, so it inherits the same opacity/hover treatment
                 rather than competing for attention. Links to this exact
-                page's equivalent in the other language, not always Home. */}
-            <div className="flex shrink-0 items-center gap-1.5 text-xs">
+                page's equivalent in each language, not always Home. Set as
+                three-letter codes (EN | AR | RU), always in that order and
+                always in Latin script — no flags, no full language names in
+                their own script — a flag maps to a country, not a language,
+                and the brand serves Dubai's whole multilingual audience from
+                one region. */}
+            {/* `dir="ltr"` pins EN | AR | RU in that exact visual order even
+                on `/ar` pages: this `<header>` has no `dir` of its own, so it
+                otherwise inherits `dir="rtl"` from `app/ar/layout.tsx`'s
+                wrapper, and a plain flex row is direction-aware — under RTL
+                it would mirror the three links to RU | AR | EN. Isolating
+                just this small widget as LTR is the standard fix, rather
+                than opting the whole header out of the page's direction. */}
+            <div dir="ltr" className="flex shrink-0 items-center gap-1.5 text-xs">
               <Link
                 href={localizedPath(pathname, "en")}
-                aria-current={!isAr ? "page" : undefined}
-                className={`transition-opacity duration-300 hover:opacity-100 ${!isAr ? "opacity-100" : "opacity-60"}`}
+                aria-current={locale === "en" ? "page" : undefined}
+                aria-label="English"
+                className={`transition-opacity duration-300 hover:opacity-100 ${locale === "en" ? "opacity-100" : "opacity-60"}`}
               >
                 EN
               </Link>
@@ -341,9 +371,21 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
               <Link
                 href={localizedPath(pathname, "ar")}
                 aria-current={isAr ? "page" : undefined}
+                aria-label="العربية"
                 className={`transition-opacity duration-300 hover:opacity-100 ${isAr ? "opacity-100" : "opacity-60"}`}
               >
                 AR
+              </Link>
+              <span aria-hidden="true" className="opacity-40">
+                |
+              </span>
+              <Link
+                href={localizedPath(pathname, "ru")}
+                aria-current={isRu ? "page" : undefined}
+                aria-label="Русский"
+                className={`transition-opacity duration-300 hover:opacity-100 ${isRu ? "opacity-100" : "opacity-60"}`}
+              >
+                RU
               </Link>
             </div>
 
@@ -357,7 +399,7 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
                   : "border-carbon bg-carbon text-porcelain hover:bg-black"
               }`}
             >
-              {isAr ? cta.labelAr : cta.label}
+              {isAr ? cta.labelAr : isRu ? cta.labelRu : cta.label}
             </a>
           </nav>
 
@@ -404,12 +446,16 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
               {/* Same switcher as desktop, relocated here rather than
                   crowding the collapsed mobile bar — the current page's
                   equivalent in the other language, not always Home. */}
-              <div className="flex items-center gap-1.5 text-xs">
+              {/* `dir="ltr"` — same fix as the desktop switcher: this whole
+                  overlay sets `dir="rtl"` on Arabic, which would otherwise
+                  mirror the flex row to RU | AR | EN. */}
+              <div dir="ltr" className="flex items-center gap-1.5 text-xs">
                 <Link
                   href={localizedPath(pathname, "en")}
                   onClick={() => setMenuOpen(false)}
-                  aria-current={!isAr ? "page" : undefined}
-                  className={!isAr ? "opacity-100" : "opacity-60"}
+                  aria-current={locale === "en" ? "page" : undefined}
+                  aria-label="English"
+                  className={locale === "en" ? "opacity-100" : "opacity-60"}
                 >
                   EN
                 </Link>
@@ -420,9 +466,22 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
                   href={localizedPath(pathname, "ar")}
                   onClick={() => setMenuOpen(false)}
                   aria-current={isAr ? "page" : undefined}
+                  aria-label="العربية"
                   className={isAr ? "opacity-100" : "opacity-60"}
                 >
                   AR
+                </Link>
+                <span aria-hidden="true" className="opacity-40">
+                  |
+                </span>
+                <Link
+                  href={localizedPath(pathname, "ru")}
+                  onClick={() => setMenuOpen(false)}
+                  aria-current={isRu ? "page" : undefined}
+                  aria-label="Русский"
+                  className={isRu ? "opacity-100" : "opacity-60"}
+                >
+                  RU
                 </Link>
               </div>
               <button
@@ -444,7 +503,7 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
                   onClick={() => setMenuOpen(false)}
                   className={`text-[2.125rem] leading-none text-porcelain ${isAr ? "font-arabic font-bold" : "font-display"}`}
                 >
-                  {isAr ? item.labelAr : item.label}
+                  {isAr ? item.labelAr : isRu ? item.labelRu : item.label}
                 </Link>
               ))}
             </nav>
@@ -466,7 +525,7 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
                       {service.num}
                     </span>
                     <span className={isAr ? "font-arabic" : ""}>
-                      {isAr ? service.nameAr : service.name}
+                      {isAr ? service.nameAr : isRu ? service.nameRu : service.name}
                     </span>
                   </Link>
                 ))}
@@ -480,7 +539,7 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
               onClick={() => setMenuOpen(false)}
               className={`mt-auto rounded-full border border-porcelain bg-porcelain px-8 py-4 text-center text-[11px] text-carbon ${isAr ? "" : "uppercase tracking-[0.08em]"}`}
             >
-              {isAr ? cta.labelAr : cta.label}
+              {isAr ? cta.labelAr : isRu ? cta.labelRu : cta.label}
             </a>
           </div>
         </div>

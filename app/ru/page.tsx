@@ -21,62 +21,62 @@ import {
   howWeWork,
   insightCategories,
   latestInsightArticles,
-  ogDefaultsAr,
+  ogDefaultsRu,
   sharedImages,
   site,
 } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "شاريو — شركة تسويق رقمي في دبي",
-  description: site.descriptionAr,
+  title: "SHARIO — агентство цифрового маркетинга в Дубае",
+  description: site.descriptionRu,
   alternates: {
-    canonical: "/ar",
+    canonical: "/ru",
     languages: { en: "/", ar: "/ar", ru: "/ru", "x-default": "/" },
   },
   openGraph: {
-    ...ogDefaultsAr,
-    url: "/ar",
+    ...ogDefaultsRu,
+    url: "/ru",
     type: "website",
-    title: "شاريو — شركة تسويق رقمي في دبي",
-    description: site.descriptionAr,
+    title: "SHARIO — агентство цифрового маркетинга в Дубае",
+    description: site.descriptionRu,
   },
 };
 
 /** Same photograph and crop as the English homepage — `heroImages.home` in `lib/site.ts`. */
 const HERO_IMAGE = heroImages.home.src;
-const HERO_IMAGE_ALT = `${site.founderAr}، مؤسس شاريو`;
+const HERO_IMAGE_ALT = `${site.founderRu}, основатель SHARIO`;
 
 /** Same four textures as the English homepage's "How We Work" cards — `lib/site.ts`'s `sharedImages.homeStepTextures`. */
 const stepTextures = sharedImages.homeStepTextures;
 
-export default function ArabicHomePage() {
+export default function RussianHomePage() {
   return (
     <>
       <SplitHero
         src={HERO_IMAGE}
         alt={HERO_IMAGE_ALT}
         focus="object-[50%_28%]"
-        locale="ar"
+        locale="ru"
         title={
           <>
-            <span className="block">تسويق رقمي</span>
-            <span className="block">يحوّل الإنفاق</span>
-            <span className="block">إلى إيرادات</span>
+            <span className="block">Цифровой маркетинг,</span>
+            <span className="block">который превращает</span>
+            <span className="block">расходы в выручку</span>
           </>
         }
-        subhead="سيمفونية الهوية"
-        href="/ar/about"
-        linkLabel="داخل شاريو"
+        subhead={<em className="italic">Симфония идентичности</em>}
+        href="/ru/about"
+        linkLabel="Внутри SHARIO"
       >
         <PillLink href={cta.href} tone="solid" size="lg">
-          {cta.labelAr}
+          {cta.labelRu}
         </PillLink>
-        <PillLink href="/ar/services" tone="outline" size="lg">
-          خدماتنا
+        <PillLink href="/ru/services" tone="outline" size="lg">
+          Наши услуги
         </PillLink>
       </SplitHero>
 
-      <SixServices locale="ar" />
+      <SixServices locale="ru" />
 
       {/* About — image beside text */}
       <Band className="bg-limestone/30">
@@ -84,30 +84,31 @@ export default function ArabicHomePage() {
           <Frame
             src={sharedImages.homeAboutHorizon}
             ratio="aspect-[4/3]"
-            alt={`${site.founderAr}، مؤسس شاريو`}
+            alt={`${site.founderRu}, основатель SHARIO`}
           />
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
-              عن شاريو
+              О SHARIO
             </p>
             <Heading scale="md" className="mt-5">
-              بقيادة المؤسس منذ اليوم الأول.
+              Под личным руководством основателя с первого дня.
             </Heading>
             <p className="reveal mt-6 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75">
-              تعمل شاريو وفق نموذج قيادة أول. تُضبط كل استراتيجية على معيار
-              مؤسس بنى وأطلق بنفسه أنظمة تسويقية متكاملة لمشاريع يقودها
-              مطورون في دبي.
+              SHARIO работает по модели прямого участия основателя. Каждая
+              стратегия выстраивается на уровне человека, который лично
+              создавал и запускал комплексные маркетинговые системы для
+              девелоперских проектов в Дубае.
             </p>
             <p
               className="reveal mt-4 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75"
               data-delay="90"
             >
-              تحصلون على تفكير على مستوى أول في كل حملة، من فريق يبقى مع
-              حسابكم.
+              Вы получаете экспертный уровень мышления в каждой кампании — от
+              команды, которая остаётся с вашим проектом.
             </p>
             <div className="reveal mt-9" data-delay="160">
-              <PillLink href="/ar/about">اعرفوا المزيد</PillLink>
+              <PillLink href="/ru/about">Узнать больше</PillLink>
             </div>
           </div>
         </div>
@@ -123,21 +124,21 @@ export default function ArabicHomePage() {
         />
         <div className="relative z-10">
           <SectionIntro
-            eyebrow="ما الذي يميزنا"
-            title="هكذا نعمل."
-            sub="أربع خطوات، تُنفَّذ كل أسبوع لا كل ربع سنة."
+            eyebrow="Чем мы отличаемся"
+            title="Вот как мы работаем."
+            sub="Четыре шага, которые выполняются каждую неделю, а не раз в квартал."
           />
           <CardGrid columns={4}>
             {howWeWork.map((step, i) => (
               <Card
                 key={step.num}
                 badge={step.num}
-                title={step.titleAr}
+                title={step.titleRu}
                 titleAs="h3"
-                desc={step.descAr}
+                desc={step.descRu}
                 image={stepTextures[i]}
                 delay={i * 60}
-                locale="ar"
+                locale="ru"
               />
             ))}
           </CardGrid>
@@ -150,13 +151,13 @@ export default function ArabicHomePage() {
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
-              من المجلة
+              Из редакции
             </p>
             <Heading scale="md" className="mt-5">
-              أفكار تستحق وقتكم.
+              Идеи, которые стоят вашего времени.
             </Heading>
           </div>
-          <PillLink href="/ar/insights">عرض جميع الرؤى ←</PillLink>
+          <PillLink href="/ru/insights">Все инсайты →</PillLink>
         </div>
 
         <div className="grid gap-x-8 gap-y-14 wide:grid-cols-3">
@@ -167,7 +168,7 @@ export default function ArabicHomePage() {
               categories={insightCategories}
               size="large"
               delay={i * 60}
-              locale="ar"
+              locale="ru"
             />
           ))}
         </div>
@@ -175,19 +176,19 @@ export default function ArabicHomePage() {
 
       {/* FAQ */}
       <Band>
-        <SectionIntro eyebrow="الأسئلة الشائعة" title="أسئلة متكررة." />
+        <SectionIntro eyebrow="FAQ" title="Часто задаваемые вопросы." />
         <div className="mx-auto max-w-[880px]">
           <Faq
-            items={homeFaqs.map((item) => ({ q: item.qAr, a: item.aAr }))}
-            answerClassName="font-arabic"
-            locale="ar"
+            items={homeFaqs.map((item) => ({ q: item.qRu, a: item.aRu }))}
+            answerClassName="font-body"
+            locale="ru"
           />
         </div>
       </Band>
 
-      <CtaBand title="هل لديكم سؤال لم نجب عنه؟">
+      <CtaBand title="Остался вопрос, на который мы ещё не ответили?">
         <PillLink href={cta.href} tone="solid" size="lg">
-          {cta.labelAr}
+          {cta.labelRu}
         </PillLink>
       </CtaBand>
     </>

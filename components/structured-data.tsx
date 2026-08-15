@@ -83,28 +83,30 @@ export function ArticleStructuredData({
   locale?: Locale;
 }) {
   const isAr = locale === "ar";
-  const url = isAr
-    ? `${site.domain}/ar/insights/${article.slug}`
-    : `${site.domain}/insights/${article.slug}`;
+  const isRu = locale === "ru";
+  const prefix = isAr ? "/ar" : isRu ? "/ru" : "";
+  const url = `${site.domain}${prefix}/insights/${article.slug}`;
   const isoDate = toIsoDate(article.date);
 
   const data = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "@id": url,
-    headline: isAr ? article.titleAr : article.title,
+    headline: isAr ? article.titleAr : isRu ? article.titleRu : article.title,
     description: isAr
       ? (article.metaDescriptionAr ?? article.excerptAr)
-      : (article.metaDescription ?? article.excerpt),
+      : isRu
+        ? (article.metaDescriptionRu ?? article.excerptRu)
+        : (article.metaDescription ?? article.excerpt),
     url,
     datePublished: isoDate,
     dateModified: isoDate,
-    inLanguage: isAr ? "ar" : "en",
-    articleSection: isAr ? category?.nameAr : category?.name,
+    inLanguage: isAr ? "ar" : isRu ? "ru" : "en",
+    articleSection: isAr ? category?.nameAr : isRu ? category?.nameRu : category?.name,
     author: {
       "@type": "Person",
-      name: isAr ? site.founderAr : site.founder,
-      jobTitle: isAr ? site.founderRoleAr : site.founderRole,
+      name: isAr ? site.founderAr : isRu ? site.founderRu : site.founder,
+      jobTitle: isAr ? site.founderRoleAr : isRu ? site.founderRoleRu : site.founderRole,
     },
     publisher: {
       "@type": "Organization",
@@ -148,16 +150,20 @@ export function BreadcrumbStructuredData({
  */
 export function InsightsBlogStructuredData({ locale = "en" }: { locale?: Locale }) {
   const isAr = locale === "ar";
-  const base = isAr ? `${site.domain}/ar/insights` : `${site.domain}/insights`;
+  const isRu = locale === "ru";
+  const prefix = isAr ? "/ar" : isRu ? "/ru" : "";
+  const base = `${site.domain}${prefix}/insights`;
 
   const data = {
     "@context": "https://schema.org",
     "@type": "Blog",
     "@id": base,
-    name: isAr ? `رؤى ${site.name}` : `${site.name} Insights`,
+    name: isAr ? `رؤى ${site.name}` : isRu ? `Инсайты ${site.name}` : `${site.name} Insights`,
     description: isAr
       ? "المنصة التحريرية لشاريو — أخبار السوق والمقالات ودراسات الحالة والاتجاهات والأدلة حول التسويق الأدائي وتحسين محركات البحث والمواقع الإلكترونية وإدارة علاقات العملاء في دبي."
-      : "SHARIO's editorial hub — market news, articles, case studies, trends and guides on performance marketing, SEO, websites and CRM in Dubai.",
+      : isRu
+        ? "Редакционная платформа SHARIO — новости рынка, статьи, кейсы, тренды и руководства о performance-маркетинге, SEO, сайтах и CRM в Дубае."
+        : "SHARIO's editorial hub — market news, articles, case studies, trends and guides on performance marketing, SEO, websites and CRM in Dubai.",
     url: base,
     publisher: {
       "@type": "Organization",
@@ -166,7 +172,7 @@ export function InsightsBlogStructuredData({ locale = "en" }: { locale?: Locale 
     },
     blogPost: insightArticles.map((article) => ({
       "@type": "BlogPosting",
-      headline: isAr ? article.titleAr : article.title,
+      headline: isAr ? article.titleAr : isRu ? article.titleRu : article.title,
       url: `${base}/${article.slug}`,
       datePublished: toIsoDate(article.date),
     })),

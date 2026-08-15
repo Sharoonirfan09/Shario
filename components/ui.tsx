@@ -867,9 +867,13 @@ export function Breadcrumb({
   locale?: Locale;
 }) {
   const isAr = locale === "ar";
+  const isRu = locale === "ru";
 
   return (
-    <nav aria-label={isAr ? "مسار التصفح" : "Breadcrumb"} className="rise">
+    <nav
+      aria-label={isAr ? "مسار التصفح" : isRu ? "Хлебные крошки" : "Breadcrumb"}
+      className="rise"
+    >
       <ol
         className={`flex flex-wrap items-center gap-2 text-porcelain/60 ${isAr ? "font-arabic text-[0.6875rem]" : "eyebrow"}`}
       >

@@ -33,6 +33,7 @@ export function Faq({
   const [expanded, setExpanded] = useState(false);
   const id = useId();
   const isAr = locale === "ar";
+  const isRu = locale === "ru";
 
   const hasMore = items.length > INITIAL_COUNT;
   const visible = expanded ? items : items.slice(0, INITIAL_COUNT);
@@ -51,7 +52,7 @@ export function Faq({
                 onClick={() => setOpen(isOpen ? -1 : i)}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                className="flex w-full cursor-pointer items-center justify-between gap-5 py-6 text-left"
+                className={`flex w-full cursor-pointer items-center justify-between gap-5 py-6 ${isAr ? "text-right" : "text-left"}`}
               >
                 <span
                   className={`text-[1.3125rem] text-carbon ${isAr ? "font-arabic font-bold" : "font-display font-medium"}`}
@@ -95,9 +96,13 @@ export function Faq({
               ? expanded
                 ? "عرض أقل"
                 : "عرض المزيد"
-              : expanded
-                ? "Show Less"
-                : "Load More"}
+              : isRu
+                ? expanded
+                  ? "Показать меньше"
+                  : "Показать ещё"
+                : expanded
+                  ? "Show Less"
+                  : "Load More"}
           </button>
         </div>
       )}

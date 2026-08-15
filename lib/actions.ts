@@ -15,30 +15,59 @@ function clean(value: FormDataEntryValue | null, max = 2000) {
   return typeof value === "string" ? value.trim().slice(0, max) : "";
 }
 
-/** English/Arabic pairs for every status and validation message this action can return. */
+type FormLocale = "en" | "ar" | "ru";
+
+/** English/Arabic/Russian triples for every status and validation message this action can return. */
 const copy = {
-  honeypotSuccess: { en: "Thank you — we will be in touch.", ar: "شكراً لكم — سنتواصل معكم قريباً." },
-  nameRequired: { en: "Enter your name.", ar: "أدخلوا اسمكم." },
-  emailRequired: { en: "Enter your email address.", ar: "أدخلوا بريدكم الإلكتروني." },
-  emailInvalid: { en: "Enter a valid email address.", ar: "أدخلوا بريداً إلكترونياً صحيحاً." },
-  messageRequired: { en: "Tell us briefly what you need.", ar: "أخبرونا باختصار عما تحتاجونه." },
-  checkFields: { en: "Check the highlighted fields and send again.", ar: "راجعوا الحقول المُظلَّلة وأرسلوا مجدداً." },
-  deliveryError: (locale: "en" | "ar") =>
+  honeypotSuccess: {
+    en: "Thank you — we will be in touch.",
+    ar: "شكراً لكم — سنتواصل معكم قريباً.",
+    ru: "Спасибо — мы свяжемся с вами.",
+  },
+  nameRequired: { en: "Enter your name.", ar: "أدخلوا اسمكم.", ru: "Введите ваше имя." },
+  emailRequired: {
+    en: "Enter your email address.",
+    ar: "أدخلوا بريدكم الإلكتروني.",
+    ru: "Введите ваш email.",
+  },
+  emailInvalid: {
+    en: "Enter a valid email address.",
+    ar: "أدخلوا بريداً إلكترونياً صحيحاً.",
+    ru: "Введите корректный email-адрес.",
+  },
+  messageRequired: {
+    en: "Tell us briefly what you need.",
+    ar: "أخبرونا باختصار عما تحتاجونه.",
+    ru: "Кратко расскажите, что вам нужно.",
+  },
+  checkFields: {
+    en: "Check the highlighted fields and send again.",
+    ar: "راجعوا الحقول المُظلَّلة وأرسلوا مجدداً.",
+    ru: "Проверьте выделенные поля и отправьте форму ещё раз.",
+  },
+  deliveryError: (locale: FormLocale) =>
     locale === "ar"
       ? `حدث خطأ أثناء إرسال استفساركم. يرجى مراسلتنا على ${site.email} أو الاتصال بنا على ${site.phone}.`
-      : `Something went wrong sending your enquiry. Please email ${site.email} or call ${site.phone}.`,
-  success: { en: "Thank you — we will respond within one business day.", ar: "شكراً لكم — سنرد خلال يوم عمل واحد." },
+      : locale === "ru"
+        ? `Произошла ошибка при отправке вашего запроса. Пожалуйста, напишите нам на ${site.email} или позвоните по номеру ${site.phone}.`
+        : `Something went wrong sending your enquiry. Please email ${site.email} or call ${site.phone}.`,
+  success: {
+    en: "Thank you — we will respond within one business day.",
+    ar: "شكراً لكم — سنرد خلال يوم عمل واحد.",
+    ru: "Спасибо — мы ответим в течение одного рабочего дня.",
+  },
 } as const;
 
-function t(pair: { en: string; ar: string }, locale: "en" | "ar") {
-  return locale === "ar" ? pair.ar : pair.en;
+function t(pair: { en: string; ar: string; ru: string }, locale: FormLocale) {
+  return locale === "ar" ? pair.ar : locale === "ru" ? pair.ru : pair.en;
 }
 
 export async function submitEnquiry(
   _prev: EnquiryState,
   formData: FormData
 ): Promise<EnquiryState> {
-  const locale = clean(formData.get("locale")) === "ar" ? "ar" : "en";
+  const rawLocale = clean(formData.get("locale"));
+  const locale: FormLocale = rawLocale === "ar" ? "ar" : rawLocale === "ru" ? "ru" : "en";
 
   // Honeypot: real people never fill a hidden field.
   if (clean(formData.get("website"))) {
@@ -66,7 +95,9 @@ export async function submitEnquiry(
     };
   }
 
-  const known = services.some((s) => s.name === service || s.nameAr === service);
+  const known = services.some(
+    (s) => s.name === service || s.nameAr === service || s.nameRu === service,
+  );
   const interest = known ? service : "Not specified";
 
   const apiKey = process.env.RESEND_API_KEY;

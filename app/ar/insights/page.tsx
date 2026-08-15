@@ -30,6 +30,7 @@ export async function generateMetadata({
 
   const canonical = category ? `/ar/insights?category=${category.slug}` : "/ar/insights";
   const enCanonical = category ? `/insights?category=${category.slug}` : "/insights";
+  const ruCanonical = category ? `/ru/insights?category=${category.slug}` : "/ru/insights";
   const title = category ? `${category.nameAr} — رؤى` : DEFAULT_TITLE_AR;
   const description = category?.descriptionAr ?? DEFAULT_DESCRIPTION_AR;
 
@@ -38,7 +39,7 @@ export async function generateMetadata({
     description,
     alternates: {
       canonical,
-      languages: { en: enCanonical, ar: canonical, "x-default": enCanonical },
+      languages: { en: enCanonical, ar: canonical, ru: ruCanonical, "x-default": enCanonical },
     },
     openGraph: {
       ...ogDefaultsAr,

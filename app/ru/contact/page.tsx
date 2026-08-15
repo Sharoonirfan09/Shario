@@ -3,39 +3,39 @@ import { Suspense } from "react";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { SocialIcon } from "@/components/social-icons";
 import { Band, Frame, Heading, Hero, SectionIntro } from "@/components/ui";
-import { heroImages, nextSteps, ogDefaultsAr, sharedImages, site, social } from "@/lib/site";
+import { heroImages, nextSteps, ogDefaultsRu, sharedImages, site, social } from "@/lib/site";
 
-const descriptionAr =
-  "احجزوا مكالمة استراتيجية مجانية مدتها خمس عشرة دقيقة مع شاريو. دبي، الإمارات — نرد خلال يوم عمل واحد.";
+const descriptionRu =
+  "Забронируйте бесплатный пятнадцатиминутный стратегический звонок с SHARIO. Дубай, ОАЭ — мы отвечаем в течение одного рабочего дня.";
 
 const HERO_IMAGE = heroImages.contact.src;
-const HERO_IMAGE_ALT = "جدار من الترافرتين مضاء بضوء نهار دافئ ومائل";
+const HERO_IMAGE_ALT = "Стена из травертина, освещённая тёплым, косым дневным светом";
 
 export const metadata: Metadata = {
-  title: "تواصل",
-  description: descriptionAr,
+  title: "Контакты",
+  description: descriptionRu,
   alternates: {
-    canonical: "/ar/contact",
+    canonical: "/ru/contact",
     languages: { en: "/contact", ar: "/ar/contact", ru: "/ru/contact", "x-default": "/contact" },
   },
   openGraph: {
-    ...ogDefaultsAr,
-    url: "/ar/contact",
+    ...ogDefaultsRu,
+    url: "/ru/contact",
     type: "website",
-    title: "تواصل — شاريو",
-    description: descriptionAr,
+    title: "Контакты — SHARIO",
+    description: descriptionRu,
   },
 };
 
-export default function ArabicContactPage() {
+export default function RussianContactPage() {
   return (
     <>
-      <h1 className="sr-only">تواصلوا مع شاريو</h1>
+      <h1 className="sr-only">Свяжитесь с SHARIO</h1>
       <Hero
         src={HERO_IMAGE}
         alt={HERO_IMAGE_ALT}
         focus="object-[62%_50%]"
-        eyebrow="تواصل"
+        eyebrow="Контакты"
         priority
       />
 
@@ -45,17 +45,17 @@ export default function ArabicContactPage() {
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
-              لنتواصل
+              Давайте общаться
             </p>
             <Heading scale="sm" className="mt-5">
-              خمس عشرة دقيقة، مجاناً.
+              Пятнадцать минут — бесплатно.
             </Heading>
             <p className="mb-10 mt-5 max-w-[520px] text-[1.0625rem] leading-[1.7] text-carbon/75">
-              سننظر في أين يمكن لتسويقكم كسب المزيد من الإيرادات، ونوضح كيف
-              ستحقق شاريو ذلك. بتركيز يخص عملكم تحديداً.
+              Мы разберём, где ваш маркетинг может приносить больше выручки, и покажем, как
+              SHARIO этого добьётся. С фокусом именно на вашем бизнесе.
             </p>
             <Suspense fallback={<div className="min-h-[520px]" />}>
-              <EnquiryForm locale="ar" />
+              <EnquiryForm locale="ru" />
             </Suspense>
           </div>
 
@@ -63,15 +63,15 @@ export default function ArabicContactPage() {
             <Frame
               src={sharedImages.contactStair}
               ratio="aspect-[4/5]"
-              alt="درج من الحجر الجيري الهادئ بإضاءة طبيعية دافئة"
+              alt="Спокойная лестница из известняка в тёплом естественном освещении"
             />
             <div>
               <p className="eyebrow flex items-center gap-3 text-carbon/55">
                 <span aria-hidden="true" className="h-px w-6 bg-mist" />
-                تواصلوا معنا مباشرة
+                Свяжитесь с нами напрямую
               </p>
               <div className="mt-6 grid grid-cols-2 gap-x-8 gap-y-8">
-                <Detail index="01" label="البريد الإلكتروني">
+                <Detail index="01" label="Email">
                   <a
                     href={`mailto:${site.email}`}
                     dir="ltr"
@@ -80,7 +80,7 @@ export default function ArabicContactPage() {
                     {site.email}
                   </a>
                 </Detail>
-                <Detail index="02" label="الهاتف">
+                <Detail index="02" label="Телефон">
                   <a
                     href={`tel:${site.phoneHref}`}
                     dir="ltr"
@@ -89,10 +89,10 @@ export default function ArabicContactPage() {
                     {site.phone}
                   </a>
                 </Detail>
-                <Detail index="03" label="الموقع">
-                  <p className="font-arabic text-[1.375rem] font-bold">{site.locationAr}</p>
+                <Detail index="03" label="Местоположение">
+                  <p className="font-display text-[1.375rem]">{site.locationRu}</p>
                 </Detail>
-                <Detail index="04" label="التواصل الاجتماعي">
+                <Detail index="04" label="Соцсети">
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
                     {social.map((item) => (
                       <a
@@ -124,19 +124,19 @@ export default function ArabicContactPage() {
         />
         <div className="relative z-10">
           <SectionIntro
-            eyebrow="بعد أن تستفسروا"
-            title="ماذا يحدث بعد ذلك."
-            sub="نرد خلال يوم عمل واحد."
+            eyebrow="После вашего обращения"
+            title="Что происходит дальше."
+            sub="Мы отвечаем в течение одного рабочего дня."
           />
           <div className="grid gap-y-14 wide:grid-cols-3 wide:gap-x-16 wide:gap-y-0">
             {nextSteps.map((step, i) => (
               <div key={step.num} className="reveal ledger" data-delay={i * 80}>
                 <p className="ledger-figure">{step.num}</p>
-                <p className="mt-6 font-arabic text-[1.375rem] font-bold leading-[1.25] text-carbon">
-                  {step.titleAr}
+                <p className="mt-6 font-display text-[1.375rem] font-medium leading-[1.25] text-carbon">
+                  {step.titleRu}
                 </p>
                 <p className="mt-3 max-w-[320px] text-[0.9375rem] leading-[1.65] text-carbon/65">
-                  {step.descAr}
+                  {step.descRu}
                 </p>
               </div>
             ))}
@@ -165,7 +165,7 @@ function Detail({
   return (
     <div className="group border-t border-carbon/15 pt-5">
       <div className="flex items-baseline justify-between gap-3">
-        <p className="font-arabic text-[0.8125rem] text-carbon/50">{label}</p>
+        <p className="text-[0.8125rem] text-carbon/50">{label}</p>
         <span
           aria-hidden="true"
           className="font-display text-[0.75rem] text-carbon/30 transition-colors duration-500 group-hover:text-mist"
