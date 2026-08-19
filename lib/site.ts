@@ -3679,7 +3679,7 @@ export const insightArticles: InsightArticle[] = [
     readingTime: "6 min read",
     readingTimeAr: "6 دقائق قراءة",
     readingTimeRu: "6 мин чтения",
-    image: "/images/insights/ai-search-optimization-candlelit-desk.jpg",
+    image: "/images/insights/ai-search-optimization-framed-portrait.jpg",
     imageAlt: "AI search optimization and brand visibility",
     imageAltAr: "تحسين البحث بالذكاء الاصطناعي وظهور العلامة التجارية",
     imageAltRu: "Оптимизация ИИ-поиска и видимость бренда",
