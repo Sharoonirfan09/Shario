@@ -165,7 +165,7 @@ export const sharedImages = {
    * New Market News articles should set `image: sharedImages.marketNewsBanner`
    * too, the same way this constant keeps every existing one in sync.
    */
-  marketNewsBanner: "/images/insights/market-news-banner-leopard-corridor.jpg",
+  marketNewsBanner: "/images/insights/market-news-banner-chess-knight.jpg",
 } as const;
 
 /** Primary navigation. The CTA button beside it is not a nav item. */
@@ -2235,9 +2235,9 @@ export const insightArticles: InsightArticle[] = [
     readingTimeAr: "6 دقائق قراءة",
     readingTimeRu: "6 мин чтения",
     image: sharedImages.marketNewsBanner,
-    imageAlt: "A leopard's face in profile, lit dramatically within a dark architectural corridor",
-    imageAltAr: "وجه نمر مصوَّر من الجانب، مضاء بشكل درامي داخل ممر معماري داكن",
-    imageAltRu: "Профиль морды леопарда, драматично освещённой в тёмном архитектурном коридоре",
+    imageAlt: "A close-up of an antique brass chess knight standing in its fitted case, beside a burl-wood board",
+    imageAltAr: "لقطة مقربة لقطعة شطرنج نحاسية عتيقة (الحصان) داخل صندوقها المخصص، بجانب رقعة من خشب البرل",
+    imageAltRu: "Крупный план антикварной латунной шахматной фигуры коня в футляре, рядом с доской из капового дерева",
     imageTopic: "Dubai's Ad Auctions",
     imageTopicAr: "مزادات إعلانات دبي",
     imageTopicRu: "Рекламные аукционы Дубая",
@@ -2376,9 +2376,9 @@ export const insightArticles: InsightArticle[] = [
     readingTimeAr: "5 دقائق قراءة",
     readingTimeRu: "5 мин чтения",
     image: sharedImages.marketNewsBanner,
-    imageAlt: "A leopard's face in profile, lit dramatically within a dark architectural corridor",
-    imageAltAr: "وجه نمر مصوَّر من الجانب، مضاء بشكل درامي داخل ممر معماري داكن",
-    imageAltRu: "Профиль морды леопарда, драматично освещённой в тёмном архитектурном коридоре",
+    imageAlt: "A close-up of an antique brass chess knight standing in its fitted case, beside a burl-wood board",
+    imageAltAr: "لقطة مقربة لقطعة شطرنج نحاسية عتيقة (الحصان) داخل صندوقها المخصص، بجانب رقعة من خشب البرل",
+    imageAltRu: "Крупный план антикварной латунной шахматной фигуры коня в футляре, рядом с доской из капового дерева",
     imageTopic: "What Rising Costs Mean",
     imageTopicAr: "معنى ارتفاع التكاليف",
     imageTopicRu: "Что значит рост стоимости",
