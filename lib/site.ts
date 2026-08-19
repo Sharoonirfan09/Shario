@@ -52,9 +52,9 @@ export const site = {
    * previously ran to 174/211 characters respectively.
    */
   description:
-    "Shario is a founder-led digital marketing company in Dubai building marketing systems — performance marketing, SEO, websites and CRM — that produce sales.",
+    "Shario is a founder-led digital marketing agency in Dubai building marketing systems — performance marketing, SEO, websites and CRM — that turn spend into revenue.",
   descriptionAr:
-    "شاريو شركة تسويق رقمي في دبي يقودها مؤسسها، تبني أنظمة تسويقية تحقق مبيعات: التسويق الأدائي، تحسين محركات البحث، المواقع الإلكترونية، وإدارة علاقات العملاء.",
+    "شاريو وكالة تسويق رقمي في دبي يقودها مؤسسها، تبني أنظمة تسويقية تحقق مبيعات: التسويق الأدائي، تحسين محركات البحث، المواقع الإلكترونية، وإدارة علاقات العملاء.",
   descriptionRu:
     "SHARIO — агентство цифрового маркетинга в Дубае под руководством основателя. Строим системы, которые приносят продажи: performance-маркетинг, SEO, сайты, CRM.",
   location: "Dubai, UAE",
@@ -714,6 +714,15 @@ export type Service = {
   metaDescription: string;
   metaDescriptionAr: string;
   metaDescriptionRu: string;
+  /**
+   * The `<title>`/`og:title` text, when it should differ from the on-page
+   * `name` — room for the "Agency in Dubai" search-intent phrase the short
+   * nav/card label doesn't need. Falls back to `name`, same pattern as
+   * `InsightArticle.seoTitle`.
+   */
+  seoTitle?: string;
+  seoTitleAr?: string;
+  seoTitleRu?: string;
 };
 
 export const services: Service[] = [
@@ -930,6 +939,9 @@ export const services: Service[] = [
       "التسويق الأدائي في دبي — إدارة إعلانات جوجل وميتا لجذب عملاء محتملين مؤهلين بتكلفة أقل من المستهدف، مع تقارير مقابل مسار المبيعات والإيرادات المحققة.",
     metaDescriptionRu:
       "Performance-маркетинг в Дубае — управление Google Ads и Meta Ads для привлечения квалифицированных лидов по цене ниже целевой, с отчётностью по воронке продаж и закрытой выручке.",
+    seoTitle: "Performance Marketing Agency in Dubai",
+    seoTitleAr: "وكالة التسويق الأدائي في دبي",
+    seoTitleRu: "Агентство performance-маркетинга в Дубае",
   },
   {
     slug: "seo-and-content",
@@ -1144,6 +1156,9 @@ export const services: Service[] = [
       "تحسين محركات البحث والتسويق بالمحتوى في دبي — تحسين تقني، وتحسين داخل الصفحات، ومجموعات محتوى مصممة للترتب في نتائج البحث بدبي والفوز بنتائج الذكاء الاصطناعي.",
     metaDescriptionRu:
       "SEO и контент-маркетинг в Дубае — техническое SEO, оптимизация страниц и контентные кластеры, созданные для попадания в топ поиска в Дубае и в ответы ИИ-поисковиков.",
+    seoTitle: "SEO & Content Agency in Dubai",
+    seoTitleAr: "وكالة تحسين محركات البحث والمحتوى في دبي",
+    seoTitleRu: "Агентство SEO и контент-маркетинга в Дубае",
   },
   {
     slug: "websites-and-cro",
@@ -1357,6 +1372,9 @@ export const services: Service[] = [
       "تطوير المواقع الإلكترونية وتحسين معدل التحويل في دبي — مواقع عالية التحويل ببنية جاهزة لمحركات البحث، وصفحات هبوط، ومسارات متكاملة مع إدارة علاقات العملاء.",
     metaDescriptionRu:
       "Разработка сайтов и оптимизация конверсии в Дубае — высококонверсионные сайты с готовой к SEO архитектурой, посадочными страницами и воронками, интегрированными с CRM.",
+    seoTitle: "Website Design & CRO Agency in Dubai",
+    seoTitleAr: "وكالة تصميم المواقع الإلكترونية وتحسين التحويل في دبي",
+    seoTitleRu: "Агентство веб-дизайна и CRO в Дубае",
   },
   {
     slug: "crm-and-automation",
@@ -1571,6 +1589,9 @@ export const services: Service[] = [
       "دمج إدارة علاقات العملاء وأتمتة التسويق في دبي — تتبع إسناد النتائج وتقييم العملاء المحتملين ومتابعة آلية تربط الإنفاق التسويقي بالإيرادات المحققة.",
     metaDescriptionRu:
       "Интеграция CRM и автоматизация маркетинга в Дубае — отслеживание атрибуции, оценка лидов и автоматизированный follow-up, которые привязывают маркетинговые расходы к закрытой выручке.",
+    seoTitle: "CRM & Marketing Automation Agency in Dubai",
+    seoTitleAr: "وكالة إدارة علاقات العملاء والأتمتة التسويقية في دبي",
+    seoTitleRu: "Агентство CRM и маркетинговой автоматизации в Дубае",
   },
   {
     slug: "brand-and-creative",
@@ -1785,6 +1806,9 @@ export const services: Service[] = [
       "العلامة التجارية والإبداع في دبي — هوية بصرية، ومرئيات حملات، ومحتوى إبداعي لمنصات التواصل والإعلانات المدفوعة، ومواد تسويقية بجودة تليق بإطلاق العلامة التجارية.",
     metaDescriptionRu:
       "Бренд и креатив в Дубае — айдентика бренда, визуалы для кампаний, креатив для соцсетей и платной рекламы, маркетинговые материалы, созданные на уровне готовности к запуску.",
+    seoTitle: "Branding Agency in Dubai",
+    seoTitleAr: "وكالة العلامات التجارية في دبي",
+    seoTitleRu: "Брендинговое агентство в Дубае",
   },
   {
     slug: "strategy-consulting",
@@ -1999,6 +2023,9 @@ export const services: Service[] = [
       "الاستراتيجية والاستشارات التسويقية في دبي — استراتيجية دخول السوق، وتدقيق تسويقي، وتخطيط للقنوات يحوّل ميزانية مبعثرة إلى خطة واحدة متماسكة.",
     metaDescriptionRu:
       "Маркетинговая стратегия и консалтинг в Дубае — стратегия выхода на рынок, маркетинговые аудиты и планирование каналов, которые превращают разрозненный бюджет в единый связный план.",
+    seoTitle: "Digital Strategy & Consulting Agency in Dubai",
+    seoTitleAr: "وكالة الاستراتيجية الرقمية والاستشارات في دبي",
+    seoTitleRu: "Агентство цифровой стратегии и консалтинга в Дубае",
   },
 ];
 

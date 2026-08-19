@@ -13,7 +13,7 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: {
     template: "%s — Shario",
-    default: "Shario — Digital Marketing Company in Dubai",
+    default: "Shario — Digital Marketing Agency in Dubai",
   },
 };
 

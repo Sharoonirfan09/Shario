@@ -73,13 +73,13 @@ export const metadata: Metadata = {
    * resolves; this string only exists as the ultimate fallback for a route
    * that somehow renders outside all three (none currently do).
    */
-  title: "Shario — Digital Marketing Company in Dubai",
+  title: "Shario — Digital Marketing Agency in Dubai",
   description: site.description,
   openGraph: {
     type: "website",
     locale: "en_AE",
     siteName: site.name,
-    title: "Shario — Digital Marketing Company in Dubai",
+    title: "Shario — Digital Marketing Agency in Dubai",
     description: site.description,
   },
   /**

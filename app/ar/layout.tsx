@@ -14,7 +14,7 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: {
     template: "%s — شاريو",
-    default: "شاريو — شركة تسويق رقمي في دبي",
+    default: "شاريو — وكالة تسويق رقمي في دبي",
   },
 };
 

@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   // Written out in full rather than relying on `app/ar/layout.tsx`'s
   // `title.template`: a layout's template does not apply to a page in that
   // same route segment, and this page is the index of `app/ar` itself.
-  title: "شركة تسويق رقمي في دبي — شاريو",
+  title: "وكالة تسويق رقمي في دبي — شاريو",
   description: site.descriptionAr,
   alternates: {
     canonical: "/ar",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     ...ogDefaultsAr,
     url: "/ar",
     type: "website",
-    title: "شاريو — شركة تسويق رقمي في دبي",
+    title: "شاريو — وكالة تسويق رقمي في دبي",
     description: site.descriptionAr,
   },
 };
@@ -98,9 +98,9 @@ export default function ArabicHomePage() {
               بقيادة المؤسس منذ اليوم الأول.
             </Heading>
             <p className="reveal mt-6 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75">
-              تعمل شاريو وفق نموذج قيادة أول. تُضبط كل استراتيجية على معيار
-              مؤسس بنى وأطلق بنفسه أنظمة تسويقية متكاملة لمشاريع يقودها
-              مطورون في دبي.
+              شاريو وكالة تسويق رقمي في دبي، تعمل وفق نموذج قيادة أول. تُضبط
+              كل استراتيجية على معيار مؤسس بنى وأطلق بنفسه أنظمة تسويقية
+              متكاملة لمشاريع يقودها مطورون في المنطقة.
             </p>
             <p
               className="reveal mt-4 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75"

@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   // (Verified: leaving just the bare phrase here rendered with no suffix at
   // all once the old root-level template — which did apply, being higher up
   // the tree — was removed.)
-  title: "Digital Marketing Company in Dubai — Shario",
+  title: "Digital Marketing Agency in Dubai — Shario",
   description: site.description,
   alternates: {
     canonical: "/",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     ...ogDefaults,
     url: "/",
     type: "website",
-    title: "Shario — Digital Marketing Company in Dubai",
+    title: "Shario — Digital Marketing Agency in Dubai",
     description: site.description,
   },
 };
@@ -152,9 +152,11 @@ export default function HomePage() {
               Founder-led from day one.
             </Heading>
             <p className="reveal mt-6 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75">
-              Shario runs on a senior model. Every strategy is set to the
+              Shario is a founder-led digital marketing agency in Dubai,
+              running on a senior model. Every strategy is set to the
               standard of a founder who has personally built and launched
-              full-funnel marketing systems for developer-led projects in Dubai.
+              full-funnel marketing systems for developer-led projects across
+              the region.
             </p>
             <p
               className="reveal mt-4 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75"

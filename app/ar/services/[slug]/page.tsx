@@ -28,8 +28,10 @@ export async function generateMetadata({
   const service = getService(slug);
   if (!service) return {};
 
+  const title = service.seoTitleAr ?? service.nameAr;
+
   return {
-    title: service.nameAr,
+    title,
     description: service.metaDescriptionAr,
     alternates: {
       canonical: `/ar/services/${service.slug}`,
@@ -44,7 +46,7 @@ export async function generateMetadata({
       ...ogDefaultsAr,
       url: `/ar/services/${service.slug}`,
       type: "website",
-      title: `${service.nameAr} — ${site.name}`,
+      title: `${title} — ${site.name}`,
       description: service.metaDescriptionAr,
     },
   };

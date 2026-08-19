@@ -86,6 +86,7 @@ export function WebsiteStructuredData() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: site.name,
+    alternateName: "SHARIO",
     url: site.domain,
     inLanguage: ["en", "ar", "ru"],
   };

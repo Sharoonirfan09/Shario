@@ -13,7 +13,7 @@ import {
 import { aboutApproach, cta, heroImages, ogDefaultsAr, services, sharedImages, site } from "@/lib/site";
 
 const descriptionAr =
-  "شاريو شركة تسويق رقمي واستوديو إبداعي في دبي، تربط بين التسويق الأدائي وتحسين محركات البحث والعلامة التجارية والاستراتيجية والاستشارات في نظام واحد للشركات الطموحة.";
+  "شاريو وكالة تسويق رقمي واستوديو إبداعي في دبي، تربط بين التسويق الأدائي وتحسين محركات البحث والعلامة التجارية والاستراتيجية والاستشارات في نظام واحد للشركات الطموحة.";
 
 const HERO_IMAGE = heroImages.about.src;
 const HERO_IMAGE_ALT = "إطارات وقطع مرتبة على جدار دافئ وبسيط";
@@ -38,7 +38,7 @@ export default function ArabicAboutPage() {
   return (
     <>
       <h1 className="sr-only">
-        من نحن — شاريو، شركة تسويق رقمي واستوديو إبداعي في دبي
+        من نحن — شاريو، وكالة تسويق رقمي واستوديو إبداعي في دبي
       </h1>
       <Hero
         src={HERO_IMAGE}

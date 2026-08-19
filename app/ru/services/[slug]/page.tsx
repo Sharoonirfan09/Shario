@@ -28,8 +28,10 @@ export async function generateMetadata({
   const service = getService(slug);
   if (!service) return {};
 
+  const title = service.seoTitleRu ?? service.nameRu;
+
   return {
-    title: service.nameRu,
+    title,
     description: service.metaDescriptionRu,
     alternates: {
       canonical: `/ru/services/${service.slug}`,
@@ -44,7 +46,7 @@ export async function generateMetadata({
       ...ogDefaultsRu,
       url: `/ru/services/${service.slug}`,
       type: "website",
-      title: `${service.nameRu} — ${site.name}`,
+      title: `${title} — ${site.name}`,
       description: service.metaDescriptionRu,
     },
   };
