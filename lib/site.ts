@@ -3639,6 +3639,340 @@ export const insightArticles: InsightArticle[] = [
       ),
     ],
   },
+  {
+    slug: "ai-search-optimization",
+    category: "trends-and-insights",
+    title: "Your Brand Is Being Searched by AI. Can It Be Found?",
+    titleAr: "علامتك التجارية يبحث عنها الذكاء الاصطناعي… فهل يمكن العثور عليها؟",
+    titleRu: "Ваш бренд уже ищут через ИИ. Может ли он быть найден?",
+    seoTitle: "AI Search Optimization: How Brands Can Get Discovered Beyond Google",
+    seoTitleAr: "تحسين البحث بالذكاء الاصطناعي: كيف تُكتشف العلامات التجارية بعيداً عن جوجل",
+    seoTitleRu: "Оптимизация ИИ-поиска: как бренды становятся заметны за пределами Google",
+    excerpt:
+      "AI systems are answering questions before anyone clicks a search result. Here's what that shift means for brand visibility, and how AEO fits alongside SEO.",
+    excerptAr:
+      "أنظمة الذكاء الاصطناعي باتت تُجيب عن الأسئلة قبل أن ينقر أحد على أي نتيجة بحث. إليكم ما يعنيه هذا التحوّل لظهور علامتكم التجارية، وكيف يتكامل تحسين محركات الإجابة (AEO) مع تحسين محركات البحث.",
+    excerptRu:
+      "ИИ-системы отвечают на вопросы ещё до перехода по ссылке из поиска. Рассказываем, что этот сдвиг значит для видимости бренда и как AEO дополняет SEO.",
+    metaDescription:
+      "AI is changing how people discover brands. Learn how AI search optimization and AEO can help brands improve visibility across modern search and answer engines.",
+    metaDescriptionAr:
+      "الذكاء الاصطناعي يُغيّر طريقة اكتشاف الناس للعلامات التجارية. تعرّفوا كيف يساعد تحسين البحث بالذكاء الاصطناعي وتحسين محركات الإجابة (AEO) العلامات التجارية على تحسين ظهورها عبر محركات البحث والإجابة الحديثة.",
+    metaDescriptionRu:
+      "ИИ меняет то, как люди находят бренды. Узнайте, как оптимизация ИИ-поиска и AEO помогают брендам повышать видимость в современных поисковых системах и системах ответов.",
+    date: "19 Aug 2026",
+    readingTime: "6 min read",
+    readingTimeAr: "6 دقائق قراءة",
+    readingTimeRu: "6 мин чтения",
+    image: "/images/insights/ai-search-optimization-frosted-glass.jpg",
+    imageAlt: "AI search optimization and brand visibility",
+    imageAltAr: "تحسين البحث بالذكاء الاصطناعي وظهور العلامة التجارية",
+    imageAltRu: "Оптимизация ИИ-поиска и видимость бренда",
+    imageTopic: "Becoming the Answer",
+    imageTopicAr: "أن تُصبح الإجابة",
+    imageTopicRu: "Стать ответом",
+    body: [
+      p("Search is changing."),
+      p(
+        "For years, brands competed for visibility on Google. Rankings, keywords, backlinks and clicks defined the game.",
+      ),
+      p(
+        "Now, people are increasingly asking AI systems for answers. Instead of searching for ten websites, they ask:",
+      ),
+      p("“What is the best branding agency in Dubai?”"),
+      p("“Which digital agency should I work with for a luxury brand?”"),
+      p("“Who can help me build a performance-driven marketing strategy?”"),
+      p(
+        "The answer may come from an AI platform before a user ever visits a traditional search result. That changes what brand visibility means.",
+      ),
+      h2("SEO Is No Longer the Whole Search Strategy"),
+      p(
+        "SEO is still important. But search is becoming more conversational, contextual and answer-driven.",
+      ),
+      p(
+        "AI systems don't simply look for pages containing a keyword. They attempt to understand entities, expertise, context, credibility and relevance.",
+      ),
+      p(
+        "That means brands need to think beyond “How do I rank?” and start asking “How do I become the answer?”",
+      ),
+      p(
+        "This is where Answer Engine Optimization — AEO — becomes increasingly relevant.",
+      ),
+      h2("What Is Answer Engine Optimization?"),
+      p(
+        "AEO is the practice of structuring a brand's digital presence so that answer engines and AI-powered search systems can better understand, evaluate and potentially reference its information.",
+      ),
+      p(
+        "It doesn't replace SEO. It expands the objective. Traditional SEO often focuses on winning the click; AEO focuses on becoming a useful answer. The strongest strategy increasingly connects both.",
+      ),
+      h2("Your Website Is More Than a Digital Brochure"),
+      p(
+        "A website should not only explain what a company does. It should make the company's expertise understandable. That means creating clear signals around what the brand does, who it serves, where it operates, what it is known for, what problems it solves, what expertise it has, and what evidence supports that expertise.",
+      ),
+      p(
+        "A beautifully designed website with vague content may look impressive while remaining difficult for both people and search systems to understand. Design creates perception. [Structure creates understanding](/services/websites-and-cro). You need both.",
+      ),
+      h2("Content Needs to Become More Useful"),
+      p(
+        "Publishing content simply because a website needs a blog is no longer enough. The better question is: what questions does our audience actually ask before making a decision?",
+      ),
+      p(
+        "For a branding agency, that could include what makes a premium brand feel premium, how much branding costs in Dubai, what a brand strategy should include, the difference between branding and marketing, how AI search affects SEO, how a business can improve its digital presence, and when a company should rebrand.",
+      ),
+      p(
+        "Each question represents an opportunity to demonstrate expertise. The goal isn't to produce more content — it is to produce more useful knowledge.",
+      ),
+      h2("Brand Authority Matters"),
+      p(
+        "AI visibility isn't only a technical SEO problem. It is also a brand authority problem. If a company has a consistent presence across its website, professional profiles, publications, case studies and other credible sources, it becomes easier to understand as an entity.",
+      ),
+      p(
+        "That means your digital footprint needs consistency. Your [brand positioning](/services/brand-and-creative) should not change from one platform to another. Your expertise should be clear, your services should be structured, your work should provide evidence, and your content should demonstrate that you understand the subjects you claim to specialise in.",
+      ),
+      h2("The Future of Search Is Multichannel"),
+      p(
+        "The customer journey is no longer Google → Website → Contact. It can now look more like: Social → Search → AI → Website → Review → LinkedIn → WhatsApp → Conversation.",
+      ),
+      p(
+        "Every touchpoint contributes to the decision. This is why digital marketing can no longer be treated as isolated channels. SEO, content, social, branding, website experience and paid media need to reinforce the same positioning. The brand should feel like the same brand everywhere.",
+      ),
+      h2("What Brands Should Do Now"),
+      p(
+        "There is no need to abandon traditional SEO. Instead, build a broader [search strategy](/services/seo-and-content).",
+      ),
+      h3("01 — Build Clear Brand Entities"),
+      p(
+        "Make it obvious who you are, what you do, where you operate and what you specialise in.",
+      ),
+      h3("02 — Create Genuinely Useful Content"),
+      p("Answer real customer questions with depth, clarity and a distinct point of view."),
+      h3("03 — Strengthen Your Website Structure"),
+      p("Use clear navigation, descriptive headings, internal linking and structured information."),
+      h3("04 — Demonstrate Expertise"),
+      p(
+        "Use case studies, insights, original thinking, credentials and real experience to establish authority.",
+      ),
+      h3("05 — Keep Your Digital Identity Consistent"),
+      p(
+        "Your website, social profiles, directories and professional platforms should communicate the same core positioning.",
+      ),
+      h2("The New Question"),
+      p("For years, marketers asked: “Are we ranking on Google?” That question still matters."),
+      p(
+        "But another question is becoming just as important: “When someone asks an AI system about our category, does our brand belong in the answer?” That is the shift.",
+      ),
+      p(
+        "Search visibility is moving from simply owning a position on a page to becoming part of the information ecosystem that shapes the answer. Brands that understand this early will have an advantage — not because AI replaces search, but because search itself is evolving.",
+      ),
+      h2("Where SHARIO Comes In"),
+      p(
+        "At SHARIO, we think about digital presence as a connected system — where brand, content, design, technology and performance work together. Because visibility without meaning is temporary, and a brand that is understood is easier to discover, remember and choose.",
+      ),
+      p(
+        "If you want to know whether your brand would be found by an AI system today, [talk to our team](/contact).",
+      ),
+    ],
+    bodyAr: [
+      p("البحث يتغيّر."),
+      p(
+        "لسنوات طويلة، تنافست العلامات التجارية على الظهور في نتائج جوجل. كانت الترتيبات والكلمات المفتاحية والروابط الخلفية والنقرات هي معايير اللعبة.",
+      ),
+      p(
+        "أما اليوم، فيتزايد لجوء الناس إلى أنظمة الذكاء الاصطناعي للحصول على إجابات مباشرة، بدلاً من البحث بين عشرة مواقع إلكترونية مختلفة. يسألون مثلاً:",
+      ),
+      p("«ما هي أفضل وكالة لبناء العلامات التجارية في دبي؟»"),
+      p("«مع أي وكالة رقمية يجب أن أعمل لبناء علامة تجارية فاخرة؟»"),
+      p("«من يستطيع مساعدتي في بناء استراتيجية تسويقية قائمة على الأداء؟»"),
+      p(
+        "قد تصل الإجابة من منصة ذكاء اصطناعي قبل أن يزور المستخدم أي نتيجة بحث تقليدية على الإطلاق. وهذا يُغيّر المقصود فعلياً بظهور العلامة التجارية.",
+      ),
+      h2("تحسين محركات البحث لم يعد الاستراتيجية الوحيدة للبحث"),
+      p(
+        "لا يزال تحسين محركات البحث (SEO) مهماً. لكن البحث أصبح أكثر حوارية وسياقية، ويعتمد بشكل متزايد على تقديم إجابة مباشرة.",
+      ),
+      p(
+        "أنظمة الذكاء الاصطناعي لا تكتفي بالبحث عن صفحات تحتوي على كلمة مفتاحية معينة، بل تحاول فهم الكيانات والخبرة والسياق والمصداقية ومدى الملاءمة.",
+      ),
+      p(
+        "هذا يعني أن على العلامات التجارية أن تتجاوز سؤال «كيف أحقق ترتيباً أفضل؟» لتبدأ بطرح سؤال جديد: «كيف أصبح أنا الإجابة؟»",
+      ),
+      p(
+        "وهنا يبرز دور تحسين محركات الإجابة — Answer Engine Optimization أو AEO — الذي بات ذا أهمية متزايدة.",
+      ),
+      h2("ما هو تحسين محركات الإجابة (AEO)؟"),
+      p(
+        "تحسين محركات الإجابة هو ممارسة تهدف إلى هيكلة الحضور الرقمي للعلامة التجارية بحيث تتمكن محركات الإجابة وأنظمة البحث المدعومة بالذكاء الاصطناعي من فهم معلوماتها وتقييمها، وربما الاستشهاد بها لاحقاً.",
+      ),
+      p(
+        "هو لا يحل محل تحسين محركات البحث، بل يوسّع من هدفه. فتحسين محركات البحث التقليدي يركّز غالباً على الفوز بالنقرة، بينما يركّز تحسين محركات الإجابة على أن تصبح العلامة التجارية إجابة مفيدة فعلاً. والاستراتيجية الأقوى هي التي تجمع بين الاثنين بشكل متزايد.",
+      ),
+      h2("موقعكم الإلكتروني أكثر من مجرد بروشور رقمي"),
+      p(
+        "لا ينبغي أن يكتفي الموقع الإلكتروني بشرح ما تقوم به الشركة، بل يجب أن يجعل خبرتها مفهومة بوضوح. وهذا يعني بناء إشارات واضحة حول ماذا تفعل العلامة التجارية، ولمن تُقدّم خدماتها، وأين تعمل، وبماذا تشتهر، وما المشكلات التي تحلّها، وما خبرتها الفعلية، وما الأدلة التي تدعم هذه الخبرة.",
+      ),
+      p(
+        "قد يبدو الموقع المصمم بعناية فائقة مبهراً حتى لو كان محتواه غامضاً، لكنه في الوقت ذاته يظل صعب الفهم على الزوار وعلى أنظمة البحث معاً. فالتصميم يخلق الانطباع، بينما [البنية هي ما يخلق الفهم](/ar/services/websites-and-cro). وأنتم بحاجة إلى الاثنين معاً.",
+      ),
+      h2("المحتوى يجب أن يصبح أكثر فائدة"),
+      p(
+        "لم يعد نشر المحتوى لمجرد أن الموقع «يحتاج إلى مدونة» أمراً كافياً. السؤال الأجدر بالطرح هو: ما الأسئلة التي يطرحها جمهورنا فعلياً قبل اتخاذ قرار الشراء؟",
+      ),
+      p(
+        "بالنسبة لوكالة بناء العلامات التجارية، يمكن أن تشمل هذه الأسئلة: ما الذي يمنح العلامة الفاخرة إحساسها المميز؟ كم تبلغ تكلفة بناء علامة تجارية في دبي؟ ما الذي يجب أن تتضمنه استراتيجية العلامة التجارية؟ ما الفرق بين بناء العلامة التجارية والتسويق؟ كيف يؤثر البحث بالذكاء الاصطناعي على تحسين محركات البحث؟ كيف يمكن لشركة ما تحسين حضورها الرقمي؟ ومتى يجب على شركة إعادة صياغة علامتها التجارية؟",
+      ),
+      p(
+        "كل سؤال من هذه الأسئلة يمثّل فرصة لإظهار الخبرة. فالهدف ليس إنتاج محتوى أكثر، بل إنتاج معرفة أكثر فائدة.",
+      ),
+      h2("سلطة العلامة التجارية تُحدث فرقاً حقيقياً"),
+      p(
+        "ظهور العلامة التجارية أمام الذكاء الاصطناعي ليس مجرد مسألة تقنية متعلقة بتحسين محركات البحث، بل هو أيضاً مسألة تتعلق بسلطة العلامة التجارية ومصداقيتها. فعندما يكون لشركة ما حضور متسق عبر موقعها الإلكتروني وملفاتها المهنية ومنشوراتها ودراسات حالتها ومصادرها الموثوقة الأخرى، يصبح من الأسهل على الأنظمة فهمها ككيان واضح المعالم.",
+      ),
+      p(
+        "هذا يعني أن بصمتكم الرقمية تحتاج إلى الاتساق. يجب ألا [يتغيّر موقع علامتكم التجارية](/ar/services/brand-and-creative) من منصة إلى أخرى. يجب أن تكون خبرتكم واضحة، وخدماتكم منظّمة، وأعمالكم مدعومة بأدلة فعلية، ومحتواكم يُظهر فهماً حقيقياً للمواضيع التي تدّعون التخصص فيها.",
+      ),
+      h2("مستقبل البحث أصبح متعدد القنوات"),
+      p(
+        "لم تعد رحلة العميل مجرد مسار خطي: جوجل ← الموقع الإلكتروني ← التواصل. بل أصبحت اليوم أقرب إلى: التواصل الاجتماعي ← البحث ← الذكاء الاصطناعي ← الموقع الإلكتروني ← التقييمات ← لينكدإن ← واتساب ← المحادثة.",
+      ),
+      p(
+        "كل نقطة تواصل تُسهم في القرار النهائي. لهذا السبب لم يعد بالإمكان التعامل مع التسويق الرقمي كقنوات منفصلة عن بعضها. يجب أن يعزز تحسين محركات البحث والمحتوى والتواصل الاجتماعي وبناء العلامة التجارية وتجربة الموقع الإلكتروني والإعلانات المدفوعة الموقع نفسه من العلامة التجارية. يجب أن تشعروا أن العلامة التجارية واحدة أينما ظهرت.",
+      ),
+      h2("ما الذي يجب على العلامات التجارية فعله الآن"),
+      p(
+        "لا حاجة للتخلي عن تحسين محركات البحث التقليدي. بل يجب بناء [استراتيجية بحث أوسع](/ar/services/seo-and-content).",
+      ),
+      h3("01 — بناء كيانات واضحة للعلامة التجارية"),
+      p("اجعلوا هويتكم واضحة تماماً: من أنتم، وماذا تفعلون، وأين تعملون، وما تخصصكم."),
+      h3("02 — إنتاج محتوى مفيد فعلياً"),
+      p("أجيبوا عن أسئلة العملاء الحقيقية بعمق ووضوح ووجهة نظر مميزة."),
+      h3("03 — تعزيز بنية موقعكم الإلكتروني"),
+      p("استخدموا تنقلاً واضحاً وعناوين وصفية وروابط داخلية ومعلومات منظّمة."),
+      h3("04 — إظهار الخبرة الفعلية"),
+      p(
+        "استخدموا دراسات الحالة والرؤى والأفكار الأصلية والاعتمادات والخبرة الحقيقية لترسيخ المصداقية.",
+      ),
+      h3("05 — الحفاظ على اتساق هويتكم الرقمية"),
+      p(
+        "يجب أن يتحدث موقعكم الإلكتروني وملفاتكم على وسائل التواصل الاجتماعي والدلائل والمنصات المهنية بنفس الموقع الأساسي للعلامة التجارية.",
+      ),
+      h2("السؤال الجديد"),
+      p("لسنوات طويلة، كان المسوّقون يسألون: «هل نحتل ترتيباً جيداً على جوجل؟» وهذا السؤال لا يزال مهماً."),
+      p(
+        "لكن سؤالاً آخر بات لا يقل أهمية: «عندما يسأل أحدهم نظام ذكاء اصطناعي عن مجال عملنا، هل تحضر علامتنا التجارية ضمن الإجابة؟» هذا هو التحول الحقيقي.",
+      ),
+      p(
+        "فظهور العلامة في نتائج البحث لم يعد يقتصر على امتلاك موقع مرتفع في صفحة النتائج، بل أصبح جزءاً من المنظومة المعلوماتية الأوسع التي تُشكّل الإجابة نفسها. والعلامات التجارية التي تدرك هذا التحول مبكراً ستحظى بأفضلية حقيقية، ليس لأن الذكاء الاصطناعي يُلغي البحث، بل لأن البحث نفسه يتطور.",
+      ),
+      h2("أين يأتي دور SHARIO"),
+      p(
+        "في SHARIO، ننظر إلى الحضور الرقمي كمنظومة متكاملة، حيث تعمل العلامة التجارية والمحتوى والتصميم والتقنية والأداء معاً في انسجام تام. لأن الظهور بلا معنى حقيقي هو ظهور مؤقت، والعلامة التجارية المفهومة جيداً هي الأسهل اكتشافاً وتذكراً واختياراً.",
+      ),
+      p(
+        "إذا كنتم ترغبون في معرفة ما إذا كانت علامتكم التجارية قابلة للاكتشاف اليوم عبر أنظمة الذكاء الاصطناعي، [تواصلوا مع فريقنا](/ar/contact).",
+      ),
+    ],
+    bodyRu: [
+      p("Поиск меняется."),
+      p(
+        "Годами бренды боролись за видимость в Google. Позиции в выдаче, ключевые слова, обратные ссылки и клики определяли правила игры.",
+      ),
+      p(
+        "Сегодня всё больше людей обращаются за ответами напрямую к системам искусственного интеллекта — вместо того чтобы просматривать десяток сайтов, они спрашивают:",
+      ),
+      p("«Какое агентство брендинга в Дубае лучшее?»"),
+      p("«С каким digital-агентством стоит работать над люксовым брендом?»"),
+      p("«Кто поможет выстроить performance-ориентированную маркетинговую стратегию?»"),
+      p(
+        "Ответ может прийти от ИИ-платформы ещё до того, как пользователь вообще зайдёт на сайт из традиционной выдачи. Это меняет само понятие видимости бренда.",
+      ),
+      h2("SEO больше не вся поисковая стратегия"),
+      p(
+        "SEO по-прежнему важно. Но поиск становится всё более разговорным, контекстным и ориентированным на прямой ответ.",
+      ),
+      p(
+        "Системы ИИ не просто ищут страницы с нужным ключевым словом — они пытаются понять сущности, экспертизу, контекст, доверие и релевантность.",
+      ),
+      p(
+        "Это значит, что брендам пора выходить за рамки вопроса «Как мне подняться в рейтинге?» и начинать задавать другой: «Как мне стать самим ответом?»",
+      ),
+      p(
+        "Именно здесь всё большую роль играет оптимизация под системы ответов — Answer Engine Optimization, или AEO.",
+      ),
+      h2("Что такое AEO — оптимизация под системы ответов"),
+      p(
+        "AEO — это практика выстраивания цифрового присутствия бренда таким образом, чтобы системы ответов и ИИ-поиск могли лучше понимать, оценивать и, возможно, цитировать его информацию.",
+      ),
+      p(
+        "AEO не заменяет SEO — оно расширяет саму цель. Классическое SEO чаще всего нацелено на клик; AEO нацелено на то, чтобы стать по-настоящему полезным ответом. Самая сильная стратегия сегодня всё чаще объединяет и то, и другое.",
+      ),
+      h2("Ваш сайт — это больше, чем цифровая брошюра"),
+      p(
+        "Сайт не должен просто рассказывать, чем занимается компания, — он должен делать её экспертизу понятной. Это значит выстраивать чёткие сигналы вокруг того, чем занимается бренд, кому он служит, где он работает, чем он известен, какие проблемы решает, какой экспертизой обладает и какие доказательства эту экспертизу подтверждают.",
+      ),
+      p(
+        "Красиво оформленный сайт с расплывчатым содержанием может производить впечатление, но при этом оставаться непонятным и людям, и поисковым системам. Дизайн создаёт восприятие. [Структура создаёт понимание](/ru/services/websites-and-cro). Нужно и то, и другое.",
+      ),
+      h2("Контент должен стать по-настоящему полезным"),
+      p(
+        "Публиковать контент просто потому, что у сайта «должен быть блог», уже недостаточно. Более верный вопрос звучит так: какие вопросы наша аудитория реально задаёт перед тем, как принять решение?",
+      ),
+      p(
+        "Для агентства брендинга это могут быть вопросы вроде: что делает премиальный бренд премиальным? сколько стоит брендинг в Дубае? что должно входить в брендовую стратегию? в чём разница между брендингом и маркетингом? как ИИ-поиск влияет на SEO? как бизнесу улучшить своё цифровое присутствие? когда компании стоит проводить ребрендинг?",
+      ),
+      p(
+        "Каждый такой вопрос — это возможность показать экспертизу. Цель не в том, чтобы производить больше контента, а в том, чтобы производить больше по-настоящему полезного знания.",
+      ),
+      h2("Авторитет бренда имеет значение"),
+      p(
+        "Видимость в ИИ-поиске — это не только техническая задача SEO. Это ещё и вопрос авторитета бренда. Если у компании последовательное присутствие на сайте, в профессиональных профилях, публикациях, кейсах и других надёжных источниках, системе становится проще распознать её как понятную сущность.",
+      ),
+      p(
+        "Это значит, что ваш цифровой след должен быть последовательным. Ваше [позиционирование бренда](/ru/services/brand-and-creative) не должно меняться от платформы к платформе. Экспертиза должна быть ясной, услуги — структурированными, работы — подтверждёнными доказательствами, а контент — показывать, что вы действительно разбираетесь в темах, в которых заявляете экспертизу.",
+      ),
+      h2("Будущее поиска — мультиканальное"),
+      p(
+        "Путь клиента больше не описывается формулой Google → сайт → обращение. Сегодня он выглядит скорее так: соцсети → поиск → ИИ → сайт → отзывы → LinkedIn → WhatsApp → разговор.",
+      ),
+      p(
+        "Каждая точка контакта влияет на решение. Именно поэтому цифровой маркетинг больше нельзя рассматривать как набор изолированных каналов. SEO, контент, соцсети, брендинг, опыт взаимодействия с сайтом и платная реклама должны усиливать одно и то же позиционирование. Бренд должен ощущаться одним и тем же брендом везде.",
+      ),
+      h2("Что брендам стоит делать уже сейчас"),
+      p(
+        "Отказываться от классического SEO не нужно. Вместо этого стоит выстроить более широкую [поисковую стратегию](/ru/services/seo-and-content).",
+      ),
+      h3("01 — Выстроить понятные бренд-сущности"),
+      p("Сделайте предельно ясным, кто вы, чем занимаетесь, где работаете и в чём ваша специализация."),
+      h3("02 — Создавать по-настоящему полезный контент"),
+      p("Отвечайте на реальные вопросы клиентов глубоко, ясно и с собственной точкой зрения."),
+      h3("03 — Укрепить структуру сайта"),
+      p(
+        "Используйте понятную навигацию, содержательные заголовки, внутренние ссылки и структурированную информацию.",
+      ),
+      h3("04 — Демонстрировать экспертизу"),
+      p(
+        "Используйте кейсы, инсайты, оригинальные идеи, подтверждённый опыт и реальную практику, чтобы закрепить авторитет.",
+      ),
+      h3("05 — Сохранять последовательность цифровой идентичности"),
+      p(
+        "Сайт, профили в соцсетях, справочники и профессиональные платформы должны транслировать одно и то же ключевое позиционирование.",
+      ),
+      h2("Новый вопрос"),
+      p("Годами маркетологи спрашивали: «Ранжируемся ли мы в Google?» Этот вопрос по-прежнему важен."),
+      p(
+        "Но всё более важным становится другой: «Когда кто-то спрашивает ИИ-систему о нашей категории, оказывается ли наш бренд внутри ответа?» Именно в этом суть сдвига.",
+      ),
+      p(
+        "Видимость в поиске смещается от простого владения позицией на странице к тому, чтобы стать частью информационной экосистемы, формирующей сам ответ. Бренды, которые осознают это раньше других, получат реальное преимущество — не потому, что ИИ заменяет поиск, а потому, что сам поиск продолжает меняться.",
+      ),
+      h2("Где здесь место SHARIO"),
+      p(
+        "В SHARIO мы рассматриваем цифровое присутствие как единую связанную систему, в которой бренд, контент, дизайн, технологии и результативность работают вместе. Потому что видимость без смысла — временна, а бренд, который понятен, легче найти, запомнить и выбрать.",
+      ),
+      p(
+        "Если хотите узнать, найдёт ли ИИ-система ваш бренд уже сегодня, [свяжитесь с нашей командой](/ru/contact).",
+      ),
+    ],
+  },
 ];
 
 export function getInsightArticle(slug: string): InsightArticle | undefined {
