@@ -26,16 +26,20 @@
 export const site = {
   name: "Shario",
   /**
-   * The apex domain 308-redirects here at the Vercel edge (domain-alias
-   * config, not this app) — every route, verified. `metadataBase` and every
-   * canonical/og:url/og:image/sitemap URL derive from this one constant, so
-   * it has to be the host that serves directly with zero redirect hops.
-   * Pointing it at the apex instead is what broke WhatsApp/Facebook link
-   * previews: their crawlers fetch og:image once and don't reliably follow
-   * a redirect to get there. If the Vercel domain config ever flips which
-   * host is primary, this is the one line to change back.
+   * The canonical production host. `metadataBase` and every
+   * canonical/og:url/og:image/sitemap/robots/structured-data URL derive
+   * from this one constant, so it has to be the host that serves directly
+   * at the Vercel edge with zero redirect hops — `www.shario.ae` 308s here,
+   * not the other way around (domain-alias config, not this app). Google
+   * Search Console treats the apex and `www` as distinct hosts; splitting
+   * canonical signals between them is what caused pages to sit as
+   * "Discovered/Crawled — currently not indexed" instead of indexing under
+   * one host. If the Vercel domain config ever flips which host is primary,
+   * this is the one line to change back — and OG crawlers (WhatsApp,
+   * Facebook) that fetch `og:image` once without following a redirect are
+   * the reason it must always match whichever host is actually primary.
    */
-  domain: "https://www.shario.ae",
+  domain: "https://shario.ae",
   tagline: "A Symphony of Identity",
   /**
    * The exact phrase `ArabicStatement` (`components/ui.tsx`) sets as the
@@ -69,7 +73,7 @@ export const site = {
   /** Split for `<ObfuscatedEmail>` (`components/obfuscated-email.tsx`), the same way `phoneHref` is `phone` in the one format `tel:` needs. */
   emailUser: "info",
   emailDomain: "shario.ae",
-  website: "www.shario.ae",
+  website: "shario.ae",
   linkedin: "https://linkedin.com/in/sharoonirfan",
   founder: "Sharoon Irfan",
   founderAr: "شارون عرفان",
