@@ -158,12 +158,13 @@ export const sharedImages = {
     "/images/texture/desk.jpg",
   ],
   /**
-   * The fixed banner every Market News article uses for its card/hero
-   * `image`, by deliberate editorial choice — Market News is the one
-   * category where the same photograph is the point (a consistent, recognisable
-   * banner for the category) rather than a mistake `check:images` should catch.
-   * New Market News articles should set `image: sharedImages.marketNewsBanner`
-   * too, the same way this constant keeps every existing one in sync.
+   * The default banner for a Market News article's card/hero `image` when it
+   * doesn't have a dedicated photograph of its own — used so a shared photo
+   * across multiple Market News articles reads as deliberate to `check:images`
+   * rather than a mistake. Not mandatory per article: `dubai-ad-auctions-
+   * getting-more-competitive` has its own unique image instead, and that's
+   * fine — set `image: sharedImages.marketNewsBanner` only when an article
+   * doesn't need its own.
    */
   marketNewsBanner: "/images/insights/market-news-banner-candlelit-chessboard.jpg",
 } as const;
@@ -2171,9 +2172,9 @@ export type InsightArticle = {
   metaDescriptionRu?: string;
   /**
    * The card/hero photograph. Never used on more than one article — same
-   * rule `check:images` enforces elsewhere — except every Market News
-   * article, which intentionally shares `sharedImages.marketNewsBanner` as
-   * its fixed category banner.
+   * rule `check:images` enforces elsewhere — except Market News articles
+   * without a dedicated photo of their own, which may intentionally share
+   * `sharedImages.marketNewsBanner` instead (see its own comment).
    */
   image: string;
   /** Describes what's actually in the photograph, not the article topic. */
@@ -2234,10 +2235,10 @@ export const insightArticles: InsightArticle[] = [
     readingTime: "6 min read",
     readingTimeAr: "6 دقائق قراءة",
     readingTimeRu: "6 мин чтения",
-    image: sharedImages.marketNewsBanner,
-    imageAlt: "A lit candle, journal and coffee cup beside a chessboard mid-game on a desk",
-    imageAltAr: "شمعة مضاءة ودفتر يوميات وفنجان قهوة بجانب رقعة شطرنج في منتصف اللعبة على مكتب",
-    imageAltRu: "Горящая свеча, блокнот и чашка кофе рядом с шахматной доской в разгар партии на столе",
+    image: "/images/insights/dubai-ad-auctions-marble-books.jpg",
+    imageAlt: "A small bronze figurine and a stack of designer coffee-table books on a dark marble table",
+    imageAltAr: "تمثال برونزي صغير وكومة من كتب الطاولة الفاخرة على طاولة رخامية داكنة",
+    imageAltRu: "Маленькая бронзовая статуэтка и стопка дизайнерских книг для журнального столика на тёмном мраморном столе",
     imageTopic: "Dubai's Ad Auctions",
     imageTopicAr: "مزادات إعلانات دبي",
     imageTopicRu: "Рекламные аукционы Дубая",
