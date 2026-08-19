@@ -165,7 +165,7 @@ export const sharedImages = {
    * New Market News articles should set `image: sharedImages.marketNewsBanner`
    * too, the same way this constant keeps every existing one in sync.
    */
-  marketNewsBanner: "/images/insights/market-news-banner-chess-knight.jpg",
+  marketNewsBanner: "/images/insights/market-news-banner-candlelit-chessboard.jpg",
 } as const;
 
 /** Primary navigation. The CTA button beside it is not a nav item. */
@@ -2235,9 +2235,9 @@ export const insightArticles: InsightArticle[] = [
     readingTimeAr: "6 دقائق قراءة",
     readingTimeRu: "6 мин чтения",
     image: sharedImages.marketNewsBanner,
-    imageAlt: "A close-up of an antique brass chess knight standing in its fitted case, beside a burl-wood board",
-    imageAltAr: "لقطة مقربة لقطعة شطرنج نحاسية عتيقة (الحصان) داخل صندوقها المخصص، بجانب رقعة من خشب البرل",
-    imageAltRu: "Крупный план антикварной латунной шахматной фигуры коня в футляре, рядом с доской из капового дерева",
+    imageAlt: "A lit candle, journal and coffee cup beside a chessboard mid-game on a desk",
+    imageAltAr: "شمعة مضاءة ودفتر يوميات وفنجان قهوة بجانب رقعة شطرنج في منتصف اللعبة على مكتب",
+    imageAltRu: "Горящая свеча, блокнот и чашка кофе рядом с шахматной доской в разгар партии на столе",
     imageTopic: "Dubai's Ad Auctions",
     imageTopicAr: "مزادات إعلانات دبي",
     imageTopicRu: "Рекламные аукционы Дубая",
@@ -2376,9 +2376,9 @@ export const insightArticles: InsightArticle[] = [
     readingTimeAr: "5 دقائق قراءة",
     readingTimeRu: "5 мин чтения",
     image: sharedImages.marketNewsBanner,
-    imageAlt: "A close-up of an antique brass chess knight standing in its fitted case, beside a burl-wood board",
-    imageAltAr: "لقطة مقربة لقطعة شطرنج نحاسية عتيقة (الحصان) داخل صندوقها المخصص، بجانب رقعة من خشب البرل",
-    imageAltRu: "Крупный план антикварной латунной шахматной фигуры коня в футляре, рядом с доской из капового дерева",
+    imageAlt: "A lit candle, journal and coffee cup beside a chessboard mid-game on a desk",
+    imageAltAr: "شمعة مضاءة ودفتر يوميات وفنجان قهوة بجانب رقعة شطرنج في منتصف اللعبة على مكتب",
+    imageAltRu: "Горящая свеча, блокнот и чашка кофе рядом с шахматной доской в разгар партии на столе",
     imageTopic: "What Rising Costs Mean",
     imageTopicAr: "معنى ارتفاع التكاليف",
     imageTopicRu: "Что значит рост стоимости",
