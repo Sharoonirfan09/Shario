@@ -157,6 +157,15 @@ export const sharedImages = {
     "/images/texture/interior.jpg",
     "/images/texture/desk.jpg",
   ],
+  /**
+   * The fixed banner every Market News article uses for its card/hero
+   * `image`, by deliberate editorial choice — Market News is the one
+   * category where the same photograph is the point (a consistent, recognisable
+   * banner for the category) rather than a mistake `check:images` should catch.
+   * New Market News articles should set `image: sharedImages.marketNewsBanner`
+   * too, the same way this constant keeps every existing one in sync.
+   */
+  marketNewsBanner: "/images/insights/market-news-banner-leopard-corridor.jpg",
 } as const;
 
 /** Primary navigation. The CTA button beside it is not a nav item. */
@@ -2160,7 +2169,12 @@ export type InsightArticle = {
   metaDescription?: string;
   metaDescriptionAr?: string;
   metaDescriptionRu?: string;
-  /** The card/hero photograph. Never used on more than one article — same rule `check:images` enforces elsewhere. */
+  /**
+   * The card/hero photograph. Never used on more than one article — same
+   * rule `check:images` enforces elsewhere — except every Market News
+   * article, which intentionally shares `sharedImages.marketNewsBanner` as
+   * its fixed category banner.
+   */
   image: string;
   /** Describes what's actually in the photograph, not the article topic. */
   imageAlt: string;
@@ -2220,10 +2234,10 @@ export const insightArticles: InsightArticle[] = [
     readingTime: "6 min read",
     readingTimeAr: "6 دقائق قراءة",
     readingTimeRu: "6 мин чтения",
-    image: "/images/insights/dubai-ad-auctions-clock-detail.jpg",
-    imageAlt: "Close-up of a clock face with its hands crossed, lit at a low angle",
-    imageAltAr: "لقطة مقربة لوجه ساعة تتقاطع عقاربها، مضاءة بزاوية منخفضة",
-    imageAltRu: "Крупный план циферблата часов со скрещенными стрелками, снятый под низким углом",
+    image: sharedImages.marketNewsBanner,
+    imageAlt: "A leopard's face in profile, lit dramatically within a dark architectural corridor",
+    imageAltAr: "وجه نمر مصوَّر من الجانب، مضاء بشكل درامي داخل ممر معماري داكن",
+    imageAltRu: "Профиль морды леопарда, драматично освещённой в тёмном архитектурном коридоре",
     imageTopic: "Dubai's Ad Auctions",
     imageTopicAr: "مزادات إعلانات دبي",
     imageTopicRu: "Рекламные аукционы Дубая",
@@ -2361,10 +2375,10 @@ export const insightArticles: InsightArticle[] = [
     readingTime: "5 min read",
     readingTimeAr: "5 دقائق قراءة",
     readingTimeRu: "5 мин чтения",
-    image: "/images/insights/rising-ad-costs-budget-watch.jpg",
-    imageAlt: "A crossed wrist wearing a watch, cuffed in a tailored white shirt",
-    imageAltAr: "معصم متقاطع يرتدي ساعة، بكم قميص أنيق أبيض",
-    imageAltRu: "Скрещённое запястье с часами, манжета элегантной белой рубашки",
+    image: sharedImages.marketNewsBanner,
+    imageAlt: "A leopard's face in profile, lit dramatically within a dark architectural corridor",
+    imageAltAr: "وجه نمر مصوَّر من الجانب، مضاء بشكل درامي داخل ممر معماري داكن",
+    imageAltRu: "Профиль морды леопарда, драматично освещённой в тёмном архитектурном коридоре",
     imageTopic: "What Rising Costs Mean",
     imageTopicAr: "معنى ارتفاع التكاليف",
     imageTopicRu: "Что значит рост стоимости",
