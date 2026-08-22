@@ -1,0 +1,162 @@
+name: SHARIO SEO Agent
+
+on:
+  workflow_dispatch:
+    inputs:
+      task:
+        description: 'SEO task instruction'
+        required: true
+        type: string
+      mode:
+        description: 'report_only | requires_approval'
+        required: true
+        default: 'report_only'
+        type: string
+
+jobs:
+  seo-agent:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then npm ci; fi
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Create SEO branch
+        id: branch
+        run: |
+          TIMESTAMP=$(date +%Y-%m-%dT%H-%M)
+          MODE="${{ github.event.inputs.mode }}"
+          BRANCH="seo/${MODE}-${TIMESTAMP}"
+          echo "branch_name=${BRANCH}" >> $GITHUB_OUTPUT
+          git checkout -b "${BRANCH}"
+
+      - name: Run Claude Code SEO Agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          TASK="${{ github.event.inputs.task }}"
+          MODE="${{ github.event.inputs.mode }}"
+          BRANCH="${{ steps.branch.outputs.branch_name }}"
+
+          claude --print --model claude-sonnet-4-6 --max-turns 30 \
+            "You are an expert SEO engineer working on the SHARIO website (shario.ae).
+
+          REPOSITORY: Sharoonirfan09/Shario
+          STACK: Next.js, TypeScript, React
+          LANGUAGES: English (en), Arabic (ar), Russian (ru)
+          PRODUCTION BRANCH: main — NEVER push here directly
+          CURRENT BRANCH: ${BRANCH}
+
+          ABSOLUTE RULES — NEVER violate these:
+          - Never push to main branch
+          - Never merge any Pull Request
+          - Never deploy to Vercel directly
+          - Never change visual design, brand copy, colors, fonts, or logo
+          - Never change canonical or hreflang strategy
+          - Never change Vercel configuration
+          - Never change DNS or domain configuration
+          - Never change production environment variables
+          - Never change redirect rules
+          - All code changes must go through a Pull Request
+
+          MODE: ${MODE}
+          - report_only: Analyse only. Do NOT modify any files. Write findings to /tmp/seo_findings.md
+          - requires_approval: Make only safe SEO improvements. Create a branch and PR.
+
+          TASK: ${TASK}
+
+          STEPS:
+          1. Read the repository structure thoroughly
+          2. Understand the existing SEO architecture before doing anything
+          3. Execute the task according to MODE
+          4. If mode is report_only: write all findings to /tmp/seo_findings.md and stop
+          5. If mode is requires_approval:
+             - Make only the safe, requested SEO changes
+             - Run: npm run build (if available) to verify no breakage
+             - Commit all changes to branch: ${BRANCH}
+             - Push the branch: git push origin ${BRANCH}
+             - Write a detailed PR description to /tmp/pr_body.md covering:
+               * What changed and why
+               * Pages affected
+               * SEO impact expected
+               * Files changed
+               * Safety checks performed
+          6. Never auto-merge the PR"
+
+      - name: Read findings
+        id: findings
+        run: |
+          if [ -f /tmp/seo_findings.md ]; then
+            echo "findings<<EOF" >> $GITHUB_OUTPUT
+            cat /tmp/seo_findings.md >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "findings=No findings file generated." >> $GITHUB_OUTPUT
+          fi
+
+      - name: Read PR body
+        id: pr_body
+        run: |
+          if [ -f /tmp/pr_body.md ]; then
+            echo "body<<EOF" >> $GITHUB_OUTPUT
+            cat /tmp/pr_body.md >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "body=SEO automation run completed. Review changes on this branch." >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.has_changes == 'true' && github.event.inputs.mode == 'requires_approval'
+        run: |
+          git config user.name "SHARIO SEO Bot"
+          git config user.email "seo-bot@shario.ae"
+          git add -A
+          git commit -m "SEO: automated improvements — ${{ steps.branch.outputs.branch_name }}"
+          git push origin "${{ steps.branch.outputs.branch_name }}"
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.has_changes == 'true' && github.event.inputs.mode == 'requires_approval'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ steps.branch.outputs.branch_name }}
+          base: main
+          title: "SEO: ${{ steps.branch.outputs.branch_name }}"
+          body: ${{ steps.pr_body.outputs.body }}
+          labels: seo-automation,requires-review
+
+      - name: Print report
+        run: |
+          echo "====== SHARIO SEO AGENT REPORT ======"
+          echo "Mode: ${{ github.event.inputs.mode }}"
+          echo "Branch: ${{ steps.branch.outputs.branch_name }}"
+          echo "Has changes: ${{ steps.changes.outputs.has_changes }}"
+          echo "====== FINDINGS ======"
+          cat /tmp/seo_findings.md 2>/dev/null || echo "See PR body for details."
+          echo "======================================"
