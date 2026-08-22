@@ -44,13 +44,15 @@ jobs:
           TIMESTAMP=$(date +%Y-%m-%dT%H-%M)
           MODE="${{ github.event.inputs.mode }}"
           BRANCH="seo/${MODE}-${TIMESTAMP}"
-          echo "branch_name=${BRANCH}" >> $GITHUB_OUTPUT
+          echo "branch_name=${BRANCH}" >> "$GITHUB_OUTPUT"
           git checkout -b "${BRANCH}"
 
       - name: Run Claude Code SEO Agent
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
+          set -o pipefail
+
           TASK="${{ github.event.inputs.task }}"
           MODE="${{ github.event.inputs.mode }}"
           BRANCH="${{ steps.branch.outputs.branch_name }}"
@@ -77,7 +79,7 @@ jobs:
           - All code changes must go through a Pull Request
 
           MODE: ${MODE}
-          - report_only: Analyse only. Do NOT modify any files. Write findings to /tmp/seo_findings.md
+          - report_only: Analyse only. Do NOT modify any files. Write the COMPLETE findings report to /tmp/seo_findings.md
           - requires_approval: Make only safe SEO improvements. Create a branch and PR.
 
           TASK: ${TASK}
@@ -86,7 +88,12 @@ jobs:
           1. Read the repository structure thoroughly
           2. Understand the existing SEO architecture before doing anything
           3. Execute the task according to MODE
-          4. If mode is report_only: write all findings to /tmp/seo_findings.md and stop
+          4. If mode is report_only:
+             - Do NOT modify files
+             - Write the COMPLETE SEO audit findings to /tmp/seo_findings.md
+             - Include every finding, its severity, affected page/file, explanation, and recommended action
+             - Do not summarize or omit findings
+             - Stop after writing the report
           5. If mode is requires_approval:
              - Make only the safe, requested SEO changes
              - Run: npm run build (if available) to verify no breakage
@@ -104,31 +111,31 @@ jobs:
         id: findings
         run: |
           if [ -f /tmp/seo_findings.md ]; then
-            echo "findings<<EOF" >> $GITHUB_OUTPUT
-            cat /tmp/seo_findings.md >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT
+            echo "SEO findings file found."
+            echo "findings_file=/tmp/seo_findings.md" >> "$GITHUB_OUTPUT"
           else
-            echo "findings=No findings file generated." >> $GITHUB_OUTPUT
+            echo "SEO findings file was not generated."
+            echo "findings_file=/tmp/claude_output.md" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Read PR body
         id: pr_body
         run: |
           if [ -f /tmp/pr_body.md ]; then
-            echo "body<<EOF" >> $GITHUB_OUTPUT
-            cat /tmp/pr_body.md >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT
+            echo "body<<EOF" >> "$GITHUB_OUTPUT"
+            cat /tmp/pr_body.md >> "$GITHUB_OUTPUT"
+            echo "EOF" >> "$GITHUB_OUTPUT"
           else
-            echo "body=SEO automation run completed. Review changes on this branch." >> $GITHUB_OUTPUT
+            echo "body=SEO automation run completed. Review changes on this branch." >> "$GITHUB_OUTPUT"
           fi
 
       - name: Check for changes
         id: changes
         run: |
           if [ -n "$(git status --porcelain)" ]; then
-            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
           else
-            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Commit and push changes
@@ -152,11 +159,33 @@ jobs:
           labels: seo-automation,requires-review
 
       - name: Print report
+        if: always()
         run: |
           echo "====== SHARIO SEO AGENT REPORT ======"
           echo "Mode: ${{ github.event.inputs.mode }}"
           echo "Branch: ${{ steps.branch.outputs.branch_name }}"
           echo "Has changes: ${{ steps.changes.outputs.has_changes }}"
-          echo "====== FINDINGS ======"
-          cat /tmp/seo_findings.md 2>/dev/null || echo "See PR body for details."
-          echo "======================================"
+          echo ""
+          echo "====== COMPLETE SEO FINDINGS ======"
+
+          if [ -f /tmp/seo_findings.md ]; then
+            cat /tmp/seo_findings.md
+          elif [ -f /tmp/claude_output.md ]; then
+            cat /tmp/claude_output.md
+          else
+            echo "No SEO report was generated."
+          fi
+
+          echo ""
+          echo "===================================="
+
+      - name: Upload SEO report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shario-seo-report
+          path: |
+            /tmp/seo_findings.md
+            /tmp/claude_output.md
+            /tmp/pr_body.md
+          if-no-files-found: warn
