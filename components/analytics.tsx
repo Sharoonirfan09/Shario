@@ -1,51 +1,14 @@
 import Script from "next/script";
 
 /**
- * GA4, wired but inert until a real Measurement ID exists. Reads
- * `NEXT_PUBLIC_GA_MEASUREMENT_ID` (must be `NEXT_PUBLIC_`-prefixed — Next
- * only exposes prefixed vars to the client bundle, and gtag.js has to run in
- * the browser) and renders nothing at all when it's unset, exactly as it is
- * today: no script tag, no request, no console noise, no fake ID standing in
- * for a real one.
+ * Meta/Facebook Pixel, inert-until-configured: reads `NEXT_PUBLIC_FB_PIXEL_ID`
+ * and renders nothing when it's unset.
  *
- * To activate: create a GA4 property, copy its Measurement ID (looks like
- * `G-XXXXXXXXXX`, in GA4 under Admin → Data Streams → your web stream), and
- * set `NEXT_PUBLIC_GA_MEASUREMENT_ID` in the deployment environment (Vercel
- * dashboard → Project Settings → Environment Variables, or
- * `vercel env add NEXT_PUBLIC_GA_MEASUREMENT_ID`), then redeploy. No code
- * change needed beyond that.
- *
- * `strategy="afterInteractive"` — Next's own recommended loading strategy
- * for analytics: fetched after hydration rather than blocking first paint,
- * so this can't be what regresses the mobile performance pass elsewhere in
- * this audit.
- */
-export function GoogleAnalytics() {
-  const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-  if (!measurementId) return null;
-
-  return (
-    <>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
-        strategy="afterInteractive"
-      />
-      <Script id="ga4-init" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${measurementId}');
-        `}
-      </Script>
-    </>
-  );
-}
-
-/**
- * Meta/Facebook Pixel, same inert-until-configured pattern as
- * `GoogleAnalytics` above. Reads `NEXT_PUBLIC_FB_PIXEL_ID` and renders
- * nothing when it's unset.
+ * GA4 itself is not here — it's the fixed Google tag (gtag.js) hardcoded at
+ * the top of `<head>` in `app/layout.tsx` (Measurement ID `G-E9JDVQD7D8V`).
+ * That placement is deliberate (Google's official snippet loads earliest in
+ * `<head>`, on every route, via the root layout) — don't reintroduce a second,
+ * env-var-driven GA4 component here alongside it.
  *
  * To activate: find the Pixel ID in Meta Events Manager (Data Sources → your
  * pixel → Settings — a numeric ID, not the access token), set

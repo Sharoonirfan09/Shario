@@ -16,11 +16,12 @@ import { getFirebaseAnalytics } from "@/lib/firebase";
  * `NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID` in the deployment environment, then
  * redeploy. No code change needed beyond that.
  *
- * This is a second, separate GA4 stream from `NEXT_PUBLIC_GA_MEASUREMENT_ID`
- * in components/analytics.tsx — Firebase Analytics is GA4 under the hood,
- * so running both sends duplicate pageview events unless they share the
- * same GA4 property. Point them at the same Measurement ID to avoid that,
- * or only activate one of the two.
+ * This is a second, separate GA4 stream from the fixed gtag.js tag
+ * hardcoded in `app/layout.tsx`'s `<head>` (Measurement ID
+ * `G-E9JDVQD7D8V`) — Firebase Analytics is GA4 under the hood, so running
+ * both sends duplicate pageview events unless they share the same GA4
+ * property. Point them at the same Measurement ID to avoid that, or only
+ * activate one of the two.
  */
 export function FirebaseAnalytics() {
   useEffect(() => {

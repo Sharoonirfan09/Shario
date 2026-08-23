@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Amiri, Cormorant_Garamond, EB_Garamond, Jost } from "next/font/google";
 import "./globals.css";
-import { FacebookPixel, GoogleAnalytics } from "@/components/analytics";
+import { FacebookPixel } from "@/components/analytics";
 import { FirebaseAnalytics } from "@/components/firebase-analytics";
 import { Reveal } from "@/components/reveal";
 import { StructuredData, WebsiteStructuredData } from "@/components/structured-data";
@@ -115,6 +115,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${cormorant.variable} ${ebGaramond.variable} ${jost.variable} ${amiri.variable} h-full antialiased`}
     >
       <head>
+        {/* Google tag (gtag.js) — GA4, must stay first in <head> so it loads on every route. */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9JDVQD7D8V" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-E9JDVQD7D8V');`,
+          }}
+        />
         {/*
           Marks the document as JS-capable before first paint, which is what
           arms the scroll-reveal styles. Without this the reveals stay visible
@@ -136,7 +146,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Reveal />
         <StructuredData />
         <WebsiteStructuredData />
-        <GoogleAnalytics />
         <FacebookPixel />
         <FirebaseAnalytics />
       </body>
