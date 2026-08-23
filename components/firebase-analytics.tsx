@@ -18,7 +18,7 @@ import { getFirebaseAnalytics } from "@/lib/firebase";
  *
  * This is a second, separate GA4 stream from the fixed gtag.js tag
  * hardcoded in `app/layout.tsx`'s `<head>` (Measurement ID
- * `G-E9JDVQD7D8V`) — Firebase Analytics is GA4 under the hood, so running
+ * `G-E9JDVQ7D8V`) — Firebase Analytics is GA4 under the hood, so running
  * both sends duplicate pageview events unless they share the same GA4
  * property. Point them at the same Measurement ID to avoid that, or only
  * activate one of the two.

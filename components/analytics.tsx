@@ -5,7 +5,7 @@ import Script from "next/script";
  * and renders nothing when it's unset.
  *
  * GA4 itself is not here — it's the fixed Google tag (gtag.js) hardcoded at
- * the top of `<head>` in `app/layout.tsx` (Measurement ID `G-E9JDVQD7D8V`).
+ * the top of `<head>` in `app/layout.tsx` (Measurement ID `G-E9JDVQ7D8V`).
  * That placement is deliberate (Google's official snippet loads earliest in
  * `<head>`, on every route, via the root layout) — don't reintroduce a second,
  * env-var-driven GA4 component here alongside it.

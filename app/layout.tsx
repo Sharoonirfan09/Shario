@@ -116,13 +116,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         {/* Google tag (gtag.js) — GA4, must stay first in <head> so it loads on every route. */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9JDVQD7D8V" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9JDVQ7D8V" />
         <script
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'G-E9JDVQD7D8V');`,
+gtag('config', 'G-E9JDVQ7D8V');`,
           }}
         />
         {/*
