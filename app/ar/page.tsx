@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Faq } from "@/components/faq";
 import { InsightCard } from "@/components/insights";
 import { SixServices } from "@/components/six-services";
+import { FaqStructuredData } from "@/components/structured-data";
 import {
   ArabicStatement,
   Band,
@@ -55,6 +56,8 @@ const stepTextures = sharedImages.homeStepTextures;
 export default function ArabicHomePage() {
   return (
     <>
+      <FaqStructuredData items={homeFaqs.map((item) => ({ q: item.qAr, a: item.aAr }))} />
+
       <SplitHero
         src={HERO_IMAGE}
         alt={HERO_IMAGE_ALT}
@@ -87,7 +90,7 @@ export default function ArabicHomePage() {
           <Frame
             src={sharedImages.homeAboutHorizon}
             ratio="aspect-[4/3]"
-            alt={`${site.founderAr}، مؤسس شاريو`}
+            alt="امرأة جالسة عند البحر وقت الغروب، في مشهد ضبابي ناعم، تنظر نحو الأفق"
           />
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">

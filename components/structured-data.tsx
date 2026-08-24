@@ -165,6 +165,33 @@ export function ArticleStructuredData({
   return <JsonLd data={data} />;
 }
 
+/**
+ * FAQPage markup for a page's visible FAQ accordion. `items` must be exactly
+ * the question/answer pairs rendered on that page by `<Faq>` — never a
+ * different or larger set — so the structured data always matches what a
+ * visitor actually sees.
+ */
+export function FaqStructuredData({
+  items,
+}: {
+  items: readonly { q: string; a: string }[];
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+
+  return <JsonLd data={data} />;
+}
+
 /** BreadcrumbList markup matching whatever trail `<Breadcrumb>` renders on
  *  the same page, so the visual and structured breadcrumbs never drift. */
 export function BreadcrumbStructuredData({

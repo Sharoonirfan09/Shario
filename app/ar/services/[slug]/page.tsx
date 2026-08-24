@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Faq } from "@/components/faq";
+import {
+  BreadcrumbStructuredData,
+  FaqStructuredData,
+} from "@/components/structured-data";
 import {
   Band,
   Breadcrumb,
@@ -14,7 +19,15 @@ import {
   PillLink,
   SectionIntro,
 } from "@/components/ui";
-import { cta, getService, homeFaqs, ogDefaultsAr, services, site } from "@/lib/site";
+import {
+  cta,
+  getInsightArticle,
+  getService,
+  homeFaqs,
+  ogDefaultsAr,
+  services,
+  site,
+} from "@/lib/site";
 
 /** Every service page is known at build time, so prerender them. */
 export function generateStaticParams() {
@@ -60,25 +73,28 @@ export default async function ArabicServicePage({
   if (!service) notFound();
 
   const related = services.filter((s) => s.slug !== service.slug).slice(0, 3);
+  const relatedInsight = service.relatedInsightSlug
+    ? getInsightArticle(service.relatedInsightSlug)
+    : undefined;
+
+  const breadcrumbItems = [
+    { href: "/ar", label: "الرئيسية" },
+    { href: "/ar/services", label: "الخدمات" },
+    { label: service.nameAr },
+  ];
 
   return (
     <>
+      <BreadcrumbStructuredData items={breadcrumbItems} />
+      <FaqStructuredData items={homeFaqs.map((item) => ({ q: item.qAr, a: item.aAr }))} />
+
       <Hero
         src={service.heroImage}
         alt={`${service.nameAr} — ${site.name}`}
         eyebrow={service.categoryAr}
         title={service.titleAr}
         priority
-        breadcrumb={
-          <Breadcrumb
-            locale="ar"
-            items={[
-              { href: "/ar", label: "الرئيسية" },
-              { href: "/ar/services", label: "الخدمات" },
-              { label: service.nameAr },
-            ]}
-          />
-        }
+        breadcrumb={<Breadcrumb locale="ar" items={breadcrumbItems} />}
       />
 
       {/* What you get */}
@@ -142,6 +158,18 @@ export default async function ArabicServicePage({
             <DotList items={service.deliverablesAr} columns={1} accent={false} />
           </div>
         </div>
+
+        {relatedInsight && (
+          <p className="reveal mt-14 font-arabic text-[0.9375rem] text-carbon/60">
+            قراءة إضافية:{" "}
+            <Link
+              href={`/ar/insights/${relatedInsight.slug}`}
+              className="border-b border-carbon/30 pb-0.5 font-arabic text-carbon/80 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+            >
+              {relatedInsight.titleAr}
+            </Link>
+          </p>
+        )}
       </Band>
 
       {/* Related services */}

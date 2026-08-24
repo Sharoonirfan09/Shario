@@ -46,6 +46,17 @@ export function InsightsExplorer({
       ? (activeCategory?.nameRu ?? "материалы")
       : (activeCategory?.name.toLowerCase() ?? "articles");
 
+  /**
+   * A real, crawlable `/insights?category=…` URL per tab — `generateMetadata`
+   * in the Insights page already gives each of these its own title, meta
+   * description and canonical, but nothing on the site linked to them as an
+   * `href` before this, so they sat outside normal crawl discovery.
+   */
+  const hrefFor = (categorySlug: string) => {
+    const path = categorySlug === "all" ? "/insights" : `/insights?category=${categorySlug}`;
+    return locale === "en" ? path : localizedPath(path, locale);
+  };
+
   return (
     <div>
       <div
@@ -54,6 +65,7 @@ export function InsightsExplorer({
         className="mb-12 flex flex-wrap gap-3 wide:mb-16"
       >
         <CategoryTab
+          href={hrefFor("all")}
           label={isAr ? "الكل" : isRu ? "Все" : "All"}
           active={active === "all"}
           onClick={() => setActive("all")}
@@ -62,6 +74,7 @@ export function InsightsExplorer({
         {categories.map((category) => (
           <CategoryTab
             key={category.slug}
+            href={hrefFor(category.slug)}
             label={isAr ? category.nameAr : isRu ? category.nameRu : category.name}
             active={active === category.slug}
             onClick={() => setActive(category.slug)}
@@ -97,23 +110,35 @@ export function InsightsExplorer({
   );
 }
 
+/**
+ * Renders as a real `<a href>` — so crawlers can discover and follow every
+ * category URL — while a click still filters in place via `onClick`'s
+ * `preventDefault`, exactly as the plain button did before. Same markup,
+ * same styling, same instant client-side behaviour for a visitor; only a
+ * search engine sees the difference.
+ */
 function CategoryTab({
+  href,
   label,
   active,
   onClick,
   isAr,
 }: {
+  href: string;
   label: string;
   active: boolean;
   onClick: () => void;
   isAr?: boolean;
 }) {
   return (
-    <button
-      type="button"
+    <Link
+      href={href}
       role="tab"
       aria-selected={active}
-      onClick={onClick}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick();
+      }}
       className={`rounded-full border px-5 py-2.5 transition-colors duration-300 ${isAr ? "font-arabic text-[0.6875rem]" : "eyebrow"} ${
         active
           ? "border-carbon bg-carbon text-porcelain"
@@ -121,7 +146,7 @@ function CategoryTab({
       }`}
     >
       {label}
-    </button>
+    </Link>
   );
 }
 

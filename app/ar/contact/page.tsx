@@ -89,10 +89,20 @@ export default function ArabicContactPage() {
                     {site.phone}
                   </a>
                 </Detail>
-                <Detail index="03" label="الموقع">
+                <Detail index="03" label="واتساب">
+                  <a
+                    href={site.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-display text-[1.375rem] transition-colors duration-300 hover:text-mist"
+                  >
+                    راسلونا
+                  </a>
+                </Detail>
+                <Detail index="04" label="الموقع">
                   <p className="font-arabic text-[1.375rem] font-bold">{site.locationAr}</p>
                 </Detail>
-                <Detail index="04" label="التواصل الاجتماعي">
+                <Detail index="05" label="التواصل الاجتماعي">
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
                     {social.map((item) => (
                       <a

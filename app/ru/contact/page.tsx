@@ -89,10 +89,20 @@ export default function RussianContactPage() {
                     {site.phone}
                   </a>
                 </Detail>
-                <Detail index="03" label="Местоположение">
+                <Detail index="03" label="WhatsApp">
+                  <a
+                    href={site.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-display text-[1.375rem] transition-colors duration-300 hover:text-mist"
+                  >
+                    Написать нам
+                  </a>
+                </Detail>
+                <Detail index="04" label="Местоположение">
                   <p className="font-display text-[1.375rem]">{site.locationRu}</p>
                 </Detail>
-                <Detail index="04" label="Соцсети">
+                <Detail index="05" label="Соцсети">
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
                     {social.map((item) => (
                       <a

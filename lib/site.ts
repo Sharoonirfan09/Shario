@@ -727,6 +727,12 @@ export type Service = {
   seoTitle?: string;
   seoTitleAr?: string;
   seoTitleRu?: string;
+  /**
+   * Slug of the one Insights article genuinely relevant to this service, for
+   * a single "Further reading" link on the service page. Left unset rather
+   * than pointed at a loosely related piece — not every service has one.
+   */
+  relatedInsightSlug?: string;
 };
 
 export const services: Service[] = [
@@ -946,6 +952,7 @@ export const services: Service[] = [
     seoTitle: "Performance Marketing Agency in Dubai",
     seoTitleAr: "وكالة التسويق الأدائي في دبي",
     seoTitleRu: "Агентство performance-маркетинга в Дубае",
+    relatedInsightSlug: "dubai-ad-auctions-getting-more-competitive",
   },
   {
     slug: "seo-and-content",
@@ -1163,6 +1170,7 @@ export const services: Service[] = [
     seoTitle: "SEO & Content Agency in Dubai",
     seoTitleAr: "وكالة تحسين محركات البحث والمحتوى في دبي",
     seoTitleRu: "Агентство SEO и контент-маркетинга в Дубае",
+    relatedInsightSlug: "ai-search-changing-what-ranking-means",
   },
   {
     slug: "websites-and-cro",
@@ -1379,6 +1387,7 @@ export const services: Service[] = [
     seoTitle: "Website Design & CRO Agency in Dubai",
     seoTitleAr: "وكالة تصميم المواقع الإلكترونية وتحسين التحويل في دبي",
     seoTitleRu: "Агентство веб-дизайна и CRO в Дубае",
+    relatedInsightSlug: "real-cost-of-a-slow-website",
   },
   {
     slug: "crm-and-automation",
@@ -1596,6 +1605,7 @@ export const services: Service[] = [
     seoTitle: "CRM & Marketing Automation Agency in Dubai",
     seoTitleAr: "وكالة إدارة علاقات العملاء والأتمتة التسويقية في دبي",
     seoTitleRu: "Агентство CRM и маркетинговой автоматизации в Дубае",
+    relatedInsightSlug: "why-crm-rollouts-fail-before-they-start",
   },
   {
     slug: "brand-and-creative",
@@ -2030,6 +2040,7 @@ export const services: Service[] = [
     seoTitle: "Digital Strategy & Consulting Agency in Dubai",
     seoTitleAr: "وكالة الاستراتيجية الرقمية والاستشارات في دبي",
     seoTitleRu: "Агентство цифровой стратегии и консалтинга в Дубае",
+    relatedInsightSlug: "audit-your-marketing-funnel-in-an-afternoon",
   },
 ];
 

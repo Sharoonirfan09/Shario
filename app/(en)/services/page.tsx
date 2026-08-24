@@ -4,7 +4,7 @@ import { CtaBand, Hero, PillLink } from "@/components/ui";
 import { cta, heroImages, ogDefaults } from "@/lib/site";
 
 const description =
-  "SHARIO is a performance marketing agency in Dubai offering performance marketing, SEO and content, websites and CRO, CRM and automation, brand and creative. Engage one service or the entire funnel.";
+  "SHARIO is a digital marketing and creative agency in Dubai offering performance marketing, SEO and content, websites and CRO, CRM and automation, brand and creative. Engage one service or the entire funnel.";
 
 /** Path/crop live in `lib/site.ts` as `heroImages.services`, shared with the Arabic page, both locales' `opengraph-image.tsx`, and `[slug]`'s not-found fallback. */
 export const HERO_IMAGE = heroImages.services.src;
@@ -12,7 +12,7 @@ export const HERO_IMAGE_ALT =
   "A framed painting of a woman in a wide-brimmed hat and a pleated cream dress, leaning against a deep red canvas in a sunlit, panelled room";
 
 export const metadata: Metadata = {
-  title: "Performance Marketing Agency Services in Dubai",
+  title: "Digital Marketing, Branding & Creative Services in Dubai",
   description,
   alternates: {
     canonical: "/services",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     ...ogDefaults,
     url: "/services",
     type: "website",
-    title: "Performance Marketing Agency Services in Dubai — Shario",
+    title: "Digital Marketing, Branding & Creative Services in Dubai — Shario",
     description,
   },
 };
@@ -32,11 +32,12 @@ export default function ServicesPage() {
     <>
       {/* `Hero` here carries no visible `title` — this banner is
           eyebrow-only by design, matching About. A screen-reader-only H1
-          gives the page the one real heading every page needs, carrying the
-          "performance marketing agency" phrase this page is the natural
-          home for, without adding anything to what a sighted visitor sees. */}
+          gives the page the one real heading every page needs — phrased to
+          cover the full six-service catalogue below rather than lead with
+          any one service, without adding anything to what a sighted visitor
+          sees. */}
       <h1 className="sr-only">
-        Performance Marketing Agency Services in Dubai
+        Digital Marketing, Branding &amp; Creative Services in Dubai
       </h1>
       <Hero
         src={HERO_IMAGE}

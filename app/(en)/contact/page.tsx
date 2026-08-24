@@ -107,10 +107,20 @@ export default function ContactPage() {
                     {site.phone}
                   </a>
                 </Detail>
-                <Detail index="03" label="Location">
+                <Detail index="03" label="WhatsApp">
+                  <a
+                    href={site.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-display text-[1.375rem] transition-colors duration-300 hover:text-mist"
+                  >
+                    Message us
+                  </a>
+                </Detail>
+                <Detail index="04" label="Location">
                   <p className="font-display text-[1.375rem]">{site.studio}</p>
                 </Detail>
-                <Detail index="04" label="Social">
+                <Detail index="05" label="Social">
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
                     {social.map((item) => (
                       <a

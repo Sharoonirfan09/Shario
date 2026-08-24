@@ -4,14 +4,14 @@ import { CtaBand, Hero, PillLink } from "@/components/ui";
 import { cta, heroImages, ogDefaultsRu } from "@/lib/site";
 
 const descriptionRu =
-  "SHARIO — агентство performance-маркетинга в Дубае, предоставляющее услуги performance-маркетинга, SEO и контента, сайтов и CRO, CRM и автоматизации, бренда и креатива. Используйте одну услугу или весь цикл целиком.";
+  "SHARIO — агентство цифрового маркетинга и креатива в Дубае, предоставляющее услуги performance-маркетинга, SEO и контента, сайтов и CRO, CRM и автоматизации, бренда и креатива. Используйте одну услугу или весь цикл целиком.";
 
 const HERO_IMAGE = heroImages.services.src;
 const HERO_IMAGE_ALT =
   "Оформленный в раму портрет женщины в шляпе с широкими полями и складчатом кремовом платье, облокотившейся на глубокий красный холст в солнечной комнате с деревянными панелями";
 
 export const metadata: Metadata = {
-  title: "Услуги агентства performance-маркетинга в Дубае",
+  title: "Услуги цифрового маркетинга и креатива в Дубае",
   description: descriptionRu,
   alternates: {
     canonical: "/ru/services",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     ...ogDefaultsRu,
     url: "/ru/services",
     type: "website",
-    title: "Услуги агентства performance-маркетинга в Дубае — SHARIO",
+    title: "Услуги цифрового маркетинга и креатива в Дубае — SHARIO",
     description: descriptionRu,
   },
 };
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 export default function RussianServicesPage() {
   return (
     <>
-      <h1 className="sr-only">Услуги агентства performance-маркетинга в Дубае</h1>
+      <h1 className="sr-only">Услуги цифрового маркетинга и креатива в Дубае</h1>
       <Hero
         src={HERO_IMAGE}
         alt={HERO_IMAGE_ALT}

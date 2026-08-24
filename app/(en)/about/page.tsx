@@ -222,7 +222,7 @@ export default function AboutPage() {
           <Frame
             src={sharedImages.founderPortrait}
             ratio="aspect-[4/5]"
-            alt={`${site.founder}, founder of Shario`}
+            alt="A woman in a tailored white blazer standing beside a horse in a stable, seen from behind"
           />
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">

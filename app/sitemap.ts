@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { insightArticles, services, site } from "@/lib/site";
+import { insightArticles, insightCategories, services, site } from "@/lib/site";
 
 const routes = ["/", "/services", "/insights", "/about", "/contact"];
 
@@ -60,5 +60,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ];
   });
 
-  return [...pages, ...servicePages, ...insightPages];
+  // Each Insights category tab (`/insights?category=…`) already carries its
+  // own title, meta description and canonical (see `generateMetadata` in
+  // `app/(en)/insights/page.tsx`) — listed here so it's discoverable the same
+  // way the rest of the site's real, indexable URLs are.
+  const categoryPages = insightCategories.flatMap((category) => {
+    const enUrl = `${site.domain}/insights?category=${category.slug}`;
+    const arUrl = `${site.domain}/ar/insights?category=${category.slug}`;
+    const ruUrl = `${site.domain}/ru/insights?category=${category.slug}`;
+    const languages = { en: enUrl, ar: arUrl, ru: ruUrl, "x-default": enUrl };
+
+    return [
+      { url: enUrl, lastModified, changeFrequency: "monthly" as const, priority: 0.6, alternates: { languages } },
+      { url: arUrl, lastModified, changeFrequency: "monthly" as const, priority: 0.6, alternates: { languages } },
+      { url: ruUrl, lastModified, changeFrequency: "monthly" as const, priority: 0.6, alternates: { languages } },
+    ];
+  });
+
+  return [...pages, ...servicePages, ...insightPages, ...categoryPages];
 }

@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Faq } from "@/components/faq";
+import {
+  BreadcrumbStructuredData,
+  FaqStructuredData,
+} from "@/components/structured-data";
 import {
   Band,
   Breadcrumb,
@@ -14,7 +19,15 @@ import {
   PillLink,
   SectionIntro,
 } from "@/components/ui";
-import { cta, getService, homeFaqs, ogDefaults, services, site } from "@/lib/site";
+import {
+  cta,
+  getInsightArticle,
+  getService,
+  homeFaqs,
+  ogDefaults,
+  services,
+  site,
+} from "@/lib/site";
 
 /** Every service page is known at build time, so prerender them. */
 export function generateStaticParams() {
@@ -60,24 +73,28 @@ export default async function ServicePage({
   if (!service) notFound();
 
   const related = services.filter((s) => s.slug !== service.slug).slice(0, 3);
+  const relatedInsight = service.relatedInsightSlug
+    ? getInsightArticle(service.relatedInsightSlug)
+    : undefined;
+
+  const breadcrumbItems = [
+    { href: "/", label: "Home" },
+    { href: "/services", label: "Services" },
+    { label: service.name },
+  ];
 
   return (
     <>
+      <BreadcrumbStructuredData items={breadcrumbItems} />
+      <FaqStructuredData items={homeFaqs} />
+
       <Hero
         src={service.heroImage}
         alt={`${service.name} — ${site.name}`}
         eyebrow={service.category}
         title={service.title}
         priority
-        breadcrumb={
-          <Breadcrumb
-            items={[
-              { href: "/", label: "Home" },
-              { href: "/services", label: "Services" },
-              { label: service.name },
-            ]}
-          />
-        }
+        breadcrumb={<Breadcrumb items={breadcrumbItems} />}
       />
 
       {/* What you get. The heading takes the service name unchanged —
@@ -150,6 +167,18 @@ export default async function ServicePage({
             />
           </div>
         </div>
+
+        {relatedInsight && (
+          <p className="reveal mt-14 text-[0.9375rem] text-carbon/60">
+            Further reading:{" "}
+            <Link
+              href={`/insights/${relatedInsight.slug}`}
+              className="border-b border-carbon/30 pb-0.5 text-carbon/80 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+            >
+              {relatedInsight.title}
+            </Link>
+          </p>
+        )}
       </Band>
 
       {/* Related services — a small corner detail rather than a full-width

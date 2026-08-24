@@ -189,7 +189,7 @@ export default function RussianAboutPage() {
           <Frame
             src={sharedImages.founderPortrait}
             ratio="aspect-[4/5]"
-            alt={`${site.founderRu}, основатель SHARIO`}
+            alt="Женщина в элегантном белом пиджаке стоит рядом с лошадью в конюшне, вид со спины"
           />
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">

@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Faq } from "@/components/faq";
+import {
+  BreadcrumbStructuredData,
+  FaqStructuredData,
+} from "@/components/structured-data";
 import {
   Band,
   Breadcrumb,
@@ -14,7 +19,15 @@ import {
   PillLink,
   SectionIntro,
 } from "@/components/ui";
-import { cta, getService, homeFaqs, ogDefaultsRu, services, site } from "@/lib/site";
+import {
+  cta,
+  getInsightArticle,
+  getService,
+  homeFaqs,
+  ogDefaultsRu,
+  services,
+  site,
+} from "@/lib/site";
 
 /** Every service page is known at build time, so prerender them. */
 export function generateStaticParams() {
@@ -60,25 +73,28 @@ export default async function RussianServicePage({
   if (!service) notFound();
 
   const related = services.filter((s) => s.slug !== service.slug).slice(0, 3);
+  const relatedInsight = service.relatedInsightSlug
+    ? getInsightArticle(service.relatedInsightSlug)
+    : undefined;
+
+  const breadcrumbItems = [
+    { href: "/ru", label: "Главная" },
+    { href: "/ru/services", label: "Услуги" },
+    { label: service.nameRu },
+  ];
 
   return (
     <>
+      <BreadcrumbStructuredData items={breadcrumbItems} />
+      <FaqStructuredData items={homeFaqs.map((item) => ({ q: item.qRu, a: item.aRu }))} />
+
       <Hero
         src={service.heroImage}
         alt={`${service.nameRu} — ${site.name}`}
         eyebrow={service.categoryRu}
         title={service.titleRu}
         priority
-        breadcrumb={
-          <Breadcrumb
-            locale="ru"
-            items={[
-              { href: "/ru", label: "Главная" },
-              { href: "/ru/services", label: "Услуги" },
-              { label: service.nameRu },
-            ]}
-          />
-        }
+        breadcrumb={<Breadcrumb locale="ru" items={breadcrumbItems} />}
       />
 
       {/* What you get */}
@@ -142,6 +158,18 @@ export default async function RussianServicePage({
             <DotList items={service.deliverablesRu} columns={1} accent={false} />
           </div>
         </div>
+
+        {relatedInsight && (
+          <p className="reveal mt-14 text-[0.9375rem] text-carbon/60">
+            Читайте также:{" "}
+            <Link
+              href={`/ru/insights/${relatedInsight.slug}`}
+              className="border-b border-carbon/30 pb-0.5 text-carbon/80 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+            >
+              {relatedInsight.titleRu}
+            </Link>
+          </p>
+        )}
       </Band>
 
       {/* Related services */}

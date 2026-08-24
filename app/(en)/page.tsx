@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Faq } from "@/components/faq";
 import { InsightCard } from "@/components/insights";
 import { SixServices } from "@/components/six-services";
+import { FaqStructuredData } from "@/components/structured-data";
 import {
   ArabicStatement,
   Band,
@@ -59,6 +60,8 @@ const stepTextures = sharedImages.homeStepTextures;
 export default function HomePage() {
   return (
     <>
+      <FaqStructuredData items={homeFaqs} />
+
       {/*
        * The client's own hero photograph, supplied with the reference layout —
        * the only portrait on the site, and the reason this hero runs the image
@@ -141,7 +144,7 @@ export default function HomePage() {
           <Frame
             src={sharedImages.homeAboutHorizon}
             ratio="aspect-[4/3]"
-            alt={`${site.founder}, founder of Shario`}
+            alt="A woman seated by the sea at golden hour, softly out of focus, looking out toward the horizon"
           />
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">
