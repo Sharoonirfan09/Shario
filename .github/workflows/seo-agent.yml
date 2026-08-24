@@ -1,224 +1,132 @@
-name: SHARIO SEO Agent
+name: SEO Agent (Claude Code)
 
+# Manual/API entry point only — this is what n8n calls via the GitHub REST
+# API (POST /repos/{owner}/{repo}/actions/workflows/seo-agent.yml/dispatches)
+# to hand Claude Code a task. No push/pull_request/schedule trigger is wired
+# up, so this workflow only ever runs when explicitly dispatched.
 on:
   workflow_dispatch:
     inputs:
       task:
-        description: 'SEO task instruction'
+        description: "Instructions for Claude Code to carry out."
         required: true
         type: string
       mode:
-        description: 'report_only | requires_approval'
+        description: "Operating mode label, passed through to Claude Code as context (e.g. audit, content, fix). Informational only in this first version — no branching logic depends on it yet."
         required: true
-        default: 'report_only'
         type: string
+        default: "audit"
+
+# Least privilege for what this workflow actually does: read the repo, push
+# a working branch, open a PR. No `issues`, no `id-token`, nothing that
+# touches repo settings, branch protection, or merge rights.
+permissions:
+  contents: write
+  pull-requests: write
+
+# One agent run at a time; never cancel a run that may already be pushing a
+# branch or opening a PR.
+concurrency:
+  group: seo-agent
+  cancel-in-progress: false
 
 jobs:
-  seo-agent:
+  run-agent:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-      pull-requests: write
-
+    timeout-minutes: 30
+    env:
+      # Bringing the dispatch inputs in as job-level env vars (rather than
+      # interpolating ${{ github.event.inputs.* }} directly into `run:`
+      # script text below) avoids GitHub Actions script-injection: `task`
+      # is attacker/operator-controlled free text, and a directly-inlined
+      # expression becomes literal bash source before execution. Referenced
+      # as "$TASK"/"$MODE" (quoted) in every run step instead.
+      TASK: ${{ github.event.inputs.task }}
+      MODE: ${{ github.event.inputs.mode }}
+      BASE_BRANCH: main
     steps:
-      - name: Checkout repository
+      - name: Checkout main
         uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      # Claude Code never runs on `main` itself: this branch switch happens
+      # before the action below touches a single file, and no later step
+      # ever checks out or pushes to `main` again.
+      - name: Create working branch
+        run: |
+          branch="seo-agent/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          git checkout -b "$branch"
+          echo "BRANCH=$branch" >> "$GITHUB_ENV"
+
+      # Official Claude Code GitHub Action (anthropics/claude-code-action).
+      # Passing `prompt` switches it into headless automation mode: it acts
+      # on the task text directly rather than waiting for an @claude mention
+      # on an issue/PR. It edits files in this checked-out working branch
+      # only — it does not create branches, commit, push, or open a PR
+      # itself, so it has no path to `main`. Verify `@v1` is still the
+      # action's current recommended tag before relying on this long-term.
+      - name: Run Claude Code
+        uses: anthropics/claude-code-action@v1
         with:
-          node-version: '20'
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            Mode: ${{ env.MODE }}
 
-      - name: Install dependencies
-        run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          fi
-
-      - name: Install Claude Code
-        run: |
-          npm install -g @anthropic-ai/claude-code
-
-      - name: Create SEO branch
-        id: branch
-        run: |
-          TIMESTAMP=$(date +%Y-%m-%dT%H-%M-%S)
-          MODE="${{ github.event.inputs.mode }}"
-          BRANCH="seo/${MODE}-${TIMESTAMP}"
-
-          echo "branch_name=${BRANCH}" >> "$GITHUB_OUTPUT"
-          git checkout -b "${BRANCH}"
-
-      - name: Run Claude Code SEO Agent
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          TASK: ${{ github.event.inputs.task }}
-          MODE: ${{ github.event.inputs.mode }}
-          BRANCH: ${{ steps.branch.outputs.branch_name }}
-
-        run: |
-          set -e
-
-          claude --print \
-            --model claude-sonnet-4-6 \
-            --max-turns 12 \
-            "You are the SEO engineer for the SHARIO website.
-
-          WEBSITE: https://shario.ae
-          REPOSITORY: Sharoonirfan09/Shario
-          STACK: Next.js, TypeScript, React
-          LANGUAGES: English, Arabic, Russian
-
-          PRODUCTION BRANCH: main
-          CURRENT BRANCH: ${BRANCH}
-          MODE: ${MODE}
-
-          SAFETY RULES:
-          - NEVER push directly to main.
-          - NEVER merge a Pull Request.
-          - NEVER deploy to Vercel.
-          - NEVER modify DNS.
-          - NEVER modify production environment variables.
-          - NEVER modify Vercel configuration.
-          - NEVER change visual design.
-          - NEVER change brand copy.
-          - NEVER change colors.
-          - NEVER change fonts.
-          - NEVER change the SHARIO logo.
-          - NEVER make unrelated code changes.
-
-          REPORT-ONLY MODE:
-          If MODE is report_only:
-          - DO NOT modify repository files.
-          - DO NOT commit anything.
-          - DO NOT push anything.
-          - DO NOT create a Pull Request.
-          - Analyse the repository only.
-          - Return the ACTUAL SEO findings in your final response.
-          - Do not simply say that findings were saved somewhere.
-
-          APPROVAL MODE:
-          If MODE is requires_approval:
-          - Make ONLY safe SEO changes related to the requested task.
-          - Do not make visual or branding changes.
-          - Run available build/validation commands.
-          - Keep changes on the SEO branch.
-          - Do NOT merge anything.
-
-          AUDIT:
-          Check:
-          1. Metadata
-          2. Title tags
-          3. Meta descriptions
-          4. Open Graph
-          5. Twitter metadata
-          6. Robots.txt
-          7. Sitemap
-          8. Canonical URLs
-          9. Hreflang
-          10. Structured data / JSON-LD
-          11. Broken internal links
-          12. Internal linking
-          13. Image alt text
-          14. Heading structure
-          15. Indexability
-          16. Duplicate content
-          17. URL structure
-          18. Language implementation
-          19. Technical SEO
-          20. Page performance issues visible in code
-
-          For each important finding provide:
-          - Priority: Critical / High / Medium / Low
-          - Issue
-          - Why it matters
-          - Exact file/page affected
-          - Recommended fix
-
-          TASK:
-          ${TASK}
-
-          First understand the existing SEO architecture.
-          Do not invent problems.
-          Be precise and practical.
-
-          Return the complete SEO report when finished." \
-            > /tmp/seo_report.md
-
-          echo "===== SHARIO SEO REPORT ====="
-          cat /tmp/seo_report.md
-          echo "===== END SEO REPORT ====="
-
-      - name: Publish SEO report
-        if: always()
-        run: |
-          {
-            echo "## SHARIO SEO Agent Report"
-            echo ""
-            echo "**Mode:** ${{ github.event.inputs.mode }}"
-            echo ""
-            echo "**Branch:** ${{ steps.branch.outputs.branch_name }}"
-            echo ""
-            echo "### Claude SEO Analysis"
-            echo ""
-            if [ -f /tmp/seo_report.md ]; then
-              cat /tmp/seo_report.md
-            else
-              echo "No SEO report was generated."
-            fi
-          } >> "$GITHUB_STEP_SUMMARY"
+            Task:
+            ${{ env.TASK }}
+          claude_args: "--max-turns 15"
+          track_progress: false
 
       - name: Check for changes
-        id: changes
+        id: diff
         run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
-            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Restore repository in report-only mode
-        if: github.event.inputs.mode == 'report_only'
+      - name: Commit changes
+        if: steps.diff.outputs.changed == 'true'
         run: |
-          git reset --hard HEAD
-          git clean -fd
+          git config user.name "seo-agent[bot]"
+          git config user.email "seo-agent-bot@users.noreply.github.com"
+          git add -A
+          git commit -m "SEO agent (${MODE}): automated changes" -m "Run: ${GITHUB_RUN_ID}"
 
-      - name: Create Pull Request
-        if: github.event.inputs.mode == 'requires_approval' && steps.changes.outputs.has_changes == 'true'
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ steps.branch.outputs.branch_name }}
-          base: main
-          title: "SEO: automated improvements"
-          body: |
-            ## SHARIO SEO Automation
+      - name: Push working branch
+        if: steps.diff.outputs.changed == 'true'
+        run: git push origin "${BRANCH}"
 
-            This Pull Request was created by the SHARIO SEO Agent.
-
-            ### Task
-            ${{ github.event.inputs.task }}
-
-            ### Safety
-            - No direct push to main
-            - No automatic merge
-            - No deployment
-            - SEO-related changes only
-            - Review required before merging
-
-            Please review all changes carefully before merging.
-          labels: seo-automation,requires-review
-
-      - name: Final report
-        if: always()
+      # Opens the PR as a draft against `main` and stops — nothing in this
+      # workflow merges it. Review and merge is a manual, separate action.
+      - name: Open pull request
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "======================================"
-          echo "SHARIO SEO AGENT"
-          echo "======================================"
-          echo "Mode: ${{ github.event.inputs.mode }}"
-          echo "Branch: ${{ steps.branch.outputs.branch_name }}"
-          echo "Changes detected: ${{ steps.changes.outputs.has_changes }}"
-          echo "======================================"
+          {
+            echo "Automated PR opened by \`.github/workflows/seo-agent.yml\`, dispatched via the GitHub API (intended caller: n8n)."
+            echo
+            echo "**Mode:** ${MODE}"
+            echo
+            echo "**Task given to Claude Code:**"
+            echo
+            echo "${TASK}"
+            echo
+            echo "---"
+            echo "Opened as a draft. This workflow never merges — review the diff before merging."
+          } > pr_body.md
+
+          gh pr create \
+            --base "${BASE_BRANCH}" \
+            --head "${BRANCH}" \
+            --title "SEO agent (${MODE}): run ${GITHUB_RUN_ID}" \
+            --draft \
+            --body-file pr_body.md
+
+      - name: No changes summary
+        if: steps.diff.outputs.changed == 'false'
+        run: echo "Claude Code made no file changes for this task — nothing to open a PR for."
