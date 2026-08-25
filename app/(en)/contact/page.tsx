@@ -4,7 +4,7 @@ import { EnquiryForm } from "@/components/enquiry-form";
 import { ObfuscatedEmail } from "@/components/obfuscated-email";
 import { SocialIcon } from "@/components/social-icons";
 import { Band, Frame, Heading, Hero, SectionIntro } from "@/components/ui";
-import { heroImages, nextSteps, ogDefaults, sharedImages, site, social } from "@/lib/site";
+import { heroImages, navServices, nextSteps, ogDefaults, sharedImages, site, social } from "@/lib/site";
 
 const description =
   "Book a free fifteen-minute strategy call with Shario. Dubai, UAE — we respond within one business day.";
@@ -69,7 +69,7 @@ export default function ContactPage() {
              * suspend. The boundary keeps the rest of this route prerendered.
              */}
             <Suspense fallback={<div className="min-h-[520px]" />}>
-              <EnquiryForm />
+              <EnquiryForm services={navServices()} />
             </Suspense>
           </div>
 

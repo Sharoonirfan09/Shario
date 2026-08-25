@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   // (Verified: leaving just the bare phrase here rendered with no suffix at
   // all once the old root-level template — which did apply, being higher up
   // the tree — was removed.)
-  title: "Digital Marketing Agency in Dubai — Shario",
+  title: "Marketing Agency in Dubai — Shario",
   description: site.description,
   alternates: {
     canonical: "/",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     ...ogDefaults,
     url: "/",
     type: "website",
-    title: "Shario — Digital Marketing Agency in Dubai",
+    title: "Shario — Marketing Agency in Dubai",
     description: site.description,
   },
 };

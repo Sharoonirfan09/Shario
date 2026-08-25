@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { getFirebaseAnalytics } from "@/lib/firebase";
+import { getFirebaseAnalytics } from "@/lib/firebase-analytics";
 
 /**
  * Firebase Analytics (the traffic shown in the Firebase console), wired but
@@ -16,12 +16,11 @@ import { getFirebaseAnalytics } from "@/lib/firebase";
  * `NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID` in the deployment environment, then
  * redeploy. No code change needed beyond that.
  *
- * This is a second, separate GA4 stream from the fixed gtag.js tag
- * hardcoded in `app/layout.tsx`'s `<head>` (Measurement ID
- * `G-E9JDVQ7D8V`) — Firebase Analytics is GA4 under the hood, so running
- * both sends duplicate pageview events unless they share the same GA4
- * property. Point them at the same Measurement ID to avoid that, or only
- * activate one of the two.
+ * This is a second, separate GA4 stream from the fixed gtag.js tag in
+ * `GoogleAnalytics` (Measurement ID `G-E9JDVQ7D8V`) — Firebase Analytics is
+ * GA4 under the hood, so running both sends duplicate pageview events unless
+ * they share the same GA4 property. Point them at the same Measurement ID to
+ * avoid that, or only activate one of the two.
  */
 export function FirebaseAnalytics() {
   useEffect(() => {

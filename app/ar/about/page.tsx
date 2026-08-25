@@ -195,21 +195,21 @@ export default function ArabicAboutPage() {
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
-              المؤسس
+              المؤسسة
             </p>
             <Heading as="h2" scale="md" className="mt-5">
               {site.founderAr}
             </Heading>
             <p className="reveal mt-6 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75">
-              مسوّق أدائي واستراتيجي نمو رقمي، يركز على بناء علامات تجارية
+              مسوّقة أدائية واستراتيجية نمو رقمي، تركز على بناء علامات تجارية
               واضحة وذات صلة ومبنية للنمو.
             </p>
             <p
               className="reveal mt-4 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75"
               data-delay="80"
             >
-              قبل تأسيس شاريو، عمل شارون عبر قطاعات العقارات والضيافة والأعمال
-              بين الشركات في دبي، وقاد مبادرات التسويق والاستراتيجية الرقمية
+              قبل تأسيس شاريو، عملت شارون عبر قطاعات العقارات والضيافة والأعمال
+              بين الشركات في دبي، وقادت مبادرات التسويق والاستراتيجية الرقمية
               والنمو لشركات وعلامات تجارية طموحة.
             </p>
             <p
@@ -233,7 +233,7 @@ export default function ArabicAboutPage() {
               <div>
                 <p className="font-arabic text-xl font-bold">{site.founderAr}</p>
                 <p className="mt-1 text-[0.8125rem] text-carbon/60">
-                  مهندس التسويق القائم على الإيرادات
+                  {site.founderRoleAr}
                 </p>
               </div>
               <a
@@ -243,6 +243,14 @@ export default function ArabicAboutPage() {
                 className="font-arabic border-b border-carbon/30 pb-1 text-[0.75rem] text-carbon/70 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 لينكدإن ←
+              </a>
+              <a
+                href={site.founderUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-arabic border-b border-carbon/30 pb-1 text-[0.75rem] text-carbon/70 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                الموقع الشخصي ←
               </a>
             </div>
           </div>

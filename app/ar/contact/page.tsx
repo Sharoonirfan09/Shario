@@ -4,7 +4,7 @@ import { EnquiryForm } from "@/components/enquiry-form";
 import { ObfuscatedEmail } from "@/components/obfuscated-email";
 import { SocialIcon } from "@/components/social-icons";
 import { Band, Frame, Heading, Hero, SectionIntro } from "@/components/ui";
-import { heroImages, nextSteps, ogDefaultsAr, sharedImages, site, social } from "@/lib/site";
+import { heroImages, navServices, nextSteps, ogDefaultsAr, sharedImages, site, social } from "@/lib/site";
 
 const descriptionAr =
   "احجزوا مكالمة استراتيجية مجانية مدتها خمس عشرة دقيقة مع شاريو. دبي، الإمارات — نرد خلال يوم عمل واحد.";
@@ -56,7 +56,7 @@ export default function ArabicContactPage() {
               ستحقق شاريو ذلك. بتركيز يخص عملكم تحديداً.
             </p>
             <Suspense fallback={<div className="min-h-[520px]" />}>
-              <EnquiryForm locale="ar" />
+              <EnquiryForm locale="ar" services={navServices()} />
             </Suspense>
           </div>
 

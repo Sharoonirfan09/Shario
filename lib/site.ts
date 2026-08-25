@@ -56,9 +56,9 @@ export const site = {
    * previously ran to 174/211 characters respectively.
    */
   description:
-    "Shario is a founder-led digital marketing agency in Dubai building marketing systems — performance marketing, SEO, websites and CRM — that turn spend into revenue.",
+    "Shario is a founder-led marketing agency in Dubai building digital marketing systems — performance marketing, SEO, websites and CRM — that turn spend into revenue.",
   descriptionAr:
-    "شاريو وكالة تسويق رقمي في دبي يقودها مؤسسها، تبني أنظمة تسويقية تحقق مبيعات: التسويق الأدائي، تحسين محركات البحث، المواقع الإلكترونية، وإدارة علاقات العملاء.",
+    "شاريو وكالة تسويق رقمي في دبي تقودها مؤسستها، تبني أنظمة تسويقية تحقق مبيعات: التسويق الأدائي، تحسين محركات البحث، المواقع الإلكترونية، وإدارة علاقات العملاء.",
   descriptionRu:
     "SHARIO — агентство цифрового маркетинга в Дубае под руководством основателя. Строим системы, которые приносят продажи: performance-маркетинг, SEO, сайты, CRM.",
   location: "Dubai, UAE",
@@ -75,13 +75,16 @@ export const site = {
   emailDomain: "shario.ae",
   website: "shario.ae",
   linkedin: "https://linkedin.com/in/sharoonirfan",
-  founder: "Sharoon Irfan",
-  founderAr: "شارون عرفان",
+  /** Her own site — the canonical Person entity SHARIO's founder markup points back to via `@id`/`url` (`components/structured-data.tsx`), rather than restating a second, disconnected Person record. */
+  founderUrl: "https://sharoon.ae",
+  founder: "Sharoon Irfan Khan",
+  founderAr: "شارون عرفان خان",
   /** Personal name, transliterated — not the SHARIO brand name, which stays in Latin script everywhere, including inside Russian copy. */
-  founderRu: "Шарун Ирфан",
-  founderRole: "Founder & Digital Growth Strategist",
-  founderRoleAr: "المؤسس واستراتيجي النمو الرقمي",
-  founderRoleRu: "Основатель и стратег цифрового роста",
+  founderRu: "Шарун Ирфан Хан",
+  /** Matches the title already used in the About page's founder credit line — kept as one value here so structured data and visible copy can never drift apart. */
+  founderRole: "Revenue Marketing Architect",
+  founderRoleAr: "مهندسة التسويق القائم على الإيرادات",
+  founderRoleRu: "Архитектор маркетинга, ориентированного на выручку",
   /** The headline claim, cited on Home and About. */
   revenue: "AED 35M+",
   experience: "6+ years",
@@ -750,7 +753,7 @@ export const services: Service[] = [
     titleRu: "Performance-маркетинг.",
     heroImage: "/images/book/hero-performance.jpg",
     descriptor:
-      "Google Ads and Meta Ads engineered for qualified leads at below-target cost per lead.",
+      "Digital advertising across Google and Meta, engineered for qualified leads at below-target cost per lead.",
     descriptorAr:
       "حملات إعلانية على جوجل وميتا مصممة لجذب عملاء محتملين مؤهلين بتكلفة أقل من المستهدف لكل عميل محتمل.",
     descriptorRu:
@@ -765,7 +768,7 @@ export const services: Service[] = [
       "Performance-маркетинг — это цифровая реклама, которую покупают и оценивают относительно конкретного результата — лида, продажи, — а не показа. Платное продвижение работает тогда, когда каждый потраченный дирхам можно проследить до лида, который действительно нужен отделу продаж.",
     whatWeDo: [
       "Google Search, Display and Performance Max",
-      "Meta campaigns across Facebook and Instagram",
+      "Social media marketing across Meta (Facebook and Instagram)",
       "YouTube and video demand generation",
       "Audience, offer and creative testing",
       "Budget pacing and bid strategy",
@@ -944,12 +947,12 @@ export const services: Service[] = [
     ctaTitleAr: ["لنضع الإنفاق", "حيث يُثمر."],
     ctaTitleRu: ["Направим бюджет", "туда, где он окупается."],
     metaDescription:
-      "Performance marketing in Dubai — Google Ads and Meta Ads managed for qualified leads at below-target cost per lead, reported against pipeline and closed revenue.",
+      "Digital advertising agency in Dubai — Google Ads and Meta Ads run as performance marketing, engineered for qualified leads at below-target cost per lead.",
     metaDescriptionAr:
       "التسويق الأدائي في دبي — إدارة إعلانات جوجل وميتا لجذب عملاء محتملين مؤهلين بتكلفة أقل من المستهدف، مع تقارير مقابل مسار المبيعات والإيرادات المحققة.",
     metaDescriptionRu:
       "Performance-маркетинг в Дубае — управление Google Ads и Meta Ads для привлечения квалифицированных лидов по цене ниже целевой, с отчётностью по воронке продаж и закрытой выручке.",
-    seoTitle: "Performance Marketing Agency in Dubai",
+    seoTitle: "Digital Advertising Agency in Dubai — Performance Marketing",
     seoTitleAr: "وكالة التسويق الأدائي في دبي",
     seoTitleRu: "Агентство performance-маркетинга в Дубае",
     relatedInsightSlug: "dubai-ad-auctions-getting-more-competitive",
@@ -1162,12 +1165,12 @@ export const services: Service[] = [
     ctaTitleAr: ["لنجعل العلامة التجارية", "أسهل في الإيجاد."],
     ctaTitleRu: ["Сделаем бренд", "легче находимым."],
     metaDescription:
-      "SEO and content marketing in Dubai — technical SEO, on-page optimisation and content clusters built to rank in Dubai search and win AI-driven results.",
+      "SEO company in Dubai — technical SEO, on-page optimisation and content clusters built to rank in Dubai search and win AI-driven results.",
     metaDescriptionAr:
       "تحسين محركات البحث والتسويق بالمحتوى في دبي — تحسين تقني، وتحسين داخل الصفحات، ومجموعات محتوى مصممة للترتب في نتائج البحث بدبي والفوز بنتائج الذكاء الاصطناعي.",
     metaDescriptionRu:
       "SEO и контент-маркетинг в Дубае — техническое SEO, оптимизация страниц и контентные кластеры, созданные для попадания в топ поиска в Дубае и в ответы ИИ-поисковиков.",
-    seoTitle: "SEO & Content Agency in Dubai",
+    seoTitle: "SEO Company in Dubai — Technical SEO & Content",
     seoTitleAr: "وكالة تحسين محركات البحث والمحتوى في دبي",
     seoTitleRu: "Агентство SEO и контент-маркетинга в Дубае",
     relatedInsightSlug: "ai-search-changing-what-ranking-means",
@@ -1379,12 +1382,12 @@ export const services: Service[] = [
     ctaTitleAr: ["لنبنِ الموقع", "الذي يحوّل فعلاً."],
     ctaTitleRu: ["Создадим сайт,", "который действительно конвертирует."],
     metaDescription:
-      "Website development and conversion rate optimisation in Dubai — high-converting websites with SEO-ready architecture, landing pages and CRM-integrated funnels.",
+      "Web design agency in Dubai — high-converting websites with SEO-ready architecture, custom landing pages and CRM-integrated funnels.",
     metaDescriptionAr:
       "تطوير المواقع الإلكترونية وتحسين معدل التحويل في دبي — مواقع عالية التحويل ببنية جاهزة لمحركات البحث، وصفحات هبوط، ومسارات متكاملة مع إدارة علاقات العملاء.",
     metaDescriptionRu:
       "Разработка сайтов и оптимизация конверсии в Дубае — высококонверсионные сайты с готовой к SEO архитектурой, посадочными страницами и воронками, интегрированными с CRM.",
-    seoTitle: "Website Design & CRO Agency in Dubai",
+    seoTitle: "Web Design Agency in Dubai — Websites & CRO",
     seoTitleAr: "وكالة تصميم المواقع الإلكترونية وتحسين التحويل في دبي",
     seoTitleRu: "Агентство веб-дизайна и CRO в Дубае",
     relatedInsightSlug: "real-cost-of-a-slow-website",
@@ -1621,7 +1624,7 @@ export const services: Service[] = [
     titleRu: "Бренд и креатив.",
     heroImage: "/images/book/hero-brand.jpg",
     descriptor:
-      "Brand identity, campaign visuals, social creative and marketing collateral produced to a launch standard.",
+      "Brand strategy, identity systems, campaign visuals and creative produced to a launch standard.",
     descriptorAr:
       "هوية بصرية، ومرئيات حملات، ومحتوى إبداعي لمنصات التواصل، ومواد تسويقية بجودة تليق بإطلاق العلامة التجارية.",
     descriptorRu:
@@ -1635,11 +1638,11 @@ export const services: Service[] = [
     leadRu:
       "Креатив — переменная с самым широким разбросом результатов в платном продвижении: один и тот же бюджет за более сильной работой покупает совершенно другой результат.",
     whatWeDo: [
+      "Brand strategy and positioning",
       "Brand identity and visual systems",
       "Campaign concepts and key visuals",
-      "Social and paid ad creative",
+      "Social media and paid ad creative",
       "Marketing collateral and brochures",
-      "Launch and project branding",
     ],
     whatWeDoAr: [
       "الهوية البصرية والأنظمة التصميمية",
@@ -1815,12 +1818,12 @@ export const services: Service[] = [
     ctaTitleAr: ["لنجعل الإبداع", "يستحق الإنفاق."],
     ctaTitleRu: ["Сделаем креатив,", "который оправдывает бюджет."],
     metaDescription:
-      "Brand and creative in Dubai — brand identity, campaign visuals, social and paid ad creative and marketing collateral produced to a launch standard.",
+      "Branding and creative agency in Dubai — brand strategy, identity, campaign visuals, social creative and marketing collateral produced to a launch standard.",
     metaDescriptionAr:
       "العلامة التجارية والإبداع في دبي — هوية بصرية، ومرئيات حملات، ومحتوى إبداعي لمنصات التواصل والإعلانات المدفوعة، ومواد تسويقية بجودة تليق بإطلاق العلامة التجارية.",
     metaDescriptionRu:
       "Бренд и креатив в Дубае — айдентика бренда, визуалы для кампаний, креатив для соцсетей и платной рекламы, маркетинговые материалы, созданные на уровне готовности к запуску.",
-    seoTitle: "Branding Agency in Dubai",
+    seoTitle: "Branding & Creative Agency in Dubai",
     seoTitleAr: "وكالة العلامات التجارية في دبي",
     seoTitleRu: "Брендинговое агентство в Дубае",
   },
@@ -2073,6 +2076,40 @@ export function servicesByCategory(): {
   }
 
   return groups;
+}
+
+/**
+ * The handful of fields a client-side nav/selector actually renders — never
+ * the full `Service` (FAQs, deliverables, images, benefits, in three
+ * languages each). `SiteHeader` and `EnquiryForm` are `"use client"`, so
+ * whatever they import from this file ships to the browser on every page;
+ * importing the full `services`/`servicesByCategory` there was pulling this
+ * entire file's trilingual content into the client bundle. Pass the result
+ * of `navServices()`/`navServiceGroups()` in as a prop from the server
+ * component that renders them instead.
+ */
+export type NavService = Pick<Service, "slug" | "num" | "name" | "nameAr" | "nameRu">;
+
+function toNavService({ slug, num, name, nameAr, nameRu }: Service): NavService {
+  return { slug, num, name, nameAr, nameRu };
+}
+
+/** `services`, trimmed for a client component. */
+export function navServices(): NavService[] {
+  return services.map(toNavService);
+}
+
+/** `servicesByCategory()`, trimmed the same way — what the nav dropdown renders. */
+export function navServiceGroups(): {
+  category: string;
+  categoryAr: string;
+  categoryRu: string;
+  items: NavService[];
+}[] {
+  return servicesByCategory().map((group) => ({
+    ...group,
+    items: group.items.map(toNavService),
+  }));
 }
 
 /** Previous and next service, for walking the set from any one page. */

@@ -9,6 +9,6 @@ export default async function Image() {
   return buildPageOgImage({
     photo: HERO_IMAGE,
     eyebrow: "Services",
-    title: "Performance Marketing Agency Services in Dubai",
+    title: "Digital Marketing Agency in Dubai",
   });
 }

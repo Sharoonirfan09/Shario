@@ -1,14 +1,40 @@
 import Script from "next/script";
 
 /**
+ * The fixed Google tag (gtag.js), Measurement ID `G-E9JDVQ7D8V` — the one
+ * GA4 stream every route reports to. Previously a raw `<script async src=…>`
+ * plus an inline config `<script>` hardcoded at the top of `<head>` in
+ * `app/layout.tsx`: `async` stops it blocking HTML *parsing*, but the tag
+ * still downloaded and executed on the main thread as early as possible on
+ * every route, ahead of the page's own render — a real Total Blocking Time
+ * cost on the mobile CPU Lighthouse throttles against. `next/script`'s
+ * `afterInteractive` is Next's own documented strategy for GA4 specifically:
+ * it still fires once the page is interactive (so no pageview is lost) but
+ * off the critical rendering path rather than racing it. Kept as one
+ * instance, not env-var-gated like `FacebookPixel` below — there is exactly
+ * one GA4 property and it should always report; don't reintroduce a second,
+ * env-var-driven GA4 component alongside it.
+ */
+export function GoogleAnalytics() {
+  return (
+    <>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-E9JDVQ7D8V"
+        strategy="afterInteractive"
+      />
+      <Script id="ga4-init" strategy="afterInteractive">
+        {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-E9JDVQ7D8V');`}
+      </Script>
+    </>
+  );
+}
+
+/**
  * Meta/Facebook Pixel, inert-until-configured: reads `NEXT_PUBLIC_FB_PIXEL_ID`
  * and renders nothing when it's unset.
- *
- * GA4 itself is not here — it's the fixed Google tag (gtag.js) hardcoded at
- * the top of `<head>` in `app/layout.tsx` (Measurement ID `G-E9JDVQ7D8V`).
- * That placement is deliberate (Google's official snippet loads earliest in
- * `<head>`, on every route, via the root layout) — don't reintroduce a second,
- * env-var-driven GA4 component here alongside it.
  *
  * To activate: find the Pixel ID in Meta Events Manager (Data Sources → your
  * pixel → Settings — a numeric ID, not the access token), set

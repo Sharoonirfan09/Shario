@@ -4,7 +4,7 @@ import { EnquiryForm } from "@/components/enquiry-form";
 import { ObfuscatedEmail } from "@/components/obfuscated-email";
 import { SocialIcon } from "@/components/social-icons";
 import { Band, Frame, Heading, Hero, SectionIntro } from "@/components/ui";
-import { heroImages, nextSteps, ogDefaultsRu, sharedImages, site, social } from "@/lib/site";
+import { heroImages, navServices, nextSteps, ogDefaultsRu, sharedImages, site, social } from "@/lib/site";
 
 const descriptionRu =
   "Забронируйте бесплатный пятнадцатиминутный стратегический звонок с SHARIO. Дубай, ОАЭ — мы отвечаем в течение одного рабочего дня.";
@@ -56,7 +56,7 @@ export default function RussianContactPage() {
               SHARIO этого добьётся. С фокусом именно на вашем бизнесе.
             </p>
             <Suspense fallback={<div className="min-h-[520px]" />}>
-              <EnquiryForm locale="ru" />
+              <EnquiryForm locale="ru" services={navServices()} />
             </Suspense>
           </div>
 

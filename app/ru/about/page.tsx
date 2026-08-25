@@ -207,7 +207,7 @@ export default function RussianAboutPage() {
               className="reveal mt-4 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75"
               data-delay="80"
             >
-              До основания SHARIO Шарун работал в сферах недвижимости, гостиничного бизнеса и B2B
+              До основания SHARIO Шарун работала в сферах недвижимости, гостиничного бизнеса и B2B
               в Дубае, руководя маркетинговыми, digital-стратегическими и ростовыми инициативами
               для амбициозных компаний и брендов.
             </p>
@@ -232,7 +232,7 @@ export default function RussianAboutPage() {
               <div>
                 <p className="font-display text-xl">{site.founderRu}</p>
                 <p className="mt-1 text-[0.8125rem] text-carbon/60">
-                  Архитектор маркетинга, ориентированного на выручку
+                  {site.founderRoleRu}
                 </p>
               </div>
               <a
@@ -242,6 +242,14 @@ export default function RussianAboutPage() {
                 className="eyebrow border-b border-carbon/30 pb-1 text-carbon/70 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 LinkedIn →
+              </a>
+              <a
+                href={site.founderUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="eyebrow border-b border-carbon/30 pb-1 text-carbon/70 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                Личный сайт →
               </a>
             </div>
           </div>

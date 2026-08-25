@@ -90,7 +90,7 @@ export default async function ServicePage({
 
       <Hero
         src={service.heroImage}
-        alt={`${service.name} — ${site.name}`}
+        alt={`${service.name} in Dubai — ${site.name}`}
         eyebrow={service.category}
         title={service.title}
         priority

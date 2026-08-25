@@ -233,8 +233,9 @@ export default function AboutPage() {
               {site.founder}
             </Heading>
             <p className="reveal mt-6 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75">
-              A performance marketer and digital growth strategist focused on
-              building brands that are clear, relevant and built to grow.
+              A Dubai-based {site.founderRole}, Digital Marketing Specialist
+              and Branding Consultant, she founded SHARIO to build brands
+              that are clear, relevant and built to grow.
             </p>
             <p
               className="reveal mt-4 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75"
@@ -268,7 +269,7 @@ export default function AboutPage() {
               <div>
                 <p className="font-display text-xl">{site.founder}</p>
                 <p className="mt-1 text-[0.8125rem] text-carbon/60">
-                  Revenue Marketing Architect
+                  {site.founderRole}
                 </p>
               </div>
               <a
@@ -278,6 +279,14 @@ export default function AboutPage() {
                 className="eyebrow border-b border-carbon/30 pb-1 text-carbon/70 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 LinkedIn →
+              </a>
+              <a
+                href={site.founderUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="eyebrow border-b border-carbon/30 pb-1 text-carbon/70 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                Personal Site →
               </a>
             </div>
           </div>

@@ -20,7 +20,7 @@ export function GET() {
   lines.push(`> ${site.description}`);
   lines.push("");
   lines.push(
-    `${site.name} is a founder-led digital marketing and creative studio based in ${site.location}, working with ambitious businesses across the region. The founder, ${site.founder} (${site.founderRole}), stays directly involved in the accounts the studio runs.`,
+    `${site.name} is a founder-led digital marketing and creative studio based in ${site.location}, working with ambitious businesses across the region. It was founded by ${site.founder}, a Dubai-based ${site.founderRole}, Digital Marketing Specialist and Branding Consultant; she stays directly involved in every account the studio runs. More about her: ${site.founderUrl}`,
   );
   lines.push("");
 

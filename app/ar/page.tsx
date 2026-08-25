@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 
 /** Same photograph and crop as the English homepage — `heroImages.home` in `lib/site.ts`. */
 const HERO_IMAGE = heroImages.home.src;
-const HERO_IMAGE_ALT = `${site.founderAr}، مؤسس شاريو`;
+const HERO_IMAGE_ALT = `${site.founderAr}، مؤسسة شاريو`;
 
 /** Same four textures as the English homepage's "How We Work" cards — `lib/site.ts`'s `sharedImages.homeStepTextures`. */
 const stepTextures = sharedImages.homeStepTextures;
@@ -98,11 +98,11 @@ export default function ArabicHomePage() {
               عن شاريو
             </p>
             <Heading scale="md" className="mt-5">
-              بقيادة المؤسس منذ اليوم الأول.
+              بقيادة المؤسسة منذ اليوم الأول.
             </Heading>
             <p className="reveal mt-6 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75">
               شاريو وكالة تسويق رقمي في دبي، تعمل وفق نموذج قيادة أول. تُضبط
-              كل استراتيجية على معيار مؤسس بنى وأطلق بنفسه أنظمة تسويقية
+              كل استراتيجية على معيار مؤسسة بنت وأطلقت بنفسها أنظمة تسويقية
               متكاملة لمشاريع يقودها مطورون في المنطقة.
             </p>
             <p

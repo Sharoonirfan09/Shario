@@ -17,11 +17,19 @@ import { insightArticles, services, site, social } from "@/lib/site";
  * already live, clickable, in the footer — plus the founder's own personal
  * profile stays scoped to the `founder` object below rather than mixed into
  * the organization's.
+ *
+ * `@id` on both the organization and its `founder` gives each entity a
+ * stable identifier a knowledge graph can resolve consistently: the
+ * organization's `@id` is reused by `publisher` references elsewhere in this
+ * file, and the founder's `@id` (`site.founderUrl` + `#person`) points at
+ * the same Person entity her own site (sharoon.ae) declares — so this
+ * markup describes one founder, not a second, disconnected record.
  */
 export function StructuredData() {
   const data = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
+    "@id": `${site.domain}/#organization`,
     name: site.name,
     alternateName: "SHARIO",
     description: site.description,
@@ -33,8 +41,11 @@ export function StructuredData() {
     telephone: site.phone,
     founder: {
       "@type": "Person",
+      "@id": `${site.founderUrl}/#person`,
       name: site.founder,
+      url: site.founderUrl,
       jobTitle: site.founderRole,
+      gender: "Female",
       sameAs: site.linkedin,
     },
     areaServed: [
@@ -80,14 +91,20 @@ export function StructuredData() {
  * business entity above. No `potentialAction`/`SearchAction`: the site has no
  * search feature, and declaring one Google can't actually run would be
  * exactly the kind of misleading schema this pass is checking for.
+ *
+ * `publisher` references the organization by its `@id` (declared in
+ * `StructuredData` above) rather than restating its properties, so the two
+ * scripts describe one organization, not two.
  */
 export function WebsiteStructuredData() {
   const data = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${site.domain}/#website`,
     name: site.name,
     alternateName: "SHARIO",
     url: site.domain,
+    publisher: { "@id": `${site.domain}/#organization` },
     inLanguage: ["en", "ar", "ru"],
   };
 
@@ -148,11 +165,13 @@ export function ArticleStructuredData({
     articleSection: isAr ? category?.nameAr : isRu ? category?.nameRu : category?.name,
     author: {
       "@type": "Person",
+      "@id": `${site.founderUrl}/#person`,
       name: isAr ? site.founderAr : isRu ? site.founderRu : site.founder,
       jobTitle: isAr ? site.founderRoleAr : isRu ? site.founderRoleRu : site.founderRole,
     },
     publisher: {
       "@type": "Organization",
+      "@id": `${site.domain}/#organization`,
       name: site.name,
       url: site.domain,
     },
@@ -237,6 +256,7 @@ export function InsightsBlogStructuredData({ locale = "en" }: { locale?: Locale 
     url: base,
     publisher: {
       "@type": "Organization",
+      "@id": `${site.domain}/#organization`,
       name: site.name,
       url: site.domain,
     },

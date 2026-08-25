@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import type { Locale } from "@/lib/locale";
 import { localizedPath } from "@/lib/locale";
-import { cta, nav, services, servicesByCategory, site } from "@/lib/site";
+import { cta, nav, site } from "@/lib/site";
+import type { NavService } from "@/lib/site";
 
 /**
  * Sticky nav with a Services dropdown, and the full-screen overlay it
@@ -24,9 +25,21 @@ import { cta, nav, services, servicesByCategory, site } from "@/lib/site";
  * on Arabic script — letter-spacing above zero visibly breaks Arabic's
  * contextual glyph joining, the same reason `ArabicStatement` avoids it),
  * and adds the EN↔AR switcher.
+ *
+ * `navServiceGroups` is computed server-side (`navServiceGroups()` in
+ * `lib/site.ts`) and passed in rather than imported here — see the note on
+ * that function for why a client component never imports `services`
+ * directly.
  */
-export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
+export function SiteHeader({
+  locale = "en",
+  navServiceGroups,
+}: {
+  locale?: Locale;
+  navServiceGroups: { category: string; categoryAr: string; categoryRu: string; items: NavService[] }[];
+}) {
   const pathname = usePathname();
+  const navServicesFlat = navServiceGroups.flatMap((group) => group.items);
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -271,7 +284,7 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
                          */}
                         <div className="border border-carbon/12 bg-porcelain p-8 text-carbon shadow-[0_28px_70px_-24px_rgba(37,37,37,0.4)]">
                           <div className="grid grid-cols-2 gap-x-10 gap-y-8">
-                            {servicesByCategory().map((group) => (
+                            {navServiceGroups.map((group) => (
                               <div key={group.category}>
                                 <p
                                   className={`mb-3 flex items-center gap-2.5 text-carbon/50 ${isAr ? "font-arabic text-[0.8125rem]" : "eyebrow"}`}
@@ -514,7 +527,7 @@ export function SiteHeader({ locale = "en" }: { locale?: Locale }) {
                 {copy.theServicesLabel}
               </p>
               <div className="flex flex-col gap-3.5">
-                {services.map((service) => (
+                {navServicesFlat.map((service) => (
                   <Link
                     key={service.slug}
                     href={href(`/services/${service.slug}`)}

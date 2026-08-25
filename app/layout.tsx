@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Amiri, Cormorant_Garamond, EB_Garamond, Jost } from "next/font/google";
 import "./globals.css";
-import { FacebookPixel } from "@/components/analytics";
+import { FacebookPixel, GoogleAnalytics } from "@/components/analytics";
 import { FirebaseAnalytics } from "@/components/firebase-analytics";
 import { Reveal } from "@/components/reveal";
 import { StructuredData, WebsiteStructuredData } from "@/components/structured-data";
@@ -14,6 +14,20 @@ import { site } from "@/lib/site";
  * grepping every `font-display`/`font-body`/`font-label` and weight-utility
  * usage across `app` and `components` before trimming; re-check that sweep
  * before adding a heavier weight back rather than assuming it's unused.
+ *
+ * `preload: false` on every family here: this file is the root layout, so
+ * per Next's own font docs ("if it's the root layout, it is preloaded on
+ * all routes") the default `preload: true` was emitting a `<link
+ * rel=preload>` for every subset/weight/style combination on *every*
+ * locale's pages — Amiri's Arabic glyphs and the Cyrillic cut of Cormorant/
+ * EB Garamond/Jost were being force-fetched at high priority on the English
+ * pages that never render a single one of those characters (confirmed in
+ * the built HTML: ~280KB of preloaded font bytes with zero use on `/`).
+ * That competed directly with the hero photograph — the actual mobile LCP
+ * element — for early bandwidth. `display: "swap"` already means text
+ * paints immediately in the fallback stack and swaps in once a font
+ * arrives, so nothing here changes what renders — only when the browser
+ * fetches it, and at what priority relative to the LCP image.
  */
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -25,6 +39,7 @@ const cormorant = Cormorant_Garamond({
   weight: ["300", "400", "500"],
   style: ["normal", "italic"],
   display: "swap",
+  preload: false,
 });
 
 const ebGaramond = EB_Garamond({
@@ -33,6 +48,7 @@ const ebGaramond = EB_Garamond({
   weight: ["400"],
   style: ["normal", "italic"],
   display: "swap",
+  preload: false,
 });
 
 const jost = Jost({
@@ -41,6 +57,7 @@ const jost = Jost({
   subsets: ["latin", "cyrillic"],
   weight: ["300", "400"],
   display: "swap",
+  preload: false,
 });
 
 /**
@@ -58,6 +75,7 @@ const amiri = Amiri({
   weight: ["400", "700"],
   style: ["normal"],
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -115,20 +133,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${cormorant.variable} ${ebGaramond.variable} ${jost.variable} ${amiri.variable} h-full antialiased`}
     >
       <head>
-        {/* Google tag (gtag.js) — GA4, must stay first in <head> so it loads on every route. */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9JDVQ7D8V" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-E9JDVQ7D8V');`,
-          }}
-        />
         {/*
           Marks the document as JS-capable before first paint, which is what
           arms the scroll-reveal styles. Without this the reveals stay visible
-          rather than stuck at opacity 0.
+          rather than stuck at opacity 0. The only script that has to be a
+          blocking inline tag in <head> — everything else (GA4, the Facebook
+          Pixel) can and does run after the page is interactive instead; see
+          `components/analytics.tsx`.
         */}
         <script
           dangerouslySetInnerHTML={{
@@ -146,6 +157,7 @@ gtag('config', 'G-E9JDVQ7D8V');`,
         <Reveal />
         <StructuredData />
         <WebsiteStructuredData />
+        <GoogleAnalytics />
         <FacebookPixel />
         <FirebaseAnalytics />
       </body>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { navServiceGroups } from "@/lib/site";
 
 /**
  * Every English page sets a plain string `title` (e.g. `"About"`); this is
@@ -13,7 +14,7 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: {
     template: "%s — Shario",
-    default: "Shario — Digital Marketing Agency in Dubai",
+    default: "Shario — Marketing Agency in Dubai",
   },
 };
 
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
 export default function EnglishLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader navServiceGroups={navServiceGroups()} />
       <main id="main" className="flex-1">
         {children}
       </main>

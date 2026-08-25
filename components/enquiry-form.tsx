@@ -5,7 +5,7 @@ import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { submitEnquiry, type EnquiryState } from "@/lib/actions";
 import type { Locale } from "@/lib/locale";
-import { services } from "@/lib/site";
+import type { NavService } from "@/lib/site";
 
 const initialState: EnquiryState = { status: "idle", message: "" };
 
@@ -46,7 +46,16 @@ function SubmitButton({ isAr, isRu }: { isAr: boolean; isRu: boolean }) {
   );
 }
 
-export function EnquiryForm({ locale = "en" }: { locale?: Locale }) {
+/** `services` is passed in from the server-rendered Contact page as its
+ *  trimmed `navServices()` form — see `lib/site.ts` for why this "use
+ *  client" component never imports `services` directly. */
+export function EnquiryForm({
+  locale = "en",
+  services,
+}: {
+  locale?: Locale;
+  services: NavService[];
+}) {
   const isAr = locale === "ar";
   const isRu = locale === "ru";
   const [state, formAction] = useActionState(submitEnquiry, initialState);
