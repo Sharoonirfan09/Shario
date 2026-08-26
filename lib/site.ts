@@ -4377,7 +4377,9 @@ export const insightArticles: InsightArticle[] = [
       p(
         "A page can still rank traditionally while another source is selected or cited within an AI-generated response.",
       ),
-      p("That means marketers need to think beyond rankings alone."),
+      p(
+        "That means marketers need to think beyond rankings alone — see how [AI search is changing what 'ranking' means](/insights/ai-search-changing-what-ranking-means) for a closer look at that shift.",
+      ),
       h3("2. Clear answers become increasingly valuable"),
       p(
         "If a page takes several paragraphs to eventually answer a simple question, it is harder for both humans and machines to understand its primary point.",
@@ -4540,11 +4542,13 @@ export const insightArticles: InsightArticle[] = [
       p(
         "Google states that pages need to meet normal Search technical requirements and be eligible to appear in Search in order to be considered as supporting links in AI Overviews or AI Mode.",
       ),
-      p("Continue to pay attention to:"),
+      p(
+        "Continue to pay attention to the [technical foundations of your site](/services/websites-and-cro), including:",
+      ),
       ul([
         "Crawlability",
         "Indexability",
-        "Page performance",
+        "[Page performance](/insights/real-cost-of-a-slow-website)",
         "Mobile usability",
         "Internal links",
         "Canonicalization",
@@ -4597,7 +4601,7 @@ export const insightArticles: InsightArticle[] = [
       p("A B2B company creates a page answering:"),
       blockquote("What does CRM automation do?"),
       p(
-        "It provides a concise definition, examples, implementation considerations and links to related resources.",
+        "It provides a concise definition of [CRM automation](/services/crm-and-automation), examples, implementation considerations and links to related resources.",
       ),
       h3("Example 5 — Local Search"),
       p("A Dubai restaurant publishes a useful page explaining:"),
@@ -4776,7 +4780,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       p("The distinction should not be exaggerated."),
       p(
-        "Google explicitly says that its AI search features are rooted in its existing Search systems and that SEO remains relevant.",
+        "Google explicitly says that its AI search features are rooted in its existing Search systems and that [SEO](/services/seo-and-content) remains relevant.",
       ),
       p("**The practical approach is not SEO versus AEO. It is SEO plus answer-oriented content.**"),
 
@@ -4913,7 +4917,9 @@ export const insightArticles: InsightArticle[] = [
         "Are descriptions accurate?",
         "Which competitors are being surfaced?",
       ]),
-      p("An audit should end with actionable priorities—not simply a score."),
+      p(
+        "An audit should end with actionable priorities—not simply a score, the same standard that applies to any broader [marketing audit](/services/strategy-consulting).",
+      ),
 
       h2("How Can You Improve Answer Engine Optimization?"),
       p(
@@ -4962,7 +4968,7 @@ export const insightArticles: InsightArticle[] = [
       h3("A brand strategist"),
       p("A brand strategist wants AI systems to describe a company accurately."),
       p(
-        "The strategy should extend beyond one webpage and examine how the brand is represented consistently across its broader digital presence.",
+        "The strategy should extend beyond one webpage and examine how the brand is represented consistently across its broader digital presence — the same shift explored in [how AI search is reshaping brand visibility](/insights/ai-search-optimization).",
       ),
 
       h2("Expert Tips"),
