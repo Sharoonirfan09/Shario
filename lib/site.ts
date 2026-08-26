@@ -23,6 +23,8 @@
  * live on service pages. Nothing is repeated across templates.
  */
 
+import type { Locale } from "@/lib/locale";
+
 export const site = {
   name: "Shario",
   /**
@@ -2205,6 +2207,153 @@ export const insightCategories: InsightCategory[] = [
     descriptionRu:
       "Практические пошаговые руководства для основателей и руководителей маркетинга, которые самостоятельно управляют ростом своего бизнеса.",
   },
+  // --- Topical categories, added alongside the five content-type sections
+  // above rather than replacing them: every existing article keeps the
+  // category it already has, and these give new subject-led pieces (starting
+  // with the AEO pillar guide) a home organised by topic instead of format.
+  {
+    slug: "seo",
+    num: "06",
+    name: "SEO",
+    nameAr: "تحسين محركات البحث",
+    nameRu: "SEO",
+    description:
+      "Search engine optimization, technical SEO, keyword strategy, rankings and organic visibility.",
+    descriptionAr:
+      "تحسين محركات البحث، تحسين محركات البحث التقني، استراتيجية الكلمات المفتاحية، الترتيب والظهور العضوي.",
+    descriptionRu:
+      "Поисковая оптимизация, техническое SEO, стратегия ключевых слов, ранжирование и органическая видимость.",
+  },
+  {
+    slug: "answer-engine-optimization",
+    num: "07",
+    name: "Answer Engine Optimization",
+    nameAr: "تحسين محركات الإجابة",
+    nameRu: "Оптимизация под поисковые ответы (AEO)",
+    description:
+      "AEO, AI search, answer engines, AI visibility and answer-focused search.",
+    descriptionAr:
+      "تحسين محركات الإجابة (AEO)، البحث بالذكاء الاصطناعي، محركات الإجابة، الظهور في الذكاء الاصطناعي والبحث المرتكز على الإجابات.",
+    descriptionRu:
+      "AEO, ИИ-поиск, системы ответов, видимость в ИИ и поиск, ориентированный на прямые ответы.",
+  },
+  {
+    slug: "generative-engine-optimization",
+    num: "08",
+    name: "Generative Engine Optimization",
+    nameAr: "تحسين المحركات التوليدية",
+    nameRu: "Оптимизация под генеративные системы (GEO)",
+    description:
+      "GEO, generative search, AI platforms and visibility within generative answers.",
+    descriptionAr:
+      "تحسين المحركات التوليدية (GEO)، البحث التوليدي، منصات الذكاء الاصطناعي والظهور داخل الإجابات التوليدية.",
+    descriptionRu:
+      "GEO, генеративный поиск, ИИ-платформы и видимость внутри генеративных ответов.",
+  },
+  {
+    slug: "digital-marketing",
+    num: "09",
+    name: "Digital Marketing",
+    nameAr: "التسويق الرقمي",
+    nameRu: "Цифровой маркетинг",
+    description:
+      "Digital marketing strategy, performance marketing, campaigns, analytics and growth.",
+    descriptionAr:
+      "استراتيجية التسويق الرقمي، التسويق القائم على الأداء، الحملات، التحليلات والنمو.",
+    descriptionRu:
+      "Стратегия цифрового маркетинга, перформанс-маркетинг, кампании, аналитика и рост.",
+  },
+  {
+    slug: "branding",
+    num: "10",
+    name: "Branding",
+    nameAr: "العلامة التجارية",
+    nameRu: "Брендинг",
+    description:
+      "Brand strategy, positioning, identity, messaging and brand systems.",
+    descriptionAr:
+      "استراتيجية العلامة التجارية، التموضع، الهوية، الرسائل وأنظمة العلامة التجارية.",
+    descriptionRu:
+      "Стратегия бренда, позиционирование, айдентика, месседжинг и брендовые системы.",
+  },
+  {
+    slug: "content-marketing",
+    num: "11",
+    name: "Content Marketing",
+    nameAr: "التسويق بالمحتوى",
+    nameRu: "Контент-маркетинг",
+    description:
+      "Content strategy, content creation, editorial strategy and content distribution.",
+    descriptionAr:
+      "استراتيجية المحتوى، إنشاء المحتوى، الاستراتيجية التحريرية وتوزيع المحتوى.",
+    descriptionRu:
+      "Контент-стратегия, создание контента, редакционная стратегия и дистрибуция контента.",
+  },
+  {
+    slug: "website-design-and-development",
+    num: "12",
+    name: "Website Design & Development",
+    nameAr: "تصميم وتطوير المواقع",
+    nameRu: "Дизайн и разработка сайтов",
+    description:
+      "Websites, UX, UI, CRO, web development and digital experiences.",
+    descriptionAr:
+      "المواقع الإلكترونية، تجربة المستخدم، واجهة المستخدم، تحسين معدل التحويل، تطوير الويب والتجارب الرقمية.",
+    descriptionRu:
+      "Сайты, UX, UI, CRO, веб-разработка и цифровые продукты.",
+  },
+  {
+    slug: "copywriting",
+    num: "13",
+    name: "Copywriting",
+    nameAr: "كتابة المحتوى الإعلاني",
+    nameRu: "Копирайтинг",
+    description:
+      "Copywriting, website copy, brand copy, conversion copy and persuasive writing.",
+    descriptionAr:
+      "كتابة المحتوى الإعلاني، نصوص المواقع، نصوص العلامة التجارية، النصوص التحويلية والكتابة الإقناعية.",
+    descriptionRu:
+      "Копирайтинг, тексты для сайтов, тексты бренда, конверсионные тексты и убедительное письмо.",
+  },
+  {
+    slug: "business-communication",
+    num: "14",
+    name: "Business Communication",
+    nameAr: "التواصل في بيئة الأعمال",
+    nameRu: "Деловая коммуникация",
+    description:
+      "Professional communication, business writing, communication strategy and workplace writing.",
+    descriptionAr:
+      "التواصل المهني، الكتابة في بيئة الأعمال، استراتيجية التواصل والكتابة في مكان العمل.",
+    descriptionRu:
+      "Профессиональная коммуникация, деловое письмо, коммуникационная стратегия и рабочая переписка.",
+  },
+  {
+    slug: "grammar-and-english",
+    num: "15",
+    name: "Grammar & English",
+    nameAr: "القواعد واللغة الإنجليزية",
+    nameRu: "Грамматика и английский язык",
+    description:
+      "Grammar, English usage, writing clarity and language education.",
+    descriptionAr:
+      "قواعد اللغة، استخدام اللغة الإنجليزية، وضوح الكتابة والتعليم اللغوي.",
+    descriptionRu:
+      "Грамматика, употребление английского языка, ясность письма и языковое образование.",
+  },
+  {
+    slug: "confused-words",
+    num: "16",
+    name: "Confused Words",
+    nameAr: "الكلمات الملتبسة",
+    nameRu: "Слова-паронимы",
+    description:
+      "Commonly confused English words, word comparisons and usage distinctions.",
+    descriptionAr:
+      "الكلمات الإنجليزية الشائعة الالتباس، مقارنات الكلمات والفروق في الاستخدام.",
+    descriptionRu:
+      "Часто путаемые английские слова, сравнение слов и различия в употреблении.",
+  },
 ];
 
 export function getInsightCategory(slug: string): InsightCategory | undefined {
@@ -2212,29 +2361,56 @@ export function getInsightCategory(slug: string): InsightCategory | undefined {
 }
 
 /**
- * One block of an article body. `p` supports inline links in Markdown-style
- * `[label](/href)` syntax, parsed at render time (see `app/insights/[slug]/
- * page.tsx`) rather than storing JSX here, so this file stays plain data.
+ * One block of an article body. `p`, list items, blockquotes and table cells
+ * all support inline Markdown-style `[label](/href)` links, `**bold**` and
+ * `*italic*`, parsed at render time (`renderInline` in `components/
+ * insights.tsx`) rather than storing JSX here, so this file stays plain data.
  */
 export type ArticleBlock =
   | { type: "h2"; text: string }
   | { type: "h3"; text: string }
-  | { type: "p"; text: string };
+  | { type: "p"; text: string }
+  | { type: "ul"; items: string[] }
+  | { type: "ol"; items: string[] }
+  | { type: "blockquote"; text: string }
+  | { type: "table"; headers: string[]; rows: string[][] }
+  | { type: "code"; text: string; language?: string }
+  | { type: "image"; src: string; alt: string; caption?: string };
+
+/**
+ * Pillar-cluster content types (section 27 of the Insights brief). `pillar`
+ * marks the one broad guide a topic cluster is organised around; the rest
+ * describe the narrower pieces a future cluster links back to it. Optional —
+ * every article predating this field is implicitly "informational".
+ */
+export type InsightContentType =
+  | "pillar"
+  | "supporting"
+  | "comparison"
+  | "how-to"
+  | "informational"
+  | "commercial";
 
 export type InsightArticle = {
   slug: string;
-  /** Matches an `insightCategories[].slug`. */
+  /** Primary category — matches an `insightCategories[].slug`. Drives breadcrumbs and the main category label. */
   category: string;
+  /** Optional secondary categories — additional `insightCategories[].slug` values the article also belongs to, without duplicating it across category grids. */
+  secondaryCategories?: string[];
+  /** Freeform topical tags, distinct from categories — used for related-content matching, not for its own archive page. */
+  tags?: string[];
+  contentType?: InsightContentType;
   title: string;
-  titleAr: string;
-  titleRu: string;
+  /** Localised variants fall back to the English value wherever they're rendered when omitted — see `?? article.title` at each read site. Articles that don't yet have an Arabic/Russian edition (`locales` below) can leave these unset rather than carry placeholder translations. */
+  titleAr?: string;
+  titleRu?: string;
   excerpt: string;
-  excerptAr: string;
-  excerptRu: string;
+  excerptAr?: string;
+  excerptRu?: string;
   date: string;
   readingTime: string;
-  readingTimeAr: string;
-  readingTimeRu: string;
+  readingTimeAr?: string;
+  readingTimeRu?: string;
   /** Shown in the Featured Content band. Exactly one article carries this. */
   featured?: boolean;
   /**
@@ -2258,8 +2434,8 @@ export type InsightArticle = {
   image: string;
   /** Describes what's actually in the photograph, not the article topic. */
   imageAlt: string;
-  imageAltAr: string;
-  imageAltRu: string;
+  imageAltAr?: string;
+  imageAltRu?: string;
   /**
    * The short phrase set over the image itself — a topic, not the full
    * headline (e.g. "Dubai's Ad Auctions", not the full H1). Two to four
@@ -2267,16 +2443,35 @@ export type InsightArticle = {
    * second title competing with the real one underneath it.
    */
   imageTopic: string;
-  imageTopicAr: string;
-  imageTopicRu: string;
+  imageTopicAr?: string;
+  imageTopicRu?: string;
   body: ArticleBlock[];
-  bodyAr: ArticleBlock[];
-  bodyRu: ArticleBlock[];
+  bodyAr?: ArticleBlock[];
+  bodyRu?: ArticleBlock[];
+  /** Rendered as a `<Faq>` accordion at the foot of the article, matched by a `FaqPage` schema — omit entirely rather than reusing an unrelated FAQ set. */
+  faqs?: { q: string; a: string }[];
+  /**
+   * Which locales this article has a real, reviewed edition for. Omitted
+   * (the default, and every article predating this field) means all three —
+   * `en`, `ar` and `ru`. Set explicitly to a subset for an article published
+   * in only some languages so the other locales' routes, sitemaps and
+   * "related" rails 404/skip it cleanly instead of rendering an English
+   * fallback dressed in Arabic or Russian typography.
+   */
+  locales?: readonly Locale[];
 };
 
 const h2 = (text: string): ArticleBlock => ({ type: "h2", text });
 const h3 = (text: string): ArticleBlock => ({ type: "h3", text });
 const p = (text: string): ArticleBlock => ({ type: "p", text });
+const ul = (items: string[]): ArticleBlock => ({ type: "ul", items });
+const ol = (items: string[]): ArticleBlock => ({ type: "ol", items });
+const blockquote = (text: string): ArticleBlock => ({ type: "blockquote", text });
+const table = (headers: string[], rows: string[][]): ArticleBlock => ({
+  type: "table",
+  headers,
+  rows,
+});
 
 /**
  * Editorial hub content, written in Shario's voice. Market News, Articles,
@@ -2839,7 +3034,6 @@ export const insightArticles: InsightArticle[] = [
     readingTime: "6 min read",
     readingTimeAr: "6 دقائق قراءة",
     readingTimeRu: "6 мин чтения",
-    featured: true,
     image: "/images/insights/ai-search-ranking-gallery-wall.jpg",
     imageAlt: "A wall of framed prints and drawings arranged in a considered gallery hang",
     imageAltAr: "جدار من اللوحات والرسومات المؤطرة، مُرتَّبة بعناية على طريقة صالات العرض",
@@ -4067,10 +4261,860 @@ export const insightArticles: InsightArticle[] = [
       ),
     ],
   },
+  {
+    slug: "answer-engine-optimization",
+    category: "answer-engine-optimization",
+    secondaryCategories: ["seo"],
+    tags: ["AEO", "Answer Engine Optimization", "AI Search", "AI Search Optimization", "SEO", "GEO", "Generative Search"],
+    contentType: "pillar",
+    featured: true,
+    locales: ["en"],
+    title: "Answer Engine Optimization (AEO): What It Is, How It Works & How to Get Started",
+    seoTitle: "Answer Engine Optimization: AEO Guide for 2026",
+    excerpt:
+      "Answer Engine Optimization (AEO) is the practice of making content easier for AI-powered search systems to discover, understand and cite. Here's what it is, how it works, and how to get started.",
+    metaDescription:
+      "Learn what answer engine optimization (AEO) is, how it works, how it differs from SEO and GEO, and practical ways to improve AI search visibility.",
+    date: "26 Aug 2026",
+    readingTime: "43 min read",
+    image: "/images/insights/answer-engine-optimization-search-to-answer.jpg",
+    imageAlt:
+      "An abstract editorial illustration of a traditional search-results panel transforming into a generated answer card, symbolising the shift from search to AI-generated answers",
+    imageTopic: "From Search to Answer",
+    faqs: [
+      {
+        q: "What does AEO stand for?",
+        a: "AEO stands for Answer Engine Optimization. It refers to practices intended to make content easier for answer engines and AI-powered search systems to understand, retrieve and potentially use when answering user questions.",
+      },
+      {
+        q: "Is AEO replacing SEO?",
+        a: "No. AEO does not replace SEO. Google states that its AI search features continue to rely on core Search systems and that existing SEO best practices remain relevant.",
+      },
+      {
+        q: "Is AEO similar to SEO?",
+        a: "Yes. They share many foundations, including technical accessibility, useful content, search intent, site structure and authority. The main difference is the search experience being emphasized: traditional search visibility versus visibility within direct or AI-generated answers.",
+      },
+      {
+        q: "What is the difference between AEO and GEO?",
+        a: "The terms overlap significantly. AEO is often used for answer-focused optimization, while GEO is sometimes used for broader visibility within generative AI systems. There is no universally accepted boundary between them.",
+      },
+      {
+        q: "What is an example of AEO?",
+        a: "A simple example is creating a page that directly answers a question such as “What is technical SEO?” The page gives a concise definition first, then explains the concept, provides examples, answers related questions and supports important claims.",
+      },
+      {
+        q: "How do I start AEO?",
+        a: "Start with real customer and search questions. Group them by intent, create direct answers, improve technical SEO and internal linking, strengthen topical authority, and monitor how AI search systems represent your content.",
+      },
+      {
+        q: "What does an AEO audit include?",
+        a: "An AEO audit can examine content quality, question coverage, entity clarity, technical SEO, structured content, internal linking, authority signals and visibility across relevant AI search experiences.",
+      },
+      {
+        q: "Are there AEO tools?",
+        a: "Yes. AEO workflows can use traditional SEO and analytics tools, search-console data, website crawlers, structured-data tools, content research platforms and AI visibility monitoring tools. No single tool covers every part of AEO.",
+      },
+      {
+        q: "Can I do AEO myself?",
+        a: "Yes. A business with a solid understanding of SEO, content strategy and its audience can implement many AEO practices internally. More complex programs may require technical, editorial and analytics expertise.",
+      },
+      {
+        q: "Is there an AEO course or certification?",
+        a: "There are courses and training resources covering AEO and AI search, but there is no single universally recognized AEO certification that defines the discipline. Evaluate training based on the quality of its methodology, evidence and practical guidance.",
+      },
+    ],
+    body: [
+      h2("Quick Answer"),
+      p(
+        "**Answer Engine Optimization (AEO)** is the practice of making digital content easier for answer engines and AI-powered search systems to discover, understand, retrieve, summarize and cite when responding to user questions. AEO builds on strong SEO fundamentals but places greater emphasis on clear answers, well-defined entities, useful structure, trustworthy information and content that directly addresses conversational queries. It is not a replacement for SEO; it is better understood as part of a broader approach to visibility across modern search and AI answer experiences.",
+      ),
+
+      h2("What Is Answer Engine Optimization?"),
+      p(
+        "**Answer Engine Optimization, or AEO, is the practice of optimizing content so that answer engines can understand it and potentially use it when generating answers to people's questions.**",
+      ),
+      p(
+        "Traditional search is built around a results page: a person enters a query and receives a collection of links ranked by relevance and other signals.",
+      ),
+      p(
+        "Answer-oriented search experiences increasingly do something different. They can interpret a question, retrieve information from multiple sources, synthesize that information and present an answer directly, sometimes with links or citations to supporting sources.",
+      ),
+      p(
+        "Google's AI Overviews, for example, provide AI-generated snapshots with links to supporting web content, while Google AI Mode is designed for more conversational, multi-step exploration and can break a question into subtopics before searching for information.",
+      ),
+      p("This changes what visibility can mean."),
+      p("Instead of asking only:"),
+      blockquote("“How do I rank this page?”"),
+      p("A modern search strategy may also ask:"),
+      blockquote(
+        "“Is this page clear, trustworthy and useful enough to be retrieved and represented accurately in an AI-generated answer?”",
+      ),
+      p("That is where AEO comes in."),
+      p(
+        "AEO is not a secret set of tags or a separate Google ranking system. Google explicitly says that its AI search features continue to rely on core Search ranking and quality systems and that there are **no additional technical requirements specifically required for appearing in AI Overviews or AI Mode** beyond being eligible for Google Search.",
+      ),
+      p("In practical terms, good AEO means creating content that is:"),
+      ul([
+        "Easy to discover",
+        "Easy to understand",
+        "Easy to extract accurately",
+        "Clearly associated with the right entities",
+        "Well supported by evidence where appropriate",
+        "Structured around real questions",
+        "Useful to people first",
+      ]),
+
+      h2("Why Does Answer Engine Optimization Matter?"),
+      p("Search behaviour is becoming more conversational."),
+      p(
+        "People increasingly ask complete questions rather than entering short keyword combinations. AI-powered search experiences can then interpret those questions, explore related information and provide a synthesized response.",
+      ),
+      p(
+        "Google describes AI Mode as an experience that can divide a question into subtopics and search for each one simultaneously, bringing information together into a response with links to supporting web content.",
+      ),
+      p("That creates several implications for content creators and businesses."),
+      h3("1. Search visibility is becoming more than a ranking position"),
+      p(
+        "A page can still rank traditionally while another source is selected or cited within an AI-generated response.",
+      ),
+      p("That means marketers need to think beyond rankings alone."),
+      h3("2. Clear answers become increasingly valuable"),
+      p(
+        "If a page takes several paragraphs to eventually answer a simple question, it is harder for both humans and machines to understand its primary point.",
+      ),
+      p("AEO encourages a stronger answer-first approach:"),
+      p(
+        "**Question → direct answer → explanation → evidence → examples → deeper detail**",
+      ),
+      h3("3. Conversational queries require broader topical coverage"),
+      p("Someone searching:"),
+      blockquote("“What is AEO?”"),
+      p("may later ask:"),
+      blockquote("“Is AEO replacing SEO?”"),
+      p("and then:"),
+      blockquote("“How do I implement AEO?”"),
+      p(
+        "A strong resource anticipates those connected questions instead of treating each one as an isolated keyword.",
+      ),
+      h3("4. Accuracy matters"),
+      p(
+        "AI systems can make mistakes. Google itself warns that AI-generated search responses may contain errors and recommends checking important information against multiple sources.",
+      ),
+      p("For publishers, this makes clarity, evidence, attribution and factual accuracy more important—not less."),
+
+      h2("The Core Rule of AEO"),
+      blockquote(
+        "Rule: Create content that answers a real question clearly enough for both people and search systems to understand, retrieve and verify.",
+      ),
+      p("AEO does **not** mean writing robotic content for AI."),
+      p("It means removing ambiguity."),
+      p("A strong AEO page should make it obvious:"),
+      ul([
+        "What the topic is",
+        "Who or what the page is talking about",
+        "What the answer is",
+        "Why the answer is correct",
+        "What evidence supports it",
+        "What related questions naturally follow",
+        "Where the reader should go next",
+      ]),
+      p(
+        "The best AEO practices therefore overlap heavily with good SEO, good UX writing and good editorial work.",
+      ),
+
+      h2("How Does Answer Engine Optimization Work?"),
+      p("There is no single universal AEO algorithm shared by every AI search product."),
+      p(
+        "Different systems use different models, indexes, retrieval systems and ranking processes.",
+      ),
+      p("However, a useful conceptual model looks like this:"),
+      h3("1. The system interprets the question"),
+      p("A user may ask:"),
+      blockquote("“What is the difference between AEO and SEO?”"),
+      p("The system has to understand the intent behind the question."),
+      p("It may identify concepts such as:"),
+      ul(["AEO", "SEO", "comparison", "definitions", "practical differences"]),
+      p(
+        "Modern AI search can also expand a complex question into related searches. Google says AI Mode uses a technique called **query fan-out**, where it breaks a question into subtopics and searches for them across multiple sources.",
+      ),
+      h3("2. Relevant information is retrieved"),
+      p("The system looks for information that may help answer the query."),
+      p(
+        "For Google AI features, Google explains that its generative search experiences are rooted in Search systems and can use retrieval-augmented generation to ground responses in relevant web content.",
+      ),
+      p("This is why basic SEO still matters."),
+      p(
+        "If a page cannot be crawled, indexed or understood properly, there is less opportunity for it to become part of the retrieval process.",
+      ),
+      h3("3. Candidate information is evaluated"),
+      p(
+        "The system has to determine which information is relevant and useful enough to support the answer.",
+      ),
+      p(
+        "This is where factors such as relevance, clarity, authority, freshness and supporting evidence can become important depending on the query and system.",
+      ),
+      h3("4. The answer is generated or displayed"),
+      p("The system may then summarize information into a direct response."),
+      p("Depending on the search experience, the source may be:"),
+      ul(["Linked", "Cited", "Mentioned", "Used as supporting information", "Extracted into an answer", "Or not visibly referenced at all"]),
+      p("This is one reason AEO should not be reduced to a single metric such as rankings."),
+      h3("5. The user continues the search"),
+      p("The first question may lead to another. For example:"),
+      p(
+        "**What is AEO?** → **How is AEO different from SEO?** → **How do I implement AEO?** → **What tools can I use to measure it?**",
+      ),
+      p("Good AEO content anticipates this journey."),
+
+      h2("How to Do Answer Engine Optimization"),
+      p("AEO is not one technical task. It is a content and search strategy built from several practices."),
+      h3("1. Start with real questions"),
+      p("Don't begin with:"),
+      blockquote("“What keyword can we insert?”"),
+      p("Begin with:"),
+      blockquote("“What is the person actually trying to understand?”"),
+      p("Build content around questions such as:"),
+      ul([
+        "What is answer engine optimization?",
+        "How does AEO work?",
+        "Is AEO replacing SEO?",
+        "How is AEO different from GEO?",
+        "How do I implement AEO?",
+        "What does an AEO audit include?",
+        "What are AEO tools?",
+        "How can I improve AI search visibility?",
+      ]),
+      p("The keyword remains important, but the underlying question is more important."),
+      h3("2. Give the answer early"),
+      p("For definition searches, the first useful paragraph should answer the question directly. For example:"),
+      p(
+        "**Answer Engine Optimization (AEO) is the practice of structuring and improving content so AI-powered answer systems can discover, understand and potentially use it when responding to user questions.**",
+      ),
+      p("Then explain the concept."),
+      p("Do not make the reader scroll through a long introduction before finding the definition."),
+      h3("3. Structure content around questions"),
+      p("Useful structures include:"),
+      ul(["H2 questions", "H3 follow-up questions", "Short direct answers", "Bulleted explanations", "Numbered processes", "Comparison tables", "Examples", "FAQs"]),
+      p("This helps readers scan the page and makes relationships between questions and answers clearer."),
+      h3("4. Define important entities clearly"),
+      p("If an article discusses a company, product, service, person, location or concept, make the identity clear."),
+      p("For example, don't repeatedly use vague phrases such as:"),
+      blockquote("the platform"),
+      p("when several platforms have already been mentioned."),
+      p("Instead, identify the entity precisely."),
+      p("Clear entities help both readers and information systems understand what a statement refers to."),
+      h3("5. Make claims easy to verify"),
+      p("When making factual, statistical or technical claims, provide appropriate supporting evidence. For example:"),
+      p("**Weak:**"),
+      blockquote("AI search is changing everything."),
+      p("**Stronger:**"),
+      blockquote(
+        "Google says its AI search features are built on its existing Search systems and continue to rely on core Search quality and ranking practices.",
+      ),
+      p("The second statement is specific and verifiable."),
+      h3("6. Cover the topic comprehensively"),
+      p("AEO does not mean making every article extremely long."),
+      p("It means covering the questions that genuinely belong to the topic."),
+      p("For an AEO guide, that may include:"),
+      ol([
+        "Definition",
+        "How it works",
+        "Why it matters",
+        "AEO vs SEO",
+        "AEO vs GEO",
+        "Implementation",
+        "Content structure",
+        "Technical foundations",
+        "Measurement",
+        "Common mistakes",
+      ]),
+      p("The goal is completeness, not word count."),
+      h3("7. Keep important answers self-contained"),
+      p("If an answer depends on information scattered across five paragraphs, it becomes harder to understand."),
+      p("Instead, make important passages self-contained. For example:"),
+      blockquote(
+        "**AEO does not replace SEO.** Google states that its AI search features rely on core Search systems and that existing SEO best practices remain relevant. AEO is better understood as a way of improving content for answer-oriented search experiences alongside traditional SEO.",
+      ),
+      p("That paragraph can stand on its own."),
+      h3("8. Maintain strong technical SEO"),
+      p("AEO does not eliminate technical SEO."),
+      p(
+        "Google states that pages need to meet normal Search technical requirements and be eligible to appear in Search in order to be considered as supporting links in AI Overviews or AI Mode.",
+      ),
+      p("Continue to pay attention to:"),
+      ul([
+        "Crawlability",
+        "Indexability",
+        "Page performance",
+        "Mobile usability",
+        "Internal links",
+        "Canonicalization",
+        "Structured data where appropriate",
+        "Clear site architecture",
+        "Descriptive titles",
+        "Useful headings",
+      ]),
+      h3("9. Use structured data accurately"),
+      p("Structured data can help search systems understand what a page represents."),
+      p("Depending on the content, appropriate schema may include:"),
+      ul(["Article", "FAQPage", "BreadcrumbList", "Organization", "Product", "LocalBusiness"]),
+      p(
+        "But structured data should accurately describe visible page content. It should not be treated as a shortcut for obtaining AI visibility.",
+      ),
+      h3("10. Build authority beyond one page"),
+      p("A strong answer does not exist in isolation."),
+      p("A website with related, well-connected pages can provide clearer context around a subject."),
+      p("For example, an AEO topic cluster could include:"),
+      ul([
+        "What Is Answer Engine Optimization?",
+        "AEO vs SEO",
+        "AEO vs GEO",
+        "How to Do AEO",
+        "AEO Content Strategy",
+        "AEO Audit",
+        "AEO Tools",
+        "How to Measure AI Search Visibility",
+      ]),
+      p("The pillar page provides the broad explanation, while supporting pages answer narrower questions."),
+
+      h2("Correct Examples of AEO in Practice"),
+      p("Here are original examples of what an answer-focused content approach can look like."),
+      h3("Example 1 — Definition"),
+      p("**Question:** What is AEO?"),
+      p(
+        "**Answer:** Answer Engine Optimization is the practice of improving content so answer engines can understand, retrieve and potentially use it when responding to user questions.",
+      ),
+      h3("Example 2 — Comparison"),
+      p("**Question:** Is AEO the same as SEO?"),
+      p(
+        "**Answer:** No. AEO and SEO overlap, but SEO primarily focuses on visibility in search results, while AEO emphasizes visibility within direct answers and AI-powered search experiences.",
+      ),
+      h3("Example 3 — Process"),
+      p("**Question:** How do I start AEO?"),
+      p(
+        "**Answer:** Start by identifying the questions your audience asks, create direct answers to those questions, strengthen your site's technical SEO and authority, and monitor how AI search systems represent your content.",
+      ),
+      h3("Example 4 — Business"),
+      p("A B2B company creates a page answering:"),
+      blockquote("What does CRM automation do?"),
+      p(
+        "It provides a concise definition, examples, implementation considerations and links to related resources.",
+      ),
+      h3("Example 5 — Local Search"),
+      p("A Dubai restaurant publishes a useful page explaining:"),
+      blockquote("What is the difference between a business lunch and a private dining experience?"),
+      p("The page clearly defines both concepts and provides relevant practical information."),
+      h3("Example 6 — Product Research"),
+      p("An electronics company creates a comparison explaining:"),
+      blockquote("What is the difference between OLED and Mini-LED?"),
+      p("The article defines both technologies before presenting a comparison table."),
+      h3("Example 7 — Professional Communication"),
+      p("A communication studio publishes:"),
+      blockquote("How do you write a professional follow-up email?"),
+      p("The answer appears immediately, followed by examples for different situations."),
+      h3("Example 8 — Financial Education"),
+      p("A financial publisher explains:"),
+      blockquote("What is compound interest?"),
+      p("The definition is followed by a simple example, formula and practical explanation."),
+      h3("Example 9 — Service Research"),
+      p("A marketing agency explains:"),
+      blockquote("What does a technical SEO audit include?"),
+      p("The page lists the major audit areas and explains what each one evaluates."),
+      h3("Example 10 — Complex Question"),
+      p("A real estate company answers:"),
+      blockquote("What should investors consider before buying an off-plan property in Dubai?"),
+      p(
+        "Instead of providing a generic sales page, the content addresses the actual decision factors, terminology, risks and due-diligence considerations.",
+      ),
+
+      h2("Incorrect vs. Correct AEO Approaches"),
+      table(
+        ["❌ Incorrect", "✅ Correct", "Why"],
+        [
+          [
+            "Stuff the page with the phrase “answer engine optimization”",
+            "Use the term naturally where it helps the reader",
+            "Keyword repetition does not create useful content",
+          ],
+          [
+            "Write one giant paragraph answering everything",
+            "Break information into logical sections",
+            "Clear structure improves comprehension",
+          ],
+          [
+            "Hide the definition halfway down the page",
+            "Give the definition near the beginning",
+            "Searchers often need an immediate answer",
+          ],
+          [
+            "Create FAQ questions unrelated to the page",
+            "Use genuine questions connected to the topic",
+            "Relevance matters more than FAQ volume",
+          ],
+          ["Add unsupported statistics", "Cite or remove factual claims", "Accuracy strengthens trust"],
+          [
+            "Create separate pages for every tiny keyword variation",
+            "Consolidate closely related intent when appropriate",
+            "Prevents thin or repetitive content",
+          ],
+          [
+            "Use schema to describe information not visible on the page",
+            "Use accurate structured data",
+            "Markup should represent the page correctly",
+          ],
+          [
+            "Remove SEO because “AI search replaces Google”",
+            "Continue strong technical and content SEO",
+            "Google says core SEO practices remain relevant to AI features",
+          ],
+          ["Write only for AI systems", "Write for people first", "Useful human content remains the foundation"],
+          [
+            "Assume one AI answer represents permanent visibility",
+            "Monitor multiple queries and systems",
+            "AI outputs can vary",
+          ],
+        ],
+      ),
+
+      h2("Why People Get AEO Wrong"),
+      p("AEO is still a relatively young and inconsistently defined marketing discipline."),
+      p(
+        "One source may use AEO to describe optimization for featured snippets and direct answers. Another may use it primarily for AI assistants and generative search.",
+      ),
+      p(
+        "The terminology around **AEO and GEO is particularly inconsistent**. Current industry sources commonly treat the terms as overlapping, while some distinguish AEO as answer-focused optimization and GEO as broader generative-engine visibility.",
+      ),
+      p("That makes one principle especially important:"),
+      p("**Focus on the underlying work, not the label.**"),
+      p("If your strategy improves:"),
+      ul([
+        "Content clarity",
+        "Search relevance",
+        "Entity understanding",
+        "Technical accessibility",
+        "Evidence",
+        "Authority",
+        "Answer structure",
+        "User experience",
+      ]),
+      p("you are building foundations that can support both traditional search and AI-powered search."),
+
+      h2("Common AEO Mistakes Checklist"),
+      h3("1. Treating AEO as a replacement for SEO"),
+      p("**Why it happens:** AI search feels like a completely new search environment."),
+      p("**How to avoid it:** Keep technical SEO, content quality, crawlability and indexing at the centre of the strategy."),
+      h3("2. Writing for machines instead of people"),
+      p("**Why it happens:** Marketers become obsessed with being “cited by AI.”"),
+      p("**How to avoid it:** Write the clearest answer for the person first."),
+      h3("3. Creating pages around every keyword variation"),
+      p("**Why it happens:** Keyword tools produce hundreds of related queries."),
+      p("**How to avoid it:** Group queries by search intent rather than creating a separate page for every variation."),
+      h3("4. Publishing generic AI-generated content"),
+      p("**Why it happens:** AI makes producing large amounts of content easy."),
+      p("**How to avoid it:** Add original examples, first-hand knowledge, useful analysis, evidence and clear editorial judgment."),
+      h3("5. Using unsupported claims"),
+      p("**Why it happens:** AI-generated drafts often contain plausible-sounding statements."),
+      p("**How to avoid it:** Verify factual claims before publication."),
+      h3("6. Ignoring traditional search"),
+      p("**Why it happens:** The phrase “answer engine” makes conventional SEO sound outdated."),
+      p("**How to avoid it:** Treat AEO as an extension of modern search visibility, not a reason to abandon SEO."),
+      h3("7. Measuring only rankings"),
+      p("**Why it happens:** Rankings are familiar and easy to report."),
+      p("**How to avoid it:** Also monitor AI mentions, citations, referral traffic, branded search and conversions where measurable."),
+      h3("8. Assuming every AI answer can be optimized directly"),
+      p("**Why it happens:** Marketers expect a controllable ranking position."),
+      p(
+        "**How to avoid it:** Understand that AI responses can vary by query, context, location, model and retrieval conditions.",
+      ),
+
+      h2("AEO in Real English: What the Term Actually Means"),
+      h3("Grammatically correct"),
+      blockquote("We are improving our website's answer engine optimization."),
+      p("The phrase is grammatically valid and uses AEO as a noun phrase describing an optimization discipline."),
+      h3("Grammatically possible but unnatural"),
+      blockquote("We are doing an answer engine optimization for our website."),
+      p("The meaning is understandable, but “doing an optimization” is less natural in professional English."),
+      p("More natural alternatives include:"),
+      ul([
+        "We are implementing an AEO strategy.",
+        "We are optimizing the site for AI search.",
+        "We are improving our answer engine optimization.",
+      ]),
+      h3("Natural professional English"),
+      p("In marketing and SEO contexts, these forms are generally more natural:"),
+      ul([
+        "**AEO strategy**",
+        "**AEO audit**",
+        "**AEO implementation**",
+        "**AEO content**",
+        "**AEO services**",
+        "**AEO tools**",
+        "**AEO best practices**",
+        "**AI search optimization**",
+      ]),
+      p("The abbreviation **AEO** is especially useful after the full term has been introduced."),
+
+      h2("AEO vs SEO"),
+      p("AEO and SEO overlap substantially, but they emphasize different search experiences."),
+      table(
+        ["Feature", "SEO", "AEO"],
+        [
+          ["Full form", "Search Engine Optimization", "Answer Engine Optimization"],
+          ["Primary focus", "Search visibility", "Answer visibility"],
+          ["Typical surface", "Search results pages", "Direct answers and AI search experiences"],
+          ["Core objective", "Earn visibility and clicks", "Help content become a useful answer or source"],
+          ["Keyword research", "Important", "Important, with stronger emphasis on questions and intent"],
+          ["Technical SEO", "Essential", "Still essential"],
+          ["Content quality", "Essential", "Essential"],
+          ["Structured content", "Useful", "Particularly valuable"],
+          ["Entity clarity", "Important", "Particularly important"],
+          [
+            "Measurement",
+            "Rankings, clicks, traffic, conversions",
+            "AI visibility, mentions, citations, traffic and conversions where measurable",
+          ],
+        ],
+      ),
+      p("The distinction should not be exaggerated."),
+      p(
+        "Google explicitly says that its AI search features are rooted in its existing Search systems and that SEO remains relevant.",
+      ),
+      p("**The practical approach is not SEO versus AEO. It is SEO plus answer-oriented content.**"),
+
+      h2("AEO vs GEO: What Is the Difference?"),
+      p("This is one of the most common related searches in the current AEO landscape."),
+      p(
+        "**Answer Engine Optimization (AEO)** and **Generative Engine Optimization (GEO)** are often used interchangeably, but some practitioners make a distinction.",
+      ),
+      p("A useful working distinction is:"),
+      ul([
+        "**AEO:** focuses on making content suitable for direct answers, answer surfaces and retrieval.",
+        "**GEO:** often focuses more broadly on visibility within generative AI systems and generated responses.",
+      ]),
+      p(
+        "However, there is **no universally enforced industry boundary** between the two terms. Current specialist sources explicitly note substantial overlap.",
+      ),
+      p("For most businesses, the practical work overlaps:"),
+      p("**Clear content + strong entities + useful answers + technical accessibility + authority + monitoring.**"),
+      p("The terminology matters less than whether the strategy improves actual visibility and accuracy."),
+
+      h2("How to Implement Answer Engine Optimization"),
+      p("A practical implementation process can be organized into seven steps."),
+      h3("Step 1: Identify your important questions"),
+      p("Collect questions from:"),
+      ul([
+        "Search queries",
+        "Search suggestions",
+        "Customer conversations",
+        "Sales calls",
+        "Support questions",
+        "Existing website content",
+        "Competitor topic gaps",
+        "AI search prompts",
+        "Industry discussions",
+      ]),
+      h3("Step 2: Group questions by intent"),
+      p("Create categories such as:"),
+      ul(["Definition", "Comparison", "How-to", "Problem-solving", "Commercial investigation", "Local", "Transactional"]),
+      h3("Step 3: Build answer-first pages"),
+      p("For each important question:"),
+      ol([
+        "Answer it directly.",
+        "Explain the answer.",
+        "Provide evidence or examples.",
+        "Address related questions.",
+        "Link to deeper resources.",
+      ]),
+      h3("Step 4: Strengthen the site's information architecture"),
+      p("Connect related pages logically."),
+      p("A user reading **What Is AEO?** should naturally be able to reach **AEO vs SEO**, and then **How to Implement AEO**, and then **How to Measure AEO**."),
+      h3("Step 5: Improve technical accessibility"),
+      p("Check:"),
+      ul([
+        "Indexing",
+        "Crawlability",
+        "Rendering",
+        "Internal links",
+        "Page speed",
+        "Mobile experience",
+        "Canonicals",
+        "Structured data",
+        "XML sitemap",
+        "Robots directives",
+      ]),
+      h3("Step 6: Strengthen authority"),
+      p("Create content that demonstrates genuine expertise."),
+      p("Useful signals may include:"),
+      ul([
+        "Original research",
+        "First-hand experience",
+        "Clear authorship",
+        "Expert review",
+        "Accurate citations",
+        "Original data",
+        "Reputable references",
+        "Consistent brand/entity information",
+      ]),
+      h3("Step 7: Measure and refine"),
+      p("Search your important questions regularly across relevant AI and search experiences."),
+      p("Record:"),
+      ul([
+        "Whether the brand appears",
+        "How it is described",
+        "Which pages are cited",
+        "Which competitors appear",
+        "Whether information is accurate",
+        "Whether visibility changes over time",
+      ]),
+
+      h2("What Are AEO Tools?"),
+      p("There is no single tool that “does AEO” for a website."),
+      p("A practical AEO toolkit can combine several categories."),
+      h3("Search and technical tools"),
+      p("Use tools such as:"),
+      ul(["Google Search Console", "Google Analytics", "Bing Webmaster Tools", "Website crawlers", "Structured-data testing tools", "Page-performance tools"]),
+      h3("Content research tools"),
+      p("Useful for discovering:"),
+      ul(["Questions", "Search intent", "Related topics", "Content gaps", "Search trends", "Existing rankings"]),
+      h3("AI visibility monitoring"),
+      p("Track selected prompts across relevant AI search experiences and record:"),
+      ul(["Brand mentions", "Competitor mentions", "Citations", "Source pages", "Answer accuracy", "Changes over time"]),
+      h3("Editorial tools"),
+      p("Use them to improve:"),
+      ul(["Clarity", "Grammar", "Readability", "Factual consistency", "Content structure"]),
+      p("The important point is that **tools support an AEO strategy; they do not replace one**."),
+
+      h2("What Is an AEO Audit?"),
+      p(
+        "An **AEO audit** evaluates how effectively a website's content and digital presence can support visibility in answer-oriented and AI-powered search experiences.",
+      ),
+      p("A useful audit can examine:"),
+      h3("Content"),
+      ul(["Are important questions answered?", "Are answers direct?", "Is content comprehensive?", "Are explanations clear?", "Are claims supported?"]),
+      h3("Entity clarity"),
+      ul([
+        "Are companies, products and services clearly defined?",
+        "Is brand information consistent?",
+        "Are important entities connected logically?",
+      ]),
+      h3("Technical SEO"),
+      ul(["Can pages be crawled?", "Are important pages indexed?", "Is the site technically accessible?", "Are internal links strong?"]),
+      h3("Structure"),
+      ul(["Are headings descriptive?", "Are key answers easy to locate?", "Are tables and lists used where helpful?"]),
+      h3("Authority"),
+      ul([
+        "Does the site demonstrate expertise?",
+        "Are important claims supported?",
+        "Are reputable third-party references available where appropriate?",
+      ]),
+      h3("AI visibility"),
+      ul([
+        "Does the brand appear for relevant questions?",
+        "Which pages are cited?",
+        "Are descriptions accurate?",
+        "Which competitors are being surfaced?",
+      ]),
+      p("An audit should end with actionable priorities—not simply a score."),
+
+      h2("How Can You Improve Answer Engine Optimization?"),
+      p(
+        "If a website already has strong SEO foundations, the next improvements often come from improving **answer quality and topical clarity**.",
+      ),
+      p("Prioritize:"),
+      ol([
+        "**Answer important questions directly.**",
+        "**Create stronger topic clusters.**",
+        "**Improve entity clarity.**",
+        "**Remove vague or unsupported claims.**",
+        "**Add original examples and evidence.**",
+        "**Strengthen internal linking.**",
+        "**Keep important information current.**",
+        "**Improve technical accessibility.**",
+        "**Monitor AI search visibility.**",
+        "**Update pages based on real user questions.**",
+      ]),
+      p("Do not respond to the rise of AI search by publishing hundreds of shallow pages."),
+      p("A smaller number of genuinely useful resources can provide a stronger foundation."),
+
+      h2("Real-Life Situations"),
+      h3("A marketing manager"),
+      p("A marketing manager wants to know:"),
+      blockquote("What is the difference between AEO and SEO?"),
+      p(
+        "A strong page answers the distinction immediately, provides a comparison table and then explains how the strategies work together.",
+      ),
+      h3("A business owner"),
+      p("A business owner asks:"),
+      blockquote("How can my company appear in AI search?"),
+      p(
+        "A useful guide explains content, technical SEO, authority, entity clarity and measurement rather than promising a guaranteed ranking.",
+      ),
+      h3("A content writer"),
+      p("A writer asks:"),
+      blockquote("How should I structure content for AI search?"),
+      p(
+        "The answer should focus on user questions, direct answers, logical headings, evidence, context and comprehensive coverage.",
+      ),
+      h3("An SEO specialist"),
+      p("An SEO specialist wants to conduct an AEO audit."),
+      p(
+        "The process should combine technical SEO, content analysis, entity review, question mapping and AI visibility monitoring.",
+      ),
+      h3("A brand strategist"),
+      p("A brand strategist wants AI systems to describe a company accurately."),
+      p(
+        "The strategy should extend beyond one webpage and examine how the brand is represented consistently across its broader digital presence.",
+      ),
+
+      h2("Expert Tips"),
+      h3("Don't chase an “AI-friendly writing style”"),
+      p("There is no need to make content sound mechanical."),
+      p("Write naturally."),
+      p(
+        "The objective is not to make a machine think the content was written for it. The objective is to make the information **clear enough that a machine can understand it without sacrificing human readability**.",
+      ),
+      h3("Don't confuse citations with guaranteed authority"),
+      p("Being cited by an AI system can be useful, but one citation does not automatically prove that a business is authoritative."),
+      p("Look at the wider picture:"),
+      ul(["Accuracy", "Expertise", "Reputation", "Evidence", "Consistency", "Relevance"]),
+      h3("Don't create an FAQ just because FAQ schema exists"),
+      p("FAQ sections should answer real questions."),
+      p("If the same question has already been answered clearly, adding another version merely for SEO creates repetition."),
+      h3("Don't abandon long-form content"),
+      p("Short answers are useful for direct questions."),
+      p("But complex questions often require context, examples, comparisons and supporting evidence."),
+      p("AEO is not synonymous with short content."),
+      h3("Think in passages, not only pages"),
+      p("A page can cover several questions."),
+      p("But each important answer should still make sense independently."),
+      p(
+        "This creates content that is easier for a reader to scan and easier for a retrieval system to interpret.",
+      ),
+      h3("Build for the entire search journey"),
+      p("The strongest content does not stop after answering the first question."),
+      p("It anticipates the next useful question."),
+      p("For AEO, that means thinking in connected question clusters rather than isolated keywords."),
+
+      h2("FAQ"),
+      h3("What does AEO stand for?"),
+      p(
+        "AEO stands for **Answer Engine Optimization**. It refers to practices intended to make content easier for answer engines and AI-powered search systems to understand, retrieve and potentially use when answering user questions.",
+      ),
+      h3("Is AEO replacing SEO?"),
+      p(
+        "No. AEO does not replace SEO. Google states that its AI search features continue to rely on core Search systems and that existing SEO best practices remain relevant.",
+      ),
+      h3("Is AEO similar to SEO?"),
+      p(
+        "Yes. They share many foundations, including technical accessibility, useful content, search intent, site structure and authority. The main difference is the search experience being emphasized: traditional search visibility versus visibility within direct or AI-generated answers.",
+      ),
+      h3("What is the difference between AEO and GEO?"),
+      p(
+        "The terms overlap significantly. AEO is often used for answer-focused optimization, while GEO is sometimes used for broader visibility within generative AI systems. There is no universally accepted boundary between them.",
+      ),
+      h3("What is an example of AEO?"),
+      p(
+        "A simple example is creating a page that directly answers a question such as “What is technical SEO?” The page gives a concise definition first, then explains the concept, provides examples, answers related questions and supports important claims.",
+      ),
+      h3("How do I start AEO?"),
+      p(
+        "Start with real customer and search questions. Group them by intent, create direct answers, improve technical SEO and internal linking, strengthen topical authority, and monitor how AI search systems represent your content.",
+      ),
+      h3("What does an AEO audit include?"),
+      p(
+        "An AEO audit can examine content quality, question coverage, entity clarity, technical SEO, structured content, internal linking, authority signals and visibility across relevant AI search experiences.",
+      ),
+      h3("Are there AEO tools?"),
+      p(
+        "Yes. AEO workflows can use traditional SEO and analytics tools, search-console data, website crawlers, structured-data tools, content research platforms and AI visibility monitoring tools. No single tool covers every part of AEO.",
+      ),
+      h3("Can I do AEO myself?"),
+      p(
+        "Yes. A business with a solid understanding of SEO, content strategy and its audience can implement many AEO practices internally. More complex programs may require technical, editorial and analytics expertise.",
+      ),
+      h3("Is there an AEO course or certification?"),
+      p(
+        "There are courses and training resources covering AEO and AI search, but there is no single universally recognized AEO certification that defines the discipline. Evaluate training based on the quality of its methodology, evidence and practical guidance.",
+      ),
+
+      h2("Quiz"),
+      table(
+        ["#", "Question", "Answer", "Explanation"],
+        [
+          ["1", "What does AEO stand for?", "Answer Engine Optimization", "AEO is the abbreviation for Answer Engine Optimization."],
+          [
+            "2",
+            "What is the main focus of AEO?",
+            "Improving visibility in answer-oriented search experiences",
+            "AEO focuses on making content useful and understandable to answer engines and AI search systems.",
+          ],
+          ["3", "Does AEO replace SEO?", "No", "AEO builds on many SEO fundamentals rather than eliminating them."],
+          [
+            "4",
+            "Which is better for a definition page: hiding the answer until the end or answering early?",
+            "Answering early",
+            "Direct answers make the page easier to understand and scan.",
+          ],
+          [
+            "5",
+            "True or false: AEO is a secret Google ranking factor.",
+            "False",
+            "Google describes its AI search features as relying on existing Search systems and SEO fundamentals.",
+          ],
+          [
+            "6",
+            "Complete the sentence: A strong AEO page should answer a real ______.",
+            "Question",
+            "AEO is closely connected to conversational and question-based search intent.",
+          ],
+          [
+            "7",
+            "Which is better: creating 100 shallow pages or fewer comprehensive resources?",
+            "Fewer comprehensive resources when they better satisfy intent",
+            "Content quality and usefulness matter more than publishing volume.",
+          ],
+          [
+            "8",
+            "What should an AEO audit examine first?",
+            "The site's content, technical accessibility and important user questions",
+            "A useful audit should evaluate the foundations that affect discoverability and answer quality.",
+          ],
+          [
+            "9",
+            "Are AEO and GEO universally defined as two completely separate disciplines?",
+            "No",
+            "Industry terminology varies and the two concepts overlap substantially.",
+          ],
+          [
+            "10",
+            "What is the best starting point for an AEO strategy?",
+            "Understanding the questions your audience actually asks",
+            "AEO works best when content is built around genuine user needs rather than keyword variations alone.",
+          ],
+        ],
+      ),
+
+      h2("Quick Summary"),
+      p(
+        "**Answer Engine Optimization (AEO)** is the practice of improving content so answer engines and AI-powered search systems can discover, understand, retrieve and potentially use it when responding to user questions. It does not replace SEO. Instead, it builds on SEO fundamentals such as crawlability, indexing, useful content, site structure and authority while placing greater emphasis on direct answers, question-based content, entity clarity and information that can be understood without ambiguity. AEO and GEO overlap considerably, so the terminology matters less than the underlying work. To get started, identify real audience questions, answer them clearly, build connected topic clusters, strengthen technical SEO, support important claims and monitor AI search visibility. The simplest rule is: **make the best answer easy to find, understand and verify.**",
+      ),
+    ],
+  },
 ];
 
 export function getInsightArticle(slug: string): InsightArticle | undefined {
   return insightArticles.find((article) => article.slug === slug);
+}
+
+/**
+ * `insightArticles` filtered to the ones that actually have an edition in
+ * `locale` — every article predating the `locales` field (i.e. every one
+ * without it set) matches all three. Every /ar and /ru page that lists,
+ * links to or statically generates articles reads through this rather than
+ * the raw array, so an English-only piece never surfaces as a card, a
+ * "related" suggestion or a static param on a locale it has no copy for.
+ */
+export function insightArticlesForLocale(locale: Locale): InsightArticle[] {
+  return insightArticles.filter((article) => !article.locales || article.locales.includes(locale));
 }
 
 /**
@@ -4079,8 +5123,8 @@ export function getInsightArticle(slug: string): InsightArticle | undefined {
  * own the next time the homepage renders — no second place to remember to
  * update it.
  */
-export function latestInsightArticles(count: number): InsightArticle[] {
-  return [...insightArticles]
+export function latestInsightArticles(count: number, locale: Locale = "en"): InsightArticle[] {
+  return [...insightArticlesForLocale(locale)]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, count);
 }

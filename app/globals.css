@@ -71,6 +71,17 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Neither Jost nor Cormorant loads a 600/700 cut (see layout.tsx) — the
+   browser's default bold on `<strong>`/`<b>` therefore has no real face to
+   match and silently falls back, rendering as visually unchanged. 500 is
+   this type system's actual ceiling (the same weight `font-medium` reaches
+   for elsewhere), so inline emphasis inside Insights article copy steps up
+   to it instead — a real, on-brand distinction rather than an inert tag. */
+strong,
+b {
+  font-weight: 500;
+}
+
 ::selection {
   background-color: var(--color-mist);
   color: var(--color-carbon);

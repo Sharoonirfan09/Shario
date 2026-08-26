@@ -5,6 +5,7 @@ import { ArticleBody, InsightCard } from "@/components/insights";
 import {
   ArticleStructuredData,
   BreadcrumbStructuredData,
+  FaqStructuredData,
 } from "@/components/structured-data";
 import {
   Band,
@@ -40,17 +41,24 @@ export async function generateMetadata({
   const title = article.seoTitle ?? article.title;
   const description = article.metaDescription ?? article.excerpt;
 
+  // An English-only article (see `InsightArticle.locales`) asserts no `ar`/
+  // `ru` alternate — declaring one would point hreflang at a route that
+  // 404s, which is worse than simply not declaring it yet.
+  const hasAr = !article.locales || article.locales.includes("ar");
+  const hasRu = !article.locales || article.locales.includes("ru");
+  const languages: Record<string, string> = {
+    en: `/insights/${article.slug}`,
+    "x-default": `/insights/${article.slug}`,
+  };
+  if (hasAr) languages.ar = `/ar/insights/${article.slug}`;
+  if (hasRu) languages.ru = `/ru/insights/${article.slug}`;
+
   return {
     title,
     description,
     alternates: {
       canonical: `/insights/${article.slug}`,
-      languages: {
-        en: `/insights/${article.slug}`,
-        ar: `/ar/insights/${article.slug}`,
-        ru: `/ru/insights/${article.slug}`,
-        "x-default": `/insights/${article.slug}`,
-      },
+      languages,
     },
     openGraph: {
       ...ogDefaults,
@@ -87,6 +95,7 @@ export default async function InsightArticlePage({
     <>
       <ArticleStructuredData article={article} category={category} />
       <BreadcrumbStructuredData items={breadcrumbItems} />
+      {article.faqs && <FaqStructuredData items={article.faqs} />}
 
       <TypeHero
         tone="carbon"

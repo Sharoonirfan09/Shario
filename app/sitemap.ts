@@ -46,7 +46,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const enUrl = `${site.domain}/insights/${article.slug}`;
     const arUrl = `${site.domain}/ar/insights/${article.slug}`;
     const ruUrl = `${site.domain}/ru/insights/${article.slug}`;
-    const languages = { en: enUrl, ar: arUrl, ru: ruUrl, "x-default": enUrl };
+    const hasAr = !article.locales || article.locales.includes("ar");
+    const hasRu = !article.locales || article.locales.includes("ru");
+    // Only assert a language alternate for an edition that actually renders
+    // — an English-only article (see `InsightArticle.locales`) omits `ar`/
+    // `ru` here rather than pointing hreflang at a route that 404s.
+    const languages: Record<string, string> = { en: enUrl, "x-default": enUrl };
+    if (hasAr) languages.ar = arUrl;
+    if (hasRu) languages.ru = ruUrl;
     // The article's own publish date, not build time — a real, distinct
     // signal per URL rather than every page in the sitemap sharing one
     // "now" timestamp that means nothing to a crawler.
@@ -55,8 +62,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     return [
       { url: enUrl, lastModified: modified, changeFrequency: "monthly" as const, priority, alternates: { languages } },
-      { url: arUrl, lastModified: modified, changeFrequency: "monthly" as const, priority, alternates: { languages } },
-      { url: ruUrl, lastModified: modified, changeFrequency: "monthly" as const, priority, alternates: { languages } },
+      ...(hasAr
+        ? [{ url: arUrl, lastModified: modified, changeFrequency: "monthly" as const, priority, alternates: { languages } }]
+        : []),
+      ...(hasRu
+        ? [{ url: ruUrl, lastModified: modified, changeFrequency: "monthly" as const, priority, alternates: { languages } }]
+        : []),
     ];
   });
 

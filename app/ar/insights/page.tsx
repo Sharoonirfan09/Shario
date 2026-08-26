@@ -8,7 +8,7 @@ import {
   cta,
   getInsightCategory,
   heroImages,
-  insightArticles,
+  insightArticlesForLocale,
   insightCategories,
   ogDefaultsAr,
 } from "@/lib/site";
@@ -59,7 +59,8 @@ export default async function ArabicInsightsPage({
   const requestedCategory = getInsightCategory(requested);
   const initialCategory = requestedCategory ? requested : "all";
 
-  const featured = insightArticles.find((article) => article.featured);
+  const arArticles = insightArticlesForLocale("ar");
+  const featured = arArticles.find((article) => article.featured);
   const featuredCategory = featured
     ? getInsightCategory(featured.category)
     : undefined;
@@ -100,7 +101,7 @@ export default async function ArabicInsightsPage({
               <div className="frame relative aspect-[4/3] overflow-hidden">
                 <Image
                   src={featured.image}
-                  alt={featured.imageAltAr}
+                  alt={featured.imageAltAr ?? featured.imageAlt}
                   fill
                   sizes="(min-width: 880px) 50vw, 100vw"
                   preload
@@ -112,7 +113,7 @@ export default async function ArabicInsightsPage({
                   className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-carbon/85 via-carbon/15 to-transparent"
                 />
                 <p className="absolute bottom-6 left-6 right-6 font-arabic text-[1.25rem] font-bold leading-[1.25] text-porcelain wide:bottom-8 wide:left-8 wide:right-8 wide:text-[1.375rem]">
-                  {featured.imageTopicAr}
+                  {featured.imageTopicAr ?? featured.imageTopic}
                 </p>
               </div>
             </Link>
@@ -126,14 +127,14 @@ export default async function ArabicInsightsPage({
                   href={`/ar/insights/${featured.slug}`}
                   className="transition-colors duration-300 hover:text-carbon/70"
                 >
-                  {featured.titleAr}
+                  {featured.titleAr ?? featured.title}
                 </Link>
               </Heading>
               <p className="reveal mt-6 max-w-[520px] text-[1.0625rem] leading-[1.7] text-carbon/75">
-                {featured.excerptAr}
+                {featured.excerptAr ?? featured.excerpt}
               </p>
               <p className="mt-6 text-[0.8125rem] text-carbon/50">
-                <span dir="ltr">{featured.date}</span> · {featured.readingTimeAr}
+                <span dir="ltr">{featured.date}</span> · {featured.readingTimeAr ?? featured.readingTime}
               </p>
               <div className="mt-8">
                 <PillLink href={`/ar/insights/${featured.slug}`}>
@@ -154,7 +155,7 @@ export default async function ArabicInsightsPage({
           scale="sm"
         />
         <InsightsExplorer
-          articles={insightArticles}
+          articles={arArticles}
           categories={insightCategories}
           initialCategory={initialCategory}
           locale="ar"

@@ -197,7 +197,7 @@ export default function RussianHomePage() {
         </div>
 
         <div className="grid gap-x-8 gap-y-14 wide:grid-cols-3">
-          {latestInsightArticles(3).map((article, i) => (
+          {latestInsightArticles(3, "ru").map((article, i) => (
             <InsightCard
               key={article.slug}
               article={article}

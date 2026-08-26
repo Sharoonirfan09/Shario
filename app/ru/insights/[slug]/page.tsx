@@ -19,15 +19,15 @@ import {
   cta,
   getInsightArticle,
   getInsightCategory,
-  insightArticles,
+  insightArticlesForLocale,
   insightCategories,
   ogDefaultsRu,
   site,
 } from "@/lib/site";
 
-/** Every article is known at build time, so prerender them. */
+/** Every article with a Russian edition is known at build time, so prerender them. English-only pieces (see `InsightArticle.locales`) are left out — visiting one here 404s via the guard below instead of rendering English copy in Russian chrome. */
 export function generateStaticParams() {
-  return insightArticles.map((article) => ({ slug: article.slug }));
+  return insightArticlesForLocale("ru").map((article) => ({ slug: article.slug }));
 }
 
 export async function generateMetadata({
@@ -35,10 +35,10 @@ export async function generateMetadata({
 }: PageProps<"/ru/insights/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const article = getInsightArticle(slug);
-  if (!article) return {};
+  if (!article || (article.locales && !article.locales.includes("ru"))) return {};
 
-  const title = article.seoTitleRu ?? article.titleRu;
-  const description = article.metaDescriptionRu ?? article.excerptRu;
+  const title = article.seoTitleRu ?? article.titleRu ?? article.title;
+  const description = article.metaDescriptionRu ?? article.excerptRu ?? article.excerpt;
 
   return {
     title,
@@ -69,18 +69,19 @@ export default async function RussianInsightArticlePage({
 }: PageProps<"/ru/insights/[slug]">) {
   const { slug } = await params;
   const article = getInsightArticle(slug);
-  if (!article) notFound();
+  if (!article || (article.locales && !article.locales.includes("ru"))) notFound();
 
+  const ruArticles = insightArticlesForLocale("ru");
   const category = getInsightCategory(article.category);
-  const related = insightArticles
+  const related = ruArticles
     .filter((a) => a.slug !== article.slug && a.category === article.category)
-    .concat(insightArticles.filter((a) => a.slug !== article.slug && a.category !== article.category))
+    .concat(ruArticles.filter((a) => a.slug !== article.slug && a.category !== article.category))
     .slice(0, 3);
 
   const breadcrumbItems = [
     { href: "/ru", label: "Главная" },
     { href: "/ru/insights", label: "Инсайты" },
-    { label: article.titleRu },
+    { label: article.titleRu ?? article.title },
   ];
 
   return (
@@ -91,20 +92,20 @@ export default async function RussianInsightArticlePage({
       <TypeHero
         tone="carbon"
         eyebrow={category?.nameRu ?? "Инсайты"}
-        title={article.titleRu}
+        title={article.titleRu ?? article.title}
         breadcrumb={<Breadcrumb locale="ru" items={breadcrumbItems} />}
       />
 
       <Band>
         <div className="mx-auto max-w-[760px]">
           <p className="mb-10 text-[0.8125rem] text-carbon/50">
-            {article.date} · {article.readingTimeRu}
+            {article.date} · {article.readingTimeRu ?? article.readingTime}
           </p>
 
           <div className="frame relative mb-12 aspect-[16/9] overflow-hidden">
             <Image
               src={article.image}
-              alt={article.imageAltRu}
+              alt={article.imageAltRu ?? article.imageAlt}
               fill
               sizes="(min-width: 880px) 760px, 100vw"
               preload
@@ -116,15 +117,15 @@ export default async function RussianInsightArticlePage({
               className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-carbon/85 via-carbon/15 to-transparent"
             />
             <p className="absolute bottom-6 left-6 right-6 font-display text-[1.375rem] font-normal leading-[1.25] text-porcelain wide:bottom-8 wide:left-8 wide:right-8 wide:text-[1.625rem]">
-              {article.imageTopicRu}
+              {article.imageTopicRu ?? article.imageTopic}
             </p>
           </div>
 
           <p className="reveal font-display text-[1.5rem] font-normal leading-[1.4] text-carbon wide:text-[1.75rem]">
-            {article.excerptRu}
+            {article.excerptRu ?? article.excerpt}
           </p>
 
-          <ArticleBody blocks={article.bodyRu} locale="ru" />
+          <ArticleBody blocks={article.bodyRu ?? article.body} locale="ru" />
         </div>
       </Band>
 

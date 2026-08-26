@@ -1,6 +1,6 @@
 import type { Locale } from "@/lib/locale";
 import type { InsightArticle, InsightCategory } from "@/lib/site";
-import { insightArticles, services, site, social } from "@/lib/site";
+import { insightArticlesForLocale, services, site, social } from "@/lib/site";
 
 /**
  * Organization + LocalBusiness markup. Shario competes on Dubai-local search,
@@ -152,11 +152,11 @@ export function ArticleStructuredData({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "@id": url,
-    headline: isAr ? article.titleAr : isRu ? article.titleRu : article.title,
+    headline: isAr ? (article.titleAr ?? article.title) : isRu ? (article.titleRu ?? article.title) : article.title,
     description: isAr
-      ? (article.metaDescriptionAr ?? article.excerptAr)
+      ? (article.metaDescriptionAr ?? article.excerptAr ?? article.excerpt)
       : isRu
-        ? (article.metaDescriptionRu ?? article.excerptRu)
+        ? (article.metaDescriptionRu ?? article.excerptRu ?? article.excerpt)
         : (article.metaDescription ?? article.excerpt),
     url,
     datePublished: isoDate,
@@ -260,9 +260,9 @@ export function InsightsBlogStructuredData({ locale = "en" }: { locale?: Locale 
       name: site.name,
       url: site.domain,
     },
-    blogPost: insightArticles.map((article) => ({
+    blogPost: insightArticlesForLocale(locale).map((article) => ({
       "@type": "BlogPosting",
-      headline: isAr ? article.titleAr : isRu ? article.titleRu : article.title,
+      headline: isAr ? (article.titleAr ?? article.title) : isRu ? (article.titleRu ?? article.title) : article.title,
       url: `${base}/${article.slug}`,
       datePublished: toIsoDate(article.date),
     })),

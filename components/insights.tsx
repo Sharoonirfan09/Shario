@@ -7,6 +7,7 @@ import type { ReactNode } from "react";
 import type { Locale } from "@/lib/locale";
 import { localizedPath } from "@/lib/locale";
 import type { ArticleBlock, InsightArticle, InsightCategory } from "@/lib/site";
+import { Figure } from "@/components/ui";
 
 /**
  * Category pills over an editorial grid, filtered client-side.
@@ -177,7 +178,7 @@ export function InsightCard({
       <div className="frame relative aspect-[4/3] overflow-hidden">
         <Image
           src={article.image}
-          alt={isAr ? article.imageAltAr : isRu ? article.imageAltRu : article.imageAlt}
+          alt={isAr ? (article.imageAltAr ?? article.imageAlt) : isRu ? (article.imageAltRu ?? article.imageAlt) : article.imageAlt}
           fill
           sizes="(min-width: 880px) 33vw, 100vw"
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
@@ -193,7 +194,7 @@ export function InsightCard({
         <p
           className={`absolute bottom-5 left-5 right-5 text-[1.1875rem] leading-[1.25] text-porcelain wide:bottom-6 wide:left-6 wide:right-6 wide:text-[1.3125rem] ${isAr ? "font-arabic" : "font-display font-normal"}`}
         >
-          {isAr ? article.imageTopicAr : isRu ? article.imageTopicRu : article.imageTopic}
+          {isAr ? (article.imageTopicAr ?? article.imageTopic) : isRu ? (article.imageTopicRu ?? article.imageTopic) : article.imageTopic}
         </p>
       </div>
       <div className={`flex flex-1 flex-col ${large ? "pt-7" : "pt-6"}`}>
@@ -208,23 +209,23 @@ export function InsightCard({
             large ? "text-[1.625rem] wide:text-[1.75rem]" : "text-[1.375rem]"
           }`}
         >
-          {isAr ? article.titleAr : isRu ? article.titleRu : article.title}
+          {isAr ? (article.titleAr ?? article.title) : isRu ? (article.titleRu ?? article.title) : article.title}
         </h3>
         <p
           className={`mt-3 flex-1 leading-[1.7] text-carbon/70 ${isAr ? "font-arabic" : ""} ${
             large ? "text-[1rem]" : "text-[0.9375rem]"
           }`}
         >
-          {isAr ? article.excerptAr : isRu ? article.excerptRu : article.excerpt}
+          {isAr ? (article.excerptAr ?? article.excerpt) : isRu ? (article.excerptRu ?? article.excerpt) : article.excerpt}
         </p>
         <p className={`mt-5 text-[0.8125rem] text-carbon/45 ${isAr ? "font-arabic" : ""}`}>
           {isAr ? (
             <>
-              <span dir="ltr">{article.date}</span> · {article.readingTimeAr}
+              <span dir="ltr">{article.date}</span> · {article.readingTimeAr ?? article.readingTime}
             </>
           ) : isRu ? (
             <>
-              {article.date} · {article.readingTimeRu}
+              {article.date} · {article.readingTimeRu ?? article.readingTime}
             </>
           ) : (
             `${article.date} · ${article.readingTime}`
@@ -236,13 +237,14 @@ export function InsightCard({
 }
 
 /**
- * Parses `[label](/href)` inside an article body's plain-text paragraphs
- * into real links. Article content stays plain data in `lib/site.ts` this
- * way — a `[text](url)` pair rather than JSX — while still rendering as a
- * proper in-context link, internal or external, on the page.
+ * Parses `[label](/href)`, `**bold**` and `*italic*` inside an article
+ * body's plain-text paragraphs, list items, blockquotes and table cells into
+ * real markup. Article content stays plain data in `lib/site.ts` this way —
+ * Markdown-style spans rather than stored JSX — while still rendering as
+ * proper inline formatting and links, internal or external, on the page.
  */
 function renderInline(text: string): ReactNode[] {
-  const pattern = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const pattern = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|\*([^*]+)\*/g;
   const nodes: ReactNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
@@ -252,28 +254,35 @@ function renderInline(text: string): ReactNode[] {
     if (match.index > lastIndex) {
       nodes.push(text.slice(lastIndex, match.index));
     }
-    const [full, label, href] = match;
-    const external = /^https?:\/\//.test(href);
-    const linkClassName =
-      "text-carbon underline decoration-carbon/30 underline-offset-2 transition-colors duration-300 hover:text-mist hover:decoration-mist";
+    const [full, linkLabel, href, bold, italic] = match;
 
-    nodes.push(
-      external ? (
-        <a
-          key={key++}
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={linkClassName}
-        >
-          {label}
-        </a>
-      ) : (
-        <Link key={key++} href={href} className={linkClassName}>
-          {label}
-        </Link>
-      ),
-    );
+    if (bold !== undefined) {
+      nodes.push(<strong key={key++}>{bold}</strong>);
+    } else if (italic !== undefined) {
+      nodes.push(<em key={key++}>{italic}</em>);
+    } else {
+      const external = /^https?:\/\//.test(href);
+      const linkClassName =
+        "text-carbon underline decoration-carbon/30 underline-offset-2 transition-colors duration-300 hover:text-mist hover:decoration-mist";
+
+      nodes.push(
+        external ? (
+          <a
+            key={key++}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClassName}
+          >
+            {linkLabel}
+          </a>
+        ) : (
+          <Link key={key++} href={href} className={linkClassName}>
+            {linkLabel}
+          </Link>
+        ),
+      );
+    }
     lastIndex = match.index + full.length;
   }
 
@@ -295,7 +304,7 @@ export function ArticleBody({ blocks, locale = "en" }: { blocks: ArticleBlock[];
   return (
     <div className="mt-8">
       {blocks.map((block, i) => {
-        const delay = i * 40;
+        const delay = Math.min(i, 8) * 40;
 
         if (block.type === "h2") {
           return (
@@ -321,14 +330,126 @@ export function ArticleBody({ blocks, locale = "en" }: { blocks: ArticleBlock[];
           );
         }
 
+        if (block.type === "p") {
+          return (
+            <p
+              key={i}
+              className={`reveal mt-5 text-[1.0625rem] leading-[1.8] text-carbon/80 first:mt-0 ${isAr ? "font-arabic" : ""}`}
+              data-delay={delay}
+            >
+              {renderInline(block.text)}
+            </p>
+          );
+        }
+
+        if (block.type === "ul") {
+          return (
+            <ul
+              key={i}
+              className={`reveal mt-5 flex flex-col gap-2.5 ${isAr ? "font-arabic mr-1" : "ml-1"}`}
+              data-delay={delay}
+            >
+              {block.items.map((item, j) => (
+                <li
+                  key={j}
+                  className={`flex gap-3 text-[1.0625rem] leading-[1.75] text-carbon/80 ${isAr ? "flex-row-reverse text-right" : ""}`}
+                >
+                  <span aria-hidden="true" className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-mist" />
+                  <span>{renderInline(item)}</span>
+                </li>
+              ))}
+            </ul>
+          );
+        }
+
+        if (block.type === "ol") {
+          return (
+            <ol
+              key={i}
+              className={`reveal mt-5 flex flex-col gap-2.5 ${isAr ? "font-arabic mr-1" : "ml-1"}`}
+              data-delay={delay}
+            >
+              {block.items.map((item, j) => (
+                <li
+                  key={j}
+                  className={`flex gap-3 text-[1.0625rem] leading-[1.75] text-carbon/80 ${isAr ? "flex-row-reverse text-right" : ""}`}
+                >
+                  <span className="shrink-0 font-display text-carbon/50">{j + 1}.</span>
+                  <span>{renderInline(item)}</span>
+                </li>
+              ))}
+            </ol>
+          );
+        }
+
+        if (block.type === "blockquote") {
+          return (
+            <blockquote
+              key={i}
+              className={`reveal mt-6 border-l-2 border-mist py-1 pl-6 text-[1.1875rem] leading-[1.6] text-carbon/85 ${isAr ? "border-l-0 border-r-2 pl-0 pr-6 font-arabic" : "font-display italic"}`}
+              data-delay={delay}
+            >
+              {renderInline(block.text)}
+            </blockquote>
+          );
+        }
+
+        if (block.type === "code") {
+          return (
+            <pre
+              key={i}
+              className="reveal mt-6 overflow-x-auto rounded-sm border border-carbon/12 bg-limestone/30 p-5 text-[0.875rem] leading-[1.6] text-carbon/85"
+              data-delay={delay}
+            >
+              <code className="font-mono">{block.text}</code>
+            </pre>
+          );
+        }
+
+        if (block.type === "image") {
+          return (
+            <div key={i} className="reveal mt-8" data-delay={delay}>
+              <Figure src={block.src} label={block.alt} caption={block.caption ?? ""} />
+            </div>
+          );
+        }
+
+        // block.type === "table" — wrapped in its own horizontal-scroll
+        // container so a wide comparison table never forces the page itself
+        // to scroll sideways on mobile (section 18 of the Insights brief).
         return (
-          <p
+          <div
             key={i}
-            className={`reveal mt-5 text-[1.0625rem] leading-[1.8] text-carbon/80 first:mt-0 ${isAr ? "font-arabic" : ""}`}
+            className="reveal mt-6 -mx-1 overflow-x-auto px-1"
             data-delay={delay}
           >
-            {renderInline(block.text)}
-          </p>
+            <table className={`w-full min-w-[560px] border-collapse text-left text-[0.9375rem] ${isAr ? "font-arabic text-right" : ""}`}>
+              <thead>
+                <tr className="border-b border-carbon/25">
+                  {block.headers.map((heading, h) => (
+                    <th
+                      key={h}
+                      scope="col"
+                      className={`whitespace-nowrap px-4 py-3 text-carbon ${isAr ? "font-arabic font-bold" : "font-display font-medium"} first:pl-0`}
+                    >
+                      {heading}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {block.rows.map((row, r) => (
+                  <tr key={r} className="border-b border-carbon/10">
+                    {row.map((cell, c) => (
+                      <td key={c} className="px-4 py-3 align-top leading-[1.6] text-carbon/80 first:pl-0">
+                        {renderInline(cell)}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         );
       })}
     </div>

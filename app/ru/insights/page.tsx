@@ -8,7 +8,7 @@ import {
   cta,
   getInsightCategory,
   heroImages,
-  insightArticles,
+  insightArticlesForLocale,
   insightCategories,
   ogDefaultsRu,
 } from "@/lib/site";
@@ -59,7 +59,8 @@ export default async function RussianInsightsPage({
   const requestedCategory = getInsightCategory(requested);
   const initialCategory = requestedCategory ? requested : "all";
 
-  const featured = insightArticles.find((article) => article.featured);
+  const ruArticles = insightArticlesForLocale("ru");
+  const featured = ruArticles.find((article) => article.featured);
   const featuredCategory = featured
     ? getInsightCategory(featured.category)
     : undefined;
@@ -100,7 +101,7 @@ export default async function RussianInsightsPage({
               <div className="frame relative aspect-[4/3] overflow-hidden">
                 <Image
                   src={featured.image}
-                  alt={featured.imageAltRu}
+                  alt={featured.imageAltRu ?? featured.imageAlt}
                   fill
                   sizes="(min-width: 880px) 50vw, 100vw"
                   preload
@@ -112,7 +113,7 @@ export default async function RussianInsightsPage({
                   className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-carbon/85 via-carbon/15 to-transparent"
                 />
                 <p className="absolute bottom-6 left-6 right-6 font-display text-[1.375rem] font-normal leading-[1.25] text-porcelain wide:bottom-8 wide:left-8 wide:right-8 wide:text-[1.5rem]">
-                  {featured.imageTopicRu}
+                  {featured.imageTopicRu ?? featured.imageTopic}
                 </p>
               </div>
             </Link>
@@ -126,14 +127,14 @@ export default async function RussianInsightsPage({
                   href={`/ru/insights/${featured.slug}`}
                   className="transition-colors duration-300 hover:text-carbon/70"
                 >
-                  {featured.titleRu}
+                  {featured.titleRu ?? featured.title}
                 </Link>
               </Heading>
               <p className="reveal mt-6 max-w-[520px] text-[1.0625rem] leading-[1.7] text-carbon/75">
-                {featured.excerptRu}
+                {featured.excerptRu ?? featured.excerpt}
               </p>
               <p className="mt-6 text-[0.8125rem] text-carbon/50">
-                {featured.date} · {featured.readingTimeRu}
+                {featured.date} · {featured.readingTimeRu ?? featured.readingTime}
               </p>
               <div className="mt-8">
                 <PillLink href={`/ru/insights/${featured.slug}`}>
@@ -154,7 +155,7 @@ export default async function RussianInsightsPage({
           scale="sm"
         />
         <InsightsExplorer
-          articles={insightArticles}
+          articles={ruArticles}
           categories={insightCategories}
           initialCategory={initialCategory}
           locale="ru"
