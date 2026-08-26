@@ -4279,8 +4279,8 @@ export const insightArticles: InsightArticle[] = [
     readingTime: "43 min read",
     image: "/images/insights/answer-engine-optimization-search-to-answer.jpg",
     imageAlt:
-      "An abstract editorial illustration of a traditional search-results panel transforming into a generated answer card, symbolising the shift from search to AI-generated answers",
-    imageTopic: "From Search to Answer",
+      "A softly lit editorial photograph of an open SHARIO brand lookbook, spread across a page reading 'Designed. Growth Delivered.' beside architectural and botanical brand imagery",
+    imageTopic: "Answer Engine Optimization (AEO)",
     faqs: [
       {
         q: "What does AEO stand for?",
