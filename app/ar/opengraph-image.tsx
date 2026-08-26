@@ -7,7 +7,7 @@ import { buildHomeOgImage, ogContentType, ogSize } from "@/lib/og";
  */
 export const size = ogSize;
 export const contentType = ogContentType;
-export const alt = "شاريو — تسويق رقمي يحوّل الإنفاق إلى إيرادات. سيمفونية الهوية.";
+export const alt = "شاريو — وكالة تسويق رقمي في دبي. سيمفونية الهوية.";
 
 export default async function Image() {
   return buildHomeOgImage();

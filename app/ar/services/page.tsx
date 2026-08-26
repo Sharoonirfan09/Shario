@@ -11,7 +11,7 @@ const HERO_IMAGE_ALT =
   "لوحة مؤطرة لامرأة ترتدي قبعة عريضة الحواف وفستاناً كريمياً مطوياً، مستندة إلى قماش أحمر داكن في غرفة مشمسة ذات ألواح خشبية";
 
 export const metadata: Metadata = {
-  title: "خدمات التسويق الرقمي والإبداعي في دبي",
+  title: "وكالة تسويق رقمي في دبي — خدماتنا",
   description: descriptionAr,
   alternates: {
     canonical: "/ar/services",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     ...ogDefaultsAr,
     url: "/ar/services",
     type: "website",
-    title: "خدمات التسويق الرقمي والإبداعي في دبي — شاريو",
+    title: "شاريو — وكالة تسويق رقمي في دبي، خدماتنا",
     description: descriptionAr,
   },
 };
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 export default function ArabicServicesPage() {
   return (
     <>
-      <h1 className="sr-only">خدمات التسويق الرقمي والإبداعي في دبي</h1>
+      <h1 className="sr-only">وكالة تسويق رقمي في دبي — خدماتنا</h1>
       <Hero
         src={HERO_IMAGE}
         alt={HERO_IMAGE_ALT}

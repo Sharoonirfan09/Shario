@@ -11,7 +11,7 @@ import { buildHomeOgImage, ogContentType, ogSize } from "@/lib/og";
  */
 export const size = ogSize;
 export const contentType = ogContentType;
-export const alt = "SHARIO — цифровой маркетинг, который превращает расходы в выручку. Симфония идентичности.";
+export const alt = "SHARIO — агентство цифрового маркетинга в Дубае. Симфония идентичности.";
 
 export default async function Image() {
   return buildHomeOgImage();

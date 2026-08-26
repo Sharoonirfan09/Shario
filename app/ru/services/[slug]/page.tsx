@@ -90,7 +90,7 @@ export default async function RussianServicePage({
 
       <Hero
         src={service.heroImage}
-        alt={`${service.nameRu} — ${site.name}`}
+        alt={`${service.nameRu} в Дубае — ${site.name}`}
         eyebrow={service.categoryRu}
         title={service.titleRu}
         priority
