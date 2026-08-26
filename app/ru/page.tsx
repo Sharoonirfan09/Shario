@@ -28,12 +28,21 @@ import {
   site,
 } from "@/lib/site";
 
+/**
+ * SEO-specific description, distinct from `site.descriptionRu` — matches the
+ * English homepage's `HOME_META_DESCRIPTION` (`app/(en)/page.tsx`) so this
+ * page's own title/description target "агентство цифрового маркетинга в
+ * Дубае" the same way.
+ */
+const HOME_META_DESCRIPTION_RU =
+  "SHARIO — агентство цифрового маркетинга в Дубае под руководством основателя — платный трафик, SEO, веб-разработка и брендинг, созданные, чтобы превращать расходы в выручку.";
+
 export const metadata: Metadata = {
   // Written out in full rather than relying on `app/ru/layout.tsx`'s
   // `title.template`: a layout's template does not apply to a page in that
   // same route segment, and this page is the index of `app/ru` itself.
   title: "агентство цифрового маркетинга в Дубае — SHARIO",
-  description: site.descriptionRu,
+  description: HOME_META_DESCRIPTION_RU,
   alternates: {
     canonical: "/ru",
     languages: { en: "/", ar: "/ar", ru: "/ru", "x-default": "/" },
@@ -43,7 +52,7 @@ export const metadata: Metadata = {
     url: "/ru",
     type: "website",
     title: "SHARIO — агентство цифрового маркетинга в Дубае",
-    description: site.descriptionRu,
+    description: HOME_META_DESCRIPTION_RU,
   },
 };
 

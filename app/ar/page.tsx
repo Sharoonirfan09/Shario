@@ -28,12 +28,20 @@ import {
   site,
 } from "@/lib/site";
 
+/**
+ * SEO-specific description, distinct from `site.descriptionAr` — matches the
+ * English homepage's `HOME_META_DESCRIPTION` (`app/(en)/page.tsx`) so this
+ * page's own title/description target "وكالة تسويق رقمي في دبي" the same way.
+ */
+const HOME_META_DESCRIPTION_AR =
+  "شاريو وكالة تسويق رقمي في دبي يقودها مؤسستها — إعلانات مدفوعة، تحسين محركات بحث، تطوير مواقع، وعلامة تجارية، مصممة لتحويل الإنفاق إلى إيرادات.";
+
 export const metadata: Metadata = {
   // Written out in full rather than relying on `app/ar/layout.tsx`'s
   // `title.template`: a layout's template does not apply to a page in that
   // same route segment, and this page is the index of `app/ar` itself.
   title: "وكالة تسويق رقمي في دبي — شاريو",
-  description: site.descriptionAr,
+  description: HOME_META_DESCRIPTION_AR,
   alternates: {
     canonical: "/ar",
     languages: { en: "/", ar: "/ar", ru: "/ru", "x-default": "/" },
@@ -43,7 +51,7 @@ export const metadata: Metadata = {
     url: "/ar",
     type: "website",
     title: "شاريو — وكالة تسويق رقمي في دبي",
-    description: site.descriptionAr,
+    description: HOME_META_DESCRIPTION_AR,
   },
 };
 

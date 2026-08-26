@@ -11,7 +11,7 @@ const HERO_IMAGE_ALT =
   "Оформленный в раму портрет женщины в шляпе с широкими полями и складчатом кремовом платье, облокотившейся на глубокий красный холст в солнечной комнате с деревянными панелями";
 
 export const metadata: Metadata = {
-  title: "Услуги цифрового маркетинга и креатива в Дубае",
+  title: "Агентство цифрового маркетинга в Дубае — Наши услуги",
   description: descriptionRu,
   alternates: {
     canonical: "/ru/services",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     ...ogDefaultsRu,
     url: "/ru/services",
     type: "website",
-    title: "Услуги цифрового маркетинга и креатива в Дубае — SHARIO",
+    title: "SHARIO — агентство цифрового маркетинга в Дубае, наши услуги",
     description: descriptionRu,
   },
 };
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 export default function RussianServicesPage() {
   return (
     <>
-      <h1 className="sr-only">Услуги цифрового маркетинга и креатива в Дубае</h1>
+      <h1 className="sr-only">Агентство цифрового маркетинга в Дубае — Наши услуги</h1>
       <Hero
         src={HERO_IMAGE}
         alt={HERO_IMAGE_ALT}
