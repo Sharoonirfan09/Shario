@@ -742,7 +742,7 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    slug: "performance-marketing",
+    slug: "digital-marketing",
     num: "01",
     name: "Digital Marketing",
     nameAr: "التسويق الرقمي",
@@ -960,7 +960,7 @@ export const services: Service[] = [
     relatedInsightSlug: "dubai-ad-auctions-getting-more-competitive",
   },
   {
-    slug: "seo-and-content",
+    slug: "seo",
     num: "02",
     name: "SEO (Search Engine Optimization)",
     nameAr: "تحسين محركات البحث (SEO)",
@@ -1178,7 +1178,7 @@ export const services: Service[] = [
     relatedInsightSlug: "ai-search-changing-what-ranking-means",
   },
   {
-    slug: "websites-and-cro",
+    slug: "website-development",
     num: "03",
     name: "Website Development",
     nameAr: "تطوير المواقع الإلكترونية",
@@ -1395,7 +1395,7 @@ export const services: Service[] = [
     relatedInsightSlug: "real-cost-of-a-slow-website",
   },
   {
-    slug: "crm-and-automation",
+    slug: "crm-marketing-automation",
     num: "04",
     name: "CRM & Marketing Automation",
     nameAr: "إدارة علاقات العملاء وأتمتة التسويق",
@@ -1613,7 +1613,7 @@ export const services: Service[] = [
     relatedInsightSlug: "why-crm-rollouts-fail-before-they-start",
   },
   {
-    slug: "brand-and-creative",
+    slug: "branding",
     num: "05",
     name: "Branding",
     nameAr: "العلامة التجارية",
@@ -1830,7 +1830,7 @@ export const services: Service[] = [
     seoTitleRu: "Брендинговое агентство в Дубае — айдентика и креатив",
   },
   {
-    slug: "strategy-consulting",
+    slug: "marketing-consulting",
     num: "06",
     name: "Marketing Consulting",
     nameAr: "الاستشارات التسويقية",
@@ -2538,7 +2538,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("What Rising Costs Actually Punish"),
       p(
-        "None of this makes paid media a weaker channel. It makes the gap between a well-run account and a neglected one wider than it used to be. An account left on autopilot — generic keywords, unchanged creative, no [CRM feedback loop](/services/crm-and-automation) telling it which leads actually closed — pays full price for every pressure above. An account built and optimised properly absorbs them far better, because it's competing on relevance and conversion quality, not budget alone.",
+        "None of this makes paid media a weaker channel. It makes the gap between a well-run account and a neglected one wider than it used to be. An account left on autopilot — generic keywords, unchanged creative, no [CRM feedback loop](/services/crm-marketing-automation) telling it which leads actually closed — pays full price for every pressure above. An account built and optimised properly absorbs them far better, because it's competing on relevance and conversion quality, not budget alone.",
       ),
       h2("The Accounts Winning Right Now Share Three Habits"),
       p(
@@ -2546,7 +2546,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("What This Means for Your Budget"),
       p(
-        "A rising market rate for clicks isn't a reason to panic or pull spend. It's a reason to check whether your account is still paying the old price in the new market, or has already adjusted. If [Digital Marketing](/services/performance-marketing) is a meaningful part of your growth plan for the year ahead, that's worth a proper look before the next budget cycle, not after it.",
+        "A rising market rate for clicks isn't a reason to panic or pull spend. It's a reason to check whether your account is still paying the old price in the new market, or has already adjusted. If [Digital Marketing](/services/digital-marketing) is a meaningful part of your growth plan for the year ahead, that's worth a proper look before the next budget cycle, not after it.",
       ),
       p(
         "If you want a second opinion on your account before then, [book a short call](/contact) — we'll tell you plainly whether the fix is budget, structure, or both. For a wider view of how platforms themselves are responding to advertiser demand, [Think with Google's marketing insights](https://www.thinkwithgoogle.com/intl/en-emea/) tracks regional shifts worth reading alongside your own account data.",
@@ -2574,7 +2574,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("ما الذي يعاقبه الارتفاع في التكاليف فعلياً؟"),
       p(
-        "لا شيء من هذا يجعل الإعلانات المدفوعة قناة أضعف. بل يوسّع الفجوة بين الحساب المُدار جيداً والحساب المُهمَل أكثر من ذي قبل. فالحساب المتروك على الطيار الآلي — كلمات مفتاحية عامة، تصاميم إبداعية ثابتة، وبلا [حلقة تغذية راجعة من إدارة علاقات العملاء](/ar/services/crm-and-automation) تخبره أي العملاء المحتملين أُغلقوا فعلاً — يدفع السعر كاملاً مقابل كل ضغط من الضغوط السابقة. أما الحساب المبني والمُحسَّن بشكل صحيح فيمتص هذه الضغوط بشكل أفضل بكثير، لأنه يتنافس على الملاءمة وجودة التحويل، لا على الميزانية وحدها.",
+        "لا شيء من هذا يجعل الإعلانات المدفوعة قناة أضعف. بل يوسّع الفجوة بين الحساب المُدار جيداً والحساب المُهمَل أكثر من ذي قبل. فالحساب المتروك على الطيار الآلي — كلمات مفتاحية عامة، تصاميم إبداعية ثابتة، وبلا [حلقة تغذية راجعة من إدارة علاقات العملاء](/ar/services/crm-marketing-automation) تخبره أي العملاء المحتملين أُغلقوا فعلاً — يدفع السعر كاملاً مقابل كل ضغط من الضغوط السابقة. أما الحساب المبني والمُحسَّن بشكل صحيح فيمتص هذه الضغوط بشكل أفضل بكثير، لأنه يتنافس على الملاءمة وجودة التحويل، لا على الميزانية وحدها.",
       ),
       h2("الحسابات الرابحة حالياً تشترك في ثلاث عادات"),
       p(
@@ -2582,7 +2582,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("ماذا يعني هذا لميزانيتكم؟"),
       p(
-        "ارتفاع سعر السوق للنقرات ليس سبباً للذعر أو لسحب الإنفاق. بل سبب للتحقق مما إذا كان حسابكم لا يزال يدفع السعر القديم في سوق جديد، أم أنه تكيّف بالفعل. وإذا كان [التسويق الرقمي](/ar/services/performance-marketing) جزءاً مهماً من خطة نموكم للعام المقبل، فهذا يستحق مراجعة جادة قبل دورة الميزانية القادمة، لا بعدها.",
+        "ارتفاع سعر السوق للنقرات ليس سبباً للذعر أو لسحب الإنفاق. بل سبب للتحقق مما إذا كان حسابكم لا يزال يدفع السعر القديم في سوق جديد، أم أنه تكيّف بالفعل. وإذا كان [التسويق الرقمي](/ar/services/digital-marketing) جزءاً مهماً من خطة نموكم للعام المقبل، فهذا يستحق مراجعة جادة قبل دورة الميزانية القادمة، لا بعدها.",
       ),
       p(
         "إذا كنتم ترغبون في رأي ثانٍ حول حسابكم قبل ذلك، [احجزوا مكالمة قصيرة](/ar/contact) — سنخبركم بصراحة ما إذا كان الحل يكمن في الميزانية أو البنية أو كليهما. ولرؤية أوسع حول كيفية استجابة المنصات نفسها لطلب المعلنين، تتابع [رؤى Think with Google التسويقية](https://www.thinkwithgoogle.com/intl/en-emea/) التحولات الإقليمية التي تستحق القراءة إلى جانب بيانات حسابكم الخاص.",
@@ -2610,7 +2610,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Что на самом деле наказывает рост стоимости"),
       p(
-        "Ничего из этого не делает платную рекламу более слабым каналом. Это лишь расширяет разрыв между хорошо управляемым аккаунтом и заброшенным. Аккаунт, оставленный на автопилоте — общие ключевые слова, неизменные креативы, отсутствие [обратной связи от CRM](/ru/services/crm-and-automation) о том, какие лиды реально закрылись, — платит полную цену за каждый из перечисленных факторов. А аккаунт, выстроенный и оптимизированный правильно, переносит их гораздо легче, потому что конкурирует за счёт релевантности и качества конверсии, а не только бюджета.",
+        "Ничего из этого не делает платную рекламу более слабым каналом. Это лишь расширяет разрыв между хорошо управляемым аккаунтом и заброшенным. Аккаунт, оставленный на автопилоте — общие ключевые слова, неизменные креативы, отсутствие [обратной связи от CRM](/ru/services/crm-marketing-automation) о том, какие лиды реально закрылись, — платит полную цену за каждый из перечисленных факторов. А аккаунт, выстроенный и оптимизированный правильно, переносит их гораздо легче, потому что конкурирует за счёт релевантности и качества конверсии, а не только бюджета.",
       ),
       h2("Аккаунты, которые побеждают прямо сейчас, объединяют три привычки"),
       p(
@@ -2618,7 +2618,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Что это значит для вашего бюджета"),
       p(
-        "Рост рыночной цены за клик — не повод для паники или сокращения расходов. Это повод проверить, платит ли ваш аккаунт всё ещё старую цену на новом рынке или уже адаптировался к нему. Если [цифровой маркетинг](/ru/services/performance-marketing) занимает важное место в вашем плане роста на предстоящий год, это стоит внимательно изучить до начала следующего бюджетного цикла, а не после.",
+        "Рост рыночной цены за клик — не повод для паники или сокращения расходов. Это повод проверить, платит ли ваш аккаунт всё ещё старую цену на новом рынке или уже адаптировался к нему. Если [цифровой маркетинг](/ru/services/digital-marketing) занимает важное место в вашем плане роста на предстоящий год, это стоит внимательно изучить до начала следующего бюджетного цикла, а не после.",
       ),
       p(
         "Если хотите получить независимое мнение о своём аккаунте до этого момента, [запишитесь на короткий звонок](/ru/contact) — мы прямо скажем, в чём дело: в бюджете, в структуре или в обоих факторах сразу. Для более широкого взгляда на то, как сами платформы реагируют на спрос рекламодателей, [маркетинговые инсайты Think with Google](https://www.thinkwithgoogle.com/intl/en-emea/) отслеживают региональные тренды, которые стоит изучать наряду с данными вашего собственного аккаунта.",
@@ -2679,10 +2679,10 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("The Brands Handling This Well"),
       p(
-        "They treat their [CRM and their ad accounts as one connected system](/services/crm-and-automation), so cost per qualified lead is a number they can see weekly rather than reconstruct at quarter's end. That single change tends to matter more to a budget's resilience than any amount of platform-hopping.",
+        "They treat their [CRM and their ad accounts as one connected system](/services/crm-marketing-automation), so cost per qualified lead is a number they can see weekly rather than reconstruct at quarter's end. That single change tends to matter more to a budget's resilience than any amount of platform-hopping.",
       ),
       p(
-        "If your team can't currently answer \"what's our cost per qualified lead by channel\" in under a minute, that's the gap worth closing before the next budget review — [our marketing consulting work](/services/strategy-consulting) usually starts exactly there. For a broader framework on budgeting through cost inflation, [HubSpot's marketing planning resources](https://blog.hubspot.com/marketing) are a solid general reference alongside your own numbers.",
+        "If your team can't currently answer \"what's our cost per qualified lead by channel\" in under a minute, that's the gap worth closing before the next budget review — [our marketing consulting work](/services/marketing-consulting) usually starts exactly there. For a broader framework on budgeting through cost inflation, [HubSpot's marketing planning resources](https://blog.hubspot.com/marketing) are a solid general reference alongside your own numbers.",
       ),
       p(
         "Want a second set of eyes on your channel mix before you touch next quarter's budget? [Get in touch](/contact) and we'll walk through it with you.",
@@ -2710,10 +2710,10 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("العلامات التجارية التي تتعامل مع هذا جيداً"),
       p(
-        "تتعامل مع [إدارة علاقات العملاء وحسابات إعلاناتها كنظام واحد متصل](/ar/services/crm-and-automation)، بحيث تكون تكلفة العميل المحتمل المؤهَّل رقماً يمكنها رؤيته أسبوعياً بدلاً من إعادة بنائه في نهاية الربع. هذا التغيير وحده غالباً ما يهم لمرونة الميزانية أكثر من أي قدر من التنقل بين المنصات.",
+        "تتعامل مع [إدارة علاقات العملاء وحسابات إعلاناتها كنظام واحد متصل](/ar/services/crm-marketing-automation)، بحيث تكون تكلفة العميل المحتمل المؤهَّل رقماً يمكنها رؤيته أسبوعياً بدلاً من إعادة بنائه في نهاية الربع. هذا التغيير وحده غالباً ما يهم لمرونة الميزانية أكثر من أي قدر من التنقل بين المنصات.",
       ),
       p(
-        "إذا كان فريقكم غير قادر حالياً على الإجابة عن سؤال «ما تكلفة عميلنا المحتمل المؤهَّل لكل قناة» في أقل من دقيقة، فهذه هي الفجوة التي تستحق الإغلاق قبل مراجعة الميزانية القادمة — [عملنا في الاستشارات التسويقية](/ar/services/strategy-consulting) عادة ما يبدأ من هناك بالضبط. ولإطار عمل أوسع حول وضع الميزانية في ظل تضخم التكاليف، تُعد [موارد HubSpot للتخطيط التسويقي](https://blog.hubspot.com/marketing) مرجعاً عاماً جيداً إلى جانب أرقامكم الخاصة.",
+        "إذا كان فريقكم غير قادر حالياً على الإجابة عن سؤال «ما تكلفة عميلنا المحتمل المؤهَّل لكل قناة» في أقل من دقيقة، فهذه هي الفجوة التي تستحق الإغلاق قبل مراجعة الميزانية القادمة — [عملنا في الاستشارات التسويقية](/ar/services/marketing-consulting) عادة ما يبدأ من هناك بالضبط. ولإطار عمل أوسع حول وضع الميزانية في ظل تضخم التكاليف، تُعد [موارد HubSpot للتخطيط التسويقي](https://blog.hubspot.com/marketing) مرجعاً عاماً جيداً إلى جانب أرقامكم الخاصة.",
       ),
       p(
         "تريدون رأياً إضافياً حول مزيج قنواتكم قبل أن تلمسوا ميزانية الربع القادم؟ [تواصلوا معنا](/ar/contact) وسنستعرضها معكم.",
@@ -2741,10 +2741,10 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Бренды, которые справляются с этим правильно"),
       p(
-        "Они относятся к [CRM и рекламным аккаунтам как к единой связанной системе](/ru/services/crm-and-automation), поэтому видят стоимость квалифицированного лида еженедельно, а не восстанавливают её задним числом в конце квартала. Одно только это изменение обычно значит для устойчивости бюджета больше, чем любые метания между платформами.",
+        "Они относятся к [CRM и рекламным аккаунтам как к единой связанной системе](/ru/services/crm-marketing-automation), поэтому видят стоимость квалифицированного лида еженедельно, а не восстанавливают её задним числом в конце квартала. Одно только это изменение обычно значит для устойчивости бюджета больше, чем любые метания между платформами.",
       ),
       p(
-        "Если ваша команда сейчас не может ответить на вопрос «какова стоимость квалифицированного лида по каждому каналу» меньше чем за минуту — это та самая брешь, которую стоит закрыть до следующего пересмотра бюджета. Именно с этого обычно начинается [наша работа в области маркетингового консалтинга](/ru/services/strategy-consulting). Для более широкого понимания планирования бюджета в условиях роста цен хорошим общим ориентиром наряду с вашими собственными цифрами послужат [материалы HubSpot по маркетинговому планированию](https://blog.hubspot.com/marketing).",
+        "Если ваша команда сейчас не может ответить на вопрос «какова стоимость квалифицированного лида по каждому каналу» меньше чем за минуту — это та самая брешь, которую стоит закрыть до следующего пересмотра бюджета. Именно с этого обычно начинается [наша работа в области маркетингового консалтинга](/ru/services/marketing-consulting). Для более широкого понимания планирования бюджета в условиях роста цен хорошим общим ориентиром наряду с вашими собственными цифрами послужат [материалы HubSpot по маркетинговому планированию](https://blog.hubspot.com/marketing).",
       ),
       p(
         "Хотите получить независимый взгляд на свой медиамикс, прежде чем трогать бюджет следующего квартала? [Свяжитесь с нами](/ru/contact) — мы разберём его вместе с вами.",
@@ -2809,7 +2809,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("The Fix Isn't Usually a Rebuild"),
       p(
-        "Addressing the handful of assets and scripts actually responsible for the delay is typically a matter of weeks, not a new site. That's the approach we take inside [Website Development](/services/websites-and-cro) — audit first, rebuild only the parts the audit actually points to.",
+        "Addressing the handful of assets and scripts actually responsible for the delay is typically a matter of weeks, not a new site. That's the approach we take inside [Website Development](/services/website-development) — audit first, rebuild only the parts the audit actually points to.",
       ),
       h2("Treat Speed as a Multiplier, Not a Line Item"),
       p(
@@ -2845,7 +2845,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("الإصلاح ليس عادة إعادة بناء كاملة"),
       p(
-        "معالجة الحفنة القليلة من العناصر والنصوص البرمجية المسؤولة فعلياً عن التأخير عادة ما تستغرق أسابيع، لا موقعاً جديداً بالكامل. هذا هو النهج الذي نتبعه ضمن [تطوير المواقع الإلكترونية](/ar/services/websites-and-cro) — تدقيق أولاً، وإعادة بناء الأجزاء التي يشير إليها التدقيق فعلياً فقط.",
+        "معالجة الحفنة القليلة من العناصر والنصوص البرمجية المسؤولة فعلياً عن التأخير عادة ما تستغرق أسابيع، لا موقعاً جديداً بالكامل. هذا هو النهج الذي نتبعه ضمن [تطوير المواقع الإلكترونية](/ar/services/website-development) — تدقيق أولاً، وإعادة بناء الأجزاء التي يشير إليها التدقيق فعلياً فقط.",
       ),
       h2("عاملوا السرعة كمُضاعِف، لا كبند تكلفة"),
       p(
@@ -2881,7 +2881,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Решение обычно не требует пересборки"),
       p(
-        "Устранение той самой горстки файлов и скриптов, реально ответственных за задержку, обычно занимает недели, а не требует нового сайта. Именно такой подход мы применяем в рамках направления [«Веб-разработка»](/ru/services/websites-and-cro) — сначала аудит, и пересборка только тех частей, на которые он реально указывает.",
+        "Устранение той самой горстки файлов и скриптов, реально ответственных за задержку, обычно занимает недели, а не требует нового сайта. Именно такой подход мы применяем в рамках направления [«Веб-разработка»](/ru/services/website-development) — сначала аудит, и пересборка только тех частей, на которые он реально указывает.",
       ),
       h2("Относитесь к скорости как к множителю, а не как к строке бюджета"),
       p(
@@ -2946,7 +2946,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Where This Connects Back to Marketing"),
       p(
-        "A CRM that captures ownership and response time correctly is also the only kind that can tell marketing which channels are producing leads that actually close, not just leads that arrive. That feedback loop is what [CRM & Marketing Automation](/services/crm-and-automation) is built to set up — not a bigger system, a better-run one, wired into the campaigns that feed it.",
+        "A CRM that captures ownership and response time correctly is also the only kind that can tell marketing which channels are producing leads that actually close, not just leads that arrive. That feedback loop is what [CRM & Marketing Automation](/services/crm-marketing-automation) is built to set up — not a bigger system, a better-run one, wired into the campaigns that feed it.",
       ),
       p(
         "Fix ownership and response time first. The system almost always looks fine once that's settled. If your team suspects the gap is process rather than platform, [we're happy to take a look](/contact) before recommending anything new.",
@@ -2974,7 +2974,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("أين يتصل هذا بالتسويق مجدداً؟"),
       p(
-        "نظام إدارة علاقات العملاء الذي يلتقط الملكية وزمن الاستجابة بشكل صحيح هو أيضاً النوع الوحيد القادر على إخبار التسويق بأي القنوات تنتج عملاء محتملين يُغلقون فعلاً، لا مجرد عملاء يصلون. حلقة التغذية الراجعة هذه هي ما بُنيت [إدارة علاقات العملاء وأتمتة التسويق](/ar/services/crm-and-automation) لإعدادها — ليس نظاماً أكبر، بل نظاماً يُدار بشكل أفضل، متصلاً بالحملات التي تغذيه.",
+        "نظام إدارة علاقات العملاء الذي يلتقط الملكية وزمن الاستجابة بشكل صحيح هو أيضاً النوع الوحيد القادر على إخبار التسويق بأي القنوات تنتج عملاء محتملين يُغلقون فعلاً، لا مجرد عملاء يصلون. حلقة التغذية الراجعة هذه هي ما بُنيت [إدارة علاقات العملاء وأتمتة التسويق](/ar/services/crm-marketing-automation) لإعدادها — ليس نظاماً أكبر، بل نظاماً يُدار بشكل أفضل، متصلاً بالحملات التي تغذيه.",
       ),
       p(
         "أصلحوا الملكية وزمن الاستجابة أولاً. يبدو النظام دائماً تقريباً بخير بمجرد استقرار ذلك. إذا كان فريقكم يشتبه في أن الفجوة عملية لا منصة، [يسعدنا إلقاء نظرة](/ar/contact) قبل التوصية بأي شيء جديد.",
@@ -3002,7 +3002,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Где это снова связано с маркетингом"),
       p(
-        "CRM, которая корректно фиксирует ответственность и скорость реакции, — единственная, способная сказать маркетингу, какие каналы приносят лиды, реально закрывающиеся в сделку, а не просто прибывающие. Именно эту петлю обратной связи выстраивает направление [«CRM и маркетинговая автоматизация»](/ru/services/crm-and-automation) — не более крупную систему, а более грамотно выстроенную, подключённую к питающим её кампаниям.",
+        "CRM, которая корректно фиксирует ответственность и скорость реакции, — единственная, способная сказать маркетингу, какие каналы приносят лиды, реально закрывающиеся в сделку, а не просто прибывающие. Именно эту петлю обратной связи выстраивает направление [«CRM и маркетинговая автоматизация»](/ru/services/crm-marketing-automation) — не более крупную систему, а более грамотно выстроенную, подключённую к питающим её кампаниям.",
       ),
       p(
         "Сначала наведите порядок с ответственностью и скоростью реакции. Как только это выстроено, система почти всегда оказывается в порядке. Если ваша команда подозревает, что дело в процессе, а не в платформе, [мы с удовольствием во всём разберёмся](/ru/contact), прежде чем рекомендовать что-либо новое.",
@@ -3063,7 +3063,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("What This Asks of a Website"),
       p(
-        "Structure content around the actual questions your customers ask, in the language they use to ask them. Use headings that state the answer, not just the topic. Back claims with real specifics rather than vague reassurance. This is, not coincidentally, close to what good [SEO](/services/seo-and-content) work has always aimed for — the shift raises the cost of doing it badly rather than inventing a new discipline.",
+        "Structure content around the actual questions your customers ask, in the language they use to ask them. Use headings that state the answer, not just the topic. Back claims with real specifics rather than vague reassurance. This is, not coincidentally, close to what good [SEO](/services/seo) work has always aimed for — the shift raises the cost of doing it badly rather than inventing a new discipline.",
       ),
       h2("Who's Winning and Who's Losing"),
       p(
@@ -3095,7 +3095,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("ماذا يتطلب هذا من الموقع؟"),
       p(
-        "نظّموا المحتوى حول الأسئلة الفعلية التي يطرحها عملاؤكم، باللغة التي يستخدمونها لطرحها. استخدموا عناوين تذكر الإجابة، لا الموضوع فقط. ادعموا الادعاءات بتفاصيل حقيقية بدلاً من طمأنة غامضة. هذا، وليس من قبيل الصدفة، قريب مما استهدفه دائماً عمل [تحسين محركات البحث](/ar/services/seo-and-content) الجيد — فالتحول يرفع تكلفة القيام بذلك بشكل سيئ بدلاً من ابتكار تخصص جديد.",
+        "نظّموا المحتوى حول الأسئلة الفعلية التي يطرحها عملاؤكم، باللغة التي يستخدمونها لطرحها. استخدموا عناوين تذكر الإجابة، لا الموضوع فقط. ادعموا الادعاءات بتفاصيل حقيقية بدلاً من طمأنة غامضة. هذا، وليس من قبيل الصدفة، قريب مما استهدفه دائماً عمل [تحسين محركات البحث](/ar/services/seo) الجيد — فالتحول يرفع تكلفة القيام بذلك بشكل سيئ بدلاً من ابتكار تخصص جديد.",
       ),
       h2("من يربح ومن يخسر"),
       p(
@@ -3127,7 +3127,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Чего это требует от сайта"),
       p(
-        "Стройте контент вокруг реальных вопросов, которые задают ваши клиенты, — на том языке, каким они их задают. Используйте заголовки, которые формулируют ответ, а не просто обозначают тему. Подкрепляйте утверждения конкретными фактами, а не расплывчатыми заверениями. И это, что не случайно, очень близко к тому, к чему всегда стремилась качественная работа над [SEO](/ru/services/seo-and-content) — этот сдвиг лишь повышает цену плохого исполнения, а не создаёт новую дисциплину.",
+        "Стройте контент вокруг реальных вопросов, которые задают ваши клиенты, — на том языке, каким они их задают. Используйте заголовки, которые формулируют ответ, а не просто обозначают тему. Подкрепляйте утверждения конкретными фактами, а не расплывчатыми заверениями. И это, что не случайно, очень близко к тому, к чему всегда стремилась качественная работа над [SEO](/ru/services/seo) — этот сдвиг лишь повышает цену плохого исполнения, а не создаёт новую дисциплину.",
       ),
       h2("Кто выигрывает, а кто проигрывает"),
       p(
@@ -3180,7 +3180,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("What Changes When CRM and Ad Data Connect"),
       p(
-        "The shift toward pipeline as the headline metric isn't a fashion. It's what happens once a business connects its [CRM to its ad accounts](/services/crm-and-automation) and sees, for the first time, which channels bring leads that close and which just bring leads. That connection is usually the first moment a marketing report and a sales report agree with each other.",
+        "The shift toward pipeline as the headline metric isn't a fashion. It's what happens once a business connects its [CRM to its ad accounts](/services/crm-marketing-automation) and sees, for the first time, which channels bring leads that close and which just bring leads. That connection is usually the first moment a marketing report and a sales report agree with each other.",
       ),
       h3("A Case in Point"),
       p(
@@ -3208,7 +3208,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("ما الذي يتغيّر عند اتصال بيانات إدارة علاقات العملاء والإعلانات؟"),
       p(
-        "التحول نحو خط الأنابيب كمقياس رئيسي ليس موضة عابرة. بل ما يحدث بمجرد أن تربط شركة [إدارة علاقات عملائها بحسابات إعلاناتها](/ar/services/crm-and-automation) وترى، للمرة الأولى، أي القنوات تجلب عملاء محتملين يُغلقون وأيها يجلب عملاء محتملين فقط. هذا الاتصال عادة ما يكون أول لحظة يتفق فيها تقرير تسويقي مع تقرير مبيعات.",
+        "التحول نحو خط الأنابيب كمقياس رئيسي ليس موضة عابرة. بل ما يحدث بمجرد أن تربط شركة [إدارة علاقات عملائها بحسابات إعلاناتها](/ar/services/crm-marketing-automation) وترى، للمرة الأولى، أي القنوات تجلب عملاء محتملين يُغلقون وأيها يجلب عملاء محتملين فقط. هذا الاتصال عادة ما يكون أول لحظة يتفق فيها تقرير تسويقي مع تقرير مبيعات.",
       ),
       h3("مثال توضيحي"),
       p(
@@ -3236,7 +3236,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Что меняется, когда данные CRM и рекламы соединяются"),
       p(
-        "Переход к воронке продаж как к главной метрике — не дань моде. Это то, что происходит, как только компания соединяет [CRM со своими рекламными аккаунтами](/ru/services/crm-and-automation) и впервые видит, какие каналы приносят лиды, реально закрывающиеся в сделку, а какие — просто лиды. Именно в этот момент маркетинговый отчёт и отчёт по продажам обычно впервые начинают сходиться друг с другом.",
+        "Переход к воронке продаж как к главной метрике — не дань моде. Это то, что происходит, как только компания соединяет [CRM со своими рекламными аккаунтами](/ru/services/crm-marketing-automation) и впервые видит, какие каналы приносят лиды, реально закрывающиеся в сделку, а какие — просто лиды. Именно в этот момент маркетинговый отчёт и отчёт по продажам обычно впервые начинают сходиться друг с другом.",
       ),
       h3("Наглядный пример"),
       p(
@@ -3322,7 +3322,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Putting This Into Practice"),
       p(
-        "If you're weighing whether to brief us or another team, [our marketing consulting work](/services/strategy-consulting) starts from exactly this list before a single recommendation gets made — whether the brief is for [digital marketing](/services/performance-marketing) specifically or a broader system. You're welcome to send the numbers first and see what comes back — [reach out here](/contact) whenever you're ready.",
+        "If you're weighing whether to brief us or another team, [our marketing consulting work](/services/marketing-consulting) starts from exactly this list before a single recommendation gets made — whether the brief is for [digital marketing](/services/digital-marketing) specifically or a broader system. You're welcome to send the numbers first and see what comes back — [reach out here](/contact) whenever you're ready.",
       ),
     ],
     bodyAr: [
@@ -3360,7 +3360,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("تطبيق هذا عملياً"),
       p(
-        "إذا كنتم تفكرون في توجيه إحاطة لنا أو لفريق آخر، [عملنا في الاستشارات التسويقية](/ar/services/strategy-consulting) يبدأ من هذه القائمة بالضبط قبل تقديم أي توصية واحدة — سواء كانت الإحاطة لـ[التسويق الرقمي](/ar/services/performance-marketing) تحديداً أو لنظام أوسع. يسعدنا أن ترسلوا الأرقام أولاً وتروا ما سيصلكم — [تواصلوا معنا هنا](/ar/contact) متى كنتم مستعدين.",
+        "إذا كنتم تفكرون في توجيه إحاطة لنا أو لفريق آخر، [عملنا في الاستشارات التسويقية](/ar/services/marketing-consulting) يبدأ من هذه القائمة بالضبط قبل تقديم أي توصية واحدة — سواء كانت الإحاطة لـ[التسويق الرقمي](/ar/services/digital-marketing) تحديداً أو لنظام أوسع. يسعدنا أن ترسلوا الأرقام أولاً وتروا ما سيصلكم — [تواصلوا معنا هنا](/ar/contact) متى كنتم مستعدين.",
       ),
     ],
     bodyRu: [
@@ -3398,7 +3398,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Как применить это на практике"),
       p(
-        "Если вы решаете, отправить бриф нам или другой команде: [наша работа в области маркетингового консалтинга](/ru/services/strategy-consulting) начинается именно с этого списка, прежде чем прозвучит хоть одна рекомендация — будь то бриф именно для [цифрового маркетинга](/ru/services/performance-marketing) или для более широкой системы. Присылайте цифры первыми и смотрите, что вернётся в ответ, — [обращайтесь сюда](/ru/contact), когда будете готовы.",
+        "Если вы решаете, отправить бриф нам или другой команде: [наша работа в области маркетингового консалтинга](/ru/services/marketing-consulting) начинается именно с этого списка, прежде чем прозвучит хоть одна рекомендация — будь то бриф именно для [цифрового маркетинга](/ru/services/digital-marketing) или для более широкой системы. Присылайте цифры первыми и смотрите, что вернётся в ответ, — [обращайтесь сюда](/ru/contact), когда будете готовы.",
       ),
     ],
   },
@@ -3460,7 +3460,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Fix the Worst Stage First"),
       p(
-        "Fix that one stage before touching anything else. A funnel improved at its worst point moves more than one improved everywhere by a little, and it's a faster way to prove a fix is working before committing to a bigger rebuild of [your website](/services/websites-and-cro) or [your CRM setup](/services/crm-and-automation).",
+        "Fix that one stage before touching anything else. A funnel improved at its worst point moves more than one improved everywhere by a little, and it's a faster way to prove a fix is working before committing to a bigger rebuild of [your website](/services/website-development) or [your CRM setup](/services/crm-marketing-automation).",
       ),
       p(
         "If an afternoon isn't enough time on your calendar this quarter, [we'll run this audit for you](/contact) and hand back the same four answers, plus what we'd fix first.",
@@ -3492,7 +3492,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("أصلحوا أسوأ مرحلة أولاً"),
       p(
-        "أصلحوا تلك المرحلة الواحدة قبل لمس أي شيء آخر. القمع الذي يتحسن عند أسوأ نقطة فيه يتحرك أكثر من قمع تحسّن قليلاً في كل مكان، وهذه طريقة أسرع لإثبات أن الإصلاح يعمل قبل الالتزام بإعادة بناء أكبر لـ[موقعكم الإلكتروني](/ar/services/websites-and-cro) أو [إعداد إدارة علاقات عملائكم](/ar/services/crm-and-automation).",
+        "أصلحوا تلك المرحلة الواحدة قبل لمس أي شيء آخر. القمع الذي يتحسن عند أسوأ نقطة فيه يتحرك أكثر من قمع تحسّن قليلاً في كل مكان، وهذه طريقة أسرع لإثبات أن الإصلاح يعمل قبل الالتزام بإعادة بناء أكبر لـ[موقعكم الإلكتروني](/ar/services/website-development) أو [إعداد إدارة علاقات عملائكم](/ar/services/crm-marketing-automation).",
       ),
       p(
         "إذا لم يتوفر لديكم بعد ظهر كافٍ في تقويمكم هذا الربع، [سنجري هذا التدقيق نيابة عنكم](/ar/contact) ونعيد إليكم الإجابات الأربعة نفسها، بالإضافة إلى ما كنا سنصلحه أولاً.",
@@ -3524,7 +3524,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Сначала исправьте худший этап"),
       p(
-        "Исправьте именно этот этап, прежде чем трогать что-либо ещё. Воронка, улучшенная в своей самой слабой точке, даёт больше эффекта, чем воронка, чуть-чуть улучшенная везде, — и это более быстрый способ доказать, что решение работает, прежде чем браться за более масштабную пересборку [вашего сайта](/ru/services/websites-and-cro) или [настройки вашей CRM](/ru/services/crm-and-automation).",
+        "Исправьте именно этот этап, прежде чем трогать что-либо ещё. Воронка, улучшенная в своей самой слабой точке, даёт больше эффекта, чем воронка, чуть-чуть улучшенная везде, — и это более быстрый способ доказать, что решение работает, прежде чем браться за более масштабную пересборку [вашего сайта](/ru/services/website-development) или [настройки вашей CRM](/ru/services/crm-marketing-automation).",
       ),
       p(
         "Если в вашем календаре в этом квартале не найдётся даже полдня, [мы проведём этот аудит за вас](/ru/contact) и вернём вам те же четыре ответа — плюс то, что мы бы исправили в первую очередь.",
@@ -3578,7 +3578,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h3("No Feedback Loop Between Sales and Ads"),
       p(
-        "Without a [CRM connected back to the ad accounts](/services/crm-and-automation), the platform never learns which of the leads it generated actually became a serious conversation. It keeps optimising for the event it can see — the form fill — because the event it can't see — the sale — was never fed back to it.",
+        "Without a [CRM connected back to the ad accounts](/services/crm-marketing-automation), the platform never learns which of the leads it generated actually became a serious conversation. It keeps optimising for the event it can see — the form fill — because the event it can't see — the sale — was never fed back to it.",
       ),
       h2("The Kind of Fix That Closes This Gap"),
       p(
@@ -3590,7 +3590,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Why This Approach Generalises"),
       p(
-        "This pattern — vanity-metric-optimised campaigns disconnected from what sales actually needs — is common well beyond real estate, and the fix is rarely a bigger budget. It's [Digital Marketing](/services/performance-marketing) and [CRM & Marketing Automation](/services/crm-and-automation) built to talk to each other from day one.",
+        "This pattern — vanity-metric-optimised campaigns disconnected from what sales actually needs — is common well beyond real estate, and the fix is rarely a bigger budget. It's [Digital Marketing](/services/digital-marketing) and [CRM & Marketing Automation](/services/crm-marketing-automation) built to talk to each other from day one.",
       ),
       p(
         "If this scenario sounds familiar for your own campaigns, [talk to us](/contact) about what a real audit of your account would look like.",
@@ -3611,7 +3611,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h3("غياب حلقة تغذية راجعة بين المبيعات والإعلانات"),
       p(
-        "دون [نظام إدارة علاقات عملاء متصل بحسابات الإعلانات](/ar/services/crm-and-automation)، لا تتعلم المنصة أبداً أي العملاء المحتملين الذين ولّدتهم أصبحوا فعلاً محادثة جادة. تستمر في التحسين للحدث الذي تراه — تعبئة النموذج — لأن الحدث الذي لا تراه — البيع — لم تتم تغذيته إليها أبداً.",
+        "دون [نظام إدارة علاقات عملاء متصل بحسابات الإعلانات](/ar/services/crm-marketing-automation)، لا تتعلم المنصة أبداً أي العملاء المحتملين الذين ولّدتهم أصبحوا فعلاً محادثة جادة. تستمر في التحسين للحدث الذي تراه — تعبئة النموذج — لأن الحدث الذي لا تراه — البيع — لم تتم تغذيته إليها أبداً.",
       ),
       h2("نوع الإصلاح الذي يغلق هذه الفجوة"),
       p(
@@ -3623,7 +3623,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("لماذا يصلح هذا النهج بشكل عام؟"),
       p(
-        "هذا النمط — حملات مُحسَّنة لمقاييس سطحية ومنفصلة عما يحتاجه المبيعات فعلاً — شائع إلى ما هو أبعد بكثير من العقارات، ونادراً ما يكون الإصلاح ميزانية أكبر. إنه [التسويق الرقمي](/ar/services/performance-marketing) و[إدارة علاقات العملاء وأتمتة التسويق](/ar/services/crm-and-automation) مبنيان للتحدث مع بعضهما البعض منذ اليوم الأول.",
+        "هذا النمط — حملات مُحسَّنة لمقاييس سطحية ومنفصلة عما يحتاجه المبيعات فعلاً — شائع إلى ما هو أبعد بكثير من العقارات، ونادراً ما يكون الإصلاح ميزانية أكبر. إنه [التسويق الرقمي](/ar/services/digital-marketing) و[إدارة علاقات العملاء وأتمتة التسويق](/ar/services/crm-marketing-automation) مبنيان للتحدث مع بعضهما البعض منذ اليوم الأول.",
       ),
       p(
         "إذا بدا هذا السيناريو مألوفاً بالنسبة لحملاتكم الخاصة، [تحدثوا معنا](/ar/contact) حول شكل تدقيق حقيقي لحسابكم.",
@@ -3644,7 +3644,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h3("Отсутствие обратной связи между продажами и рекламой"),
       p(
-        "Без [CRM, подключённой обратно к рекламным аккаунтам](/ru/services/crm-and-automation), платформа никогда не узнаёт, какие из сгенерированных ею лидов реально переросли в серьёзный разговор. Она продолжает оптимизироваться под то событие, которое видит, — заполнение формы, — потому что событие, которого она не видит, — продажу, — ей никогда не передавали обратно.",
+        "Без [CRM, подключённой обратно к рекламным аккаунтам](/ru/services/crm-marketing-automation), платформа никогда не узнаёт, какие из сгенерированных ею лидов реально переросли в серьёзный разговор. Она продолжает оптимизироваться под то событие, которое видит, — заполнение формы, — потому что событие, которого она не видит, — продажу, — ей никогда не передавали обратно.",
       ),
       h2("Какое решение закрывает этот разрыв"),
       p(
@@ -3656,7 +3656,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Почему этот подход применим не только здесь"),
       p(
-        "Эта модель — кампании, оптимизированные под показные метрики и оторванные от реальных потребностей продаж, — распространена далеко за пределами недвижимости, и решение редко заключается в увеличении бюджета. Это [цифровой маркетинг](/ru/services/performance-marketing) и [CRM и маркетинговая автоматизация](/ru/services/crm-and-automation), изначально выстроенные так, чтобы работать в связке с первого дня.",
+        "Эта модель — кампании, оптимизированные под показные метрики и оторванные от реальных потребностей продаж, — распространена далеко за пределами недвижимости, и решение редко заключается в увеличении бюджета. Это [цифровой маркетинг](/ru/services/digital-marketing) и [CRM и маркетинговая автоматизация](/ru/services/crm-marketing-automation), изначально выстроенные так, чтобы работать в связке с первого дня.",
       ),
       p(
         "Если этот сценарий кажется знакомым применительно к вашим собственным кампаниям, [поговорите с нами](/ru/contact) о том, как мог бы выглядеть реальный аудит вашего аккаунта.",
@@ -3718,7 +3718,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("The Kind of Fix That Shifts the Balance"),
       p(
-        "In a scenario like this, the work usually starts with [Website Development](/services/websites-and-cro): compress and restructure the page so speed stops being a silent tax, move the booking widget above the fold, cut the path from \"check availability\" to \"confirm\" down to the minimum number of steps, and give the direct channel a clear reason to choose — a best-rate guarantee, a small perk, transparent pricing without the OTA's added fees.",
+        "In a scenario like this, the work usually starts with [Website Development](/services/website-development): compress and restructure the page so speed stops being a silent tax, move the booking widget above the fold, cut the path from \"check availability\" to \"confirm\" down to the minimum number of steps, and give the direct channel a clear reason to choose — a best-rate guarantee, a small perk, transparent pricing without the OTA's added fees.",
       ),
       h2("Why Direct Bookings Are Worth the Effort"),
       p(
@@ -3751,7 +3751,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("نوع الإصلاح الذي يغيّر التوازن"),
       p(
-        "في سيناريو كهذا، يبدأ العمل عادة بـ[تطوير المواقع الإلكترونية](/ar/services/websites-and-cro): ضغط الصفحة وإعادة هيكلتها بحيث تتوقف السرعة عن كونها ضريبة صامتة، نقل أداة الحجز إلى أعلى الصفحة، تقليص المسار من «تحقق من التوفر» إلى «تأكيد» إلى أقل عدد ممكن من الخطوات، ومنح القناة المباشرة سبباً واضحاً للاختيار — ضمان أفضل سعر، ميزة صغيرة، تسعير شفاف دون رسوم وكالة السفر الإضافية.",
+        "في سيناريو كهذا، يبدأ العمل عادة بـ[تطوير المواقع الإلكترونية](/ar/services/website-development): ضغط الصفحة وإعادة هيكلتها بحيث تتوقف السرعة عن كونها ضريبة صامتة، نقل أداة الحجز إلى أعلى الصفحة، تقليص المسار من «تحقق من التوفر» إلى «تأكيد» إلى أقل عدد ممكن من الخطوات، ومنح القناة المباشرة سبباً واضحاً للاختيار — ضمان أفضل سعر، ميزة صغيرة، تسعير شفاف دون رسوم وكالة السفر الإضافية.",
       ),
       h2("لماذا تستحق الحجوزات المباشرة الجهد؟"),
       p(
@@ -3784,7 +3784,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Какое решение меняет баланс"),
       p(
-        "В подобном сценарии работа обычно начинается с направления [«Веб-разработка»](/ru/services/websites-and-cro): сжать и перестроить страницу так, чтобы скорость перестала быть скрытым налогом, поднять виджет бронирования выше линии сгиба, сократить путь от «проверить наличие» до «подтвердить» до минимального числа шагов и дать прямому каналу чёткую причину для выбора — гарантию лучшей цены, небольшой бонус, прозрачное ценообразование без дополнительных сборов OTA.",
+        "В подобном сценарии работа обычно начинается с направления [«Веб-разработка»](/ru/services/website-development): сжать и перестроить страницу так, чтобы скорость перестала быть скрытым налогом, поднять виджет бронирования выше линии сгиба, сократить путь от «проверить наличие» до «подтвердить» до минимального числа шагов и дать прямому каналу чёткую причину для выбора — гарантию лучшей цены, небольшой бонус, прозрачное ценообразование без дополнительных сборов OTA.",
       ),
       h2("Почему прямые бронирования стоят усилий?"),
       p(
@@ -3850,11 +3850,11 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("The Kind of System That Fixes This"),
       p(
-        "In a scenario like this, the work spans three of our services at once, because the problem doesn't sit neatly inside any one of them. [SEO](/services/seo-and-content) shifts toward the specific questions enterprise buyers ask mid-cycle, not just broad awareness topics. [CRM & Marketing Automation](/services/crm-and-automation) implements a shared lead-scoring model both teams agree to, plus routing that gets a qualified lead in front of the right rep within minutes rather than hours. And [Digital Marketing](/services/performance-marketing) campaigns get optimised toward the scored, sales-accepted stage rather than the raw form fill.",
+        "In a scenario like this, the work spans three of our services at once, because the problem doesn't sit neatly inside any one of them. [SEO](/services/seo) shifts toward the specific questions enterprise buyers ask mid-cycle, not just broad awareness topics. [CRM & Marketing Automation](/services/crm-marketing-automation) implements a shared lead-scoring model both teams agree to, plus routing that gets a qualified lead in front of the right rep within minutes rather than hours. And [Digital Marketing](/services/digital-marketing) campaigns get optimised toward the scored, sales-accepted stage rather than the raw form fill.",
       ),
       h2("What Full-Funnel Actually Means Here"),
       p(
-        "Full-funnel doesn't mean touching every channel at once — it means every part of the system, from the first search query to the closed deal, is instrumented and connected, so a change made in one place is visible in the others. That's the standard our [marketing consulting work](/services/strategy-consulting) is built around from the first conversation.",
+        "Full-funnel doesn't mean touching every channel at once — it means every part of the system, from the first search query to the closed deal, is instrumented and connected, so a change made in one place is visible in the others. That's the standard our [marketing consulting work](/services/marketing-consulting) is built around from the first conversation.",
       ),
       p(
         "If your marketing and sales teams are quietly working from two different numbers, that's usually the first thing worth fixing. [Reach out](/contact) and we'll help you find where the disconnect actually is.",
@@ -3883,11 +3883,11 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("نوع النظام الذي يصلح هذا"),
       p(
-        "في سيناريو كهذا، يمتد العمل عبر ثلاث من خدماتنا في آن واحد، لأن المشكلة لا تقع بدقة ضمن واحدة منها فقط. [تحسين محركات البحث](/ar/services/seo-and-content) يتحول نحو الأسئلة المحددة التي يطرحها المشترون المؤسسيون في منتصف الدورة، لا مواضيع الوعي العامة فقط. [إدارة علاقات العملاء وأتمتة التسويق](/ar/services/crm-and-automation) تطبّق نموذج تقييم مشترك يتفق عليه الفريقان، بالإضافة إلى توجيه يضع العميل المحتمل المؤهَّل أمام المندوب المناسب خلال دقائق لا ساعات. أما حملات [التسويق الرقمي](/ar/services/performance-marketing) فتُحسَّن نحو المرحلة المُقيَّمة والمقبولة من المبيعات بدلاً من تعبئة النموذج الخام.",
+        "في سيناريو كهذا، يمتد العمل عبر ثلاث من خدماتنا في آن واحد، لأن المشكلة لا تقع بدقة ضمن واحدة منها فقط. [تحسين محركات البحث](/ar/services/seo) يتحول نحو الأسئلة المحددة التي يطرحها المشترون المؤسسيون في منتصف الدورة، لا مواضيع الوعي العامة فقط. [إدارة علاقات العملاء وأتمتة التسويق](/ar/services/crm-marketing-automation) تطبّق نموذج تقييم مشترك يتفق عليه الفريقان، بالإضافة إلى توجيه يضع العميل المحتمل المؤهَّل أمام المندوب المناسب خلال دقائق لا ساعات. أما حملات [التسويق الرقمي](/ar/services/digital-marketing) فتُحسَّن نحو المرحلة المُقيَّمة والمقبولة من المبيعات بدلاً من تعبئة النموذج الخام.",
       ),
       h2("ماذا يعني القمع الكامل فعلياً هنا؟"),
       p(
-        "القمع الكامل لا يعني لمس كل قناة في آن واحد — بل يعني أن كل جزء من النظام، من استعلام البحث الأول إلى الصفقة المُغلَقة، مُجهَّز بأدوات القياس ومتصل، بحيث يكون التغيير الذي يُجرى في مكان واحد مرئياً في الأماكن الأخرى. هذا هو المعيار الذي يُبنى عليه [عملنا في الاستشارات التسويقية](/ar/services/strategy-consulting) منذ المحادثة الأولى.",
+        "القمع الكامل لا يعني لمس كل قناة في آن واحد — بل يعني أن كل جزء من النظام، من استعلام البحث الأول إلى الصفقة المُغلَقة، مُجهَّز بأدوات القياس ومتصل، بحيث يكون التغيير الذي يُجرى في مكان واحد مرئياً في الأماكن الأخرى. هذا هو المعيار الذي يُبنى عليه [عملنا في الاستشارات التسويقية](/ar/services/marketing-consulting) منذ المحادثة الأولى.",
       ),
       p(
         "إذا كان فريقا التسويق والمبيعات لديكم يعملان بصمت من رقمين مختلفين، فهذا عادة أول شيء يستحق الإصلاح. [تواصلوا معنا](/ar/contact) وسنساعدكم في إيجاد مكان الانفصال فعلياً.",
@@ -3916,11 +3916,11 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Какая система это исправляет"),
       p(
-        "В подобном сценарии работа охватывает сразу три наших направления, потому что проблема не укладывается аккуратно в рамки одного из них. [SEO](/ru/services/seo-and-content) смещаются в сторону конкретных вопросов, которые корпоративные покупатели задают в середине цикла, а не только широких тем на этапе знакомства с брендом. [CRM и маркетинговая автоматизация](/ru/services/crm-and-automation) внедряет общую модель оценки лидов, согласованную обеими командами, а также маршрутизацию, которая доставляет квалифицированный лид нужному менеджеру за минуты, а не часы. А кампании [цифрового маркетинга](/ru/services/performance-marketing) оптимизируются под оценённый и принятый продажами этап, а не под сырое заполнение формы.",
+        "В подобном сценарии работа охватывает сразу три наших направления, потому что проблема не укладывается аккуратно в рамки одного из них. [SEO](/ru/services/seo) смещаются в сторону конкретных вопросов, которые корпоративные покупатели задают в середине цикла, а не только широких тем на этапе знакомства с брендом. [CRM и маркетинговая автоматизация](/ru/services/crm-marketing-automation) внедряет общую модель оценки лидов, согласованную обеими командами, а также маршрутизацию, которая доставляет квалифицированный лид нужному менеджеру за минуты, а не часы. А кампании [цифрового маркетинга](/ru/services/digital-marketing) оптимизируются под оценённый и принятый продажами этап, а не под сырое заполнение формы.",
       ),
       h2("Что здесь на самом деле значит «полный цикл»"),
       p(
-        "Полный цикл не означает работу со всеми каналами одновременно — это означает, что каждая часть системы, от первого поискового запроса до закрытой сделки, оснащена измерением и связана друг с другом, поэтому изменение в одном месте видно во всех остальных. Именно на этом стандарте строится наша [работа в области маркетингового консалтинга](/ru/services/strategy-consulting) с самого первого разговора.",
+        "Полный цикл не означает работу со всеми каналами одновременно — это означает, что каждая часть системы, от первого поискового запроса до закрытой сделки, оснащена измерением и связана друг с другом, поэтому изменение в одном месте видно во всех остальных. Именно на этом стандарте строится наша [работа в области маркетингового консалтинга](/ru/services/marketing-consulting) с самого первого разговора.",
       ),
       p(
         "Если ваши команды маркетинга и продаж молча работают с двумя разными наборами цифр, это обычно первое, что стоит исправить. [Свяжитесь с нами](/ru/contact), и мы поможем вам найти, где на самом деле кроется разрыв.",
@@ -3998,7 +3998,7 @@ export const insightArticles: InsightArticle[] = [
         "A website should not only explain what a company does. It should make the company's expertise understandable. That means creating clear signals around what the brand does, who it serves, where it operates, what it is known for, what problems it solves, what expertise it has, and what evidence supports that expertise.",
       ),
       p(
-        "A beautifully designed website with vague content may look impressive while remaining difficult for both people and search systems to understand. Design creates perception. [Structure creates understanding](/services/websites-and-cro). You need both.",
+        "A beautifully designed website with vague content may look impressive while remaining difficult for both people and search systems to understand. Design creates perception. [Structure creates understanding](/services/website-development). You need both.",
       ),
       h2("Content Needs to Become More Useful"),
       p(
@@ -4015,7 +4015,7 @@ export const insightArticles: InsightArticle[] = [
         "AI visibility isn't only a technical SEO problem. It is also a brand authority problem. If a company has a consistent presence across its website, professional profiles, publications, case studies and other credible sources, it becomes easier to understand as an entity.",
       ),
       p(
-        "That means your digital footprint needs consistency. Your [brand positioning](/services/brand-and-creative) should not change from one platform to another. Your expertise should be clear, your services should be structured, your work should provide evidence, and your content should demonstrate that you understand the subjects you claim to specialise in.",
+        "That means your digital footprint needs consistency. Your [brand positioning](/services/branding) should not change from one platform to another. Your expertise should be clear, your services should be structured, your work should provide evidence, and your content should demonstrate that you understand the subjects you claim to specialise in.",
       ),
       h2("The Future of Search Is Multichannel"),
       p(
@@ -4026,7 +4026,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("What Brands Should Do Now"),
       p(
-        "There is no need to abandon traditional SEO. Instead, build a broader [search strategy](/services/seo-and-content).",
+        "There is no need to abandon traditional SEO. Instead, build a broader [search strategy](/services/seo).",
       ),
       h3("01 — Build Clear Brand Entities"),
       p(
@@ -4099,7 +4099,7 @@ export const insightArticles: InsightArticle[] = [
         "لا ينبغي أن يكتفي الموقع الإلكتروني بشرح ما تقوم به الشركة، بل يجب أن يجعل خبرتها مفهومة بوضوح. وهذا يعني بناء إشارات واضحة حول ماذا تفعل العلامة التجارية، ولمن تُقدّم خدماتها، وأين تعمل، وبماذا تشتهر، وما المشكلات التي تحلّها، وما خبرتها الفعلية، وما الأدلة التي تدعم هذه الخبرة.",
       ),
       p(
-        "قد يبدو الموقع المصمم بعناية فائقة مبهراً حتى لو كان محتواه غامضاً، لكنه في الوقت ذاته يظل صعب الفهم على الزوار وعلى أنظمة البحث معاً. فالتصميم يخلق الانطباع، بينما [البنية هي ما يخلق الفهم](/ar/services/websites-and-cro). وأنتم بحاجة إلى الاثنين معاً.",
+        "قد يبدو الموقع المصمم بعناية فائقة مبهراً حتى لو كان محتواه غامضاً، لكنه في الوقت ذاته يظل صعب الفهم على الزوار وعلى أنظمة البحث معاً. فالتصميم يخلق الانطباع، بينما [البنية هي ما يخلق الفهم](/ar/services/website-development). وأنتم بحاجة إلى الاثنين معاً.",
       ),
       h2("المحتوى يجب أن يصبح أكثر فائدة"),
       p(
@@ -4116,7 +4116,7 @@ export const insightArticles: InsightArticle[] = [
         "ظهور العلامة التجارية أمام الذكاء الاصطناعي ليس مجرد مسألة تقنية متعلقة بتحسين محركات البحث، بل هو أيضاً مسألة تتعلق بسلطة العلامة التجارية ومصداقيتها. فعندما يكون لشركة ما حضور متسق عبر موقعها الإلكتروني وملفاتها المهنية ومنشوراتها ودراسات حالتها ومصادرها الموثوقة الأخرى، يصبح من الأسهل على الأنظمة فهمها ككيان واضح المعالم.",
       ),
       p(
-        "هذا يعني أن بصمتكم الرقمية تحتاج إلى الاتساق. يجب ألا [يتغيّر موقع علامتكم التجارية](/ar/services/brand-and-creative) من منصة إلى أخرى. يجب أن تكون خبرتكم واضحة، وخدماتكم منظّمة، وأعمالكم مدعومة بأدلة فعلية، ومحتواكم يُظهر فهماً حقيقياً للمواضيع التي تدّعون التخصص فيها.",
+        "هذا يعني أن بصمتكم الرقمية تحتاج إلى الاتساق. يجب ألا [يتغيّر موقع علامتكم التجارية](/ar/services/branding) من منصة إلى أخرى. يجب أن تكون خبرتكم واضحة، وخدماتكم منظّمة، وأعمالكم مدعومة بأدلة فعلية، ومحتواكم يُظهر فهماً حقيقياً للمواضيع التي تدّعون التخصص فيها.",
       ),
       h2("مستقبل البحث أصبح متعدد القنوات"),
       p(
@@ -4127,7 +4127,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("ما الذي يجب على العلامات التجارية فعله الآن"),
       p(
-        "لا حاجة للتخلي عن تحسين محركات البحث التقليدي. بل يجب بناء [استراتيجية بحث أوسع](/ar/services/seo-and-content).",
+        "لا حاجة للتخلي عن تحسين محركات البحث التقليدي. بل يجب بناء [استراتيجية بحث أوسع](/ar/services/seo).",
       ),
       h3("01 — بناء كيانات واضحة للعلامة التجارية"),
       p("اجعلوا هويتكم واضحة تماماً: من أنتم، وماذا تفعلون، وأين تعملون، وما تخصصكم."),
@@ -4198,7 +4198,7 @@ export const insightArticles: InsightArticle[] = [
         "Сайт не должен просто рассказывать, чем занимается компания, — он должен делать её экспертизу понятной. Это значит выстраивать чёткие сигналы вокруг того, чем занимается бренд, кому он служит, где он работает, чем он известен, какие проблемы решает, какой экспертизой обладает и какие доказательства эту экспертизу подтверждают.",
       ),
       p(
-        "Красиво оформленный сайт с расплывчатым содержанием может производить впечатление, но при этом оставаться непонятным и людям, и поисковым системам. Дизайн создаёт восприятие. [Структура создаёт понимание](/ru/services/websites-and-cro). Нужно и то, и другое.",
+        "Красиво оформленный сайт с расплывчатым содержанием может производить впечатление, но при этом оставаться непонятным и людям, и поисковым системам. Дизайн создаёт восприятие. [Структура создаёт понимание](/ru/services/website-development). Нужно и то, и другое.",
       ),
       h2("Контент должен стать по-настоящему полезным"),
       p(
@@ -4215,7 +4215,7 @@ export const insightArticles: InsightArticle[] = [
         "Видимость в ИИ-поиске — это не только техническая задача SEO. Это ещё и вопрос авторитета бренда. Если у компании последовательное присутствие на сайте, в профессиональных профилях, публикациях, кейсах и других надёжных источниках, системе становится проще распознать её как понятную сущность.",
       ),
       p(
-        "Это значит, что ваш цифровой след должен быть последовательным. Ваше [позиционирование бренда](/ru/services/brand-and-creative) не должно меняться от платформы к платформе. Экспертиза должна быть ясной, услуги — структурированными, работы — подтверждёнными доказательствами, а контент — показывать, что вы действительно разбираетесь в темах, в которых заявляете экспертизу.",
+        "Это значит, что ваш цифровой след должен быть последовательным. Ваше [позиционирование бренда](/ru/services/branding) не должно меняться от платформы к платформе. Экспертиза должна быть ясной, услуги — структурированными, работы — подтверждёнными доказательствами, а контент — показывать, что вы действительно разбираетесь в темах, в которых заявляете экспертизу.",
       ),
       h2("Будущее поиска — мультиканальное"),
       p(
@@ -4226,7 +4226,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h2("Что брендам стоит делать уже сейчас"),
       p(
-        "Отказываться от классического SEO не нужно. Вместо этого стоит выстроить более широкую [поисковую стратегию](/ru/services/seo-and-content).",
+        "Отказываться от классического SEO не нужно. Вместо этого стоит выстроить более широкую [поисковую стратегию](/ru/services/seo).",
       ),
       h3("01 — Выстроить понятные бренд-сущности"),
       p("Сделайте предельно ясным, кто вы, чем занимаетесь, где работаете и в чём ваша специализация."),
@@ -4543,7 +4543,7 @@ export const insightArticles: InsightArticle[] = [
         "Google states that pages need to meet normal Search technical requirements and be eligible to appear in Search in order to be considered as supporting links in AI Overviews or AI Mode.",
       ),
       p(
-        "Continue to pay attention to the [technical foundations of your site](/services/websites-and-cro), including:",
+        "Continue to pay attention to the [technical foundations of your site](/services/website-development), including:",
       ),
       ul([
         "Crawlability",
@@ -4601,7 +4601,7 @@ export const insightArticles: InsightArticle[] = [
       p("A B2B company creates a page answering:"),
       blockquote("What does CRM automation do?"),
       p(
-        "It provides a concise definition of [CRM automation](/services/crm-and-automation), examples, implementation considerations and links to related resources.",
+        "It provides a concise definition of [CRM automation](/services/crm-marketing-automation), examples, implementation considerations and links to related resources.",
       ),
       h3("Example 5 — Local Search"),
       p("A Dubai restaurant publishes a useful page explaining:"),
@@ -4780,7 +4780,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       p("The distinction should not be exaggerated."),
       p(
-        "Google explicitly says that its AI search features are rooted in its existing Search systems and that [SEO](/services/seo-and-content) remains relevant.",
+        "Google explicitly says that its AI search features are rooted in its existing Search systems and that [SEO](/services/seo) remains relevant.",
       ),
       p("**The practical approach is not SEO versus AEO. It is SEO plus answer-oriented content.**"),
 
@@ -4918,7 +4918,7 @@ export const insightArticles: InsightArticle[] = [
         "Which competitors are being surfaced?",
       ]),
       p(
-        "An audit should end with actionable priorities—not simply a score, the same standard that applies to any broader [marketing audit](/services/strategy-consulting).",
+        "An audit should end with actionable priorities—not simply a score, the same standard that applies to any broader [marketing audit](/services/marketing-consulting).",
       ),
 
       h2("How Can You Improve Answer Engine Optimization?"),

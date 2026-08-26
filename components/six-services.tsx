@@ -15,12 +15,12 @@ import { services } from "@/lib/site";
  * on two routes.
  */
 const serviceImages: Record<string, string> = {
-  "performance-marketing": "/images/texture/svc-performance.jpg",
-  "seo-and-content": "/images/texture/svc-seo.jpg",
-  "websites-and-cro": "/images/texture/svc-web.jpg",
-  "crm-and-automation": "/images/texture/svc-crm.jpg",
-  "brand-and-creative": "/images/texture/svc-brand.jpg",
-  "strategy-consulting": "/images/texture/svc-strategy.jpg",
+  "digital-marketing": "/images/texture/svc-performance.jpg",
+  "seo": "/images/texture/svc-seo.jpg",
+  "website-development": "/images/texture/svc-web.jpg",
+  "crm-marketing-automation": "/images/texture/svc-crm.jpg",
+  "branding": "/images/texture/svc-brand.jpg",
+  "marketing-consulting": "/images/texture/svc-strategy.jpg",
 };
 
 /**

@@ -106,28 +106,28 @@ export default function RussianHomePage() {
               выстраивается на уровне человека, который лично создавал и
               запускал комплексные маркетинговые системы — от{" "}
               <Link
-                href="/ru/services/performance-marketing"
+                href="/ru/services/digital-marketing"
                 className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 цифрового маркетинга
               </Link>
               {" "}и{" "}
               <Link
-                href="/ru/services/seo-and-content"
+                href="/ru/services/seo"
                 className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 SEO
               </Link>
               {" "}до{" "}
               <Link
-                href="/ru/services/websites-and-cro"
+                href="/ru/services/website-development"
                 className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 веб-разработки
               </Link>
               {" "}и{" "}
               <Link
-                href="/ru/services/brand-and-creative"
+                href="/ru/services/branding"
                 className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 брендинга

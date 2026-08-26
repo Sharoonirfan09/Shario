@@ -160,28 +160,28 @@ export default function HomePage() {
               standard of a founder who has personally built and launched
               full-funnel marketing systems — spanning{" "}
               <Link
-                href="/services/performance-marketing"
+                href="/services/digital-marketing"
                 className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 digital marketing
               </Link>
               ,{" "}
               <Link
-                href="/services/seo-and-content"
+                href="/services/seo"
                 className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 SEO
               </Link>
               ,{" "}
               <Link
-                href="/services/websites-and-cro"
+                href="/services/website-development"
                 className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 website development
               </Link>{" "}
               and{" "}
               <Link
-                href="/services/brand-and-creative"
+                href="/services/branding"
                 className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 branding

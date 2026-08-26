@@ -45,60 +45,133 @@ const nextConfig: NextConfig = {
       { source: "/journal", destination: "/about", permanent: true },
 
       // --- Service slugs. The six creative-studio capabilities map onto the
-      // five marketing services the content document sets.
+      // five marketing services the content document sets. Destinations point
+      // straight at the current (renamed) slugs below rather than at the
+      // slugs those services used before the rename, so none of these chain
+      // through a second redirect.
       {
         source: "/services/growth-visibility",
-        destination: "/services/performance-marketing",
+        destination: "/services/digital-marketing",
         permanent: true,
       },
       {
         source: "/services/digital-experiences",
-        destination: "/services/websites-and-cro",
+        destination: "/services/website-development",
         permanent: true,
       },
       {
         source: "/services/digital-experience",
-        destination: "/services/websites-and-cro",
+        destination: "/services/website-development",
         permanent: true,
       },
       {
         source: "/services/brand-identity",
-        destination: "/services/brand-and-creative",
+        destination: "/services/branding",
         permanent: true,
       },
       {
         source: "/services/brand-strategy",
-        destination: "/services/brand-and-creative",
+        destination: "/services/branding",
         permanent: true,
       },
       {
         source: "/services/visual-identity",
-        destination: "/services/brand-and-creative",
+        destination: "/services/branding",
         permanent: true,
       },
       {
         source: "/services/creative-direction",
-        destination: "/services/brand-and-creative",
+        destination: "/services/branding",
         permanent: true,
       },
       {
         source: "/services/content-communication",
-        destination: "/services/seo-and-content",
+        destination: "/services/seo",
         permanent: true,
       },
       {
         source: "/services/creative-technology",
-        destination: "/services/crm-and-automation",
+        destination: "/services/crm-marketing-automation",
         permanent: true,
       },
       {
         source: "/services/websites-and-conversion",
-        destination: "/services/websites-and-cro",
+        destination: "/services/website-development",
         permanent: true,
       },
       {
         source: "/services/crm-and-attribution",
-        destination: "/services/crm-and-automation",
+        destination: "/services/crm-marketing-automation",
+        permanent: true,
+      },
+
+      // --- 2026-08-26 service rename. Names changed (Performance Marketing
+      // -> Digital Marketing, SEO & Content -> SEO (Search Engine
+      // Optimization), Websites & CRO -> Website Development, CRM &
+      // Automation -> CRM & Marketing Automation, Brand & Creative ->
+      // Branding, Strategy & Consulting -> Marketing Consulting) but slugs
+      // were deliberately left as-is at the time. This closes that gap: the
+      // slugs below now match the approved names, and every previously
+      // published URL redirects straight to its new home in one hop, across
+      // all three locales.
+      {
+        source: "/services/performance-marketing",
+        destination: "/services/digital-marketing",
+        permanent: true,
+      },
+      {
+        source: "/:locale(ar|ru)/services/performance-marketing",
+        destination: "/:locale/services/digital-marketing",
+        permanent: true,
+      },
+      {
+        source: "/services/seo-and-content",
+        destination: "/services/seo",
+        permanent: true,
+      },
+      {
+        source: "/:locale(ar|ru)/services/seo-and-content",
+        destination: "/:locale/services/seo",
+        permanent: true,
+      },
+      {
+        source: "/services/websites-and-cro",
+        destination: "/services/website-development",
+        permanent: true,
+      },
+      {
+        source: "/:locale(ar|ru)/services/websites-and-cro",
+        destination: "/:locale/services/website-development",
+        permanent: true,
+      },
+      {
+        source: "/services/crm-and-automation",
+        destination: "/services/crm-marketing-automation",
+        permanent: true,
+      },
+      {
+        source: "/:locale(ar|ru)/services/crm-and-automation",
+        destination: "/:locale/services/crm-marketing-automation",
+        permanent: true,
+      },
+      {
+        source: "/services/brand-and-creative",
+        destination: "/services/branding",
+        permanent: true,
+      },
+      {
+        source: "/:locale(ar|ru)/services/brand-and-creative",
+        destination: "/:locale/services/branding",
+        permanent: true,
+      },
+      {
+        source: "/services/strategy-consulting",
+        destination: "/services/marketing-consulting",
+        permanent: true,
+      },
+      {
+        source: "/:locale(ar|ru)/services/strategy-consulting",
+        destination: "/:locale/services/marketing-consulting",
         permanent: true,
       },
     ];

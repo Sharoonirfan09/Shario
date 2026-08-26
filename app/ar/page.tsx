@@ -105,28 +105,28 @@ export default function ArabicHomePage() {
               كل استراتيجية على معيار مؤسسة بنت وأطلقت بنفسها أنظمة تسويقية
               متكاملة — تشمل{" "}
               <Link
-                href="/ar/services/performance-marketing"
+                href="/ar/services/digital-marketing"
                 className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 التسويق الرقمي
               </Link>
               {" "}و{" "}
               <Link
-                href="/ar/services/seo-and-content"
+                href="/ar/services/seo"
                 className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 تحسين محركات البحث
               </Link>
               {" "}و{" "}
               <Link
-                href="/ar/services/websites-and-cro"
+                href="/ar/services/website-development"
                 className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 تطوير المواقع الإلكترونية
               </Link>
               {" "}و{" "}
               <Link
-                href="/ar/services/brand-and-creative"
+                href="/ar/services/branding"
                 className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 العلامة التجارية
