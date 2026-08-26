@@ -29,16 +29,33 @@ export function InsightsExplorer({
   locale?: Locale;
 }) {
   const [active, setActive] = useState(initialCategory);
+  const [query, setQuery] = useState("");
   const isAr = locale === "ar";
   const isRu = locale === "ru";
 
-  const filtered = useMemo(
+  const byCategory = useMemo(
     () =>
       active === "all"
         ? articles
         : articles.filter((article) => article.category === active),
     [articles, active],
   );
+
+  const normalizedQuery = query.trim().toLowerCase();
+
+  const filtered = useMemo(() => {
+    if (!normalizedQuery) return byCategory;
+    return byCategory.filter((article) => {
+      const title = isAr ? (article.titleAr ?? article.title) : isRu ? (article.titleRu ?? article.title) : article.title;
+      const excerpt = isAr
+        ? (article.excerptAr ?? article.excerpt)
+        : isRu
+          ? (article.excerptRu ?? article.excerpt)
+          : article.excerpt;
+      const haystack = [title, excerpt, ...(article.tags ?? [])].join(" ").toLowerCase();
+      return haystack.includes(normalizedQuery);
+    });
+  }, [byCategory, normalizedQuery, isAr, isRu]);
 
   const activeCategory = categories.find((category) => category.slug === active);
   const activeCategoryLabel = isAr
@@ -58,8 +75,48 @@ export function InsightsExplorer({
     return locale === "en" ? path : localizedPath(path, locale);
   };
 
+  const searchLabel = isAr ? "البحث في المقالات" : isRu ? "Поиск по материалам" : "Search Insights";
+  const searchPlaceholder = isAr
+    ? "ابحث بالعنوان أو الموضوع…"
+    : isRu
+      ? "Искать по названию или теме…"
+      : "Search by title or topic…";
+
   return (
     <div>
+      <form
+        role="search"
+        onSubmit={(e) => e.preventDefault()}
+        className={`mb-8 flex max-w-md items-center gap-3 border-b border-carbon/25 pb-2.5 transition-colors duration-300 focus-within:border-carbon wide:mb-10 ${isAr ? "flex-row-reverse" : ""}`}
+      >
+        <label htmlFor="insights-search" className="sr-only">
+          {searchLabel}
+        </label>
+        <input
+          id="insights-search"
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={searchPlaceholder}
+          className={`w-full border-0 bg-transparent text-[0.9375rem] text-carbon outline-none placeholder:text-carbon/40 ${isAr ? "font-arabic text-right" : ""}`}
+        />
+        <button
+          type="submit"
+          aria-label={searchLabel}
+          className="flex shrink-0 items-center justify-center text-carbon/60 transition-colors duration-300 hover:text-carbon"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 20 20"
+            fill="none"
+            className="h-[18px] w-[18px]"
+          >
+            <circle cx="8.5" cy="8.5" r="6" stroke="currentColor" strokeWidth="1.5" />
+            <path d="M13.5 13.5 18 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+        </button>
+      </form>
+
       <div
         role="tablist"
         aria-label={isAr ? "تصفية حسب الفئة" : isRu ? "Фильтр по категории" : "Filter by category"}
@@ -87,11 +144,17 @@ export function InsightsExplorer({
       {filtered.length === 0 ? (
         <div className="border-t border-carbon/15 py-20 text-center">
           <p className={`text-[1.0625rem] text-carbon/60 ${isAr ? "font-arabic" : ""}`}>
-            {isAr
-              ? `المزيد من ${activeCategoryLabel} في الطريق.`
-              : isRu
-                ? `Больше материалов из раздела «${activeCategoryLabel}» уже скоро.`
-                : `More ${activeCategoryLabel} are on the way.`}
+            {normalizedQuery
+              ? isAr
+                ? `لا نتائج لـ "${query}".`
+                : isRu
+                  ? `Нет результатов по запросу «${query}».`
+                  : `No results for "${query}".`
+              : isAr
+                ? `المزيد من ${activeCategoryLabel} في الطريق.`
+                : isRu
+                  ? `Больше материалов из раздела «${activeCategoryLabel}» уже скоро.`
+                  : `More ${activeCategoryLabel} are on the way.`}
           </p>
         </div>
       ) : (
