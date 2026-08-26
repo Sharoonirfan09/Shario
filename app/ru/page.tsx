@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Faq } from "@/components/faq";
 import { InsightCard } from "@/components/insights";
 import { SixServices } from "@/components/six-services";
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
 
 /** Same photograph and crop as the English homepage — `heroImages.home` in `lib/site.ts`. */
 const HERO_IMAGE = heroImages.home.src;
-const HERO_IMAGE_ALT = `${site.founderRu}, основатель SHARIO`;
+const HERO_IMAGE_ALT = `${site.founderRu}, основатель SHARIO, агентства цифрового маркетинга в Дубае`;
 
 /** Same four textures as the English homepage's "How We Work" cards — `lib/site.ts`'s `sharedImages.homeStepTextures`. */
 const stepTextures = sharedImages.homeStepTextures;
@@ -65,9 +66,8 @@ export default function RussianHomePage() {
         locale="ru"
         title={
           <>
-            <span className="block">Цифровой маркетинг,</span>
-            <span className="block">который превращает</span>
-            <span className="block">расходы в выручку</span>
+            <span className="block">Агентство цифрового</span>
+            <span className="block">маркетинга в Дубае</span>
           </>
         }
         subhead={<em className="italic">Симфония идентичности</em>}
@@ -104,8 +104,35 @@ export default function RussianHomePage() {
               SHARIO — агентство цифрового маркетинга в Дубае, работающее по
               модели прямого участия основателя. Каждая стратегия
               выстраивается на уровне человека, который лично создавал и
-              запускал комплексные маркетинговые системы для девелоперских
-              проектов в регионе.
+              запускал комплексные маркетинговые системы — от{" "}
+              <Link
+                href="/ru/services/performance-marketing"
+                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                цифрового маркетинга
+              </Link>
+              {" "}и{" "}
+              <Link
+                href="/ru/services/seo-and-content"
+                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                SEO
+              </Link>
+              {" "}до{" "}
+              <Link
+                href="/ru/services/websites-and-cro"
+                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                веб-разработки
+              </Link>
+              {" "}и{" "}
+              <Link
+                href="/ru/services/brand-and-creative"
+                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                брендинга
+              </Link>
+              {" "}— для девелоперских проектов в регионе.
             </p>
             <p
               className="reveal mt-4 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75"
@@ -135,7 +162,7 @@ export default function RussianHomePage() {
           <SectionIntro
             eyebrow="Чем мы отличаемся"
             title="Вот как мы работаем."
-            sub="Четыре шага, которые выполняются каждую неделю, а не раз в квартал."
+            sub="Четыре шага, которые выполняются каждую неделю, а не раз в квартал — так работает SHARIO, агентство цифрового маркетинга и креатива в Дубае."
           />
           <CardGrid columns={4}>
             {howWeWork.map((step, i) => (
@@ -185,7 +212,11 @@ export default function RussianHomePage() {
 
       {/* FAQ */}
       <Band>
-        <SectionIntro eyebrow="FAQ" title="Часто задаваемые вопросы." />
+        <SectionIntro
+          eyebrow="FAQ"
+          title="Часто задаваемые вопросы."
+          sub="Ответы о работе с SHARIO — агентством цифрового маркетинга в Дубае, ОАЭ."
+        />
         <div className="mx-auto max-w-[880px]">
           <Faq
             items={homeFaqs.map((item) => ({ q: item.qRu, a: item.aRu }))}

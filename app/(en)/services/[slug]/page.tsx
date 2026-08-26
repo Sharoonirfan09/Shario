@@ -98,7 +98,8 @@ export default async function ServicePage({
       />
 
       {/* What you get. The heading takes the service name unchanged —
-          lower-casing it turns "SEO & Content" into "seo & content". */}
+          lower-casing it turns "CRM & Marketing Automation" into
+          "crm & marketing automation". */}
       <Band>
         <SectionIntro
           eyebrow="What You Get"

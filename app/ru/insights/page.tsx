@@ -15,7 +15,7 @@ import {
 
 const DEFAULT_TITLE_RU = "Инсайты";
 const DEFAULT_DESCRIPTION_RU =
-  "Редакционная платформа SHARIO — новости рынка, статьи, кейсы, тренды и руководства о performance-маркетинге, SEO, сайтах и CRM в Дубае.";
+  "Редакционная платформа SHARIO — новости рынка, статьи, кейсы, тренды и руководства о цифровом маркетинге, SEO, сайтах и CRM в Дубае.";
 
 const HERO_IMAGE = heroImages.insights.src;
 const HERO_IMAGE_ALT =

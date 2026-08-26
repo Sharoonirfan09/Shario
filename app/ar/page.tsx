@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Faq } from "@/components/faq";
 import { InsightCard } from "@/components/insights";
 import { SixServices } from "@/components/six-services";
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
 
 /** Same photograph and crop as the English homepage — `heroImages.home` in `lib/site.ts`. */
 const HERO_IMAGE = heroImages.home.src;
-const HERO_IMAGE_ALT = `${site.founderAr}، مؤسسة شاريو`;
+const HERO_IMAGE_ALT = `${site.founderAr}، مؤسسة شاريو، وكالة تسويق رقمي في دبي`;
 
 /** Same four textures as the English homepage's "How We Work" cards — `lib/site.ts`'s `sharedImages.homeStepTextures`. */
 const stepTextures = sharedImages.homeStepTextures;
@@ -65,9 +66,8 @@ export default function ArabicHomePage() {
         locale="ar"
         title={
           <>
-            <span className="block">تسويق رقمي</span>
-            <span className="block">يحوّل الإنفاق</span>
-            <span className="block">إلى إيرادات</span>
+            <span className="block">وكالة تسويق رقمي</span>
+            <span className="block">في دبي</span>
           </>
         }
         subhead="سيمفونية الهوية"
@@ -103,7 +103,35 @@ export default function ArabicHomePage() {
             <p className="reveal mt-6 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75">
               شاريو وكالة تسويق رقمي في دبي، تعمل وفق نموذج قيادة أول. تُضبط
               كل استراتيجية على معيار مؤسسة بنت وأطلقت بنفسها أنظمة تسويقية
-              متكاملة لمشاريع يقودها مطورون في المنطقة.
+              متكاملة — تشمل{" "}
+              <Link
+                href="/ar/services/performance-marketing"
+                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                التسويق الرقمي
+              </Link>
+              {" "}و{" "}
+              <Link
+                href="/ar/services/seo-and-content"
+                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                تحسين محركات البحث
+              </Link>
+              {" "}و{" "}
+              <Link
+                href="/ar/services/websites-and-cro"
+                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                تطوير المواقع الإلكترونية
+              </Link>
+              {" "}و{" "}
+              <Link
+                href="/ar/services/brand-and-creative"
+                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                العلامة التجارية
+              </Link>
+              {" "}— لمشاريع يقودها مطورون في المنطقة.
             </p>
             <p
               className="reveal mt-4 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75"
@@ -132,7 +160,7 @@ export default function ArabicHomePage() {
           <SectionIntro
             eyebrow="ما الذي يميزنا"
             title="هكذا نعمل."
-            sub="أربع خطوات، تُنفَّذ كل أسبوع لا كل ربع سنة."
+            sub="أربع خطوات، تُنفَّذ كل أسبوع لا كل ربع سنة — هذه هي طريقة عمل شاريو، وكالة تسويق رقمي وإبداعي في دبي."
           />
           <CardGrid columns={4}>
             {howWeWork.map((step, i) => (
@@ -182,7 +210,11 @@ export default function ArabicHomePage() {
 
       {/* FAQ */}
       <Band>
-        <SectionIntro eyebrow="الأسئلة الشائعة" title="أسئلة متكررة." />
+        <SectionIntro
+          eyebrow="الأسئلة الشائعة"
+          title="أسئلة متكررة."
+          sub="إجابات حول العمل مع شاريو، وكالة التسويق الرقمي في دبي، الإمارات."
+        />
         <div className="mx-auto max-w-[880px]">
           <Faq
             items={homeFaqs.map((item) => ({ q: item.qAr, a: item.aAr }))}

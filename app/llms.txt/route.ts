@@ -32,7 +32,7 @@ export function GET() {
 
   lines.push("## Insights");
   lines.push(
-    `${site.name}'s editorial hub — market news, articles, case studies, trends and guides on performance marketing, SEO, websites and CRM in Dubai.`,
+    `${site.name}'s editorial hub — market news, articles, case studies, trends and guides on digital marketing, SEO, websites and CRM in Dubai.`,
   );
   for (const category of insightCategories) {
     lines.push(`- [${category.name}](${site.domain}/insights?category=${category.slug}): ${category.description}`);

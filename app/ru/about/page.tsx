@@ -13,7 +13,7 @@ import {
 import { aboutApproach, cta, heroImages, ogDefaultsRu, services, sharedImages, site } from "@/lib/site";
 
 const descriptionRu =
-  "SHARIO — агентство цифрового маркетинга и креативная студия в Дубае, объединяющая performance-маркетинг, SEO, бренд, а также стратегию и консалтинг в единую систему для амбициозных компаний.";
+  "SHARIO — агентство цифрового маркетинга и креативная студия в Дубае, объединяющая платный трафик, SEO, брендинг и маркетинговый консалтинг в единую систему для амбициозных компаний.";
 
 const HERO_IMAGE = heroImages.about.src;
 const HERO_IMAGE_ALT = "Оформленные в рамы гравюры и предметы на тёплой, минималистичной стене";
@@ -66,7 +66,7 @@ export default function RussianAboutPage() {
             className="reveal mt-8 text-[1.0625rem] leading-[1.75] text-carbon/75"
             data-delay="80"
           >
-            SHARIO объединяет стратегию, performance-маркетинг, SEO, контент, сайты, CRM,
+            SHARIO объединяет стратегию, цифровой маркетинг, SEO, контент, сайты, CRM,
             автоматизацию, брендинг и креатив в единый комплексный подход.
           </p>
           <p
@@ -200,7 +200,7 @@ export default function RussianAboutPage() {
               {site.founderRu}
             </Heading>
             <p className="reveal mt-6 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75">
-              Специалист по performance-маркетингу и стратег цифрового роста, сосредоточенный на
+              Специалист по цифровому маркетингу и стратег цифрового роста, сосредоточенный на
               создании брендов, которые понятны, актуальны и выстроены для роста.
             </p>
             <p

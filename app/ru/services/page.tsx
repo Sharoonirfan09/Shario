@@ -4,7 +4,7 @@ import { CtaBand, Hero, PillLink } from "@/components/ui";
 import { cta, heroImages, ogDefaultsRu } from "@/lib/site";
 
 const descriptionRu =
-  "SHARIO — агентство цифрового маркетинга и креатива в Дубае, предоставляющее услуги performance-маркетинга, SEO и контента, сайтов и CRO, CRM и автоматизации, бренда и креатива. Используйте одну услугу или весь цикл целиком.";
+  "SHARIO — агентство цифрового маркетинга и креатива в Дубае, предоставляющее услуги SEO, веб-разработки, брендинга, CRM и маркетинговой автоматизации, а также маркетингового консалтинга. Используйте одну услугу или весь цикл целиком.";
 
 const HERO_IMAGE = heroImages.services.src;
 const HERO_IMAGE_ALT =

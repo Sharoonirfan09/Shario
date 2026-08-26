@@ -4,7 +4,7 @@ import { CtaBand, Hero, PillLink } from "@/components/ui";
 import { cta, heroImages, ogDefaults } from "@/lib/site";
 
 const description =
-  "Shario is a digital marketing agency in Dubai offering branding, creative, web design, SEO, performance marketing and CRM. Engage one service or the entire funnel.";
+  "Shario is a digital marketing agency in Dubai offering SEO, website development, branding, CRM & marketing automation and marketing consulting. Engage one service or the entire funnel.";
 
 /** Path/crop live in `lib/site.ts` as `heroImages.services`, shared with the Arabic page, both locales' `opengraph-image.tsx`, and `[slug]`'s not-found fallback. */
 export const HERO_IMAGE = heroImages.services.src;
@@ -12,7 +12,7 @@ export const HERO_IMAGE_ALT =
   "A framed painting of a woman in a wide-brimmed hat and a pleated cream dress, leaning against a deep red canvas in a sunlit, panelled room";
 
 export const metadata: Metadata = {
-  title: "Digital Marketing Agency in Dubai, Branding & Creative Services",
+  title: "Digital Marketing Agency in Dubai — Our Services",
   description,
   alternates: {
     canonical: "/services",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     ...ogDefaults,
     url: "/services",
     type: "website",
-    title: "Digital Marketing Agency in Dubai, Branding & Creative Services — Shario",
+    title: "Shario — Digital Marketing Agency in Dubai, Our Services",
     description,
   },
 };
@@ -37,7 +37,7 @@ export default function ServicesPage() {
           any one service, without adding anything to what a sighted visitor
           sees. */}
       <h1 className="sr-only">
-        Digital Marketing Agency in Dubai — Branding &amp; Creative Services
+        Digital Marketing Agency in Dubai — Our Services
       </h1>
       <Hero
         src={HERO_IMAGE}

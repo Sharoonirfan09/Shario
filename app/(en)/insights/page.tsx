@@ -15,7 +15,7 @@ import {
 
 const DEFAULT_TITLE = "Insights";
 const DEFAULT_DESCRIPTION =
-  "SHARIO's editorial hub — market news, articles, case studies, trends and guides on performance marketing, SEO, websites and CRM in Dubai.";
+  "SHARIO's editorial hub — market news, articles, case studies, trends and guides on digital marketing, SEO, websites and CRM in Dubai.";
 
 /** Path/crop live in `lib/site.ts` as `heroImages.insights`, shared with the Arabic page, both locales' `opengraph-image.tsx`, and `[slug]`'s not-found fallback. */
 export const HERO_IMAGE = heroImages.insights.src;

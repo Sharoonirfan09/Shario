@@ -249,10 +249,10 @@ export function InsightsBlogStructuredData({ locale = "en" }: { locale?: Locale 
     "@id": base,
     name: isAr ? `رؤى ${site.name}` : isRu ? `Инсайты ${site.name}` : `${site.name} Insights`,
     description: isAr
-      ? "المنصة التحريرية لشاريو — أخبار السوق والمقالات ودراسات الحالة والاتجاهات والأدلة حول التسويق الأدائي وتحسين محركات البحث والمواقع الإلكترونية وإدارة علاقات العملاء في دبي."
+      ? "المنصة التحريرية لشاريو — أخبار السوق والمقالات ودراسات الحالة والاتجاهات والأدلة حول التسويق الرقمي وتحسين محركات البحث والمواقع الإلكترونية وإدارة علاقات العملاء في دبي."
       : isRu
-        ? "Редакционная платформа SHARIO — новости рынка, статьи, кейсы, тренды и руководства о performance-маркетинге, SEO, сайтах и CRM в Дубае."
-        : "SHARIO's editorial hub — market news, articles, case studies, trends and guides on performance marketing, SEO, websites and CRM in Dubai.",
+        ? "Редакционная платформа SHARIO — новости рынка, статьи, кейсы, тренды и руководства о цифровом маркетинге, SEO, сайтах и CRM в Дубае."
+        : "SHARIO's editorial hub — market news, articles, case studies, trends and guides on digital marketing, SEO, websites and CRM in Dubai.",
     url: base,
     publisher: {
       "@type": "Organization",

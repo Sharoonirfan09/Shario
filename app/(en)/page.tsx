@@ -36,7 +36,7 @@ import {
  * per this SEO pass's brief, without touching any page outside the homepage.
  */
 const HOME_META_DESCRIPTION =
-  "Shario is a founder-led digital marketing agency in Dubai — performance marketing, SEO, web design and branding engineered to turn spend into revenue.";
+  "Shario is a founder-led digital marketing agency in Dubai — paid media, SEO, website development and branding engineered to turn spend into revenue.";
 
 export const metadata: Metadata = {
   // Written out in full rather than relying on the layout's
@@ -163,7 +163,7 @@ export default function HomePage() {
                 href="/services/performance-marketing"
                 className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
-                performance marketing
+                digital marketing
               </Link>
               ,{" "}
               <Link
@@ -177,7 +177,7 @@ export default function HomePage() {
                 href="/services/websites-and-cro"
                 className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
-                web design
+                website development
               </Link>{" "}
               and{" "}
               <Link

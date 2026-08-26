@@ -13,7 +13,7 @@ import {
 import { aboutApproach, cta, heroImages, ogDefaults, services, sharedImages, site } from "@/lib/site";
 
 const description =
-  "SHARIO is a Dubai digital marketing agency and creative studio connecting performance marketing, SEO, brand and strategy and consulting into one system for ambitious businesses.";
+  "SHARIO is a Dubai digital marketing agency and creative studio connecting paid media, SEO, branding and marketing consulting into one system for ambitious businesses.";
 
 /** Path/crop live in `lib/site.ts` as `heroImages.about`, shared with the Arabic page and both locales' `opengraph-image.tsx`. */
 export const HERO_IMAGE = heroImages.about.src;
@@ -73,7 +73,7 @@ export default function AboutPage() {
             className="reveal mt-8 text-[1.0625rem] leading-[1.75] text-carbon/75"
             data-delay="80"
           >
-            SHARIO brings together strategy, performance marketing, SEO,
+            SHARIO brings together strategy, digital marketing, SEO,
             content, websites, CRM, automation, branding and creative under
             one connected approach.
           </p>
