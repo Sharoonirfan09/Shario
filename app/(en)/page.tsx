@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Faq } from "@/components/faq";
 import { InsightCard } from "@/components/insights";
 import { SixServices } from "@/components/six-services";
@@ -27,6 +28,16 @@ import {
   site,
 } from "@/lib/site";
 
+/**
+ * SEO-specific description, distinct from `site.description` (which also
+ * feeds the root layout fallback, `llms.txt` and the Organization structured
+ * data) so the homepage's own title/description can target "digital
+ * marketing agency in Dubai" without rewriting that shared string — and,
+ * per this SEO pass's brief, without touching any page outside the homepage.
+ */
+const HOME_META_DESCRIPTION =
+  "Shario is a founder-led digital marketing agency in Dubai — performance marketing, SEO, web design and branding engineered to turn spend into revenue.";
+
 export const metadata: Metadata = {
   // Written out in full rather than relying on the layout's
   // `title.template`: per Next's own docs, a template defined in a layout
@@ -35,8 +46,8 @@ export const metadata: Metadata = {
   // (Verified: leaving just the bare phrase here rendered with no suffix at
   // all once the old root-level template — which did apply, being higher up
   // the tree — was removed.)
-  title: "Marketing Agency in Dubai — Shario",
-  description: site.description,
+  title: "Digital Marketing Agency in Dubai — Shario",
+  description: HOME_META_DESCRIPTION,
   alternates: {
     canonical: "/",
     languages: { en: "/", ar: "/ar", ru: "/ru", "x-default": "/" },
@@ -45,14 +56,14 @@ export const metadata: Metadata = {
     ...ogDefaults,
     url: "/",
     type: "website",
-    title: "Shario — Marketing Agency in Dubai",
-    description: site.description,
+    title: "Shario — Digital Marketing Agency in Dubai",
+    description: HOME_META_DESCRIPTION,
   },
 };
 
 /** Path/crop live in `lib/site.ts` as `heroImages.home`, shared with the Arabic homepage and both locales' `opengraph-image.tsx`. Alt text stays here since it's translated content, not a shared fact. */
 export const HERO_IMAGE = heroImages.home.src;
-export const HERO_IMAGE_ALT = `${site.founder}, founder of Shario`;
+export const HERO_IMAGE_ALT = `${site.founder}, founder of Shario, a digital marketing agency in Dubai`;
 
 /** Card grounds for "How We Work" — shared with the Arabic homepage via `lib/site.ts`'s `sharedImages.homeStepTextures`. */
 const stepTextures = sharedImages.homeStepTextures;
@@ -93,19 +104,8 @@ export default function HomePage() {
         focus="object-[50%_28%]"
         title={
           <>
-            {/* Flush `block` spans, no per-line offsets: measured against the
-                rendered glyph ink (canvas actualBoundingBoxLeft, not just
-                each span's box edge), "D", "T" and "I" in Cormorant Garamond
-                already land within half a pixel of one another at every
-                hero size. A manual nudge used to sit on this second line on
-                the assumption that "T"'s serif overhangs further left than
-                "D" or "I"'s stems — measurement shows the opposite: "T"'s
-                ink starts very slightly further right, so the nudge was
-                pushing this line visibly right of the other two instead of
-                correcting it. */}
             <span className="block">Digital Marketing</span>
-            <span className="block">That Turns Spend</span>
-            <span className="block">Into Revenue</span>
+            <span className="block">Agency in Dubai</span>
           </>
         }
         subhead={<em className="italic">A Symphony of Identity</em>}
@@ -158,8 +158,35 @@ export default function HomePage() {
               Shario is a founder-led digital marketing agency in Dubai,
               running on a senior model. Every strategy is set to the
               standard of a founder who has personally built and launched
-              full-funnel marketing systems for developer-led projects across
-              the region.
+              full-funnel marketing systems — spanning{" "}
+              <Link
+                href="/services/performance-marketing"
+                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                performance marketing
+              </Link>
+              ,{" "}
+              <Link
+                href="/services/seo-and-content"
+                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                SEO
+              </Link>
+              ,{" "}
+              <Link
+                href="/services/websites-and-cro"
+                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                web design
+              </Link>{" "}
+              and{" "}
+              <Link
+                href="/services/brand-and-creative"
+                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                branding
+              </Link>{" "}
+              — for developer-led projects across the region.
             </p>
             <p
               className="reveal mt-4 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75"
@@ -198,7 +225,7 @@ export default function HomePage() {
           <SectionIntro
             eyebrow="What Makes Us Different"
             title="This is how we work."
-            sub="Four steps, run every week rather than every quarter."
+            sub="Four steps, run every week rather than every quarter — the process behind Shario, a creative digital marketing agency in Dubai."
           />
           {/*
            * One texture per card, each used nowhere else on the site — crops of
@@ -262,6 +289,7 @@ export default function HomePage() {
         <SectionIntro
           eyebrow="FAQ"
           title="Frequently asked questions."
+          sub="Answers about working with Shario, a digital marketing agency in Dubai, UAE."
         />
         <div className="mx-auto max-w-[880px]">
           <Faq items={homeFaqs} answerClassName="font-body" />

@@ -10,7 +10,7 @@ import { HERO_IMAGE_ALT } from "./page";
  */
 export const size = ogSize;
 export const contentType = ogContentType;
-export const alt = `Digital Marketing That Turns Spend Into Revenue — A Symphony of Identity. ${HERO_IMAGE_ALT}.`;
+export const alt = `Shario — Digital Marketing Agency in Dubai. A Symphony of Identity. ${HERO_IMAGE_ALT}.`;
 
 export default async function Image() {
   return buildHomeOgImage();
