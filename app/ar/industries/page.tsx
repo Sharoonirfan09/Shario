@@ -8,7 +8,8 @@ const descriptionAr =
   "تبني شاريو أنظمة تسويقية لعشرة قطاعات في دبي — العقارات، الضيافة، الرعاية الصحية، التجارة الإلكترونية، التكنولوجيا وغيرها — لكل منها تموضعها وقنواتها وسلوك عملائها الخاص.";
 
 export const HERO_IMAGE = heroImages.industries.src;
-export const HERO_IMAGE_ALT = "";
+export const HERO_IMAGE_ALT =
+  "منظر علوي لفريق عمل يستخدم أجهزة لابتوب وجهاز لوحي وتقارير مطبوعة مليئة بالرسوم البيانية، على مكتب أبيض مشترك";
 
 export const metadata: Metadata = {
   title: "القطاعات التي نعمل معها — وكالة تسويق في دبي",

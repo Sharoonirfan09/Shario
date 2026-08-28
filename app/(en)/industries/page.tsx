@@ -8,7 +8,8 @@ const description =
   "Shario builds marketing systems for ten sectors across Dubai — real estate, hospitality, healthcare, e-commerce, technology and more — each with its own positioning, channels and buyer behaviour.";
 
 export const HERO_IMAGE = heroImages.industries.src;
-export const HERO_IMAGE_ALT = "";
+export const HERO_IMAGE_ALT =
+  "An overhead view of a team working across laptops, a tablet and printed reports covered in charts, on a shared white desk";
 
 export const metadata: Metadata = {
   title: "Industries We Work With — Dubai Marketing Agency",
