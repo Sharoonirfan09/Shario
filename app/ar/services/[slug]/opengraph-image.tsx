@@ -11,7 +11,7 @@ export function generateStaticParams() {
 export async function generateImageMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const service = getService(slug);
-  return service ? [{ id: 0, alt: `${service.nameAr} — ${site.name}` }] : [];
+  return service ? [{ id: 0, alt: `${service.nameAr} — ${site.name}`, contentType: ogContentType }] : [];
 }
 
 /** Same rendered card as the matching English service page's — reused as-is (Cormorant Garamond can't set Arabic glyphs). */

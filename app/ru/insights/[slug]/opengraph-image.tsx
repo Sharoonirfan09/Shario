@@ -12,7 +12,7 @@ export function generateStaticParams() {
 export async function generateImageMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const article = getInsightArticle(slug);
-  return article ? [{ id: 0, alt: article.imageAltRu ?? article.imageAlt }] : [];
+  return article ? [{ id: 0, alt: article.imageAltRu ?? article.imageAlt, contentType: ogContentType }] : [];
 }
 
 /** Same rendered card as the matching English article page's — reused as-is (the OG font is subsetted to Latin glyphs, see `lib/og.tsx`). */

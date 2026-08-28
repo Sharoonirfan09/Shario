@@ -11,7 +11,7 @@ export function generateStaticParams() {
 export async function generateImageMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const service = getService(slug);
-  return service ? [{ id: 0, alt: `${service.nameRu} — ${site.name}` }] : [];
+  return service ? [{ id: 0, alt: `${service.nameRu} — ${site.name}`, contentType: ogContentType }] : [];
 }
 
 /** Same rendered card as the matching English service page's — reused as-is (the OG font is subsetted to Latin glyphs, see `lib/og.tsx`). */

@@ -13,7 +13,7 @@ export function generateStaticParams() {
 export async function generateImageMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const article = getInsightArticle(slug);
-  return article ? [{ id: 0, alt: article.imageAlt }] : [];
+  return article ? [{ id: 0, alt: article.imageAlt, contentType: ogContentType }] : [];
 }
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
