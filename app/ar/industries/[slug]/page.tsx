@@ -15,6 +15,7 @@ import {
   CtaBand,
   DotList,
   Hero,
+  InlineLinks,
   PillLink,
   SectionIntro,
 } from "@/components/ui";
@@ -81,7 +82,7 @@ export default async function ArabicIndustryPage({
 
       <Hero
         src={industry.heroImage}
-        alt={`${industry.nameAr} — ${site.name}`}
+        alt={`${industry.nameAr} في دبي — ${site.name}`}
         eyebrow="القطاعات"
         title={industry.titleAr}
         priority
@@ -101,8 +102,11 @@ export default async function ArabicIndustryPage({
           <p className="reveal mb-6 font-arabic text-[1.0625rem] leading-[1.9] text-carbon/75">
             {industry.introAr[0]}
           </p>
-          <p className="reveal font-arabic text-[1.0625rem] leading-[1.9] text-carbon/75">
+          <p className="reveal mb-6 font-arabic text-[1.0625rem] leading-[1.9] text-carbon/75">
             {industry.introAr[1]}
+          </p>
+          <p className="reveal font-arabic text-[1.0625rem] leading-[1.9] text-carbon/75">
+            <InlineLinks segments={industry.bodyLinksAr} hrefPrefix="/ar" />
           </p>
         </div>
       </Band>

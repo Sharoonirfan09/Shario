@@ -15,6 +15,7 @@ import {
   CtaBand,
   DotList,
   Hero,
+  InlineLinks,
   PillLink,
   SectionIntro,
 } from "@/components/ui";
@@ -81,7 +82,7 @@ export default async function RussianIndustryPage({
 
       <Hero
         src={industry.heroImage}
-        alt={`${industry.nameRu} — ${site.name}`}
+        alt={`${industry.nameRu} в Дубае — ${site.name}`}
         eyebrow="Отрасли"
         title={industry.titleRu}
         priority
@@ -101,8 +102,11 @@ export default async function RussianIndustryPage({
           <p className="reveal mb-6 text-[1.0625rem] leading-[1.75] text-carbon/75">
             {industry.introRu[0]}
           </p>
-          <p className="reveal text-[1.0625rem] leading-[1.75] text-carbon/75">
+          <p className="reveal mb-6 text-[1.0625rem] leading-[1.75] text-carbon/75">
             {industry.introRu[1]}
+          </p>
+          <p className="reveal text-[1.0625rem] leading-[1.75] text-carbon/75">
+            <InlineLinks segments={industry.bodyLinksRu} hrefPrefix="/ru" />
           </p>
         </div>
       </Band>

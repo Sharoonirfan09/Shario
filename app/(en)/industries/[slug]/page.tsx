@@ -15,6 +15,7 @@ import {
   CtaBand,
   DotList,
   Hero,
+  InlineLinks,
   PillLink,
   SectionIntro,
 } from "@/components/ui";
@@ -102,8 +103,11 @@ export default async function IndustryPage({
           <p className="reveal mb-6 text-[1.0625rem] leading-[1.75] text-carbon/75">
             {industry.intro[0]}
           </p>
-          <p className="reveal text-[1.0625rem] leading-[1.75] text-carbon/75">
+          <p className="reveal mb-6 text-[1.0625rem] leading-[1.75] text-carbon/75">
             {industry.intro[1]}
+          </p>
+          <p className="reveal text-[1.0625rem] leading-[1.75] text-carbon/75">
+            <InlineLinks segments={industry.bodyLinks} />
           </p>
         </div>
       </Band>

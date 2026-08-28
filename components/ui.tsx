@@ -1353,3 +1353,37 @@ export function DotList({
     </div>
   );
 }
+
+/**
+ * A sentence made of plain-text and linked segments — natural inline anchor
+ * text within flowing body copy, rather than a boxed list of links. A
+ * segment with no `href` renders as plain text; `hrefPrefix` (e.g. `/ar`,
+ * `/ru`) is prepended to every linked segment's `href` so the underlying
+ * data can stay locale-agnostic (`/services/seo`, `/contact`, …) the same
+ * way `Industry.services[].slug` does.
+ */
+export function InlineLinks({
+  segments,
+  hrefPrefix = "",
+}: {
+  segments: readonly { text: string; href?: string }[];
+  hrefPrefix?: string;
+}) {
+  return (
+    <>
+      {segments.map((segment, i) =>
+        segment.href ? (
+          <Link
+            key={i}
+            href={`${hrefPrefix}${segment.href}`}
+            className="border-b border-carbon/30 pb-0.5 text-carbon/85 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+          >
+            {segment.text}
+          </Link>
+        ) : (
+          <span key={i}>{segment.text}</span>
+        ),
+      )}
+    </>
+  );
+}
