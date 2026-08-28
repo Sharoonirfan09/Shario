@@ -81,7 +81,7 @@ export default async function ArabicIndustryPage({
 
       <Hero
         src={industry.heroImage}
-        alt=""
+        alt={`${industry.nameAr} — ${site.name}`}
         eyebrow="القطاعات"
         title={industry.titleAr}
         priority

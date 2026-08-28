@@ -81,7 +81,7 @@ export default async function IndustryPage({
 
       <Hero
         src={industry.heroImage}
-        alt=""
+        alt={`${industry.name} in Dubai — ${site.name}`}
         eyebrow="Industries"
         title={industry.title}
         priority

@@ -81,7 +81,7 @@ export default async function RussianIndustryPage({
 
       <Hero
         src={industry.heroImage}
-        alt=""
+        alt={`${industry.nameRu} — ${site.name}`}
         eyebrow="Отрасли"
         title={industry.titleRu}
         priority
