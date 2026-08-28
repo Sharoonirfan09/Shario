@@ -5,6 +5,7 @@ import { Faq } from "@/components/faq";
 import {
   BreadcrumbStructuredData,
   FaqStructuredData,
+  ServiceStructuredData,
 } from "@/components/structured-data";
 import {
   Band,
@@ -23,7 +24,6 @@ import {
   cta,
   getInsightArticle,
   getService,
-  homeFaqs,
   ogDefaultsRu,
   services,
   site,
@@ -86,7 +86,8 @@ export default async function RussianServicePage({
   return (
     <>
       <BreadcrumbStructuredData items={breadcrumbItems} />
-      <FaqStructuredData items={homeFaqs.map((item) => ({ q: item.qRu, a: item.aRu }))} />
+      <FaqStructuredData items={service.faqsRu} />
+      <ServiceStructuredData service={service} locale="ru" />
 
       <Hero
         src={service.heroImage}
@@ -172,6 +173,29 @@ export default async function RussianServicePage({
         )}
       </Band>
 
+      {/* Where this shows up — named sub-services, absent on the narrower
+          pages where whatWeDo/benefits already cover the ground. */}
+      {service.subServicesRu && (
+        <Band>
+          <SectionIntro
+            eyebrow="Где это проявляется"
+            title="Внутри работы."
+            scale="sm"
+          />
+          <CardGrid columns={service.subServicesRu.length > 4 ? 3 : 2}>
+            {service.subServicesRu.map((item) => (
+              <Card
+                key={item.title}
+                title={item.title}
+                titleAs="h3"
+                desc={item.desc}
+                locale="ru"
+              />
+            ))}
+          </CardGrid>
+        </Band>
+      )}
+
       {/* Related services */}
       <Band className="relative overflow-hidden">
         <span
@@ -201,12 +225,12 @@ export default async function RussianServicePage({
         </CardGrid>
       </Band>
 
-      {/* FAQ — the same shared set as the homepage */}
+      {/* FAQ — this service's own four questions, matching FaqStructuredData above */}
       <Band className="bg-limestone/30">
         <SectionIntro eyebrow="FAQ" title="Вопросы и ответы." />
         <div className="mx-auto max-w-[880px]">
           <Faq
-            items={homeFaqs.map((item) => ({ q: item.qRu, a: item.aRu }))}
+            items={service.faqsRu}
             answerClassName="font-body"
             locale="ru"
           />

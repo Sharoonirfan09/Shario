@@ -700,6 +700,16 @@ export type Service = {
   faqsAr: { q: string; a: string }[];
   faqsRu: { q: string; a: string }[];
   /**
+   * Named sub-services shown as their own headed subsection — for a service
+   * broad enough that its distinct components (e.g. Technical SEO vs. Local
+   * SEO) each deserve a title and a sentence of their own rather than living
+   * as one line inside `whatWeDo`. Left unset where the service is narrow
+   * enough that `whatWeDo`/`benefits` already cover it without fragmenting.
+   */
+  subServices?: { title: string; desc: string }[];
+  subServicesAr?: { title: string; desc: string }[];
+  subServicesRu?: { title: string; desc: string }[];
+  /**
    * The page's two photographs, shown side by side. Each carries its own
    * pixel dimensions so the frame takes the picture's real proportion and
    * nothing is cropped, and both in a pair share a ratio so the row is even.
@@ -769,25 +779,28 @@ export const services: Service[] = [
     leadRu:
       "Это цифровая реклама, которую покупают и оценивают относительно конкретного результата — лида, продажи, — а не показа. Платное продвижение работает тогда, когда каждый потраченный дирхам можно проследить до лида, который действительно нужен отделу продаж.",
     whatWeDo: [
-      "Google Search, Display and Performance Max",
+      "Google Ads management — Search, Display and Performance Max",
       "Social media marketing across Meta (Facebook and Instagram)",
-      "YouTube and video demand generation",
-      "Audience, offer and creative testing",
-      "Budget pacing and bid strategy",
+      "YouTube and video marketing for demand generation",
+      "Email marketing and lifecycle campaigns tied to the same pipeline",
+      "Search-everywhere presence — paid visibility wherever buyers search, not Google alone",
+      "Audience, offer and creative testing, with budget pacing and bid strategy",
     ],
     whatWeDoAr: [
-      "إعلانات البحث والعرض والأداء الأقصى على جوجل",
+      "إدارة إعلانات جوجل — البحث والعرض والأداء الأقصى",
       "حملات ميتا عبر فيسبوك وإنستغرام",
-      "يوتيوب وتوليد الطلب عبر الفيديو",
-      "اختبار الجمهور والعروض والتصاميم الإبداعية",
-      "إدارة وتيرة الإنفاق واستراتيجية المزايدة",
+      "يوتيوب والتسويق عبر الفيديو لتوليد الطلب",
+      "التسويق عبر البريد الإلكتروني وحملات دورة حياة العميل المرتبطة بمسار المبيعات نفسه",
+      "حضور بحثي أينما كان — ظهور مدفوع حيثما يبحث المشترون، لا في جوجل وحده",
+      "اختبار الجمهور والعروض والتصاميم الإبداعية، مع إدارة وتيرة الإنفاق واستراتيجية المزايدة",
     ],
     whatWeDoRu: [
-      "Поиск, медийная реклама и Performance Max в Google",
+      "Управление Google Ads — поиск, медийная реклама и Performance Max",
       "Кампании Meta в Facebook и Instagram",
-      "YouTube и генерация спроса через видео",
-      "Тестирование аудиторий, офферов и креативов",
-      "Управление темпом расходования бюджета и стратегией ставок",
+      "YouTube и видеомаркетинг для генерации спроса",
+      "Email-маркетинг и цепочки писем, привязанные к той же воронке продаж",
+      "Присутствие «везде, где ищут» — платная видимость там, где ищут покупатели, а не только в Google",
+      "Тестирование аудиторий, офферов и креативов, управление темпом расходования бюджета и стратегией ставок",
     ],
     benefits: [
       {
@@ -949,14 +962,14 @@ export const services: Service[] = [
     ctaTitleAr: ["لنضع الإنفاق", "حيث يُثمر."],
     ctaTitleRu: ["Направим бюджет", "туда, где он окупается."],
     metaDescription:
-      "Digital marketing agency in Dubai — Google Ads and Meta Ads engineered for qualified leads at below-target cost per lead.",
+      "Digital marketing agency in Dubai — performance marketing across Google Ads, Meta Ads, PPC and email, engineered for qualified leads at below-target cost per lead.",
     metaDescriptionAr:
-      "التسويق الرقمي في دبي — إدارة إعلانات جوجل وميتا لجذب عملاء محتملين مؤهلين بتكلفة أقل من المستهدف، مع تقارير مقابل مسار المبيعات والإيرادات المحققة.",
+      "التسويق الرقمي في دبي — تسويق أداء عبر إعلانات جوجل وميتا، والإعلانات المدفوعة بالنقرة (PPC)، والتسويق عبر البريد الإلكتروني، لجذب عملاء محتملين مؤهلين بتكلفة أقل من المستهدف.",
     metaDescriptionRu:
-      "Цифровой маркетинг в Дубае — управление Google Ads и Meta Ads для привлечения квалифицированных лидов по цене ниже целевой, с отчётностью по воронке продаж и закрытой выручке.",
-    seoTitle: "Digital Marketing Agency in Dubai — Google & Meta Ads",
-    seoTitleAr: "وكالة التسويق الرقمي في دبي — إعلانات جوجل وميتا",
-    seoTitleRu: "Агентство цифрового маркетинга в Дубае — Google и Meta Ads",
+      "Цифровой маркетинг в Дубае — перформанс-маркетинг через Google Ads, Meta Ads, PPC и email, нацеленный на привлечение квалифицированных лидов по цене ниже целевой.",
+    seoTitle: "Digital & Performance Marketing Agency in Dubai — Google & Meta Ads",
+    seoTitleAr: "وكالة التسويق الرقمي والأداء في دبي — إعلانات جوجل وميتا",
+    seoTitleRu: "Агентство цифрового и перформанс-маркетинга в Дубае — Google и Meta Ads",
     relatedInsightSlug: "dubai-ad-auctions-getting-more-competitive",
   },
   {
@@ -1137,6 +1150,72 @@ export const services: Service[] = [
       {
         q: "Можете ли вы работать с нашим существующим сайтом?",
         a: "Обычно да. Если индексацию блокирует сама платформа, мы прямо об этом скажем, а не будем выставлять счета за месяцы работы вокруг этого ограничения.",
+      },
+    ],
+    subServices: [
+      {
+        title: "Technical SEO",
+        desc: "Crawlability, indexing, site speed and structured data — the foundation that decides whether the rest of SEO can work at all.",
+      },
+      {
+        title: "On-Page SEO",
+        desc: "Titles, headings and content matched page by page to what it is actually trying to rank for.",
+      },
+      {
+        title: "Off-Page SEO",
+        desc: "Authority built through the right mentions and links, not link volume for its own sake.",
+      },
+      {
+        title: "Keyword Research",
+        desc: "Search terms mapped to buyer intent and business value, not to raw search volume.",
+      },
+      {
+        title: "Local SEO",
+        desc: "Dubai and UAE search visibility — Google Business Profile, local citations and location-specific content that wins nearby demand.",
+      },
+    ],
+    subServicesAr: [
+      {
+        title: "التحسين التقني (Technical SEO)",
+        desc: "الزحف والفهرسة وسرعة الموقع والبيانات المنظمة — الأساس الذي يحدد ما إذا كان بقية عمل تحسين محركات البحث سينجح أصلاً.",
+      },
+      {
+        title: "تحسين الصفحات (On-Page SEO)",
+        desc: "عناوين ومحتوى مطابقان، صفحة تلو الأخرى، لما تسعى كل صفحة فعلاً للترتب من أجله.",
+      },
+      {
+        title: "التحسين خارج الصفحة (Off-Page SEO)",
+        desc: "مصداقية تُبنى من خلال الإشارات والروابط المناسبة، لا الكم لمجرد الكم.",
+      },
+      {
+        title: "البحث عن الكلمات المفتاحية",
+        desc: "مصطلحات بحث تُربط بنية المشتري وقيمته للأعمال، لا بحجم البحث الخام فقط.",
+      },
+      {
+        title: "تحسين محركات البحث المحلي (Local SEO)",
+        desc: "ظهور في نتائج البحث بدبي والإمارات — ملف Google للأعمال، والإشارات المحلية، ومحتوى مرتبط بالموقع الجغرافي يستقطب الطلب القريب.",
+      },
+    ],
+    subServicesRu: [
+      {
+        title: "Техническое SEO",
+        desc: "Индексация, скорость сайта и структурированные данные — основа, от которой зависит, сработает ли остальное SEO вообще.",
+      },
+      {
+        title: "On-page SEO (оптимизация страниц)",
+        desc: "Заголовки и содержание, постранично соответствующие тому, за что реально должна ранжироваться каждая страница.",
+      },
+      {
+        title: "Off-page SEO (внешняя оптимизация)",
+        desc: "Авторитетность, выстроенная через нужные упоминания и ссылки, а не объём ради объёма.",
+      },
+      {
+        title: "Подбор ключевых слов",
+        desc: "Поисковые запросы, сопоставленные с намерением покупателя и ценностью для бизнеса, а не просто с объёмом поиска.",
+      },
+      {
+        title: "Локальное SEO",
+        desc: "Видимость в поиске по Дубаю и ОАЭ — профиль в Google Business, локальные упоминания и контент, привязанный к местоположению.",
       },
     ],
     images: [
@@ -1356,6 +1435,84 @@ export const services: Service[] = [
         a: "Да, на условиях постоянного сопровождения — либо мы передаём полную документацию и обучаем вашу команду, что обойдётся дешевле, если у вас есть свой специалист.",
       },
     ],
+    subServices: [
+      {
+        title: "WordPress Development",
+        desc: "Built on WordPress where a content team needs to publish and edit independently, without waiting on a developer for every change.",
+      },
+      {
+        title: "E-commerce Development",
+        desc: "Product catalogues, checkout and payment flows built to convert, on Shopify or a custom stack depending on scale.",
+      },
+      {
+        title: "Custom Web Development",
+        desc: "Bespoke builds for requirements a template platform cannot meet — proprietary logic, integrations or performance targets.",
+      },
+      {
+        title: "B2B Web & Portal Development",
+        desc: "Client portals, dealer logins and quote tools that give B2B buyers self-serve access to what used to be a phone call.",
+      },
+      {
+        title: "Website Maintenance & Support",
+        desc: "Ongoing updates, security patching and uptime monitoring after launch, on a retained basis.",
+      },
+      {
+        title: "Automation & API Integration",
+        desc: "The website connected to CRM, inventory and marketing tools by API, so a lead or order updates every system at once.",
+      },
+    ],
+    subServicesAr: [
+      {
+        title: "تطوير ووردبريس",
+        desc: "نبني على ووردبريس حين يحتاج فريق المحتوى إلى النشر والتعديل باستقلالية، دون انتظار مطوّر مع كل تغيير.",
+      },
+      {
+        title: "تطوير المتاجر الإلكترونية",
+        desc: "كتالوجات منتجات، ومسارات دفع وإتمام شراء مصممة للتحويل، على شوبيفاي أو بنية مخصصة بحسب الحجم.",
+      },
+      {
+        title: "تطوير مواقع مخصصة",
+        desc: "بناء مخصص للمتطلبات التي لا تلبيها منصة جاهزة — منطق خاص، أو تكاملات، أو أهداف أداء محددة.",
+      },
+      {
+        title: "تطوير بوابات B2B",
+        desc: "بوابات عملاء، وحسابات موزعين، وأدوات عروض أسعار تمنح مشتري B2B وصولاً ذاتياً لما كان يتطلب سابقاً مكالمة هاتفية.",
+      },
+      {
+        title: "صيانة ودعم المواقع",
+        desc: "تحديثات مستمرة، وتصحيحات أمنية، ومراقبة لجاهزية الموقع بعد الإطلاق، على أساس تعاقد مستمر.",
+      },
+      {
+        title: "الأتمتة وتكامل الواجهات البرمجية (API)",
+        desc: "ربط الموقع بإدارة علاقات العملاء والمخزون وأدوات التسويق عبر API، بحيث يحدّث كل عميل محتمل أو طلب جميع الأنظمة دفعة واحدة.",
+      },
+    ],
+    subServicesRu: [
+      {
+        title: "Разработка на WordPress",
+        desc: "Разрабатываем на WordPress, когда контент-команде нужно публиковать и редактировать материалы самостоятельно, не дожидаясь разработчика для каждого изменения.",
+      },
+      {
+        title: "Разработка интернет-магазинов",
+        desc: "Каталоги товаров, оформление заказа и оплата, выстроенные для конверсии — на Shopify или на индивидуальной платформе, в зависимости от масштаба.",
+      },
+      {
+        title: "Индивидуальная веб-разработка",
+        desc: "Разработка под требования, которые не покрывает готовая платформа — уникальная логика, интеграции или целевые показатели производительности.",
+      },
+      {
+        title: "Разработка B2B-порталов",
+        desc: "Клиентские порталы, личные кабинеты дилеров и инструменты расчёта стоимости, дающие B2B-покупателям самостоятельный доступ к тому, что раньше требовало звонка.",
+      },
+      {
+        title: "Обслуживание и поддержка сайта",
+        desc: "Постоянные обновления, устранение уязвимостей и мониторинг доступности сайта после запуска — на условиях постоянного сопровождения.",
+      },
+      {
+        title: "Автоматизация и интеграция API",
+        desc: "Подключение сайта к CRM, складу и маркетинговым инструментам через API, чтобы каждая заявка или заказ обновляли все системы одновременно.",
+      },
+    ],
     images: [
       {
         src: "/images/detail/web-1.jpg",
@@ -1384,14 +1541,14 @@ export const services: Service[] = [
     ctaTitleAr: ["لنبنِ الموقع", "الذي يحوّل فعلاً."],
     ctaTitleRu: ["Создадим сайт,", "который действительно конвертирует."],
     metaDescription:
-      "Web design agency in Dubai — high-converting websites with SEO-ready architecture, custom landing pages and CRM-integrated funnels.",
+      "Website development agency in Dubai — WordPress, e-commerce and custom-built websites with SEO-ready architecture, CRM-integrated funnels and ongoing maintenance.",
     metaDescriptionAr:
-      "تطوير المواقع الإلكترونية وتحسين معدل التحويل في دبي — مواقع عالية التحويل ببنية جاهزة لمحركات البحث، وصفحات هبوط، ومسارات متكاملة مع إدارة علاقات العملاء.",
+      "تطوير المواقع الإلكترونية في دبي — مواقع ووردبريس ومتاجر إلكترونية ومواقع مخصصة ببنية جاهزة لمحركات البحث، ومسارات متكاملة مع إدارة علاقات العملاء، وصيانة مستمرة.",
     metaDescriptionRu:
-      "Разработка сайтов и оптимизация конверсии в Дубае — высококонверсионные сайты с готовой к SEO архитектурой, посадочными страницами и воронками, интегрированными с CRM.",
-    seoTitle: "Website Development Agency in Dubai — Web Design & CRO",
-    seoTitleAr: "وكالة تطوير المواقع الإلكترونية في دبي — تصميم وتحسين التحويل",
-    seoTitleRu: "Агентство веб-разработки в Дубае — дизайн и CRO",
+      "Веб-разработка в Дубае — сайты на WordPress, интернет-магазины и индивидуальные решения с готовой к SEO архитектурой, воронками на базе CRM и постоянной поддержкой.",
+    seoTitle: "Website Development Agency in Dubai — WordPress, E-commerce & Custom Builds",
+    seoTitleAr: "وكالة تطوير المواقع الإلكترونية في دبي — ووردبريس ومتاجر إلكترونية ومواقع مخصصة",
+    seoTitleRu: "Агентство веб-разработки в Дубае — WordPress, интернет-магазины и индивидуальные сайты",
     relatedInsightSlug: "real-cost-of-a-slow-website",
   },
   {
@@ -1574,6 +1731,48 @@ export const services: Service[] = [
         a: "Вам. Она настраивается в вашем аккаунте, документируется, и ваша команда проходит обучение по работе с ней. Ничего не зависит от нас для её дальнейшей работы.",
       },
     ],
+    subServices: [
+      {
+        title: "Marketing Automation",
+        desc: "Nurture sequences, lifecycle emails and lead routing that run without a person triggering each one.",
+      },
+      {
+        title: "API Integration Services",
+        desc: "CRM connected to your website, ad accounts and finance tools by API, so data moves once and stays consistent everywhere.",
+      },
+      {
+        title: "Workflow Automation",
+        desc: "Manual handoffs between sales and marketing replaced with rules that fire the moment a lead qualifies.",
+      },
+    ],
+    subServicesAr: [
+      {
+        title: "أتمتة التسويق",
+        desc: "تسلسلات رعاية، ورسائل بريد إلكتروني لدورة حياة العميل، وتوجيه للعملاء المحتملين تعمل دون تدخل يدوي في كل مرة.",
+      },
+      {
+        title: "خدمات تكامل الواجهات البرمجية (API)",
+        desc: "ربط نظام إدارة علاقات العملاء بموقعكم وحسابات الإعلانات وأدوات المحاسبة عبر API، بحيث تنتقل البيانات مرة واحدة وتبقى متسقة في كل مكان.",
+      },
+      {
+        title: "أتمتة سير العمل",
+        desc: "استبدال عمليات التسليم اليدوية بين المبيعات والتسويق بقواعد تعمل تلقائياً بمجرد تأهل العميل المحتمل.",
+      },
+    ],
+    subServicesRu: [
+      {
+        title: "Автоматизация маркетинга",
+        desc: "Цепочки взращивания лидов, письма жизненного цикла и маршрутизация лидов, которые работают без ручного запуска каждый раз.",
+      },
+      {
+        title: "Интеграция API",
+        desc: "Подключение CRM к сайту, рекламным кабинетам и финансовым инструментам через API — данные передаются один раз и остаются согласованными везде.",
+      },
+      {
+        title: "Автоматизация рабочих процессов",
+        desc: "Замена ручной передачи между отделами продаж и маркетинга правилами, которые срабатывают в момент квалификации лида.",
+      },
+    ],
     images: [
       {
         src: "/images/detail/crm-1.jpg",
@@ -1602,14 +1801,14 @@ export const services: Service[] = [
     ctaTitleAr: ["لنربط الإنفاق", "بمسار المبيعات."],
     ctaTitleRu: ["Свяжем расходы", "с воронкой продаж."],
     metaDescription:
-      "CRM integration and marketing automation in Dubai — attribution tracking, lead scoring and automated follow-up that tie marketing spend to closed revenue.",
+      "CRM integration, marketing automation and API integration services in Dubai — attribution tracking, lead scoring and automated follow-up that tie marketing spend to closed revenue.",
     metaDescriptionAr:
-      "دمج إدارة علاقات العملاء وأتمتة التسويق في دبي — تتبع إسناد النتائج وتقييم العملاء المحتملين ومتابعة آلية تربط الإنفاق التسويقي بالإيرادات المحققة.",
+      "دمج إدارة علاقات العملاء، وأتمتة التسويق، وخدمات تكامل API في دبي — تتبع إسناد النتائج وتقييم العملاء المحتملين ومتابعة آلية تربط الإنفاق التسويقي بالإيرادات المحققة.",
     metaDescriptionRu:
-      "Интеграция CRM и автоматизация маркетинга в Дубае — отслеживание атрибуции, оценка лидов и автоматизированный follow-up, которые привязывают маркетинговые расходы к закрытой выручке.",
-    seoTitle: "CRM & Marketing Automation Agency in Dubai",
-    seoTitleAr: "وكالة إدارة علاقات العملاء والأتمتة التسويقية في دبي",
-    seoTitleRu: "Агентство CRM и маркетинговой автоматизации в Дубае",
+      "Интеграция CRM, автоматизация маркетинга и интеграция API в Дубае — отслеживание атрибуции, оценка лидов и автоматизированный follow-up, которые привязывают маркетинговые расходы к закрытой выручке.",
+    seoTitle: "CRM & Marketing Automation Agency in Dubai — API Integration",
+    seoTitleAr: "وكالة إدارة علاقات العملاء والأتمتة التسويقية في دبي — تكامل API",
+    seoTitleRu: "Агентство CRM, автоматизации маркетинга и интеграции API в Дубае",
     relatedInsightSlug: "why-crm-rollouts-fail-before-they-start",
   },
   {
@@ -1792,6 +1991,60 @@ export const services: Service[] = [
         a: "Да, хотя эффект сильнее, когда это идёт вместе с каналами, которые будут нести этот бренд дальше — работа над брендом, привязанная к конкретной кампании, имеет более чёткий критерий успеха.",
       },
     ],
+    subServices: [
+      {
+        title: "Logo Design",
+        desc: "A mark built to work small on a favicon and large on a hoarding, designed alongside the system it has to live inside.",
+      },
+      {
+        title: "Graphic Design",
+        desc: "Layouts, print and digital assets produced to one visual standard, not styled fresh by whoever is free that week.",
+      },
+      {
+        title: "UI/UX Design",
+        desc: "Interface and product-screen design for the sites and portals we build, held to the same brand system as everything else.",
+      },
+      {
+        title: "Creative Advertising",
+        desc: "Campaign concepts built to stop a scroll or a drive-by glance, then carried consistently across every format they run in.",
+      },
+    ],
+    subServicesAr: [
+      {
+        title: "تصميم الشعارات",
+        desc: "شعار مصمم ليعمل بوضوح صغيراً على أيقونة موقع وكبيراً على لوحة إعلانية، ويُصمَّم جنباً إلى جنب مع النظام البصري الذي سيعيش داخله.",
+      },
+      {
+        title: "التصميم الجرافيكي",
+        desc: "تخطيطات وأصول مطبوعة ورقمية تُنتج بمعيار بصري واحد، لا بأسلوب مختلف كل مرة حسب من هو متاح.",
+      },
+      {
+        title: "تصميم واجهات وتجربة المستخدم (UI/UX)",
+        desc: "تصميم الواجهات وشاشات المنتج للمواقع والبوابات التي نبنيها، بنفس معيار الهوية البصرية المعتمد في كل شيء آخر.",
+      },
+      {
+        title: "الإعلانات الإبداعية",
+        desc: "أفكار حملات مصممة لتوقف المتصفح أو لفتة عابر السبيل، ثم تُنقل باتساق عبر كل صيغة تُعرض فيها.",
+      },
+    ],
+    subServicesRu: [
+      {
+        title: "Дизайн логотипа",
+        desc: "Знак, который одинаково чётко работает и на маленькой иконке сайта, и на большом рекламном щите, — создаётся вместе с системой, в которой ему предстоит жить.",
+      },
+      {
+        title: "Графический дизайн",
+        desc: "Макеты, печатные и цифровые материалы, созданные по единому визуальному стандарту, а не в новом стиле каждый раз в зависимости от исполнителя.",
+      },
+      {
+        title: "UI/UX-дизайн",
+        desc: "Дизайн интерфейсов и экранов продукта для сайтов и порталов, которые мы разрабатываем, — по тому же бренд-стандарту, что и всё остальное.",
+      },
+      {
+        title: "Креативная реклама",
+        desc: "Концепции кампаний, созданные, чтобы остановить взгляд в ленте или на улице, а затем последовательно перенесённые на каждый формат размещения.",
+      },
+    ],
     images: [
       {
         src: "/images/detail/brand-1.jpg",
@@ -1820,14 +2073,14 @@ export const services: Service[] = [
     ctaTitleAr: ["لنجعل الإبداع", "يستحق الإنفاق."],
     ctaTitleRu: ["Сделаем креатив,", "который оправдывает бюджет."],
     metaDescription:
-      "Branding agency in Dubai — brand strategy, identity, campaign visuals, social creative and marketing collateral produced to a launch standard.",
+      "Branding agency in Dubai — logo design, graphic design, UI/UX and brand identity, with campaign visuals and creative advertising produced to a launch standard.",
     metaDescriptionAr:
-      "العلامة التجارية في دبي — هوية بصرية، ومرئيات حملات، ومحتوى إبداعي لمنصات التواصل والإعلانات المدفوعة، ومواد تسويقية بجودة تليق بإطلاق العلامة التجارية.",
+      "العلامة التجارية في دبي — تصميم الشعارات، والتصميم الجرافيكي، وتصميم واجهات وتجربة المستخدم (UI/UX)، إلى جانب مرئيات الحملات والإعلانات الإبداعية بجودة تليق بالإطلاق.",
     metaDescriptionRu:
-      "Брендинг в Дубае — айдентика бренда, визуалы для кампаний, креатив для соцсетей и платной рекламы, маркетинговые материалы, созданные на уровне готовности к запуску.",
-    seoTitle: "Branding Agency in Dubai — Identity & Creative",
-    seoTitleAr: "وكالة العلامات التجارية في دبي — الهوية والإبداع",
-    seoTitleRu: "Брендинговое агентство в Дубае — айдентика и креатив",
+      "Брендинг в Дубае — дизайн логотипа, графический дизайн, UI/UX и айдентика бренда, а также визуалы для кампаний и креативная реклама на уровне готовности к запуску.",
+    seoTitle: "Branding Agency in Dubai — Logo, Identity & UI/UX Design",
+    seoTitleAr: "وكالة العلامات التجارية في دبي — تصميم الشعارات والهوية وUI/UX",
+    seoTitleRu: "Брендинговое агентство в Дубае — логотип, айдентика и UI/UX",
   },
   {
     slug: "marketing-consulting",
@@ -2037,7 +2290,7 @@ export const services: Service[] = [
     ctaTitleAr: ["لنبنِ الخطة", "التي يتبعها الإنفاق."],
     ctaTitleRu: ["Создадим план,", "за которым последуют расходы."],
     metaDescription:
-      "Marketing consulting in Dubai — go-to-market strategy, marketing audits and channel planning that turn a fragmented budget into one coherent plan.",
+      "Marketing consulting and consultation in Dubai — go-to-market strategy, marketing audits and channel planning that turn a fragmented budget into one coherent plan.",
     metaDescriptionAr:
       "الاستشارات التسويقية في دبي — استراتيجية دخول السوق، وتدقيق تسويقي، وتخطيط للقنوات يحوّل ميزانية مبعثرة إلى خطة واحدة متماسكة.",
     metaDescriptionRu:

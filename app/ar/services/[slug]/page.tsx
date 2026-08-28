@@ -5,6 +5,7 @@ import { Faq } from "@/components/faq";
 import {
   BreadcrumbStructuredData,
   FaqStructuredData,
+  ServiceStructuredData,
 } from "@/components/structured-data";
 import {
   Band,
@@ -23,7 +24,6 @@ import {
   cta,
   getInsightArticle,
   getService,
-  homeFaqs,
   ogDefaultsAr,
   services,
   site,
@@ -86,7 +86,8 @@ export default async function ArabicServicePage({
   return (
     <>
       <BreadcrumbStructuredData items={breadcrumbItems} />
-      <FaqStructuredData items={homeFaqs.map((item) => ({ q: item.qAr, a: item.aAr }))} />
+      <FaqStructuredData items={service.faqsAr} />
+      <ServiceStructuredData service={service} locale="ar" />
 
       <Hero
         src={service.heroImage}
@@ -172,6 +173,29 @@ export default async function ArabicServicePage({
         )}
       </Band>
 
+      {/* Where this shows up — named sub-services, absent on the narrower
+          pages where whatWeDo/benefits already cover the ground. */}
+      {service.subServicesAr && (
+        <Band>
+          <SectionIntro
+            eyebrow="أين يظهر هذا"
+            title="تفاصيل العمل."
+            scale="sm"
+          />
+          <CardGrid columns={service.subServicesAr.length > 4 ? 3 : 2}>
+            {service.subServicesAr.map((item) => (
+              <Card
+                key={item.title}
+                title={item.title}
+                titleAs="h3"
+                desc={item.desc}
+                locale="ar"
+              />
+            ))}
+          </CardGrid>
+        </Band>
+      )}
+
       {/* Related services */}
       <Band className="relative overflow-hidden">
         <span
@@ -201,12 +225,12 @@ export default async function ArabicServicePage({
         </CardGrid>
       </Band>
 
-      {/* FAQ — the same shared set as the homepage */}
+      {/* FAQ — this service's own four questions, matching FaqStructuredData above */}
       <Band className="bg-limestone/30">
         <SectionIntro eyebrow="الأسئلة الشائعة" title="أسئلة، مُجابة." />
         <div className="mx-auto max-w-[880px]">
           <Faq
-            items={homeFaqs.map((item) => ({ q: item.qAr, a: item.aAr }))}
+            items={service.faqsAr}
             answerClassName="font-arabic"
             locale="ar"
           />

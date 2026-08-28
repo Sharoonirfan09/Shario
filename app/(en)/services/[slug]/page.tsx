@@ -5,6 +5,7 @@ import { Faq } from "@/components/faq";
 import {
   BreadcrumbStructuredData,
   FaqStructuredData,
+  ServiceStructuredData,
 } from "@/components/structured-data";
 import {
   Band,
@@ -23,7 +24,6 @@ import {
   cta,
   getInsightArticle,
   getService,
-  homeFaqs,
   ogDefaults,
   services,
   site,
@@ -86,7 +86,8 @@ export default async function ServicePage({
   return (
     <>
       <BreadcrumbStructuredData items={breadcrumbItems} />
-      <FaqStructuredData items={homeFaqs} />
+      <FaqStructuredData items={service.faqs} />
+      <ServiceStructuredData service={service} />
 
       <Hero
         src={service.heroImage}
@@ -182,6 +183,31 @@ export default async function ServicePage({
         )}
       </Band>
 
+      {/* Where this shows up — named sub-services, for the pages broad
+          enough that their distinct components each deserve a heading and a
+          sentence of their own. Absent on the narrower services, where
+          `whatWeDo`/`benefits` already cover the ground without fragmenting
+          the page. */}
+      {service.subServices && (
+        <Band>
+          <SectionIntro
+            eyebrow="Where This Shows Up"
+            title="Inside the work."
+            scale="sm"
+          />
+          <CardGrid columns={service.subServices.length > 4 ? 3 : 2}>
+            {service.subServices.map((item) => (
+              <Card
+                key={item.title}
+                title={item.title}
+                titleAs="h3"
+                desc={item.desc}
+              />
+            ))}
+          </CardGrid>
+        </Band>
+      )}
+
       {/* Related services — a small corner detail rather than a full-width
           watermark, since this band's own cards already carry photographs
           of their own; the mark sits in the quiet margin above them instead
@@ -213,13 +239,14 @@ export default async function ServicePage({
         </CardGrid>
       </Band>
 
-      {/* FAQ — the same 26 questions as the homepage, not this service's own
-          four, so every service page shares one FAQ source and one set of
-          answers rather than each carrying a different subset. */}
+      {/* FAQ — this service's own four questions, not the homepage's shared
+          set, so the visible accordion and its `FaqStructuredData` above
+          both answer what someone reading about this specific service would
+          actually ask. */}
       <Band className="bg-limestone/30">
         <SectionIntro eyebrow="FAQ" title="Questions, answered." />
         <div className="mx-auto max-w-[880px]">
-          <Faq items={homeFaqs} answerClassName="font-body" />
+          <Faq items={service.faqs} answerClassName="font-body" />
         </div>
       </Band>
 

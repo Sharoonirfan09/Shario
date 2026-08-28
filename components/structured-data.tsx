@@ -1,5 +1,5 @@
 import type { Locale } from "@/lib/locale";
-import type { InsightArticle, InsightCategory } from "@/lib/site";
+import type { InsightArticle, InsightCategory, Service } from "@/lib/site";
 import { insightArticlesForLocale, services, site, social } from "@/lib/site";
 
 /**
@@ -106,6 +106,46 @@ export function WebsiteStructuredData() {
     url: site.domain,
     publisher: { "@id": `${site.domain}/#organization` },
     inLanguage: ["en", "ar", "ru"],
+  };
+
+  return <JsonLd data={data} />;
+}
+
+/**
+ * Service markup for a single service page — the per-page complement to the
+ * sitewide `ProfessionalService.hasOfferCatalog` listing in `StructuredData`
+ * above. `provider` references the organization by its `@id` rather than
+ * restating it, the same pattern `ArticleStructuredData`'s `publisher` uses.
+ */
+export function ServiceStructuredData({
+  service,
+  locale = "en",
+}: {
+  service: Service;
+  locale?: Locale;
+}) {
+  const isAr = locale === "ar";
+  const isRu = locale === "ru";
+  const prefix = isAr ? "/ar" : isRu ? "/ru" : "";
+  const url = `${site.domain}${prefix}/services/${service.slug}`;
+
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": url,
+    name: isAr ? service.nameAr : isRu ? service.nameRu : service.name,
+    description: isAr
+      ? service.metaDescriptionAr
+      : isRu
+        ? service.metaDescriptionRu
+        : service.metaDescription,
+    url,
+    provider: { "@id": `${site.domain}/#organization` },
+    areaServed: [
+      { "@type": "City", name: "Dubai" },
+      { "@type": "Country", name: "United Arab Emirates" },
+    ],
+    inLanguage: isAr ? "ar" : isRu ? "ru" : "en",
   };
 
   return <JsonLd data={data} />;
