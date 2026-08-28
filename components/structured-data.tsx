@@ -1,5 +1,5 @@
 import type { Locale } from "@/lib/locale";
-import type { InsightArticle, InsightCategory, Service } from "@/lib/site";
+import type { InsightArticle, InsightCategory, Industry, Service } from "@/lib/site";
 import { insightArticlesForLocale, services, site, social } from "@/lib/site";
 
 /**
@@ -139,6 +139,49 @@ export function ServiceStructuredData({
       : isRu
         ? service.metaDescriptionRu
         : service.metaDescription,
+    url,
+    provider: { "@id": `${site.domain}/#organization` },
+    areaServed: [
+      { "@type": "City", name: "Dubai" },
+      { "@type": "Country", name: "United Arab Emirates" },
+    ],
+    inLanguage: isAr ? "ar" : isRu ? "ru" : "en",
+  };
+
+  return <JsonLd data={data} />;
+}
+
+/**
+ * Service markup for a single Industries page — the `Industry` counterpart
+ * to `ServiceStructuredData` above. Schema.org has no dedicated "Industry"
+ * type, so this still declares `Service`, scoped with `serviceType` to name
+ * the sector rather than restating a generic offering — an honest reading
+ * of what an Industries page actually is: the same marketing service,
+ * applied to one sector.
+ */
+export function IndustryStructuredData({
+  industry,
+  locale = "en",
+}: {
+  industry: Industry;
+  locale?: Locale;
+}) {
+  const isAr = locale === "ar";
+  const isRu = locale === "ru";
+  const prefix = isAr ? "/ar" : isRu ? "/ru" : "";
+  const url = `${site.domain}${prefix}/industries/${industry.slug}`;
+
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": url,
+    name: isAr ? industry.titleAr : isRu ? industry.titleRu : industry.title,
+    description: isAr
+      ? industry.metaDescriptionAr
+      : isRu
+        ? industry.metaDescriptionRu
+        : industry.metaDescription,
+    serviceType: isAr ? industry.nameAr : isRu ? industry.nameRu : industry.name,
     url,
     provider: { "@id": `${site.domain}/#organization` },
     areaServed: [

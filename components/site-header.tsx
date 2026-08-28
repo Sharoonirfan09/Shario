@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Locale } from "@/lib/locale";
 import { localizedPath } from "@/lib/locale";
 import { cta, nav, site } from "@/lib/site";
-import type { NavService } from "@/lib/site";
+import type { NavIndustry, NavService } from "@/lib/site";
 
 /**
  * Sticky nav with a Services dropdown, and the full-screen overlay it
@@ -34,16 +34,20 @@ import type { NavService } from "@/lib/site";
 export function SiteHeader({
   locale = "en",
   navServiceGroups,
+  navIndustries,
 }: {
   locale?: Locale;
   navServiceGroups: { category: string; categoryAr: string; categoryRu: string; items: NavService[] }[];
+  navIndustries: NavIndustry[];
 }) {
   const pathname = usePathname();
   const navServicesFlat = navServiceGroups.flatMap((group) => group.items);
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [industriesOpen, setIndustriesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const servicesRef = useRef<HTMLDivElement>(null);
+  const industriesRef = useRef<HTMLDivElement>(null);
   const isAr = locale === "ar";
   const isRu = locale === "ru";
 
@@ -112,6 +116,7 @@ export function SiteHeader({
     setLastPath(pathname);
     setMenuOpen(false);
     setServicesOpen(false);
+    setIndustriesOpen(false);
   }
 
   // The overlay covers the document, so the page behind it must not scroll.
@@ -145,6 +150,19 @@ export function SiteHeader({
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [servicesOpen]);
 
+  /** Same Escape behaviour as the Services dropdown, for Industries. */
+  useEffect(() => {
+    if (!industriesOpen) return;
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      setIndustriesOpen(false);
+      industriesRef.current?.querySelector("button")?.focus();
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [industriesOpen]);
+
   /**
    * Every string this file owns outright (not sourced from `lib/site.ts`),
    * in one place rather than scattered ternaries through the JSX below.
@@ -163,9 +181,12 @@ export function SiteHeader({
         primaryNavLabel: "التنقل الرئيسي",
         servicesFooterNote: "تسويق متكامل، من أول خطوة حتى آخرها.",
         seeAllServices: "عرض جميع الخدمات",
+        industriesFooterNote: "عشرة قطاعات، نظام تسويقي واحد.",
+        seeAllIndustries: "عرض جميع القطاعات",
         openMenuAriaLabel: "فتح القائمة",
         closeLabel: "إغلاق",
         theServicesLabel: "الخدمات",
+        theIndustriesLabel: "القطاعات",
         navLinkClass: "whitespace-nowrap text-sm transition-opacity duration-300 hover:opacity-100",
       }
     : isRu
@@ -175,9 +196,12 @@ export function SiteHeader({
           primaryNavLabel: "Основная навигация",
           servicesFooterNote: "Комплексный маркетинг, от начала до конца.",
           seeAllServices: "Все услуги",
+          industriesFooterNote: "Десять отраслей, одна маркетинговая система.",
+          seeAllIndustries: "Все отрасли",
           openMenuAriaLabel: "Открыть меню",
           closeLabel: "ЗАКРЫТЬ",
           theServicesLabel: "Услуги",
+          theIndustriesLabel: "Отрасли",
           navLinkClass:
             "whitespace-nowrap text-xs uppercase tracking-[0.08em] transition-opacity duration-300 hover:opacity-100",
         }
@@ -187,9 +211,12 @@ export function SiteHeader({
           primaryNavLabel: "Primary",
           servicesFooterNote: "Full-funnel marketing, end to end.",
           seeAllServices: "See all services",
+          industriesFooterNote: "Ten sectors, one marketing system.",
+          seeAllIndustries: "See all industries",
           openMenuAriaLabel: "Open menu",
           closeLabel: "CLOSE",
           theServicesLabel: "The Services",
+          theIndustriesLabel: "The Industries",
           navLinkClass:
             "whitespace-nowrap text-xs uppercase tracking-[0.08em] transition-opacity duration-300 hover:opacity-100",
         };
@@ -326,6 +353,79 @@ export function SiteHeader({
                               className={`group/all flex shrink-0 items-center gap-2 text-carbon/70 transition-colors duration-300 hover:text-carbon ${isAr ? "font-arabic text-[0.8125rem]" : "eyebrow"}`}
                             >
                               {copy.seeAllServices}
+                              <span
+                                aria-hidden="true"
+                                className={`transition-transform duration-300 ${isAr ? "group-hover/all:-translate-x-1" : "group-hover/all:translate-x-1"}`}
+                              >
+                                {isAr ? "←" : "→"}
+                              </span>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              if (item.href === "/industries") {
+                return (
+                  <div
+                    key={item.href}
+                    ref={industriesRef}
+                    className="relative"
+                    onMouseEnter={() => setIndustriesOpen(true)}
+                    onMouseLeave={() => setIndustriesOpen(false)}
+                    onBlur={(event) => {
+                      if (!event.currentTarget.contains(event.relatedTarget)) {
+                        setIndustriesOpen(false);
+                      }
+                    }}
+                  >
+                    <Link
+                      href={itemHref}
+                      aria-current={active ? "page" : undefined}
+                      aria-expanded={industriesOpen}
+                      onFocus={() => setIndustriesOpen(true)}
+                      className={`${copy.navLinkClass} ${active ? "opacity-100" : "opacity-80"}`}
+                    >
+                      {label}
+                    </Link>
+
+                    {industriesOpen && (
+                      <div className="absolute left-1/2 top-full w-[640px] -translate-x-1/2 pt-5">
+                        {/* No category grouping — ten industries read fine as
+                            one flat two-column list, unlike the Services
+                            catalogue's four labelled groups. */}
+                        <div className="border border-carbon/12 bg-porcelain p-8 text-carbon shadow-[0_28px_70px_-24px_rgba(37,37,37,0.4)]">
+                          <div className="grid grid-cols-2 gap-x-10 gap-y-2.5">
+                            {navIndustries.map((industry) => (
+                              <Link
+                                key={industry.slug}
+                                href={href(`/industries/${industry.slug}`)}
+                                className="group/item -mx-3 flex items-baseline gap-3 border-l-2 border-transparent px-3 py-2.5 transition-colors duration-300 hover:border-mist hover:bg-mist/15"
+                              >
+                                <span className="font-display text-[0.8125rem] text-carbon/40 transition-colors duration-300 group-hover/item:text-carbon/70">
+                                  {industry.num}
+                                </span>
+                                <span
+                                  className={`text-[1.0625rem] text-carbon ${isAr ? "font-arabic" : "font-display"}`}
+                                >
+                                  {isAr ? industry.nameAr : isRu ? industry.nameRu : industry.name}
+                                </span>
+                              </Link>
+                            ))}
+                          </div>
+
+                          <div className="mt-7 flex items-center justify-between gap-6 border-t border-carbon/12 pt-6">
+                            <p className="text-[0.8125rem] text-carbon/60">
+                              {copy.industriesFooterNote}
+                            </p>
+                            <Link
+                              href={itemHref}
+                              className={`group/all flex shrink-0 items-center gap-2 text-carbon/70 transition-colors duration-300 hover:text-carbon ${isAr ? "font-arabic text-[0.8125rem]" : "eyebrow"}`}
+                            >
+                              {copy.seeAllIndustries}
                               <span
                                 aria-hidden="true"
                                 className={`transition-transform duration-300 ${isAr ? "group-hover/all:-translate-x-1" : "group-hover/all:translate-x-1"}`}
@@ -539,6 +639,30 @@ export function SiteHeader({
                     </span>
                     <span className={isAr ? "font-arabic" : ""}>
                       {isAr ? service.nameAr : isRu ? service.nameRu : service.name}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Industries, same flat-list pattern as the catalogue above. */}
+            <div className="border-t border-porcelain/20 pt-6">
+              <p className={`mb-4 text-porcelain/50 ${isAr ? "font-arabic text-[0.8125rem]" : "label-sm"}`}>
+                {copy.theIndustriesLabel}
+              </p>
+              <div className="flex flex-col gap-3.5">
+                {navIndustries.map((industry) => (
+                  <Link
+                    key={industry.slug}
+                    href={href(`/industries/${industry.slug}`)}
+                    onClick={() => setMenuOpen(false)}
+                    className="flex items-baseline gap-3 text-[0.9375rem] text-porcelain/80"
+                  >
+                    <span className="font-display text-xs text-porcelain/40">
+                      {industry.num}
+                    </span>
+                    <span className={isAr ? "font-arabic" : ""}>
+                      {isAr ? industry.nameAr : isRu ? industry.nameRu : industry.name}
                     </span>
                   </Link>
                 ))}

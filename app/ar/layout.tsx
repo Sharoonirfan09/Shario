@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { navServiceGroups } from "@/lib/site";
+import { navIndustries, navServiceGroups } from "@/lib/site";
 
 /**
  * The closest-ancestor `title.template` for every `/ar` page — resolves a
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 export default function ArabicLayout({ children }: { children: ReactNode }) {
   return (
     <div dir="rtl" lang="ar" className="font-arabic flex flex-1 flex-col">
-      <SiteHeader locale="ar" navServiceGroups={navServiceGroups()} />
+      <SiteHeader locale="ar" navServiceGroups={navServiceGroups()} navIndustries={navIndustries()} />
       <main id="main" className="flex-1">
         {children}
       </main>

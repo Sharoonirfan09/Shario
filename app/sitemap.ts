@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
-import { insightArticles, insightCategories, services, site } from "@/lib/site";
+import { industries, insightArticles, insightCategories, services, site } from "@/lib/site";
 
-const routes = ["/", "/services", "/insights", "/about", "/contact"];
+const routes = ["/", "/services", "/industries", "/insights", "/about", "/contact"];
 
 /** Every non-English locale's URL prefix — mirrors `PREFIXES` in `lib/locale.ts`. */
 const LOCALE_PREFIXES = { ar: "/ar", ru: "/ru" } as const;
@@ -33,6 +33,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const enUrl = `${site.domain}/services/${service.slug}`;
     const arUrl = `${site.domain}/ar/services/${service.slug}`;
     const ruUrl = `${site.domain}/ru/services/${service.slug}`;
+    const languages = { en: enUrl, ar: arUrl, ru: ruUrl, "x-default": enUrl };
+
+    return [
+      { url: enUrl, lastModified, changeFrequency: "monthly" as const, priority: 0.7, alternates: { languages } },
+      { url: arUrl, lastModified, changeFrequency: "monthly" as const, priority: 0.7, alternates: { languages } },
+      { url: ruUrl, lastModified, changeFrequency: "monthly" as const, priority: 0.7, alternates: { languages } },
+    ];
+  });
+
+  const industryPages = industries.flatMap((industry) => {
+    const enUrl = `${site.domain}/industries/${industry.slug}`;
+    const arUrl = `${site.domain}/ar/industries/${industry.slug}`;
+    const ruUrl = `${site.domain}/ru/industries/${industry.slug}`;
     const languages = { en: enUrl, ar: arUrl, ru: ruUrl, "x-default": enUrl };
 
     return [
@@ -88,5 +101,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ];
   });
 
-  return [...pages, ...servicePages, ...insightPages, ...categoryPages];
+  return [...pages, ...servicePages, ...industryPages, ...insightPages, ...categoryPages];
 }

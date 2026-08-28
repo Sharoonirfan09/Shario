@@ -3,7 +3,7 @@ import { ObfuscatedEmail } from "@/components/obfuscated-email";
 import { SocialIcon } from "@/components/social-icons";
 import type { Locale } from "@/lib/locale";
 import { localizedPath } from "@/lib/locale";
-import { nav, services, site, social } from "@/lib/site";
+import { industries, nav, services, site, social } from "@/lib/site";
 
 /**
  * Dark four-column footer.
@@ -36,7 +36,7 @@ export function SiteFooter({ locale = "en" }: { locale?: Locale }) {
         className="wordmark-ar pointer-events-none absolute -bottom-10 -right-8 z-0 w-64 text-porcelain/[0.14] wide:-bottom-16 wide:-right-10 wide:w-[26rem]"
       />
       <div className="relative z-10 mx-auto max-w-[1400px] px-6 pb-8 pt-14 wide:px-12 wide:pb-10 wide:pt-[90px]">
-        <div className="grid gap-10 pb-14 wide:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
+        <div className="grid gap-10 pb-14 wide:grid-cols-[1.2fr_1fr_1fr_0.9fr_1fr]">
           <div>
             {/* No surrounding link to carry an `aria-label` here, so the name
                 stays in the markup for screen readers behind the mark. */}
@@ -66,6 +66,17 @@ export function SiteFooter({ locale = "en" }: { locale?: Locale }) {
                 key={service.slug}
                 href={href(`/services/${service.slug}`)}
                 label={isAr ? service.nameAr : isRu ? service.nameRu : service.name}
+                isAr={isAr}
+              />
+            ))}
+          </FooterColumn>
+
+          <FooterColumn title={isAr ? "القطاعات" : isRu ? "Отрасли" : "Industries"} isAr={isAr}>
+            {industries.map((industry) => (
+              <FooterLink
+                key={industry.slug}
+                href={href(`/industries/${industry.slug}`)}
+                label={isAr ? industry.nameAr : isRu ? industry.nameRu : industry.name}
                 isAr={isAr}
               />
             ))}

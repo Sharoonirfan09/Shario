@@ -143,6 +143,7 @@ export const heroImages = {
     src: "/images/insights/insights-banner-sunlit-wall.jpg",
     focus: "58% 28%",
   },
+  industries: { src: "/images/industries/overview.jpg", focus: "50% 45%" },
 } as const;
 
 /**
@@ -182,6 +183,7 @@ export const sharedImages = {
 export const nav = [
   { href: "/", label: "Home", labelAr: "الرئيسية", labelRu: "Главная" },
   { href: "/services", label: "Services", labelAr: "الخدمات", labelRu: "Услуги" },
+  { href: "/industries", label: "Industries", labelAr: "القطاعات", labelRu: "Отрасли" },
   { href: "/insights", label: "Insights", labelAr: "رؤى", labelRu: "Инсайты" },
   { href: "/about", label: "About", labelAr: "من نحن", labelRu: "О нас" },
   { href: "/contact", label: "Contact", labelAr: "تواصل", labelRu: "Контакты" },
@@ -2374,6 +2376,1743 @@ export function adjacentServices(slug: string) {
     previous: i > 0 ? services[i - 1] : services[services.length - 1],
     next: i < services.length - 1 ? services[i + 1] : services[0],
   };
+}
+
+/* -------------------------------------------------------------------------- */
+/* Industries                                                                  */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * The Industries catalogue — "who Shario does it for", the deliberate
+ * counterpart to `services` ("what Shario does"). Same trilingual-suffix
+ * convention as `Service`: every field is tripled (`nameAr`/`nameRu`, etc.)
+ * rather than split into separate objects or files.
+ *
+ * `services` (the field, not the module-level array) names the real service
+ * pages this industry actually leans on, with a bespoke title/desc per
+ * industry rather than the service's own generic copy — Services explains
+ * a discipline in general; Industries explains how that discipline is
+ * applied to this one sector. Never duplicate a service page's own copy
+ * here.
+ *
+ * `relatedIndustrySlug` is left unset unless the pairing is genuinely
+ * useful to a reader (Hospitality↔Restaurants, Aesthetic↔Healthcare,
+ * E-commerce↔Fashion, SaaS↔Professional Services) — not every industry
+ * needs one.
+ */
+export type Industry = {
+  slug: string;
+  /** Two-digit index — mirrors `Service.num`. */
+  num: string;
+  /** Short name used in navigation, cards and the enquiry form. */
+  name: string;
+  nameAr: string;
+  nameRu: string;
+  /** Hero heading. */
+  title: string;
+  titleAr: string;
+  titleRu: string;
+  /** The banner photograph behind the hero. Never used anywhere else on the site. */
+  heroImage: string;
+  /** The one-line description shown in the industries grid. */
+  descriptor: string;
+  descriptorAr: string;
+  descriptorRu: string;
+  /** Italic hero subhead. */
+  subhead: string;
+  subheadAr: string;
+  subheadRu: string;
+  /** The lede statement opening "The Industry" section. */
+  lead: string;
+  leadAr: string;
+  leadRu: string;
+  /** The industry-introduction body — landscape, digital behaviour, why visibility matters. Two paragraphs. */
+  intro: [string, string];
+  introAr: [string, string];
+  introRu: [string, string];
+  /** Who this industry page is written for — unique per industry, never a generic client-type list. */
+  whoWeWorkWith: string[];
+  whoWeWorkWithAr: string[];
+  whoWeWorkWithRu: string[];
+  /** This industry's actual marketing challenges — never the same set reused elsewhere. */
+  challenges: { title: string; desc: string }[];
+  challengesAr: { title: string; desc: string }[];
+  challengesRu: { title: string; desc: string }[];
+  /**
+   * The real Shario service pages this industry leans on, each with a
+   * bespoke title/description written for this industry specifically.
+   * `slug` must match a real entry in `services` (the module-level array) —
+   * this is how Industries links to Services (§16 of the brief).
+   */
+  services: { slug: string; title: string; desc: string }[];
+  servicesAr: { slug: string; title: string; desc: string }[];
+  servicesRu: { slug: string; title: string; desc: string }[];
+  /** This industry's own engagement framework — never the same six steps reused elsewhere. */
+  approach: { step: string; title: string; desc: string }[];
+  approachAr: { step: string; title: string; desc: string }[];
+  approachRu: { step: string; title: string; desc: string }[];
+  faqs: { q: string; a: string }[];
+  faqsAr: { q: string; a: string }[];
+  faqsRu: { q: string; a: string }[];
+  /** Closing CTA heading, split across two lines. */
+  ctaTitle: [string, string];
+  ctaTitleAr: [string, string];
+  ctaTitleRu: [string, string];
+  /** Pre-filled WhatsApp message for the closing CTA — mirrors `Service`'s inline template, held here instead since it varies by industry, not just by name. */
+  ctaMessage: string;
+  ctaMessageAr: string;
+  ctaMessageRu: string;
+  metaDescription: string;
+  metaDescriptionAr: string;
+  metaDescriptionRu: string;
+  /** The `<title>`/`og:title` text, when it should differ from `name`. Falls back to `name`. */
+  seoTitle?: string;
+  seoTitleAr?: string;
+  seoTitleRu?: string;
+  /** Slug of one genuinely related industry, for a single cross-link — left unset when no pairing is actually useful. */
+  relatedIndustrySlug?: string;
+};
+
+export const industries: Industry[] = [
+  {
+    slug: "real-estate",
+    num: "01",
+    name: "Real Estate & Property",
+    nameAr: "العقارات والممتلكات",
+    nameRu: "Недвижимость",
+    title: "Digital Marketing for Real Estate.",
+    titleAr: "التسويق الرقمي للعقارات.",
+    titleRu: "Цифровой маркетинг для рынка недвижимости.",
+    heroImage: "/images/industries/real-estate.jpg",
+    descriptor:
+      "Demand generation and brand positioning for developers, brokerages and property consultants competing for the same buyer's attention.",
+    descriptorAr:
+      "توليد الطلب وتموضع العلامة التجارية للمطورين والوسطاء العقاريين ومستشاري العقارات المتنافسين على انتباه المشتري نفسه.",
+    descriptorRu:
+      "Генерация спроса и позиционирование бренда для застройщиков, брокерских агентств и консультантов по недвижимости, конкурирующих за внимание одного и того же покупателя.",
+    subhead: "Marketing built for launches, listings and long buying cycles.",
+    subheadAr: "تسويق مصمم لإطلاقات المشاريع والعروض العقارية ودورات الشراء الطويلة.",
+    subheadRu: "Маркетинг, рассчитанный на запуски проектов, листинги и долгие циклы покупки.",
+    lead:
+      "Property in Dubai is sold twice — once to the buyer's imagination and once to the algorithm deciding who sees the listing first.",
+    leadAr:
+      "يُباع العقار في دبي مرتين — مرة لمخيلة المشتري، ومرة للخوارزمية التي تقرر من يرى العرض أولاً.",
+    leadRu:
+      "Недвижимость в Дубае продают дважды — сначала воображению покупателя, а затем алгоритму, который решает, кто увидит объявление первым.",
+    intro: [
+      "Every major launch in Dubai now competes on the same three feeds: Google, Instagram and the portals. A strong master plan and a good broker relationship still matter, but neither decides who gets found first when a buyer starts searching from their phone. That's decided by paid media structure, landing page speed, and whether a website is built to qualify a lead or just collect an email address.",
+      "The buying cycle is long and the ticket size is high, which means most of the funnel is invisible — a prospect can view a project three times over six weeks before ever calling. Developers, agencies and brokers who win are the ones treating that invisible middle as a system: retargeting, CRM follow-up and a content trail that keeps a serious buyer warm without a salesperson chasing them daily.",
+    ],
+    introAr: [
+      "أصبح كل إطلاق كبير في دبي اليوم يتنافس على الواجهات الرقمية الثلاث نفسها: جوجل، إنستغرام، ومنصات العقارات. المخطط الرئيسي القوي وعلاقة الوسيط الجيدة لا يزالان مهمّين، لكنهما لا يحددان من يظهر أولاً حين يبدأ المشتري بالبحث من هاتفه. القرار هنا يعود إلى بنية الحملات المدفوعة، وسرعة صفحة الهبوط، وما إذا كان الموقع الإلكتروني مصمماً لتأهيل العميل المحتمل أم لمجرد جمع بريد إلكتروني.",
+      "دورة الشراء طويلة وقيمة الصفقة كبيرة، ما يعني أن معظم مسار التحويل غير مرئي — فقد يشاهد العميل المحتمل المشروع ثلاث مرات على مدى ستة أسابيع قبل أن يتصل. المطورون والوكالات والوسطاء الذين ينجحون هم من يتعاملون مع هذه المرحلة الوسطى الخفية كنظام متكامل: إعادة الاستهداف، والمتابعة عبر نظام إدارة علاقات العملاء، ومسار محتوى يبقي المشتري الجاد متفاعلاً دون أن يضطر مندوب المبيعات لملاحقته يومياً.",
+    ],
+    introRu: [
+      "Каждый крупный запуск проекта в Дубае сегодня конкурирует в одних и тех же трёх каналах: Google, Instagram и на порталах недвижимости. Сильный мастер-план и хорошие отношения с брокером по-прежнему важны, но не они решают, кого покупатель найдёт первым, начав поиск с телефона. Это решают структура платного трафика, скорость посадочной страницы и то, создан ли сайт для квалификации лида — или просто для сбора email-адресов.",
+      "Цикл покупки долгий, а чек — высокий, поэтому бóльшая часть воронки остаётся невидимой: потенциальный покупатель может просмотреть проект три раза за шесть недель, прежде чем впервые позвонить. Выигрывают те застройщики, агентства и брокеры, которые превращают эту невидимую середину воронки в систему — ретаргетинг, работу с CRM и цепочку контента, которая держит серьёзного покупателя «в тепле» без ежедневных звонков менеджера.",
+    ],
+    whoWeWorkWith: [
+      "Real estate developers bringing a new project to market",
+      "Multi-agent brokerages managing shared listing inventory",
+      "Independent brokers building a personal referral pipeline",
+      "Property consultants advising investors and end-users",
+      "Real estate investment and asset management firms",
+      "Property management companies marketing managed portfolios",
+    ],
+    whoWeWorkWithAr: [
+      "مطورون عقاريون يطلقون مشروعاً جديداً إلى السوق",
+      "وسطاء عقاريون متعددو الوكلاء يديرون مخزوناً مشتركاً من العروض",
+      "وسطاء مستقلون يبنون قاعدة إحالات شخصية",
+      "مستشارون عقاريون يقدمون الاستشارة للمستثمرين والمستخدمين النهائيين",
+      "شركات الاستثمار العقاري وإدارة الأصول",
+      "شركات إدارة الممتلكات التي تسوّق محافظ عقارية مُدارة",
+    ],
+    whoWeWorkWithRu: [
+      "Застройщики, выводящие новый проект на рынок",
+      "Брокерские агентства с несколькими агентами, работающие с общим пулом объектов",
+      "Независимые брокеры, выстраивающие личный поток рекомендаций",
+      "Консультанты по недвижимости, работающие с инвесторами и конечными покупателями",
+      "Инвестиционные и управляющие компании в сфере недвижимости",
+      "Управляющие компании, продвигающие портфели объектов в управлении",
+    ],
+    challenges: [
+      { title: "Crowded launches", desc: "A dozen towers can launch in the same district in the same quarter, all chasing the same investor list — positioning has to do work a floor plan can't." },
+      { title: "Long, invisible buying cycles", desc: "Most decisions form over weeks of quiet browsing before a single enquiry — losing that middle stretch means losing the buyer to whoever stayed visible." },
+      { title: "Lead quality over lead volume", desc: "A form full of tyre-kickers costs a sales team more than it earns — targeting has to filter for intent, not just capture an email." },
+      { title: "CRM follow-up that actually happens", desc: "A lead that isn't called within the hour is a lead a competitor closes — the handoff from ad to agent is where most pipelines leak." },
+      { title: "Differentiating on more than location", desc: "Two projects five minutes apart with similar pricing need a brand reason to choose one over the other, not just a better view." },
+    ],
+    challengesAr: [
+      { title: "إطلاقات مزدحمة", desc: "قد يُطلق أكثر من عشرة أبراج في الحي نفسه خلال الربع نفسه، وكلها تستهدف قائمة المستثمرين ذاتها — هنا يجب أن يقوم التموضع بما لا تستطيع المخططات المعمارية وحدها تحقيقه." },
+      { title: "دورات شراء طويلة وغير مرئية", desc: "تتشكل معظم القرارات خلال أسابيع من التصفح الصامت قبل أي استفسار فعلي — وفقدان هذه المرحلة الوسطى يعني خسارة المشتري لصالح من بقي ظاهراً أمامه." },
+      { title: "جودة العملاء المحتملين لا عددهم", desc: "نموذج مليء بالمهتمين غير الجادين يكلّف فريق المبيعات أكثر مما يحققه — لذا يجب أن يُصمَّم الاستهداف لتصفية النية الحقيقية للشراء، لا لمجرد جمع بريد إلكتروني." },
+      { title: "متابعة فعلية عبر نظام إدارة علاقات العملاء", desc: "العميل المحتمل الذي لا يتم الاتصال به خلال ساعة هو عميل يغلقه منافس آخر — ونقطة التسليم من الإعلان إلى الوكيل هي حيث تتسرب معظم الفرص." },
+      { title: "التميّز بما هو أبعد من الموقع", desc: "مشروعان يفصل بينهما خمس دقائق بأسعار متقاربة يحتاجان إلى سبب علامة تجارية يجعل المشتري يختار أحدهما، لا مجرد إطلالة أفضل." },
+    ],
+    challengesRu: [
+      { title: "Перегруженные запуски", desc: "Десяток башен может выйти на рынок в одном районе в один квартал, охотясь за одним и тем же списком инвесторов — позиционирование должно делать то, что не под силу планировке квартир." },
+      { title: "Долгие и незаметные циклы покупки", desc: "Большинство решений формируется за недели тихого просмотра ещё до первого обращения — потерять этот промежуточный этап значит отдать покупателя тому, кто оставался на виду." },
+      { title: "Качество лидов важнее их количества", desc: "Форма, заполненная праздно интересующимися, обходится отделу продаж дороже, чем приносит — таргетинг должен отсеивать по намерению, а не просто собирать email-адреса." },
+      { title: "CRM-обработка, которая действительно происходит", desc: "Лид, которому не позвонили в течение часа, — это лид, который закроет конкурент: именно на передаче от рекламы к агенту чаще всего теряется воронка." },
+      { title: "Отличие не только за счёт локации", desc: "Два проекта в пяти минутах друг от друга с похожей ценой нуждаются в брендовой причине выбрать именно его, а не просто в более красивом виде из окна." },
+    ],
+    services: [
+      { slug: "digital-marketing", title: "Performance Marketing for Launches", desc: "Google and Meta campaigns structured around a launch calendar, not a flat monthly spend, so budget peaks when the project needs it." },
+      { slug: "seo", title: "SEO for Real Estate", desc: "Project and area landing pages built to rank for the searches a buyer actually types before they ever contact an agent." },
+      { slug: "website-development", title: "Property Websites That Qualify Leads", desc: "Fast, mobile-first listing and project sites with enquiry forms built to separate a serious buyer from a browser." },
+      { slug: "crm-marketing-automation", title: "CRM & Lead Nurturing", desc: "Automated follow-up sequences that keep a six-week decision warm without relying on an agent remembering to call back." },
+      { slug: "branding", title: "Developer & Brokerage Branding", desc: "A positioning and identity system a project or brokerage can carry from the first render to the handover event." },
+      { slug: "marketing-consulting", title: "Go-to-Market Strategy", desc: "A channel and budget plan built around your launch timeline, not a generic marketing calendar." },
+    ],
+    servicesAr: [
+      { slug: "digital-marketing", title: "التسويق الأدائي لإطلاقات المشاريع", desc: "حملات على جوجل وميتا مبنية وفق جدول الإطلاق الفعلي، لا وفق إنفاق شهري ثابت، بحيث تتركز الميزانية حين يحتاجها المشروع فعلاً." },
+      { slug: "seo", title: "تحسين محركات البحث للعقارات", desc: "صفحات هبوط للمشروع والمنطقة مصممة للترتيب في عمليات البحث التي يكتبها المشتري فعلياً قبل التواصل مع أي وكيل." },
+      { slug: "website-development", title: "مواقع عقارية تؤهّل العملاء المحتملين", desc: "مواقع سريعة مصممة أولاً للهاتف المحمول لعرض المشاريع والعقارات، بنماذج استفسار مصممة للتمييز بين المشتري الجاد والمتصفح العابر." },
+      { slug: "crm-marketing-automation", title: "إدارة علاقات العملاء ورعاية العملاء المحتملين", desc: "سلاسل متابعة آلية تُبقي قراراً يستغرق ستة أسابيع متفاعلاً دون الاعتماد على تذكّر الوكيل للاتصال مجدداً." },
+      { slug: "branding", title: "هوية العلامة التجارية للمطورين والوسطاء", desc: "نظام تموضع وهوية بصرية يواكب المشروع أو الوكالة من أول تصميم افتراضي وحتى حفل التسليم." },
+      { slug: "marketing-consulting", title: "استراتيجية الدخول إلى السوق", desc: "خطة قنوات وميزانية مبنية حول الجدول الزمني لإطلاق مشروعك، لا وفق تقويم تسويقي عام." },
+    ],
+    servicesRu: [
+      { slug: "digital-marketing", title: "Performance-маркетинг для запусков", desc: "Кампании в Google и Meta, выстроенные вокруг календаря запуска, а не равномерного месячного бюджета, — расходы растут именно тогда, когда это нужно проекту." },
+      { slug: "seo", title: "SEO для недвижимости", desc: "Страницы проекта и района, созданные для ранжирования по запросам, которые покупатель реально вводит ещё до обращения к агенту." },
+      { slug: "website-development", title: "Сайты объектов, которые квалифицируют лиды", desc: "Быстрые, мобильно-ориентированные сайты объектов и проектов с формами заявок, отделяющими серьёзного покупателя от праздного посетителя." },
+      { slug: "crm-marketing-automation", title: "CRM и прогрев лидов", desc: "Автоматизированные цепочки касаний, которые поддерживают интерес на протяжении шестинедельного решения, не полагаясь на память агента о звонке." },
+      { slug: "branding", title: "Брендинг застройщиков и агентств", desc: "Система позиционирования и айдентики, которую проект или агентство пронесёт от первого рендера до церемонии передачи ключей." },
+      { slug: "marketing-consulting", title: "Стратегия вывода на рынок", desc: "План по каналам и бюджету, выстроенный вокруг графика вашего запуска, а не универсального маркетингового календаря." },
+    ],
+    approach: [
+      { step: "01", title: "Position", desc: "Define what makes this project or brokerage the obvious choice against the launches sitting next to it." },
+      { step: "02", title: "Build", desc: "Ship a website and landing pages fast enough, and clear enough, to convert a buyer researching on their phone." },
+      { step: "03", title: "Launch", desc: "Structure paid media around the actual launch calendar — awareness before the event, intent capture during it." },
+      { step: "04", title: "Nurture", desc: "Put CRM automation behind every enquiry so a six-week decision stays warm without manual chasing." },
+      { step: "05", title: "Optimise", desc: "Review cost per qualified lead weekly against what the sales team can actually close, not against impressions." },
+    ],
+    approachAr: [
+      { step: "01", title: "التموضع", desc: "تحديد ما يجعل هذا المشروع أو هذه الوكالة الخيار الواضح مقارنة بالإطلاقات المنافسة القريبة منه." },
+      { step: "02", title: "البناء", desc: "إطلاق موقع وصفحات هبوط سريعة وواضحة بما يكفي لتحويل مشترٍ يبحث من هاتفه." },
+      { step: "03", title: "الإطلاق", desc: "بناء الإعلانات المدفوعة حول جدول الإطلاق الفعلي — بناء الوعي قبل الحدث، والتقاط النية أثناءه." },
+      { step: "04", title: "الرعاية", desc: "ربط كل استفسار بأتمتة إدارة علاقات العملاء بحيث يبقى قرار الستة أسابيع متفاعلاً دون ملاحقة يدوية." },
+      { step: "05", title: "التحسين", desc: "مراجعة تكلفة العميل المحتمل المؤهل أسبوعياً مقارنةً بما يستطيع فريق المبيعات إغلاقه فعلياً، لا مقارنةً بعدد مرات الظهور." },
+    ],
+    approachRu: [
+      { step: "01", title: "Позиционирование", desc: "Определяем, что делает этот проект или агентство очевидным выбором на фоне соседних запусков." },
+      { step: "02", title: "Разработка", desc: "Запускаем сайт и посадочные страницы — достаточно быстрые и понятные, чтобы конвертировать покупателя, изучающего предложение с телефона." },
+      { step: "03", title: "Запуск", desc: "Выстраиваем платный трафик вокруг реального календаря запуска — узнаваемость до события, сбор намерений во время него." },
+      { step: "04", title: "Прогрев", desc: "Подключаем CRM-автоматизацию к каждой заявке, чтобы шестинедельное решение оставалось «тёплым» без ручного контроля." },
+      { step: "05", title: "Оптимизация", desc: "Еженедельно оцениваем стоимость квалифицированного лида относительно реальных закрытых сделок отдела продаж, а не показов." },
+    ],
+    faqs: [
+      { q: "What does digital marketing for real estate actually include?", a: "Typically a mix of performance marketing for launches, SEO for project and area pages, a conversion-focused website, and CRM automation to follow up every enquiry — engaged together or one at a time depending on where the gap is." },
+      { q: "How can digital marketing help real estate brokers specifically?", a: "For an individual broker or a brokerage, it usually means paid lead generation tied to CRM follow-up and a personal or agency brand that gives a buyer a reason to call you instead of the next listing." },
+      { q: "How can real estate developers generate better-quality leads?", a: "By targeting intent signals rather than broad reach, qualifying leads on the landing page itself, and routing every enquiry into a CRM sequence within minutes rather than hours." },
+      { q: "Why does SEO matter for a project that only sells out once?", a: "Even a single-phase launch benefits from ranking for its own project name and area searches from day one — most of that early organic traffic becomes the retargeting audience performance media later relies on." },
+    ],
+    faqsAr: [
+      { q: "ماذا يشمل التسويق الرقمي للعقارات فعلياً؟", a: "عادةً مزيج من التسويق الأدائي للإطلاقات، وتحسين محركات البحث لصفحات المشروع والمنطقة، وموقع إلكتروني مركّز على التحويل، وأتمتة إدارة علاقات العملاء لمتابعة كل استفسار — سواء معاً أو بشكل منفرد حسب موضع الفجوة الفعلية." },
+      { q: "كيف يمكن للتسويق الرقمي أن يساعد الوسطاء العقاريين تحديداً؟", a: "بالنسبة للوسيط الفردي أو الوكالة، يعني ذلك عادةً توليد عملاء محتملين مدفوعين مرتبطين بمتابعة عبر إدارة علاقات العملاء، وعلامة شخصية أو مؤسسية تمنح المشتري سبباً للاتصال بك بدلاً من العرض التالي." },
+      { q: "كيف يمكن للمطورين العقاريين توليد عملاء محتملين أعلى جودة؟", a: "من خلال استهداف إشارات النية الحقيقية بدلاً من الوصول الواسع، وتأهيل العملاء المحتملين مباشرة على صفحة الهبوط، وتوجيه كل استفسار إلى سلسلة متابعة في نظام إدارة علاقات العملاء خلال دقائق لا ساعات." },
+      { q: "لماذا يهم تحسين محركات البحث لمشروع يُباع مرة واحدة فقط؟", a: "حتى الإطلاق أحادي المرحلة يستفيد من الترتيب في نتائج البحث باسم المشروع والمنطقة منذ اليوم الأول — إذ تتحول معظم هذه الزيارات العضوية المبكرة إلى جمهور إعادة استهداف تعتمد عليه الحملات المدفوعة لاحقاً." },
+    ],
+    faqsRu: [
+      { q: "Что на самом деле включает digital-маркетинг для недвижимости?", a: "Как правило, это сочетание performance-маркетинга для запусков, SEO для страниц проекта и района, сайта, ориентированного на конверсию, и CRM-автоматизации для обработки каждой заявки — вместе или по отдельности, в зависимости от того, где находится слабое место." },
+      { q: "Чем именно digital-маркетинг может помочь брокерам по недвижимости?", a: "Для отдельного брокера или агентства это обычно означает платную генерацию лидов, связанную с CRM-обработкой, а также личный или агентский бренд, который даёт покупателю причину позвонить именно вам, а не по следующему объявлению." },
+      { q: "Как застройщикам получать более качественные лиды?", a: "За счёт таргетинга по сигналам намерения, а не по широкому охвату, квалификации лидов уже на посадочной странице и передачи каждой заявки в CRM-цепочку за минуты, а не часы." },
+      { q: "Зачем нужен SEO проекту, который распродаётся всего один раз?", a: "Даже однофазный запуск выигрывает от ранжирования по названию проекта и запросам района с первого дня — большая часть раннего органического трафика становится аудиторией для ретаргетинга, на которую позже опирается платная реклама." },
+    ],
+    ctaTitle: ["Let's put your next launch", "in front of the right buyer."],
+    ctaTitleAr: ["لنضع إطلاقك القادم", "أمام المشتري المناسب."],
+    ctaTitleRu: ["Покажем ваш следующий запуск", "нужному покупателю."],
+    ctaMessage: "Hi, I'm interested in digital marketing for real estate.",
+    ctaMessageAr: "مرحباً، أنا مهتم بالتسويق الرقمي للعقارات.",
+    ctaMessageRu: "Здравствуйте, меня интересует digital-маркетинг для недвижимости.",
+    metaDescription:
+      "Digital marketing for real estate in Dubai — performance marketing, SEO, websites and CRM automation built for developers, brokerages and property consultants.",
+    metaDescriptionAr:
+      "تسويق رقمي للعقارات في دبي — تسويق أدائي، تحسين لمحركات البحث، مواقع إلكترونية وأتمتة CRM للمطورين والوسطاء ومستشاري العقارات.",
+    metaDescriptionRu:
+      "Digital-маркетинг для недвижимости в Дубае: performance-реклама, SEO, сайты и CRM-автоматизация для застройщиков, агентств и консультантов.",
+    seoTitle: "Digital Marketing for Real Estate & Property — Dubai",
+    seoTitleAr: "التسويق الرقمي للعقارات والممتلكات — دبي",
+    seoTitleRu: "Digital-маркетинг для рынка недвижимости — Дубай",
+  },
+  {
+    slug: "hospitality",
+    num: "02",
+    name: "Hospitality",
+    nameAr: "الضيافة",
+    nameRu: "Гостиничный бизнес",
+    title: "Digital Marketing for Hospitality.",
+    titleAr: "التسويق الرقمي لقطاع الضيافة.",
+    titleRu: "Цифровой маркетинг для гостиничного бизнеса.",
+    heroImage: "/images/industries/hospitality.jpg",
+    descriptor:
+      "Direct-booking growth and brand experience marketing for hotels and resorts competing with OTA commission and a crowded feed.",
+    descriptorAr:
+      "نمو الحجوزات المباشرة وتسويق تجربة العلامة التجارية للفنادق والمنتجعات التي تنافس عمولات وكالات الحجز الإلكترونية وزحام المنصات الرقمية.",
+    descriptorRu:
+      "Рост прямых бронирований и маркетинг гостевого опыта для отелей и курортов, конкурирующих с комиссией OTA и перегруженной лентой соцсетей.",
+    subhead: "Marketing that earns the direct booking, not just the impression.",
+    subheadAr: "تسويق يكسب الحجز المباشر، لا مجرد مشاهدة عابرة.",
+    subheadRu: "Маркетинг, который приносит прямое бронирование, а не просто просмотр.",
+    lead:
+      "A hotel's best guest is the one who books direct — every campaign here is measured against how much commission it saves, not just how many people see it.",
+    leadAr:
+      "أفضل نزيل لدى الفندق هو من يحجز مباشرة — وكل حملة هنا تُقاس بمقدار العمولة التي توفرها، لا بعدد من شاهدها فقط.",
+    leadRu:
+      "Лучший гость отеля — тот, кто бронирует напрямую: каждая кампания здесь оценивается по тому, сколько комиссии она экономит, а не по тому, сколько человек её увидели.",
+    intro: [
+      "Hospitality marketing runs on two clocks at once: the booking window, which can be same-day for a staycation or eighteen months out for a destination wedding, and the review cycle, where one bad week on the guest-facing feed undoes months of paid reach. A property that treats its Instagram feed, its Google Business Profile and its booking engine as three separate jobs is paying twice — once in OTA commission, once in wasted ad spend sending traffic to a booking flow that loses the guest at the last step.",
+      "The properties winning direct bookings right now are the ones that built a content and search presence strong enough to be found without paying an OTA for the introduction, then backed it with a booking engine fast enough to close the guest before they open a second tab to compare.",
+    ],
+    introAr: [
+      "يعمل تسويق الضيافة على إيقاعين في آن واحد: نافذة الحجز، التي قد تكون في اليوم نفسه لإقامة محلية أو قبل ثمانية عشر شهراً لحفل زفاف في وجهة سياحية، ودورة التقييمات، حيث يمكن لأسبوع سيئ واحد على واجهة النزلاء أن يمحو أثر أشهر من الوصول المدفوع. أي منشأة تتعامل مع حساب إنستغرام وملف جوجل التجاري ومحرك الحجز كثلاث مهام منفصلة تدفع الثمن مرتين — مرة في عمولة وكالات الحجز، ومرة في إنفاق إعلاني مهدور يقود الزوار إلى مسار حجز يفقد النزيل في الخطوة الأخيرة.",
+      "المنشآت التي تكسب الحجوزات المباشرة اليوم هي تلك التي بنت حضوراً قوياً في المحتوى ونتائج البحث يكفي لتُكتشف دون دفع عمولة تعريف لوكالة حجز، ثم دعمته بمحرك حجز سريع بما يكفي لإتمام حجز النزيل قبل أن يفتح تبويباً آخر للمقارنة.",
+    ],
+    introRu: [
+      "Маркетинг в гостиничном бизнесе живёт сразу в двух ритмах: окно бронирования — от одного дня для локального отдыха до восемнадцати месяцев для свадьбы мечты — и цикл отзывов, где одна неудачная неделя на гостевой ленте может свести на нет месяцы платного охвата. Отель, который относится к своей ленте в Instagram, профилю в Google Business и системе бронирования как к трём разным задачам, платит дважды — сначала комиссией OTA, затем впустую потраченным рекламным бюджетом, который приводит трафик на форму бронирования, теряющую гостя на последнем шаге.",
+      "Сегодня прямые бронирования выигрывают те объекты, которые выстроили достаточно сильное присутствие в контенте и поиске, чтобы их находили без посредничества и комиссии OTA, и подкрепили это системой бронирования, достаточно быстрой, чтобы закрыть гостя раньше, чем он откроет вторую вкладку для сравнения.",
+    ],
+    whoWeWorkWith: [
+      "Independent hotels and boutique properties",
+      "Resort groups and multi-property hospitality brands",
+      "Serviced apartment and short-stay operators",
+      "Hospitality management companies running managed portfolios",
+      "Event and destination-wedding venues",
+      "F&B-led hospitality concepts inside a hotel or resort",
+    ],
+    whoWeWorkWithAr: [
+      "فنادق مستقلة ومنشآت بوتيك",
+      "مجموعات منتجعات وعلامات ضيافة متعددة الفروع",
+      "مشغلو الشقق الفندقية والإقامات القصيرة",
+      "شركات إدارة الضيافة التي تدير محافظ عقارية مُدارة",
+      "قاعات المناسبات ووجهات حفلات الزفاف",
+      "مفاهيم ضيافة قائمة على المأكولات والمشروبات داخل الفنادق والمنتجعات",
+    ],
+    whoWeWorkWithRu: [
+      "Независимые отели и бутик-объекты",
+      "Курортные группы и гостиничные бренды с несколькими объектами",
+      "Операторы апарт-отелей и краткосрочного размещения",
+      "Управляющие гостиничные компании, работающие с портфелями объектов",
+      "Площадки для мероприятий и свадеб в живописных локациях",
+      "Гастрономические концепции внутри отелей и курортов",
+    ],
+    challenges: [
+      { title: "OTA dependency", desc: "Booking.com and Expedia bring volume at a commission cost that compounds — every direct booking a campaign wins pays for itself twice over." },
+      { title: "Seasonal demand swings", desc: "Occupancy strategy has to flex with the calendar, which means media spend and offers need to move with it, not sit on autopilot." },
+      { title: "A crowded, visual-first feed", desc: "Every property has a beautiful pool shot — differentiation now comes from the guest experience story around it, not the photograph itself." },
+      { title: "Review and reputation exposure", desc: "A property's search ranking and conversion rate both move with its review score, which makes reputation management a performance lever, not just PR." },
+      { title: "Booking-engine friction", desc: "Paid traffic that lands on a slow or confusing booking flow converts at a fraction of what the media spend should return." },
+    ],
+    challengesAr: [
+      { title: "الاعتماد على وكالات الحجز الإلكترونية", desc: "تجلب منصات مثل Booking.com وExpedia حجماً من الحجوزات مقابل عمولة تتراكم كلفتها — وكل حجز مباشر تكسبه حملة يُسدد تكلفته مرتين." },
+      { title: "تقلبات الطلب الموسمية", desc: "يجب أن تتكيف استراتيجية الإشغال مع التقويم الموسمي، ما يعني أن الإنفاق الإعلاني والعروض يجب أن يتحركا معه، لا أن يُتركا على وضع تلقائي ثابت." },
+      { title: "واجهة مزدحمة تعتمد على الصورة أولاً", desc: "لكل منشأة صورة جميلة لمسبحها — والتميّز اليوم يأتي من قصة تجربة النزيل المحيطة بالصورة، لا من الصورة نفسها." },
+      { title: "التعرّض لمخاطر التقييمات والسمعة", desc: "يتأثر ترتيب المنشأة في نتائج البحث ومعدل تحويلها بتقييماتها، ما يجعل إدارة السمعة رافعة أداء حقيقية، لا مجرد نشاط علاقات عامة." },
+      { title: "تعقيد في محرك الحجز", desc: "الزيارات المدفوعة التي تصل إلى مسار حجز بطيء أو مربك تتحول بنسبة أقل بكثير مما يستحقه الإنفاق الإعلاني." },
+    ],
+    challengesRu: [
+      { title: "Зависимость от OTA", desc: "Booking.com и Expedia приносят объём, но их комиссия накапливается — каждое прямое бронирование, которое приносит кампания, окупается вдвойне." },
+      { title: "Сезонные колебания спроса", desc: "Стратегия загрузки номерного фонда должна подстраиваться под календарь, а значит, рекламный бюджет и предложения должны двигаться вместе с ним, а не работать на автопилоте." },
+      { title: "Перегруженная визуальная лента", desc: "У каждого отеля есть красивое фото бассейна — отличие сегодня достигается не самой фотографией, а историей гостевого опыта вокруг неё." },
+      { title: "Уязвимость репутации через отзывы", desc: "Позиция объекта в поиске и его конверсия напрямую зависят от рейтинга отзывов, поэтому управление репутацией — это рычаг эффективности, а не просто PR." },
+      { title: "Трудности системы бронирования", desc: "Платный трафик, попадающий на медленную или запутанную форму бронирования, конвертируется в разы хуже, чем должен при таких вложениях в рекламу." },
+    ],
+    services: [
+      { slug: "digital-marketing", title: "Direct-Booking Performance Marketing", desc: "Search and social campaigns tuned to book direct, measured against OTA commission saved, not just reach." },
+      { slug: "seo", title: "Hospitality SEO", desc: "Ranking for the property, the destination and the occasion — from 'hotel in [area]' to 'venue for [event type]'." },
+      { slug: "website-development", title: "Booking-Ready Websites", desc: "Fast, mobile-first sites with a booking engine built to close a guest, not lose them between the offer and checkout." },
+      { slug: "branding", title: "Hospitality Brand Experience", desc: "A visual and content identity that carries the property's actual guest experience across every channel, not a generic stock aesthetic." },
+      { slug: "crm-marketing-automation", title: "Guest CRM & Retention", desc: "Automated pre-arrival, post-stay and re-engagement sequences that turn a first stay into a repeat one." },
+    ],
+    servicesAr: [
+      { slug: "digital-marketing", title: "تسويق أدائي للحجز المباشر", desc: "حملات بحث وسوشيال ميديا مضبوطة لتحقيق الحجز المباشر، تُقاس بعمولة وكالات الحجز الموفَّرة، لا بالوصول فقط." },
+      { slug: "seo", title: "تحسين محركات البحث للضيافة", desc: "الترتيب في نتائج البحث للمنشأة والوجهة والمناسبة — من 'فندق في [المنطقة]' إلى 'قاعة لـ[نوع المناسبة]'." },
+      { slug: "website-development", title: "مواقع جاهزة للحجز", desc: "مواقع سريعة مصممة أولاً للهاتف المحمول، بمحرك حجز مبني لإتمام حجز النزيل، لا لفقدانه بين العرض والدفع." },
+      { slug: "branding", title: "تجربة العلامة التجارية في الضيافة", desc: "هوية بصرية ومحتوى ينقلان تجربة النزيل الفعلية للمنشأة عبر كل قناة، لا مظهراً عاماً من صور جاهزة." },
+      { slug: "crm-marketing-automation", title: "إدارة علاقات النزلاء والاحتفاظ بهم", desc: "سلاسل آلية لما قبل الوصول وما بعد الإقامة وإعادة التفاعل تحوّل الإقامة الأولى إلى إقامة متكررة." },
+    ],
+    servicesRu: [
+      { slug: "digital-marketing", title: "Performance-маркетинг для прямых бронирований", desc: "Поисковые и социальные кампании, настроенные на прямое бронирование и оцениваемые по сэкономленной комиссии OTA, а не только по охвату." },
+      { slug: "seo", title: "SEO для гостиничного бизнеса", desc: "Продвижение по запросам об отеле, направлении и поводе — от «отель в [районе]» до «площадка для [типа мероприятия]»." },
+      { slug: "website-development", title: "Сайты, готовые к бронированию", desc: "Быстрые, мобильно-ориентированные сайты с системой бронирования, которая закрывает гостя, а не теряет его между предложением и оплатой." },
+      { slug: "branding", title: "Брендовый гостевой опыт", desc: "Визуальная и контентная айдентика, которая передаёт реальный гостевой опыт объекта во всех каналах, а не общую стоковую эстетику." },
+      { slug: "crm-marketing-automation", title: "CRM для гостей и удержание", desc: "Автоматизированные цепочки до заезда, после проживания и повторного вовлечения, которые превращают первый визит в повторный." },
+    ],
+    approach: [
+      { step: "01", title: "Brand Experience", desc: "Define what the property actually feels like to a guest, and build every channel around that, not a generic hospitality look." },
+      { step: "02", title: "Content", desc: "Build a content library — photography, video, guest stories — that carries the brand across search, social and paid." },
+      { step: "03", title: "Search & Social", desc: "Establish organic presence across Google and the visual platforms where a guest actually researches a stay." },
+      { step: "04", title: "Performance", desc: "Run paid media measured against direct bookings and OTA commission saved, not raw traffic." },
+      { step: "05", title: "Conversion", desc: "Tighten the booking engine itself so paid and organic traffic actually closes." },
+      { step: "06", title: "Retention", desc: "Turn a single stay into a repeat guest with CRM sequences that run well after checkout." },
+    ],
+    approachAr: [
+      { step: "01", title: "تجربة العلامة", desc: "تحديد الإحساس الفعلي الذي تتركه المنشأة لدى النزيل، وبناء كل قناة حول هذا الإحساس، لا حول مظهر ضيافة عام." },
+      { step: "02", title: "المحتوى", desc: "بناء مكتبة محتوى — تصوير، فيديو، قصص نزلاء — تحمل العلامة عبر البحث والسوشيال ميديا والإعلانات المدفوعة." },
+      { step: "03", title: "البحث والسوشيال ميديا", desc: "بناء حضور عضوي على جوجل والمنصات البصرية التي يبحث فيها النزيل فعلياً عن إقامته." },
+      { step: "04", title: "الأداء", desc: "إدارة حملات مدفوعة تُقاس بالحجوزات المباشرة وعمولة وكالات الحجز الموفَّرة، لا بحجم الزيارات الخام." },
+      { step: "05", title: "التحويل", desc: "تحسين محرك الحجز نفسه بحيث تتحول الزيارات المدفوعة والعضوية فعلياً إلى حجوزات." },
+      { step: "06", title: "الاحتفاظ بالنزلاء", desc: "تحويل الإقامة الواحدة إلى نزيل متكرر عبر سلاسل إدارة علاقات العملاء التي تستمر بعد المغادرة." },
+    ],
+    approachRu: [
+      { step: "01", title: "Гостевой опыт бренда", desc: "Определяем, что реально чувствует гость в этом отеле, и выстраиваем каждый канал вокруг этого, а не общего гостиничного образа." },
+      { step: "02", title: "Контент", desc: "Создаём библиотеку контента — фотографии, видео, истории гостей, — которая несёт бренд через поиск, соцсети и платную рекламу." },
+      { step: "03", title: "Поиск и соцсети", desc: "Формируем органическое присутствие в Google и визуальных платформах, где гость реально изучает варианты проживания." },
+      { step: "04", title: "Performance-реклама", desc: "Запускаем платную рекламу, которую оцениваем по прямым бронированиям и сэкономленной комиссии OTA, а не по объёму трафика." },
+      { step: "05", title: "Конверсия", desc: "Дорабатываем саму систему бронирования, чтобы платный и органический трафик реально конвертировался." },
+      { step: "06", title: "Удержание", desc: "Превращаем разовое проживание в повторные визиты с помощью CRM-цепочек, которые работают долго после выезда." },
+    ],
+    faqs: [
+      { q: "How is hotel marketing different from marketing any other local business?", a: "It runs on two audiences at once — guests actively booking now and future guests being nurtured toward a stay months out — plus a booking engine that has to convert, not just a contact form." },
+      { q: "Can digital marketing actually reduce our OTA dependency?", a: "Yes, when direct-booking performance media, SEO and a fast booking engine work together — the goal is making the direct channel cheaper and more convenient than the OTA, not just running ads alongside it." },
+      { q: "How important is SEO for a single-property hotel?", a: "Very — most stay research starts with a Google search for the destination or occasion before a specific property name, and that's where organic visibility either earns the click or hands it to an OTA listing." },
+      { q: "Do you work with resorts as well as boutique hotels?", a: "Yes, from independent boutique properties to multi-property resort groups — the channel mix scales with the portfolio, but the direct-booking logic stays the same." },
+    ],
+    faqsAr: [
+      { q: "كيف يختلف تسويق الفنادق عن تسويق أي نشاط تجاري محلي آخر؟", a: "يعمل على جمهورين في آن واحد — نزلاء يحجزون الآن فعلياً، ونزلاء مستقبليون تتم رعايتهم نحو إقامة بعد أشهر — إضافة إلى محرك حجز يجب أن يُحوّل فعلياً، لا مجرد نموذج تواصل." },
+      { q: "هل يمكن للتسويق الرقمي أن يقلل فعلياً اعتمادنا على وكالات الحجز الإلكترونية؟", a: "نعم، عندما تعمل الحملات الأدائية للحجز المباشر وتحسين محركات البحث ومحرك حجز سريع معاً — الهدف هو جعل القناة المباشرة أرخص وأكثر سهولة من وكالة الحجز، لا مجرد تشغيل إعلانات موازية لها." },
+      { q: "ما مدى أهمية تحسين محركات البحث لفندق ذي منشأة واحدة؟", a: "بالغة الأهمية — إذ يبدأ معظم البحث عن الإقامة بعملية بحث على جوجل عن الوجهة أو المناسبة قبل اسم المنشأة تحديداً، وهنا يكسب الحضور العضوي النقرة أو يخسرها لصالح عرض على وكالة حجز." },
+      { q: "هل تعملون مع المنتجعات إلى جانب الفنادق البوتيك؟", a: "نعم، من المنشآت البوتيك المستقلة إلى مجموعات المنتجعات متعددة الفروع — ويتوسع مزيج القنوات مع حجم المحفظة، بينما يبقى منطق الحجز المباشر ثابتاً." },
+    ],
+    faqsRu: [
+      { q: "Чем маркетинг отеля отличается от маркетинга любого другого локального бизнеса?", a: "Он работает сразу с двумя аудиториями — гостями, бронирующими прямо сейчас, и будущими гостями, которых «прогревают» к проживанию через несколько месяцев, — плюс система бронирования должна конвертировать, а не просто быть формой обратной связи." },
+      { q: "Может ли digital-маркетинг реально снизить зависимость от OTA?", a: "Да, если performance-реклама на прямые бронирования, SEO и быстрая система бронирования работают вместе — цель в том, чтобы сделать прямой канал дешевле и удобнее OTA, а не просто запускать рекламу параллельно." },
+      { q: "Насколько важен SEO для отдельного отеля?", a: "Очень важен — большинство поисков начинается с запроса о направлении или поводе, а не с названия конкретного отеля, и именно здесь органическая видимость либо приносит клик, либо отдаёт его листингу OTA." },
+      { q: "Вы работаете и с курортами, и с бутик-отелями?", a: "Да, от независимых бутик-объектов до курортных групп с несколькими отелями — набор каналов масштабируется вместе с портфелем, но логика прямых бронирований остаётся неизменной." },
+    ],
+    ctaTitle: ["Let's turn more lookers", "into direct bookings."],
+    ctaTitleAr: ["لنحوّل المزيد من المتصفحين", "إلى حجوزات مباشرة."],
+    ctaTitleRu: ["Превратим больше просмотров", "в прямые бронирования."],
+    ctaMessage: "Hi, I'm interested in digital marketing for hospitality.",
+    ctaMessageAr: "مرحباً، أنا مهتم بالتسويق الرقمي لقطاع الضيافة.",
+    ctaMessageRu: "Здравствуйте, меня интересует digital-маркетинг для гостиничного бизнеса.",
+    metaDescription:
+      "Hospitality marketing in Dubai — direct-booking performance media, SEO, branding and booking-ready websites for hotels, resorts and hospitality groups.",
+    metaDescriptionAr:
+      "تسويق الضيافة في دبي — حملات أدائية للحجز المباشر، تحسين لمحركات البحث، هوية بصرية ومواقع جاهزة للحجز للفنادق والمنتجعات ومجموعات الضيافة.",
+    metaDescriptionRu:
+      "Маркетинг для гостиничного бизнеса в Дубае: performance-реклама на прямые бронирования, SEO, брендинг и сайты для отелей, курортов и гостиничных групп.",
+    seoTitle: "Hospitality & Hotel Digital Marketing Agency — Dubai",
+    seoTitleAr: "وكالة تسويق رقمي للضيافة والفنادق — دبي",
+    seoTitleRu: "Агентство digital-маркетинга для отелей — Дубай",
+    relatedIndustrySlug: "restaurants-fb",
+  },
+  {
+    slug: "aesthetic-wellness",
+    num: "03",
+    name: "Aesthetic & Wellness",
+    nameAr: "التجميل والعافية",
+    nameRu: "Эстетическая медицина и wellness",
+    title: "Digital Marketing for Aesthetic Clinics.",
+    titleAr: "التسويق الرقمي لعيادات التجميل.",
+    titleRu: "Цифровой маркетинг для клиник эстетической медицины.",
+    heroImage: "/images/industries/aesthetic-wellness.jpg",
+    descriptor:
+      "Trust-led marketing for aesthetic clinics and medical spas, where a booked consultation depends on visible proof, not a discount.",
+    descriptorAr:
+      "تسويق قائم على الثقة لعيادات التجميل والمنتجعات الطبية، حيث يعتمد حجز الاستشارة على دليل مرئي، لا على خصم.",
+    descriptorRu:
+      "Маркетинг, построенный на доверии, для клиник эстетической медицины и медицинских спа, где запись на консультацию зависит от наглядных доказательств, а не от скидки.",
+    subhead: "Marketing that earns trust before it earns the booking.",
+    subheadAr: "تسويق يكسب الثقة قبل أن يكسب الحجز.",
+    subheadRu: "Маркетинг, который сначала завоёвывает доверие, а затем — запись.",
+    lead:
+      "Nobody books an aesthetic treatment on price alone — they book on proof, and proof is a marketing problem before it's a clinical one.",
+    leadAr:
+      "لا أحد يحجز جلسة تجميل بناءً على السعر وحده — بل بناءً على الدليل، والدليل هنا مسألة تسويقية قبل أن تكون مسألة طبية.",
+    leadRu:
+      "Никто не записывается на эстетическую процедуру только из-за цены — записываются на основании доказательств, а доказательства — это прежде всего маркетинговая задача, а не клиническая.",
+    intro: [
+      "Aesthetic and wellness clients research differently to almost any other category: before-and-after results, practitioner credentials and other patients' reviews carry more weight than the offer itself. A clinic competing purely on price or a follow count is competing on the wrong axis — the client is really asking 'can I trust this person with my face,' and a marketing system has to answer that before it asks for the booking.",
+      "The category is also intensely local and intensely visual, which means Google Business Profile visibility, review volume and a social feed built on real results — not stock imagery — do more for booking rate than a wider awareness campaign ever will.",
+    ],
+    introAr: [
+      "يبحث عملاء التجميل والعافية بطريقة مختلفة عن أي فئة أخرى تقريباً: نتائج ما قبل وبعد، ومؤهلات الممارس، وتقييمات مرضى آخرين، كلها تزن أكثر من العرض نفسه. أي عيادة تتنافس فقط على السعر أو عدد المتابعين تتنافس على المحور الخاطئ — فالسؤال الحقيقي الذي يطرحه العميل هو 'هل أثق بهذا الشخص مع وجهي؟'، ويجب أن يجيب النظام التسويقي عن هذا السؤال قبل أن يطلب الحجز.",
+      "هذه الفئة أيضاً محلية بشكل كبير وبصرية بشكل كبير، ما يعني أن ظهور العيادة في ملف جوجل التجاري، وحجم التقييمات، وحساب سوشيال ميديا مبني على نتائج حقيقية لا صور جاهزة، كلها تفعل لمعدل الحجز أكثر بكثير مما تفعله أي حملة توعية أوسع.",
+    ],
+    introRu: [
+      "Клиенты в сфере эстетической медицины и wellness изучают предложения иначе, чем в почти любой другой категории: результаты «до и после», квалификация врача и отзывы других пациентов весят больше, чем сама акция. Клиника, конкурирующая только ценой или числом подписчиков, борется не на той оси — клиент на самом деле спрашивает себя «могу ли я доверить этому человеку своё лицо», и система маркетинга должна ответить на этот вопрос ещё до того, как попросит записаться.",
+      "Эта категория предельно локальна и предельно визуальна, поэтому видимость в Google Business Profile, объём отзывов и лента в соцсетях, построенная на реальных результатах, а не на стоковых изображениях, влияют на конверсию в запись сильнее, чем любая широкая имиджевая кампания.",
+    ],
+    whoWeWorkWith: [
+      "Aesthetic and cosmetic clinics",
+      "Medical spas and skin clinics",
+      "Dermatology-led aesthetic practices",
+      "Wellness centres offering non-surgical treatments",
+      "Multi-practitioner aesthetic groups",
+      "Beauty and wellness brands launching a clinical treatment line",
+    ],
+    whoWeWorkWithAr: [
+      "عيادات التجميل وطب التجميل غير الجراحي",
+      "المنتجعات الطبية وعيادات العناية بالبشرة",
+      "ممارسات تجميلية بقيادة أطباء الجلدية",
+      "مراكز العافية التي تقدم علاجات غير جراحية",
+      "مجموعات تجميل متعددة الممارسين",
+      "علامات تجميل وعافية تطلق خط علاجات طبية",
+    ],
+    whoWeWorkWithRu: [
+      "Клиники эстетической и косметической медицины",
+      "Медицинские спа и клиники по уходу за кожей",
+      "Дерматологические эстетические практики",
+      "Wellness-центры с неинвазивными процедурами",
+      "Многопрофильные группы эстетической медицины",
+      "Beauty- и wellness-бренды, запускающие линейку клинических процедур",
+    ],
+    challenges: [
+      { title: "Earning trust before the first visit", desc: "A client is trusting a practitioner with a visible result — marketing has to build credibility long before a consultation is booked." },
+      { title: "Advertising in a regulated category", desc: "Aesthetic and medical marketing carries platform and regulatory restrictions that a generic media plan isn't built to navigate." },
+      { title: "Local visibility against a crowded clinic map", desc: "A client typically compares three to five nearby clinics — Google Business Profile and local search presence decide who makes that shortlist." },
+      { title: "Social proof that reads as real", desc: "Results content has to look credible, not curated to the point of looking staged, or it undermines the trust it's meant to build." },
+      { title: "Converting interest into a booked consultation", desc: "A conversion-focused website and a fast enquiry-to-booking handoff matter more here than in most categories — hesitation kills the lead." },
+    ],
+    challengesAr: [
+      { title: "كسب الثقة قبل الزيارة الأولى", desc: "يضع العميل ثقته في ممارس سيترك أثراً مرئياً على مظهره — لذا يجب أن يبني التسويق المصداقية قبل حجز الاستشارة بوقت طويل." },
+      { title: "الإعلان ضمن فئة منظَّمة", desc: "يخضع التسويق التجميلي والطبي لقيود من المنصات والجهات التنظيمية لا تستطيع خطة إعلانية عامة التعامل معها." },
+      { title: "الظهور المحلي وسط خريطة عيادات مزدحمة", desc: "يقارن العميل عادةً بين ثلاث إلى خمس عيادات قريبة — ويحدد ملف جوجل التجاري وحضور البحث المحلي من يصل إلى تلك القائمة المختصرة." },
+      { title: "دليل اجتماعي يبدو حقيقياً", desc: "يجب أن يبدو محتوى النتائج موثوقاً، لا منسّقاً إلى درجة تبدو مفتعلة، وإلا قوّض الثقة التي يُفترض أن يبنيها." },
+      { title: "تحويل الاهتمام إلى استشارة محجوزة", desc: "الموقع المركّز على التحويل والانتقال السريع من الاستفسار إلى الحجز يهمان هنا أكثر من معظم الفئات الأخرى — فالتردد يقتل العميل المحتمل." },
+    ],
+    challengesRu: [
+      { title: "Завоевать доверие ещё до первого визита", desc: "Клиент доверяет специалисту видимый результат — маркетинг должен формировать доверие задолго до записи на консультацию." },
+      { title: "Реклама в регулируемой категории", desc: "Эстетический и медицинский маркетинг подчиняется ограничениям платформ и регуляторов, с которыми типовой медиаплан просто не рассчитан работать." },
+      { title: "Локальная видимость на перегруженной карте клиник", desc: "Клиент обычно сравнивает три-пять клиник поблизости — профиль в Google Business и локальный поиск решают, кто попадёт в этот шорт-лист." },
+      { title: "Социальное доказательство, которому верят", desc: "Контент с результатами должен выглядеть достоверно, а не отредактированным до постановочности — иначе он подрывает то самое доверие, которое должен создавать." },
+      { title: "Превратить интерес в запись на консультацию", desc: "Сайт, ориентированный на конверсию, и быстрый переход от заявки к записи важны здесь больше, чем в большинстве категорий — колебание убивает лида." },
+    ],
+    services: [
+      { slug: "digital-marketing", title: "Performance Marketing for Clinics", desc: "Search and social campaigns built within the category's advertising restrictions, targeted at genuine consultation intent." },
+      { slug: "seo", title: "Aesthetic Clinic SEO", desc: "Local and treatment-specific search visibility that puts the clinic on the shortlist before a client ever compares reviews." },
+      { slug: "branding", title: "Clinic Branding & Positioning", desc: "A visual identity and tone that reads as clinical and credible, not clinical and cold." },
+      { slug: "website-development", title: "Conversion-Focused Clinic Websites", desc: "Fast, trust-building websites with treatment pages and booking flows designed for a hesitant first-time client." },
+      { slug: "crm-marketing-automation", title: "Consultation & Retention Automation", desc: "Automated follow-up from enquiry to consultation, and post-treatment sequences that bring a client back for the next one." },
+    ],
+    servicesAr: [
+      { slug: "digital-marketing", title: "التسويق الأدائي للعيادات", desc: "حملات بحث وسوشيال ميديا مصممة ضمن القيود الإعلانية لهذه الفئة، وتستهدف نية استشارة حقيقية." },
+      { slug: "seo", title: "تحسين محركات البحث لعيادات التجميل", desc: "ظهور محلي ومرتبط بالعلاج تحديداً في نتائج البحث، يضع العيادة على القائمة المختصرة قبل أن يقارن العميل التقييمات." },
+      { slug: "branding", title: "هوية العيادة وتموضعها", desc: "هوية بصرية ونبرة توحي بالمصداقية الطبية، لا بالبرود الطبي." },
+      { slug: "website-development", title: "مواقع عيادات مركّزة على التحويل", desc: "مواقع سريعة تبني الثقة، بصفحات علاجات ومسارات حجز مصممة للعميل المتردد في زيارته الأولى." },
+      { slug: "crm-marketing-automation", title: "أتمتة الاستشارات والاحتفاظ بالعملاء", desc: "متابعة آلية من الاستفسار وحتى الاستشارة، وسلاسل ما بعد العلاج التي تعيد العميل لجلسته التالية." },
+    ],
+    servicesRu: [
+      { slug: "digital-marketing", title: "Performance-маркетинг для клиник", desc: "Поисковые и социальные кампании, выстроенные с учётом рекламных ограничений категории и нацеленные на реальное намерение записаться на консультацию." },
+      { slug: "seo", title: "SEO для клиник эстетической медицины", desc: "Локальная и по-процедурная видимость в поиске, которая ставит клинику в шорт-лист ещё до того, как клиент начнёт сравнивать отзывы." },
+      { slug: "branding", title: "Брендинг и позиционирование клиники", desc: "Визуальная айдентика и тон коммуникации, которые звучат клинически достоверно, а не клинически холодно." },
+      { slug: "website-development", title: "Сайты клиник, ориентированные на конверсию", desc: "Быстрые сайты, формирующие доверие, со страницами процедур и формами записи, продуманными для сомневающегося клиента, обращающегося впервые." },
+      { slug: "crm-marketing-automation", title: "Автоматизация консультаций и удержания", desc: "Автоматизированное сопровождение от заявки до консультации и цепочки после процедуры, которые возвращают клиента на следующую." },
+    ],
+    approach: [
+      { step: "01", title: "Trust Audit", desc: "Review what a prospective client actually sees across Google, social and the website before they ever ask a question." },
+      { step: "02", title: "Positioning", desc: "Define the clinic's credible point of difference — practitioner expertise, results, patient experience — and build the message around it." },
+      { step: "03", title: "Content & Proof", desc: "Build a library of genuine before-and-after and patient-experience content that carries the trust story across channels." },
+      { step: "04", title: "Local Search", desc: "Strengthen Google Business Profile and local SEO so the clinic surfaces on the shortlist a nearby search generates." },
+      { step: "05", title: "Performance", desc: "Run compliant, consultation-focused paid campaigns measured against booked consultations, not clicks." },
+      { step: "06", title: "Retention", desc: "Keep clients returning with CRM sequences built around treatment cycles, not one-off promotions." },
+    ],
+    approachAr: [
+      { step: "01", title: "تدقيق الثقة", desc: "مراجعة ما يراه العميل المحتمل فعلياً عبر جوجل والسوشيال ميديا والموقع قبل أن يطرح أي سؤال." },
+      { step: "02", title: "التموضع", desc: "تحديد نقطة تميّز العيادة الموثوقة — خبرة الممارس، النتائج، تجربة المريض — وبناء الرسالة حولها." },
+      { step: "03", title: "المحتوى والدليل", desc: "بناء مكتبة محتوى حقيقي لنتائج ما قبل وبعد وتجارب المرضى تحمل قصة الثقة عبر القنوات." },
+      { step: "04", title: "البحث المحلي", desc: "تعزيز ملف جوجل التجاري وتحسين محركات البحث المحلي بحيث تظهر العيادة في القائمة المختصرة لبحث قريب." },
+      { step: "05", title: "الأداء", desc: "إدارة حملات مدفوعة متوافقة مع الأنظمة ومركّزة على الاستشارات، تُقاس بالاستشارات المحجوزة لا بالنقرات." },
+      { step: "06", title: "الاحتفاظ بالعملاء", desc: "إبقاء العملاء يعودون عبر سلاسل إدارة علاقات عملاء مبنية حول دورات العلاج، لا العروض لمرة واحدة." },
+    ],
+    approachRu: [
+      { step: "01", title: "Аудит доверия", desc: "Анализируем, что потенциальный клиент реально видит в Google, соцсетях и на сайте ещё до того, как задаст первый вопрос." },
+      { step: "02", title: "Позиционирование", desc: "Определяем убедительное отличие клиники — экспертизу врача, результаты, опыт пациентов — и строим вокруг этого сообщение." },
+      { step: "03", title: "Контент и доказательства", desc: "Создаём библиотеку подлинного контента «до и после» и историй пациентов, которая несёт историю доверия через все каналы." },
+      { step: "04", title: "Локальный поиск", desc: "Усиливаем профиль в Google Business и локальный SEO, чтобы клиника попадала в шорт-лист при поиске «рядом со мной»." },
+      { step: "05", title: "Performance-реклама", desc: "Запускаем платные кампании в рамках правил площадок, ориентированные на запись на консультацию, а не на клики." },
+      { step: "06", title: "Удержание", desc: "Возвращаем клиентов с помощью CRM-цепочек, построенных вокруг циклов процедур, а не разовых акций." },
+    ],
+    faqs: [
+      { q: "Can you advertise aesthetic and medical treatments on Google and Meta?", a: "Within each platform's advertising policy for medical and cosmetic content — we build campaigns to work inside those restrictions rather than around them, which protects the account long-term." },
+      { q: "How important is Google Business Profile for a clinic?", a: "It's often the first thing a prospective client checks before a website — reviews, photos and response rate there directly influence whether the clinic makes the shortlist." },
+      { q: "What makes aesthetic clinic marketing different from general healthcare marketing?", a: "The purchase decision leans more heavily on visible results, aesthetic taste and social proof, and the client journey is usually elective rather than needs-driven, which changes both the content and the funnel." },
+      { q: "Do you help with social media content, not just advertising?", a: "Yes — for this category the organic feed does as much trust-building work as any paid campaign, so content strategy and advertising are planned together." },
+    ],
+    faqsAr: [
+      { q: "هل يمكن الإعلان عن العلاجات التجميلية والطبية على جوجل وميتا؟", a: "ضمن سياسات الإعلان الخاصة بكل منصة للمحتوى الطبي والتجميلي — نبني الحملات لتعمل داخل هذه القيود لا للالتفاف عليها، وهو ما يحمي الحساب على المدى الطويل." },
+      { q: "ما مدى أهمية ملف جوجل التجاري للعيادة؟", a: "غالباً ما يكون أول ما يفحصه العميل المحتمل قبل الموقع الإلكتروني — إذ تؤثر التقييمات والصور ومعدل الرد مباشرةً في وصول العيادة إلى القائمة المختصرة." },
+      { q: "ما الذي يميّز تسويق عيادات التجميل عن التسويق الصحي العام؟", a: "يعتمد قرار الشراء بشكل أكبر على النتائج المرئية والذوق الجمالي والدليل الاجتماعي، وتكون رحلة العميل عادةً اختيارية لا قائمة على حاجة ملحّة، ما يغيّر طبيعة المحتوى ومسار التحويل معاً." },
+      { q: "هل تساعدون في محتوى السوشيال ميديا، لا الإعلانات فقط؟", a: "نعم — ففي هذه الفئة يقوم المحتوى العضوي بجهد بناء ثقة يوازي أي حملة مدفوعة، لذا نخطط استراتيجية المحتوى والإعلانات معاً." },
+    ],
+    faqsRu: [
+      { q: "Можно ли рекламировать эстетические и медицинские процедуры в Google и Meta?", a: "Да, в рамках рекламной политики каждой платформы для медицинского и косметологического контента — мы строим кампании так, чтобы работать внутри этих ограничений, а не в обход них, что защищает аккаунт в долгосрочной перспективе." },
+      { q: "Насколько важен профиль Google Business для клиники?", a: "Часто это первое, что проверяет потенциальный клиент ещё до сайта — отзывы, фото и скорость ответа там напрямую влияют на то, попадёт ли клиника в шорт-лист." },
+      { q: "Чем маркетинг эстетической клиники отличается от маркетинга обычного медицинского учреждения?", a: "Решение о покупке здесь сильнее опирается на видимые результаты, эстетический вкус и социальное доказательство, а путь клиента чаще связан с личным выбором, а не с необходимостью, — это меняет и контент, и воронку." },
+      { q: "Вы помогаете с контентом в соцсетях, а не только с рекламой?", a: "Да — в этой категории органическая лента формирует доверие не хуже любой платной кампании, поэтому контент-стратегию и рекламу мы планируем вместе." },
+    ],
+    ctaTitle: ["Let's build the trust", "that earns the booking."],
+    ctaTitleAr: ["لنبنِ الثقة", "التي تكسب الحجز."],
+    ctaTitleRu: ["Построим доверие,", "которое приводит к записи."],
+    ctaMessage: "Hi, I'm interested in digital marketing for aesthetic clinics.",
+    ctaMessageAr: "مرحباً، أنا مهتم بالتسويق الرقمي لعيادات التجميل.",
+    ctaMessageRu: "Здравствуйте, меня интересует digital-маркетинг для клиник эстетической медицины.",
+    metaDescription:
+      "Aesthetic clinic and medical spa marketing in Dubai — trust-led performance marketing, SEO, branding and conversion websites for clinics and wellness brands.",
+    metaDescriptionAr:
+      "تسويق عيادات التجميل والمنتجعات الطبية في دبي — تسويق أدائي قائم على الثقة، تحسين لمحركات البحث، هوية بصرية ومواقع تحويل للعيادات وعلامات العافية.",
+    metaDescriptionRu:
+      "Маркетинг для клиник эстетической медицины и медицинских спа в Дубае: performance-реклама на доверии, SEO, брендинг и конверсионные сайты.",
+    seoTitle: "Aesthetic Clinic & Medical Spa Marketing Agency — Dubai",
+    seoTitleAr: "وكالة تسويق لعيادات التجميل والمنتجعات الطبية — دبي",
+    seoTitleRu: "Агентство маркетинга для клиник эстетической медицины — Дубай",
+    relatedIndustrySlug: "healthcare",
+  },
+  {
+    slug: "healthcare",
+    num: "04",
+    name: "Healthcare",
+    nameAr: "الرعاية الصحية",
+    nameRu: "Здравоохранение",
+    title: "Digital Marketing for Healthcare.",
+    titleAr: "التسويق الرقمي للرعاية الصحية.",
+    titleRu: "Цифровой маркетинг для здравоохранения.",
+    heroImage: "/images/industries/healthcare.jpg",
+    descriptor:
+      "Credibility-first marketing for clinics and healthcare providers, where patient trust and local search visibility decide who gets the appointment.",
+    descriptorAr:
+      "تسويق قائم على المصداقية أولاً للعيادات ومقدمي الرعاية الصحية، حيث تحدد ثقة المريض والظهور في البحث المحلي من يحصل على الموعد.",
+    descriptorRu:
+      "Маркетинг, построенный на доверии, для клиник и медицинских учреждений, где запись на приём решают доверие пациентов и видимость в локальном поиске.",
+    subhead: "Marketing built on credibility, not claims.",
+    subheadAr: "تسويق مبني على المصداقية، لا على الادعاءات.",
+    subheadRu: "Маркетинг, основанный на достоверности, а не на заявлениях.",
+    lead:
+      "A patient chooses a clinic the way they choose a doctor — on trust, proximity and proof — and that decision is made online before it's made in a waiting room.",
+    leadAr:
+      "يختار المريض العيادة بالطريقة نفسها التي يختار بها الطبيب — بناءً على الثقة والقرب والدليل — ويُتخذ هذا القرار عبر الإنترنت قبل أن يُتخذ في غرفة الانتظار.",
+    leadRu:
+      "Пациент выбирает клинику так же, как выбирает врача, — по доверию, близости и доказательствам, — и это решение принимается в интернете задолго до приёмной.",
+    intro: [
+      "Healthcare search behaviour is need-driven and time-sensitive: a symptom, an insurance panel, or a recommendation sends a patient straight to Google, and the clinics that appear, load fast and answer the actual question win the appointment. Unlike more discretionary categories, healthcare marketing has to be accurate as much as it is persuasive — overstating a claim doesn't just risk regulatory exposure, it erodes exactly the trust the whole funnel depends on.",
+      "Most clinics also compete on two fronts simultaneously: paid and organic visibility for symptom and specialty searches, and a Google Business Profile and review presence strong enough to win the 'near me' comparison a patient runs before calling. Getting both right is what turns local search into a steady stream of appointments rather than a single campaign spike.",
+    ],
+    introAr: [
+      "سلوك البحث في قطاع الرعاية الصحية قائم على حاجة فعلية وحساس للوقت: عرَض صحي، أو شبكة تأمين، أو توصية، كلها تدفع المريض مباشرة إلى جوجل، والعيادات التي تظهر بسرعة وتُجيب عن السؤال الفعلي هي من تفوز بالموعد. وخلافاً للفئات الأكثر اختيارية، يجب أن يكون التسويق الصحي دقيقاً بقدر ما هو مقنع — فالمبالغة في ادعاء لا تعرّض العيادة لمخاطر تنظيمية فحسب، بل تقوّض الثقة التي يعتمد عليها مسار التحويل بأكمله.",
+      "تتنافس معظم العيادات أيضاً على جبهتين في آن واحد: الظهور المدفوع والعضوي في عمليات البحث عن الأعراض والتخصصات، وحضور قوي في ملف جوجل التجاري والتقييمات يكفي للفوز بمقارنة 'بالقرب مني' التي يجريها المريض قبل الاتصال. إتقان الجبهتين معاً هو ما يحوّل البحث المحلي إلى تدفق ثابت من المواعيد بدلاً من ارتفاع مؤقت مرتبط بحملة واحدة.",
+    ],
+    introRu: [
+      "Поведение пациентов в поиске продиктовано необходимостью и ограничено во времени: симптом, страховая программа или рекомендация сразу же приводят пациента в Google, и запись получает та клиника, которая появляется в выдаче, быстро загружается и отвечает на реальный вопрос. В отличие от менее насущных категорий, медицинский маркетинг должен быть точным не меньше, чем убедительным, — преувеличенное заявление не просто создаёт регуляторный риск, оно подрывает то самое доверие, на котором держится вся воронка.",
+      "Большинству клиник приходится конкурировать сразу на двух фронтах: платная и органическая видимость по запросам симптомов и специализаций, а также присутствие в Google Business Profile и отзывах, достаточно сильное, чтобы выигрывать сравнение «рядом со мной», которое пациент проводит перед звонком. Именно правильная работа с обоими направлениями превращает локальный поиск в стабильный поток записей, а не в разовый всплеск от одной кампании.",
+    ],
+    whoWeWorkWith: [
+      "Multi-specialty and single-specialty medical clinics",
+      "Dental practices and dental groups",
+      "Diagnostic and imaging centres",
+      "Physiotherapy and rehabilitation clinics",
+      "Healthcare groups managing multiple branches",
+      "Telehealth and digital-first healthcare providers",
+    ],
+    whoWeWorkWithAr: [
+      "عيادات طبية متعددة التخصصات وأحادية التخصص",
+      "عيادات ومجموعات طب الأسنان",
+      "مراكز التشخيص والأشعة",
+      "عيادات العلاج الطبيعي وإعادة التأهيل",
+      "مجموعات رعاية صحية تدير عدة فروع",
+      "مقدمو رعاية صحية عن بُعد ورقميون أولاً",
+    ],
+    whoWeWorkWithRu: [
+      "Многопрофильные и узкоспециализированные медицинские клиники",
+      "Стоматологические практики и группы клиник",
+      "Диагностические и визуализационные центры",
+      "Клиники физиотерапии и реабилитации",
+      "Медицинские группы с несколькими филиалами",
+      "Телемедицинские и digital-ориентированные медицинские сервисы",
+    ],
+    challenges: [
+      { title: "Trust and regulatory accuracy", desc: "Claims have to be accurate as well as persuasive — marketing here carries a credibility and compliance bar most categories don't." },
+      { title: "Winning the 'near me' search", desc: "Local pack visibility and review volume decide whether a patient calls this clinic or the next listing down." },
+      { title: "Insurance and panel complexity", desc: "A patient's first question is often whether their insurer is accepted — that has to be answered clearly and fast, ideally before the call." },
+      { title: "Multi-branch consistency", desc: "A group with several branches needs every location visible and accurately listed, not just the flagship clinic." },
+      { title: "Converting search intent into a booked appointment", desc: "A fast, clear booking path matters as much as visibility — a patient who can't book in two clicks often just calls the next result." },
+    ],
+    challengesAr: [
+      { title: "الثقة والدقة التنظيمية", desc: "يجب أن تكون الادعاءات دقيقة بقدر ما هي مقنعة — فالتسويق هنا يحمل معياراً من المصداقية والامتثال لا تحمله معظم الفئات الأخرى." },
+      { title: "الفوز ببحث 'بالقرب مني'", desc: "يحدد الظهور في نتائج الخريطة المحلية وحجم التقييمات ما إذا كان المريض سيتصل بهذه العيادة أو بالعرض الذي يليها." },
+      { title: "تعقيد شبكات التأمين", desc: "غالباً ما يكون سؤال المريض الأول هو هل تُقبل شركة تأمينه — ويجب الإجابة عن ذلك بوضوح وسرعة، ويُفضّل قبل الاتصال." },
+      { title: "الاتساق بين الفروع المتعددة", desc: "تحتاج المجموعة ذات الفروع المتعددة إلى أن يكون كل موقع ظاهراً ومدرجاً بدقة، لا العيادة الرئيسية وحدها." },
+      { title: "تحويل نية البحث إلى موعد محجوز", desc: "مسار حجز سريع وواضح لا يقل أهمية عن الظهور نفسه — فالمريض الذي لا يستطيع الحجز خلال نقرتين غالباً ما يتصل بالنتيجة التالية فحسب." },
+    ],
+    challengesRu: [
+      { title: "Доверие и регуляторная точность", desc: "Заявления должны быть точными настолько же, насколько убедительными, — маркетинг здесь несёт планку достоверности и соответствия требованиям, недостижимую для большинства категорий." },
+      { title: "Победа в поиске «рядом со мной»", desc: "Видимость в локальной выдаче и объём отзывов решают, позвонит ли пациент именно в эту клинику или в следующую по списку." },
+      { title: "Сложность работы со страховками", desc: "Первый вопрос пациента часто в том, принимается ли его страховка, — на него нужно отвечать ясно и быстро, в идеале ещё до звонка." },
+      { title: "Единообразие для сети филиалов", desc: "Группе с несколькими филиалами нужна видимость и точные данные по каждой локации, а не только по флагманской клинике." },
+      { title: "Превратить поисковый запрос в запись на приём", desc: "Быстрый и понятный путь к записи важен не меньше видимости — пациент, который не может записаться за два клика, часто просто звонит по следующей ссылке в выдаче." },
+    ],
+    services: [
+      { slug: "digital-marketing", title: "Performance Marketing for Clinics", desc: "Search campaigns built around genuine appointment intent, respecting the accuracy standard healthcare advertising requires." },
+      { slug: "seo", title: "Healthcare SEO", desc: "Specialty, symptom and location-based search visibility, plus the local pack presence that wins the 'near me' search." },
+      { slug: "website-development", title: "Clinic & Practice Websites", desc: "Fast, accessible websites with clear booking flows, insurance information and per-branch location pages." },
+      { slug: "branding", title: "Healthcare Branding", desc: "A credible, reassuring identity that reads as clinically sound across every touchpoint, from signage to social." },
+      { slug: "crm-marketing-automation", title: "Patient CRM & Follow-Up", desc: "Automated appointment reminders, recall sequences and post-visit follow-up that reduce no-shows and build return visits." },
+    ],
+    servicesAr: [
+      { slug: "digital-marketing", title: "التسويق الأدائي للعيادات", desc: "حملات بحث مبنية حول نية حجز موعد حقيقية، مع الالتزام بمعيار الدقة الذي يتطلبه الإعلان الصحي." },
+      { slug: "seo", title: "تحسين محركات البحث للرعاية الصحية", desc: "ظهور في البحث حسب التخصص والعرض الصحي والموقع الجغرافي، إضافة إلى حضور في نتائج الخريطة المحلية يفوز ببحث 'بالقرب مني'." },
+      { slug: "website-development", title: "مواقع العيادات والممارسات الطبية", desc: "مواقع سريعة وسهلة الوصول بمسارات حجز واضحة، ومعلومات تأمين، وصفحات موقع لكل فرع." },
+      { slug: "branding", title: "الهوية البصرية للرعاية الصحية", desc: "هوية موثوقة ومطمئنة تبدو سليمة طبياً عبر كل نقطة تواصل، من اللافتات إلى السوشيال ميديا." },
+      { slug: "crm-marketing-automation", title: "إدارة علاقات المرضى والمتابعة", desc: "تذكيرات مواعيد آلية، وسلاسل استدعاء، ومتابعة بعد الزيارة تقلل من الغياب عن المواعيد وتبني زيارات متكررة." },
+    ],
+    servicesRu: [
+      { slug: "digital-marketing", title: "Performance-маркетинг для клиник", desc: "Поисковые кампании, построенные вокруг реального намерения записаться на приём, с соблюдением стандартов точности медицинской рекламы." },
+      { slug: "seo", title: "SEO для медицинских учреждений", desc: "Видимость в поиске по специализациям, симптомам и локации, а также присутствие в локальной выдаче, побеждающее в запросах «рядом со мной»." },
+      { slug: "website-development", title: "Сайты клиник и медицинских практик", desc: "Быстрые, доступные сайты с понятными формами записи, информацией о страховках и страницами для каждого филиала." },
+      { slug: "branding", title: "Брендинг для здравоохранения", desc: "Достоверная, вызывающая доверие айдентика, которая читается как клинически обоснованная на каждой точке контакта — от вывески до соцсетей." },
+      { slug: "crm-marketing-automation", title: "CRM для пациентов и сопровождение", desc: "Автоматические напоминания о приёме, цепочки повторных вызовов и сопровождение после визита, которые сокращают неявки и формируют повторные визиты." },
+    ],
+    approach: [
+      { step: "01", title: "Audit", desc: "Review current visibility across search, maps and review platforms for every specialty and location the practice covers." },
+      { step: "02", title: "Positioning", desc: "Establish a credible, accurate message for each specialty that a patient can act on without second-guessing it." },
+      { step: "03", title: "Local Search", desc: "Build out Google Business Profile, local SEO and per-branch pages so every location wins its own local pack." },
+      { step: "04", title: "Performance Marketing", desc: "Run appointment-focused paid campaigns within healthcare advertising standards." },
+      { step: "05", title: "Booking Experience", desc: "Tighten the website's booking path so search intent converts into a confirmed appointment, not an abandoned form." },
+      { step: "06", title: "Patient Retention", desc: "Layer in CRM automation for reminders, recalls and follow-up that keep patients returning." },
+    ],
+    approachAr: [
+      { step: "01", title: "التدقيق", desc: "مراجعة الظهور الحالي عبر البحث والخرائط ومنصات التقييم لكل تخصص وموقع تغطيه الممارسة." },
+      { step: "02", title: "التموضع", desc: "بناء رسالة موثوقة ودقيقة لكل تخصص يستطيع المريض التصرف بناءً عليها دون تردد." },
+      { step: "03", title: "البحث المحلي", desc: "بناء ملف جوجل التجاري وتحسين محركات البحث المحلي وصفحات لكل فرع بحيث يفوز كل موقع بنتائجه المحلية الخاصة." },
+      { step: "04", title: "التسويق الأدائي", desc: "إدارة حملات مدفوعة مركّزة على الحجز ضمن معايير الإعلان الصحي." },
+      { step: "05", title: "تجربة الحجز", desc: "تحسين مسار الحجز في الموقع بحيث تتحول نية البحث إلى موعد مؤكد لا نموذج مهجور." },
+      { step: "06", title: "الاحتفاظ بالمرضى", desc: "إضافة أتمتة إدارة علاقات العملاء للتذكيرات والاستدعاءات والمتابعة التي تُبقي المرضى يعودون." },
+    ],
+    approachRu: [
+      { step: "01", title: "Аудит", desc: "Анализируем текущую видимость в поиске, картах и на платформах отзывов по каждой специализации и локации практики." },
+      { step: "02", title: "Позиционирование", desc: "Формируем достоверное и точное сообщение для каждой специализации, на которое пациент может действовать без сомнений." },
+      { step: "03", title: "Локальный поиск", desc: "Развиваем профиль Google Business, локальный SEO и страницы филиалов, чтобы каждая локация выигрывала свою локальную выдачу." },
+      { step: "04", title: "Performance-маркетинг", desc: "Запускаем платные кампании, ориентированные на запись на приём, в рамках стандартов медицинской рекламы." },
+      { step: "05", title: "Опыт записи", desc: "Дорабатываем путь записи на сайте, чтобы поисковый запрос превращался в подтверждённый приём, а не в брошенную форму." },
+      { step: "06", title: "Удержание пациентов", desc: "Добавляем CRM-автоматизацию для напоминаний, повторных вызовов и сопровождения, которая возвращает пациентов снова." },
+    ],
+    faqs: [
+      { q: "Is healthcare marketing regulated differently to other industries?", a: "Yes — claims about outcomes and treatments have to be accurate and compliant with platform and, where applicable, local health-advertising standards, which shapes both the messaging and the media strategy." },
+      { q: "How much does local SEO matter for a single clinic?", a: "It's usually the single highest-leverage channel — most patients search by symptom, specialty or 'near me' before they search for a clinic by name." },
+      { q: "Can you manage marketing for a multi-branch healthcare group?", a: "Yes — each branch needs its own accurate listing, local SEO presence and tracked performance, coordinated under one overall strategy rather than run separately." },
+      { q: "Do you help reduce no-shows, not just generate new patients?", a: "Yes — CRM-driven reminder and recall sequences are part of the system, since retaining and reactivating existing patients is usually more cost-effective than acquiring new ones." },
+    ],
+    faqsAr: [
+      { q: "هل يخضع التسويق الصحي لتنظيم مختلف عن القطاعات الأخرى؟", a: "نعم — يجب أن تكون الادعاءات حول النتائج والعلاجات دقيقة ومتوافقة مع معايير المنصات، وحيثما ينطبق، مع معايير الإعلان الصحي المحلية، ما يشكّل الرسالة واستراتيجية الحملات معاً." },
+      { q: "ما مدى أهمية تحسين محركات البحث المحلي لعيادة واحدة؟", a: "غالباً ما تكون القناة الأعلى تأثيراً بمفردها — إذ يبحث معظم المرضى بالعرض الصحي أو التخصص أو 'بالقرب مني' قبل البحث باسم العيادة تحديداً." },
+      { q: "هل يمكنكم إدارة التسويق لمجموعة رعاية صحية متعددة الفروع؟", a: "نعم — يحتاج كل فرع إلى إدراج دقيق خاص به، وحضور في البحث المحلي، وأداء يُتابع، منسّق ضمن استراتيجية شاملة واحدة بدلاً من إدارته بمعزل عن غيره." },
+      { q: "هل تساعدون في تقليل الغياب عن المواعيد، لا استقطاب مرضى جدد فقط؟", a: "نعم — سلاسل التذكير والاستدعاء المعتمدة على إدارة علاقات العملاء جزء من النظام، إذ يكون الاحتفاظ بالمرضى الحاليين وإعادة تنشيطهم عادةً أكثر جدوى من حيث التكلفة من استقطاب مرضى جدد." },
+    ],
+    faqsRu: [
+      { q: "Регулируется ли медицинский маркетинг иначе, чем другие отрасли?", a: "Да — заявления о результатах и методах лечения должны быть точными и соответствовать правилам платформ и, где применимо, местным стандартам медицинской рекламы, что определяет и сообщения, и медиастратегию." },
+      { q: "Насколько важен локальный SEO для отдельной клиники?", a: "Обычно это самый эффективный канал — большинство пациентов ищут по симптому, специализации или запросу «рядом со мной», прежде чем искать клинику по названию." },
+      { q: "Вы можете вести маркетинг для медицинской группы с несколькими филиалами?", a: "Да — каждому филиалу нужны собственный точный листинг, присутствие в локальном SEO и отслеживаемые показатели, скоординированные в рамках единой стратегии, а не работающие по отдельности." },
+      { q: "Вы помогаете сократить неявки, а не только привлекать новых пациентов?", a: "Да — цепочки напоминаний и повторных вызовов на базе CRM входят в систему, поскольку удержание и реактивация существующих пациентов обычно обходится дешевле привлечения новых." },
+    ],
+    ctaTitle: ["Let's build the visibility", "patients actually trust."],
+    ctaTitleAr: ["لنبنِ الظهور", "الذي يثق به المرضى فعلاً."],
+    ctaTitleRu: ["Построим видимость,", "которой действительно доверяют пациенты."],
+    ctaMessage: "Hi, I'm interested in digital marketing for healthcare.",
+    ctaMessageAr: "مرحباً، أنا مهتم بالتسويق الرقمي للرعاية الصحية.",
+    ctaMessageRu: "Здравствуйте, меня интересует digital-маркетинг для здравоохранения.",
+    metaDescription:
+      "Healthcare marketing in Dubai — SEO, performance marketing, branding and websites for clinics, medical groups and healthcare providers, built on patient trust.",
+    metaDescriptionAr:
+      "تسويق الرعاية الصحية في دبي — تحسين لمحركات البحث، تسويق أدائي، هوية بصرية ومواقع للعيادات والمجموعات الطبية، مبني على ثقة المرضى.",
+    metaDescriptionRu:
+      "Медицинский маркетинг в Дубае: SEO, performance-реклама, брендинг и сайты для клиник и медицинских групп, построенные на доверии пациентов.",
+    seoTitle: "Healthcare & Medical Clinic Marketing Agency — Dubai",
+    seoTitleAr: "وكالة تسويق للرعاية الصحية والعيادات الطبية — دبي",
+    seoTitleRu: "Агентство маркетинга для медицинских клиник — Дубай",
+    relatedIndustrySlug: "aesthetic-wellness",
+  },
+  {
+    slug: "ecommerce-retail",
+    num: "05",
+    name: "E-commerce & Retail",
+    nameAr: "التجارة الإلكترونية والتجزئة",
+    nameRu: "E-commerce и ритейл",
+    title: "Digital Marketing for E-commerce.",
+    titleAr: "التسويق الرقمي للتجارة الإلكترونية.",
+    titleRu: "Цифровой маркетинг для e-commerce.",
+    heroImage: "/images/industries/ecommerce-retail.jpg",
+    descriptor:
+      "Performance marketing and store experience built to lift conversion rate and repeat purchase, not just traffic.",
+    descriptorAr:
+      "تسويق أدائي وتجربة متجر مصممان لرفع معدل التحويل والشراء المتكرر، لا لزيادة الزيارات فقط.",
+    descriptorRu:
+      "Performance-маркетинг и опыт покупки в магазине, направленные на рост конверсии и повторных покупок, а не только трафика.",
+    subhead: "Marketing measured in revenue per visitor, not visits.",
+    subheadAr: "تسويق يُقاس بالإيراد لكل زائر، لا بعدد الزيارات.",
+    subheadRu: "Маркетинг, который измеряют выручкой на посетителя, а не числом визитов.",
+    lead:
+      "Traffic is the easiest number to buy in e-commerce and the least useful one to report — the only figure that matters is what a visitor actually spends.",
+    leadAr:
+      "الزيارات هي أسهل رقم يمكن شراؤه في التجارة الإلكترونية وأقلها فائدة في التقارير — الرقم الوحيد المهم هو ما ينفقه الزائر فعلياً.",
+    leadRu:
+      "Трафик — это самое простое, что можно купить в e-commerce, и самый бесполезный показатель для отчёта: единственная цифра, которая имеет значение, — сколько реально тратит посетитель.",
+    intro: [
+      "An e-commerce brand's marketing and its store are the same system: a campaign that drives traffic to a slow page, a confusing category structure or a checkout with too many steps is paying to lose the sale it just won. Growth here compounds through conversion rate, average order value and repeat purchase rate as much as through acquisition spend — three levers most retailers under-invest in relative to how much they spend on ads.",
+      "Dubai's retail audience is also genuinely channel-diverse — search, social commerce, marketplaces and direct — so a strategy tuned to one channel alone leaves margin on the table. The brands scaling fastest treat SEO, paid media and the store experience as one funnel, measured end to end rather than by channel in isolation.",
+    ],
+    introAr: [
+      "تسويق علامة التجارة الإلكترونية ومتجرها نظام واحد: فالحملة التي تقود الزيارات إلى صفحة بطيئة، أو بنية تصنيفات مربكة، أو عملية دفع بخطوات كثيرة، تدفع لتخسر البيع الذي كسبته للتو. ينمو هذا القطاع من خلال معدل التحويل ومتوسط قيمة الطلب ومعدل الشراء المتكرر بقدر نموه من خلال إنفاق الاستقطاب — وهي ثلاث روافع يقلّ استثمار معظم تجار التجزئة فيها مقارنةً بما ينفقونه على الإعلانات.",
+      "جمهور التجزئة في دبي أيضاً متنوع القنوات فعلياً — البحث، التجارة عبر السوشيال ميديا، الأسواق الإلكترونية، والقناة المباشرة — لذا فإن أي استراتيجية مضبوطة على قناة واحدة فقط تترك هامش ربح غير مستغل. العلامات الأسرع نمواً تتعامل مع تحسين محركات البحث والإعلانات المدفوعة وتجربة المتجر كمسار تحويل واحد، يُقاس من البداية إلى النهاية لا قناة بمعزل عن أخرى.",
+    ],
+    introRu: [
+      "Маркетинг e-commerce-бренда и его магазин — это одна система: кампания, которая приводит трафик на медленную страницу, запутанную структуру категорий или чекаут со слишком многими шагами, платит за то, чтобы тут же потерять только что выигранную продажу. Рост здесь накапливается через конверсию, средний чек и долю повторных покупок не меньше, чем через расходы на привлечение, — три рычага, в которые большинство ритейлеров инвестируют меньше, чем в рекламу.",
+      "Розничная аудитория Дубая по-настоящему многоканальна — поиск, social commerce, маркетплейсы и прямые продажи, — поэтому стратегия, настроенная только на один канал, оставляет маржу на столе. Бренды, которые растут быстрее всех, работают с SEO, платной рекламой и опытом покупки в магазине как с единой воронкой, измеряемой целиком, а не по каналам по отдельности.",
+    ],
+    whoWeWorkWith: [
+      "Direct-to-consumer e-commerce brands",
+      "Multi-category online retailers",
+      "Retail chains adding or scaling an online storefront",
+      "Marketplace sellers building a direct-to-consumer channel",
+      "Subscription and repeat-purchase commerce brands",
+      "Retail brands launching in the UAE market",
+    ],
+    whoWeWorkWithAr: [
+      "علامات تجارة إلكترونية تبيع مباشرة للمستهلك",
+      "متاجر إلكترونية متعددة الفئات",
+      "سلاسل تجزئة تضيف أو توسّع متجرها الإلكتروني",
+      "بائعون في الأسواق الإلكترونية يبنون قناة مباشرة للمستهلك",
+      "علامات تجارية تعتمد على الاشتراك والشراء المتكرر",
+      "علامات تجزئة تطلق أعمالها في سوق الإمارات",
+    ],
+    whoWeWorkWithRu: [
+      "D2C-бренды в e-commerce",
+      "Мультикатегорийные онлайн-ритейлеры",
+      "Розничные сети, запускающие или масштабирующие онлайн-магазин",
+      "Продавцы на маркетплейсах, выстраивающие собственный D2C-канал",
+      "Подписочные бренды и бренды с повторными покупками",
+      "Розничные бренды, выходящие на рынок ОАЭ",
+    ],
+    challenges: [
+      { title: "Rising acquisition costs", desc: "Paid channels get more expensive every quarter — margin has to come from conversion rate and retention, not just cheaper clicks." },
+      { title: "Store experience as a conversion lever", desc: "Page speed, checkout friction and mobile usability move conversion rate more than most campaign optimisations ever will." },
+      { title: "Fragmented channel performance", desc: "Search, social and marketplace traffic each convert differently — a single blended target hides which channel is actually working." },
+      { title: "Repeat purchase and retention", desc: "Acquiring a customer once is expensive; a brand's real margin lives in the second and third purchase, which needs its own strategy." },
+      { title: "Inventory-led campaign timing", desc: "Promotions, drops and stock cycles need media spend that moves with them, not a flat always-on budget." },
+    ],
+    challengesAr: [
+      { title: "ارتفاع تكاليف الاستقطاب", desc: "تزداد تكلفة القنوات المدفوعة كل ربع سنة — لذا يجب أن يأتي الهامش من معدل التحويل والاحتفاظ بالعملاء، لا من نقرات أرخص فقط." },
+      { title: "تجربة المتجر كرافعة تحويل", desc: "سرعة الصفحة، وسلاسة الدفع، وسهولة الاستخدام على الهاتف تؤثر في معدل التحويل أكثر بكثير مما تفعله معظم تحسينات الحملات." },
+      { title: "أداء متفرق بين القنوات", desc: "تتحول زيارات البحث والسوشيال ميديا والأسواق الإلكترونية بمعدلات مختلفة — وأي هدف مجمّع واحد يخفي القناة التي تعمل فعلياً." },
+      { title: "الشراء المتكرر والاحتفاظ بالعملاء", desc: "استقطاب العميل مرة واحدة مكلف؛ والهامش الحقيقي للعلامة يكمن في الشراء الثاني والثالث، وهو ما يحتاج إلى استراتيجية خاصة به." },
+      { title: "توقيت الحملات وفق المخزون", desc: "تحتاج العروض وإطلاقات المنتجات ودورات المخزون إلى إنفاق إعلاني يتحرك معها، لا ميزانية ثابتة مستمرة." },
+    ],
+    challengesRu: [
+      { title: "Рост стоимости привлечения", desc: "Платные каналы дорожают каждый квартал — маржу нужно искать в конверсии и удержании, а не только в более дешёвых кликах." },
+      { title: "Опыт покупки как рычаг конверсии", desc: "Скорость загрузки страниц, трудности чекаута и удобство на мобильных влияют на конверсию сильнее, чем большинство оптимизаций кампаний." },
+      { title: "Разрозненная эффективность каналов", desc: "Трафик из поиска, соцсетей и маркетплейсов конвертируется по-разному — единая усреднённая цель скрывает, какой канал реально работает." },
+      { title: "Повторные покупки и удержание", desc: "Привлечь клиента один раз дорого; реальная маржа бренда живёт во второй и третьей покупке, а для этого нужна отдельная стратегия." },
+      { title: "Календарь кампаний, привязанный к товарным остаткам", desc: "Промоакции, дропы и циклы поставок требуют рекламного бюджета, который двигается вместе с ними, а не работает по плоскому always-on графику." },
+    ],
+    services: [
+      { slug: "digital-marketing", title: "Performance Marketing for E-commerce", desc: "Search and social campaigns structured around revenue per visitor and return on ad spend, not raw traffic." },
+      { slug: "seo", title: "E-commerce SEO", desc: "Category and product page optimisation built to capture high-intent search traffic without relying entirely on paid." },
+      { slug: "website-development", title: "E-commerce Website Development", desc: "Fast, mobile-first storefronts with checkout flows built to convert, not just display a catalogue." },
+      { slug: "crm-marketing-automation", title: "Retention & Lifecycle Automation", desc: "Email and CRM sequences for abandoned cart, post-purchase and win-back that lift repeat purchase rate." },
+      { slug: "branding", title: "Retail Brand Identity", desc: "A brand system consistent across the storefront, packaging and every channel a customer meets it on." },
+    ],
+    servicesAr: [
+      { slug: "digital-marketing", title: "التسويق الأدائي للتجارة الإلكترونية", desc: "حملات بحث وسوشيال ميديا مبنية حول الإيراد لكل زائر والعائد على الإنفاق الإعلاني، لا حجم الزيارات الخام." },
+      { slug: "seo", title: "تحسين محركات البحث للتجارة الإلكترونية", desc: "تحسين صفحات التصنيفات والمنتجات لالتقاط زيارات بحث عالية النية دون الاعتماد كلياً على الإعلانات المدفوعة." },
+      { slug: "website-development", title: "تطوير مواقع التجارة الإلكترونية", desc: "متاجر إلكترونية سريعة مصممة أولاً للهاتف المحمول، بمسارات دفع مبنية للتحويل، لا لعرض الكتالوج فقط." },
+      { slug: "crm-marketing-automation", title: "أتمتة الاحتفاظ بالعملاء ودورة حياتهم", desc: "سلاسل بريد إلكتروني وإدارة علاقات عملاء للسلة المتروكة وما بعد الشراء واستعادة العملاء ترفع معدل الشراء المتكرر." },
+      { slug: "branding", title: "هوية علامة التجزئة", desc: "نظام هوية متسق عبر المتجر والتغليف وكل قناة يلتقي فيها العميل بالعلامة." },
+    ],
+    servicesRu: [
+      { slug: "digital-marketing", title: "Performance-маркетинг для e-commerce", desc: "Поисковые и социальные кампании, выстроенные вокруг выручки на посетителя и окупаемости рекламных вложений, а не голого трафика." },
+      { slug: "seo", title: "SEO для e-commerce", desc: "Оптимизация страниц категорий и товаров для захвата высокоинтентного поискового трафика без полной зависимости от платной рекламы." },
+      { slug: "website-development", title: "Разработка сайтов для e-commerce", desc: "Быстрые, мобильно-ориентированные интернет-магазины с чекаутом, созданным для конверсии, а не просто для показа каталога." },
+      { slug: "crm-marketing-automation", title: "Автоматизация удержания и жизненного цикла", desc: "Email- и CRM-цепочки для брошенных корзин, постпродажного сопровождения и возврата клиентов, повышающие долю повторных покупок." },
+      { slug: "branding", title: "Айдентика розничного бренда", desc: "Система бренда, единая для витрины магазина, упаковки и каждого канала, где её встречает клиент." },
+    ],
+    approach: [
+      { step: "01", title: "Audit", desc: "Review the full funnel — traffic, conversion rate, checkout and retention — to find where revenue is actually being lost." },
+      { step: "02", title: "Store Experience", desc: "Fix the conversion levers inside the store itself before scaling spend that would otherwise be wasted on them." },
+      { step: "03", title: "Acquisition", desc: "Build performance campaigns across search and social, budgeted to the channels actually returning revenue." },
+      { step: "04", title: "SEO", desc: "Strengthen category and product page visibility to reduce long-term dependency on paid acquisition." },
+      { step: "05", title: "Retention", desc: "Layer in lifecycle automation so a first purchase reliably leads to a second one." },
+      { step: "06", title: "Optimise", desc: "Review performance by channel weekly against revenue per visitor, not blended traffic totals." },
+    ],
+    approachAr: [
+      { step: "01", title: "التدقيق", desc: "مراجعة مسار التحويل الكامل — الزيارات، معدل التحويل، الدفع، الاحتفاظ بالعملاء — لتحديد أين يُفقد الإيراد فعلياً." },
+      { step: "02", title: "تجربة المتجر", desc: "إصلاح روافع التحويل داخل المتجر نفسه قبل توسيع الإنفاق الذي سيُهدر عليها لولا ذلك." },
+      { step: "03", title: "الاستقطاب", desc: "بناء حملات أدائية عبر البحث والسوشيال ميديا، بميزانية موجهة للقنوات التي تحقق إيراداً فعلياً." },
+      { step: "04", title: "تحسين محركات البحث", desc: "تعزيز ظهور صفحات التصنيفات والمنتجات لتقليل الاعتماد طويل الأمد على الاستقطاب المدفوع." },
+      { step: "05", title: "الاحتفاظ بالعملاء", desc: "إضافة أتمتة دورة حياة العميل بحيث تقود عملية الشراء الأولى إلى الثانية بشكل موثوق." },
+      { step: "06", title: "التحسين", desc: "مراجعة الأداء حسب القناة أسبوعياً مقارنةً بالإيراد لكل زائر، لا بإجمالي الزيارات المجمّع." },
+    ],
+    approachRu: [
+      { step: "01", title: "Аудит", desc: "Анализируем всю воронку — трафик, конверсию, чекаут и удержание, — чтобы найти, где реально теряется выручка." },
+      { step: "02", title: "Опыт покупки", desc: "Устраняем проблемы с конверсией внутри самого магазина, прежде чем масштабировать расходы, которые иначе были бы потрачены впустую." },
+      { step: "03", title: "Привлечение", desc: "Строим performance-кампании в поиске и соцсетях с бюджетом, распределённым по каналам, которые реально приносят выручку." },
+      { step: "04", title: "SEO", desc: "Усиливаем видимость страниц категорий и товаров, чтобы снизить долгосрочную зависимость от платного привлечения." },
+      { step: "05", title: "Удержание", desc: "Добавляем автоматизацию жизненного цикла, чтобы первая покупка надёжно вела ко второй." },
+      { step: "06", title: "Оптимизация", desc: "Еженедельно оцениваем эффективность по каналам через выручку на посетителя, а не через усреднённые показатели трафика." },
+    ],
+    faqs: [
+      { q: "What's the difference between e-commerce marketing and general digital marketing?", a: "E-commerce marketing is measured against revenue per visitor and return on ad spend rather than leads, and it treats the store's conversion rate as part of the marketing system, not a separate concern." },
+      { q: "How do you approach rising ad costs on Google and Meta?", a: "By shifting some of the growth burden onto conversion rate, retention and organic search, so the brand isn't entirely dependent on paid acquisition getting cheaper." },
+      { q: "Can you help with both marketplace and direct-to-consumer channels?", a: "Yes — the two usually need different strategies, and we help brands balance marketplace reach with building a direct channel that isn't subject to marketplace fees and rules." },
+      { q: "Do you work on the website itself, or only the marketing around it?", a: "Both — a campaign sending traffic to a slow or confusing storefront wastes spend, so store experience and website development sit inside the same engagement." },
+    ],
+    faqsAr: [
+      { q: "ما الفرق بين تسويق التجارة الإلكترونية والتسويق الرقمي العام؟", a: "يُقاس تسويق التجارة الإلكترونية بالإيراد لكل زائر والعائد على الإنفاق الإعلاني بدلاً من العملاء المحتملين، ويتعامل مع معدل تحويل المتجر كجزء من النظام التسويقي، لا كمسألة منفصلة." },
+      { q: "كيف تتعاملون مع ارتفاع تكاليف الإعلانات على جوجل وميتا؟", a: "من خلال نقل جزء من عبء النمو إلى معدل التحويل والاحتفاظ بالعملاء والبحث العضوي، بحيث لا تعتمد العلامة كلياً على انخفاض تكلفة الاستقطاب المدفوع." },
+      { q: "هل يمكنكم المساعدة في قنوات الأسواق الإلكترونية والبيع المباشر للمستهلك معاً؟", a: "نعم — تحتاج القناتان عادةً إلى استراتيجيات مختلفة، ونساعد العلامات على الموازنة بين وصول الأسواق الإلكترونية وبناء قناة مباشرة غير خاضعة لرسوم وقواعد تلك الأسواق." },
+      { q: "هل تعملون على الموقع نفسه، أم على التسويق المحيط به فقط؟", a: "كلاهما — فالحملة التي تقود الزيارات إلى متجر بطيء أو مربك تُهدر الإنفاق، لذا تندرج تجربة المتجر وتطوير الموقع ضمن التعاون نفسه." },
+    ],
+    faqsRu: [
+      { q: "В чём разница между маркетингом для e-commerce и обычным digital-маркетингом?", a: "Маркетинг для e-commerce измеряется выручкой на посетителя и окупаемостью рекламы, а не лидами, и рассматривает конверсию магазина как часть маркетинговой системы, а не отдельный вопрос." },
+      { q: "Как вы работаете с ростом стоимости рекламы в Google и Meta?", a: "Перераспределяя часть нагрузки по росту на конверсию, удержание и органический поиск, чтобы бренд не зависел полностью от удешевления платного привлечения." },
+      { q: "Вы можете помочь и с маркетплейсами, и с прямыми продажами?", a: "Да — этим двум направлениям обычно нужны разные стратегии, и мы помогаем брендам сочетать охват маркетплейсов с развитием прямого канала, не зависящего от их комиссий и правил." },
+      { q: "Вы работаете с самим сайтом или только с маркетингом вокруг него?", a: "И с тем, и с другим — кампания, направляющая трафик на медленную или запутанную витрину, тратит бюджет впустую, поэтому опыт покупки и разработка сайта входят в один проект." },
+    ],
+    ctaTitle: ["Let's turn traffic", "into repeat revenue."],
+    ctaTitleAr: ["لنحوّل الزيارات", "إلى إيراد متكرر."],
+    ctaTitleRu: ["Превратим трафик", "в повторную выручку."],
+    ctaMessage: "Hi, I'm interested in digital marketing for e-commerce.",
+    ctaMessageAr: "مرحباً، أنا مهتم بالتسويق الرقمي للتجارة الإلكترونية.",
+    ctaMessageRu: "Здравствуйте, меня интересует digital-маркетинг для e-commerce.",
+    metaDescription:
+      "E-commerce marketing in Dubai — performance marketing, SEO, conversion-focused website development and retention automation for online retail brands.",
+    metaDescriptionAr:
+      "تسويق التجارة الإلكترونية في دبي — تسويق أدائي، تحسين لمحركات البحث، تطوير مواقع مركّز على التحويل وأتمتة للاحتفاظ بالعملاء لعلامات التجزئة الإلكترونية.",
+    metaDescriptionRu:
+      "Маркетинг для e-commerce в Дубае: performance-реклама, SEO, разработка конверсионных сайтов и автоматизация удержания для розничных онлайн-брендов.",
+    seoTitle: "E-commerce & Retail Digital Marketing Agency — Dubai",
+    seoTitleAr: "وكالة تسويق رقمي للتجارة الإلكترونية والتجزئة — دبي",
+    seoTitleRu: "Агентство digital-маркетинга для e-commerce и ритейла — Дубай",
+    relatedIndustrySlug: "fashion-luxury",
+  },
+  {
+    slug: "fashion-luxury",
+    num: "06",
+    name: "Fashion & Luxury",
+    nameAr: "الأزياء والفخامة",
+    nameRu: "Мода и люкс",
+    title: "Digital Marketing for Fashion Brands.",
+    titleAr: "التسويق الرقمي لعلامات الأزياء.",
+    titleRu: "Цифровой маркетинг для fashion-брендов.",
+    heroImage: "/images/industries/fashion-luxury.jpg",
+    descriptor:
+      "Brand-led marketing for fashion and luxury labels, where perceived value has to survive the same feed as a fast-fashion discount code.",
+    descriptorAr:
+      "تسويق قائم على العلامة التجارية لدور الأزياء والفخامة، حيث يجب أن تصمد القيمة المُدركة في الواجهة نفسها التي يظهر فيها كود خصم لأزياء سريعة.",
+    descriptorRu:
+      "Маркетинг, ориентированный на бренд, для модных и люксовых марок, чья воспринимаемая ценность должна выживать в той же ленте, что и промокод масс-маркета.",
+    subhead: "Marketing that protects the brand while it performs.",
+    subheadAr: "تسويق يحمي العلامة التجارية بينما يحقق الأداء.",
+    subheadRu: "Маркетинг, который приносит результат, не теряя ценности бренда.",
+    lead:
+      "A luxury brand can win the click and still lose the sale if the campaign around it looks like every other discount in the feed.",
+    leadAr:
+      "قد تكسب علامة فخامة النقرة وتخسر البيع مع ذلك، إذا بدت الحملة المحيطة بها كأي خصم آخر في الواجهة.",
+    leadRu:
+      "Люксовый бренд может выиграть клик и всё равно потерять продажу, если кампания вокруг него выглядит как ещё одна скидка в ленте.",
+    intro: [
+      "Fashion and luxury marketing carries a tension most categories don't: it has to perform on the same measurable channels as mass retail — search, paid social, retargeting — without adopting the price-led tone that undercuts perceived value. A 20%-off banner might lift short-term conversion and quietly damage the brand's positioning for the next full-price campaign. Getting the balance right means treating brand and performance as one strategy, not two competing budgets.",
+      "The audience is also unusually visual and platform-literate — a label's Instagram grid, its editorial partnerships and its influencer presence do as much positioning work as any paid campaign, and increasingly convert directly through social commerce. A fashion brand's marketing system has to hold creative quality and commercial performance to the same standard at once.",
+    ],
+    introAr: [
+      "يحمل تسويق الأزياء والفخامة توتراً لا تحمله معظم الفئات الأخرى: فهو مطالب بتحقيق أداء قابل للقياس على القنوات نفسها التي تستخدمها التجزئة الجماهيرية — البحث، الإعلانات الاجتماعية المدفوعة، إعادة الاستهداف — دون تبنّي نبرة قائمة على السعر تقوّض القيمة المُدركة. فبانر خصم بنسبة 20% قد يرفع التحويل على المدى القصير ويضرّ بصمت بتموضع العلامة في الحملة التالية بالسعر الكامل. تحقيق التوازن الصحيح يعني التعامل مع العلامة والأداء كاستراتيجية واحدة، لا ميزانيتين متنافستين.",
+      "الجمهور هنا أيضاً بصري بشكل غير معتاد وملمّ بالمنصات — فشبكة صور العلامة على إنستغرام، وشراكاتها التحريرية، وحضورها مع المؤثرين، كلها تقوم بجهد تموضع يوازي أي حملة مدفوعة، وتتحول بشكل متزايد مباشرة عبر التجارة الاجتماعية. يجب أن يحافظ النظام التسويقي لعلامة الأزياء على جودة إبداعية وأداء تجاري بالمعيار نفسه في آن واحد.",
+    ],
+    introRu: [
+      "Маркетинг моды и люкса несёт напряжение, незнакомое большинству других категорий: он обязан работать на тех же измеримых каналах, что и массовая розница — поиск, платный трафик в соцсетях, ретаргетинг — не перенимая при этом ценового тона, который подрывает воспринимаемую ценность бренда. Баннер со скидкой 20% может краткосрочно поднять конверсию и незаметно повредить позиционированию бренда перед следующей кампанией по полной цене. Найти верный баланс — значит рассматривать бренд и перформанс как единую стратегию, а не два конкурирующих бюджета.",
+      "Аудитория здесь также необычно визуальна и хорошо ориентируется в платформах: лента бренда в Instagram, редакционные партнёрства и присутствие среди инфлюенсеров формируют позиционирование не хуже любой платной кампании — и всё чаще напрямую конвертируют через социальную коммерцию. Маркетинговая система fashion-бренда должна одновременно удерживать высокое качество креатива и коммерческую эффективность на одном уровне.",
+    ],
+    whoWeWorkWith: [
+      "Fashion and apparel labels, local and international",
+      "Luxury and premium lifestyle brands",
+      "Jewellery and accessories houses",
+      "Fashion e-commerce and multi-brand boutiques",
+      "Emerging designers launching direct-to-consumer",
+      "Luxury retail groups expanding into the UAE",
+    ],
+    whoWeWorkWithAr: [
+      "دور أزياء وملابس محلية وعالمية",
+      "علامات فخامة ونمط حياة راقٍ",
+      "دور مجوهرات وإكسسوارات",
+      "متاجر أزياء إلكترونية وبوتيكات متعددة العلامات",
+      "مصممون ناشئون يطلقون بيعاً مباشراً للمستهلك",
+      "مجموعات تجزئة فاخرة تتوسع في سوق الإمارات",
+    ],
+    whoWeWorkWithRu: [
+      "Локальные и международные дома моды и одежды",
+      "Люксовые и премиальные lifestyle-бренды",
+      "Ювелирные дома и производители аксессуаров",
+      "Fashion-e-commerce и мультибрендовые бутики",
+      "Начинающие дизайнеры, выходящие на прямые продажи потребителю",
+      "Люксовые ритейл-группы, выходящие на рынок ОАЭ",
+    ],
+    challenges: [
+      { title: "Protecting perceived value", desc: "Performance tactics that work for mass retail — heavy discounting, aggressive retargeting — can quietly erode a luxury brand's pricing power." },
+      { title: "Creative consistency across channels", desc: "A brand's visual standard has to hold from a paid social ad to a product page to an influencer collaboration, or the whole positioning weakens." },
+      { title: "Social commerce and discovery", desc: "Fashion is increasingly discovered and purchased inside the platform itself, which changes how content, tagging and paid social need to work together." },
+      { title: "Balancing brand campaigns with performance targets", desc: "A brand-building campaign and a performance campaign are often judged by different metrics — reconciling both under one strategy is where most fashion marketing breaks down." },
+      { title: "Seasonal and drop-based demand", desc: "Collections, drops and seasonal calendars need media spend that peaks around them, not a flat always-on plan." },
+    ],
+    challengesAr: [
+      { title: "حماية القيمة المُدركة", desc: "تكتيكات الأداء الفعالة للتجزئة الجماهيرية — الخصومات الكبيرة، إعادة الاستهداف العدوانية — قد تقوّض بصمت قدرة علامة الفخامة على التسعير." },
+      { title: "اتساق إبداعي عبر القنوات", desc: "يجب أن يظل المعيار البصري للعلامة ثابتاً من الإعلان الاجتماعي المدفوع إلى صفحة المنتج إلى التعاون مع المؤثرين، وإلا ضعف التموضع بأكمله." },
+      { title: "التجارة الاجتماعية والاكتشاف", desc: "يتم اكتشاف الأزياء وشراؤها بشكل متزايد داخل المنصة نفسها، ما يغيّر طريقة عمل المحتوى والوسم والإعلانات الاجتماعية المدفوعة معاً." },
+      { title: "الموازنة بين حملات العلامة وأهداف الأداء", desc: "غالباً ما تُقيَّم حملة بناء العلامة وحملة الأداء بمقاييس مختلفة — والتوفيق بينهما ضمن استراتيجية واحدة هو ما يفشل فيه معظم تسويق الأزياء." },
+      { title: "طلب موسمي ومرتبط بإطلاقات المنتجات", desc: "تحتاج المجموعات والإطلاقات والتقويم الموسمي إلى إنفاق إعلاني يتركز حولها، لا خطة ثابتة مستمرة." },
+    ],
+    challengesRu: [
+      { title: "Защита воспринимаемой ценности", desc: "Тактики перформанс-маркетинга, работающие для масс-маркета — агрессивные скидки, навязчивый ретаргетинг — могут незаметно подорвать ценовую силу люксового бренда." },
+      { title: "Единство креатива на всех каналах", desc: "Визуальный стандарт бренда должен сохраняться от рекламы в соцсетях до страницы товара и коллаборации с инфлюенсером — иначе слабеет всё позиционирование." },
+      { title: "Социальная коммерция и обнаружение бренда", desc: "Моду всё чаще открывают и покупают прямо внутри платформы, а это меняет то, как должны работать вместе контент, теги и платная реклама в соцсетях." },
+      { title: "Баланс между имиджевыми кампаниями и перформанс-целями", desc: "Имиджевую кампанию и перформанс-кампанию часто оценивают по разным метрикам — и именно на попытке свести их в одну стратегию чаще всего спотыкается маркетинг модных брендов." },
+      { title: "Сезонный спрос и спрос на дропы", desc: "Коллекции, дропы и сезонный календарь требуют медиабюджета, который растёт пиками вокруг них, а не работает по плоской постоянной схеме." },
+    ],
+    services: [
+      { slug: "branding", title: "Fashion & Luxury Branding", desc: "An identity and tone of voice that protects perceived value while staying flexible enough to run performance media." },
+      { slug: "digital-marketing", title: "Performance Marketing for Fashion", desc: "Paid social and search campaigns built to convert without adopting a discount-led tone that undercuts the brand." },
+      { slug: "website-development", title: "Fashion E-commerce Development", desc: "Storefronts and lookbooks built to editorial standard, fast enough to keep the conversion rate a performance campaign needs." },
+      { slug: "seo", title: "Fashion SEO", desc: "Search visibility for collections, categories and brand terms that reduces reliance on paid discovery over time." },
+      { slug: "crm-marketing-automation", title: "Client CRM & Retention", desc: "Automated sequences around drops, restocks and loyalty that turn a first purchase into a returning client relationship." },
+    ],
+    servicesAr: [
+      { slug: "branding", title: "هوية الأزياء والفخامة", desc: "هوية ونبرة تحميان القيمة المُدركة مع بقائهما مرنتين بما يكفي لتشغيل إعلانات الأداء." },
+      { slug: "digital-marketing", title: "التسويق الأدائي للأزياء", desc: "حملات إعلانات اجتماعية وبحث مدفوعة مبنية للتحويل دون تبنّي نبرة قائمة على الخصم تقوّض العلامة." },
+      { slug: "website-development", title: "تطوير مواقع الأزياء الإلكترونية", desc: "متاجر إلكترونية وكتالوجات مصممة بمعيار تحريري، وسريعة بما يكفي للحفاظ على معدل التحويل الذي تحتاجه حملة الأداء." },
+      { slug: "seo", title: "تحسين محركات البحث للأزياء", desc: "ظهور في البحث للمجموعات والتصنيفات ومصطلحات العلامة يقلل الاعتماد على الاكتشاف المدفوع مع الوقت." },
+      { slug: "crm-marketing-automation", title: "إدارة علاقات العملاء والاحتفاظ بهم", desc: "سلاسل آلية حول الإطلاقات وإعادة التخزين والولاء تحوّل الشراء الأول إلى علاقة عميل متكررة." },
+    ],
+    servicesRu: [
+      { slug: "branding", title: "Брендинг для моды и люкса", desc: "Идентичность и тон коммуникации, которые защищают воспринимаемую ценность бренда и при этом остаются достаточно гибкими для перформанс-рекламы." },
+      { slug: "digital-marketing", title: "Перформанс-маркетинг для fashion-брендов", desc: "Кампании в платных соцсетях и поиске, построенные на конверсию без скидочного тона, который подрывает ценность бренда." },
+      { slug: "website-development", title: "Разработка fashion-e-commerce", desc: "Витрины и лукбуки, выполненные на редакционном уровне и достаточно быстрые для конверсии, которую требует перформанс-кампания." },
+      { slug: "seo", title: "SEO для fashion-брендов", desc: "Видимость в поиске по коллекциям, категориям и брендовым запросам, которая со временем снижает зависимость от платного трафика." },
+      { slug: "crm-marketing-automation", title: "CRM и удержание клиентов", desc: "Автоматизированные цепочки вокруг дропов, пополнения ассортимента и программ лояльности, превращающие первую покупку в постоянные отношения с клиентом." },
+    ],
+    approach: [
+      { step: "01", title: "Brand Definition", desc: "Establish the tone, visual standard and positioning that every channel has to hold to, before any media plan is built." },
+      { step: "02", title: "Creative", desc: "Build a content and campaign system that reads as editorial, not promotional, across every platform it appears on." },
+      { step: "03", title: "Social", desc: "Grow presence and social commerce across the platforms where fashion is actually discovered and purchased." },
+      { step: "04", title: "Performance", desc: "Run paid campaigns calibrated to protect margin and perceived value, not just short-term conversion rate." },
+      { step: "05", title: "Conversion", desc: "Ensure the storefront holds the brand's creative standard through to checkout." },
+      { step: "06", title: "Retention", desc: "Build client loyalty and repeat purchase through CRM, not repeated discounting." },
+    ],
+    approachAr: [
+      { step: "01", title: "تحديد العلامة", desc: "تحديد النبرة والمعيار البصري والتموضع الذي يجب أن تلتزم به كل قناة، قبل بناء أي خطة إعلانية." },
+      { step: "02", title: "الإبداع", desc: "بناء نظام محتوى وحملات يبدو تحريرياً لا ترويجياً، عبر كل منصة يظهر عليها." },
+      { step: "03", title: "السوشيال ميديا", desc: "تنمية الحضور والتجارة الاجتماعية عبر المنصات التي تُكتشف فيها الأزياء وتُشترى فعلياً." },
+      { step: "04", title: "الأداء", desc: "إدارة حملات مدفوعة مضبوطة لحماية الهامش والقيمة المُدركة، لا معدل التحويل قصير الأمد فقط." },
+      { step: "05", title: "التحويل", desc: "التأكد من أن المتجر الإلكتروني يحافظ على المعيار الإبداعي للعلامة حتى إتمام الدفع." },
+      { step: "06", title: "الاحتفاظ بالعملاء", desc: "بناء ولاء العملاء والشراء المتكرر عبر إدارة علاقات العملاء، لا الخصومات المتكررة." },
+    ],
+    approachRu: [
+      { step: "01", title: "Определение бренда", desc: "Формируем тон, визуальный стандарт и позиционирование, которым должен следовать каждый канал, прежде чем строить медиаплан." },
+      { step: "02", title: "Креатив", desc: "Выстраиваем систему контента и кампаний, которая на любой площадке читается как редакционная, а не рекламная." },
+      { step: "03", title: "Социальные сети", desc: "Развиваем присутствие и социальную коммерцию на площадках, где моду действительно находят и покупают." },
+      { step: "04", title: "Перформанс", desc: "Запускаем платные кампании, настроенные на защиту маржи и воспринимаемой ценности, а не только на краткосрочную конверсию." },
+      { step: "05", title: "Конверсия", desc: "Следим, чтобы витрина сохраняла креативный стандарт бренда вплоть до оформления заказа." },
+      { step: "06", title: "Удержание", desc: "Формируем лояльность и повторные покупки через CRM, а не через повторяющиеся скидки." },
+    ],
+    faqs: [
+      { q: "How is fashion marketing different from general e-commerce marketing?", a: "It carries a brand-value dimension general retail doesn't — performance tactics have to be calibrated so they don't undercut the pricing power the brand depends on." },
+      { q: "Can performance marketing work for a luxury brand without discounting?", a: "Yes — targeting, creative and offer structure can be built around exclusivity and intent rather than price, which protects margin while still driving measurable conversion." },
+      { q: "How important is social commerce for fashion brands right now?", a: "Increasingly central — a growing share of fashion discovery and purchase now happens inside the platform itself, which changes how content and tagging need to work." },
+      { q: "Do you work with emerging designers, not just established labels?", a: "Yes — the strategy scales down to a single-collection launch as much as it scales up to a multi-market luxury group." },
+    ],
+    faqsAr: [
+      { q: "كيف يختلف تسويق الأزياء عن تسويق التجارة الإلكترونية العام؟", a: "يحمل بُعد قيمة العلامة التجارية الذي لا تحمله التجزئة العامة — إذ يجب ضبط تكتيكات الأداء بحيث لا تقوّض قدرة العلامة على التسعير." },
+      { q: "هل يمكن أن ينجح التسويق الأدائي لعلامة فخامة دون خصومات؟", a: "نعم — يمكن بناء الاستهداف والإبداع وبنية العروض حول الحصرية والنية بدلاً من السعر، ما يحمي الهامش مع تحقيق تحويل قابل للقياس." },
+      { q: "ما مدى أهمية التجارة الاجتماعية لعلامات الأزياء حالياً؟", a: "أصبحت محورية بشكل متزايد — إذ تحدث حصة متنامية من اكتشاف الأزياء وشرائها داخل المنصة نفسها، ما يغيّر طريقة عمل المحتوى والوسم." },
+      { q: "هل تعملون مع مصممين ناشئين، لا الدور الراسخة فقط؟", a: "نعم — تتكيف الاستراتيجية مع إطلاق مجموعة واحدة بقدر ما تتكيف مع مجموعة فخامة عاملة في أسواق متعددة." },
+    ],
+    faqsRu: [
+      { q: "Чем маркетинг моды отличается от маркетинга e-commerce в целом?", a: "Он несёт измерение ценности бренда, которого нет у обычного ритейла — тактики перформанса нужно калибровать так, чтобы они не подрывали ценовую силу, на которую опирается бренд." },
+      { q: "Может ли перформанс-маркетинг работать для люксового бренда без скидок?", a: "Да — таргетинг, креатив и структуру предложения можно строить вокруг эксклюзивности и намерения, а не цены, что защищает маржу и одновременно обеспечивает измеримую конверсию." },
+      { q: "Насколько важна социальная коммерция для fashion-брендов сейчас?", a: "Всё более важна — растущая доля обнаружения и покупки модных товаров происходит прямо внутри платформы, что меняет требования к работе с контентом и тегами." },
+      { q: "Работаете ли вы с начинающими дизайнерами, а не только с известными домами?", a: "Да — стратегия одинаково масштабируется и для запуска одной коллекции, и для люксовой группы, работающей на нескольких рынках." },
+    ],
+    ctaTitle: ["Let's grow the brand", "without discounting it."],
+    ctaTitleAr: ["لننمّي العلامة", "دون التنازل عن قيمتها."],
+    ctaTitleRu: ["Растим бренд", "не размывая его ценность."],
+    ctaMessage: "Hi, I'm interested in digital marketing for fashion and luxury brands.",
+    ctaMessageAr: "مرحباً، أنا مهتم بالتسويق الرقمي لعلامات الأزياء والفخامة.",
+    ctaMessageRu: "Здравствуйте, меня интересует цифровой маркетинг для fashion- и люксовых брендов.",
+    metaDescription:
+      "Fashion and luxury brand marketing in Dubai — branding, performance marketing, SEO and e-commerce development that protects perceived value while it converts.",
+    metaDescriptionAr:
+      "تسويق علامات الأزياء والفخامة في دبي — هوية بصرية، تسويق أدائي، تحسين لمحركات البحث وتطوير مواقع إلكترونية تحمي القيمة المُدركة مع تحقيق التحويل.",
+    metaDescriptionRu:
+      "Маркетинг для fashion- и люксовых брендов в Дубае — брендинг, перформанс-маркетинг, SEO и разработка e-commerce, которые защищают ценность бренда и одновременно приносят конверсии.",
+    seoTitle: "Fashion & Luxury Brand Marketing Agency — Dubai",
+    seoTitleAr: "وكالة تسويق علامات الأزياء والفخامة — دبي",
+    seoTitleRu: "Агентство маркетинга для fashion- и люкс-брендов — Дубай",
+    relatedIndustrySlug: "ecommerce-retail",
+  },
+  {
+    slug: "technology-saas",
+    num: "07",
+    name: "Technology & SaaS",
+    nameAr: "التكنولوجيا والبرمجيات كخدمة",
+    nameRu: "Технологии и SaaS",
+    title: "Digital Marketing for SaaS.",
+    titleAr: "التسويق الرقمي لشركات البرمجيات كخدمة.",
+    titleRu: "Цифровой маркетинг для SaaS.",
+    heroImage: "/images/industries/technology-saas.jpg",
+    descriptor:
+      "Pipeline-focused marketing for SaaS and technology companies, built around trial signups, demo requests and sales-qualified leads.",
+    descriptorAr:
+      "تسويق مركّز على خط المبيعات لشركات البرمجيات والتكنولوجيا، مبني حول التسجيل التجريبي وطلبات العروض التوضيحية والعملاء المحتملين المؤهلين للبيع.",
+    descriptorRu:
+      "Маркетинг для SaaS и технологических компаний, нацеленный на пайплайн: пробные регистрации, заявки на демо и квалифицированные для продажи лиды.",
+    subhead: "Marketing judged on pipeline, not page views.",
+    subheadAr: "تسويق يُقيَّم بخط المبيعات، لا بمشاهدات الصفحة.",
+    subheadRu: "Маркетинг, который оценивают по пайплайну, а не по просмотрам страниц.",
+    lead:
+      "A SaaS company doesn't need more traffic — it needs more of the right person requesting a demo, and those are two very different marketing problems.",
+    leadAr:
+      "لا تحتاج شركة البرمجيات كخدمة إلى المزيد من الزيارات — بل إلى المزيد من الأشخاص المناسبين الذين يطلبون عرضاً توضيحياً، وهاتان مشكلتان تسويقيتان مختلفتان تماماً.",
+    leadRu:
+      "SaaS-компании не нужно больше трафика — ей нужно больше нужных людей, запрашивающих демо, а это две совершенно разные маркетинговые задачи.",
+    intro: [
+      "SaaS and technology marketing sits closer to sales than to brand awareness: the buyer is usually researching a category, not a company name, which means SEO and content built around the problem the software solves often outperforms paid alone. The sales cycle also involves more than one decision-maker, so a marketing system has to speak to the end user requesting the trial and the budget-holder approving it, often with different content entirely.",
+      "Because the product itself is the best proof of value, growth loops — trial-to-paid conversion, in-product referral, case studies from real usage — do more long-term work than any single campaign. The marketing function's job becomes filling the top of that loop with qualified demand and getting out of the way once the product can prove itself.",
+    ],
+    introAr: [
+      "يقترب تسويق البرمجيات والتكنولوجيا من المبيعات أكثر من اقترابه من الوعي بالعلامة التجارية: فالمشتري عادةً يبحث عن فئة حلول، لا عن اسم شركة، ما يعني أن تحسين محركات البحث والمحتوى المبني حول المشكلة التي يحلها البرنامج غالباً ما يتفوق على الإعلانات المدفوعة وحدها. كما تشمل دورة المبيعات أكثر من صانع قرار واحد، لذا يجب أن يخاطب النظام التسويقي المستخدم النهائي الذي يطلب التجربة وصاحب الميزانية الذي يوافق عليها، غالباً بمحتوى مختلف تماماً لكل منهما.",
+      "ولأن المنتج نفسه هو أفضل دليل على القيمة، فإن حلقات النمو — تحويل التجربة إلى اشتراك مدفوع، الإحالة داخل المنتج، دراسات الحالة من الاستخدام الفعلي — تحقق أثراً طويل الأمد يفوق أي حملة منفردة. تصبح مهمة وظيفة التسويق هي تغذية أعلى تلك الحلقة بطلب مؤهل، ثم إفساح المجال بمجرد أن يثبت المنتج نفسه بنفسه.",
+    ],
+    introRu: [
+      "Маркетинг SaaS и технологий стоит ближе к продажам, чем к узнаваемости бренда: покупатель обычно ищет решение категории проблемы, а не название конкретной компании, поэтому SEO и контент, построенные вокруг задачи, которую решает продукт, часто работают лучше одной только платной рекламы. Цикл продажи вовлекает не одного человека, принимающего решение, поэтому маркетинговая система должна говорить и с конечным пользователем, запрашивающим триал, и с держателем бюджета, который его утверждает, — зачастую совершенно разным контентом.",
+      "Поскольку лучшее доказательство ценности — сам продукт, петли роста — конверсия триала в оплату, реферальные механики внутри продукта, кейсы на основе реального использования — дают больше долгосрочного эффекта, чем любая отдельная кампания. Задача маркетинга сводится к тому, чтобы наполнять начало этой петли квалифицированным спросом и затем не мешать продукту доказывать свою ценность самому.",
+    ],
+    whoWeWorkWith: [
+      "B2B SaaS platforms and software companies",
+      "Enterprise technology and IT solution providers",
+      "Startups building toward product-market fit",
+      "Technology platforms serving vertical industries",
+      "API and developer-tool companies",
+      "Regional offices of international SaaS brands entering the UAE",
+    ],
+    whoWeWorkWithAr: [
+      "منصات برمجيات كخدمة وشركات برمجيات لقطاع الأعمال",
+      "مزودو حلول تقنية وتكنولوجيا للمؤسسات",
+      "شركات ناشئة تسعى لتحقيق التوافق بين المنتج والسوق",
+      "منصات تقنية تخدم قطاعات عمودية محددة",
+      "شركات واجهات برمجة التطبيقات وأدوات المطورين",
+      "مكاتب إقليمية لعلامات برمجيات عالمية تدخل سوق الإمارات",
+    ],
+    whoWeWorkWithRu: [
+      "B2B SaaS-платформы и разработчики программного обеспечения",
+      "Поставщики корпоративных технологий и IT-решений",
+      "Стартапы на пути к product-market fit",
+      "Технологические платформы для отдельных отраслей",
+      "API и разработчики инструментов для программистов",
+      "Региональные офисы международных SaaS-брендов, выходящих на рынок ОАЭ",
+    ],
+    challenges: [
+      { title: "Multi-stakeholder buying decisions", desc: "The person who signs up for a trial often isn't the person who approves the budget — messaging has to work for both." },
+      { title: "Category education vs. brand awareness", desc: "Many buyers are searching for a solution to a problem before they know your company exists — content has to meet them at that stage." },
+      { title: "Trial-to-paid conversion", desc: "A signup isn't a customer — the marketing and onboarding handoff around activation is where most SaaS revenue is actually won or lost." },
+      { title: "Long, considered sales cycles", desc: "Enterprise deals can run months — nurture sequences and retargeting have to sustain interest that long without becoming noise." },
+      { title: "Proving marketing's contribution to pipeline", desc: "SaaS leadership tracks marketing against sales-qualified leads and revenue influenced, not vanity traffic metrics." },
+    ],
+    challengesAr: [
+      { title: "قرارات شراء متعددة أصحاب المصلحة", desc: "غالباً ما يكون الشخص الذي يسجّل للتجربة مختلفاً عن الشخص الذي يوافق على الميزانية — ويجب أن تخاطب الرسالة كليهما." },
+      { title: "التوعية بالفئة مقابل الوعي بالعلامة", desc: "يبحث كثير من المشترين عن حل لمشكلة قبل أن يعرفوا بوجود شركتك — ويجب أن يقابلهم المحتوى في تلك المرحلة." },
+      { title: "تحويل التجربة إلى اشتراك مدفوع", desc: "التسجيل ليس عميلاً بعد — فنقطة التسليم بين التسويق والتأهيل حول التفعيل هي حيث يُكسب أو يُفقد معظم إيراد شركات البرمجيات كخدمة فعلياً." },
+      { title: "دورات مبيعات طويلة ومدروسة", desc: "قد تستغرق صفقات المؤسسات أشهراً — ويجب أن تحافظ سلاسل الرعاية وإعادة الاستهداف على الاهتمام طوال تلك المدة دون أن تتحول إلى إزعاج." },
+      { title: "إثبات مساهمة التسويق في خط المبيعات", desc: "تتابع قيادة شركات البرمجيات كخدمة أداء التسويق بناءً على العملاء المحتملين المؤهلين للبيع والإيراد المتأثر، لا مقاييس الزيارات الشكلية." },
+    ],
+    challengesRu: [
+      { title: "Решение о покупке принимают несколько человек", desc: "Тот, кто регистрирует триал, часто не тот, кто утверждает бюджет — сообщение должно работать для обоих." },
+      { title: "Обучение категории против узнаваемости бренда", desc: "Многие покупатели ищут решение проблемы ещё до того, как узнали о существовании вашей компании — контент должен встречать их именно на этом этапе." },
+      { title: "Конверсия триала в оплату", desc: "Регистрация — ещё не клиент: именно на стыке маркетинга и онбординга вокруг активации по факту выигрывается или теряется большая часть выручки SaaS." },
+      { title: "Долгие, взвешенные циклы продаж", desc: "Корпоративные сделки могут тянуться месяцами — цепочки нёрчеринга и ретаргетинга должны поддерживать интерес всё это время, не превращаясь в шум." },
+      { title: "Доказать вклад маркетинга в пайплайн", desc: "Руководство SaaS-компаний оценивает маркетинг по квалифицированным для продажи лидам и влиянию на выручку, а не по показным метрикам трафика." },
+    ],
+    services: [
+      { slug: "digital-marketing", title: "Performance Marketing for SaaS", desc: "Search and paid social campaigns built around demo requests and trial signups, tracked through to sales-qualified pipeline." },
+      { slug: "seo", title: "SaaS SEO", desc: "Category and problem-focused content that captures buyers before they've searched for a specific product by name." },
+      { slug: "website-development", title: "SaaS Website & Landing Pages", desc: "Fast, conversion-focused product and pricing pages built to move a visitor from interest to trial signup." },
+      { slug: "crm-marketing-automation", title: "Lead Scoring & Nurture Automation", desc: "CRM sequences that qualify and nurture leads through a long sales cycle without burying sales in unqualified volume." },
+      { slug: "marketing-consulting", title: "Go-to-Market Strategy", desc: "Positioning and channel strategy for a launch, a new market entry, or a pivot in target segment." },
+    ],
+    servicesAr: [
+      { slug: "digital-marketing", title: "التسويق الأدائي لشركات البرمجيات كخدمة", desc: "حملات بحث وسوشيال ميديا مدفوعة مبنية حول طلبات العروض التوضيحية والتسجيلات التجريبية، تُتابع حتى خط المبيعات المؤهل." },
+      { slug: "seo", title: "تحسين محركات البحث للبرمجيات كخدمة", desc: "محتوى مركّز على الفئة والمشكلة يلتقط المشترين قبل أن يبحثوا عن منتج محدد باسمه." },
+      { slug: "website-development", title: "مواقع وصفحات هبوط للبرمجيات كخدمة", desc: "صفحات منتج وتسعير سريعة ومركّزة على التحويل، مصممة لنقل الزائر من الاهتمام إلى التسجيل التجريبي." },
+      { slug: "crm-marketing-automation", title: "تصنيف العملاء المحتملين وأتمتة الرعاية", desc: "سلاسل إدارة علاقات عملاء تؤهل وترعى العملاء المحتملين طوال دورة مبيعات طويلة دون إغراق فريق المبيعات بحجم غير مؤهل." },
+      { slug: "marketing-consulting", title: "استراتيجية الدخول إلى السوق", desc: "استراتيجية تموضع وقنوات لإطلاق منتج، أو دخول سوق جديد، أو تحول في الشريحة المستهدفة." },
+    ],
+    servicesRu: [
+      { slug: "digital-marketing", title: "Перформанс-маркетинг для SaaS", desc: "Кампании в поиске и платных соцсетях, построенные вокруг заявок на демо и регистраций триала, с отслеживанием до квалифицированного пайплайна." },
+      { slug: "seo", title: "SEO для SaaS", desc: "Контент, сфокусированный на категории и проблеме, который захватывает покупателей ещё до того, как они начали искать конкретный продукт по названию." },
+      { slug: "website-development", title: "Сайт и лендинги для SaaS", desc: "Быстрые, ориентированные на конверсию страницы продукта и тарифов, которые ведут посетителя от интереса к регистрации триала." },
+      { slug: "crm-marketing-automation", title: "Скоринг лидов и автоматизация нёрчеринга", desc: "CRM-цепочки, которые квалифицируют и подогревают лиды на протяжении долгого цикла продажи, не заваливая отдел продаж неквалифицированным объёмом." },
+      { slug: "marketing-consulting", title: "Go-to-market стратегия", desc: "Позиционирование и стратегия каналов для запуска, выхода на новый рынок или смены целевого сегмента." },
+    ],
+    approach: [
+      { step: "01", title: "Positioning", desc: "Define the problem the product solves in the language the buyer actually searches and thinks in, not internal product terminology." },
+      { step: "02", title: "Content & SEO", desc: "Build category-education content that captures demand before a buyer knows the product by name." },
+      { step: "03", title: "Demand Generation", desc: "Run performance campaigns focused on trial and demo requests, not top-of-funnel traffic alone." },
+      { step: "04", title: "Lead Qualification", desc: "Score and route leads through CRM automation so sales spends time on pipeline that's actually ready." },
+      { step: "05", title: "Nurture", desc: "Sustain multi-stakeholder, long-cycle deals with content and retargeting built for the buying committee, not one persona." },
+      { step: "06", title: "Optimise", desc: "Review performance against sales-qualified leads and pipeline influenced, not raw lead volume." },
+    ],
+    approachAr: [
+      { step: "01", title: "التموضع", desc: "تحديد المشكلة التي يحلها المنتج باللغة التي يبحث ويفكر بها المشتري فعلياً، لا بالمصطلحات الداخلية للمنتج." },
+      { step: "02", title: "المحتوى وتحسين محركات البحث", desc: "بناء محتوى توعوي بالفئة يلتقط الطلب قبل أن يعرف المشتري المنتج باسمه." },
+      { step: "03", title: "توليد الطلب", desc: "إدارة حملات أدائية مركّزة على طلبات التجربة والعروض التوضيحية، لا زيارات أعلى مسار التحويل فقط." },
+      { step: "04", title: "تأهيل العملاء المحتملين", desc: "تصنيف العملاء المحتملين وتوجيههم عبر أتمتة إدارة علاقات العملاء بحيث يقضي فريق المبيعات وقته في خط مبيعات جاهز فعلياً." },
+      { step: "05", title: "الرعاية", desc: "الحفاظ على الصفقات الطويلة متعددة الأطراف بمحتوى وإعادة استهداف مصممين للجنة الشراء بأكملها، لا لشخصية واحدة." },
+      { step: "06", title: "التحسين", desc: "مراجعة الأداء مقارنةً بالعملاء المحتملين المؤهلين للبيع وخط المبيعات المتأثر، لا حجم العملاء المحتملين الخام." },
+    ],
+    approachRu: [
+      { step: "01", title: "Позиционирование", desc: "Формулируем проблему, которую решает продукт, языком, которым покупатель реально пользуется и мыслит, а не внутренней терминологией продукта." },
+      { step: "02", title: "Контент и SEO", desc: "Создаём контент для обучения категории, который захватывает спрос ещё до того, как покупатель узнал продукт по имени." },
+      { step: "03", title: "Генерация спроса", desc: "Запускаем перформанс-кампании, сфокусированные на заявках на триал и демо, а не только на трафике верха воронки." },
+      { step: "04", title: "Квалификация лидов", desc: "Оцениваем и распределяем лиды через CRM-автоматизацию, чтобы отдел продаж тратил время только на действительно готовый пайплайн." },
+      { step: "05", title: "Нёрчеринг", desc: "Поддерживаем долгие сделки с несколькими участниками контентом и ретаргетингом, рассчитанными на весь закупочный комитет, а не на одну персону." },
+      { step: "06", title: "Оптимизация", desc: "Оцениваем результат по квалифицированным для продажи лидам и влиянию на пайплайн, а не по сырому объёму лидов." },
+    ],
+    faqs: [
+      { q: "How is SaaS marketing different from marketing for other B2B companies?", a: "It's more product-led — trial signups, activation and in-product growth loops carry as much weight as traditional lead generation, and the funnel has to be measured accordingly." },
+      { q: "What's the fastest way to generate demo requests for a new SaaS product?", a: "Usually a combination of targeted performance campaigns and problem-focused content, paired with a landing page built specifically to convert a cold visitor into a trial signup." },
+      { q: "Can you help with lead scoring and CRM, not just advertising?", a: "Yes — for SaaS, unscored leads flooding a sales team is often the bigger problem, so we build scoring and nurture logic into the CRM alongside acquisition campaigns." },
+      { q: "Do you work with early-stage startups or only established SaaS companies?", a: "Both — the strategy adapts to stage, from establishing early product-market fit signals to scaling demand generation for an established platform." },
+    ],
+    faqsAr: [
+      { q: "كيف يختلف تسويق البرمجيات كخدمة عن التسويق لشركات B2B الأخرى؟", a: "إنه أكثر اعتماداً على المنتج نفسه — إذ تحمل التسجيلات التجريبية والتفعيل وحلقات النمو داخل المنتج وزناً يوازي توليد العملاء المحتملين التقليدي، ويجب قياس مسار التحويل وفقاً لذلك." },
+      { q: "ما أسرع طريقة لتوليد طلبات عروض توضيحية لمنتج برمجيات جديد؟", a: "عادةً مزيج من حملات أدائية مستهدفة ومحتوى مركّز على المشكلة، مقترناً بصفحة هبوط مصممة خصيصاً لتحويل زائر جديد إلى تسجيل تجريبي." },
+      { q: "هل يمكنكم المساعدة في تصنيف العملاء المحتملين وإدارة علاقات العملاء، لا الإعلانات فقط؟", a: "نعم — بالنسبة لشركات البرمجيات كخدمة، غالباً ما تكون المشكلة الأكبر هي إغراق فريق المبيعات بعملاء محتملين غير مصنّفين، لذا نبني منطق التصنيف والرعاية داخل نظام إدارة علاقات العملاء إلى جانب حملات الاستقطاب." },
+      { q: "هل تعملون مع شركات ناشئة في مراحلها الأولى أم مع شركات برمجيات راسخة فقط؟", a: "كلاهما — تتكيف الاستراتيجية مع المرحلة، من ترسيخ إشارات مبكرة للتوافق بين المنتج والسوق إلى توسيع توليد الطلب لمنصة راسخة." },
+    ],
+    faqsRu: [
+      { q: "Чем маркетинг SaaS отличается от маркетинга для других B2B-компаний?", a: "Он больше опирается на сам продукт — регистрации триала, активация и петли роста внутри продукта весят не меньше традиционной генерации лидов, и воронку нужно измерять соответственно." },
+      { q: "Как быстрее всего получить заявки на демо для нового SaaS-продукта?", a: "Обычно это сочетание таргетированных перформанс-кампаний и контента, сфокусированного на проблеме, вместе с посадочной страницей, специально созданной для конверсии холодного посетителя в регистрацию триала." },
+      { q: "Вы помогаете со скорингом лидов и CRM, а не только с рекламой?", a: "Да — для SaaS поток неоценённых лидов, заваливающий отдел продаж, часто оказывается более серьёзной проблемой, поэтому мы встраиваем логику скоринга и нёрчеринга в CRM наряду с кампаниями по привлечению." },
+      { q: "Вы работаете со стартапами на ранней стадии или только с устоявшимися SaaS-компаниями?", a: "И с теми, и с другими — стратегия адаптируется к стадии: от закрепления первых сигналов product-market fit до масштабирования генерации спроса для устоявшейся платформы." },
+    ],
+    ctaTitle: ["Let's turn demand", "into qualified pipeline."],
+    ctaTitleAr: ["لنحوّل الطلب", "إلى خط مبيعات مؤهل."],
+    ctaTitleRu: ["Превратим спрос", "в квалифицированный пайплайн."],
+    ctaMessage: "Hi, I'm interested in digital marketing for SaaS and technology companies.",
+    ctaMessageAr: "مرحباً، أنا مهتم بالتسويق الرقمي لشركات البرمجيات والتكنولوجيا.",
+    ctaMessageRu: "Здравствуйте, меня интересует цифровой маркетинг для SaaS- и технологических компаний.",
+    metaDescription:
+      "SaaS and technology marketing in Dubai — performance marketing, SEO, CRM automation and go-to-market strategy built around demo requests and pipeline.",
+    metaDescriptionAr:
+      "تسويق البرمجيات والتكنولوجيا في دبي — تسويق أدائي، تحسين لمحركات البحث، أتمتة CRM واستراتيجية دخول السوق مبنية حول طلبات العروض التوضيحية وخط المبيعات.",
+    metaDescriptionRu:
+      "Маркетинг SaaS и технологических компаний в Дубае — перформанс-маркетинг, SEO, автоматизация CRM и go-to-market стратегия, построенные вокруг заявок на демо и пайплайна.",
+    seoTitle: "SaaS & Technology Marketing Agency — Dubai",
+    seoTitleAr: "وكالة تسويق للبرمجيات والتكنولوجيا — دبي",
+    seoTitleRu: "Агентство маркетинга для SaaS и технологических компаний — Дубай",
+    relatedIndustrySlug: "professional-services",
+  },
+  {
+    slug: "restaurants-fb",
+    num: "08",
+    name: "Restaurants & F&B",
+    nameAr: "المطاعم والأغذية والمشروبات",
+    nameRu: "Рестораны и F&B",
+    title: "Digital Marketing for Restaurants.",
+    titleAr: "التسويق الرقمي للمطاعم.",
+    titleRu: "Цифровой маркетинг для ресторанов.",
+    heroImage: "/images/industries/restaurants-fb.jpg",
+    descriptor:
+      "Marketing for restaurants and F&B brands built around covers, footfall and repeat visits, not just likes.",
+    descriptorAr:
+      "تسويق لعلامات المطاعم والأغذية والمشروبات مبني حول عدد الزبائن، الإقبال الفعلي، والزيارات المتكررة، لا الإعجابات فقط.",
+    descriptorRu:
+      "Маркетинг для ресторанов и F&B-брендов, построенный вокруг числа гостей, посещаемости и повторных визитов, а не лайков.",
+    subhead: "Marketing measured in covers, not comments.",
+    subheadAr: "تسويق يُقاس بعدد الزبائن، لا بالتعليقات.",
+    subheadRu: "Маркетинг, который измеряют числом гостей, а не комментариями.",
+    lead:
+      "A great dish photographs well for free — the marketing problem is turning that scroll into a booked table.",
+    leadAr:
+      "الطبق الرائع يُصوَّر بشكل جذاب مجاناً — أما التحدي التسويقي الحقيقي فهو تحويل تلك المشاهدة العابرة إلى طاولة محجوزة.",
+    leadRu:
+      "Красивое блюдо и само по себе хорошо фотографируется — задача маркетинга в том, чтобы превратить этот просмотр в забронированный столик.",
+    intro: [
+      "F&B marketing lives entirely in the moment of decision: someone is hungry, near your area, deciding in the next few minutes where to eat. That means local search visibility, an accurate Google Business Profile and a booking flow that works from a phone in one hand matter more than almost any other channel. A beautiful feed with no reservation link or an out-of-date menu is losing covers it already earned the attention for.",
+      "The category also runs on a delivery-and-dine-in split that most concepts underplan for: aggregator platforms bring volume at a commission cost, direct ordering and reservations protect margin, and the two need coordinated, not competing, marketing. Add a launch calendar of new menus, seasonal offers and events, and F&B marketing becomes less about one campaign and more about a steady operating rhythm.",
+    ],
+    introAr: [
+      "يعيش تسويق قطاع الأغذية والمشروبات بالكامل في لحظة القرار: شخص جائع، قريب من منطقتك، يقرر خلال الدقائق القليلة القادمة أين سيأكل. هذا يعني أن الظهور في البحث المحلي، وملف جوجل التجاري الدقيق، ومسار حجز يعمل بسلاسة من هاتف بيد واحدة، أمور تفوق أهمية أي قناة أخرى تقريباً. الحساب الجميل على وسائل التواصل الاجتماعي دون رابط حجز أو بقائمة طعام قديمة يخسر زبائن استحقهم بالفعل من خلال جذب انتباههم.",
+      "يعمل القطاع أيضاً على توازن بين التوصيل وتناول الطعام داخل المطعم، وهو توازن تُخطط له معظم المفاهيم بشكل غير كافٍ: منصات التوصيل الوسيطة تجلب حجماً من الطلبات مقابل عمولة، بينما الطلب المباشر والحجوزات تحمي هامش الربح، والاثنان يحتاجان إلى تسويق منسّق لا متنافس. أضف إلى ذلك تقويم إطلاقات لقوائم جديدة وعروض موسمية وفعاليات، ليصبح تسويق قطاع الأغذية والمشروبات أقرب إلى إيقاع تشغيلي ثابت منه إلى حملة واحدة.",
+    ],
+    introRu: [
+      "Маркетинг F&B полностью живёт в моменте принятия решения: человек голоден, находится рядом с вами и в ближайшие несколько минут решает, где поесть. Это значит, что видимость в локальном поиске, точный профиль Google Business и путь бронирования, который работает с телефона в одной руке, важнее почти любого другого канала. Красивая лента без ссылки на бронирование или с устаревшим меню теряет гостей, чьё внимание она уже завоевала.",
+      "Категория также живёт на балансе между доставкой и залом, который большинство концепций планируют недостаточно продуманно: платформы-агрегаторы приносят объём заказов ценой комиссии, а прямые заказы и бронирования защищают маржу — и то, и другое нуждается в согласованном, а не конкурирующем маркетинге. Добавьте к этому календарь запусков новых меню, сезонных предложений и мероприятий — и маркетинг F&B перестаёт быть отдельной кампанией, превращаясь в устойчивый операционный ритм.",
+    ],
+    whoWeWorkWith: [
+      "Independent restaurants and cafés",
+      "Multi-outlet restaurant groups",
+      "Cloud kitchens and delivery-first F&B brands",
+      "Bars, lounges and nightlife-led F&B concepts",
+      "Franchise and franchisor F&B brands",
+      "Event-led and pop-up food concepts",
+    ],
+    whoWeWorkWithAr: [
+      "مطاعم ومقاهٍ مستقلة",
+      "مجموعات مطاعم متعددة الفروع",
+      "مطابخ سحابية وعلامات أغذية ومشروبات قائمة على التوصيل",
+      "حانات وصالات ومفاهيم أغذية ومشروبات مرتبطة بالحياة الليلية",
+      "علامات أغذية ومشروبات تعمل بنظام الامتياز التجاري ومانحوه",
+      "مفاهيم طعام مرتبطة بالفعاليات والمتاجر المؤقتة",
+    ],
+    whoWeWorkWithRu: [
+      "Независимые рестораны и кафе",
+      "Сети ресторанов с несколькими точками",
+      "Тёмные кухни и F&B-бренды, ориентированные на доставку",
+      "Бары, лаунджи и F&B-концепции ночной жизни",
+      "Франчайзинговые F&B-бренды и франчайзеры",
+      "Концепции с фокусом на мероприятия и pop-up формат",
+    ],
+    challenges: [
+      { title: "Winning the 'near me, right now' search", desc: "Local pack visibility and an accurate Google Business Profile decide who gets the booking when someone is deciding in the moment." },
+      { title: "Delivery aggregator dependency", desc: "Platform commission eats margin fast — protecting direct ordering and reservations is a marketing job, not just an ops one." },
+      { title: "Content that drives bookings, not just likes", desc: "A high-performing food photo means little if it doesn't lead to a reservation link or a clear call to visit." },
+      { title: "Seasonal and event-driven demand", desc: "New menus, Ramadan, festive seasons and events all need their own campaign timing, not a flat always-on plan." },
+      { title: "Review management at scale", desc: "A single bad review can outweigh a hundred good ones in the local pack — response speed and volume both matter." },
+    ],
+    challengesAr: [
+      { title: "الفوز بعمليات بحث \"بالقرب مني الآن\"", desc: "الظهور في نتائج البحث المحلي وملف جوجل التجاري الدقيق هما ما يحدد من يحصل على الحجز حين يتخذ شخص ما قراره في اللحظة نفسها." },
+      { title: "الاعتماد المفرط على منصات التوصيل الوسيطة", desc: "عمولات هذه المنصات تلتهم هامش الربح بسرعة — وحماية الطلب المباشر والحجوزات مهمة تسويقية لا تشغيلية فقط." },
+      { title: "محتوى يقود إلى الحجوزات لا مجرد الإعجابات", desc: "صورة طعام تحقق تفاعلاً عالياً لا تعني الكثير إن لم تقُد إلى رابط حجز أو دعوة واضحة للزيارة." },
+      { title: "طلب موسمي ومرتبط بالفعاليات", desc: "القوائم الجديدة، رمضان، المواسم الاحتفالية والفعاليات، كل منها يحتاج توقيت حملة خاص به، لا خطة ثابتة تعمل طوال الوقت." },
+      { title: "إدارة التقييمات على نطاق واسع", desc: "تقييم سلبي واحد قد يفوق أثره مئة تقييم إيجابي في نتائج البحث المحلي — سرعة الرد وحجمه كلاهما مهم." },
+    ],
+    challengesRu: [
+      { title: "Победа в поиске «рядом со мной, сейчас»", desc: "Видимость в локальной выдаче и точный профиль Google Business решают, кто получит бронь, когда человек принимает решение в моменте." },
+      { title: "Зависимость от агрегаторов доставки", desc: "Комиссия платформ быстро съедает маржу — защита прямых заказов и бронирований это задача маркетинга, а не только операций." },
+      { title: "Контент, который приводит к бронированиям, а не только к лайкам", desc: "Даже эффектное фото блюда мало что значит, если оно не ведёт к ссылке на бронирование или чёткому призыву прийти." },
+      { title: "Сезонный и событийный спрос", desc: "Новые меню, Рамадан, праздничные сезоны и мероприятия — каждому нужен собственный график кампаний, а не плоский постоянный план." },
+      { title: "Управление отзывами в масштабе", desc: "Один плохой отзыв может перевесить сотню хороших в локальной выдаче — важны и скорость, и объём ответов." },
+    ],
+    services: [
+      { slug: "digital-marketing", title: "Performance Marketing for F&B", desc: "Local and social campaigns timed to launches, seasons and events, measured against covers and direct orders." },
+      { slug: "seo", title: "Restaurant SEO", desc: "Local search and Google Business Profile optimisation built to win the 'near me' moment against every nearby competitor." },
+      { slug: "branding", title: "Restaurant & F&B Branding", desc: "A concept identity — from menu design to social tone — that carries across the physical space and every digital touchpoint." },
+      { slug: "website-development", title: "Restaurant Websites & Ordering", desc: "Fast, mobile-first sites with reservation and direct-order flows built to reduce aggregator dependency." },
+      { slug: "crm-marketing-automation", title: "Guest CRM & Loyalty", desc: "Automated re-engagement and loyalty sequences that turn a first visit into a regular one." },
+    ],
+    servicesAr: [
+      { slug: "digital-marketing", title: "التسويق الأدائي لقطاع الأغذية والمشروبات", desc: "حملات محلية واجتماعية مُوقّتة مع الإطلاقات والمواسم والفعاليات، تُقاس بعدد الزبائن والطلبات المباشرة." },
+      { slug: "seo", title: "تحسين محركات البحث للمطاعم", desc: "تحسين البحث المحلي وملف جوجل التجاري مصمم للفوز بلحظة \"بالقرب مني\" أمام كل منافس قريب." },
+      { slug: "branding", title: "هوية العلامة التجارية للمطاعم والأغذية والمشروبات", desc: "هوية مفهوم متكاملة — من تصميم القائمة إلى أسلوب الحضور على وسائل التواصل الاجتماعي — تمتد عبر المساحة الفعلية وكل نقطة تواصل رقمية." },
+      { slug: "website-development", title: "مواقع المطاعم وأنظمة الطلب", desc: "مواقع سريعة مصممة أولاً للهاتف المحمول بمسارات حجز وطلب مباشر تقلل الاعتماد على منصات التوصيل الوسيطة." },
+      { slug: "crm-marketing-automation", title: "إدارة علاقات الضيوف وبرامج الولاء", desc: "سلاسل آلية لإعادة التفاعل والولاء تحوّل الزيارة الأولى إلى عادة متكررة." },
+    ],
+    servicesRu: [
+      { slug: "digital-marketing", title: "Перформанс-маркетинг для F&B", desc: "Локальные и социальные кампании, приуроченные к запускам, сезонам и мероприятиям, с оценкой по числу гостей и прямым заказам." },
+      { slug: "seo", title: "SEO для ресторанов", desc: "Оптимизация локального поиска и профиля Google Business, построенная на победу в моменте «рядом со мной» над каждым соседним конкурентом." },
+      { slug: "branding", title: "Брендинг ресторанов и F&B", desc: "Идентичность концепции — от дизайна меню до тона в соцсетях — которая единообразна и в физическом пространстве, и в каждой цифровой точке контакта." },
+      { slug: "website-development", title: "Сайты и заказы для ресторанов", desc: "Быстрые mobile-first сайты с бронированием и прямым заказом, снижающие зависимость от агрегаторов." },
+      { slug: "crm-marketing-automation", title: "CRM гостей и программы лояльности", desc: "Автоматизированные цепочки повторного вовлечения и лояльности, превращающие первый визит в привычку возвращаться." },
+    ],
+    approach: [
+      { step: "01", title: "Concept & Brand", desc: "Sharpen the concept's identity so it reads clearly across the space, the menu and every digital channel." },
+      { step: "02", title: "Local Search", desc: "Build out Google Business Profile and local SEO so the concept wins the 'near me' moment." },
+      { step: "03", title: "Social & Content", desc: "Produce content built to move a scroll into a booking, not just an impression." },
+      { step: "04", title: "Performance", desc: "Time paid campaigns around launches, seasons and events rather than running a flat monthly budget." },
+      { step: "05", title: "Direct Channels", desc: "Strengthen direct reservations and ordering to reduce aggregator commission dependency." },
+      { step: "06", title: "Loyalty", desc: "Turn first-time guests into regulars with CRM-driven re-engagement." },
+    ],
+    approachAr: [
+      { step: "01", title: "المفهوم والعلامة التجارية", desc: "شحذ هوية المفهوم لتكون واضحة عبر المساحة والقائمة وكل قناة رقمية." },
+      { step: "02", title: "البحث المحلي", desc: "بناء ملف جوجل التجاري وتحسين محركات البحث المحلي بحيث يفوز المفهوم بلحظة \"بالقرب مني\"." },
+      { step: "03", title: "وسائل التواصل والمحتوى", desc: "إنتاج محتوى مصمم لتحويل المشاهدة العابرة إلى حجز، لا مجرد ظهور." },
+      { step: "04", title: "الأداء", desc: "توقيت الحملات المدفوعة مع الإطلاقات والمواسم والفعاليات بدلاً من ميزانية شهرية ثابتة." },
+      { step: "05", title: "القنوات المباشرة", desc: "تعزيز الحجوزات والطلبات المباشرة لتقليل الاعتماد على عمولات منصات التوصيل." },
+      { step: "06", title: "الولاء", desc: "تحويل الضيوف الجدد إلى زبائن دائمين عبر إعادة تفاعل مدفوعة بنظام إدارة علاقات العملاء." },
+    ],
+    approachRu: [
+      { step: "01", title: "Концепция и бренд", desc: "Обостряем идентичность концепции, чтобы она читалась одинаково ясно в пространстве, меню и каждом цифровом канале." },
+      { step: "02", title: "Локальный поиск", desc: "Выстраиваем профиль Google Business и локальное SEO так, чтобы концепция выигрывала момент «рядом со мной»." },
+      { step: "03", title: "Соцсети и контент", desc: "Создаём контент, рассчитанный на то, чтобы превратить просмотр в бронирование, а не просто в показ." },
+      { step: "04", title: "Перформанс", desc: "Приурочиваем платные кампании к запускам, сезонам и мероприятиям вместо плоского месячного бюджета." },
+      { step: "05", title: "Прямые каналы", desc: "Укрепляем прямые бронирования и заказы, снижая зависимость от комиссии агрегаторов." },
+      { step: "06", title: "Лояльность", desc: "Превращаем гостей, пришедших впервые, в постоянных через повторное вовлечение на основе CRM." },
+    ],
+    faqs: [
+      { q: "How important is Google Business Profile for a restaurant?", a: "It's usually the single most important listing a restaurant has — hours, menu, photos and reviews there directly decide whether someone nearby chooses to visit." },
+      { q: "Can marketing help reduce our dependency on delivery aggregators?", a: "Yes — strengthening direct ordering channels, SEO and CRM-driven repeat business reduces how much volume needs to come through commission-charging platforms." },
+      { q: "Do you work with multi-outlet restaurant groups?", a: "Yes — each outlet needs its own accurate local listing and tracked performance, coordinated under one brand and one overall strategy." },
+      { q: "How do you approach social media for restaurants specifically?", a: "Content is built to move a viewer toward an action — a booking, a visit, an order — rather than optimising purely for engagement metrics." },
+    ],
+    faqsAr: [
+      { q: "ما مدى أهمية ملف جوجل التجاري بالنسبة للمطعم؟", a: "عادةً ما يكون أهم إدراج يمتلكه المطعم — فساعات العمل والقائمة والصور والتقييمات فيه تحدد مباشرة ما إذا كان شخص قريب سيختار الزيارة." },
+      { q: "هل يمكن للتسويق أن يساعد في تقليل اعتمادنا على منصات التوصيل الوسيطة؟", a: "نعم — تعزيز قنوات الطلب المباشر، وتحسين محركات البحث، والعمل المتكرر المدفوع بنظام إدارة علاقات العملاء، كلها تقلل حجم الطلبات التي يجب أن تمر عبر منصات تفرض عمولة." },
+      { q: "هل تعملون مع مجموعات مطاعم متعددة الفروع؟", a: "نعم — كل فرع يحتاج إلى إدراج محلي دقيق خاص به وأداء يُتابع بدقة، منسّق تحت علامة تجارية واحدة واستراتيجية شاملة واحدة." },
+      { q: "كيف تتعاملون مع وسائل التواصل الاجتماعي للمطاعم تحديداً؟", a: "نبني المحتوى ليدفع المشاهد نحو إجراء فعلي — حجز، زيارة، طلب — بدلاً من التحسين لمقاييس التفاعل وحدها." },
+    ],
+    faqsRu: [
+      { q: "Насколько важен профиль Google Business для ресторана?", a: "Обычно это самый важный элемент присутствия ресторана в сети — часы работы, меню, фото и отзывы в нём напрямую определяют, зайдёт ли к вам человек поблизости." },
+      { q: "Может ли маркетинг снизить нашу зависимость от агрегаторов доставки?", a: "Да — укрепление каналов прямого заказа, SEO и повторных обращений на основе CRM снижает долю объёма, который должен проходить через платформы с комиссией." },
+      { q: "Работаете ли вы с сетями ресторанов с несколькими точками?", a: "Да — каждой точке нужен собственный точный локальный листинг и отслеживаемые показатели, скоординированные под одним брендом и единой стратегией." },
+      { q: "Как вы подходите к соцсетям именно для ресторанов?", a: "Мы строим контент так, чтобы он подталкивал зрителя к действию — бронированию, визиту, заказу, а не оптимировали его только под метрики вовлечённости." },
+    ],
+    ctaTitle: ["Let's fill more tables,", "more consistently."],
+    ctaTitleAr: ["لنملأ المزيد من الطاولات،", "وبثبات أكبر."],
+    ctaTitleRu: ["Наполним больше столиков", "и сделаем это стабильной практикой."],
+    ctaMessage: "Hi, I'm interested in digital marketing for restaurants and F&B.",
+    ctaMessageAr: "مرحباً، أنا مهتم بالتسويق الرقمي للمطاعم والأغذية والمشروبات.",
+    ctaMessageRu: "Здравствуйте, меня интересует цифровой маркетинг для ресторанов и F&B.",
+    metaDescription:
+      "Restaurant and F&B marketing in Dubai — local SEO, performance marketing, branding and CRM built to grow covers, direct orders and repeat visits.",
+    metaDescriptionAr:
+      "تسويق المطاعم والأغذية والمشروبات في دبي — تحسين محركات بحث محلي، تسويق أدائي، هوية علامة تجارية وإدارة علاقات عملاء لزيادة الزبائن والطلبات المباشرة والزيارات المتكررة.",
+    metaDescriptionRu:
+      "Маркетинг ресторанов и F&B в Дубае — локальное SEO, перформанс-маркетинг, брендинг и CRM для роста числа гостей, прямых заказов и повторных визитов.",
+    seoTitle: "Restaurant & F&B Marketing Agency — Dubai",
+    seoTitleAr: "وكالة تسويق للمطاعم والأغذية والمشروبات — دبي",
+    seoTitleRu: "Агентство маркетинга для ресторанов и F&B — Дубай",
+    relatedIndustrySlug: "hospitality",
+  },
+  {
+    slug: "professional-services",
+    num: "09",
+    name: "Professional Services",
+    nameAr: "الخدمات المهنية",
+    nameRu: "Профессиональные услуги",
+    title: "Digital Marketing for Professional Services.",
+    titleAr: "التسويق الرقمي للخدمات المهنية.",
+    titleRu: "Цифровой маркетинг для профессиональных услуг.",
+    heroImage: "/images/industries/professional-services.jpg",
+    descriptor:
+      "Authority-led B2B marketing for firms selling expertise, where the enquiry is the outcome of trust built long before contact.",
+    descriptorAr:
+      "تسويق B2B قائم على المرجعية والخبرة للشركات التي تبيع الخبرة، حيث يكون الاستفسار نتيجة ثقة بُنيت قبل التواصل بوقت طويل.",
+    descriptorRu:
+      "B2B-маркетинг, построенный на экспертном авторитете, — для компаний, которые продают знания, где обращение клиента становится результатом доверия, выстроенного задолго до первого контакта.",
+    subhead: "Marketing built around expertise, not impressions.",
+    subheadAr: "تسويق مبني حول الخبرة، لا مرات الظهور.",
+    subheadRu: "Маркетинг, построенный на экспертизе, а не на показах.",
+    lead:
+      "Nobody hires a firm on the first click — professional services marketing is the work of staying credible until someone is ready to reach out.",
+    leadAr:
+      "لا أحد يوظّف شركة عند أول نقرة — تسويق الخدمات المهنية هو العمل على البقاء موثوقاً حتى يكون العميل المحتمل مستعداً للتواصل.",
+    leadRu:
+      "Компанию не нанимают по первому клику — маркетинг профессиональных услуг это работа по поддержанию доверия до момента, когда клиент готов обратиться сам.",
+    intro: [
+      "Professional services — legal, financial, consulting, advisory — sell judgment and expertise, which means the marketing has to demonstrate competence before it asks for a conversation. A polished ad with no substance behind it does the opposite of its job in this category; a prospective client is evaluating whether this firm actually understands their specific situation, and thin content reads as a warning sign rather than a hook.",
+      "The buying decision is also usually considered and referral-influenced, so a firm's LinkedIn presence, published thinking and Google search visibility for its specialisms work together over months, not days, to build the credibility a lead eventually converts on. B2B lead generation here rewards patience and specificity — a broad 'we do everything' positioning converts worse than a narrow, clearly demonstrated specialism.",
+    ],
+    introAr: [
+      "تبيع الخدمات المهنية — القانونية والمالية والاستشارية والاستشارات الإدارية — الحكمة والخبرة، ما يعني أن التسويق يجب أن يُثبت الكفاءة قبل أن يطلب محادثة. الإعلان اللامع دون مضمون حقيقي وراءه يحقق عكس الغرض منه في هذا القطاع تماماً؛ فالعميل المحتمل يقيّم ما إذا كانت هذه الشركة تفهم فعلاً وضعه الخاص، والمحتوى السطحي يُقرأ كإشارة تحذير لا كعامل جذب.",
+      "كما أن قرار الشراء غالباً ما يكون متأنياً ومتأثراً بالإحالات، لذا فإن حضور الشركة على لينكدإن، والمحتوى الفكري المنشور، والظهور في نتائج بحث جوجل لتخصصاتها، تعمل معاً على مدى أشهر لا أيام لبناء المصداقية التي يتحول عندها العميل المحتمل فعلياً. توليد العملاء المحتملين لقطاع B2B هنا يكافئ الصبر والتحديد الدقيق — فالتموضع الواسع القائم على \"نحن نقدّم كل شيء\" يحقق تحويلاً أضعف من تخصص محدد وواضح.",
+    ],
+    introRu: [
+      "Профессиональные услуги — юридические, финансовые, консалтинговые, консультационные — продают суждение и экспертизу, а значит, маркетинг обязан доказать компетентность прежде, чем просить о разговоре. Отполированная реклама без реального содержания за ней делает в этой категории обратное тому, что должна: потенциальный клиент оценивает, действительно ли компания понимает именно его ситуацию, и поверхностный контент читается как тревожный сигнал, а не как приманка.",
+      "Решение о покупке здесь также обычно взвешенное и во многом опирается на рекомендации, поэтому присутствие компании в LinkedIn, публикуемая экспертная мысль и видимость в поиске Google по её специализациям работают вместе месяцами, а не днями, выстраивая доверие, на котором в итоге и конвертируется лид. Генерация B2B-лидов здесь вознаграждает терпение и конкретность — широкое позиционирование в духе «мы делаем всё» конвертирует хуже узкой, ясно продемонстрированной специализации.",
+    ],
+    whoWeWorkWith: [
+      "Law firms and legal advisory practices",
+      "Accounting, audit and financial advisory firms",
+      "Management and strategy consultancies",
+      "Corporate services and business setup firms",
+      "Recruitment and HR advisory firms",
+      "Architecture, engineering and specialist consultancies",
+    ],
+    whoWeWorkWithAr: [
+      "مكاتب المحاماة وممارسات الاستشارات القانونية",
+      "شركات المحاسبة والتدقيق والاستشارات المالية",
+      "شركات الاستشارات الإدارية والاستراتيجية",
+      "شركات الخدمات المؤسسية وتأسيس الأعمال",
+      "شركات التوظيف والاستشارات في الموارد البشرية",
+      "شركات الهندسة المعمارية والاستشارات الهندسية والمتخصصة",
+    ],
+    whoWeWorkWithRu: [
+      "Юридические фирмы и практики правового консультирования",
+      "Бухгалтерские, аудиторские и финансово-консультационные фирмы",
+      "Управленческие и стратегические консалтинговые компании",
+      "Корпоративные сервисы и фирмы по регистрации бизнеса",
+      "Рекрутинговые и HR-консультационные фирмы",
+      "Архитектурные, инженерные и узкоспециализированные консалтинговые компании",
+    ],
+    challenges: [
+      { title: "Demonstrating expertise, not just claiming it", desc: "A generic services page doesn't convince a sophisticated buyer — content has to show genuine command of the subject." },
+      { title: "Long, trust-dependent sales cycles", desc: "A prospective client often researches for weeks or months before ever making contact, which puts the weight on sustained visibility, not a single campaign." },
+      { title: "Referral-driven growth that's hard to scale", desc: "Word of mouth is powerful but unpredictable — digital visibility gives referral-quality growth a repeatable channel." },
+      { title: "Narrow positioning against a broad offering", desc: "Firms that try to market everything they do usually convert worse than firms that lead with a clear specialism." },
+      { title: "B2B lead quality over volume", desc: "A form full of unqualified enquiries wastes senior time — targeting and content need to filter for genuine fit." },
+    ],
+    challengesAr: [
+      { title: "إثبات الخبرة لا مجرد الادعاء بها", desc: "صفحة خدمات عامة لا تقنع مشترياً واعياً — يجب أن يُظهر المحتوى إلماماً حقيقياً بالموضوع." },
+      { title: "دورات مبيعات طويلة تعتمد على الثقة", desc: "غالباً ما يبحث العميل المحتمل لأسابيع أو أشهر قبل التواصل، ما يضع الثقل على الحضور المستمر لا على حملة واحدة." },
+      { title: "نمو قائم على الإحالات يصعب توسيعه", desc: "الكلمة المتناقلة قوية لكنها غير منتظمة — الحضور الرقمي يمنح نمواً بجودة الإحالات قناة يمكن تكرارها." },
+      { title: "تموضع محدد مقابل عرض واسع", desc: "الشركات التي تحاول تسويق كل ما تقدمه تحقق عادةً تحويلاً أضعف من الشركات التي تتصدّر بتخصص واضح." },
+      { title: "جودة عملاء B2B المحتملين لا عددهم", desc: "نموذج مليء باستفسارات غير مؤهلة يهدر وقت الإدارة العليا — يجب أن يُصمَّم الاستهداف والمحتوى لتصفية الملاءمة الحقيقية." },
+    ],
+    challengesRu: [
+      { title: "Продемонстрировать экспертизу, а не просто заявить о ней", desc: "Обобщённая страница услуг не убеждает искушённого покупателя — контент должен показывать реальное владение темой." },
+      { title: "Долгие циклы продаж, зависящие от доверия", desc: "Потенциальный клиент часто изучает вопрос неделями или месяцами до первого контакта, а значит, вес приходится не на одну кампанию, а на устойчивую видимость." },
+      { title: "Рост за счёт рекомендаций, который трудно масштабировать", desc: "Сарафанное радио мощно, но непредсказуемо — цифровая видимость даёт росту качества рекомендаций повторяемый канал." },
+      { title: "Узкое позиционирование против широкого предложения", desc: "Компании, пытающиеся продвигать всё, чем занимаются, обычно конвертируют хуже тех, кто выходит на рынок с чёткой специализацией." },
+      { title: "Качество B2B-лидов важнее их объёма", desc: "Форма, забитая неквалифицированными обращениями, тратит время старших сотрудников — таргетинг и контент должны отсеивать реальное соответствие." },
+    ],
+    services: [
+      { slug: "seo", title: "Professional Services SEO", desc: "Search visibility built around specific specialisms and the questions a sophisticated buyer actually searches." },
+      { slug: "branding", title: "Professional Services Branding", desc: "A positioning and identity system that reads as credible and specific, not generic corporate polish." },
+      { slug: "digital-marketing", title: "B2B Lead Generation", desc: "Search and LinkedIn campaigns targeted at genuine buying intent, filtered for fit before they reach a form." },
+      { slug: "website-development", title: "Professional Services Websites", desc: "Websites built to demonstrate expertise clearly and convert a considered visitor into an enquiry." },
+      { slug: "marketing-consulting", title: "Positioning & Go-to-Market Strategy", desc: "A clear specialism and message strategy for firms competing on judgment, not price." },
+    ],
+    servicesAr: [
+      { slug: "seo", title: "تحسين محركات البحث للخدمات المهنية", desc: "ظهور في نتائج البحث مبني حول تخصصات محددة والأسئلة التي يبحث عنها فعلياً المشتري الواعي." },
+      { slug: "branding", title: "هوية العلامة التجارية للخدمات المهنية", desc: "نظام تموضع وهوية بصرية يُقرأ كموثوق ومحدد، لا كلمعان مؤسسي عام." },
+      { slug: "digital-marketing", title: "توليد العملاء المحتملين لقطاع B2B", desc: "حملات بحث ولينكدإن تستهدف نية شراء حقيقية، مُصفّاة للملاءمة قبل وصولها إلى النموذج." },
+      { slug: "website-development", title: "مواقع الخدمات المهنية", desc: "مواقع مصممة لإظهار الخبرة بوضوح وتحويل الزائر المتأني إلى استفسار فعلي." },
+      { slug: "marketing-consulting", title: "استراتيجية التموضع والدخول إلى السوق", desc: "تخصص واضح واستراتيجية رسائل للشركات التي تتنافس بالخبرة والحكمة، لا بالسعر." },
+    ],
+    servicesRu: [
+      { slug: "seo", title: "SEO для профессиональных услуг", desc: "Видимость в поиске, построенная вокруг конкретных специализаций и вопросов, которые реально ищет искушённый покупатель." },
+      { slug: "branding", title: "Брендинг профессиональных услуг", desc: "Система позиционирования и идентичности, которая читается как достоверная и конкретная, а не как обобщённый корпоративный лоск." },
+      { slug: "digital-marketing", title: "Генерация B2B-лидов", desc: "Кампании в поиске и LinkedIn, нацеленные на реальное намерение купить и отфильтрованные по соответствию ещё до попадания в форму." },
+      { slug: "website-development", title: "Сайты для профессиональных услуг", desc: "Сайты, созданные для ясной демонстрации экспертизы и конверсии вдумчивого посетителя в обращение." },
+      { slug: "marketing-consulting", title: "Позиционирование и go-to-market стратегия", desc: "Чёткая специализация и стратегия сообщений для компаний, конкурирующих экспертизой, а не ценой." },
+    ],
+    approach: [
+      { step: "01", title: "Positioning", desc: "Define the firm's clearest, most credible specialism — the thing it should be known for, not everything it can do." },
+      { step: "02", title: "Content & Authority", desc: "Build published thinking that demonstrates real command of the subject, not generic service copy." },
+      { step: "03", title: "Search Visibility", desc: "Strengthen SEO around the specific questions and specialisms a sophisticated buyer searches." },
+      { step: "04", title: "Lead Generation", desc: "Run targeted B2B campaigns filtered for genuine fit rather than broad reach." },
+      { step: "05", title: "Nurture", desc: "Sustain visibility and credibility over the long research window most professional services decisions take." },
+      { step: "06", title: "Optimise", desc: "Review lead quality and conversion against actual client fit, not raw enquiry volume." },
+    ],
+    approachAr: [
+      { step: "01", title: "التموضع", desc: "تحديد أوضح وأكثر تخصصات الشركة مصداقية — الشيء الذي يجب أن تُعرف به، لا كل ما تستطيع تقديمه." },
+      { step: "02", title: "المحتوى والمرجعية", desc: "بناء محتوى فكري منشور يُظهر إلماماً حقيقياً بالموضوع، لا نصوص خدمات عامة." },
+      { step: "03", title: "الظهور في نتائج البحث", desc: "تعزيز تحسين محركات البحث حول الأسئلة والتخصصات المحددة التي يبحث عنها المشتري الواعي." },
+      { step: "04", title: "توليد العملاء المحتملين", desc: "تشغيل حملات B2B مستهدفة ومصفّاة للملاءمة الحقيقية بدلاً من الوصول الواسع." },
+      { step: "05", title: "الرعاية", desc: "الحفاظ على الحضور والمصداقية طوال فترة البحث الطويلة التي تستغرقها معظم قرارات الخدمات المهنية." },
+      { step: "06", title: "التحسين", desc: "مراجعة جودة العملاء المحتملين والتحويل مقارنةً بالملاءمة الفعلية للعميل، لا بعدد الاستفسارات الخام." },
+    ],
+    approachRu: [
+      { step: "01", title: "Позиционирование", desc: "Определяем самую ясную и достоверную специализацию компании — то, чем она должна быть известна, а не всё, что она умеет." },
+      { step: "02", title: "Контент и авторитет", desc: "Создаём публикуемую экспертную мысль, которая демонстрирует реальное владение темой, а не обобщённые тексты об услугах." },
+      { step: "03", title: "Видимость в поиске", desc: "Укрепляем SEO вокруг конкретных вопросов и специализаций, которые ищет искушённый покупатель." },
+      { step: "04", title: "Генерация лидов", desc: "Запускаем таргетированные B2B-кампании, отфильтрованные по реальному соответствию, а не по широкому охвату." },
+      { step: "05", title: "Нёрчеринг", desc: "Поддерживаем видимость и доверие на протяжении долгого периода изучения, который занимает большинство решений в сфере профессиональных услуг." },
+      { step: "06", title: "Оптимизация", desc: "Оцениваем качество лидов и конверсию по реальному соответствию клиента, а не по сырому объёму обращений." },
+    ],
+    faqs: [
+      { q: "How is professional services marketing different from general B2B marketing?", a: "It leans more heavily on demonstrated expertise and credibility than most B2B categories — the content itself has to prove competence, not just describe a service." },
+      { q: "Why does narrow positioning convert better than a broad service list?", a: "A specific, clearly demonstrated specialism gives a sophisticated buyer a reason to believe this firm is the right fit, where a generic 'we do everything' message rarely does." },
+      { q: "Can digital marketing replace referral-based growth for a firm?", a: "It complements it — digital visibility gives referral-quality growth a repeatable channel, rather than leaving new business entirely dependent on existing relationships." },
+      { q: "How do you generate qualified B2B leads without wasting senior time on unqualified enquiries?", a: "By targeting genuine buying intent and using content and forms that filter for fit before an enquiry ever reaches the team." },
+    ],
+    faqsAr: [
+      { q: "كيف يختلف تسويق الخدمات المهنية عن تسويق B2B العام؟", a: "يعتمد بشكل أكبر على إثبات الخبرة والمصداقية مقارنة بمعظم قطاعات B2B — إذ يجب أن يُثبت المحتوى نفسه الكفاءة، لا أن يكتفي بوصف الخدمة." },
+      { q: "لماذا يحقق التموضع المحدد تحويلاً أفضل من قائمة خدمات واسعة؟", a: "التخصص المحدد والواضح يمنح المشتري الواعي سبباً للاعتقاد بأن هذه الشركة هي الخيار المناسب، بينما نادراً ما تفعل ذلك رسالة عامة تقول \"نحن نقدّم كل شيء\"." },
+      { q: "هل يمكن للتسويق الرقمي أن يحل محل النمو القائم على الإحالات لشركة ما؟", a: "إنه يكمّله — فالحضور الرقمي يمنح نمواً بجودة الإحالات قناة يمكن تكرارها، بدلاً من ترك الأعمال الجديدة معتمدة كلياً على العلاقات القائمة." },
+      { q: "كيف تولّدون عملاء B2B محتملين مؤهلين دون إهدار وقت الإدارة العليا على استفسارات غير مؤهلة؟", a: "من خلال استهداف نية الشراء الحقيقية، واستخدام محتوى ونماذج تصفّي الملاءمة قبل وصول أي استفسار إلى الفريق." },
+    ],
+    faqsRu: [
+      { q: "Чем маркетинг профессиональных услуг отличается от общего B2B-маркетинга?", a: "Он гораздо сильнее опирается на продемонстрированную экспертизу и доверие, чем большинство B2B-категорий — сам контент должен доказывать компетентность, а не просто описывать услугу." },
+      { q: "Почему узкое позиционирование конвертирует лучше широкого списка услуг?", a: "Конкретная, ясно продемонстрированная специализация даёт искушённому покупателю основание поверить, что именно эта компания подходит, — обобщённое сообщение «мы делаем всё» почти никогда этого не даёт." },
+      { q: "Может ли цифровой маркетинг заменить рост за счёт рекомендаций?", a: "Он его дополняет — цифровая видимость даёт росту качества рекомендаций повторяемый канал, вместо того чтобы новый бизнес полностью зависел от существующих связей." },
+      { q: "Как вы генерируете качественные B2B-лиды, не тратя время старших сотрудников на неквалифицированные обращения?", a: "Через таргетинг на реальное намерение купить и использование контента и форм, которые отсеивают соответствие ещё до того, как обращение попадёт к команде." },
+    ],
+    ctaTitle: ["Let's build the authority", "your next client searches for."],
+    ctaTitleAr: ["لنبني المرجعية", "التي يبحث عنها عميلك القادم."],
+    ctaTitleRu: ["Построим авторитет,", "который ищет ваш следующий клиент."],
+    ctaMessage: "Hi, I'm interested in digital marketing for professional services.",
+    ctaMessageAr: "مرحباً، أنا مهتم بالتسويق الرقمي للخدمات المهنية.",
+    ctaMessageRu: "Здравствуйте, меня интересует цифровой маркетинг для профессиональных услуг.",
+    metaDescription:
+      "Professional services marketing in Dubai — SEO, branding, B2B lead generation and positioning strategy for law, finance, consulting and advisory firms.",
+    metaDescriptionAr:
+      "تسويق الخدمات المهنية في دبي — تحسين محركات البحث، هوية العلامة التجارية، توليد عملاء B2B واستراتيجية التموضع لشركات القانون والمالية والاستشارات.",
+    metaDescriptionRu:
+      "Маркетинг профессиональных услуг в Дубае — SEO, брендинг, генерация B2B-лидов и стратегия позиционирования для юридических, финансовых и консалтинговых компаний.",
+    seoTitle: "Professional Services & B2B Marketing Agency — Dubai",
+    seoTitleAr: "وكالة تسويق الخدمات المهنية وB2B — دبي",
+    seoTitleRu: "Агентство маркетинга для профессиональных услуг и B2B — Дубай",
+    relatedIndustrySlug: "technology-saas",
+  },
+  {
+    slug: "education",
+    num: "10",
+    name: "Education",
+    nameAr: "التعليم",
+    nameRu: "Образование",
+    title: "Digital Marketing for Education.",
+    titleAr: "التسويق الرقمي للتعليم.",
+    titleRu: "Цифровой маркетинг для образования.",
+    heroImage: "/images/industries/education.jpg",
+    descriptor:
+      "Enrolment-focused marketing for schools, universities and training providers, built around the decision journey parents and students actually take.",
+    descriptorAr:
+      "تسويق مركّز على التسجيل للمدارس والجامعات ومقدمي التدريب، مبني حول رحلة القرار الفعلية التي يخوضها أولياء الأمور والطلاب.",
+    descriptorRu:
+      "Маркетинг, ориентированный на набор учащихся, — для школ, университетов и учебных центров, построенный вокруг реального пути принятия решения, который проходят родители и студенты.",
+    subhead: "Marketing built around the enrolment journey, not the academic calendar.",
+    subheadAr: "تسويق مبني حول رحلة التسجيل، لا التقويم الأكاديمي.",
+    subheadRu: "Маркетинг, построенный вокруг пути к зачислению, а не вокруг учебного календаря.",
+    lead:
+      "A parent doesn't choose a school on a single open day — they choose it over months of comparison, and most of that comparison happens before anyone calls the admissions office.",
+    leadAr:
+      "لا يختار ولي الأمر مدرسة في يوم مفتوح واحد — بل يختارها بعد أشهر من المقارنة، ومعظم تلك المقارنة تحدث قبل أن يتصل أحد بمكتب القبول.",
+    leadRu:
+      "Родитель не выбирает школу за один день открытых дверей — выбор складывается месяцами сравнения, и большая часть этого сравнения происходит ещё до звонка в приёмную комиссию.",
+    intro: [
+      "Education marketing serves two audiences making one decision together: the parent evaluating fit, cost and outcomes, and the student weighing a different set of priorities entirely. That dual audience, combined with an admissions cycle that runs on fixed intake dates, means the marketing calendar has to work backwards from enrolment deadlines rather than run on a flat always-on basis.",
+      "Trust and credibility carry unusual weight here too — accreditation, outcomes, and what current parents or alumni actually say typically outweigh any single campaign message. A school, university or training provider that shows up consistently in local and course-specific search, and backs it with a genuinely responsive admissions journey, converts far more of that long research window into enrolments than one that relies on open-day marketing alone.",
+    ],
+    introAr: [
+      "يخدم تسويق التعليم جمهورين يتخذان قراراً واحداً معاً: ولي الأمر الذي يقيّم الملاءمة والتكلفة والنتائج، والطالب الذي يزن مجموعة مختلفة تماماً من الأولويات. هذا الجمهور المزدوج، إلى جانب دورة قبول تعمل وفق مواعيد التحاق ثابتة، يعني أن التقويم التسويقي يجب أن يُبنى بالعكس بدءاً من مواعيد التسجيل النهائية، لا أن يعمل بشكل ثابت طوال الوقت.",
+      "كما تحمل الثقة والمصداقية وزناً استثنائياً في هذا القطاع — فالاعتماد الأكاديمي، والنتائج، وما يقوله فعلياً أولياء الأمور الحاليون أو الخريجون، عادةً ما يفوق تأثيره أي رسالة حملة منفردة. المدرسة أو الجامعة أو مقدم التدريب الذي يظهر باستمرار في نتائج البحث المحلي والمرتبط بالبرامج تحديداً، ويدعم ذلك برحلة قبول سريعة الاستجابة فعلاً، يحوّل جزءاً أكبر بكثير من فترة البحث الطويلة إلى تسجيلات فعلية مقارنة بمن يعتمد على تسويق اليوم المفتوح وحده.",
+    ],
+    introRu: [
+      "Маркетинг в образовании обслуживает две аудитории, принимающие одно решение вместе: родителя, оценивающего соответствие, стоимость и результаты, и студента, взвешивающего совершенно другой набор приоритетов. Эта двойная аудитория в сочетании с приёмной кампанией, привязанной к фиксированным датам набора, означает, что маркетинговый календарь нужно строить в обратном порядке от сроков зачисления, а не вести его в плоском постоянном режиме.",
+      "Доверие и репутация здесь тоже несут необычный вес — аккредитация, реальные результаты и то, что действительно говорят нынешние родители или выпускники, как правило, перевешивают сообщение любой отдельной кампании. Школа, университет или учебный центр, стабильно присутствующие в локальном поиске и поиске по конкретным программам и подкреплённые по-настоящему отзывчивым процессом приёма, конвертируют в зачисления гораздо большую часть этого долгого периода изучения, чем те, кто полагается только на маркетинг дней открытых дверей.",
+    ],
+    whoWeWorkWith: [
+      "K-12 schools and school groups",
+      "Universities and higher education institutions",
+      "Vocational and professional training institutes",
+      "EdTech platforms and online learning providers",
+      "Nurseries and early-years education providers",
+      "Executive education and corporate training providers",
+    ],
+    whoWeWorkWithAr: [
+      "المدارس من الروضة حتى الثانوية ومجموعات المدارس",
+      "الجامعات ومؤسسات التعليم العالي",
+      "معاهد التدريب المهني والاحترافي",
+      "منصات التقنية التعليمية ومقدمو التعلم عبر الإنترنت",
+      "الحضانات ومقدمو تعليم الطفولة المبكرة",
+      "مقدمو التعليم التنفيذي والتدريب المؤسسي",
+    ],
+    whoWeWorkWithRu: [
+      "Школы K-12 и группы школ",
+      "Университеты и учреждения высшего образования",
+      "Институты профессионального и специализированного обучения",
+      "EdTech-платформы и провайдеры онлайн-обучения",
+      "Детские сады и провайдеры раннего образования",
+      "Провайдеры executive-образования и корпоративного обучения",
+    ],
+    challenges: [
+      { title: "Long, dual-audience decision journeys", desc: "Parents and students often weigh different priorities on the same decision — messaging has to work for both without diluting either." },
+      { title: "Admissions-cycle timing", desc: "Enquiries, tours and applications cluster around fixed intake windows, which means media spend has to peak with the calendar, not run flat." },
+      { title: "Trust built on outcomes and accreditation", desc: "Claims about results and accreditation carry real scrutiny — the content has to substantiate them, not just assert them." },
+      { title: "Course and programme discoverability", desc: "A large institution's individual programmes need their own search visibility, not just the institution's name." },
+      { title: "Lead nurturing across a long enquiry-to-enrolment gap", desc: "An enquiry can sit for months before an application — the follow-up system has to sustain interest that long without becoming pressure." },
+    ],
+    challengesAr: [
+      { title: "رحلات قرار طويلة بجمهور مزدوج", desc: "غالباً ما يزن أولياء الأمور والطلاب أولويات مختلفة في القرار نفسه — يجب أن تعمل الرسائل التسويقية للطرفين معاً دون إضعاف أي منهما." },
+      { title: "توقيت دورة القبول", desc: "تتركز الاستفسارات والجولات والطلبات حول نوافذ التحاق ثابتة، ما يعني أن الإنفاق الإعلاني يجب أن يبلغ ذروته مع التقويم، لا أن يبقى ثابتاً." },
+      { title: "ثقة مبنية على النتائج والاعتماد الأكاديمي", desc: "تخضع الادعاءات المتعلقة بالنتائج والاعتماد لتدقيق حقيقي — يجب أن يُثبتها المحتوى، لا أن يكتفي بذكرها." },
+      { title: "إمكانية اكتشاف البرامج والمقررات", desc: "تحتاج البرامج الفردية في المؤسسة الكبيرة إلى ظهور خاص بها في نتائج البحث، لا الاعتماد على اسم المؤسسة وحده." },
+      { title: "رعاية العملاء المحتملين عبر فجوة طويلة بين الاستفسار والتسجيل", desc: "قد يبقى الاستفسار دون طلب فعلي لأشهر — يجب أن يحافظ نظام المتابعة على الاهتمام طوال تلك الفترة دون أن يتحول إلى ضغط." },
+    ],
+    challengesRu: [
+      { title: "Долгий путь решения с двумя аудиториями", desc: "Родители и студенты часто взвешивают разные приоритеты в одном и том же решении — сообщение должно работать для обоих, не размывая ни один из посылов." },
+      { title: "Привязка к циклу приёма", desc: "Обращения, экскурсии и заявки концентрируются вокруг фиксированных окон набора, а значит, медиабюджет должен пиково расти вместе с календарём, а не идти ровно." },
+      { title: "Доверие, построенное на результатах и аккредитации", desc: "Заявления о результатах и аккредитации проходят реальную проверку — контент должен их подтверждать, а не просто декларировать." },
+      { title: "Обнаруживаемость курсов и программ", desc: "Отдельным программам крупного учреждения нужна собственная видимость в поиске, а не только имя самого учреждения." },
+      { title: "Ведение лидов через долгий разрыв между обращением и зачислением", desc: "Обращение может «зависать» месяцами до подачи заявки — система follow-up должна поддерживать интерес всё это время, не превращаясь в давление." },
+    ],
+    services: [
+      { slug: "digital-marketing", title: "Performance Marketing for Education", desc: "Search and social campaigns timed to admissions deadlines, targeted at genuine enquiry intent from parents and prospective students." },
+      { slug: "seo", title: "Education SEO", desc: "Search visibility for the institution, its individual programmes and the comparison questions parents actually search." },
+      { slug: "branding", title: "Education Branding", desc: "A credible, distinct identity that communicates outcomes and culture clearly across every touchpoint." },
+      { slug: "website-development", title: "Education Websites & Enquiry Forms", desc: "Fast, informative websites with programme pages and enquiry flows built to convert a long research visit." },
+      { slug: "crm-marketing-automation", title: "Admissions CRM & Nurturing", desc: "Automated nurture sequences that keep an enquiry warm across the months between first contact and enrolment." },
+    ],
+    servicesAr: [
+      { slug: "digital-marketing", title: "التسويق الأدائي للتعليم", desc: "حملات بحث ووسائل تواصل اجتماعي مُوقّتة مع مواعيد القبول النهائية، تستهدف نية استفسار حقيقية من أولياء الأمور والطلاب المحتملين." },
+      { slug: "seo", title: "تحسين محركات البحث للتعليم", desc: "ظهور في نتائج البحث للمؤسسة وبرامجها الفردية وأسئلة المقارنة التي يبحث عنها أولياء الأمور فعلياً." },
+      { slug: "branding", title: "هوية العلامة التجارية للتعليم", desc: "هوية موثوقة ومميزة تنقل النتائج والثقافة بوضوح عبر كل نقطة تواصل." },
+      { slug: "website-development", title: "مواقع التعليم ونماذج الاستفسار", desc: "مواقع سريعة وغنية بالمعلومات، بصفحات برامج ومسارات استفسار مصممة لتحويل زيارة بحث طويلة." },
+      { slug: "crm-marketing-automation", title: "إدارة علاقات القبول ورعاية العملاء المحتملين", desc: "سلاسل رعاية آلية تُبقي الاستفسار متفاعلاً طوال الأشهر الفاصلة بين أول تواصل والتسجيل." },
+    ],
+    servicesRu: [
+      { slug: "digital-marketing", title: "Перформанс-маркетинг для образования", desc: "Кампании в поиске и соцсетях, приуроченные к срокам приёма и нацеленные на реальное намерение обратиться со стороны родителей и абитуриентов." },
+      { slug: "seo", title: "SEO для образовательных учреждений", desc: "Видимость в поиске для учреждения, его отдельных программ и сравнительных вопросов, которые реально задают родители." },
+      { slug: "branding", title: "Брендинг в сфере образования", desc: "Достоверная, отличительная идентичность, которая ясно доносит результаты и культуру учреждения в каждой точке контакта." },
+      { slug: "website-development", title: "Сайты и формы обращений для образования", desc: "Быстрые, информативные сайты со страницами программ и формами обращения, созданные для конверсии длительного визита изучения." },
+      { slug: "crm-marketing-automation", title: "CRM приёмной комиссии и ведение лидов", desc: "Автоматизированные цепочки, которые поддерживают интерес обращения тёплым на протяжении месяцев между первым контактом и зачислением." },
+    ],
+    approach: [
+      { step: "01", title: "Positioning", desc: "Define what the institution or programme is genuinely known for, in language a parent or student actually searches." },
+      { step: "02", title: "Search Visibility", desc: "Build SEO around the institution, its programmes and the comparison questions its audience is asking." },
+      { step: "03", title: "Content & Trust", desc: "Build outcomes-led content — results, accreditation, real testimonials — that substantiates the school or provider's claims." },
+      { step: "04", title: "Enquiry Generation", desc: "Run admissions-timed campaigns measured against qualified enquiries, not raw traffic." },
+      { step: "05", title: "Nurture", desc: "Keep enquiries warm across a long decision window with CRM-driven follow-up." },
+      { step: "06", title: "Enrolment Conversion", desc: "Tighten the admissions journey itself so a nurtured enquiry converts into a confirmed enrolment." },
+    ],
+    approachAr: [
+      { step: "01", title: "التموضع", desc: "تحديد ما تُعرف به المؤسسة أو البرنامج فعلياً، بلغة يبحث عنها ولي الأمر أو الطالب حقاً." },
+      { step: "02", title: "الظهور في نتائج البحث", desc: "بناء تحسين محركات البحث حول المؤسسة وبرامجها وأسئلة المقارنة التي يطرحها جمهورها." },
+      { step: "03", title: "المحتوى والثقة", desc: "بناء محتوى قائم على النتائج — الإنجازات، الاعتماد الأكاديمي، الشهادات الحقيقية — يثبت ادعاءات المدرسة أو الجهة التعليمية." },
+      { step: "04", title: "توليد الاستفسارات", desc: "تشغيل حملات مُوقّتة مع القبول تُقاس بالاستفسارات المؤهلة، لا حجم الزيارات الخام." },
+      { step: "05", title: "الرعاية", desc: "الحفاظ على تفاعل الاستفسارات طوال نافذة القرار الطويلة عبر متابعة مدفوعة بنظام إدارة علاقات العملاء." },
+      { step: "06", title: "تحويل التسجيل", desc: "تحسين رحلة القبول نفسها بحيث يتحول الاستفسار المُرعى إلى تسجيل مؤكد." },
+    ],
+    approachRu: [
+      { step: "01", title: "Позиционирование", desc: "Определяем, чем учреждение или программа действительно известны, — языком, которым реально пользуются родитель или студент при поиске." },
+      { step: "02", title: "Видимость в поиске", desc: "Выстраиваем SEO вокруг учреждения, его программ и сравнительных вопросов, которые задаёт аудитория." },
+      { step: "03", title: "Контент и доверие", desc: "Создаём контент на основе результатов — достижения, аккредитация, реальные отзывы — который подтверждает заявления школы или учреждения." },
+      { step: "04", title: "Генерация обращений", desc: "Запускаем кампании, приуроченные к приёмной кампании, с оценкой по квалифицированным обращениям, а не сырому трафику." },
+      { step: "05", title: "Ведение лидов", desc: "Поддерживаем интерес обращений на протяжении долгого окна принятия решения через follow-up на базе CRM." },
+      { step: "06", title: "Конверсия в зачисление", desc: "Отлаживаем сам процесс приёма, чтобы «доведённое» обращение превращалось в подтверждённое зачисление." },
+    ],
+    faqs: [
+      { q: "How can digital marketing help schools and education providers specifically?", a: "By building search visibility and content that reaches parents and students during their research phase, then nurturing that interest through to an application with CRM-driven follow-up." },
+      { q: "What digital channels work best for student and parent acquisition?", a: "Usually a mix of search (for both the institution and specific programmes), social media aimed at the right audience segment, and email or CRM nurture across the admissions cycle." },
+      { q: "How does SEO help schools and education brands specifically?", a: "It captures parents and students actively comparing options by search, which is typically where most serious enquiries start, well before an open day or a direct enquiry." },
+      { q: "How can education businesses improve enquiry-to-enrolment conversion?", a: "By nurturing every enquiry consistently across the full decision window with CRM automation, rather than relying on a single follow-up call after an open day." },
+    ],
+    faqsAr: [
+      { q: "كيف يمكن للتسويق الرقمي أن يساعد المدارس ومقدمي التعليم تحديداً؟", a: "من خلال بناء ظهور في نتائج البحث ومحتوى يصل إلى أولياء الأمور والطلاب خلال مرحلة بحثهم، ثم رعاية ذلك الاهتمام حتى الطلب الفعلي عبر متابعة مدفوعة بنظام إدارة علاقات العملاء." },
+      { q: "ما القنوات الرقمية الأنسب لاستقطاب الطلاب وأولياء الأمور؟", a: "عادةً مزيج من البحث (للمؤسسة والبرامج المحددة معاً)، ووسائل التواصل الاجتماعي الموجهة للشريحة المناسبة من الجمهور، والرعاية عبر البريد الإلكتروني أو نظام إدارة علاقات العملاء طوال دورة القبول." },
+      { q: "كيف يساعد تحسين محركات البحث المدارس والعلامات التعليمية تحديداً؟", a: "يجذب أولياء الأمور والطلاب الذين يقارنون الخيارات فعلياً عبر البحث، وهي عادةً النقطة التي تبدأ منها معظم الاستفسارات الجادة، قبل اليوم المفتوح أو الاستفسار المباشر بوقت طويل." },
+      { q: "كيف يمكن للمؤسسات التعليمية تحسين تحويل الاستفسارات إلى تسجيلات؟", a: "من خلال رعاية كل استفسار باستمرار طوال نافذة القرار الكاملة عبر أتمتة إدارة علاقات العملاء، بدلاً من الاعتماد على مكالمة متابعة واحدة بعد اليوم المفتوح." },
+    ],
+    faqsRu: [
+      { q: "Как именно цифровой маркетинг может помочь школам и образовательным учреждениям?", a: "За счёт видимости в поиске и контента, который доходит до родителей и студентов на этапе изучения вариантов, а затем поддерживает этот интерес до подачи заявки через follow-up на базе CRM." },
+      { q: "Какие цифровые каналы лучше всего работают для привлечения студентов и родителей?", a: "Обычно это сочетание поиска (и по самому учреждению, и по конкретным программам), соцсетей, нацеленных на нужный сегмент аудитории, и email- или CRM-ведения на протяжении всего приёмного цикла." },
+      { q: "Как именно SEO помогает школам и образовательным брендам?", a: "Оно захватывает родителей и студентов, которые активно сравнивают варианты через поиск, — а именно здесь обычно начинаются самые серьёзные обращения, задолго до дня открытых дверей или прямого запроса." },
+      { q: "Как образовательные организации могут повысить конверсию обращений в зачисления?", a: "Последовательным ведением каждого обращения на протяжении всего окна принятия решения через автоматизацию CRM, а не одним звонком после дня открытых дверей." },
+    ],
+    ctaTitle: ["Let's turn enquiries", "into enrolments."],
+    ctaTitleAr: ["لنحوّل الاستفسارات", "إلى تسجيلات."],
+    ctaTitleRu: ["Превратим обращения", "в зачисления."],
+    ctaMessage: "Hi, I'm interested in digital marketing for education.",
+    ctaMessageAr: "مرحباً، أنا مهتم بالتسويق الرقمي للتعليم.",
+    ctaMessageRu: "Здравствуйте, меня интересует цифровой маркетинг для образования.",
+    metaDescription:
+      "Education marketing in Dubai — SEO, performance marketing, branding and admissions CRM for schools, universities and training providers.",
+    metaDescriptionAr:
+      "تسويق التعليم في دبي — تحسين محركات البحث، تسويق أدائي، هوية علامة تجارية وإدارة علاقات قبول للمدارس والجامعات ومقدمي التدريب.",
+    metaDescriptionRu:
+      "Маркетинг для сферы образования в Дубае — SEO, перформанс-маркетинг, брендинг и CRM приёмной комиссии для школ, университетов и учебных центров.",
+    seoTitle: "Education Marketing Agency — Schools & Institutions, Dubai",
+    seoTitleAr: "وكالة تسويق التعليم — المدارس والمؤسسات، دبي",
+    seoTitleRu: "Агентство маркетинга для образования — школы и учреждения, Дубай",
+  },
+];
+
+export function getIndustry(slug: string): Industry | undefined {
+  return industries.find((industry) => industry.slug === slug);
+}
+
+/**
+ * The handful of fields a client-side nav/selector actually renders — same
+ * reasoning as `NavService`/`navServices()`: `SiteHeader` is `"use client"`,
+ * so whatever it imports ships to the browser on every page.
+ */
+export type NavIndustry = Pick<Industry, "slug" | "num" | "name" | "nameAr" | "nameRu">;
+
+export function navIndustries(): NavIndustry[] {
+  return industries.map(({ slug, num, name, nameAr, nameRu }) => ({
+    slug,
+    num,
+    name,
+    nameAr,
+    nameRu,
+  }));
 }
 
 /* -------------------------------------------------------------------------- */
