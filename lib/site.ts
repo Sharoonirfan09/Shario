@@ -2491,9 +2491,13 @@ export const industries: Industry[] = [
     name: "Real Estate & Property",
     nameAr: "العقارات والممتلكات",
     nameRu: "Недвижимость",
-    title: "Digital Marketing for Real Estate.",
-    titleAr: "التسويق الرقمي للعقارات.",
-    titleRu: "Цифровой маркетинг для рынка недвижимости.",
+    // Hub of the Real Estate pillar→cluster. The `[slug]` route renders this
+    // one via `ClusterHubPageBody`; most fields below still feed the nav, the
+    // `/industries` grid, the sitemap and this page's structured data / OG
+    // image, but the body copy lives in `lib/real-estate-cluster.ts`.
+    title: "Digital Marketing for Real Estate in Dubai",
+    titleAr: "التسويق الرقمي للعقارات في دبي",
+    titleRu: "Цифровой маркетинг для недвижимости в Дубае",
     heroImage: "/images/industries/real-estate.jpg",
     descriptor:
       "Demand generation and brand positioning for developers, brokerages and property consultants competing for the same buyer's attention.",
@@ -2676,14 +2680,14 @@ export const industries: Industry[] = [
     ctaMessageAr: "مرحباً، أنا مهتم بالتسويق الرقمي للعقارات.",
     ctaMessageRu: "Здравствуйте, меня интересует digital-маркетинг для недвижимости.",
     metaDescription:
-      "Digital marketing for real estate in Dubai — performance marketing, SEO, websites and CRM automation built for developers, brokerages and property consultants.",
+      "Digital marketing for real estate companies in Dubai — developers, brokerages & property firms. Launch campaigns, SEO, web & CRM that generate qualified leads.",
     metaDescriptionAr:
-      "تسويق رقمي للعقارات في دبي — تسويق أدائي، تحسين لمحركات البحث، مواقع إلكترونية وأتمتة CRM للمطورين والوسطاء ومستشاري العقارات.",
+      "التسويق الرقمي لشركات العقارات في دبي — مطورون ووسطاء وشركات عقارية. حملات إطلاق وتحسين محركات بحث ومواقع وإدارة علاقات عملاء تولّد عملاء مؤهلين.",
     metaDescriptionRu:
-      "Digital-маркетинг для недвижимости в Дубае: performance-реклама, SEO, сайты и CRM-автоматизация для застройщиков, агентств и консультантов.",
-    seoTitle: "Digital Marketing for Real Estate & Property — Dubai",
-    seoTitleAr: "التسويق الرقمي للعقارات والممتلكات — دبي",
-    seoTitleRu: "Digital-маркетинг для рынка недвижимости — Дубай",
+      "Цифровой маркетинг для компаний в сфере недвижимости в Дубае — застройщики, агентства и профильные компании. Кампании запуска, SEO, сайты и CRM, которые дают квалифицированные лиды.",
+    seoTitle: "Digital Marketing for Real Estate in Dubai",
+    seoTitleAr: "التسويق الرقمي للعقارات في دبي",
+    seoTitleRu: "Цифровой маркетинг для недвижимости в Дубае",
   },
   {
     slug: "hospitality",

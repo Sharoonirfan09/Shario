@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ClusterHubPageBody } from "@/components/cluster-page";
 import { Faq } from "@/components/faq";
 import {
   BreadcrumbStructuredData,
@@ -63,6 +64,14 @@ export default async function IndustryPage({
   const { slug } = await params;
   const industry = getIndustry(slug);
   if (!industry) notFound();
+
+  // The Real Estate page is the hub of a pillar→cluster (see
+  // `lib/real-estate-cluster.ts`): same primitives, same styling, but a body
+  // that carries the "companies" audience copy, the six sub-service cards and
+  // its own case-study / expertise bands.
+  if (industry.slug === "real-estate") {
+    return <ClusterHubPageBody industry={industry} locale="en" />;
+  }
 
   const relatedIndustry = industry.relatedIndustrySlug
     ? getIndustry(industry.relatedIndustrySlug)

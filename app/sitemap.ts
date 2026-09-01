@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { servicePageSlugs } from "@/lib/real-estate-cluster";
 import { industries, insightArticles, insightCategories, services, site } from "@/lib/site";
 
 const routes = ["/", "/services", "/industries", "/insights", "/about", "/contact"];
@@ -101,5 +102,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ];
   });
 
-  return [...pages, ...servicePages, ...industryPages, ...insightPages, ...categoryPages];
+  // The Real Estate pillar→cluster (see `lib/real-estate-cluster.ts`): the
+  // Agents audience page plus the six sub-service pages. These live outside
+  // the `industries`/`services` arrays, so they're listed explicitly.
+  const clusterPaths = [
+    "/industries/real-estate-agents",
+    ...servicePageSlugs.map((slug) => `/services/${slug}`),
+  ];
+  const clusterPages = clusterPaths.flatMap((path) => {
+    const enUrl = `${site.domain}${path}`;
+    const arUrl = `${site.domain}/ar${path}`;
+    const ruUrl = `${site.domain}/ru${path}`;
+    const languages = { en: enUrl, ar: arUrl, ru: ruUrl, "x-default": enUrl };
+
+    return [
+      { url: enUrl, lastModified, changeFrequency: "monthly" as const, priority: 0.7, alternates: { languages } },
+      { url: arUrl, lastModified, changeFrequency: "monthly" as const, priority: 0.7, alternates: { languages } },
+      { url: ruUrl, lastModified, changeFrequency: "monthly" as const, priority: 0.7, alternates: { languages } },
+    ];
+  });
+
+  return [...pages, ...servicePages, ...industryPages, ...insightPages, ...categoryPages, ...clusterPages];
 }

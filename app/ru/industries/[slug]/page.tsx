@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ClusterHubPageBody } from "@/components/cluster-page";
 import { Faq } from "@/components/faq";
 import {
   BreadcrumbStructuredData,
@@ -63,6 +64,11 @@ export default async function RussianIndustryPage({
   const { slug } = await params;
   const industry = getIndustry(slug);
   if (!industry) notFound();
+
+  // Hub of the Real Estate pillar→cluster — see the note in the English route.
+  if (industry.slug === "real-estate") {
+    return <ClusterHubPageBody industry={industry} locale="ru" />;
+  }
 
   const relatedIndustry = industry.relatedIndustrySlug
     ? getIndustry(industry.relatedIndustrySlug)

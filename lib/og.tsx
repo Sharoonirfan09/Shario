@@ -287,6 +287,95 @@ export async function buildHomeOgImage() {
 }
 
 /**
+ * The type-only card: carbon ground, wordmark top-left, eyebrow + title
+ * bottom-left — the social-preview counterpart to the photo-less
+ * `TypeHero tone="carbon"` the service pages and the Real Estate cluster
+ * pages use. No photograph, so nothing for `check:images` to police and no
+ * new asset to source.
+ */
+export async function buildTypeOgImage({
+  eyebrow,
+  title,
+}: {
+  eyebrow: string;
+  title: string;
+}) {
+  const [cormorantMedium, wordmark] = await Promise.all([
+    loadCormorant(500),
+    loadWordmark(),
+  ]);
+
+  const image = new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          position: "relative",
+          background: "#252525",
+        }}
+      >
+        <img
+          src={wordmark}
+          width={170}
+          height={31}
+          style={{
+            position: "absolute",
+            left: 64,
+            top: 56,
+            objectFit: "contain",
+            filter: "invert(1) brightness(2)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            left: 64,
+            right: 64,
+            bottom: 64,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: 20,
+              letterSpacing: 6,
+              textTransform: "uppercase",
+              color: "rgba(241,238,231,0.85)",
+              marginBottom: 20,
+            }}
+          >
+            <div style={{ display: "flex", width: 32, height: 1, background: "#ABBFC7", marginRight: 14 }} />
+            {eyebrow}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              fontFamily: "Cormorant Garamond",
+              fontWeight: 500,
+              fontSize: 58,
+              lineHeight: 1.15,
+              color: "#F1EEE7",
+            }}
+          >
+            {title}
+          </div>
+        </div>
+      </div>
+    ),
+    {
+      ...ogSize,
+      fonts: [{ name: "Cormorant Garamond", data: cormorantMedium, style: "normal", weight: 500 }],
+    },
+  );
+  return toJpegResponse(image);
+}
+
+/**
  * The page-photograph card: a page's own real photography full-bleed, the
  * same dark bottom-left gradient treatment `Hero` (`components/ui.tsx`) uses
  * on the live banner, wordmark top-left, eyebrow + title bottom-left. Used
