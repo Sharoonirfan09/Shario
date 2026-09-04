@@ -136,6 +136,12 @@ export function SectionIntro({
   align = "center",
   tone = "porcelain",
   scale = "md",
+  /** Appended to the wrapper, unused by default — lets one call site opt into
+   *  its own scroll-reveal treatment (e.g. `"reveal"` plus a modifier class)
+   *  without changing any other section that renders a `SectionIntro`. */
+  className = "",
+  /** Forwarded as `data-delay` when `className` includes `"reveal"`. */
+  delay,
 }: {
   eyebrow: string;
   title: ReactNode;
@@ -143,12 +149,15 @@ export function SectionIntro({
   align?: "center" | "left";
   tone?: Tone;
   scale?: keyof typeof h2Scale;
+  className?: string;
+  delay?: number;
 }) {
   const centred = align === "center";
 
   return (
     <div
-      className={`mb-12 wide:mb-16 ${centred ? "mx-auto max-w-[820px] text-center" : "max-w-[820px]"}`}
+      className={`mb-12 wide:mb-16 ${centred ? "mx-auto max-w-[820px] text-center" : "max-w-[820px]"} ${className}`}
+      data-delay={className.includes("reveal") ? delay : undefined}
     >
       <p
         className={`eyebrow flex items-center gap-3 ${
@@ -396,6 +405,10 @@ type CardProps = {
   delay?: number;
   /** Flips the action row's arrow and drops the Latin-only `eyebrow` (uppercase/tracking) treatment for Arabic callers. Default `"en"`. */
   locale?: Locale;
+  /** Appended to the card's own classes, unused by default — lets one grid
+   *  opt into a modifier (e.g. a distinct reveal travel/duration) without
+   *  changing any other `Card` on the site. */
+  className?: string;
 };
 
 /**
@@ -420,6 +433,7 @@ export function Card({
   tone = "porcelain",
   delay = 0,
   locale = "en",
+  className: extraClassName = "",
 }: CardProps) {
   const t = cardTone[tone];
   const isAr = locale === "ar";
@@ -524,7 +538,7 @@ export function Card({
   // stay behind the content rather than escaping into the grid gap. The
   // hover lift and its soft shadow are the one piece of motion every card
   // shares, whether or not it links anywhere.
-  const className = `reveal group relative isolate flex h-full flex-col overflow-hidden border p-8 wide:p-10 transition-[background-color,border-color,box-shadow,transform] duration-500 hover:-translate-y-1 hover:shadow-[0_24px_48px_-32px_rgba(37,37,37,0.35)] ${t.surface} ${t.hover}`;
+  const className = `reveal group relative isolate flex h-full flex-col overflow-hidden border p-8 wide:p-10 transition-[background-color,border-color,box-shadow,transform] duration-500 hover:-translate-y-1 hover:shadow-[0_24px_48px_-32px_rgba(37,37,37,0.35)] ${t.surface} ${t.hover} ${extraClassName}`;
 
   if (!href) {
     return (

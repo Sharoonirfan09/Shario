@@ -371,6 +371,87 @@ b {
   transform: none;
 }
 
+/* Scoped to the Industries "Where We Help" services band only (real-estate,
+   etc.) — a slightly longer travel and duration than the sitewide `.reveal`
+   default above, still on the same premium easing curve. Selectors require
+   both `.reveal` and one of these modifier classes, so nothing else on the
+   site is affected.
+
+   The pre-reveal transform is guarded with `:not([data-shown="true"])`
+   rather than just the modifier class: `.js .reveal.services-reveal-card`
+   alone would tie in specificity with `.js .reveal[data-shown="true"]`
+   above (3 simple selectors each) and, being declared later, would win —
+   leaving the card permanently offset instead of settling. Scoping the
+   override to "not yet shown" makes the two rules match disjoint states,
+   so there's nothing to tie. */
+.js .reveal.services-reveal-heading {
+  transition-duration: 0.7s;
+}
+.js .reveal.services-reveal-heading:not([data-shown="true"]) {
+  transform: translateY(20px);
+}
+
+.js .reveal.services-reveal-card {
+  transition-duration: 0.7s;
+}
+.js .reveal.services-reveal-card:not([data-shown="true"]) {
+  transform: translateY(30px);
+}
+
+/* Scoped to the Industries "How we'd take this on." approach band only — a
+   deliberately visible 3D entrance (perspective + depth + rotateY) inspired
+   by a mirrored-rail corridor technique, adapted to these existing cards
+   rather than reproducing that layout. Perspective is supplied locally via
+   the `perspective()` transform function on each card itself, so no
+   ancestor needs `transform-style: preserve-3d`. Same specificity reasoning
+   as the services band above: the pre-reveal transform only applies while
+   `data-shown` is absent, so it never fights the shared end-state reset.
+
+   A lower perspective (700px, vs. the 1000px used elsewhere) plus a larger
+   negative translateZ is what actually reads as depth: the projection
+   shrinks a card that's pushed back noticeably more than the explicit
+   `scale()` alone would, which is what makes the emergence legible at a
+   glance instead of just a fade. */
+.js .reveal.approach-reveal-heading {
+  transition-duration: 0.7s;
+}
+.js .reveal.approach-reveal-heading:not([data-shown="true"]) {
+  transform: translateY(20px);
+}
+
+.js .reveal.approach-reveal-card {
+  transition-duration: 1s;
+  transition-timing-function: cubic-bezier(0.16, 0.7, 0.3, 1);
+}
+.js .reveal.approach-reveal-card:not([data-shown="true"]) {
+  opacity: 0;
+  transform: perspective(700px) translate3d(0, 60px, -150px) rotateY(0deg) scale(0.9);
+  will-change: transform, opacity;
+}
+.js .reveal.approach-reveal-card.approach-reveal-tilt-left:not([data-shown="true"]) {
+  transform: perspective(700px) translate3d(0, 60px, -150px) rotateY(-10deg) scale(0.9);
+}
+.js .reveal.approach-reveal-card.approach-reveal-tilt-right:not([data-shown="true"]) {
+  transform: perspective(700px) translate3d(0, 60px, -150px) rotateY(10deg) scale(0.9);
+}
+
+/* Hover: a hair of lift and scale, independent of the reveal state above —
+   `.js .reveal.approach-reveal-card:hover` (4 simple selectors) outweighs
+   `.js .reveal[data-shown="true"]` (3), so the lift always shows once a
+   card has settled. No shadow is added; the card's existing sitewide hover
+   shadow is left exactly as it is. */
+.js .reveal.approach-reveal-card:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal.approach-reveal-card:not([data-shown="true"]) {
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+}
+
 /* ---------------------------------------------------------------------------
    Frames. A photograph settles out of a slight scale as its plate reveals,
    and eases in a touch under the cursor. Slow enough to read as composure
@@ -513,6 +594,47 @@ b {
   clip-path: inset(0 0 0 0);
 }
 
+/* ---------------------------------------------------------------------------
+   Real Estate industry page — the closing CTA's background motion.
+   A slow radial drift plus a static grain layer, both scoped to
+   `components/industries/real-estate/final-cta.tsx` and nowhere else.
+--------------------------------------------------------------------------- */
+
+@keyframes cta-drift {
+  0%,
+  100% {
+    transform: translate3d(-4%, -2%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, 3%, 0) scale(1.12);
+  }
+}
+
+.cta-glow {
+  position: absolute;
+  inset: -10%;
+  z-index: 0;
+  background: radial-gradient(
+    42% 55% at 30% 35%,
+    rgb(171 191 199 / 0.16),
+    transparent 70%
+  ),
+    radial-gradient(38% 50% at 76% 68%, rgb(214 206 194 / 0.1), transparent 72%);
+  animation: cta-drift 22s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* A single repeating turbulence tile, not a per-frame canvas — the texture
+   is static, so this costs nothing beyond the one background paint. */
+.cta-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 @media print {
   .reveal,
   .rise,
@@ -535,7 +657,8 @@ b {
   .rise,
   .draw,
   .settle,
-  .drift {
+  .drift,
+  .cta-glow {
     animation: none;
   }
 
