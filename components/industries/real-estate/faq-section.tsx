@@ -15,7 +15,7 @@ export function FaqSection({ industry }: { industry: Industry }) {
     <Band>
       <div className="grid gap-10 wide:grid-cols-[0.85fr_1.6fr] wide:gap-16">
         <div className="reveal">
-          <p className="eyebrow flex items-center gap-3 text-carbon/55">
+          <p className="eyebrow re-label flex items-center gap-3 text-carbon/70">
             <span aria-hidden="true" className="h-px w-6 bg-mist" />
             FAQ
           </p>
@@ -24,7 +24,7 @@ export function FaqSection({ industry }: { industry: Industry }) {
           </h2>
         </div>
         <div className="reveal" data-delay={100}>
-          <Faq items={industry.faqs} />
+          <Faq items={industry.faqs} answerClassName="re-faq-answer" />
         </div>
       </div>
     </Band>

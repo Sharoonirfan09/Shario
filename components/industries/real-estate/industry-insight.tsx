@@ -15,7 +15,7 @@ export function IndustryInsight({ industry }: { industry: Industry }) {
     <Band>
       <div className="grid gap-12 wide:grid-cols-[0.8fr_1.2fr] wide:gap-20">
         <div className="reveal flex flex-col gap-8 wide:sticky wide:top-[calc(var(--header-h)+2rem)] wide:self-start">
-          <p className="eyebrow flex items-center gap-3 text-carbon/55">
+          <p className="eyebrow re-label flex items-center gap-3 text-carbon/70">
             <span aria-hidden="true" className="h-px w-6 bg-mist" />
             The Industry
           </p>
@@ -35,19 +35,19 @@ export function IndustryInsight({ industry }: { industry: Industry }) {
             {industry.subhead}
           </h2>
           <p
-            className="lede reveal mt-8 text-carbon/80"
+            className="lede reveal mt-8 text-carbon/85"
             data-delay={80}
           >
             {industry.intro[0]}
           </p>
           <p
-            className="reveal mt-6 text-[1.0625rem] leading-[1.75] text-carbon/75"
+            className="reveal mt-6 text-[1.0625rem] font-normal leading-[1.75] text-carbon/85"
             data-delay={180}
           >
             {industry.intro[1]}
           </p>
           <p
-            className="reveal mt-6 border-t border-carbon/12 pt-7 text-[1.0625rem] leading-[1.75] text-carbon/75"
+            className="reveal mt-6 border-t border-carbon/12 pt-7 text-[1.0625rem] font-normal leading-[1.75] text-carbon/85"
             data-delay={220}
           >
             <InlineLinks segments={industry.bodyLinks} />

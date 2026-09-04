@@ -53,7 +53,7 @@ export function Audience({
   return (
     <Band>
       <div className="reveal mb-14 max-w-[760px] wide:mb-20">
-        <p className="eyebrow flex items-center gap-3 text-carbon/55">
+        <p className="eyebrow re-label flex items-center gap-3 text-carbon/70">
           <span aria-hidden="true" className="h-px w-6 bg-mist" />
           Who We Work With
         </p>
@@ -86,22 +86,22 @@ export function Audience({
 
             <span
               aria-hidden="true"
-              className="relative z-10 font-display text-[0.9375rem] text-porcelain/60 transition-colors duration-500 group-hover:text-mist"
+              className="relative z-10 font-display text-[0.9375rem] text-porcelain/78 transition-colors duration-500 group-hover:text-mist"
             >
               {cat.num}
             </span>
             <h3 className="relative z-10 mt-4 font-display text-[1.5rem] font-medium leading-[1.15] text-porcelain transition-transform duration-500 group-hover:-translate-y-1 wide:text-[1.625rem]">
               {cat.title}
             </h3>
-            <p className="relative z-10 mt-3.5 max-w-[220px] text-[0.875rem] leading-[1.6] text-porcelain/75">
+            <p className="relative z-10 mt-3.5 max-w-[220px] text-[0.9375rem] font-normal leading-[1.6] text-porcelain/88">
               {cat.desc}
             </p>
             <span
               aria-hidden="true"
-              className="relative z-10 mt-6 flex items-center gap-2 text-porcelain/70 transition-colors duration-500 group-hover:text-porcelain"
+              className="relative z-10 mt-6 flex items-center gap-2 text-porcelain/85 transition-colors duration-500 group-hover:text-porcelain"
             >
               <span className="h-px w-6 bg-current transition-all duration-500 group-hover:w-9" />
-              <span className="text-[0.6875rem] uppercase tracking-[0.15em]">
+              <span className="text-[0.75rem] uppercase tracking-[0.15em]">
                 {String(i + 1).padStart(2, "0")} / 04
               </span>
             </span>

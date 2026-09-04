@@ -21,7 +21,7 @@ export function Challenges({ industry }: { industry: Industry }) {
     <section className="bg-carbon text-porcelain">
       <Container className="py-16 wide:py-[clamp(5rem,9vw,8.75rem)]">
         <div className="reveal mb-16 max-w-[820px] wide:mb-20">
-          <p className="eyebrow flex items-center gap-3 text-porcelain/70">
+          <p className="eyebrow re-label flex items-center gap-3 text-porcelain/85">
             <span aria-hidden="true" className="h-px w-6 bg-mist" />
             The Challenges
           </p>
@@ -36,7 +36,7 @@ export function Challenges({ industry }: { industry: Industry }) {
               only indicator needed. */}
           <div
             aria-hidden="true"
-            className="relative hidden w-px bg-porcelain/15 wide:block"
+            className="relative hidden w-px bg-platinum/30 wide:block"
           >
             <div
               className="absolute left-0 top-0 w-px origin-top bg-mist transition-transform duration-300 ease-out"
@@ -54,14 +54,14 @@ export function Challenges({ industry }: { industry: Industry }) {
                 <div
                   key={challenge.title}
                   data-story-item
-                  className="grid grid-cols-[3.5rem_1fr] gap-6 border-t border-porcelain/15 py-8 transition-[opacity] duration-500 wide:grid-cols-[5rem_1fr] wide:gap-12 wide:py-10"
-                  style={{ opacity: isActive ? 1 : 0.4 }}
+                  className="grid grid-cols-[3.5rem_1fr] gap-6 border-t border-platinum/30 py-8 transition-[opacity] duration-500 wide:grid-cols-[5rem_1fr] wide:gap-12 wide:py-10"
+                  style={{ opacity: isActive ? 1 : 0.6 }}
                 >
                   <span
                     className={`font-display leading-none transition-[font-size,color] duration-500 ${
                       isActive
                         ? "text-[2.75rem] text-mist wide:text-[3.5rem]"
-                        : "text-[2rem] text-porcelain/40 wide:text-[2.5rem]"
+                        : "text-[2rem] text-porcelain/62 wide:text-[2.5rem]"
                     }`}
                   >
                     {String(i + 1).padStart(2, "0")}
@@ -69,14 +69,14 @@ export function Challenges({ industry }: { industry: Industry }) {
                   <div>
                     <h3
                       className={`font-display text-[1.5rem] leading-[1.2] transition-colors duration-500 wide:text-[2rem] ${
-                        isActive ? "text-porcelain" : "text-porcelain/60"
+                        isActive ? "text-porcelain" : "text-porcelain/75"
                       }`}
                     >
                       {challenge.title}
                     </h3>
                     <p
-                      className={`mt-3 max-w-[620px] text-[0.9375rem] leading-[1.7] transition-[opacity] duration-500 wide:mt-4 wide:text-[1.0625rem] ${
-                        isActive ? "text-porcelain/80 opacity-100" : "text-porcelain/60 opacity-70"
+                      className={`mt-3 max-w-[620px] text-[0.9375rem] font-normal leading-[1.7] transition-colors duration-500 wide:mt-4 wide:text-[1.0625rem] ${
+                        isActive ? "text-porcelain/88" : "text-porcelain/72"
                       }`}
                     >
                       {challenge.desc}
@@ -85,7 +85,7 @@ export function Challenges({ industry }: { industry: Industry }) {
                 </div>
               );
             })}
-            <div className="border-t border-porcelain/15" />
+            <div className="border-t border-platinum/30" />
           </div>
         </div>
       </Container>

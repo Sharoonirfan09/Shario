@@ -7,7 +7,7 @@ type Tone = "carbon" | "porcelain" | "limestone";
 const toneClass: Record<Tone, string> = {
   carbon: "border-carbon bg-carbon text-porcelain hover:bg-black",
   porcelain: "border-platinum/60 bg-porcelain text-carbon hover:border-mist hover:bg-mist/[0.07]",
-  limestone: "border-carbon/12 bg-limestone/45 text-carbon hover:border-mist hover:bg-limestone/70",
+  limestone: "border-platinum/55 bg-limestone/45 text-carbon hover:border-mist hover:bg-limestone/70",
 };
 
 /** Grid placement per index — the feature card spans two rows on the left;
@@ -36,7 +36,7 @@ export function Services({ industry }: { industry: Industry }) {
   return (
     <Band>
       <div className="reveal mb-14 max-w-[720px] wide:mb-16">
-        <p className="eyebrow flex items-center gap-3 text-carbon/55">
+        <p className="eyebrow re-label flex items-center gap-3 text-carbon/70">
           <span aria-hidden="true" className="h-px w-6 bg-mist" />
           Where We Help
         </p>
@@ -59,7 +59,7 @@ export function Services({ industry }: { industry: Industry }) {
               <div className="flex items-start justify-between gap-4">
                 <span
                   className={`font-display text-[0.9375rem] ${
-                    tone === "carbon" ? "text-porcelain/50" : "text-carbon/45"
+                    tone === "carbon" ? "text-porcelain/65" : "text-carbon/60"
                   }`}
                 >
                   {String(i + 1).padStart(2, "0")}
@@ -85,8 +85,8 @@ export function Services({ industry }: { industry: Industry }) {
                   {service.title}
                 </h3>
                 <p
-                  className={`mt-3.5 text-[0.9375rem] leading-[1.7] ${
-                    tone === "carbon" ? "text-porcelain/70" : "text-carbon/70"
+                  className={`mt-3.5 text-[0.9375rem] font-normal leading-[1.7] ${
+                    tone === "carbon" ? "text-porcelain/85" : "text-carbon/82"
                   } ${isFeature ? "max-w-[420px]" : "max-w-[320px]"}`}
                 >
                   {service.desc}

@@ -74,7 +74,7 @@ export function RealEstateHero({
           </a>
           {/* Small editorial metadata, in the ledger's own numeric setting —
               a magazine credit line, not a stat claim. */}
-          <p className="label-sm flex items-center gap-2.5 text-porcelain/60">
+          <p className="label-sm re-label flex items-center gap-2.5 text-porcelain/78">
             <span aria-hidden="true" className="font-display text-[0.9375rem] text-porcelain/80">
               {industry.num}
             </span>

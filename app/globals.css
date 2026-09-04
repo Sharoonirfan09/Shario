@@ -452,6 +452,35 @@ b {
   }
 }
 
+/* Real Estate industry page only — a legibility pass on its micro-labels.
+ * `.eyebrow` (11px) and `.label-sm` (10px) read too small/pale at the
+ * opacities that page's components use for them. Rather than change the
+ * shared classes (used on every page's eyebrows and stat labels), this
+ * modifier bumps size by one notch and is only ever combined with them in
+ * `components/industries/real-estate/*.tsx` — no other page reaches for it,
+ * so nothing else on the site is affected. Contrast itself is raised in
+ * those components directly, via their own Tailwind color-opacity classes.
+ */
+.eyebrow.re-label {
+  font-size: 0.75rem;
+}
+.label-sm.re-label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+}
+
+/* The FAQ answer's own colour (`components/faq.tsx`) is a plain Tailwind
+ * utility on the same element `answerClassName` appends to — two utilities
+ * for the same property have equal specificity, so which one wins depends
+ * on generation order, not source order, and isn't safe to rely on. This
+ * class is unlayered custom CSS, so it wins deterministically over any
+ * Tailwind utility regardless of order. Passed only from
+ * `components/industries/real-estate/faq-section.tsx`. */
+.re-faq-answer {
+  color: rgb(37 37 37 / 85%);
+  font-weight: 400;
+}
+
 /* ---------------------------------------------------------------------------
    Frames. A photograph settles out of a slight scale as its plate reveals,
    and eases in a touch under the cursor. Slow enough to read as composure

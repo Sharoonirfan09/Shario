@@ -20,7 +20,7 @@ export function FinalCta({ industry }: { industry: Industry }) {
       <div aria-hidden="true" className="cta-grain" />
 
       <Container className="relative z-10 py-20 text-center wide:py-[clamp(6rem,11vw,10rem)]">
-        <p className="reveal eyebrow flex items-center justify-center gap-3 text-porcelain/60">
+        <p className="reveal eyebrow re-label flex items-center justify-center gap-3 text-porcelain/80">
           <span aria-hidden="true" className="h-px w-6 bg-mist" />
           Let&apos;s Talk
         </p>
@@ -29,7 +29,7 @@ export function FinalCta({ industry }: { industry: Industry }) {
           <br />
           {industry.ctaTitle[1]}
         </h2>
-        <p className="reveal mx-auto mt-7 max-w-[540px] text-[1.0625rem] leading-[1.7] text-porcelain/70">
+        <p className="reveal mx-auto mt-7 max-w-[540px] text-[1.0625rem] font-normal leading-[1.7] text-porcelain/85">
           Book a free call and we will come back with a clear, no-obligation
           plan for a system mapped to your pipeline.
         </p>

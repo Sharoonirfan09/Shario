@@ -52,14 +52,14 @@ export function Funnel({ industry }: { industry: Industry }) {
   return (
     <Band className="bg-limestone/30">
       <div className="reveal mb-14 max-w-[720px] wide:mb-20">
-        <p className="eyebrow flex items-center gap-3 text-carbon/55">
+        <p className="eyebrow re-label flex items-center gap-3 text-carbon/70">
           <span aria-hidden="true" className="h-px w-6 bg-mist" />
           The System
         </p>
         <h2 className="mt-5 font-display text-[2.25rem] font-normal leading-[1.12] wide:text-[2.75rem]">
           One connected system, not six separate vendors.
         </h2>
-        <p className="mt-6 flex flex-wrap items-center gap-x-2.5 gap-y-2 text-[0.9375rem] text-carbon/70">
+        <p className="mt-6 flex flex-wrap items-center gap-x-2.5 gap-y-2 text-[0.9375rem] font-normal text-carbon/82">
           {industry.services.map((s, i) => (
             <span key={s.slug} className="flex items-center gap-2.5">
               <Link
@@ -69,7 +69,7 @@ export function Funnel({ industry }: { industry: Industry }) {
                 {s.title.replace(/ for Real Estate$| for Launches$/, "")}
               </Link>
               {i < industry.services.length - 1 && (
-                <span aria-hidden="true" className="text-carbon/30">
+                <span aria-hidden="true" className="text-carbon/45">
                   +
                 </span>
               )}
@@ -84,7 +84,7 @@ export function Funnel({ industry }: { industry: Industry }) {
         aria-hidden="true"
         className="reveal relative mb-16 hidden wide:block"
       >
-        <div className="absolute inset-x-0 top-[13px] h-px bg-carbon/15" />
+        <div className="absolute inset-x-0 top-[13px] h-px bg-platinum/60" />
         <div
           className="absolute left-0 top-[13px] h-px w-full origin-left bg-carbon transition-transform duration-300 ease-out"
           style={{ transform: `scaleX(${progress})` }}
@@ -96,14 +96,14 @@ export function Funnel({ industry }: { industry: Industry }) {
                 className={`z-10 flex h-7 w-7 items-center justify-center rounded-full font-display text-[0.8125rem] transition-colors duration-500 ${
                   i <= active
                     ? "bg-carbon text-porcelain"
-                    : "bg-limestone text-carbon/40 border border-carbon/20"
+                    : "bg-limestone text-carbon/58 border border-platinum/60"
                 }`}
               >
                 {i + 1}
               </span>
               <span
-                className={`label-sm transition-colors duration-500 ${
-                  i === active ? "text-carbon" : "text-carbon/40"
+                className={`label-sm re-label transition-colors duration-500 ${
+                  i === active ? "text-carbon" : "text-carbon/58"
                 }`}
               >
                 {stage.label}
@@ -122,26 +122,26 @@ export function Funnel({ industry }: { industry: Industry }) {
             <div
               key={stage.label}
               data-story-item
-              className="grid grid-cols-[auto_1fr] items-baseline gap-6 border-t border-carbon/12 py-7 transition-opacity duration-500 wide:grid-cols-[3rem_10rem_1fr] wide:gap-10 wide:py-8"
-              style={{ opacity: isActive ? 1 : 0.45 }}
+              className="grid grid-cols-[auto_1fr] items-baseline gap-6 border-t border-platinum/45 py-7 transition-opacity duration-500 wide:grid-cols-[3rem_10rem_1fr] wide:gap-10 wide:py-8"
+              style={{ opacity: isActive ? 1 : 0.62 }}
             >
-              <span className="font-display text-[1.375rem] text-carbon/50 wide:text-[1.625rem]">
+              <span className="font-display text-[1.375rem] text-carbon/65 wide:text-[1.625rem]">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3
                 className={`font-display text-[1.5rem] leading-[1.15] wide:text-[1.875rem] ${
-                  isActive ? "text-carbon" : "text-carbon/60"
+                  isActive ? "text-carbon" : "text-carbon/72"
                 }`}
               >
                 {stage.label}
               </h3>
-              <p className="col-span-2 max-w-[520px] text-[0.9375rem] leading-[1.7] text-carbon/70 wide:col-span-1">
+              <p className="col-span-2 max-w-[520px] text-[0.9375rem] font-normal leading-[1.7] text-carbon/82 wide:col-span-1">
                 {stage.desc}
               </p>
             </div>
           );
         })}
-        <div className="border-t border-carbon/12" />
+        <div className="border-t border-platinum/45" />
       </div>
     </Band>
   );

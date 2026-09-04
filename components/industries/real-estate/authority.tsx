@@ -17,14 +17,14 @@ export function Authority() {
     <Band tone="carbon">
       <div className="grid gap-14 wide:grid-cols-[1.05fr_1fr] wide:items-end wide:gap-24">
         <div className="reveal">
-          <p className="eyebrow flex items-center gap-3 text-porcelain/70">
+          <p className="eyebrow re-label flex items-center gap-3 text-porcelain/85">
             <span aria-hidden="true" className="h-px w-6 bg-mist" />
             Why SHARIO
           </p>
           <h2 className="mt-6 font-display text-[2.5rem] font-normal leading-[1.1] wide:text-[clamp(3rem,5vw,4.5rem)]">
             Why partner with a Dubai real estate marketing specialist.
           </h2>
-          <p className="mt-7 max-w-[480px] text-[1.0625rem] leading-[1.75] text-porcelain/75">
+          <p className="mt-7 max-w-[480px] text-[1.0625rem] font-normal leading-[1.75] text-porcelain/88">
             One senior, founder-led team running paid, SEO, websites and CRM
             as one system — not an account handed between departments that
             never talk to each other.
@@ -37,7 +37,7 @@ export function Authority() {
               <p className="ledger-figure">
                 <CountUp value={stat.figure} />
               </p>
-              <p className="label-sm mt-4 text-porcelain/60">{stat.label}</p>
+              <p className="label-sm re-label mt-4 text-porcelain/80">{stat.label}</p>
             </div>
           ))}
         </div>
