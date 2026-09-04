@@ -245,8 +245,7 @@ export async function buildHomeOgImage() {
             }}
           >
             <div style={{ display: "flex" }}>Digital Marketing</div>
-            <div style={{ display: "flex" }}>That Turns Spend</div>
-            <div style={{ display: "flex" }}>Into Revenue</div>
+            <div style={{ display: "flex" }}>Agency in Dubai</div>
           </div>
           <div
             style={{
