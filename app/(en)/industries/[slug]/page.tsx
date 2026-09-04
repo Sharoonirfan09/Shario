@@ -22,9 +22,19 @@ import {
 } from "@/components/ui";
 import { cta, getIndustry, industries, ogDefaults, site } from "@/lib/site";
 
-/** Every industry page is known at build time, so prerender them. */
+/**
+ * Every industry page is known at build time, so prerender them — except
+ * "real-estate", which now has its own bespoke route at
+ * `../real-estate/page.tsx`. A literal segment always wins over a dynamic
+ * sibling for an exact path match, so that route already intercepts
+ * `/industries/real-estate` before this one is ever reached; excluding the
+ * slug here just stops this file from also prerendering an unreachable
+ * duplicate of the same URL.
+ */
 export function generateStaticParams() {
-  return industries.map((industry) => ({ slug: industry.slug }));
+  return industries
+    .filter((industry) => industry.slug !== "real-estate")
+    .map((industry) => ({ slug: industry.slug }));
 }
 
 export async function generateMetadata({
@@ -76,6 +86,8 @@ export default async function IndustryPage({
   const relatedIndustry = industry.relatedIndustrySlug
     ? getIndustry(industry.relatedIndustrySlug)
     : undefined;
+
+  const approachColumns = industry.approach.length > 4 ? 3 : 2;
 
   const breadcrumbItems = [
     { href: "/", label: "Home" },
@@ -148,12 +160,15 @@ export default async function IndustryPage({
         </CardGrid>
       </Band>
 
-      {/* Where Shario's real services apply — the Industries↔Services link. */}
+      {/* Where Shario's real services apply — the Industries↔Services link.
+          The only band on the site with its own scroll-reveal timing: see
+          `services-reveal-heading` / `services-reveal-card` in globals.css. */}
       <Band className="bg-limestone/30">
         <SectionIntro
           eyebrow="Where We Help"
           title={`${industry.name} marketing services.`}
           scale="sm"
+          className="reveal services-reveal-heading"
         />
         <CardGrid columns={3}>
           {industry.services.map((item, i) => (
@@ -165,13 +180,15 @@ export default async function IndustryPage({
               titleAs="h3"
               desc={item.desc}
               action="Explore"
-              delay={i * 60}
+              delay={i * 110}
+              className="services-reveal-card"
             />
           ))}
         </CardGrid>
       </Band>
 
-      {/* This industry's own engagement framework. */}
+      {/* This industry's own engagement framework. The only band on the site
+          with a 3D entrance: see `approach-reveal-*` in globals.css. */}
       <Band className="relative overflow-hidden">
         <span
           aria-hidden="true"
@@ -181,17 +198,34 @@ export default async function IndustryPage({
           eyebrow="The Approach"
           title="How we'd take this on."
           scale="sm"
+          className="reveal approach-reveal-heading"
         />
-        <CardGrid columns={industry.approach.length > 4 ? 3 : 2}>
-          {industry.approach.map((step) => (
-            <Card
-              key={step.step}
-              badge={step.step}
-              title={step.title}
-              titleAs="h3"
-              desc={step.desc}
-            />
-          ))}
+        <CardGrid columns={approachColumns}>
+          {industry.approach.map((step, i) => {
+            const col = i % approachColumns;
+            // A small opposing rotateY by column — left tilts one way,
+            // right the other, centre (3-column only) stays near-flat — so
+            // the row reads as converging gently toward the viewer rather
+            // than rotating in lockstep. Echoes the reference's mirrored
+            // rails without reproducing their layout.
+            const tilt =
+              col === 0
+                ? "approach-reveal-tilt-left"
+                : col === approachColumns - 1
+                  ? "approach-reveal-tilt-right"
+                  : "";
+            return (
+              <Card
+                key={step.step}
+                badge={step.step}
+                title={step.title}
+                titleAs="h3"
+                desc={step.desc}
+                delay={i * 165}
+                className={`approach-reveal-card ${tilt}`}
+              />
+            );
+          })}
         </CardGrid>
 
         {relatedIndustry && (
