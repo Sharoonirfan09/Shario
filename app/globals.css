@@ -664,69 +664,6 @@ b {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ---------------------------------------------------------------------------
-   Home hero (`SplitHero`) — the same atmospheric technique as `.cta-glow`/
-   `.cta-grain` above (drifting radial light plus a static grain tile), now
-   joined by a matching vignette layer for real edge/centre contrast. Every
-   colour here is Limestone itself, only lightened or darkened — computed
-   directly from `#d6cec2`, not swapped for another named palette colour —
-   so the section reads as *lit* Limestone, not a different-coloured one.
-   The base `bg-limestone` on `SplitHero`'s section is untouched underneath;
-   nothing else on the site uses these three classes.
---------------------------------------------------------------------------- */
-
-@keyframes hero-atmosphere-drift {
-  0%,
-  100% {
-    transform: translate3d(-3%, -2%, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(3%, 2%, 0) scale(1.08);
-  }
-}
-
-.hero-atmosphere {
-  position: absolute;
-  inset: -8%;
-  z-index: 0;
-  /* Limestone lightened ~70% toward white — a real, visible pool of light
-     near the headline — paired with Limestone darkened ~20% toward Carbon
-     — a denser pool opposite it, echoing `.cta-glow`'s two-light setup. */
-  background: radial-gradient(
-    62% 74% at 30% 32%,
-    rgb(246 243 238 / 0.95),
-    transparent 66%
-  ),
-    radial-gradient(54% 64% at 80% 82%, rgb(179 171 157 / 0.5), transparent 68%);
-  animation: hero-atmosphere-drift 30s ease-in-out infinite;
-  will-change: transform;
-}
-
-/* The edge/centre falloff `.hero-atmosphere`'s two soft lights don't cover
-   on their own — without it the corners sit exactly as flat as the base
-   colour, which is what read as "no effect". Limestone darkened ~20%
-   toward Carbon again, same tone as the second light above, just spread
-   as a ring rather than a pool. */
-.hero-vignette {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: radial-gradient(
-    128% 108% at 50% 42%,
-    transparent 38%,
-    rgb(179 171 157 / 0.4) 100%
-  );
-}
-
-.hero-grain {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  opacity: 0.06;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
 @media print {
   .reveal,
   .rise,
@@ -750,8 +687,7 @@ b {
   .draw,
   .settle,
   .drift,
-  .cta-glow,
-  .hero-atmosphere {
+  .cta-glow {
     animation: none;
   }
 

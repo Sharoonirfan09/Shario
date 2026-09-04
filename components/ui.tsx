@@ -750,15 +750,6 @@ export function SplitHero({
 
   return (
     <section className="relative bg-limestone mt-[calc(-1*var(--header-h))]" dir="ltr">
-      {/* A drifting radial light, a matching edge vignette, and a static
-          grain tile — the same atmospheric technique as the Real Estate
-          closing CTA's `.cta-glow`/`.cta-grain`, recoloured to lightened
-          and darkened Limestone rather than Carbon's palette. Purely
-          tonal: the section's `bg-limestone` stays the base colour
-          underneath it. */}
-      <div aria-hidden="true" className="hero-atmosphere" />
-      <div aria-hidden="true" className="hero-vignette" />
-      <div aria-hidden="true" className="hero-grain" />
       {/*
        * `min-h` rather than a fixed height: the type sets the floor on a phone,
        * and on a laptop the section fills the viewport so the photograph has
@@ -766,7 +757,7 @@ export function SplitHero({
        * chrome-less viewport on mobile Safari and leaves the hero taller than
        * the screen.
        */}
-      <Container className="relative z-10 flex flex-col justify-center pb-16 pt-[calc(var(--header-h)+3rem)] wide:min-h-[100svh] wide:pb-24 wide:pt-[calc(var(--header-h)+2rem)]">
+      <Container className="relative flex flex-col justify-center pb-16 pt-[calc(var(--header-h)+3rem)] wide:min-h-[100svh] wide:pb-24 wide:pt-[calc(var(--header-h)+2rem)]">
         {/* Half the section, so the statement never runs under the image. */}
         <div
           className={`wide:w-[52%] wide:pr-10 ${isAr ? "text-right" : ""}`}
