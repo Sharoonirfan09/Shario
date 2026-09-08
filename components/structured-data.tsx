@@ -196,8 +196,11 @@ export function IndustryStructuredData({
 
 /** Renders a raw JSON-LD `<script>` tag — every structured-data component in
  *  this file goes through this one, so they stay consistent about how the
- *  object is escaped and injected. */
-function JsonLd({ data }: { data: unknown }) {
+ *  object is escaped and injected. Exported so a page with no matching
+ *  helper here (e.g. the Healthcare cluster's vertical/service pages, which
+ *  aren't `Industry`/`Service` entries in `lib/site.ts`) can still emit a
+ *  consistent `Service` block without duplicating this escaping logic. */
+export function JsonLd({ data }: { data: unknown }) {
   return (
     <script
       type="application/ld+json"

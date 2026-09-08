@@ -159,8 +159,9 @@ const RELATED_BLURB: Record<string, Record<Locale, string>> = {
 /* Small building blocks                                                       */
 /* -------------------------------------------------------------------------- */
 
-/** SectionIntro + optional lead line + a one-column dot list. */
-function ListBand({
+/** SectionIntro + optional lead line + a one-column dot list. Exported for
+ *  reuse by the Healthcare cluster (`components/healthcare-cluster-page.tsx`). */
+export function ListBand({
   eyebrow,
   list,
   locale,
@@ -223,8 +224,9 @@ export function CardBand({
   );
 }
 
-/** The E-E-A-T "Why work with a specialist" band. */
-function ExpertiseBand({
+/** The E-E-A-T "Why work with a specialist" band. Exported for reuse by the
+ *  Healthcare cluster. */
+export function ExpertiseBand({
   eyebrow,
   heading,
   body,
@@ -352,7 +354,8 @@ function RelatedBand({ slugs, locale }: { slugs: string[]; locale: Locale }) {
   );
 }
 
-function ClosingCta({
+/** Exported for reuse by the Healthcare cluster. */
+export function ClosingCta({
   title,
   label,
   locale,

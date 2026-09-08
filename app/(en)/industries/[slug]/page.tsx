@@ -33,7 +33,7 @@ import { cta, getIndustry, industries, ogDefaults, site } from "@/lib/site";
  */
 export function generateStaticParams() {
   return industries
-    .filter((industry) => industry.slug !== "real-estate")
+    .filter((industry) => industry.slug !== "real-estate" && industry.slug !== "healthcare")
     .map((industry) => ({ slug: industry.slug }));
 }
 

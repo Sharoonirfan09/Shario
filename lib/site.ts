@@ -3110,12 +3110,16 @@ export const industries: Industry[] = [
     relatedIndustrySlug: "healthcare",
   },
   {
+    // Hub of the Healthcare pillar→cluster (mirrors "real-estate" above). The
+    // `[slug]` route excludes this slug for EN; a bespoke page.tsx renders the
+    // new copy from `lib/healthcare-cluster.ts` in its place. AR/RU still use
+    // the generic template with this object's Ar/Ru fields, untouched.
     slug: "healthcare",
     num: "04",
     name: "Healthcare",
     nameAr: "الرعاية الصحية",
     nameRu: "Здравоохранение",
-    title: "Digital Marketing for Healthcare.",
+    title: "Healthcare Digital Marketing in Dubai",
     titleAr: "التسويق الرقمي للرعاية الصحية.",
     titleRu: "Цифровой маркетинг для здравоохранения.",
     heroImage: "/images/industries/healthcare.jpg",
@@ -3306,12 +3310,12 @@ export const industries: Industry[] = [
     ctaMessageAr: "مرحباً، أنا مهتم بالتسويق الرقمي للرعاية الصحية.",
     ctaMessageRu: "Здравствуйте, меня интересует digital-маркетинг для здравоохранения.",
     metaDescription:
-      "Healthcare marketing in Dubai — SEO, performance marketing, branding and websites for clinics, medical groups and healthcare providers, built on patient trust.",
+      "Healthcare digital marketing in Dubai for doctors, dentists, hospitals, clinics & pharma — SEO, ads, content, social, email & websites, built DHA-compliant.",
     metaDescriptionAr:
       "تسويق الرعاية الصحية في دبي — تحسين لمحركات البحث، تسويق أدائي، هوية بصرية ومواقع للعيادات والمجموعات الطبية، مبني على ثقة المرضى.",
     metaDescriptionRu:
       "Медицинский маркетинг в Дубае: SEO, performance-реклама, брендинг и сайты для клиник и медицинских групп, построенные на доверии пациентов.",
-    seoTitle: "Healthcare & Medical Clinic Marketing Agency — Dubai",
+    seoTitle: "Healthcare Digital Marketing Agency in Dubai",
     seoTitleAr: "وكالة تسويق للرعاية الصحية والعيادات الطبية — دبي",
     seoTitleRu: "Агентство маркетинга для медицинских клиник — Дубай",
     relatedIndustrySlug: "aesthetic-wellness",

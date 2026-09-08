@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { healthcareServices, healthcareVerticals } from "@/lib/healthcare-cluster";
 import { servicePageSlugs } from "@/lib/real-estate-cluster";
 import { industries, insightArticles, insightCategories, services, site } from "@/lib/site";
 
@@ -122,5 +123,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ];
   });
 
-  return [...pages, ...servicePages, ...industryPages, ...insightPages, ...categoryPages, ...clusterPages];
+  // The Healthcare pillar→cluster (see `lib/healthcare-cluster.ts`): the hub
+  // itself is the "healthcare" entry in `industryPages` above (still
+  // trilingual — AR/RU render it via the generic template); the four
+  // vertical pages and six service pages below are English-only, so no
+  // AR/RU alternates are declared for them.
+  const healthcareClusterPaths = [
+    ...healthcareVerticals.map((v) => `/industries/healthcare/${v.slug}`),
+    ...healthcareServices.map((s) => `/services/${s.slug}`),
+  ];
+  const healthcareClusterPages = healthcareClusterPaths.map((path) => ({
+    url: `${site.domain}${path}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [
+    ...pages,
+    ...servicePages,
+    ...industryPages,
+    ...insightPages,
+    ...categoryPages,
+    ...clusterPages,
+    ...healthcareClusterPages,
+  ];
 }
