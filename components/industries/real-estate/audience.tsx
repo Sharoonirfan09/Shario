@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Band, DotList } from "@/components/ui";
 import { realEstateImages } from "./images";
 
@@ -108,6 +109,17 @@ export function Audience({
           </div>
         ))}
       </div>
+
+      <p className="reveal mt-10 text-[0.9375rem] text-carbon/60">
+        Working solo? See{" "}
+        <Link
+          href="/industries/real-estate-agents"
+          className="border-b border-carbon/30 pb-0.5 text-carbon/80 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+        >
+          digital marketing for real estate agents
+        </Link>
+        .
+      </p>
 
       {/* The full six-line list stays in the document for search engines and
           screen readers — the four panels above are a visual recomposition,

@@ -2610,13 +2610,19 @@ export const industries: Industry[] = [
       { title: "CRM-обработка, которая действительно происходит", desc: "Лид, которому не позвонили в течение часа, — это лид, который закроет конкурент: именно на передаче от рекламы к агенту чаще всего теряется воронка." },
       { title: "Отличие не только за счёт локации", desc: "Два проекта в пяти минутах друг от друга с похожей ценой нуждаются в брендовой причине выбрать именно его, а не просто в более красивом виде из окна." },
     ],
+    // Slugs point at the real-estate-specific cluster pages (`lib/real-estate-cluster.ts`),
+    // not the generic services — this row and the "Where We Help" bento are
+    // the pillar→cluster link for the six sub-service pages. Kept apart from
+    // `servicesAr`/`servicesRu`, which still feed the generic `[slug]` template
+    // used for the AR/RU industries grid (real-estate itself is excluded there
+    // via `ClusterHubPageBody`, which already links to these same subpages).
     services: [
-      { slug: "digital-marketing", title: "Performance Marketing for Launches", desc: "Google and Meta campaigns structured around a launch calendar, not a flat monthly spend, so budget peaks when the project needs it." },
-      { slug: "seo", title: "SEO for Real Estate", desc: "Project and area landing pages built to rank for the searches a buyer actually types before they ever contact an agent." },
-      { slug: "website-development", title: "Property Websites That Qualify Leads", desc: "Fast, mobile-first listing and project sites with enquiry forms built to separate a serious buyer from a browser." },
-      { slug: "crm-marketing-automation", title: "CRM & Lead Nurturing", desc: "Automated follow-up sequences that keep a six-week decision warm without relying on an agent remembering to call back." },
-      { slug: "branding", title: "Developer & Brokerage Branding", desc: "A positioning and identity system a project or brokerage can carry from the first render to the handover event." },
-      { slug: "marketing-consulting", title: "Go-to-Market Strategy", desc: "A channel and budget plan built around your launch timeline, not a generic marketing calendar." },
+      { slug: "real-estate-ppc-dubai", title: "Performance Marketing for Launches", desc: "Google and Meta campaigns structured around a launch calendar, not a flat monthly spend, so budget peaks when the project needs it." },
+      { slug: "real-estate-seo-dubai", title: "SEO for Real Estate", desc: "Project and area landing pages built to rank for the searches a buyer actually types before they ever contact an agent." },
+      { slug: "real-estate-web-development-dubai", title: "Property Websites That Qualify Leads", desc: "Fast, mobile-first listing and project sites with enquiry forms built to separate a serious buyer from a browser." },
+      { slug: "real-estate-email-marketing-dubai", title: "CRM & Lead Nurturing", desc: "Automated follow-up sequences that keep a six-week decision warm without relying on an agent remembering to call back." },
+      { slug: "real-estate-social-media-marketing-dubai", title: "Developer & Brokerage Branding", desc: "A positioning and identity system a project or brokerage can carry from the first render to the handover event." },
+      { slug: "real-estate-content-marketing-dubai", title: "Go-to-Market Strategy", desc: "A channel and budget plan built around your launch timeline, not a generic marketing calendar." },
     ],
     servicesAr: [
       { slug: "digital-marketing", title: "التسويق الأدائي لإطلاقات المشاريع", desc: "حملات على جوجل وميتا مبنية وفق جدول الإطلاق الفعلي، لا وفق إنفاق شهري ثابت، بحيث تتركز الميزانية حين يحتاجها المشروع فعلاً." },

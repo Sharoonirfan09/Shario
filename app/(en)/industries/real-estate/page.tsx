@@ -6,6 +6,8 @@ import {
   IndustryStructuredData,
 } from "@/components/structured-data";
 import { getIndustry, ogDefaults, site } from "@/lib/site";
+import { hubPageContent } from "@/lib/real-estate-cluster";
+import { CardBand } from "@/components/cluster-page";
 import { RealEstateHero } from "@/components/industries/real-estate/hero";
 import { IndustryInsight } from "@/components/industries/real-estate/industry-insight";
 import { Funnel } from "@/components/industries/real-estate/funnel";
@@ -62,6 +64,11 @@ export default function RealEstateIndustryPage() {
   const industry = getIndustry(SLUG);
   if (!industry) notFound();
 
+  // Same four verbatim case studies already written for this hub — stored
+  // here rather than duplicated, since `ClusterHubPageBody` (still serving
+  // the AR/RU hub) reads from the same object.
+  const { caseStudies } = hubPageContent("en");
+
   const breadcrumbItems = [
     { href: "/", label: "Home" },
     { href: "/industries", label: "Industries" },
@@ -81,6 +88,13 @@ export default function RealEstateIndustryPage() {
       <Challenges industry={industry} />
       <Services industry={industry} />
       <Authority />
+      <CardBand
+        eyebrow="Case Studies"
+        title={caseStudies.heading}
+        items={caseStudies.items}
+        locale="en"
+        className="bg-limestone/30"
+      />
       <ApproachTimeline industry={industry} />
       <FaqSection industry={industry} />
       <FinalCta industry={industry} />

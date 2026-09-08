@@ -186,8 +186,11 @@ function ListBand({
   );
 }
 
-/** A grid of unlinked cards — "channels" and "case studies". */
-function CardBand({
+/** A grid of unlinked cards — "channels" and "case studies". Exported so the
+ *  bespoke EN Real Estate hub (`app/(en)/industries/real-estate/page.tsx`)
+ *  can render the same case-studies section the six sub-service pages use,
+ *  rather than a second implementation that could drift from it. */
+export function CardBand({
   eyebrow,
   title,
   items,
