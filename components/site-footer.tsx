@@ -121,12 +121,20 @@ export function SiteFooter({ locale = "en" }: { locale?: Locale }) {
         </div>
 
         <div className="flex flex-col-reverse items-center gap-6 border-t border-porcelain/15 pt-6 text-xs text-porcelain/50 wide:flex-row wide:justify-between">
-          <p className={isAr ? "font-arabic" : ""}>
-            {isAr
-              ? `© ${new Date().getFullYear()} SHARIO. جميع الحقوق محفوظة.`
-              : isRu
-                ? `© ${new Date().getFullYear()} SHARIO. Все права защищены.`
-                : `© ${new Date().getFullYear()} SHARIO. All rights reserved.`}
+          <p className={`flex flex-wrap items-center justify-center gap-x-3 gap-y-1 ${isAr ? "font-arabic" : ""}`}>
+            <span>
+              {isAr
+                ? `© ${new Date().getFullYear()} SHARIO. جميع الحقوق محفوظة.`
+                : isRu
+                  ? `© ${new Date().getFullYear()} SHARIO. Все права защищены.`
+                  : `© ${new Date().getFullYear()} SHARIO. All rights reserved.`}
+            </span>
+            <span aria-hidden="true" className="text-porcelain/25">
+              ·
+            </span>
+            <Link href={href("/sitemap")} className="transition-opacity duration-300 hover:opacity-100 hover:text-porcelain">
+              {isAr ? "خريطة الموقع" : isRu ? "Карта сайта" : "Sitemap"}
+            </Link>
           </p>
 
           <div className="flex items-center gap-4">

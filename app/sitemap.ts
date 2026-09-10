@@ -3,7 +3,7 @@ import { healthcareServices, healthcareVerticals } from "@/lib/healthcare-cluste
 import { servicePageSlugs } from "@/lib/real-estate-cluster";
 import { industries, insightArticles, insightCategories, services, site } from "@/lib/site";
 
-const routes = ["/", "/services", "/industries", "/insights", "/about", "/contact"];
+const routes = ["/", "/services", "/industries", "/insights", "/about", "/contact", "/sitemap"];
 
 /** Every non-English locale's URL prefix — mirrors `PREFIXES` in `lib/locale.ts`. */
 const LOCALE_PREFIXES = { ar: "/ar", ru: "/ru" } as const;
