@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Faq } from "@/components/faq";
 import { IndustriesGrid } from "@/components/industries-grid";
 import { InsightCard } from "@/components/insights";
@@ -121,21 +120,7 @@ export default function HomePage() {
           </>
         }
         subhead={<em className="italic">A Symphony of Identity</em>}
-        lead={
-          <>
-            A founder-led digital marketing agency in Dubai running paid
-            media, SEO, websites and CRM as one connected system, under one
-            accountable team. Led by{" "}
-            <Link
-              href="/about"
-              className="border-b border-carbon/40 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
-            >
-              Sharoon Irfan Khan
-            </Link>
-            , with {site.revenue} in lead-attributed revenue across client
-            accounts.
-          </>
-        }
+        lead="A founder-led digital marketing agency in Dubai running paid media, SEO, websites and CRM as one connected system, under one accountable team."
         href="/about"
         linkLabel="Inside Shario"
       >

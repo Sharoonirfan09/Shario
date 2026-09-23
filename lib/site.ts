@@ -550,11 +550,6 @@ export const trustStrip = [
     textAr: "English · العربية · Русский",
     textRu: "English · العربية · Русский",
   },
-  {
-    text: `${site.revenue} lead-attributed revenue across client accounts`,
-    textAr: `أكثر من ${site.revenue} إيرادات منسوبة إلى العملاء المحتملين عبر حسابات العملاء`,
-    textRu: `${site.revenue} выручки, атрибутированной лидам, по клиентским аккаунтам`,
-  },
 ] as const;
 
 /**
