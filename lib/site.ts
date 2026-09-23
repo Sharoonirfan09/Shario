@@ -92,6 +92,24 @@ export const site = {
   experience: "6+ years",
   experienceAr: "أكثر من 6 سنوات",
   experienceRu: "Более 6 лет",
+  /**
+   * Trade-licence / legal-identity facts for the footer NAP block and the
+   * `ProfessionalService` JSON-LD (`components/structured-data.tsx`). Sourced
+   * from the DWC e-Licence (registration no. 13896, licence no. 14896,
+   * issued by Dubai Aviation City Corporation, valid 2026-07-30–2027-07-29).
+   */
+  legalName: "SHARIO DWC-LLC",
+  tradeLicenceNumber: "14896",
+  issuingAuthority: "Dubai Aviation City Corporation",
+  streetAddress: "Business Centre, Floor 3, Building A3, Business Park, Dubai South",
+  foundingDate: "2026-07-30",
+  /** Step 7b's pricing line — no number guessed at, since scope decides the quote. */
+  pricingLine:
+    "Every engagement is scoped and quoted around your goals, channels and market — contact us and you'll have a tailored proposal within one business day.",
+  pricingLineAr:
+    "يتم تحديد نطاق كل مشروع وتسعيره بناءً على أهدافكم وقنواتكم وسوقكم — تواصلوا معنا وستحصلون على عرض مخصص خلال يوم عمل واحد.",
+  pricingLineRu:
+    "Стоимость каждого проекта определяется индивидуально — с учётом ваших целей, каналов и рынка. Свяжитесь с нами, и мы подготовим для вас предложение в течение одного рабочего дня.",
 } as const;
 
 /**
@@ -154,10 +172,8 @@ export const heroImages = {
  * quoting the path itself.
  */
 export const sharedImages = {
-  /** Home's "About Shario" band and About's own opening portrait band. */
-  homeAboutHorizon: "/images/about/horizon.jpg",
-  /** About's "The Founder" band. */
-  founderPortrait: "/images/book/founder-stable.jpg",
+  /** Home's "About Shario" band and About's own "The Founder" band. */
+  founderPortrait: "/images/about/founder-sharoon.jpg",
   /** Contact's stairwell beside the enquiry form. */
   contactStair: "/images/book/photo-stair.jpg",
   /** Home's "How We Work" / "What Makes Us Different" card textures, in order. */
@@ -471,6 +487,266 @@ export const homeFaqs = [
     a: "Let's connect — tell us what you're trying to achieve and we'll take it from there.",
     aAr: "لنتواصل — أخبرونا بما تحاولون تحقيقه وسنأخذ الأمر من هناك.",
     aRu: "Давайте общаться — расскажите, чего вы хотите достичь, и мы продолжим разговор с этого момента.",
+  },
+  /**
+   * The four trust/E-E-A-T questions added in the 2026-09 homepage pass.
+   * Appended rather than replacing anything — `homeFaqs` already had 26
+   * entries before this, all server-rendered (see `components/faq.tsx`).
+   * The licensing answer carries the same `<<...>>` placeholder tokens as
+   * `site.tradeLicenceNumber` etc. — see that field's comment.
+   */
+  {
+    q: "Is Shario a licensed company in the UAE?",
+    qAr: "هل شاريو شركة مرخصة في الإمارات؟",
+    qRu: "SHARIO — лицензированная компания в ОАЭ?",
+    a: `Yes. Shario operates under trade licence ${site.tradeLicenceNumber}, issued by ${site.issuingAuthority}, from our office at ${site.streetAddress}, Dubai.`,
+    aAr: `نعم. تعمل شاريو بموجب الرخصة التجارية رقم ${site.tradeLicenceNumber}، الصادرة عن ${site.issuingAuthority}، من مكتبنا في ${site.streetAddress}، دبي.`,
+    aRu: `Да. SHARIO работает по торговой лицензии ${site.tradeLicenceNumber}, выданной ${site.issuingAuthority}, из нашего офиса по адресу ${site.streetAddress}, Дубай.`,
+  },
+  {
+    q: "Who will actually work on my account?",
+    qAr: "من سيعمل فعلياً على حسابي؟",
+    qRu: "Кто на самом деле будет вести мой проект?",
+    a: "Sharoon Irfan Khan, the founder, leads every engagement directly — strategy, campaign structure and reporting. Shario is deliberately senior and small, so you are never handed to a junior account team.",
+    aAr: "تقود شارون عرفان خان، المؤسسة، كل تعاون بشكل مباشر — الاستراتيجية وبنية الحملة والتقارير. شاريو صغيرة ومتخصصة بشكل متعمد، فلن يتم تحويلكم إلى فريق حسابات مبتدئ.",
+    aRu: "Основатель, Шарун Ирфан Хан, лично ведёт каждый проект — стратегию, структуру кампаний и отчётность. SHARIO сознательно остаётся небольшой и senior-командой, поэтому вас никогда не передадут младшей команде.",
+  },
+  {
+    q: "How do you measure results?",
+    qAr: "كيف تقيسون النتائج؟",
+    qRu: "Как вы измеряете результаты?",
+    a: "On cost per qualified lead and revenue attributed in your CRM — not impressions, clicks or follower counts. Reporting is monthly, against the numbers agreed at the start.",
+    aAr: "من خلال تكلفة العميل المحتمل المؤهَّل والإيرادات المنسوبة في نظام إدارة علاقات العملاء لديكم — وليس مرات الظهور أو النقرات أو عدد المتابعين. التقارير شهرية، مقابل الأرقام المتفق عليها في البداية.",
+    aRu: "По стоимости квалифицированного лида и выручке, зафиксированной в вашей CRM — а не по показам, кликам или числу подписчиков. Отчётность ежемесячная, по показателям, согласованным в начале сотрудничества.",
+  },
+  {
+    q: "Do you work in Arabic and Russian as well as English?",
+    qAr: "هل تعملون بالعربية والروسية إلى جانب الإنجليزية؟",
+    qRu: "Вы работаете на арабском и русском языках, помимо английского?",
+    a: "Yes. Campaigns, websites and content are delivered in English, Arabic and Russian — this site runs in all three.",
+    aAr: "نعم. يتم تنفيذ الحملات والمواقع الإلكترونية والمحتوى بالإنجليزية والعربية والروسية — هذا الموقع يعمل باللغات الثلاث.",
+    aRu: "Да. Кампании, сайты и контент реализуются на английском, арабском и русском — этот сайт работает на всех трёх языках.",
+  },
+] as const;
+
+/* -------------------------------------------------------------------------- */
+/* Home — trust strip, work wall, case studies, testimonials, resources       */
+/* -------------------------------------------------------------------------- */
+
+/** The slim divider-separated band directly under the hero. */
+export const trustStrip = [
+  {
+    text: `Licensed in Dubai, UAE · Licence no. ${site.tradeLicenceNumber}`,
+    textAr: `مرخصة في دبي، الإمارات العربية المتحدة · رخصة رقم ${site.tradeLicenceNumber}`,
+    textRu: `Лицензирована в Дубае, ОАЭ · Лицензия № ${site.tradeLicenceNumber}`,
+  },
+  {
+    text: "Founder-led — you work with the strategist, not an account handler",
+    textAr: "بقيادة المؤسسة — تتعاملون مباشرة مع الاستراتيجية، لا مع موظف حسابات",
+    textRu: "Под руководством основателя — вы работаете со стратегом, а не с менеджером по работе с клиентами",
+  },
+  {
+    text: "English · العربية · Русский",
+    textAr: "English · العربية · Русский",
+    textRu: "English · العربية · Русский",
+  },
+  {
+    text: `${site.revenue} lead-attributed revenue across client accounts`,
+    textAr: `أكثر من ${site.revenue} إيرادات منسوبة إلى العملاء المحتملين عبر حسابات العملاء`,
+    textRu: `${site.revenue} выручки, атрибутированной лидам, по клиентским аккаунтам`,
+  },
+] as const;
+
+/**
+ * "Work you can click" — eight live, verified client sites, each with a real
+ * screenshot of the live homepage as its cover (captured direct from the
+ * domain, not a mockup). Shared between the homepage's work-wall grid and
+ * the `/work` index page, the same sharing convention `SixServices` already
+ * uses between Home and `/services`.
+ *
+ * Every domain/cover was checked at build time (2026-09-20) before this list
+ * shipped — re-check before every future deploy; a dead or re-sold domain in
+ * a work wall is worse than no work wall at all.
+ */
+export const workWall = [
+  {
+    brand: "MSN Developments",
+    sector: "Real Estate",
+    sectorAr: "العقارات",
+    sectorRu: "Недвижимость",
+    line: "Brand system, website and SEO architecture for off-plan launches",
+    lineAr: "نظام العلامة التجارية والموقع الإلكتروني وبنية تحسين محركات البحث لإطلاقات ما قبل الإنشاء",
+    lineRu: "Брендинг, сайт и SEO-архитектура для запусков объектов на этапе строительства",
+    domain: "msndevelopments.com",
+    cover: "/images/work/msn-developments.jpg",
+  },
+  {
+    brand: "M Shahid Nawaz",
+    sector: "Executive Brand",
+    sectorAr: "علامة تنفيذية",
+    sectorRu: "Личный бренд",
+    line: "Institutional positioning and thought-leadership platform",
+    lineAr: "تموضع مؤسسي ومنصة قيادة فكرية",
+    lineRu: "Институциональное позиционирование и платформа экспертного лидерства",
+    domain: "mshahidnawaz.com",
+    cover: "/images/work/m-shahid-nawaz.jpg",
+  },
+  {
+    brand: "Earthlink Premium Holiday Homes",
+    sector: "Hospitality",
+    sectorAr: "الضيافة",
+    sectorRu: "Гостеприимство",
+    line: "Property management site with booking and enquiry flow",
+    lineAr: "موقع إدارة عقارات مع تدفق للحجز والاستفسار",
+    lineRu: "Сайт по управлению недвижимостью с потоком бронирования и заявок",
+    domain: "earthlinkholidayhomes.com",
+    cover: "/images/work/earthlink-holiday-homes.jpg",
+  },
+  {
+    brand: "First Key International",
+    sector: "Real Estate",
+    sectorAr: "العقارات",
+    sectorRu: "Недвижимость",
+    line: "Brokerage platform built for buyer lead capture",
+    lineAr: "منصة وساطة عقارية مصممة لالتقاط عملاء المشترين المحتملين",
+    lineRu: "Брокерская платформа для сбора лидов от покупателей",
+    domain: "firstkeyint.com",
+    cover: "/images/work/first-key-international.jpg",
+  },
+  {
+    brand: "Shanti Kiaans",
+    sector: "Luxury Real Estate",
+    sectorAr: "عقارات فاخرة",
+    sectorRu: "Элитная недвижимость",
+    line: "Luxury property brand, website and social system",
+    lineAr: "علامة تجارية عقارية فاخرة، موقع إلكتروني ونظام تواصل اجتماعي",
+    lineRu: "Бренд элитной недвижимости, сайт и система соцсетей",
+    domain: "shantikiaans.com",
+    cover: "/images/work/shanti-kiaans.jpg",
+  },
+  {
+    brand: "NALK Solutions",
+    sector: "Enterprise IT",
+    sectorAr: "تقنية المعلومات للمؤسسات",
+    sectorRu: "Корпоративные IT",
+    line: "Website and brand positioning for a Saudi enterprise technology company",
+    lineAr: "موقع إلكتروني وتموضع للعلامة التجارية لشركة تقنية سعودية للمؤسسات",
+    lineRu: "Сайт и позиционирование бренда для саудовской корпоративной технологической компании",
+    domain: "nalksolutions.com",
+    cover: "/images/work/nalk-solutions.jpg",
+  },
+  {
+    brand: "SnakeLook",
+    sector: "E-commerce",
+    sectorAr: "التجارة الإلكترونية",
+    sectorRu: "E-commerce",
+    line: "Shopify store for spotting-scope phone adapters and hunting accessories",
+    lineAr: "متجر Shopify لمحولات هواتف مناظير الرصد ومستلزمات الصيد",
+    lineRu: "Магазин на Shopify адаптеров для смартфонов к оптическим прицелам и охотничьих аксессуаров",
+    domain: "snakelook.com",
+    cover: "/images/work/snake-look.jpg",
+  },
+  {
+    brand: "Fragrance Chapter",
+    sector: "E-commerce",
+    sectorAr: "التجارة الإلكترونية",
+    sectorRu: "E-commerce",
+    line: "Shopify store — on-page SEO from a standing start",
+    lineAr: "متجر Shopify — تحسين محركات بحث داخل الصفحة من نقطة انطلاق صفرية",
+    lineRu: "Магазин на Shopify — SEO на странице «с нуля»",
+    domain: "fragrancechapter.com",
+    cover: "/images/work/fragrance-chapter.jpg",
+  },
+] as const;
+
+/**
+ * Named testimonials, given directly by Shario and lightly copy-edited for
+ * grammar only — substance and claims left exactly as given, since inventing
+ * or embellishing a quote puts words in a real person's mouth. Each `photo`
+ * is the reviewer's own photograph, supplied by them directly — never
+ * sourced from their LinkedIn profile.
+ */
+export const testimonials = [
+  {
+    quote:
+      "Shario delivered top-notch service from start to finish, with clear communication throughout and real, measurable results. Working with the team never felt like a burden; I've genuinely enjoyed the experience.",
+    quoteAr:
+      "قدّمت شاريو خدمة استثنائية من البداية إلى النهاية، مع تواصل واضح طوال الوقت ونتائج حقيقية وقابلة للقياس. لم يكن التعامل مع الفريق عبئاً أبداً؛ استمتعت فعلاً بالتجربة.",
+    quoteRu:
+      "Shario оказала первоклассный сервис от начала до конца, с чёткой коммуникацией на каждом этапе и реальными, измеримыми результатами. Работа с командой никогда не была обузой, и мне искренне понравилось сотрудничество.",
+    name: "Muhammad Shahid Nawaz",
+    role: undefined as string | undefined,
+    roleAr: undefined as string | undefined,
+    roleRu: undefined as string | undefined,
+    linkedin: "https://www.linkedin.com/in/mshahidnawazdubai/",
+    photo: "/images/testimonials/muhammad-shahid-nawaz.jpg" as string | undefined,
+  },
+  {
+    quote:
+      "We brought Shario in for store management and SEO, and within three months we were ranking, with real revenue and sales to show for it.",
+    quoteAr:
+      "استعنّا بشاريو لإدارة المتجر وتحسين محركات البحث، وخلال ثلاثة أشهر حققنا ترتيباً متقدماً، مع إيرادات ومبيعات حقيقية ملموسة.",
+    quoteRu:
+      "Мы привлекли Shario для управления магазином и SEO, и уже через три месяца вышли в топ выдачи, с реальной выручкой и продажами.",
+    name: "Anwar-ul-Mubeen",
+    role: "CEO, Fragrance Chapter",
+    roleAr: "الرئيس التنفيذي، Fragrance Chapter",
+    roleRu: "CEO, Fragrance Chapter",
+    linkedin: "https://www.linkedin.com/in/anwar-ul-mubeen-453740106/",
+    photo: "/images/testimonials/anwar-ul-mubeen.jpg" as string | undefined,
+  },
+] as const;
+
+/** The two ungated downloads in "Take something useful with you." File sizes are read off the generated PDFs in `/public` — see `scripts/generate-resource-pdfs.mjs` — never typed by hand, so this string can't drift from the real file. */
+export const resources = [
+  {
+    title: "The 15-Point Pre-Engagement Audit",
+    titleAr: "قائمة التدقيق المكونة من 15 نقطة قبل التعاون",
+    titleRu: "Чек-лист из 15 пунктов перед началом сотрудничества",
+    desc: "The checklist we run on every website, ad account and CRM before we quote. Run it yourself — you'll know what's broken whether or not you hire us.",
+    descAr: "قائمة التدقيق التي نطبّقها على كل موقع إلكتروني وحساب إعلاني ونظام CRM قبل تقديم عرض السعر. طبّقوها بأنفسكم — ستعرفون ما هو معطوب سواء وظّفتمونا أم لا.",
+    descRu: "Чек-лист, который мы применяем к каждому сайту, рекламному аккаунту и CRM перед тем, как назвать цену. Проведите его сами — вы поймёте, что не так, независимо от того, наймёте вы нас или нет.",
+    href: "/resources/pre-engagement-audit.pdf",
+    /** Read off the generated file, not typed by hand — see `scripts/generate-resource-pdfs.mjs`. Re-run that script and update this if the checklist copy ever changes. */
+    fileSize: "3 KB",
+  },
+  {
+    title: "Shario Company Profile (PDF)",
+    titleAr: "الملف التعريفي لشركة شاريو (PDF)",
+    titleRu: "Профиль компании SHARIO (PDF)",
+    desc: "Services, approach, sectors and selected work — 2026.",
+    descAr: "الخدمات والمنهجية والقطاعات والأعمال المختارة — 2026.",
+    descRu: "Услуги, подход, отрасли и избранные работы — 2026.",
+    href: "/shario-company-profile.pdf",
+    fileSize: "5 KB",
+  },
+] as const;
+
+/** Step 7b — three short transparency blocks, "Before you enquire." */
+export const transparencyBlocks = [
+  {
+    title: "How engagements are priced",
+    titleAr: "كيف تُسعَّر مشاريعنا",
+    titleRu: "Как формируется стоимость сотрудничества",
+    body: site.pricingLine,
+    bodyAr: site.pricingLineAr,
+    bodyRu: site.pricingLineRu,
+  },
+  {
+    title: "Who we're the right fit for",
+    titleAr: "لمن نناسب",
+    titleRu: "Кому мы подходим",
+    body: "We're the right fit if you want senior, measured marketing — a founder-led team that sets up tracking before spending a single dirham, works to a realistic timeline, and earns any lead number through your actual data. We'll tell you clearly from the very first call.",
+    bodyAr: "نحن الخيار المناسب لمن يريد تسويقاً مدروساً بقيادة مباشرة من المؤسِّسة — فريقاً يُجهّز أدوات القياس قبل إنفاق أي درهم، ويعمل وفق جدول زمني واقعي، ويستحق أي رقم يطرحه لعدد العملاء المحتملين استناداً إلى بياناتكم الفعلية. سنوضح لكم ذلك بصراحة منذ أول مكالمة.",
+    bodyRu: "Мы подходим тем, кто хочет вдумчивый, измеримый маркетинг под личным руководством основательницы — команду, которая настраивает аналитику до того, как потратит хоть один дирхам, работает по реалистичному графику и называет число лидов только на основе ваших реальных данных. Мы скажем об этом прямо с первого же звонка.",
+  },
+  {
+    title: "What happens when you enquire",
+    titleAr: "ماذا يحدث عند تواصلكم معنا",
+    titleRu: "Что происходит после вашего обращения",
+    body: "You get a reply within one business day, and a call with Sharoon — not a sales rep. If there's a fit, you get a written plan with the numbers we'd hold ourselves to before any money changes hands.",
+    bodyAr: "ستحصلون على رد خلال يوم عمل واحد، ومكالمة مع شارون شخصياً — لا مع موظف مبيعات. وإذا كان هناك توافق، ستحصلون على خطة مكتوبة بالأرقام التي سنلتزم بها أمام أنفسكم قبل أن يتغيّر أي مال.",
+    bodyRu: "Вы получите ответ в течение одного рабочего дня и звонок лично от Шарун — не от менеджера по продажам. Если сотрудничество имеет смысл, вы получите письменный план с цифрами, за которые мы будем нести ответственность, ещё до того, как перейдут какие-либо деньги.",
   },
 ] as const;
 

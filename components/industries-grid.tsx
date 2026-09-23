@@ -13,8 +13,8 @@ import { industries } from "@/lib/site";
  * tone on its own rather than cycling an explicit sequence, since there's no
  * shared photograph set here to keep in step with.
  *
- * Rendered on `/industries` (all ten) — nowhere else, so the grid and its
- * copy never drift from what the overview page actually shows.
+ * Rendered on `/industries` and reused on the homepage's own Industries
+ * section, so both places show the same ten cards and never drift apart.
  */
 export function IndustriesGrid({ locale = "en" }: { locale?: Locale }) {
   const isAr = locale === "ar";

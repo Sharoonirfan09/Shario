@@ -109,6 +109,26 @@ export function SiteFooter({ locale = "en" }: { locale?: Locale }) {
             <span className={`text-sm text-porcelain/80 ${isAr ? "font-arabic" : ""}`}>
               {isAr ? site.locationAr : isRu ? site.locationRu : site.location}
             </span>
+            {/*
+             * The NAP block — legal entity, licensed address, trade licence
+             * and hours, added in the 2026-09 E-E-A-T pass. Every value reads
+             * from a `site.*` constant (`lib/site.ts`) sourced from the real
+             * DWC trade licence — this text must match the Google Business
+             * Profile character for character.
+             */}
+            <div className="mt-1 flex flex-col gap-1 border-t border-porcelain/15 pt-4 text-[0.8125rem] leading-[1.6] text-porcelain/55">
+              <span>{site.legalName}</span>
+              <span className={isAr ? "font-arabic" : ""}>
+                {site.streetAddress}, Dubai, United Arab Emirates
+              </span>
+              <span>
+                Trade Licence {site.tradeLicenceNumber} · {site.issuingAuthority}
+              </span>
+              <span dir="ltr">
+                {site.email} · {site.phone}
+              </span>
+              <span>Sunday–Thursday, 9:00–18:00 GST</span>
+            </div>
             <a
               href={site.linkedin}
               target="_blank"

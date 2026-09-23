@@ -212,17 +212,13 @@ export default function AboutPage() {
         </div>
       </Band>
 
-      {/* The Founder — after the company, not instead of it. Same image,
-          same story, same layout as before; only its position on the page
-          and the heading introducing it have changed. */}
+      {/* The Founder — after the company, not instead of it. */}
       <Band>
         <div className="grid items-center gap-12 wide:grid-cols-[1fr_1.05fr] wide:gap-20">
-          {/* Not `photo-lounge.jpg` — it has the retired positioning statement
-              painted across the back wall. */}
           <Frame
             src={sharedImages.founderPortrait}
             ratio="aspect-[4/5]"
-            alt="A woman in a tailored white blazer standing beside a horse in a stable, seen from behind"
+            alt="Portrait of Sharoon Irfan Khan, founder of Shario"
           />
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">

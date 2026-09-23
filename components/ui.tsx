@@ -327,8 +327,8 @@ export function CardGrid({
   );
 }
 
-/** Per-tone surface, badge, text and hover treatment — the one place a Card's colour is decided. */
-const cardTone: Record<
+/** Per-tone surface, badge, text and hover treatment — the one place a Card's colour is decided. Exported so `WorkTile` below can match `Card`'s exact surface treatment without duplicating it. */
+export const cardTone: Record<
   Tone,
   {
     surface: string;
@@ -555,6 +555,171 @@ export function Card({
   );
 }
 
+/**
+ * A card whose only link is a real, outbound client site — the homepage/`/work`
+ * "work wall". Built from `Card`'s own surface/hover/badge classes (via
+ * `cardTone`) so it's visually indistinguishable from a `Card`, but always
+ * opens an external `<a>` rather than a Next `Link` (an internal `href`
+ * would 404 — these `href`s are bare domains, not routes).
+ *
+ * `rel="noopener"` only, deliberately not `noopener noreferrer` the way
+ * `PillLink`'s external branch sets it: these links exist to prove real
+ * client relationships, and letting the referrer through lets the client's
+ * own analytics see the traffic actually came from shario.ae.
+ */
+export function WorkTile({
+  sector,
+  brand,
+  line,
+  domain,
+  cover,
+  coverPriority = false,
+  tone = "porcelain",
+  delay = 0,
+  locale = "en",
+}: {
+  sector: string;
+  brand: string;
+  line: string;
+  /** A bare domain, e.g. `"msndevelopments.com"` — `https://` is prepended for the `href`, the bare form is what's shown as the link text. */
+  domain: string;
+  /** A real screenshot of the live homepage, captured direct from the domain — not every entry has one yet. Rendered the same way `Card`'s own `image` prop is: full clarity at the tile's head, not washed behind a scrim. */
+  cover?: string;
+  /** Set on the grid's first tile only — it's the page's LCP element above the fold, so it skips lazy-loading rather than tripping Next's own LCP-image warning. */
+  coverPriority?: boolean;
+  tone?: Tone;
+  delay?: number;
+  locale?: Locale;
+}) {
+  const t = cardTone[tone];
+  const isAr = locale === "ar";
+
+  return (
+    <a
+      href={`https://${domain}`}
+      target="_blank"
+      rel="noopener"
+      data-delay={delay}
+      className={`reveal group relative isolate flex h-full flex-col overflow-hidden border p-8 wide:p-10 transition-[background-color,border-color,box-shadow,transform] duration-500 hover:-translate-y-1 hover:shadow-[0_24px_48px_-32px_rgba(37,37,37,0.35)] ${t.surface} ${t.hover}`}
+    >
+      {cover && (
+        <div className="frame relative -mx-8 -mt-8 mb-7 aspect-video overflow-hidden wide:-mx-10 wide:-mt-10 wide:mb-8">
+          <Image
+            src={cover}
+            alt=""
+            fill
+            sizes="(min-width: 880px) 33vw, 100vw"
+            className="object-cover object-top"
+            priority={coverPriority}
+          />
+          <div
+            aria-hidden="true"
+            className={`pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t ${t.fade} to-transparent`}
+          />
+        </div>
+      )}
+      <p className={`eyebrow ${isAr ? "font-arabic" : ""} ${t.action}`}>{sector}</p>
+      <h3
+        className={`mt-3 text-[1.5rem] leading-[1.22] wide:text-[1.625rem] ${isAr ? "font-arabic font-bold" : "font-display font-medium"}`}
+      >
+        {brand}
+      </h3>
+      <p className={`mt-3.5 flex-1 text-[0.9375rem] leading-[1.75] ${isAr ? "font-arabic" : ""} ${t.desc}`}>
+        {line}
+      </p>
+      <span
+        className={`mt-7 flex items-center gap-2 border-t pt-6 ${t.divider} ${t.action} ${isAr ? "font-arabic text-[0.75rem]" : "eyebrow"}`}
+        dir="ltr"
+      >
+        {domain}
+        <span
+          aria-hidden="true"
+          className={`transition-transform duration-500 group-hover:text-mist ${isAr ? "group-hover:-translate-x-1.5" : "group-hover:translate-x-1.5"}`}
+        >
+          {isAr ? "←" : "→"}
+        </span>
+      </span>
+    </a>
+  );
+}
+
+/**
+ * A testimonial whose name links out to the reviewer's own LinkedIn profile —
+ * the review-section counterpart to `WorkTile`. Built from the same
+ * `cardTone` surface/hover/badge classes so it sits in a `CardGrid` beside a
+ * plain `Card` without looking like a different component, but always opens
+ * an external `<a>` rather than a Next `Link`, the same reasoning as
+ * `WorkTile`: `rel="noopener"` only, so the reviewer's own LinkedIn analytics
+ * still see the referral came from shario.ae.
+ */
+export function TestimonialCard({
+  quote,
+  name,
+  role,
+  linkedin,
+  photo,
+  tone = "porcelain",
+  delay = 0,
+  locale = "en",
+}: {
+  quote: string;
+  name: string;
+  /** Title/company shown under the name, e.g. "CEO, Fragrance Chapter". Omitted when not known — never guessed. */
+  role?: string;
+  linkedin: string;
+  /** A real photograph of the reviewer, supplied by them — never sourced from their LinkedIn profile. */
+  photo?: string;
+  tone?: Tone;
+  delay?: number;
+  locale?: Locale;
+}) {
+  const t = cardTone[tone];
+  const isAr = locale === "ar";
+  const isRu = locale === "ru";
+
+  return (
+    <a
+      href={linkedin}
+      target="_blank"
+      rel="noopener"
+      data-delay={delay}
+      className={`reveal group relative isolate flex h-full flex-col overflow-hidden border p-8 wide:p-10 transition-[background-color,border-color,box-shadow,transform] duration-500 hover:-translate-y-1 hover:shadow-[0_24px_48px_-32px_rgba(37,37,37,0.35)] ${t.surface} ${t.hover}`}
+    >
+      <p className={`flex-1 text-[0.9375rem] leading-[1.75] ${isAr ? "font-arabic" : ""} ${t.desc}`}>
+        {isAr || isRu ? `«${quote}»` : `“${quote}”`}
+      </p>
+      <div className={`mt-7 flex items-center gap-4 border-t pt-6 ${t.divider}`}>
+        {photo && (
+          <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full">
+            <Image src={photo} alt={name} fill sizes="56px" className="object-cover" />
+          </div>
+        )}
+        <div className="min-w-0">
+          <p
+            className={`text-[1.0625rem] ${isAr ? "font-arabic font-bold" : "font-display font-medium"}`}
+          >
+            {name}
+          </p>
+          {role && (
+            <p className={`mt-0.5 text-[0.875rem] ${isAr ? "font-arabic" : ""} ${t.desc}`}>{role}</p>
+          )}
+        </div>
+      </div>
+      <span
+        className={`mt-4 flex items-center gap-2 ${t.action} ${isAr ? "font-arabic text-[0.75rem]" : "eyebrow"}`}
+      >
+        {isAr ? "الملف الشخصي على لينكدإن" : isRu ? "Профиль в LinkedIn" : "View on LinkedIn"}
+        <span
+          aria-hidden="true"
+          className={`transition-transform duration-500 group-hover:text-mist ${isAr ? "group-hover:-translate-x-1.5" : "group-hover:translate-x-1.5"}`}
+        >
+          {isAr ? "←" : "→"}
+        </span>
+      </span>
+    </a>
+  );
+}
+
 /* -------------------------------------------------------------------------- */
 /* Heroes                                                                      */
 /* -------------------------------------------------------------------------- */
@@ -698,6 +863,7 @@ export function SplitHero({
   eyebrow,
   title,
   subhead,
+  lead,
   focus,
   shift,
   href,
@@ -730,6 +896,13 @@ export function SplitHero({
   href: string;
   /** Names the destination — the panel's accessible name and its visible label. */
   linkLabel: string;
+  /**
+   * A supporting paragraph under `subhead`, in the hero's own body-copy
+   * style — added for the 2026-09 homepage E-E-A-T pass so the hero can
+   * carry a sentence of substance (who, what, the founder's name) beneath
+   * the italic tagline without touching the tagline itself.
+   */
+  lead?: ReactNode;
   children?: ReactNode;
   /**
    * The text column is the sole child of a `flex` container, so its cross-axis
@@ -795,6 +968,13 @@ export function SplitHero({
               className={`rise rise-delay-2 mt-7 max-w-[440px] text-[1.1875rem] leading-[1.55] text-carbon/65 wide:text-[1.3125rem] ${isAr ? "font-arabic" : "font-body"}`}
             >
               {subhead}
+            </p>
+          )}
+          {lead && (
+            <p
+              className={`rise rise-delay-2 mt-5 max-w-[520px] text-[1.0625rem] leading-[1.7] text-carbon/75 ${isAr ? "font-arabic" : "font-body"}`}
+            >
+              {lead}
             </p>
           )}
           {children && (

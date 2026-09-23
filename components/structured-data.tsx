@@ -6,12 +6,14 @@ import { insightArticlesForLocale, services, site, social } from "@/lib/site";
  * Organization + LocalBusiness markup. Shario competes on Dubai-local search,
  * so the address, service catalogue and founder are all worth declaring.
  *
- * No street address or `LocalBusiness` `@type`: Shario doesn't operate from
- * a public-facing storefront, so `ProfessionalService` (itself a
+ * Still `ProfessionalService`, not `LocalBusiness`: Shario doesn't operate
+ * from a public-facing storefront, so `ProfessionalService` (itself a
  * schema.org subtype of `LocalBusiness`, carrying the same local-search
- * semantics without implying walk-in premises) is the honest fit — inventing
- * a street address just to qualify for a different `@type` would be worse
- * than the schema this site actually has grounds to claim.
+ * semantics without implying walk-in premises) stays the honest `@type` fit.
+ * `streetAddress`, `legalName`, `foundingDate` and the trade-licence
+ * `identifier` were added in the 2026-09 E-E-A-T pass — each reads from a
+ * `site.*` constant sourced from the real DWC trade licence (see that
+ * constant's own comment in `lib/site.ts`).
  *
  * `sameAs` lists every profile in `social` (`lib/site.ts`) — the same set
  * already live, clickable, in the footer — plus the founder's own personal
@@ -32,6 +34,7 @@ export function StructuredData() {
     "@id": `${site.domain}/#organization`,
     name: site.name,
     alternateName: "SHARIO",
+    legalName: site.legalName,
     description: site.description,
     slogan: site.tagline,
     url: site.domain,
@@ -39,6 +42,14 @@ export function StructuredData() {
     image: `${site.domain}/brand/monogram.png`,
     email: site.email,
     telephone: site.phone,
+    foundingDate: site.foundingDate,
+    priceRange: "$$",
+    knowsLanguage: ["en", "ar", "ru"],
+    identifier: {
+      "@type": "PropertyValue",
+      name: "UAE Trade Licence",
+      value: site.tradeLicenceNumber,
+    },
     founder: {
       "@type": "Person",
       "@id": `${site.founderUrl}/#person`,
@@ -54,7 +65,9 @@ export function StructuredData() {
     ],
     address: {
       "@type": "PostalAddress",
+      streetAddress: site.streetAddress,
       addressLocality: "Dubai",
+      addressRegion: "Dubai",
       addressCountry: "AE",
     },
     contactPoint: [
@@ -81,6 +94,61 @@ export function StructuredData() {
         },
       })),
     },
+  };
+
+  return <JsonLd data={data} />;
+}
+
+/**
+ * The founder's richer `Person` facts — credentials, `knowsAbout`,
+ * `alumniOf` — added on the homepage only in the 2026-09 E-E-A-T pass.
+ * Reuses the *same* `@id` (`${site.founderUrl}/#person`) the inline
+ * `founder` object in `StructuredData` above and `ArticleStructuredData`'s
+ * `author` already declare on every other page, rather than minting a
+ * second, disconnected Person record — Google merges same-`@id` nodes into
+ * one knowledge-graph entity, so this simply adds detail to the founder
+ * entity that already exists sitewide.
+ */
+export function PersonStructuredData() {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${site.founderUrl}/#person`,
+    name: site.founder,
+    jobTitle: site.founderRole,
+    worksFor: { "@id": `${site.domain}/#organization` },
+    url: site.founderUrl,
+    sameAs: [site.founderUrl, site.linkedin],
+    knowsAbout: [
+      "Performance marketing",
+      "Search engine optimization",
+      "Google Ads",
+      "Meta Ads",
+      "Brand strategy",
+      "CRM and marketing automation",
+      "Dubai real estate marketing",
+    ],
+    alumniOf: [{ "@type": "CollegeOrUniversity", name: "University of the Punjab" }],
+    hasCredential: [
+      {
+        "@type": "EducationalOccupationalCredential",
+        credentialCategory: "certificate",
+        name: "Google Data Analytics Professional Certificate",
+        recognizedBy: { "@type": "Organization", name: "Google" },
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        credentialCategory: "certificate",
+        name: "Advertising with Meta",
+        recognizedBy: { "@type": "Organization", name: "Meta" },
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        credentialCategory: "certificate",
+        name: "Introduction to Google SEO",
+        recognizedBy: { "@type": "Organization", name: "University of California, Davis" },
+      },
+    ],
   };
 
   return <JsonLd data={data} />;

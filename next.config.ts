@@ -31,8 +31,13 @@ const nextConfig: NextConfig = {
     return [
       // --- Pages retired as the structure narrowed. Work restated the
       // service pages; the case studies on /work were written for clients
-      // that do not exist. Results went last — /work and /work/:slug pointed
-      // at it, and are repointed here so neither chain ends in a 404.
+      // that do not exist. Results went last, and /work/:slug pointed at it.
+      //
+      // /work and /work/:slug themselves are live again as of the 2026-09
+      // homepage E-E-A-T pass (`app/(en)/work`) — real, verified client work
+      // this time, not the invented case studies that got this path
+      // redirected away in the first place. /results stays retired: nothing
+      // replaced it.
       //
       // /industries and /industries/:slug used to redirect here too, back
       // when Industries only restated the service pages. They don't anymore
@@ -40,8 +45,6 @@ const nextConfig: NextConfig = {
       // those two entries were removed rather than left to shadow the routes
       // they'd otherwise permanently redirect away from.
       { source: "/results", destination: "/about", permanent: true },
-      { source: "/work", destination: "/about", permanent: true },
-      { source: "/work/:slug", destination: "/about", permanent: true },
 
       // Approach and Journal predate that, and Insights was the homepage
       // section Journal became. There is no journal now.

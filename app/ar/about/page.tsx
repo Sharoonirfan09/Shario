@@ -190,7 +190,7 @@ export default function ArabicAboutPage() {
           <Frame
             src={sharedImages.founderPortrait}
             ratio="aspect-[4/5]"
-            alt="امرأة ترتدي سترة بيضاء أنيقة تقف بجانب حصان داخل إسطبل، من الخلف"
+            alt="صورة شخصية لشارون عرفان خان، مؤسسة شاريو"
           />
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">

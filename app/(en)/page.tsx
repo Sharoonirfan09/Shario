@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Faq } from "@/components/faq";
+import { IndustriesGrid } from "@/components/industries-grid";
 import { InsightCard } from "@/components/insights";
 import { SixServices } from "@/components/six-services";
-import { FaqStructuredData } from "@/components/structured-data";
+import {
+  FaqStructuredData,
+  PersonStructuredData,
+} from "@/components/structured-data";
 import {
   ArabicStatement,
   Band,
@@ -15,6 +19,8 @@ import {
   PillLink,
   SectionIntro,
   SplitHero,
+  TestimonialCard,
+  WorkTile,
 } from "@/components/ui";
 import {
   cta,
@@ -24,8 +30,13 @@ import {
   insightCategories,
   latestInsightArticles,
   ogDefaults,
+  resources,
   sharedImages,
   site,
+  testimonials,
+  transparencyBlocks,
+  trustStrip,
+  workWall,
 } from "@/lib/site";
 
 /**
@@ -36,7 +47,7 @@ import {
  * per this SEO pass's brief, without touching any page outside the homepage.
  */
 const HOME_META_DESCRIPTION =
-  "Shario is a founder-led digital marketing agency in Dubai — paid media, SEO, website development and branding engineered to turn spend into revenue.";
+  "Founder-led digital marketing agency in Dubai. Performance marketing, SEO, websites, CRM and branding built as one system — measured on qualified leads that convert into revenue.";
 
 export const metadata: Metadata = {
   // Written out in full rather than relying on the layout's
@@ -46,7 +57,7 @@ export const metadata: Metadata = {
   // (Verified: leaving just the bare phrase here rendered with no suffix at
   // all once the old root-level template — which did apply, being higher up
   // the tree — was removed.)
-  title: "Digital Marketing Agency in Dubai — Shario",
+  title: "Digital Marketing Agency in Dubai | Shario",
   description: HOME_META_DESCRIPTION,
   alternates: {
     canonical: "/",
@@ -72,6 +83,7 @@ export default function HomePage() {
   return (
     <>
       <FaqStructuredData items={homeFaqs} />
+      <PersonStructuredData />
 
       {/*
        * The client's own hero photograph, supplied with the reference layout —
@@ -109,6 +121,21 @@ export default function HomePage() {
           </>
         }
         subhead={<em className="italic">A Symphony of Identity</em>}
+        lead={
+          <>
+            A founder-led digital marketing agency in Dubai running paid
+            media, SEO, websites and CRM as one connected system, under one
+            accountable team. Led by{" "}
+            <Link
+              href="/about"
+              className="border-b border-carbon/40 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+            >
+              Sharoon Irfan Khan
+            </Link>
+            , with {site.revenue} in lead-attributed revenue across client
+            accounts.
+          </>
+        }
         href="/about"
         linkLabel="Inside Shario"
       >
@@ -119,6 +146,21 @@ export default function HomePage() {
           Our Services
         </PillLink>
       </SplitHero>
+
+      {/* Trust strip — a slim band under the hero, "·" separators rather than
+          Tailwind's `divide-x` (which breaks across a flex-wrap boundary on
+          narrow screens) — the same separator convention Insights already
+          uses for "{date} · {readingTime}". */}
+      <Band className="py-8 wide:py-10">
+        <p className="eyebrow flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 text-center text-carbon/60">
+          {trustStrip.map((item, i) => (
+            <span key={i} className="flex items-center gap-2.5">
+              {i > 0 && <span aria-hidden="true">·</span>}
+              {item.text}
+            </span>
+          ))}
+        </p>
+      </Band>
 
       {/* Services — moved directly after the hero, ahead of the Founder
           band below, so the page reads hero → what we do → who's behind it.
@@ -132,19 +174,64 @@ export default function HomePage() {
           reference; changing this section here changes it there too. */}
       <SixServices />
 
+      {/* Work wall — most tiles carry a real screenshot of the live
+          homepage; a working outbound link to a real business is still the
+          proof point underneath it. */}
+      <Band className="bg-limestone/30">
+        <SectionIntro
+          eyebrow="Selected Work"
+          title="Work you can click."
+          sub="Twenty-plus websites designed, built, ranked and run — across Dubai real estate, e-commerce, hospitality, SaaS and B2B. Real, live businesses you can open in a new tab."
+        />
+        <CardGrid columns={3}>
+          {workWall.map((item, i) => (
+            <WorkTile
+              key={item.domain}
+              sector={item.sector}
+              brand={item.brand}
+              line={item.line}
+              domain={item.domain}
+              cover={item.cover}
+              coverPriority={i === 0}
+              tone={i % 2 === 0 ? "limestone" : "porcelain"}
+              delay={i * 60}
+            />
+          ))}
+        </CardGrid>
+        <div className="mt-12 text-center wide:mt-16">
+          <PillLink href="/work">See the full portfolio →</PillLink>
+        </div>
+      </Band>
+
+      {/* Testimonials — client quotes given directly to Shario, each linking
+          out to the reviewer's own LinkedIn profile. Separate from Sharoon's
+          personal Google reviews, so no aggregateRating/Review schema is
+          attached to the Organization for them. */}
+      <Band className="bg-limestone/30">
+        <SectionIntro eyebrow="Client Reviews" title="What clients say." />
+        <CardGrid columns={2}>
+          {testimonials.map((item, i) => (
+            <TestimonialCard
+              key={item.name}
+              quote={item.quote}
+              name={item.name}
+              role={item.role}
+              linkedin={item.linkedin}
+              photo={item.photo}
+              tone={i % 2 === 0 ? "limestone" : "porcelain"}
+              delay={i * 60}
+            />
+          ))}
+        </CardGrid>
+      </Band>
+
       {/* About — image beside text, as the reference sets it */}
       <Band className="bg-limestone/30">
         <div className="grid items-center gap-12 wide:grid-cols-[1fr_1.05fr] wide:gap-20">
-          {/*
-           * Cut to 4:3 in prep rather than left to `object-cover`: the original
-           * is a 4:5 portrait, so the frame throws away a third of its height,
-           * and a centred crop takes the top off the figure's head. Anchored to
-           * hold the horizon and the whole seated figure.
-           */}
           <Frame
-            src={sharedImages.homeAboutHorizon}
-            ratio="aspect-[4/3]"
-            alt="A woman seated by the sea at golden hour, softly out of focus, looking out toward the horizon"
+            src={sharedImages.founderPortrait}
+            ratio="aspect-[4/5]"
+            alt="Portrait of Sharoon Irfan Khan, founder of Shario"
           />
           <div>
             <p className="eyebrow flex items-center gap-3 text-carbon/55">
@@ -152,49 +239,65 @@ export default function HomePage() {
               About Shario
             </p>
             <Heading scale="md" className="mt-5">
-              Founder-led from day one.
+              Who is actually doing the work.
             </Heading>
             <p className="reveal mt-6 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75">
-              Shario is a founder-led digital marketing agency in Dubai,
-              running on a senior model. Every strategy is set to the
-              standard of a founder who has personally built and launched
-              full-funnel marketing systems — spanning{" "}
-              <Link
-                href="/services/digital-marketing"
+              Shario is led by Sharoon Irfan Khan, a Dubai-based performance
+              marketer and brand strategist, and Head of Marketing at{" "}
+              <a
+                href="https://msndevelopments.com"
+                target="_blank"
+                rel="noopener"
                 className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
-                digital marketing
-              </Link>
-              ,{" "}
-              <Link
-                href="/services/seo"
-                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
-              >
-                SEO
-              </Link>
-              ,{" "}
-              <Link
-                href="/services/website-development"
-                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
-              >
-                website development
-              </Link>{" "}
-              and{" "}
-              <Link
-                href="/services/branding"
-                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
-              >
-                branding
-              </Link>{" "}
-              — for developer-led projects across the region.
+                MSN Developments
+              </a>
+              . Five years building full-funnel marketing systems for
+              developer-led real estate and premium brands — Google and Meta
+              performance, SEO, CRM and brand — with {site.revenue} in
+              lead-attributed revenue, 20+ websites launched and optimised,
+              and 8+ brand accounts managed.
             </p>
             <p
               className="reveal mt-4 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75"
               data-delay="90"
             >
-              You get senior thinking on every campaign, from a team that stays
-              with your account — direct access to the person setting the
-              strategy, not a rotating account team relaying it secondhand.
+              You get senior thinking on every campaign, from someone who has
+              personally built and launched the systems — direct access to
+              the person setting the strategy, from the first call through
+              to delivery.
+            </p>
+            <Heading as="h3" scale="sm" className="mt-9 text-[1.125rem]">
+              Credentials
+            </Heading>
+            <p
+              className="reveal mt-3 max-w-[560px] text-[0.9375rem] leading-[1.7] text-carbon/70"
+              data-delay="140"
+            >
+              MSc, Political Science &amp; Government — University of the
+              Punjab · Postgraduate Diploma, TV Production &amp; Visual
+              Communication · BCom · 25+ professional certifications,
+              including the Google Data Analytics Professional Certificate,
+              Meta advertising certifications, and Introduction to Google SEO
+              (UC Davis).
+            </p>
+            <p className="reveal mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem]" data-delay="150">
+              <a
+                href="https://sharoon.ae"
+                target="_blank"
+                rel="me noopener"
+                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                Sharoon Irfan Khan&apos;s professional profile →
+              </a>
+              <a
+                href="https://linkedin.com/in/sharoonirfan"
+                target="_blank"
+                rel="me noopener"
+                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+              >
+                Connect on LinkedIn →
+              </a>
             </p>
             <div className="reveal mt-9" data-delay="160">
               <PillLink href="/about">Learn More</PillLink>
@@ -249,6 +352,12 @@ export default function HomePage() {
         </div>
       </Band>
 
+      {/* Industries — the full ten-sector grid, shared with `/industries`
+          via `IndustriesGrid` rather than a bespoke two-card-plus-text
+          layout, so every sector gets the same card treatment and the
+          homepage never drifts from that page's own copy. */}
+      <IndustriesGrid />
+
       {/* Insights — the Insights page's own "Featured" and Archive cards,
           reused at a larger size rather than a bespoke blog teaser, so this
           reads as an extension of that page and not a second design. Pulled
@@ -293,6 +402,61 @@ export default function HomePage() {
         />
         <div className="mx-auto max-w-[880px]">
           <Faq items={homeFaqs} answerClassName="font-body" />
+        </div>
+      </Band>
+
+      {/* Resources — two ungated downloads, no email gate. The audit is the
+          asset that does the real work: giving the method away is the most
+          credible way to show there is one. */}
+      <Band className="bg-limestone/30">
+        <SectionIntro eyebrow="Resources" title="Take something useful with you." />
+        <div className="grid gap-6 wide:grid-cols-2 wide:gap-8">
+          {resources.map((resource) => (
+            <a
+              key={resource.href}
+              href={resource.href}
+              download
+              className="reveal group flex flex-col border border-platinum/50 bg-porcelain p-8 transition-colors duration-500 hover:border-mist hover:bg-mist/[0.06] wide:p-10"
+            >
+              <h3 className="font-display text-[1.375rem] font-medium leading-[1.25] text-carbon">
+                {resource.title}
+              </h3>
+              <p className="mt-3.5 flex-1 text-[0.9375rem] leading-[1.75] text-carbon/72">
+                {resource.desc}
+              </p>
+              <span className="eyebrow mt-7 flex items-center gap-2 border-t border-carbon/12 pt-6 text-carbon">
+                Download
+                <span aria-hidden="true" className="text-carbon/50">
+                  · {resource.fileSize}
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="ml-auto transition-transform duration-500 group-hover:translate-x-1.5"
+                >
+                  →
+                </span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </Band>
+
+      {/* How we work together — three short transparency blocks. Costs
+          nothing to publish, almost no competitor does it, and the
+          disqualification block reads as confidence, not sales copy. */}
+      <Band>
+        <SectionIntro eyebrow="How We Work Together" title="Before you enquire." />
+        <div className="mx-auto grid max-w-[820px] gap-10 wide:gap-12">
+          {transparencyBlocks.map((block, i) => (
+            <div key={block.title} className="reveal" data-delay={i * 60}>
+              <Heading as="h3" scale="sm" className="text-[1.125rem]">
+                {block.title}
+              </Heading>
+              <p className="mt-3 text-[0.9375rem] leading-[1.75] text-carbon/72">
+                {block.body}
+              </p>
+            </div>
+          ))}
         </div>
       </Band>
 
