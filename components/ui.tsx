@@ -64,21 +64,30 @@ export function muted(tone: Tone) {
   return tone === "carbon" ? "text-porcelain/60" : "text-carbon/60";
 }
 
-/** A full-width band of one section. */
+/**
+ * A full-width band of one section. `compact` swaps the full section rhythm
+ * for a slim one (a trust strip, say) — padding set through `className` lands
+ * on the outer `<section>` and would stack on top of the container's, not
+ * replace it.
+ */
 export function Band({
   children,
   tone = "porcelain",
   id,
   className = "",
+  compact = false,
 }: {
   children: ReactNode;
   tone?: Tone;
   id?: string;
   className?: string;
+  compact?: boolean;
 }) {
   return (
     <section id={id} className={`${toneField[tone]} ${className} scroll-mt-24`}>
-      <Container className="py-16 wide:py-[clamp(5rem,9vw,8.75rem)]">
+      <Container
+        className={compact ? "py-8 wide:py-10" : "py-16 wide:py-[clamp(5rem,9vw,8.75rem)]"}
+      >
         {children}
       </Container>
     </section>

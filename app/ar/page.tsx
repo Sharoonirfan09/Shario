@@ -113,7 +113,7 @@ export default function ArabicHomePage() {
       </SplitHero>
 
       {/* Trust strip */}
-      <Band className="py-8 wide:py-10">
+      <Band compact>
         <p className="eyebrow flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 text-center text-carbon/60 font-arabic">
           {trustStrip.map((item, i) => (
             <span key={i} className="flex items-center gap-2.5">

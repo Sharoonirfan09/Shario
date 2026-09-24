@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Faq } from "@/components/faq";
-import { IndustriesGrid } from "@/components/industries-grid";
 import { InsightCard } from "@/components/insights";
 import { SixServices } from "@/components/six-services";
 import {
@@ -13,7 +12,6 @@ import {
   Card,
   CardGrid,
   CtaBand,
-  Frame,
   Heading,
   PillLink,
   SectionIntro,
@@ -136,7 +134,7 @@ export default function HomePage() {
           Tailwind's `divide-x` (which breaks across a flex-wrap boundary on
           narrow screens) — the same separator convention Insights already
           uses for "{date} · {readingTime}". */}
-      <Band className="py-8 wide:py-10">
+      <Band compact>
         <p className="eyebrow flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 text-center text-carbon/60">
           {trustStrip.map((item, i) => (
             <span key={i} className="flex items-center gap-2.5">
@@ -147,10 +145,8 @@ export default function HomePage() {
         </p>
       </Band>
 
-      {/* Services — moved directly after the hero, ahead of the Founder
-          band below, so the page reads hero → what we do → who's behind it.
-          The tint moved with the Founder band rather than staying here: two
-          Limestone grounds back to back (this section's old wash sitting
+      {/* Services — directly after the hero, so the page opens on what we
+          do. No tint here: two Limestone grounds back to back (this section's old wash sitting
           right under the hero's own solid Limestone) read as one section
           failing to end, not two.
 
@@ -210,89 +206,8 @@ export default function HomePage() {
         </CardGrid>
       </Band>
 
-      {/* About — image beside text, as the reference sets it */}
-      <Band className="bg-limestone/30">
-        <div className="grid items-center gap-12 wide:grid-cols-[1fr_1.05fr] wide:gap-20">
-          <Frame
-            src={sharedImages.founderPortrait}
-            ratio="aspect-[4/5]"
-            alt="Portrait of Sharoon Irfan Khan, founder of Shario"
-          />
-          <div>
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
-              <span aria-hidden="true" className="h-px w-6 bg-mist" />
-              About Shario
-            </p>
-            <Heading scale="md" className="mt-5">
-              Who is actually doing the work.
-            </Heading>
-            <p className="reveal mt-6 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75">
-              Shario is led by Sharoon Irfan Khan, a Dubai-based performance
-              marketer and brand strategist, and Head of Marketing at{" "}
-              <a
-                href="https://msndevelopments.com"
-                target="_blank"
-                rel="noopener"
-                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
-              >
-                MSN Developments
-              </a>
-              . Five years building full-funnel marketing systems for
-              developer-led real estate and premium brands — Google and Meta
-              performance, SEO, CRM and brand — with {site.revenue} in
-              lead-attributed revenue, 20+ websites launched and optimised,
-              and 8+ brand accounts managed.
-            </p>
-            <p
-              className="reveal mt-4 max-w-[560px] text-[1.0625rem] leading-[1.7] text-carbon/75"
-              data-delay="90"
-            >
-              You get senior thinking on every campaign, from someone who has
-              personally built and launched the systems — direct access to
-              the person setting the strategy, from the first call through
-              to delivery.
-            </p>
-            <Heading as="h3" scale="sm" className="mt-9 text-[1.125rem]">
-              Credentials
-            </Heading>
-            <p
-              className="reveal mt-3 max-w-[560px] text-[0.9375rem] leading-[1.7] text-carbon/70"
-              data-delay="140"
-            >
-              MSc, Political Science &amp; Government — University of the
-              Punjab · Postgraduate Diploma, TV Production &amp; Visual
-              Communication · BCom · 25+ professional certifications,
-              including the Google Data Analytics Professional Certificate,
-              Meta advertising certifications, and Introduction to Google SEO
-              (UC Davis).
-            </p>
-            <p className="reveal mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem]" data-delay="150">
-              <a
-                href="https://sharoon.ae"
-                target="_blank"
-                rel="me noopener"
-                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
-              >
-                Sharoon Irfan Khan&apos;s professional profile →
-              </a>
-              <a
-                href="https://linkedin.com/in/sharoonirfan"
-                target="_blank"
-                rel="me noopener"
-                className="border-b border-carbon/30 pb-0.5 text-carbon/90 transition-colors duration-300 hover:border-carbon hover:text-carbon"
-              >
-                Connect on LinkedIn →
-              </a>
-            </p>
-            <div className="reveal mt-9" data-delay="160">
-              <PillLink href="/about">Learn More</PillLink>
-            </div>
-          </div>
-        </div>
-      </Band>
-
       {/* The Arabic brand accent — a quiet full-width pause between the
-          Founder band above and What Makes Us Different below, on the one
+          Testimonials above and What Makes Us Different below, on the one
           section of the page that spends Mist as a ground rather than a
           hairline or hover state. See `ArabicStatement` for why. */}
       <ArabicStatement />
@@ -336,12 +251,6 @@ export default function HomePage() {
           </CardGrid>
         </div>
       </Band>
-
-      {/* Industries — the full ten-sector grid, shared with `/industries`
-          via `IndustriesGrid` rather than a bespoke two-card-plus-text
-          layout, so every sector gets the same card treatment and the
-          homepage never drifts from that page's own copy. */}
-      <IndustriesGrid />
 
       {/* Insights — the Insights page's own "Featured" and Archive cards,
           reused at a larger size rather than a bespoke blog teaser, so this
