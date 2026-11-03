@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ClientLogos } from "@/components/client-logos";
 import { Faq } from "@/components/faq";
+import { GoogleReviews } from "@/components/google-reviews";
 import { InsightCard } from "@/components/insights";
 import { SixServices } from "@/components/six-services";
 import {
@@ -218,6 +219,22 @@ export default function HomePage() {
             />
           ))}
         </CardGrid>
+
+        {/* Google reviews from Sharoon Digital, the founder's practice before
+            Shario — labelled as such on every card, and kept out of the
+            structured data. See `lib/google-reviews.ts`. */}
+        <div className="mt-16 wide:mt-24">
+          <div className="mb-8 text-center wide:mb-10">
+            <p className="eyebrow flex items-center justify-center gap-3 text-carbon/55">
+              <span aria-hidden="true" className="h-px w-6 bg-mist" />
+              On Google
+            </p>
+            <Heading as="h3" scale="sm" className="mt-4">
+              Before Shario, as Sharoon Digital.
+            </Heading>
+          </div>
+          <GoogleReviews />
+        </div>
       </Band>
 
       {/* The Arabic brand accent — a quiet full-width pause between the
