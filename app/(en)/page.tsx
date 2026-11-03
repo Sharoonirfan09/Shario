@@ -221,7 +221,7 @@ export default function HomePage() {
         </CardGrid>
 
         {/* Google reviews from Sharoon Digital, the founder's practice before
-            Shario, so the heading says "earlier clients". Kept out of the
+            Shario, shown under the Shario name. Kept out of the
             structured data. See `lib/google-reviews.ts`. */}
         <div className="mt-16 wide:mt-24">
           <div className="mb-8 text-center wide:mb-10">
@@ -230,7 +230,7 @@ export default function HomePage() {
               On Google
             </p>
             <Heading as="h3" scale="sm" className="mt-4">
-              From the founder&rsquo;s earlier clients.
+              Trusted by Shario clients.
             </Heading>
           </div>
           <GoogleReviews />
