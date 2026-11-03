@@ -1,0 +1,191 @@
+[
+  {
+    "slug": "msn-developments",
+    "name": "MSN Developments",
+    "src": "/images/clients/msn-developments.webp",
+    "width": 483,
+    "height": 280
+  },
+  {
+    "slug": "hayaat-developments",
+    "name": "Hayaat Developments",
+    "src": "/images/clients/hayaat-developments.webp",
+    "width": 368,
+    "height": 280
+  },
+  {
+    "slug": "isolana-residences",
+    "name": "Isolana Residences",
+    "src": "/images/clients/isolana-residences.webp",
+    "width": 560,
+    "height": 167
+  },
+  {
+    "slug": "earthlink-real-estate",
+    "name": "Earthlink Real Estate",
+    "src": "/images/clients/earthlink-real-estate.webp",
+    "width": 553,
+    "height": 280
+  },
+  {
+    "slug": "ere-management",
+    "name": "ERE Management",
+    "src": "/images/clients/ere-management.webp",
+    "width": 244,
+    "height": 280
+  },
+  {
+    "slug": "khayal-properties",
+    "name": "Khayal Properties",
+    "src": "/images/clients/khayal-properties.webp",
+    "width": 560,
+    "height": 131
+  },
+  {
+    "slug": "first-key-international",
+    "name": "First Key International Real Estate",
+    "src": "/images/clients/first-key-international.webp",
+    "width": 460,
+    "height": 280
+  },
+  {
+    "slug": "prive-business-lounge",
+    "name": "Privé Business Lounge",
+    "src": "/images/clients/prive-business-lounge.webp",
+    "width": 560,
+    "height": 212
+  },
+  {
+    "slug": "al-basit",
+    "name": "Al Basit Group of Companies",
+    "src": "/images/clients/al-basit.webp",
+    "width": 274,
+    "height": 280
+  },
+  {
+    "slug": "earthlink-premium",
+    "name": "Earthlink Premium Holiday Homes",
+    "src": "/images/clients/earthlink-premium.webp",
+    "width": 560,
+    "height": 209
+  },
+  {
+    "slug": "shanti-kiaans",
+    "name": "Shanti Kiaans Real Estate",
+    "src": "/images/clients/shanti-kiaans.webp",
+    "width": 560,
+    "height": 258
+  },
+  {
+    "slug": "luxury-space",
+    "name": "Luxury Space Vacation Homes Rental",
+    "src": "/images/clients/luxury-space.webp",
+    "width": 247,
+    "height": 280
+  },
+  {
+    "slug": "rocks-n-logs",
+    "name": "Rocks & Logs",
+    "src": "/images/clients/rocks-n-logs.webp",
+    "width": 560,
+    "height": 108
+  },
+  {
+    "slug": "shahid-nawaz",
+    "name": "Shahid Nawaz",
+    "src": "/images/clients/shahid-nawaz.webp",
+    "width": 560,
+    "height": 147
+  },
+  {
+    "slug": "maktek",
+    "name": "Maktek",
+    "src": "/images/clients/maktek.webp",
+    "width": 314,
+    "height": 280
+  },
+  {
+    "slug": "spaceflip",
+    "name": "SpaceFlip",
+    "src": "/images/clients/spaceflip.webp",
+    "width": 560,
+    "height": 135
+  },
+  {
+    "slug": "spendwise",
+    "name": "Spendwise",
+    "src": "/images/clients/spendwise.webp",
+    "width": 560,
+    "height": 149
+  },
+  {
+    "slug": "lumasleep",
+    "name": "LumaSleep",
+    "src": "/images/clients/lumasleep.webp",
+    "width": 560,
+    "height": 89
+  },
+  {
+    "slug": "9zero",
+    "name": "9Zero",
+    "src": "/images/clients/9zero.webp",
+    "width": 560,
+    "height": 130
+  },
+  {
+    "slug": "nalk-solutions",
+    "name": "NALK Solutions",
+    "src": "/images/clients/nalk-solutions.webp",
+    "width": 560,
+    "height": 263
+  },
+  {
+    "slug": "one10",
+    "name": "One10",
+    "src": "/images/clients/one10.webp",
+    "width": 459,
+    "height": 280
+  },
+  {
+    "slug": "aroma-dream",
+    "name": "Aroma Dream",
+    "src": "/images/clients/aroma-dream.webp",
+    "width": 560,
+    "height": 243
+  },
+  {
+    "slug": "fragrance-chapter",
+    "name": "Fragrance Chapter",
+    "src": "/images/clients/fragrance-chapter.webp",
+    "width": 312,
+    "height": 280
+  },
+  {
+    "slug": "gumus-by-aneela",
+    "name": "Gümüş by Aneela's",
+    "src": "/images/clients/gumus-by-aneela.webp",
+    "width": 422,
+    "height": 280
+  },
+  {
+    "slug": "paasand",
+    "name": "Paasand",
+    "src": "/images/clients/paasand.webp",
+    "width": 313,
+    "height": 280
+  },
+  {
+    "slug": "babar-hayat",
+    "name": "Babar Hayat",
+    "src": "/images/clients/babar-hayat.webp",
+    "width": 201,
+    "height": 280
+  },
+  {
+    "slug": "najmat-al-insaf",
+    "name": "Najmat Al Insaf",
+    "src": "/images/clients/najmat-al-insaf.webp",
+    "width": 502,
+    "height": 280
+  }
+]

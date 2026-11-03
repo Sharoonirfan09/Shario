@@ -327,6 +327,50 @@ b {
   animation: rise 1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
+/* Client logo marquee (`components/client-logos.tsx`). Each track holds its
+   logo set twice, so sliding exactly -50% lands on an identical frame and the
+   loop has no seam. Slow and linear — "quiet motion" — and paused while the
+   pointer is over the row so a logo can actually be looked at. The rows fade
+   out at both edges instead of being cut hard by the container. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 60s) linear infinite;
+}
+
+.marquee-reverse .marquee-track {
+  animation-direction: reverse;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* No motion: the row becomes a plain horizontal scroller instead. */
+  .marquee {
+    overflow-x: auto;
+    mask-image: none;
+  }
+  .marquee-track {
+    animation: none;
+  }
+}
+
 /* Fixed stagger steps for a `.rise` title/subhead/CTA group — every hero
    variant (Hero, TypeHero) stages the same three elements at the same three
    delays, so these replace what were identical inline `animationDelay`

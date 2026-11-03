@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClientLogos } from "@/components/client-logos";
 import { Faq } from "@/components/faq";
 import { InsightCard } from "@/components/insights";
 import { SixServices } from "@/components/six-services";
@@ -182,6 +183,19 @@ export default function HomePage() {
         <div className="mt-12 text-center wide:mt-16">
           <PillLink href="/work">See the full portfolio →</PillLink>
         </div>
+      </Band>
+
+      {/* Clients — the brands behind the work above, as a quiet logo wall
+          between the Work wall and the Testimonials so the page's proof sits
+          together. Porcelain ground (no tint) so it reads as its own band
+          between the two Limestone-tinted sections either side. */}
+      <Band>
+        <SectionIntro
+          eyebrow="Our Clients"
+          title="Brands we've worked with."
+          sub="Developers, brokerages, holiday homes, hospitality, retail and tech — across the UAE and beyond."
+        />
+        <ClientLogos />
       </Band>
 
       {/* Testimonials — client quotes given directly to Shario, each linking
