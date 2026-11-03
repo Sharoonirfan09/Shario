@@ -670,9 +670,9 @@ export const testimonials = [
     quoteRu:
       "Shario оказала первоклассный сервис от начала до конца, с чёткой коммуникацией на каждом этапе и реальными, измеримыми результатами. Работа с командой никогда не была обузой, и мне искренне понравилось сотрудничество.",
     name: "Muhammad Shahid Nawaz",
-    role: undefined as string | undefined,
-    roleAr: undefined as string | undefined,
-    roleRu: undefined as string | undefined,
+    role: "CEO, MSN Developments" as string | undefined,
+    roleAr: "الرئيس التنفيذي، MSN Developments" as string | undefined,
+    roleRu: "CEO, MSN Developments" as string | undefined,
     linkedin: "https://www.linkedin.com/in/mshahidnawazdubai/",
     photo: "/images/testimonials/muhammad-shahid-nawaz.jpg" as string | undefined,
   },
