@@ -221,7 +221,7 @@ export default function HomePage() {
         </CardGrid>
 
         {/* Google reviews from Sharoon Digital, the founder's practice before
-            Shario — labelled as such on every card, and kept out of the
+            Shario — the heading above the row says so, and they are kept out of the
             structured data. See `lib/google-reviews.ts`. */}
         <div className="mt-16 wide:mt-24">
           <div className="mb-8 text-center wide:mb-10">

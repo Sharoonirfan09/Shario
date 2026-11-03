@@ -43,9 +43,6 @@ function ReviewCard({ review, hidden }: { review: Review; hidden?: boolean }) {
       <p className="mt-3 flex-1 text-[0.9375rem] leading-[1.7] text-carbon/80">
         &ldquo;{review.text}&rdquo;
       </p>
-      <p className="eyebrow mt-5 border-t border-carbon/10 pt-4 text-[0.6875rem] text-carbon/50">
-        Google review · Sharoon Digital
-      </p>
     </li>
   );
 }

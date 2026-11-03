@@ -8,7 +8,7 @@
  *   review": Mumtaz Ahmed, sheikh sab, Mehak Esha, aneela suleman) and
  *   star-only ones are left out until the full text is copied in.
  * - The owner's own review (Sharoon Irfan) is excluded.
- * - These are about Sharoon Digital, not Shario, and are labelled that way on
+ * - These are about Sharoon Digital, not Shario, and the section heading says so on
  *   the page. No Review/AggregateRating structured data is attached.
  */
 export const googleReviews = [
