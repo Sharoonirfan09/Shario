@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "brand:assets": "node scripts/prepare-brand-assets.mjs",
-    "check:images": "node scripts/check-images.mjs"
+    "check:images": "node scripts/check-images.mjs",
+    "hero:images": "node scripts/prepare-hero-images.mjs"
   },
   "dependencies": {
     "firebase": "^12.18.0",

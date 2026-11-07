@@ -55,9 +55,20 @@ async function knockOutBackground(input, output, { tolerance = 42, feather = 26 
  * making every visit carry 160KB of unused resolution.
  */
 async function webCut(input, output, width) {
-  await sharp(input)
+  // A mask only reads alpha, so the colour channels are flattened to black
+  // before encoding: with nothing left in RGB but transparency, the palette
+  // PNG collapses to a fraction of its size (the Arabic watermark went from
+  // ~44KB to ~14KB) and renders identically through `mask-image`. Smaller
+  // matters here — both files are fetched on every page load, alongside the
+  // hero photograph that is the mobile LCP.
+  const { data, info } = await sharp(input)
     .resize({ width, kernel: "lanczos3" })
-    .png({ compressionLevel: 9, palette: true })
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  for (let i = 0; i < data.length; i += 4) data[i] = data[i + 1] = data[i + 2] = 0;
+  await sharp(data, { raw: info })
+    .png({ compressionLevel: 9, palette: true, colors: 128 })
     .toFile(output);
 
   const meta = await sharp(output).metadata();

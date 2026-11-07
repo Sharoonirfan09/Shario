@@ -329,6 +329,16 @@ b {
   animation: rise 1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
+/* `ArabicStatement`'s tagline sits far below the fold, but a web font is
+   fetched — at the highest priority — the moment any text in the document
+   uses it, visible or not. Until the scroll reveal marks the line shown
+   (it's at opacity 0 until then anyway) it's set in a system Arabic face,
+   so the tagline font downloads as the band approaches the viewport instead
+   of competing with the hero for first-screen bandwidth. */
+.js .font-arabic-tagline.reveal:not([data-shown]) {
+  font-family: "Traditional Arabic", serif;
+}
+
 /* Client logo marquee (`components/client-logos.tsx`). Each track holds its
    logo set twice, so sliding exactly -50% lands on an identical frame and the
    loop has no seam. Slow and linear — "quiet motion" — and paused while the

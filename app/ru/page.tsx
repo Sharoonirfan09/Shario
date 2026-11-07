@@ -144,7 +144,6 @@ export default function RussianHomePage() {
               line={item.lineRu}
               domain={item.domain}
               cover={item.cover}
-              coverPriority={i === 0}
               tone={i % 2 === 0 ? "limestone" : "porcelain"}
               delay={i * 60}
               locale="ru"

@@ -176,7 +176,6 @@ export default function HomePage() {
               line={item.line}
               domain={item.domain}
               cover={item.cover}
-              coverPriority={i === 0}
               tone={i % 2 === 0 ? "limestone" : "porcelain"}
               delay={i * 60}
             />

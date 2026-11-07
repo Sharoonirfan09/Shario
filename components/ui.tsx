@@ -1,4 +1,5 @@
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
+import { preload } from "react-dom";
 import Link from "next/link";
 import {
   Children,
@@ -9,7 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import type { Locale } from "@/lib/locale";
-import { site } from "@/lib/site";
+import { heroImages, site } from "@/lib/site";
 import { CountUp } from "@/components/count-up";
 
 /**
@@ -866,6 +867,83 @@ export function Hero({
  * repositioned at the breakpoint rather than rendered twice — two copies would
  * put two links to the same page in the markup and fetch the image twice.
  */
+/**
+ * Widths pre-rendered by `scripts/prepare-hero-images.mjs` (`npm run
+ * hero:images`). Keep the two lists in step.
+ */
+const HERO_STATIC_WIDTHS = [384, 640, 750, 828, 1080, 1200, 1400] as const;
+const HERO_SIZES = "(min-width: 880px) 46vw, 100vw";
+
+/**
+ * The home hero photograph — the mobile LCP — served as static AVIF files
+ * from `public/images/hero/static/` instead of through `/_next/image`.
+ *
+ * The on-demand optimizer caches per CDN region, so whenever PageSpeed's
+ * test machine hit a region with a cold cache, the hero came back ~0.9s
+ * late while it was resized, and the mobile Performance score swung between
+ * the high 80s and 100 on identical runs. Static files have no processing
+ * step and are cached at every edge. `getImageProps` with a custom loader
+ * keeps Next's own `srcset`/`sizes` generation, so the markup is otherwise
+ * identical to what `<Image>` rendered; the preload `<Image preload>` used
+ * to emit is issued here directly.
+ *
+ * Any other photograph passed to `SplitHero` still goes through `<Image>`.
+ */
+function HeroImage({
+  src,
+  alt,
+  className,
+  style,
+}: {
+  src: string;
+  alt: string;
+  className: string;
+  style: CSSProperties;
+}) {
+  if (src !== heroImages.home.src) {
+    return (
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes={HERO_SIZES}
+        preload
+        fetchPriority="high"
+        className={className}
+        style={style}
+      />
+    );
+  }
+
+  const base = `/images/hero/static/portrait`;
+  const { props } = getImageProps({
+    src,
+    alt,
+    fill: true,
+    sizes: HERO_SIZES,
+    loader: ({ width }) =>
+      `${base}-${HERO_STATIC_WIDTHS.find((w) => w >= width) ?? HERO_STATIC_WIDTHS.at(-1)}.avif`,
+  });
+  preload(props.src, {
+    as: "image",
+    imageSrcSet: props.srcSet,
+    imageSizes: props.sizes,
+    fetchPriority: "high",
+  });
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element -- props come from next/image's own getImageProps (see above); a plain <img> is the documented way to render them.
+    <img
+      {...props}
+      alt={alt}
+      fetchPriority="high"
+      loading="eager"
+      className={className}
+      style={{ ...props.style, ...style }}
+    />
+  );
+}
+
 export function SplitHero({
   src,
   alt = "",
@@ -1023,13 +1101,9 @@ export function SplitHero({
           aria-label={linkLabel}
           className="group frame relative block h-full w-full"
         >
-          <Image
+          <HeroImage
             src={src}
             alt={alt}
-            fill
-            sizes="(min-width: 880px) 46vw, 100vw"
-            preload
-            fetchPriority="high"
             className={`hero-shift object-cover ${focus ?? ""}`}
             style={{ "--hero-shift": shift ?? "-6%" } as CSSProperties}
           />
