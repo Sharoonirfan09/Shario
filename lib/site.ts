@@ -7848,9 +7848,9 @@ export const insightArticles: InsightArticle[] = [
       "A practical local SEO guide for Dubai businesses: Google Business Profile, reviews, bilingual listings, location pages and the fixes that move Google Maps visibility.",
     date: "7 Nov 2026",
     readingTime: "9 min read",
-    image: "/images/book/services-drive.jpg",
+    image: "/images/book/digital-phone.jpg",
     imageAlt:
-      "Sunlit interior of a vintage car with a chrome-spoked steering wheel and cream leather seats, a pair of shoes resting on the passenger seat",
+      "A smartphone lying on a textured travertine surface in raking sunlight, between stone vessels and linen-bound books",
     imageTopic: "Local SEO in Dubai",
     faqs: [
       {
@@ -7889,9 +7889,9 @@ export const insightArticles: InsightArticle[] = [
     readingTimeAr: "9 دقائق قراءة",
     readingTimeRu: "9 мин чтения",
     imageAltAr:
-      "مقصورة سيارة كلاسيكية تحت ضوء الشمس، بعجلة قيادة كرومية ومقاعد جلدية بلون الكريم، وحذاء موضوع على مقعد الراكب",
+      "هاتف ذكي موضوع على سطح من الحجر الجيري المسامي تحت ضوء الشمس المائل، بين أوانٍ حجرية وكتب بأغلفة من الكتان",
     imageAltRu:
-      "Залитый солнцем салон винтажного автомобиля с хромированным рулём и кремовыми кожаными сиденьями, на пассажирском сиденье лежат туфли",
+      "Смартфон на фактурной травертиновой поверхности в косых солнечных лучах, среди каменных сосудов и книг в льняных переплётах",
     imageTopicAr: "تحسين البحث المحلي في دبي",
     imageTopicRu: "Локальное SEO в Дубае",
     faqsAr: [
@@ -8313,9 +8313,9 @@ export const insightArticles: InsightArticle[] = [
       "What generative engine optimization (GEO) is, how AI answers choose which brands to mention, how GEO relates to SEO and AEO, and practical steps to improve your visibility.",
     date: "4 Nov 2026",
     readingTime: "10 min read",
-    image: "/images/insights/insights-banner-editorial-walk.jpg",
+    image: "/images/book/digital-monitor.jpg",
     imageAlt:
-      "Black-and-white photograph of a woman in a wide-brimmed black hat and a sculptural black-and-white gown walking past a stone balustrade",
+      "A desktop monitor on a walnut desk displaying the SHARIO website, with a city view through the window and design books on the shelf behind",
     imageTopic: "Generative Engine Optimization",
     faqs: [
       {
@@ -8354,9 +8354,9 @@ export const insightArticles: InsightArticle[] = [
     readingTimeAr: "10 دقائق قراءة",
     readingTimeRu: "10 мин чтения",
     imageAltAr:
-      "صورة بالأبيض والأسود لامرأة ترتدي قبعة سوداء عريضة الحواف وفستاناً منحوتاً بالأبيض والأسود، تسير بمحاذاة درابزين حجري",
+      "شاشة حاسوب مكتبي على مكتب من خشب الجوز تعرض موقع SHARIO الإلكتروني، مع إطلالة على المدينة من النافذة وكتب تصميم على الرف خلفها",
     imageAltRu:
-      "Чёрно-белая фотография женщины в чёрной шляпе с широкими полями и скульптурном чёрно-белом платье, идущей вдоль каменной балюстрады",
+      "Монитор на столе из ореха с открытым сайтом SHARIO, за окном вид на город, на полке позади — книги о дизайне",
     imageTopicAr: "تحسين المحركات التوليدية",
     imageTopicRu: "Оптимизация под генеративные системы",
     faqsAr: [
