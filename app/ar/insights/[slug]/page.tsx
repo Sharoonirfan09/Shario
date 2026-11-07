@@ -5,6 +5,7 @@ import { ArticleBody, InsightCard } from "@/components/insights";
 import {
   ArticleStructuredData,
   BreadcrumbStructuredData,
+  FaqStructuredData,
 } from "@/components/structured-data";
 import {
   Band,
@@ -89,6 +90,7 @@ export default async function ArabicInsightArticlePage({
     <>
       <ArticleStructuredData article={article} category={category} locale="ar" />
       <BreadcrumbStructuredData items={breadcrumbItems} />
+      {article.faqsAr && <FaqStructuredData items={article.faqsAr} />}
 
       <TypeHero
         tone="carbon"
