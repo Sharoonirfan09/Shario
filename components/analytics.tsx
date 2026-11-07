@@ -41,6 +41,46 @@ gtag('config', 'G-E9JDVQ7D8V');`}
 }
 
 /**
+ * Google Tag Manager, container `GTM-KZ3SPTBH` (account "SHARIO", container
+ * "shario.ae"). Loaded `lazyOnload` for the same reason as GA4 above: it
+ * downloads once the page has finished loading, so it never competes with
+ * the hero for bandwidth or adds to blocking time on mobile.
+ *
+ * GA4 deliberately stays installed directly (`GoogleAnalytics` above) rather
+ * than as a tag inside this container. Don't add a GA4 Configuration / Google
+ * tag for `G-E9JDVQ7D8V` in GTM while that component is mounted — every
+ * pageview would be counted twice. Use GTM for everything else (ad pixels,
+ * conversion tags, event tracking).
+ *
+ * Tags configured in GTM only start firing once a container version is
+ * published in the GTM UI.
+ */
+const GTM_ID = "GTM-KZ3SPTBH";
+
+export function GoogleTagManager() {
+  return (
+    <>
+      <Script id="gtm-init" strategy="lazyOnload">
+        {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${GTM_ID}');`}
+      </Script>
+      <noscript>
+        <iframe
+          src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+          height="0"
+          width="0"
+          style={{ display: "none", visibility: "hidden" }}
+          title="Google Tag Manager"
+        />
+      </noscript>
+    </>
+  );
+}
+
+/**
  * Meta/Facebook Pixel, inert-until-configured: reads `NEXT_PUBLIC_FB_PIXEL_ID`
  * and renders nothing when it's unset.
  *

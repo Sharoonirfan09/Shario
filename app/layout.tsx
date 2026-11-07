@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Amiri, Cormorant_Garamond, EB_Garamond, Jost } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import { FacebookPixel, GoogleAnalytics } from "@/components/analytics";
+import { FacebookPixel, GoogleAnalytics, GoogleTagManager } from "@/components/analytics";
 import { FirebaseAnalytics } from "@/components/firebase-analytics";
 import { Reveal } from "@/components/reveal";
 import { StructuredData, WebsiteStructuredData } from "@/components/structured-data";
@@ -182,6 +182,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <StructuredData />
         <WebsiteStructuredData />
         <GoogleAnalytics />
+        <GoogleTagManager />
         <FacebookPixel />
         <FirebaseAnalytics />
       </body>
