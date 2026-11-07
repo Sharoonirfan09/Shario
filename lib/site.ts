@@ -598,6 +598,17 @@ export const workWall = [
     cover: "/images/work/isolana-residences.jpg",
   },
   {
+    brand: "MSN Investments",
+    sector: "Private Investment",
+    sectorAr: "استثمار خاص",
+    sectorRu: "Частные инвестиции",
+    line: "Discreet website for a private real estate investment office",
+    lineAr: "موقع متحفّظ لمكتب استثمار عقاري خاص",
+    lineRu: "Сдержанный сайт для частного офиса инвестиций в недвижимость",
+    domain: "msninvestments.com",
+    cover: "/images/work/msn-investments.jpg",
+  },
+  {
     brand: "Earthlink Premium Holiday Homes",
     sector: "Hospitality",
     sectorAr: "الضيافة",
