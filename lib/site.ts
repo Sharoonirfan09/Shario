@@ -587,6 +587,17 @@ export const workWall = [
     cover: "/images/work/m-shahid-nawaz.jpg",
   },
   {
+    brand: "Isolana Residences",
+    sector: "Real Estate",
+    sectorAr: "العقارات",
+    sectorRu: "Недвижимость",
+    line: "Launch website and enquiry funnel for a Dubai Islands residence",
+    lineAr: "موقع إطلاق ومسار استفسارات لمشروع سكني في جزر دبي",
+    lineRu: "Сайт запуска и воронка заявок для резиденции на Dubai Islands",
+    domain: "theisolanaresidences.com",
+    cover: "/images/work/isolana-residences.jpg",
+  },
+  {
     brand: "Earthlink Premium Holiday Homes",
     sector: "Hospitality",
     sectorAr: "الضيافة",
