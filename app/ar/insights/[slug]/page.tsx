@@ -23,6 +23,7 @@ import {
   insightCategories,
   ogDefaultsAr,
   site,
+  insightCard,
 } from "@/lib/site";
 
 /** Every article with an Arabic edition is known at build time, so prerender them. English-only pieces (see `InsightArticle.locales`) are left out — visiting one here 404s via the guard below instead of rendering English copy in Arabic chrome. */
@@ -98,7 +99,7 @@ export default async function ArabicInsightArticlePage({
 
       <Band>
         <div className="mx-auto max-w-[760px]">
-          <p className="mb-10 text-[0.8125rem] text-carbon/50">
+          <p className="mb-10 text-[0.8125rem] text-carbon/75">
             <span dir="ltr">{article.date}</span> · {article.readingTimeAr ?? article.readingTime}
           </p>
 
@@ -141,7 +142,7 @@ export default async function ArabicInsightArticlePage({
             {related.map((item, i) => (
               <InsightCard
                 key={item.slug}
-                article={item}
+                article={insightCard(item)}
                 categories={insightCategories}
                 delay={i * 60}
                 locale="ar"

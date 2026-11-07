@@ -18,8 +18,8 @@ const fieldClass =
   "w-full border-0 border-b border-carbon/25 bg-transparent py-3.5 text-base text-carbon outline-none transition-[color,border-color,box-shadow] duration-300 placeholder:text-carbon/40 focus:border-carbon focus:shadow-[0_5px_14px_-9px_rgba(171,191,199,0.85)]";
 
 const labelClass =
-  "mb-2.5 block text-[11px] uppercase tracking-[0.08em] text-carbon/60";
-const labelClassAr = "mb-2.5 block font-arabic text-[0.8125rem] text-carbon/60";
+  "mb-2.5 block text-[11px] uppercase tracking-[0.08em] text-carbon/75";
+const labelClassAr = "mb-2.5 block font-arabic text-[0.8125rem] text-carbon/75";
 /** Russian keeps English's Latin-style label treatment — same uppercase/tracking, only the strings differ. */
 const labelClassRu = labelClass;
 
@@ -82,7 +82,7 @@ export function EnquiryForm({
         <p className={isAr ? "font-arabic text-[1.625rem] font-bold" : "font-display text-[1.875rem] font-normal"}>
           {state.message}
         </p>
-        <p className={`mt-4 max-w-md text-carbon/70 ${isAr ? "font-arabic" : ""}`}>
+        <p className={`mt-4 max-w-md text-carbon/75 ${isAr ? "font-arabic" : ""}`}>
           {isAr
             ? "إذا كان الأمر عاجلاً، اتصلوا بنا وسنتعامل معه بسرعة أكبر."
             : isRu

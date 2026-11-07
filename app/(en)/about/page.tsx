@@ -58,7 +58,7 @@ export default function AboutPage() {
           section on this page built for whitespace over structure. */}
       <Band>
         <div className="mx-auto max-w-[760px] text-center">
-          <p className="eyebrow flex items-center justify-center gap-3 text-carbon/55">
+          <p className="eyebrow flex items-center justify-center gap-3 text-carbon/75">
             <span aria-hidden="true" className="h-px w-6 bg-mist" />
             About Shario
           </p>
@@ -110,11 +110,11 @@ export default function AboutPage() {
         <div className="relative z-10 grid gap-14 wide:grid-cols-3 wide:gap-16">
           <div className="reveal ledger">
             <p className="ledger-figure">01</p>
-            <p className="label-sm mt-5 text-carbon/50">Philosophy</p>
+            <p className="label-sm mt-5 text-carbon/75">Philosophy</p>
             <h2 className="mt-4 font-display text-[1.4375rem] font-normal leading-[1.3] text-carbon">
               Marketing should move something.
             </h2>
-            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/70">
+            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/75">
               SHARIO connects creative thinking with measurable performance —
               brand, digital and growth held as one system, not three
               disconnected services run in parallel.
@@ -122,12 +122,12 @@ export default function AboutPage() {
           </div>
           <div className="reveal ledger" data-delay="80">
             <p className="ledger-figure">02</p>
-            <p className="label-sm mt-5 text-carbon/50">Our Mission</p>
+            <p className="label-sm mt-5 text-carbon/75">Our Mission</p>
             <h2 className="mt-4 font-display text-[1.4375rem] font-normal leading-[1.3] text-carbon">
               To make modern marketing clearer, more connected and more
               effective.
             </h2>
-            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/70">
+            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/75">
               We build thoughtful marketing systems where strategy, creative,
               digital execution and performance work together, rather than
               arriving from separate directions.
@@ -135,12 +135,12 @@ export default function AboutPage() {
           </div>
           <div className="reveal ledger" data-delay="160">
             <p className="ledger-figure">03</p>
-            <p className="label-sm mt-5 text-carbon/50">Our Vision</p>
+            <p className="label-sm mt-5 text-carbon/75">Our Vision</p>
             <h2 className="mt-4 font-display text-[1.4375rem] font-normal leading-[1.3] text-carbon">
               To build a more intelligent standard for how ambitious
               businesses approach marketing.
             </h2>
-            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/70">
+            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/75">
               Beyond disconnected campaigns — marketing ecosystems where
               identity, technology, content and performance are built to
               work together from the start.
@@ -155,7 +155,7 @@ export default function AboutPage() {
           layout for four short steps. */}
       <Band>
         <div className="mb-12 max-w-[820px] wide:mb-16">
-          <p className="eyebrow flex items-center gap-3 text-carbon/55">
+          <p className="eyebrow flex items-center gap-3 text-carbon/75">
             <span aria-hidden="true" className="h-px w-6 bg-mist" />
             How We Work
           </p>
@@ -182,7 +182,7 @@ export default function AboutPage() {
           homepage and `/services`. */}
       <Band className="bg-limestone/30">
         <div className="mb-10 max-w-[820px] wide:mb-14">
-          <p className="eyebrow flex items-center gap-3 text-carbon/55">
+          <p className="eyebrow flex items-center gap-3 text-carbon/75">
             <span aria-hidden="true" className="h-px w-6 bg-mist" />
             What We Do
           </p>
@@ -198,12 +198,12 @@ export default function AboutPage() {
               className="group reveal flex items-center justify-between gap-6 border-t border-carbon/15 py-5 transition-colors duration-300 hover:border-carbon/40"
               data-delay={i * 50}
             >
-              <span className="font-display text-[1.25rem] font-normal text-carbon transition-colors duration-300 group-hover:text-carbon/70 wide:text-[1.375rem]">
+              <span className="font-display text-[1.25rem] font-normal text-carbon transition-colors duration-300 group-hover:text-carbon/75 wide:text-[1.375rem]">
                 {service.name}
               </span>
               <span
                 aria-hidden="true"
-                className="text-carbon/40 transition-all duration-300 group-hover:translate-x-1 group-hover:text-carbon"
+                className="text-carbon/75 transition-all duration-300 group-hover:translate-x-1 group-hover:text-carbon"
               >
                 →
               </span>
@@ -221,7 +221,7 @@ export default function AboutPage() {
             alt="Portrait of Sharoon Irfan Khan, founder of Shario"
           />
           <div>
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+            <p className="eyebrow flex items-center gap-3 text-carbon/75">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
               The Founder
             </p>
@@ -264,7 +264,7 @@ export default function AboutPage() {
             >
               <div>
                 <p className="font-display text-xl">{site.founder}</p>
-                <p className="mt-1 text-[0.8125rem] text-carbon/60">
+                <p className="mt-1 text-[0.8125rem] text-carbon/75">
                   {site.founderRole}
                 </p>
               </div>
@@ -272,7 +272,7 @@ export default function AboutPage() {
                 href={site.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="eyebrow border-b border-carbon/30 pb-1 text-carbon/70 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+                className="eyebrow border-b border-carbon/30 pb-1 text-carbon/75 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 LinkedIn →
               </a>
@@ -280,7 +280,7 @@ export default function AboutPage() {
                 href={site.founderUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="eyebrow border-b border-carbon/30 pb-1 text-carbon/70 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+                className="eyebrow border-b border-carbon/30 pb-1 text-carbon/75 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 Personal Site →
               </a>

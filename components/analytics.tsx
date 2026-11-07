@@ -14,15 +14,23 @@ import Script from "next/script";
  * instance, not env-var-gated like `FacebookPixel` below — there is exactly
  * one GA4 property and it should always report; don't reintroduce a second,
  * env-var-driven GA4 component alongside it.
+ *
+ * Now `lazyOnload` rather than `afterInteractive`: gtag.js is ~180KB, and
+ * `afterInteractive` still requested it at high priority alongside the hero
+ * photograph and fonts — Lighthouse flagged it as the bulk of "unused
+ * JavaScript" and of desktop Total Blocking Time. `lazyOnload` waits for the
+ * window `load` event / idle time, so it never competes with first render.
+ * `gtag('config')` still sends the page_view once it runs; the only visits
+ * lost are ones that leave before the page finishes loading.
  */
 export function GoogleAnalytics() {
   return (
     <>
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-E9JDVQ7D8V"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
-      <Script id="ga4-init" strategy="afterInteractive">
+      <Script id="ga4-init" strategy="lazyOnload">
         {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
@@ -47,7 +55,7 @@ export function FacebookPixel() {
 
   return (
     <>
-      <Script id="fb-pixel-init" strategy="afterInteractive">
+      <Script id="fb-pixel-init" strategy="lazyOnload">
         {`
           !function(f,b,e,v,n,t,s)
           {if(f.fbq)return;n=f.fbq=function(){n.callMethod?

@@ -15,7 +15,7 @@ export function IndustryInsight({ industry }: { industry: Industry }) {
     <Band>
       <div className="grid gap-12 wide:grid-cols-[0.8fr_1.2fr] wide:gap-20">
         <div className="reveal flex flex-col gap-8 wide:sticky wide:top-[calc(var(--header-h)+2rem)] wide:self-start">
-          <p className="eyebrow re-label flex items-center gap-3 text-carbon/70">
+          <p className="eyebrow re-label flex items-center gap-3 text-carbon/75">
             <span aria-hidden="true" className="h-px w-6 bg-mist" />
             The Industry
           </p>

@@ -145,7 +145,7 @@ export default async function ServicePage({
         </p>
         <div className="grid gap-14 wide:grid-cols-2 wide:gap-20">
           <div>
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+            <p className="eyebrow flex items-center gap-3 text-carbon/75">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
               The Work
             </p>
@@ -155,7 +155,7 @@ export default async function ServicePage({
             <DotList items={service.whatWeDo} columns={1} />
           </div>
           <div>
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+            <p className="eyebrow flex items-center gap-3 text-carbon/75">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
               Deliverables
             </p>
@@ -171,7 +171,7 @@ export default async function ServicePage({
         </div>
 
         {relatedInsight && (
-          <p className="reveal mt-14 text-[0.9375rem] text-carbon/60">
+          <p className="reveal mt-14 text-[0.9375rem] text-carbon/75">
             Further reading:{" "}
             <Link
               href={`/insights/${relatedInsight.slug}`}

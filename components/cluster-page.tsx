@@ -452,7 +452,7 @@ export function ClusterHubPageBody({
         />
         <div className="max-w-[760px]">
           <p className={para}>{c.builtFor.body}</p>
-          <p className={`reveal text-[0.9375rem] text-carbon/60 ${isAr ? "font-arabic" : ""}`}>
+          <p className={`reveal text-[0.9375rem] text-carbon/75 ${isAr ? "font-arabic" : ""}`}>
             {c.builtFor.agentsLinkPrefix}
             <Link
               href={`${prefix}/industries/real-estate-agents`}
@@ -653,7 +653,7 @@ export function ClusterAgentsPageBody({ locale }: { locale: Locale }) {
           <p className={`reveal text-[1.0625rem] leading-[1.75] text-carbon/75 ${isAr ? "font-arabic" : ""}`}>
             {c.builtForAgent.body}
           </p>
-          <p className={`reveal mt-6 text-[0.9375rem] text-carbon/60 ${isAr ? "font-arabic" : ""}`}>
+          <p className={`reveal mt-6 text-[0.9375rem] text-carbon/75 ${isAr ? "font-arabic" : ""}`}>
             {locale === "ar"
               ? "تسوّق لمؤسسة لا لاسمك؟ راجع "
               : locale === "ru"

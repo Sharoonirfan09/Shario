@@ -52,7 +52,7 @@ export function Funnel({ industry }: { industry: Industry }) {
   return (
     <Band className="bg-limestone/30">
       <div className="reveal mb-14 max-w-[720px] wide:mb-20">
-        <p className="eyebrow re-label flex items-center gap-3 text-carbon/70">
+        <p className="eyebrow re-label flex items-center gap-3 text-carbon/75">
           <span aria-hidden="true" className="h-px w-6 bg-mist" />
           The System
         </p>
@@ -69,7 +69,7 @@ export function Funnel({ industry }: { industry: Industry }) {
                 {s.title.replace(/ for Real Estate$| for Launches$/, "")}
               </Link>
               {i < industry.services.length - 1 && (
-                <span aria-hidden="true" className="text-carbon/45">
+                <span aria-hidden="true" className="text-carbon/75">
                   +
                 </span>
               )}
@@ -96,14 +96,14 @@ export function Funnel({ industry }: { industry: Industry }) {
                 className={`z-10 flex h-7 w-7 items-center justify-center rounded-full font-display text-[0.8125rem] transition-colors duration-500 ${
                   i <= active
                     ? "bg-carbon text-porcelain"
-                    : "bg-limestone text-carbon/58 border border-platinum/60"
+                    : "bg-limestone text-carbon/75 border border-platinum/60"
                 }`}
               >
                 {i + 1}
               </span>
               <span
                 className={`label-sm re-label transition-colors duration-500 ${
-                  i === active ? "text-carbon" : "text-carbon/58"
+                  i === active ? "text-carbon" : "text-carbon/75"
                 }`}
               >
                 {stage.label}
@@ -125,12 +125,12 @@ export function Funnel({ industry }: { industry: Industry }) {
               className="grid grid-cols-[auto_1fr] items-baseline gap-6 border-t border-platinum/45 py-7 transition-opacity duration-500 wide:grid-cols-[3rem_10rem_1fr] wide:gap-10 wide:py-8"
               style={{ opacity: isActive ? 1 : 0.62 }}
             >
-              <span className="font-display text-[1.375rem] text-carbon/65 wide:text-[1.625rem]">
+              <span className="font-display text-[1.375rem] text-carbon/75 wide:text-[1.625rem]">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3
                 className={`font-display text-[1.5rem] leading-[1.15] wide:text-[1.875rem] ${
-                  isActive ? "text-carbon" : "text-carbon/72"
+                  isActive ? "text-carbon" : "text-carbon/75"
                 }`}
               >
                 {stage.label}

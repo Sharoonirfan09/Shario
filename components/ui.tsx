@@ -61,7 +61,7 @@ export function hairline(tone: Tone) {
 
 /** Muted ink for the ground a section sits on. */
 export function muted(tone: Tone) {
-  return tone === "carbon" ? "text-porcelain/60" : "text-carbon/60";
+  return tone === "carbon" ? "text-porcelain/70" : "text-carbon/75";
 }
 
 /**
@@ -170,7 +170,7 @@ export function SectionIntro({
     >
       <p
         className={`eyebrow flex items-center gap-3 ${
-          tone === "carbon" ? "text-porcelain/70" : "text-carbon/55"
+          tone === "carbon" ? "text-porcelain/70" : "text-carbon/75"
         } ${centred ? "justify-center" : ""}`}
       >
         <span aria-hidden="true" className="h-px w-6 bg-mist" />
@@ -182,7 +182,7 @@ export function SectionIntro({
       {sub && (
         <p
           className={`mt-6 text-[1.0625rem] leading-[1.7] ${
-            tone === "carbon" ? "text-porcelain/70" : "text-carbon/70"
+            tone === "carbon" ? "text-porcelain/70" : "text-carbon/75"
           } ${centred ? "mx-auto max-w-[640px]" : "max-w-[640px]"}`}
         >
           {sub}
@@ -358,7 +358,7 @@ export const cardTone: Record<
     hover: "hover:border-mist hover:bg-mist/[0.06]",
     badge: "bg-mist/35 text-carbon",
     badgeHover: "group-hover:bg-mist/60",
-    desc: "text-carbon/72",
+    desc: "text-carbon/75",
     divider: "border-carbon/12",
     action: "text-carbon",
     fade: "from-porcelain",
@@ -369,7 +369,7 @@ export const cardTone: Record<
     hover: "hover:border-mist hover:bg-limestone/65",
     badge: "bg-mist/40 text-carbon",
     badgeHover: "group-hover:bg-mist/65",
-    desc: "text-carbon/72",
+    desc: "text-carbon/75",
     divider: "border-carbon/15",
     action: "text-carbon",
     fade: "from-limestone",
@@ -947,7 +947,7 @@ export function SplitHero({
           lang={isAr ? "ar" : undefined}
         >
           {eyebrow && (
-            <p className="eyebrow eyebrow-hero rise flex items-center gap-3 text-carbon/60">
+            <p className="eyebrow eyebrow-hero rise flex items-center gap-3 text-carbon/75">
               <span aria-hidden="true" className="h-px w-7 bg-carbon/40" />
               {eyebrow}
             </p>
@@ -974,7 +974,7 @@ export function SplitHero({
           </h1>
           {subhead && (
             <p
-              className={`rise rise-delay-2 mt-7 max-w-[440px] text-[1.1875rem] leading-[1.55] text-carbon/65 wide:text-[1.3125rem] ${isAr ? "font-arabic" : "font-body"}`}
+              className={`rise rise-delay-2 mt-7 max-w-[440px] text-[1.1875rem] leading-[1.55] text-carbon/75 wide:text-[1.3125rem] ${isAr ? "font-arabic" : "font-body"}`}
             >
               {subhead}
             </p>
@@ -1068,7 +1068,7 @@ export function Breadcrumb({
       className="rise"
     >
       <ol
-        className={`flex flex-wrap items-center gap-2 text-porcelain/60 ${isAr ? "font-arabic text-[0.6875rem]" : "eyebrow"}`}
+        className={`flex flex-wrap items-center gap-2 text-porcelain/70 ${isAr ? "font-arabic text-[0.6875rem]" : "eyebrow"}`}
       >
         {items.map((item, i) => (
           <li key={item.label} className="flex items-center gap-2">
@@ -1177,7 +1177,7 @@ export function TypeHero({
         {breadcrumb}
         <p
           className={`eyebrow eyebrow-hero rise mt-1 flex items-center gap-3 ${
-            dark ? "text-porcelain/80" : "text-carbon/60"
+            dark ? "text-porcelain/80" : "text-carbon/75"
           }`}
         >
           <span aria-hidden="true" className="h-px w-7 bg-mist" />
@@ -1259,7 +1259,7 @@ export function StatBand({
               <p className="ledger-figure ledger-figure-sm">
                 <CountUp value={stat.figure} />
               </p>
-              <p className="label-sm mt-4 text-porcelain/60">{stat.label}</p>
+              <p className="label-sm mt-4 text-porcelain/70">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -1339,7 +1339,7 @@ export function ArabicStatement() {
       <p
         dir="rtl"
         lang="ar"
-        className="reveal mx-auto max-w-[900px] text-center font-arabic text-[2.25rem] leading-[1.9] text-carbon wide:text-[clamp(2.75rem,5.4vw,4.75rem)] wide:leading-[1.7]"
+        className="reveal mx-auto max-w-[900px] text-center font-arabic-tagline text-[2.25rem] leading-[1.9] text-carbon wide:text-[clamp(2.75rem,5.4vw,4.75rem)] wide:leading-[1.7]"
       >
         {site.taglineAr}
       </p>
@@ -1426,7 +1426,7 @@ export function Figure({
         }`}
       >
         <span
-          className={`eyebrow ${tone === "carbon" ? "text-porcelain/70" : "text-carbon/55"}`}
+          className={`eyebrow ${tone === "carbon" ? "text-porcelain/70" : "text-carbon/75"}`}
         >
           {label}
         </span>

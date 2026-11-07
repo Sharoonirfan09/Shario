@@ -229,7 +229,7 @@ export default async function IndustryPage({
         </CardGrid>
 
         {relatedIndustry && (
-          <p className="reveal mt-14 text-[0.9375rem] text-carbon/60">
+          <p className="reveal mt-14 text-[0.9375rem] text-carbon/75">
             Also relevant:{" "}
             <Link
               href={`/industries/${relatedIndustry.slug}`}

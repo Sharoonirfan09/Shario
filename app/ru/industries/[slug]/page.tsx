@@ -183,7 +183,7 @@ export default async function RussianIndustryPage({
         </CardGrid>
 
         {relatedIndustry && (
-          <p className="reveal mt-14 text-[0.9375rem] text-carbon/60">
+          <p className="reveal mt-14 text-[0.9375rem] text-carbon/75">
             Также по теме:{" "}
             <Link
               href={`/ru/industries/${relatedIndustry.slug}`}

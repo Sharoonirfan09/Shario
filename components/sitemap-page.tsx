@@ -172,7 +172,7 @@ function LinkGrid({ items, locale, href }: { items: LinkItem[]; locale: Locale; 
             <span>{item.label}</span>
             <span
               aria-hidden="true"
-              className={`shrink-0 text-carbon/40 transition-all duration-300 ${arrowShift} group-hover:text-carbon`}
+              className={`shrink-0 text-carbon/75 transition-all duration-300 ${arrowShift} group-hover:text-carbon`}
             >
               {arrow}
             </span>
@@ -193,7 +193,7 @@ function SectionHeading({ children, isAr }: { children: React.ReactNode; isAr: b
 
 function SubHeading({ children, isAr }: { children: React.ReactNode; isAr: boolean }) {
   return (
-    <p className={`label-sm mb-4 text-carbon/50 ${isAr ? "font-arabic" : ""}`}>
+    <p className={`label-sm mb-4 text-carbon/75 ${isAr ? "font-arabic" : ""}`}>
       {children}
     </p>
   );

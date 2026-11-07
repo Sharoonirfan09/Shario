@@ -7855,6 +7855,64 @@ export function insightArticlesForLocale(locale: Locale): InsightArticle[] {
  * own the next time the homepage renders — no second place to remember to
  * update it.
  */
+/**
+ * The subset of an `InsightArticle` that a card (`InsightCard`) and the
+ * Insights explorer's filter actually read. Both live in a "use client"
+ * module, so whatever object a server page hands them is serialized into
+ * the HTML's RSC payload in full — passing whole articles shipped every
+ * article's complete body, in all three languages, to every visitor of the
+ * homepage (~90KB of the homepage's HTML before this). Pass cards through
+ * this instead.
+ */
+export type InsightCardArticle = Pick<
+  InsightArticle,
+  | "slug"
+  | "category"
+  | "tags"
+  | "title"
+  | "titleAr"
+  | "titleRu"
+  | "excerpt"
+  | "excerptAr"
+  | "excerptRu"
+  | "date"
+  | "readingTime"
+  | "readingTimeAr"
+  | "readingTimeRu"
+  | "image"
+  | "imageAlt"
+  | "imageAltAr"
+  | "imageAltRu"
+  | "imageTopic"
+  | "imageTopicAr"
+  | "imageTopicRu"
+>;
+
+export function insightCard(a: InsightArticle): InsightCardArticle {
+  return {
+    slug: a.slug,
+    category: a.category,
+    tags: a.tags,
+    title: a.title,
+    titleAr: a.titleAr,
+    titleRu: a.titleRu,
+    excerpt: a.excerpt,
+    excerptAr: a.excerptAr,
+    excerptRu: a.excerptRu,
+    date: a.date,
+    readingTime: a.readingTime,
+    readingTimeAr: a.readingTimeAr,
+    readingTimeRu: a.readingTimeRu,
+    image: a.image,
+    imageAlt: a.imageAlt,
+    imageAltAr: a.imageAltAr,
+    imageAltRu: a.imageAltRu,
+    imageTopic: a.imageTopic,
+    imageTopicAr: a.imageTopicAr,
+    imageTopicRu: a.imageTopicRu,
+  };
+}
+
 export function latestInsightArticles(count: number, locale: Locale = "en"): InsightArticle[] {
   return [...insightArticlesForLocale(locale)]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())

@@ -186,7 +186,7 @@ export default async function ArabicIndustryPage({
         </CardGrid>
 
         {relatedIndustry && (
-          <p className="reveal mt-14 font-arabic text-[0.9375rem] text-carbon/60">
+          <p className="reveal mt-14 font-arabic text-[0.9375rem] text-carbon/75">
             قطاع ذو صلة:{" "}
             <Link
               href={`/ar/industries/${relatedIndustry.slug}`}

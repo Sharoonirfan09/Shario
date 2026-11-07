@@ -36,7 +36,7 @@ export function Services({ industry }: { industry: Industry }) {
   return (
     <Band>
       <div className="reveal mb-14 max-w-[720px] wide:mb-16">
-        <p className="eyebrow re-label flex items-center gap-3 text-carbon/70">
+        <p className="eyebrow re-label flex items-center gap-3 text-carbon/75">
           <span aria-hidden="true" className="h-px w-6 bg-mist" />
           Where We Help
         </p>
@@ -59,7 +59,7 @@ export function Services({ industry }: { industry: Industry }) {
               <div className="flex items-start justify-between gap-4">
                 <span
                   className={`font-display text-[0.9375rem] ${
-                    tone === "carbon" ? "text-porcelain/65" : "text-carbon/60"
+                    tone === "carbon" ? "text-porcelain/70" : "text-carbon/75"
                   }`}
                 >
                   {String(i + 1).padStart(2, "0")}
@@ -67,7 +67,7 @@ export function Services({ industry }: { industry: Industry }) {
                 <span
                   aria-hidden="true"
                   className={`transition-transform duration-500 group-hover:translate-x-1.5 ${
-                    tone === "carbon" ? "text-mist" : "text-carbon/60 group-hover:text-carbon"
+                    tone === "carbon" ? "text-mist" : "text-carbon/75 group-hover:text-carbon"
                   }`}
                 >
                   →

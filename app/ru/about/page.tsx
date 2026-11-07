@@ -51,7 +51,7 @@ export default function RussianAboutPage() {
       {/* About SHARIO */}
       <Band>
         <div className="mx-auto max-w-[760px] text-center">
-          <p className="eyebrow flex items-center justify-center gap-3 text-carbon/55">
+          <p className="eyebrow flex items-center justify-center gap-3 text-carbon/75">
             <span aria-hidden="true" className="h-px w-6 bg-mist" />
             О SHARIO
           </p>
@@ -89,34 +89,34 @@ export default function RussianAboutPage() {
         <div className="relative z-10 grid gap-14 wide:grid-cols-3 wide:gap-16">
           <div className="reveal ledger">
             <p className="ledger-figure">01</p>
-            <p className="label-sm mt-5 text-carbon/50">Философия</p>
+            <p className="label-sm mt-5 text-carbon/75">Философия</p>
             <h2 className="mt-4 font-display text-[1.4375rem] font-normal leading-[1.3] text-carbon">
               Маркетинг должен приводить в движение.
             </h2>
-            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/70">
+            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/75">
               SHARIO соединяет креативное мышление с измеримой эффективностью — бренд, digital и
               рост как единая система, а не три разрозненные услуги, работающие параллельно.
             </p>
           </div>
           <div className="reveal ledger" data-delay="80">
             <p className="ledger-figure">02</p>
-            <p className="label-sm mt-5 text-carbon/50">Миссия</p>
+            <p className="label-sm mt-5 text-carbon/75">Миссия</p>
             <h2 className="mt-4 font-display text-[1.4375rem] font-normal leading-[1.3] text-carbon">
               Делать современный маркетинг яснее, слаженнее и эффективнее.
             </h2>
-            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/70">
+            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/75">
               Мы выстраиваем продуманные маркетинговые системы, в которых стратегия, креатив,
               digital-реализация и эффективность работают вместе, а не приходят с разных сторон.
             </p>
           </div>
           <div className="reveal ledger" data-delay="160">
             <p className="ledger-figure">03</p>
-            <p className="label-sm mt-5 text-carbon/50">Видение</p>
+            <p className="label-sm mt-5 text-carbon/75">Видение</p>
             <h2 className="mt-4 font-display text-[1.4375rem] font-normal leading-[1.3] text-carbon">
               Создать более интеллектуальный стандарт того, как амбициозные компании подходят к
               маркетингу.
             </h2>
-            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/70">
+            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/75">
               Больше, чем разрозненные кампании, — маркетинговые экосистемы, где идентичность,
               технологии, контент и эффективность изначально выстроены для совместной работы.
             </p>
@@ -127,7 +127,7 @@ export default function RussianAboutPage() {
       {/* How We Work */}
       <Band>
         <div className="mb-12 max-w-[820px] wide:mb-16">
-          <p className="eyebrow flex items-center gap-3 text-carbon/55">
+          <p className="eyebrow flex items-center gap-3 text-carbon/75">
             <span aria-hidden="true" className="h-px w-6 bg-mist" />
             Как мы работаем
           </p>
@@ -153,7 +153,7 @@ export default function RussianAboutPage() {
       {/* What We Do */}
       <Band className="bg-limestone/30">
         <div className="mb-10 max-w-[820px] wide:mb-14">
-          <p className="eyebrow flex items-center gap-3 text-carbon/55">
+          <p className="eyebrow flex items-center gap-3 text-carbon/75">
             <span aria-hidden="true" className="h-px w-6 bg-mist" />
             Что мы делаем
           </p>
@@ -169,12 +169,12 @@ export default function RussianAboutPage() {
               className="group reveal flex items-center justify-between gap-6 border-t border-carbon/15 py-5 transition-colors duration-300 hover:border-carbon/40"
               data-delay={i * 50}
             >
-              <span className="font-display text-[1.25rem] font-normal text-carbon transition-colors duration-300 group-hover:text-carbon/70 wide:text-[1.375rem]">
+              <span className="font-display text-[1.25rem] font-normal text-carbon transition-colors duration-300 group-hover:text-carbon/75 wide:text-[1.375rem]">
                 {service.nameRu}
               </span>
               <span
                 aria-hidden="true"
-                className="text-carbon/40 transition-all duration-300 group-hover:translate-x-1 group-hover:text-carbon"
+                className="text-carbon/75 transition-all duration-300 group-hover:translate-x-1 group-hover:text-carbon"
               >
                 →
               </span>
@@ -192,7 +192,7 @@ export default function RussianAboutPage() {
             alt="Портрет Шарун Ирфан Хан, основателя SHARIO"
           />
           <div>
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+            <p className="eyebrow flex items-center gap-3 text-carbon/75">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
               Основатель
             </p>
@@ -231,7 +231,7 @@ export default function RussianAboutPage() {
             >
               <div>
                 <p className="font-display text-xl">{site.founderRu}</p>
-                <p className="mt-1 text-[0.8125rem] text-carbon/60">
+                <p className="mt-1 text-[0.8125rem] text-carbon/75">
                   {site.founderRoleRu}
                 </p>
               </div>
@@ -239,7 +239,7 @@ export default function RussianAboutPage() {
                 href={site.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="eyebrow border-b border-carbon/30 pb-1 text-carbon/70 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+                className="eyebrow border-b border-carbon/30 pb-1 text-carbon/75 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 LinkedIn →
               </a>
@@ -247,7 +247,7 @@ export default function RussianAboutPage() {
                 href={site.founderUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="eyebrow border-b border-carbon/30 pb-1 text-carbon/70 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+                className="eyebrow border-b border-carbon/30 pb-1 text-carbon/75 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 Личный сайт →
               </a>

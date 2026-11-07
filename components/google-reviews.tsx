@@ -34,7 +34,7 @@ function ReviewCard({ review, hidden }: { review: Review; hidden?: boolean }) {
         </span>
         <div className="min-w-0">
           <p className="truncate text-[0.9375rem] font-medium text-carbon">{review.name}</p>
-          <p className="text-[0.75rem] text-carbon/55">{review.date}</p>
+          <p className="text-[0.75rem] text-carbon/75">{review.date}</p>
         </div>
       </div>
       <div className="mt-4">

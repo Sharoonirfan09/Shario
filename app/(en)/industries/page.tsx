@@ -128,13 +128,13 @@ export default function IndustriesPage() {
         <CardGrid columns={4}>
           {process.map((item, i) => (
             <div key={item.step} className="reveal" data-delay={i * 60}>
-              <span className="font-display text-[1.0625rem] text-carbon/40">
+              <span className="font-display text-[1.0625rem] text-carbon/75">
                 {item.step}
               </span>
               <p className="mt-4 font-display text-[1.25rem] font-medium text-carbon">
                 {item.title}
               </p>
-              <p className="mt-3.5 text-[0.9375rem] leading-[1.7] text-carbon/72">
+              <p className="mt-3.5 text-[0.9375rem] leading-[1.7] text-carbon/75">
                 {item.desc}
               </p>
             </div>

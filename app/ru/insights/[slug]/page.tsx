@@ -23,6 +23,7 @@ import {
   insightCategories,
   ogDefaultsRu,
   site,
+  insightCard,
 } from "@/lib/site";
 
 /** Every article with a Russian edition is known at build time, so prerender them. English-only pieces (see `InsightArticle.locales`) are left out — visiting one here 404s via the guard below instead of rendering English copy in Russian chrome. */
@@ -98,7 +99,7 @@ export default async function RussianInsightArticlePage({
 
       <Band>
         <div className="mx-auto max-w-[760px]">
-          <p className="mb-10 text-[0.8125rem] text-carbon/50">
+          <p className="mb-10 text-[0.8125rem] text-carbon/75">
             {article.date} · {article.readingTimeRu ?? article.readingTime}
           </p>
 
@@ -141,7 +142,7 @@ export default async function RussianInsightArticlePage({
             {related.map((item, i) => (
               <InsightCard
                 key={item.slug}
-                article={item}
+                article={insightCard(item)}
                 categories={insightCategories}
                 delay={i * 60}
                 locale="ru"

@@ -11,6 +11,7 @@ import {
   insightArticlesForLocale,
   insightCategories,
   ogDefaultsRu,
+  insightCard,
 } from "@/lib/site";
 
 const DEFAULT_TITLE_RU = "Инсайты";
@@ -87,7 +88,7 @@ export default async function RussianInsightsPage({
             aria-hidden="true"
             className="wordmark-ar pointer-events-none absolute -right-[18%] top-1/2 z-0 w-[65%] -translate-y-1/2 text-carbon/[0.045] wide:-right-[10%] wide:w-[38%]"
           />
-          <p className="eyebrow relative z-10 mb-8 flex items-center gap-3 text-carbon/55">
+          <p className="eyebrow relative z-10 mb-8 flex items-center gap-3 text-carbon/75">
             <span aria-hidden="true" className="h-px w-6 bg-mist" />
             Рекомендуем
           </p>
@@ -118,14 +119,14 @@ export default async function RussianInsightsPage({
               </div>
             </Link>
             <div>
-              <p className="eyebrow flex items-center gap-3 text-carbon/55">
+              <p className="eyebrow flex items-center gap-3 text-carbon/75">
                 <span aria-hidden="true" className="h-px w-6 bg-mist" />
                 {featuredCategory?.nameRu}
               </p>
               <Heading scale="md" className="mt-5">
                 <Link
                   href={`/ru/insights/${featured.slug}`}
-                  className="transition-colors duration-300 hover:text-carbon/70"
+                  className="transition-colors duration-300 hover:text-carbon/75"
                 >
                   {featured.titleRu ?? featured.title}
                 </Link>
@@ -133,7 +134,7 @@ export default async function RussianInsightsPage({
               <p className="reveal mt-6 max-w-[520px] text-[1.0625rem] leading-[1.7] text-carbon/75">
                 {featured.excerptRu ?? featured.excerpt}
               </p>
-              <p className="mt-6 text-[0.8125rem] text-carbon/50">
+              <p className="mt-6 text-[0.8125rem] text-carbon/75">
                 {featured.date} · {featured.readingTimeRu ?? featured.readingTime}
               </p>
               <div className="mt-8">
@@ -155,7 +156,7 @@ export default async function RussianInsightsPage({
           scale="sm"
         />
         <InsightsExplorer
-          articles={ruArticles}
+          articles={ruArticles.map(insightCard)}
           categories={insightCategories}
           initialCategory={initialCategory}
           locale="ru"

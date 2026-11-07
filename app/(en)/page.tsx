@@ -27,6 +27,7 @@ import {
   homeFaqs,
   howWeWork,
   insightCategories,
+  insightCard,
   latestInsightArticles,
   ogDefaults,
   resources,
@@ -137,7 +138,7 @@ export default function HomePage() {
           narrow screens) — the same separator convention Insights already
           uses for "{date} · {readingTime}". */}
       <Band compact>
-        <p className="eyebrow flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 text-center text-carbon/60">
+        <p className="eyebrow flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 text-center text-carbon/75">
           {trustStrip.map((item, i) => (
             <span key={i} className="flex items-center gap-2.5">
               {i > 0 && <span aria-hidden="true">·</span>}
@@ -225,7 +226,7 @@ export default function HomePage() {
             structured data. See `lib/google-reviews.ts`. */}
         <div className="mt-16 wide:mt-24">
           <div className="mb-8 text-center wide:mb-10">
-            <p className="eyebrow flex items-center justify-center gap-3 text-carbon/55">
+            <p className="eyebrow flex items-center justify-center gap-3 text-carbon/75">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
               On Google
             </p>
@@ -294,7 +295,7 @@ export default function HomePage() {
       <Band className="bg-limestone/30">
         <div className="mb-12 flex flex-wrap items-end justify-between gap-6 wide:mb-16">
           <div>
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+            <p className="eyebrow flex items-center gap-3 text-carbon/75">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
               From The Journal
             </p>
@@ -309,7 +310,7 @@ export default function HomePage() {
           {latestInsightArticles(3).map((article, i) => (
             <InsightCard
               key={article.slug}
-              article={article}
+              article={insightCard(article)}
               categories={insightCategories}
               size="large"
               delay={i * 60}
@@ -346,12 +347,12 @@ export default function HomePage() {
               <h3 className="font-display text-[1.375rem] font-medium leading-[1.25] text-carbon">
                 {resource.title}
               </h3>
-              <p className="mt-3.5 flex-1 text-[0.9375rem] leading-[1.75] text-carbon/72">
+              <p className="mt-3.5 flex-1 text-[0.9375rem] leading-[1.75] text-carbon/75">
                 {resource.desc}
               </p>
               <span className="eyebrow mt-7 flex items-center gap-2 border-t border-carbon/12 pt-6 text-carbon">
                 Download
-                <span aria-hidden="true" className="text-carbon/50">
+                <span aria-hidden="true" className="text-carbon/75">
                   · {resource.fileSize}
                 </span>
                 <span
@@ -377,7 +378,7 @@ export default function HomePage() {
               <Heading as="h3" scale="sm" className="text-[1.125rem]">
                 {block.title}
               </Heading>
-              <p className="mt-3 text-[0.9375rem] leading-[1.75] text-carbon/72">
+              <p className="mt-3 text-[0.9375rem] leading-[1.75] text-carbon/75">
                 {block.body}
               </p>
             </div>

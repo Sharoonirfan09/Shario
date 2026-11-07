@@ -24,6 +24,7 @@ import {
   insightCategories,
   ogDefaults,
   site,
+  insightCard,
 } from "@/lib/site";
 
 /** Every article is known at build time, so prerender them. */
@@ -106,7 +107,7 @@ export default async function InsightArticlePage({
 
       <Band>
         <div className="mx-auto max-w-[760px]">
-          <p className="mb-10 text-[0.8125rem] text-carbon/50">
+          <p className="mb-10 text-[0.8125rem] text-carbon/75">
             {article.date} · {article.readingTime}
           </p>
 
@@ -149,7 +150,7 @@ export default async function InsightArticlePage({
             {related.map((item, i) => (
               <InsightCard
                 key={item.slug}
-                article={item}
+                article={insightCard(item)}
                 categories={insightCategories}
                 delay={i * 60}
               />

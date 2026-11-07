@@ -28,6 +28,7 @@ import {
   homeFaqs,
   howWeWork,
   insightCategories,
+  insightCard,
   latestInsightArticles,
   ogDefaultsAr,
   resources,
@@ -114,7 +115,7 @@ export default function ArabicHomePage() {
 
       {/* Trust strip */}
       <Band compact>
-        <p className="eyebrow flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 text-center text-carbon/60 font-arabic">
+        <p className="eyebrow flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 text-center text-carbon/75 font-arabic">
           {trustStrip.map((item, i) => (
             <span key={i} className="flex items-center gap-2.5">
               {i > 0 && <span aria-hidden="true">·</span>}
@@ -183,7 +184,7 @@ export default function ArabicHomePage() {
             alt="صورة شخصية لشارون عرفان خان، مؤسسة شاريو"
           />
           <div>
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+            <p className="eyebrow flex items-center gap-3 text-carbon/75">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
               عن شاريو
             </p>
@@ -220,7 +221,7 @@ export default function ArabicHomePage() {
               المؤهلات
             </Heading>
             <p
-              className="reveal mt-3 max-w-[560px] text-[0.9375rem] leading-[1.7] text-carbon/70"
+              className="reveal mt-3 max-w-[560px] text-[0.9375rem] leading-[1.7] text-carbon/75"
               data-delay="140"
             >
               ماجستير في العلوم السياسية والحكم — جامعة البنجاب · دبلوم عالٍ
@@ -248,7 +249,7 @@ export default function ArabicHomePage() {
               </a>
             </p>
             <div className="reveal mt-9" data-delay="160">
-              <PillLink href="/ar/about">اعرفوا المزيد</PillLink>
+              <PillLink href="/ar/about">اعرفوا المزيد عن شاريو</PillLink>
             </div>
           </div>
         </div>
@@ -293,7 +294,7 @@ export default function ArabicHomePage() {
       <Band className="bg-limestone/30">
         <div className="mb-12 flex flex-wrap items-end justify-between gap-6 wide:mb-16">
           <div>
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+            <p className="eyebrow flex items-center gap-3 text-carbon/75">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
               من المجلة
             </p>
@@ -308,7 +309,7 @@ export default function ArabicHomePage() {
           {latestInsightArticles(3, "ar").map((article, i) => (
             <InsightCard
               key={article.slug}
-              article={article}
+              article={insightCard(article)}
               categories={insightCategories}
               size="large"
               delay={i * 60}
@@ -348,12 +349,12 @@ export default function ArabicHomePage() {
               <h3 className="font-arabic text-[1.375rem] font-bold leading-[1.25] text-carbon">
                 {resource.titleAr}
               </h3>
-              <p className="mt-3.5 flex-1 text-[0.9375rem] leading-[1.75] text-carbon/72 font-arabic">
+              <p className="mt-3.5 flex-1 text-[0.9375rem] leading-[1.75] text-carbon/75 font-arabic">
                 {resource.descAr}
               </p>
               <span className="mt-7 flex items-center gap-2 border-t border-carbon/12 pt-6 text-carbon font-arabic text-[0.75rem]">
                 تحميل
-                <span aria-hidden="true" className="text-carbon/50">
+                <span aria-hidden="true" className="text-carbon/75">
                   · {resource.fileSize}
                 </span>
                 <span
@@ -377,7 +378,7 @@ export default function ArabicHomePage() {
               <Heading as="h3" scale="sm" className="text-[1.125rem]">
                 {block.titleAr}
               </Heading>
-              <p className="mt-3 text-[0.9375rem] leading-[1.75] text-carbon/72">
+              <p className="mt-3 text-[0.9375rem] leading-[1.75] text-carbon/75">
                 {block.bodyAr}
               </p>
             </div>

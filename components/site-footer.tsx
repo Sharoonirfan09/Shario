@@ -50,7 +50,7 @@ export function SiteFooter({ locale = "en" }: { locale?: Locale }) {
               {isAr ? site.taglineAr : isRu ? site.taglineRu : site.tagline}
             </p>
             <p
-              className={`mt-5 max-w-[240px] text-[0.8125rem] leading-[1.7] text-porcelain/50 ${isAr ? "font-arabic" : ""}`}
+              className={`mt-5 max-w-[240px] text-[0.8125rem] leading-[1.7] text-porcelain/70 ${isAr ? "font-arabic" : ""}`}
             >
               {isAr
                 ? "تسويق رقمي واستوديو إبداعي في دبي."
@@ -135,12 +135,16 @@ export function SiteFooter({ locale = "en" }: { locale?: Locale }) {
               rel="noopener noreferrer"
               className="text-sm text-porcelain/80 transition-opacity duration-300 hover:opacity-100"
             >
-              LinkedIn
+              {/* Named for whose profile it is: the social icons also carry
+                  a "LinkedIn" link (the company page), and two links with
+                  the same name going to different places fails Lighthouse's
+                  "identical links have the same purpose" audit. */}
+              {isAr ? "المؤسس على LinkedIn" : isRu ? "Основатель в LinkedIn" : "Founder on LinkedIn"}
             </a>
           </FooterColumn>
         </div>
 
-        <div className="flex flex-col-reverse items-center gap-6 border-t border-porcelain/15 pt-6 text-xs text-porcelain/50 wide:flex-row wide:justify-between">
+        <div className="flex flex-col-reverse items-center gap-6 border-t border-porcelain/15 pt-6 text-xs text-porcelain/70 wide:flex-row wide:justify-between">
           <p className={`flex flex-wrap items-center justify-center gap-x-3 gap-y-1 ${isAr ? "font-arabic" : ""}`}>
             <span>
               {isAr
@@ -165,7 +169,7 @@ export function SiteFooter({ locale = "en" }: { locale?: Locale }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={item.label}
-                className="text-porcelain/60 transition-colors duration-300 hover:text-porcelain"
+                className="text-porcelain/70 transition-colors duration-300 hover:text-porcelain"
               >
                 <span className="block h-[18px] w-[18px]">
                   <SocialIcon platform={item.platform} />
@@ -210,7 +214,7 @@ function FooterColumn({
   return (
     <div className="flex flex-col gap-3">
       <p
-        className={`mb-2 text-[11px] text-porcelain/50 ${isAr ? "font-arabic" : "uppercase tracking-[0.1em]"}`}
+        className={`mb-2 text-[11px] text-porcelain/70 ${isAr ? "font-arabic" : "uppercase tracking-[0.1em]"}`}
       >
         {title}
       </p>

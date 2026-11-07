@@ -28,6 +28,7 @@ import {
   homeFaqs,
   howWeWork,
   insightCategories,
+  insightCard,
   latestInsightArticles,
   ogDefaultsRu,
   resources,
@@ -115,7 +116,7 @@ export default function RussianHomePage() {
 
       {/* Trust strip */}
       <Band compact>
-        <p className="eyebrow flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 text-center text-carbon/60">
+        <p className="eyebrow flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 text-center text-carbon/75">
           {trustStrip.map((item, i) => (
             <span key={i} className="flex items-center gap-2.5">
               {i > 0 && <span aria-hidden="true">·</span>}
@@ -184,7 +185,7 @@ export default function RussianHomePage() {
             alt="Портрет Шарун Ирфан Хан, основателя SHARIO"
           />
           <div>
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+            <p className="eyebrow flex items-center gap-3 text-carbon/75">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
               О SHARIO
             </p>
@@ -222,7 +223,7 @@ export default function RussianHomePage() {
               Квалификация
             </Heading>
             <p
-              className="reveal mt-3 max-w-[560px] text-[0.9375rem] leading-[1.7] text-carbon/70"
+              className="reveal mt-3 max-w-[560px] text-[0.9375rem] leading-[1.7] text-carbon/75"
               data-delay="140"
             >
               Магистр политологии и государственного управления — Университет
@@ -251,7 +252,7 @@ export default function RussianHomePage() {
               </a>
             </p>
             <div className="reveal mt-9" data-delay="160">
-              <PillLink href="/ru/about">Узнать больше</PillLink>
+              <PillLink href="/ru/about">Подробнее о SHARIO</PillLink>
             </div>
           </div>
         </div>
@@ -296,7 +297,7 @@ export default function RussianHomePage() {
       <Band className="bg-limestone/30">
         <div className="mb-12 flex flex-wrap items-end justify-between gap-6 wide:mb-16">
           <div>
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+            <p className="eyebrow flex items-center gap-3 text-carbon/75">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
               Из редакции
             </p>
@@ -311,7 +312,7 @@ export default function RussianHomePage() {
           {latestInsightArticles(3, "ru").map((article, i) => (
             <InsightCard
               key={article.slug}
-              article={article}
+              article={insightCard(article)}
               categories={insightCategories}
               size="large"
               delay={i * 60}
@@ -351,12 +352,12 @@ export default function RussianHomePage() {
               <h3 className="font-display text-[1.375rem] font-medium leading-[1.25] text-carbon">
                 {resource.titleRu}
               </h3>
-              <p className="mt-3.5 flex-1 text-[0.9375rem] leading-[1.75] text-carbon/72">
+              <p className="mt-3.5 flex-1 text-[0.9375rem] leading-[1.75] text-carbon/75">
                 {resource.descRu}
               </p>
               <span className="eyebrow mt-7 flex items-center gap-2 border-t border-carbon/12 pt-6 text-carbon">
                 Скачать
-                <span aria-hidden="true" className="text-carbon/50">
+                <span aria-hidden="true" className="text-carbon/75">
                   · {resource.fileSize}
                 </span>
                 <span
@@ -380,7 +381,7 @@ export default function RussianHomePage() {
               <Heading as="h3" scale="sm" className="text-[1.125rem]">
                 {block.titleRu}
               </Heading>
-              <p className="mt-3 text-[0.9375rem] leading-[1.75] text-carbon/72">
+              <p className="mt-3 text-[0.9375rem] leading-[1.75] text-carbon/75">
                 {block.bodyRu}
               </p>
             </div>

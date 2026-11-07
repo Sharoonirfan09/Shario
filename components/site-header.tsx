@@ -314,7 +314,7 @@ export function SiteHeader({
                             {navServiceGroups.map((group) => (
                               <div key={group.category}>
                                 <p
-                                  className={`mb-3 flex items-center gap-2.5 text-carbon/50 ${isAr ? "font-arabic text-[0.8125rem]" : "eyebrow"}`}
+                                  className={`mb-3 flex items-center gap-2.5 text-carbon/75 ${isAr ? "font-arabic text-[0.8125rem]" : "eyebrow"}`}
                                 >
                                   <span
                                     aria-hidden="true"
@@ -329,7 +329,7 @@ export function SiteHeader({
                                       href={href(`/services/${service.slug}`)}
                                       className="group/item -mx-3 flex items-baseline gap-3 border-l-2 border-transparent px-3 py-2.5 transition-colors duration-300 hover:border-mist hover:bg-mist/15"
                                     >
-                                      <span className="font-display text-[0.8125rem] text-carbon/40 transition-colors duration-300 group-hover/item:text-carbon/70">
+                                      <span className="font-display text-[0.8125rem] text-carbon/75 transition-colors duration-300 group-hover/item:text-carbon/75">
                                         {service.num}
                                       </span>
                                       <span
@@ -345,12 +345,12 @@ export function SiteHeader({
                           </div>
 
                           <div className="mt-7 flex items-center justify-between gap-6 border-t border-carbon/12 pt-6">
-                            <p className="text-[0.8125rem] text-carbon/60">
+                            <p className="text-[0.8125rem] text-carbon/75">
                               {copy.servicesFooterNote}
                             </p>
                             <Link
                               href={itemHref}
-                              className={`group/all flex shrink-0 items-center gap-2 text-carbon/70 transition-colors duration-300 hover:text-carbon ${isAr ? "font-arabic text-[0.8125rem]" : "eyebrow"}`}
+                              className={`group/all flex shrink-0 items-center gap-2 text-carbon/75 transition-colors duration-300 hover:text-carbon ${isAr ? "font-arabic text-[0.8125rem]" : "eyebrow"}`}
                             >
                               {copy.seeAllServices}
                               <span
@@ -405,7 +405,7 @@ export function SiteHeader({
                                 href={href(`/industries/${industry.slug}`)}
                                 className="group/item -mx-3 flex items-baseline gap-3 border-l-2 border-transparent px-3 py-2.5 transition-colors duration-300 hover:border-mist hover:bg-mist/15"
                               >
-                                <span className="font-display text-[0.8125rem] text-carbon/40 transition-colors duration-300 group-hover/item:text-carbon/70">
+                                <span className="font-display text-[0.8125rem] text-carbon/75 transition-colors duration-300 group-hover/item:text-carbon/75">
                                   {industry.num}
                                 </span>
                                 <span
@@ -418,12 +418,12 @@ export function SiteHeader({
                           </div>
 
                           <div className="mt-7 flex items-center justify-between gap-6 border-t border-carbon/12 pt-6">
-                            <p className="text-[0.8125rem] text-carbon/60">
+                            <p className="text-[0.8125rem] text-carbon/75">
                               {copy.industriesFooterNote}
                             </p>
                             <Link
                               href={itemHref}
-                              className={`group/all flex shrink-0 items-center gap-2 text-carbon/70 transition-colors duration-300 hover:text-carbon ${isAr ? "font-arabic text-[0.8125rem]" : "eyebrow"}`}
+                              className={`group/all flex shrink-0 items-center gap-2 text-carbon/75 transition-colors duration-300 hover:text-carbon ${isAr ? "font-arabic text-[0.8125rem]" : "eyebrow"}`}
                             >
                               {copy.seeAllIndustries}
                               <span
@@ -473,8 +473,8 @@ export function SiteHeader({
               <Link
                 href={localizedPath(pathname, "en")}
                 aria-current={locale === "en" ? "page" : undefined}
-                aria-label="English"
-                className={`transition-opacity duration-300 hover:opacity-100 ${locale === "en" ? "opacity-100" : "opacity-60"}`}
+                aria-label="EN — English"
+                className={`transition-opacity duration-300 hover:opacity-100 ${locale === "en" ? "opacity-100" : "opacity-75"}`}
               >
                 EN
               </Link>
@@ -484,8 +484,8 @@ export function SiteHeader({
               <Link
                 href={localizedPath(pathname, "ar")}
                 aria-current={isAr ? "page" : undefined}
-                aria-label="العربية"
-                className={`transition-opacity duration-300 hover:opacity-100 ${isAr ? "opacity-100" : "opacity-60"}`}
+                aria-label="AR — العربية"
+                className={`transition-opacity duration-300 hover:opacity-100 ${isAr ? "opacity-100" : "opacity-75"}`}
               >
                 AR
               </Link>
@@ -495,8 +495,8 @@ export function SiteHeader({
               <Link
                 href={localizedPath(pathname, "ru")}
                 aria-current={isRu ? "page" : undefined}
-                aria-label="Русский"
-                className={`transition-opacity duration-300 hover:opacity-100 ${isRu ? "opacity-100" : "opacity-60"}`}
+                aria-label="RU — Русский"
+                className={`transition-opacity duration-300 hover:opacity-100 ${isRu ? "opacity-100" : "opacity-75"}`}
               >
                 RU
               </Link>
@@ -567,8 +567,8 @@ export function SiteHeader({
                   href={localizedPath(pathname, "en")}
                   onClick={() => setMenuOpen(false)}
                   aria-current={locale === "en" ? "page" : undefined}
-                  aria-label="English"
-                  className={locale === "en" ? "opacity-100" : "opacity-60"}
+                  aria-label="EN — English"
+                  className={locale === "en" ? "opacity-100" : "opacity-75"}
                 >
                   EN
                 </Link>
@@ -579,8 +579,8 @@ export function SiteHeader({
                   href={localizedPath(pathname, "ar")}
                   onClick={() => setMenuOpen(false)}
                   aria-current={isAr ? "page" : undefined}
-                  aria-label="العربية"
-                  className={isAr ? "opacity-100" : "opacity-60"}
+                  aria-label="AR — العربية"
+                  className={isAr ? "opacity-100" : "opacity-75"}
                 >
                   AR
                 </Link>
@@ -591,8 +591,8 @@ export function SiteHeader({
                   href={localizedPath(pathname, "ru")}
                   onClick={() => setMenuOpen(false)}
                   aria-current={isRu ? "page" : undefined}
-                  aria-label="Русский"
-                  className={isRu ? "opacity-100" : "opacity-60"}
+                  aria-label="RU — Русский"
+                  className={isRu ? "opacity-100" : "opacity-75"}
                 >
                   RU
                 </Link>
@@ -623,7 +623,7 @@ export function SiteHeader({
 
             {/* The catalogue, so a phone reaches a service in one tap too. */}
             <div className="border-t border-porcelain/20 pt-6">
-              <p className={`mb-4 text-porcelain/50 ${isAr ? "font-arabic text-[0.8125rem]" : "label-sm"}`}>
+              <p className={`mb-4 text-porcelain/70 ${isAr ? "font-arabic text-[0.8125rem]" : "label-sm"}`}>
                 {copy.theServicesLabel}
               </p>
               <div className="flex flex-col gap-3.5">
@@ -634,7 +634,7 @@ export function SiteHeader({
                     onClick={() => setMenuOpen(false)}
                     className="flex items-baseline gap-3 text-[0.9375rem] text-porcelain/80"
                   >
-                    <span className="font-display text-xs text-porcelain/40">
+                    <span className="font-display text-xs text-porcelain/70">
                       {service.num}
                     </span>
                     <span className={isAr ? "font-arabic" : ""}>
@@ -647,7 +647,7 @@ export function SiteHeader({
 
             {/* Industries, same flat-list pattern as the catalogue above. */}
             <div className="border-t border-porcelain/20 pt-6">
-              <p className={`mb-4 text-porcelain/50 ${isAr ? "font-arabic text-[0.8125rem]" : "label-sm"}`}>
+              <p className={`mb-4 text-porcelain/70 ${isAr ? "font-arabic text-[0.8125rem]" : "label-sm"}`}>
                 {copy.theIndustriesLabel}
               </p>
               <div className="flex flex-col gap-3.5">
@@ -658,7 +658,7 @@ export function SiteHeader({
                     onClick={() => setMenuOpen(false)}
                     className="flex items-baseline gap-3 text-[0.9375rem] text-porcelain/80"
                   >
-                    <span className="font-display text-xs text-porcelain/40">
+                    <span className="font-display text-xs text-porcelain/70">
                       {industry.num}
                     </span>
                     <span className={isAr ? "font-arabic" : ""}>

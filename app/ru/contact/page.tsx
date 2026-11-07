@@ -44,7 +44,7 @@ export default function RussianContactPage() {
       <Band>
         <div className="grid gap-14 wide:grid-cols-[1.05fr_0.95fr] wide:gap-20">
           <div>
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+            <p className="eyebrow flex items-center gap-3 text-carbon/75">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
               Давайте общаться
             </p>
@@ -67,7 +67,7 @@ export default function RussianContactPage() {
               alt="Спокойная лестница из известняка в тёплом естественном освещении"
             />
             <div>
-              <p className="eyebrow flex items-center gap-3 text-carbon/55">
+              <p className="eyebrow flex items-center gap-3 text-carbon/75">
                 <span aria-hidden="true" className="h-px w-6 bg-mist" />
                 Свяжитесь с нами напрямую
               </p>
@@ -111,7 +111,7 @@ export default function RussianContactPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={item.label}
-                        className="text-carbon/50 transition-colors duration-300 hover:text-mist"
+                        className="text-carbon/75 transition-colors duration-300 hover:text-mist"
                       >
                         <span className="block h-[18px] w-[18px]">
                           <SocialIcon platform={item.platform} />
@@ -145,7 +145,7 @@ export default function RussianContactPage() {
                 <p className="mt-6 font-display text-[1.375rem] font-medium leading-[1.25] text-carbon">
                   {step.titleRu}
                 </p>
-                <p className="mt-3 max-w-[320px] text-[0.9375rem] leading-[1.65] text-carbon/65">
+                <p className="mt-3 max-w-[320px] text-[0.9375rem] leading-[1.65] text-carbon/75">
                   {step.descRu}
                 </p>
               </div>
@@ -175,10 +175,10 @@ function Detail({
   return (
     <div className="group border-t border-carbon/15 pt-5">
       <div className="flex items-baseline justify-between gap-3">
-        <p className="text-[0.8125rem] text-carbon/50">{label}</p>
+        <p className="text-[0.8125rem] text-carbon/75">{label}</p>
         <span
           aria-hidden="true"
-          className="font-display text-[0.75rem] text-carbon/30 transition-colors duration-500 group-hover:text-mist"
+          className="font-display text-[0.75rem] text-carbon/75 transition-colors duration-500 group-hover:text-mist"
         >
           {index}
         </span>

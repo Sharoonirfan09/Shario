@@ -101,9 +101,9 @@ export default function ArabicIndustriesPage() {
         <CardGrid columns={4}>
           {process.map((item, i) => (
             <div key={item.step} className="reveal" data-delay={i * 60}>
-              <span className="font-display text-[1.0625rem] text-carbon/40">{item.step}</span>
+              <span className="font-display text-[1.0625rem] text-carbon/75">{item.step}</span>
               <p className="mt-4 font-arabic text-[1.25rem] font-bold text-carbon">{item.title}</p>
-              <p className="mt-3.5 font-arabic text-[0.9375rem] leading-[1.9] text-carbon/72">{item.desc}</p>
+              <p className="mt-3.5 font-arabic text-[0.9375rem] leading-[1.9] text-carbon/75">{item.desc}</p>
             </div>
           ))}
         </CardGrid>

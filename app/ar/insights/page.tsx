@@ -11,6 +11,7 @@ import {
   insightArticlesForLocale,
   insightCategories,
   ogDefaultsAr,
+  insightCard,
 } from "@/lib/site";
 
 const DEFAULT_TITLE_AR = "رؤى";
@@ -87,7 +88,7 @@ export default async function ArabicInsightsPage({
             aria-hidden="true"
             className="wordmark-ar pointer-events-none absolute -left-[18%] top-1/2 z-0 w-[65%] -translate-y-1/2 text-carbon/[0.045] wide:-left-[10%] wide:w-[38%]"
           />
-          <p className="eyebrow relative z-10 mb-8 flex items-center gap-3 text-carbon/55">
+          <p className="eyebrow relative z-10 mb-8 flex items-center gap-3 text-carbon/75">
             <span aria-hidden="true" className="h-px w-6 bg-mist" />
             مميز
           </p>
@@ -118,14 +119,14 @@ export default async function ArabicInsightsPage({
               </div>
             </Link>
             <div>
-              <p className="eyebrow flex items-center gap-3 text-carbon/55">
+              <p className="eyebrow flex items-center gap-3 text-carbon/75">
                 <span aria-hidden="true" className="h-px w-6 bg-mist" />
                 {featuredCategory?.nameAr}
               </p>
               <Heading scale="md" className="mt-5">
                 <Link
                   href={`/ar/insights/${featured.slug}`}
-                  className="transition-colors duration-300 hover:text-carbon/70"
+                  className="transition-colors duration-300 hover:text-carbon/75"
                 >
                   {featured.titleAr ?? featured.title}
                 </Link>
@@ -133,7 +134,7 @@ export default async function ArabicInsightsPage({
               <p className="reveal mt-6 max-w-[520px] text-[1.0625rem] leading-[1.7] text-carbon/75">
                 {featured.excerptAr ?? featured.excerpt}
               </p>
-              <p className="mt-6 text-[0.8125rem] text-carbon/50">
+              <p className="mt-6 text-[0.8125rem] text-carbon/75">
                 <span dir="ltr">{featured.date}</span> · {featured.readingTimeAr ?? featured.readingTime}
               </p>
               <div className="mt-8">
@@ -155,7 +156,7 @@ export default async function ArabicInsightsPage({
           scale="sm"
         />
         <InsightsExplorer
-          articles={arArticles}
+          articles={arArticles.map(insightCard)}
           categories={insightCategories}
           initialCategory={initialCategory}
           locale="ar"

@@ -20,7 +20,7 @@ export function ApproachTimeline({ industry }: { industry: Industry }) {
   return (
     <Band className="bg-mist">
       <div className="reveal mb-14 max-w-[720px] wide:mb-20">
-        <p className="eyebrow re-label flex items-center gap-3 text-carbon/70">
+        <p className="eyebrow re-label flex items-center gap-3 text-carbon/75">
           <span aria-hidden="true" className="h-px w-6 bg-carbon/50" />
           The Approach
         </p>
@@ -60,7 +60,7 @@ export function ApproachTimeline({ industry }: { industry: Industry }) {
               >
                 <span
                   className={`font-display transition-[font-size,color,opacity] duration-500 wide:hidden ${
-                    isActive ? "text-[2rem] text-carbon" : "text-[1.5rem] text-carbon/50"
+                    isActive ? "text-[2rem] text-carbon" : "text-[1.5rem] text-carbon/75"
                   }`}
                 >
                   {step.step}
@@ -71,7 +71,7 @@ export function ApproachTimeline({ industry }: { industry: Industry }) {
                       className={`font-display transition-[font-size,color] duration-500 ${
                         isActive
                           ? "text-[2.5rem] text-carbon"
-                          : "text-[1.75rem] text-carbon/50"
+                          : "text-[1.75rem] text-carbon/75"
                       }`}
                     >
                       {step.step}
@@ -80,7 +80,7 @@ export function ApproachTimeline({ industry }: { industry: Industry }) {
                       className={`font-display font-medium leading-[1.15] transition-[font-size,color] duration-500 ${
                         isActive
                           ? "text-[2rem] text-carbon"
-                          : "text-[1.5rem] text-carbon/60"
+                          : "text-[1.5rem] text-carbon/75"
                       }`}
                     >
                       {step.title}
@@ -88,14 +88,14 @@ export function ApproachTimeline({ industry }: { industry: Industry }) {
                   </div>
                   <h3
                     className={`font-display text-[1.375rem] font-medium leading-[1.2] wide:hidden ${
-                      isActive ? "text-carbon" : "text-carbon/62"
+                      isActive ? "text-carbon" : "text-carbon/75"
                     }`}
                   >
                     {step.title}
                   </h3>
                   <p
                     className={`mt-3 max-w-[560px] text-[0.9375rem] font-normal leading-[1.7] transition-colors duration-500 wide:mt-3 wide:text-[1.0625rem] ${
-                      isActive ? "text-carbon/88" : "text-carbon/72"
+                      isActive ? "text-carbon/88" : "text-carbon/75"
                     }`}
                   >
                     {step.desc}

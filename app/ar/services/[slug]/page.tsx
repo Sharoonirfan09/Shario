@@ -139,7 +139,7 @@ export default async function ArabicServicePage({
         </p>
         <div className="grid gap-14 wide:grid-cols-2 wide:gap-20">
           <div>
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+            <p className="eyebrow flex items-center gap-3 text-carbon/75">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
               العمل
             </p>
@@ -149,7 +149,7 @@ export default async function ArabicServicePage({
             <DotList items={service.whatWeDoAr} columns={1} />
           </div>
           <div>
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+            <p className="eyebrow flex items-center gap-3 text-carbon/75">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
               المخرجات
             </p>
@@ -161,7 +161,7 @@ export default async function ArabicServicePage({
         </div>
 
         {relatedInsight && (
-          <p className="reveal mt-14 font-arabic text-[0.9375rem] text-carbon/60">
+          <p className="reveal mt-14 font-arabic text-[0.9375rem] text-carbon/75">
             قراءة إضافية:{" "}
             <Link
               href={`/ar/insights/${relatedInsight.slug}`}

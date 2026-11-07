@@ -61,7 +61,7 @@ export function Challenges({ industry }: { industry: Industry }) {
                     className={`font-display leading-none transition-[font-size,color] duration-500 ${
                       isActive
                         ? "text-[2.75rem] text-mist wide:text-[3.5rem]"
-                        : "text-[2rem] text-porcelain/62 wide:text-[2.5rem]"
+                        : "text-[2rem] text-porcelain/70 wide:text-[2.5rem]"
                     }`}
                   >
                     {String(i + 1).padStart(2, "0")}

@@ -309,7 +309,7 @@ export function HealthcareVerticalPageBody({ slug }: { slug: string }) {
         <SectionIntro eyebrow={v.forWhom.eyebrow} title={v.forWhom.heading} align="left" scale="sm" />
         <div className="max-w-[760px]">
           <p className="reveal text-[1.0625rem] leading-[1.75] text-carbon/75">{v.forWhom.body}</p>
-          <p className="reveal mt-6 text-[0.9375rem] text-carbon/60">
+          <p className="reveal mt-6 text-[0.9375rem] text-carbon/75">
             Looking for the full picture? See{" "}
             <Link
               href="/industries/healthcare"

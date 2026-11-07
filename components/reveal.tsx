@@ -37,13 +37,17 @@ export function Reveal() {
     const sweep = () => {
       frame = 0;
       const limit = window.innerHeight * 0.92;
-      document
-        .querySelectorAll<HTMLElement>(".reveal:not([data-shown])")
-        .forEach((el) => {
-          if (!reduce && el.getBoundingClientRect().top >= limit) return;
-          if (!reduce) el.style.setProperty("--reveal-delay", `${el.dataset.delay ?? 0}ms`);
-          el.setAttribute("data-shown", "true");
-        });
+      // Every layout read first, then every write. Interleaving them (read
+      // one rect, mark that element shown, read the next) invalidated style
+      // between reads and forced a fresh synchronous layout per element —
+      // Lighthouse's "Forced reflow" insight.
+      const due = Array.from(
+        document.querySelectorAll<HTMLElement>(".reveal:not([data-shown])")
+      ).filter((el) => reduce || el.getBoundingClientRect().top < limit);
+      due.forEach((el) => {
+        if (!reduce) el.style.setProperty("--reveal-delay", `${el.dataset.delay ?? 0}ms`);
+        el.setAttribute("data-shown", "true");
+      });
     };
 
     const schedule = () => {

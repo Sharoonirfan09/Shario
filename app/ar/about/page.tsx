@@ -51,7 +51,7 @@ export default function ArabicAboutPage() {
       {/* About SHARIO */}
       <Band>
         <div className="mx-auto max-w-[760px] text-center">
-          <p className="eyebrow flex items-center justify-center gap-3 text-carbon/55">
+          <p className="eyebrow flex items-center justify-center gap-3 text-carbon/75">
             <span aria-hidden="true" className="h-px w-6 bg-mist" />
             عن شاريو
           </p>
@@ -88,11 +88,11 @@ export default function ArabicAboutPage() {
         <div className="relative z-10 grid gap-14 wide:grid-cols-3 wide:gap-16">
           <div className="reveal ledger">
             <p className="ledger-figure">01</p>
-            <p className="label-sm mt-5 text-carbon/50">فلسفتنا</p>
+            <p className="label-sm mt-5 text-carbon/75">فلسفتنا</p>
             <h2 className="mt-4 font-arabic text-[1.4375rem] font-bold leading-[1.3] text-carbon">
               التسويق يجب أن يحرّك شيئاً.
             </h2>
-            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/70">
+            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/75">
               تربط شاريو التفكير الإبداعي بالأداء القابل للقياس — العلامة
               التجارية والرقمي والنمو كنظام واحد، لا ثلاث خدمات منفصلة تعمل
               بالتوازي.
@@ -100,11 +100,11 @@ export default function ArabicAboutPage() {
           </div>
           <div className="reveal ledger" data-delay="80">
             <p className="ledger-figure">02</p>
-            <p className="label-sm mt-5 text-carbon/50">رسالتنا</p>
+            <p className="label-sm mt-5 text-carbon/75">رسالتنا</p>
             <h2 className="mt-4 font-arabic text-[1.4375rem] font-bold leading-[1.3] text-carbon">
               أن نجعل التسويق الحديث أوضح وأكثر ترابطاً وفعالية.
             </h2>
-            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/70">
+            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/75">
               نبني أنظمة تسويقية مدروسة حيث تعمل الاستراتيجية والإبداع
               والتنفيذ الرقمي والأداء معاً، بدلاً من أن تصل من اتجاهات
               منفصلة.
@@ -112,12 +112,12 @@ export default function ArabicAboutPage() {
           </div>
           <div className="reveal ledger" data-delay="160">
             <p className="ledger-figure">03</p>
-            <p className="label-sm mt-5 text-carbon/50">رؤيتنا</p>
+            <p className="label-sm mt-5 text-carbon/75">رؤيتنا</p>
             <h2 className="mt-4 font-arabic text-[1.4375rem] font-bold leading-[1.3] text-carbon">
               أن نبني معياراً أكثر ذكاءً لكيفية تعامل الشركات الطموحة مع
               التسويق.
             </h2>
-            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/70">
+            <p className="mt-4 text-[0.9375rem] leading-[1.75] text-carbon/75">
               أبعد من الحملات المنفصلة — أنظمة تسويقية حيث تُبنى الهوية
               والتقنية والمحتوى والأداء لتعمل معاً منذ البداية.
             </p>
@@ -128,7 +128,7 @@ export default function ArabicAboutPage() {
       {/* How We Work */}
       <Band>
         <div className="mb-12 max-w-[820px] wide:mb-16">
-          <p className="eyebrow flex items-center gap-3 text-carbon/55">
+          <p className="eyebrow flex items-center gap-3 text-carbon/75">
             <span aria-hidden="true" className="h-px w-6 bg-mist" />
             كيف نعمل
           </p>
@@ -154,7 +154,7 @@ export default function ArabicAboutPage() {
       {/* What We Do */}
       <Band className="bg-limestone/30">
         <div className="mb-10 max-w-[820px] wide:mb-14">
-          <p className="eyebrow flex items-center gap-3 text-carbon/55">
+          <p className="eyebrow flex items-center gap-3 text-carbon/75">
             <span aria-hidden="true" className="h-px w-6 bg-mist" />
             ماذا نفعل
           </p>
@@ -170,12 +170,12 @@ export default function ArabicAboutPage() {
               className="group reveal flex items-center justify-between gap-6 border-t border-carbon/15 py-5 transition-colors duration-300 hover:border-carbon/40"
               data-delay={i * 50}
             >
-              <span className="font-arabic text-[1.25rem] font-bold text-carbon transition-colors duration-300 group-hover:text-carbon/70 wide:text-[1.375rem]">
+              <span className="font-arabic text-[1.25rem] font-bold text-carbon transition-colors duration-300 group-hover:text-carbon/75 wide:text-[1.375rem]">
                 {service.nameAr}
               </span>
               <span
                 aria-hidden="true"
-                className="text-carbon/40 transition-all duration-300 group-hover:-translate-x-1 group-hover:text-carbon"
+                className="text-carbon/75 transition-all duration-300 group-hover:-translate-x-1 group-hover:text-carbon"
               >
                 ←
               </span>
@@ -193,7 +193,7 @@ export default function ArabicAboutPage() {
             alt="صورة شخصية لشارون عرفان خان، مؤسسة شاريو"
           />
           <div>
-            <p className="eyebrow flex items-center gap-3 text-carbon/55">
+            <p className="eyebrow flex items-center gap-3 text-carbon/75">
               <span aria-hidden="true" className="h-px w-6 bg-mist" />
               المؤسسة
             </p>
@@ -232,7 +232,7 @@ export default function ArabicAboutPage() {
             >
               <div>
                 <p className="font-arabic text-xl font-bold">{site.founderAr}</p>
-                <p className="mt-1 text-[0.8125rem] text-carbon/60">
+                <p className="mt-1 text-[0.8125rem] text-carbon/75">
                   {site.founderRoleAr}
                 </p>
               </div>
@@ -240,7 +240,7 @@ export default function ArabicAboutPage() {
                 href={site.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-arabic border-b border-carbon/30 pb-1 text-[0.75rem] text-carbon/70 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+                className="font-arabic border-b border-carbon/30 pb-1 text-[0.75rem] text-carbon/75 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 لينكدإن ←
               </a>
@@ -248,7 +248,7 @@ export default function ArabicAboutPage() {
                 href={site.founderUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-arabic border-b border-carbon/30 pb-1 text-[0.75rem] text-carbon/70 transition-colors duration-300 hover:border-carbon hover:text-carbon"
+                className="font-arabic border-b border-carbon/30 pb-1 text-[0.75rem] text-carbon/75 transition-colors duration-300 hover:border-carbon hover:text-carbon"
               >
                 الموقع الشخصي ←
               </a>

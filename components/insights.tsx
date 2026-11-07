@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import type { Locale } from "@/lib/locale";
 import { localizedPath } from "@/lib/locale";
-import type { ArticleBlock, InsightArticle, InsightCategory } from "@/lib/site";
+import type { ArticleBlock, InsightCardArticle, InsightCategory } from "@/lib/site";
 import { Figure } from "@/components/ui";
 
 /**
@@ -23,7 +23,7 @@ export function InsightsExplorer({
   initialCategory = "all",
   locale = "en",
 }: {
-  articles: InsightArticle[];
+  articles: InsightCardArticle[];
   categories: InsightCategory[];
   initialCategory?: string;
   locale?: Locale;
@@ -103,7 +103,7 @@ export function InsightsExplorer({
         <button
           type="submit"
           aria-label={searchLabel}
-          className="flex shrink-0 items-center justify-center text-carbon/60 transition-colors duration-300 hover:text-carbon"
+          className="flex shrink-0 items-center justify-center text-carbon/75 transition-colors duration-300 hover:text-carbon"
         >
           <svg
             aria-hidden="true"
@@ -143,7 +143,7 @@ export function InsightsExplorer({
 
       {filtered.length === 0 ? (
         <div className="border-t border-carbon/15 py-20 text-center">
-          <p className={`text-[1.0625rem] text-carbon/60 ${isAr ? "font-arabic" : ""}`}>
+          <p className={`text-[1.0625rem] text-carbon/75 ${isAr ? "font-arabic" : ""}`}>
             {normalizedQuery
               ? isAr
                 ? `لا نتائج لـ "${query}".`
@@ -206,7 +206,7 @@ function CategoryTab({
       className={`rounded-full border px-5 py-2.5 transition-colors duration-300 ${isAr ? "font-arabic text-[0.6875rem]" : "eyebrow"} ${
         active
           ? "border-carbon bg-carbon text-porcelain"
-          : "border-carbon/20 text-carbon/60 hover:border-mist hover:bg-mist/15 hover:text-carbon"
+          : "border-carbon/20 text-carbon/75 hover:border-mist hover:bg-mist/15 hover:text-carbon"
       }`}
     >
       {label}
@@ -221,7 +221,7 @@ export function InsightCard({
   size = "default",
   locale = "en",
 }: {
-  article: InsightArticle;
+  article: InsightCardArticle;
   categories: InsightCategory[];
   delay?: number;
   /** `large` — the homepage's editorial band: bigger type, more air, the
@@ -262,26 +262,26 @@ export function InsightCard({
       </div>
       <div className={`flex flex-1 flex-col ${large ? "pt-7" : "pt-6"}`}>
         <p
-          className={`flex items-center gap-3 text-carbon/50 ${isAr ? "font-arabic text-[0.6875rem]" : "eyebrow"}`}
+          className={`flex items-center gap-3 text-carbon/75 ${isAr ? "font-arabic text-[0.6875rem]" : "eyebrow"}`}
         >
           <span aria-hidden="true" className="h-px w-4 bg-mist" />
           {isAr ? category?.nameAr : isRu ? category?.nameRu : category?.name}
         </p>
         <h3
-          className={`mt-3 leading-[1.2] transition-colors duration-300 group-hover:text-carbon/70 ${isAr ? "font-arabic font-bold" : "font-display font-medium"} ${
+          className={`mt-3 leading-[1.2] transition-colors duration-300 group-hover:text-carbon/75 ${isAr ? "font-arabic font-bold" : "font-display font-medium"} ${
             large ? "text-[1.625rem] wide:text-[1.75rem]" : "text-[1.375rem]"
           }`}
         >
           {isAr ? (article.titleAr ?? article.title) : isRu ? (article.titleRu ?? article.title) : article.title}
         </h3>
         <p
-          className={`mt-3 flex-1 leading-[1.7] text-carbon/70 ${isAr ? "font-arabic" : ""} ${
+          className={`mt-3 flex-1 leading-[1.7] text-carbon/75 ${isAr ? "font-arabic" : ""} ${
             large ? "text-[1rem]" : "text-[0.9375rem]"
           }`}
         >
           {isAr ? (article.excerptAr ?? article.excerpt) : isRu ? (article.excerptRu ?? article.excerpt) : article.excerpt}
         </p>
-        <p className={`mt-5 text-[0.8125rem] text-carbon/45 ${isAr ? "font-arabic" : ""}`}>
+        <p className={`mt-5 text-[0.8125rem] text-carbon/75 ${isAr ? "font-arabic" : ""}`}>
           {isAr ? (
             <>
               <span dir="ltr">{article.date}</span> · {article.readingTimeAr ?? article.readingTime}
@@ -437,7 +437,7 @@ export function ArticleBody({ blocks, locale = "en" }: { blocks: ArticleBlock[];
                   key={j}
                   className={`flex gap-3 text-[1.0625rem] leading-[1.75] text-carbon/80 ${isAr ? "flex-row-reverse text-right" : ""}`}
                 >
-                  <span className="shrink-0 font-display text-carbon/50">{j + 1}.</span>
+                  <span className="shrink-0 font-display text-carbon/75">{j + 1}.</span>
                   <span>{renderInline(item)}</span>
                 </li>
               ))}

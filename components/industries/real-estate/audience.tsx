@@ -54,7 +54,7 @@ export function Audience({
   return (
     <Band>
       <div className="reveal mb-14 max-w-[760px] wide:mb-20">
-        <p className="eyebrow re-label flex items-center gap-3 text-carbon/70">
+        <p className="eyebrow re-label flex items-center gap-3 text-carbon/75">
           <span aria-hidden="true" className="h-px w-6 bg-mist" />
           Who We Work With
         </p>
@@ -110,7 +110,7 @@ export function Audience({
         ))}
       </div>
 
-      <p className="reveal mt-10 text-[0.9375rem] text-carbon/60">
+      <p className="reveal mt-10 text-[0.9375rem] text-carbon/75">
         Working solo? See{" "}
         <Link
           href="/industries/real-estate-agents"
