@@ -7831,6 +7831,320 @@ export const insightArticles: InsightArticle[] = [
       ),
     ],
   },
+  {
+    slug: "local-seo-dubai-google-maps-guide",
+    category: "seo",
+    secondaryCategories: ["guides"],
+    tags: ["Local SEO", "Google Business Profile", "Google Maps", "Dubai", "SEO", "Reviews"],
+    contentType: "how-to",
+    locales: ["en"],
+    title: "Local SEO in Dubai: How to Show Up When Customers Search Nearby",
+    seoTitle: "Local SEO in Dubai: A Practical Google Maps Guide",
+    excerpt:
+      "Most local buying journeys in Dubai start with a search on a phone and end on a map. Here's how Google decides which businesses appear — and what to fix first so yours is one of them.",
+    metaDescription:
+      "A practical local SEO guide for Dubai businesses: Google Business Profile, reviews, bilingual listings, location pages and the fixes that move Google Maps visibility.",
+    date: "7 Nov 2026",
+    readingTime: "9 min read",
+    image: "/images/book/services-drive.jpg",
+    imageAlt:
+      "Sunlit interior of a vintage car with a chrome-spoked steering wheel and cream leather seats, a pair of shoes resting on the passenger seat",
+    imageTopic: "Local SEO in Dubai",
+    faqs: [
+      {
+        q: "What is local SEO?",
+        a: "Local SEO is the work of making a business visible in location-based searches — the map results, the local pack on Google's results page, and searches that include “near me” or an area name. It combines your Google Business Profile, reviews, your website's location content and consistent business details across the web.",
+      },
+      {
+        q: "How does Google decide which businesses appear in local results?",
+        a: "Google says local results are based mainly on three things: relevance (how well your profile matches the search), distance (how far you are from the searcher or the location in the query) and prominence (how well known your business is, including reviews and information from across the web).",
+      },
+      {
+        q: "Do I need a physical office in Dubai to rank on Google Maps?",
+        a: "To have a Google Business Profile you need either a location customers can visit or a defined service area you travel to. Businesses that serve customers at their location can hide their address and list service areas instead. Using a virtual office address you don't actually operate from is against Google's guidelines and risks suspension.",
+      },
+      {
+        q: "Should my Google Business Profile be in English or Arabic?",
+        a: "Your business name must match how you're known in the real world, so don't add keywords or translations that aren't part of your actual name. Beyond that, Dubai customers search in both languages — answering reviews in the language they were written in and publishing bilingual website content helps you appear for both.",
+      },
+      {
+        q: "How long does local SEO take to work?",
+        a: "Fixing profile errors — wrong category, missing hours, an inconsistent phone number — can change visibility within weeks. Building prominence through reviews, local content and links is slower and compounds over months.",
+      },
+    ],
+    body: [
+      h2("Quick Answer"),
+      p(
+        "**Local SEO in Dubai comes down to three things Google itself names: relevance, distance and prominence.** You can't change where a searcher is standing, so the work is making your Google Business Profile complete and accurate, earning a steady stream of genuine reviews, keeping your business details identical everywhere they appear, and giving your website real, specific content about the areas and services you cover. Most businesses lose local visibility to simple, fixable gaps rather than to competitors outspending them.",
+      ),
+
+      h2("Why Local Search Matters More in Dubai Than Most Markets"),
+      p(
+        "Dubai is a city people navigate by phone. Neighbourhoods are spread out, many buildings are known by name rather than by street address, and a large share of residents are relatively new to the areas they live and work in. When someone needs a clinic in Jumeirah, a fit-out contractor in Business Bay or a restaurant near Dubai Marina, the search usually happens on a phone and the decision is often made on the map.",
+      ),
+      p(
+        "That makes the map result a storefront in its own right. A customer may call, request directions or tap through to your website straight from your profile — or choose a competitor two listings down without ever seeing your site. Local SEO is how you make sure the storefront is there, accurate and convincing.",
+      ),
+
+      h2("How Google Decides Who Appears"),
+      p(
+        "Google is unusually open about how local ranking works. Its own guidance says local results are based mainly on:",
+      ),
+      ul([
+        "**Relevance** — how well a profile matches what someone searched for. Categories, services, descriptions and website content all feed this.",
+        "**Distance** — how far each business is from the searcher, or from the location named in the search (“dentist in Al Barsha”).",
+        "**Prominence** — how well known a business is. Google points to reviews, links and articles about the business, and its overall presence across the web.",
+      ]),
+      p(
+        "There is no paid route into the organic map results — ads can appear above them, but they're labelled separately. Everything below is about improving relevance and prominence, the two factors you can actually influence.",
+      ),
+
+      h2("Step 1: Get Your Google Business Profile Right"),
+      p(
+        "Your profile is the single most important local asset you own. Most of what goes wrong here is basic, which is good news: basic is fixable.",
+      ),
+      h3("Choose the right primary category"),
+      p(
+        "The primary category is one of the strongest relevance signals you control. Choose the most specific category that describes the core of your business — “Cosmetic dentist” rather than “Dentist” if that's genuinely what you do — then add secondary categories only for services you actually offer.",
+      ),
+      h3("Use your real business name"),
+      p(
+        "It's tempting to add keywords — “Shario Marketing Agency Dubai Best SEO” — but Google's guidelines require your name to match how you're known in the real world, on your signage, website and trade licence. Keyword-stuffed names are a common cause of suspended profiles, and a suspended profile has no visibility at all.",
+      ),
+      h3("Be precise about location"),
+      p(
+        "If customers visit you, make sure the map pin sits on your actual entrance, not the centre of a large building or community. Include the building name and unit in your address; in Dubai, that's how people actually find you. If you travel to customers instead, hide your address and set service areas that reflect where you genuinely work.",
+      ),
+      h3("Fill in everything"),
+      ul([
+        "Accurate opening hours, including special hours for Ramadan and public holidays.",
+        "A phone number that is answered — ideally the same one used on your website.",
+        "Services or products, each with a short, plain description.",
+        "Real photos of your premises, team and work, added regularly rather than all at once.",
+        "A description that says what you do and who you do it for, in plain language.",
+      ]),
+
+      h2("Step 2: Treat Reviews as an Operating Process"),
+      p(
+        "Reviews feed prominence directly, and they're also what a customer reads before deciding to call. The businesses that do well treat reviews as part of how they operate, not as a one-off campaign.",
+      ),
+      ul([
+        "**Ask every satisfied customer, at the right moment** — straight after a successful appointment, handover or delivery, with a direct link to your review form.",
+        "**Never buy, gate or incentivise reviews.** Google prohibits it, and reviews that disappear in a filter sweep can take your rating with them.",
+        "**Reply to every review**, positive and negative, ideally in the language it was written in. A calm, specific reply to a bad review often does more for the next customer than the five-star reviews around it.",
+        "**Aim for steady volume over time.** A sudden burst followed by silence looks less trustworthy to customers — and a profile with recent reviews simply reads as more alive.",
+      ]),
+
+      h2("Step 3: Keep Your Business Details Identical Everywhere"),
+      p(
+        "Your business name, address and phone number appear in many places: your website, Google, Apple Maps, Bing, social profiles, industry directories and the listings platforms customers use in your sector. When those details disagree — an old phone number here, a former office there — it becomes harder for search engines to be confident they're all the same business.",
+      ),
+      p(
+        "Pick one canonical version of your details, write it down, and use it exactly everywhere. Then audit the places you're already listed, starting with the ones that matter most in your industry, and correct anything out of date. Don't forget Apple Maps: a meaningful share of Dubai's smartphone users default to it, and Apple runs its own business listing tool.",
+      ),
+
+      h2("Step 4: Give Your Website Real Local Substance"),
+      p(
+        "Your profile links to your website, and Google uses the website to understand what you do and where. Thin, generic pages give it little to work with.",
+      ),
+      ul([
+        "**State your location clearly** on the site — address, building name and the areas you serve — in text, not just inside an embedded map.",
+        "**Build location pages only where you genuinely operate.** A page for each community you serve is useful if each one says something real — the projects you've done there, how you handle access or parking, what's different about serving that area. Fifty near-identical pages with the area name swapped out is the kind of thin content Google's guidelines warn against.",
+        "**Add LocalBusiness structured data** so search engines can read your name, address, phone, hours and coordinates unambiguously.",
+        "**Make the mobile experience fast and simple.** Most local visitors arrive on a phone and want a phone number, a map link or a booking button — fast. Our piece on [the real cost of a slow website](/insights/real-cost-of-a-slow-website) covers why speed matters so much here.",
+      ]),
+
+      h2("Step 5: Write for Both Languages"),
+      p(
+        "Dubai customers search in English and in Arabic, and often switch between them. If your website exists only in English, you're largely invisible to Arabic-language searches about your service — even if your customers would be perfectly happy to be served in English once they find you.",
+      ),
+      p(
+        "A properly built Arabic version of your key pages — written for Arabic readers rather than machine-translated, with correct right-to-left layout and language tags — opens up a second set of searches. Keep your Google Business Profile name exactly as your business is legally and publicly known, and let the website and your review replies carry the bilingual work.",
+      ),
+
+      h2("Step 6: Earn Local Prominence Beyond Your Own Channels"),
+      p(
+        "Prominence is partly about what others say about you. Mentions and links from credible local sources — industry associations, free zone or chamber directories, local press coverage, event sponsorships, supplier and partner websites — all help search engines see you as an established part of the local landscape. None of this is quick, but it compounds, and it's much harder for competitors to copy than a profile tweak.",
+      ),
+
+      h2("Common Local SEO Mistakes in Dubai"),
+      table(
+        ["Mistake", "Why it hurts", "The fix"],
+        [
+          ["Keywords stuffed into the business name", "Breaches guidelines and risks suspension", "Use your real trading name only"],
+          ["Map pin on the wrong tower or community centre", "Customers can't find you; distance signals are wrong", "Move the pin to your actual entrance"],
+          ["Multiple profiles for the same location", "Splits reviews and confuses search engines", "Merge or remove duplicates"],
+          ["Old phone numbers on directories", "Erodes confidence in your business details", "Audit and correct every listing"],
+          ["Ignoring negative reviews", "Next customers read the silence", "Reply calmly, specifically and promptly"],
+          ["Hours not updated for Ramadan or holidays", "Wasted trips and avoidable bad reviews", "Set special hours ahead of time"],
+        ],
+      ),
+
+      h2("Where to Start This Week"),
+      ol([
+        "Search for your own core service plus your area on a phone, logged out, and note who appears and why.",
+        "Review your Google Business Profile line by line: category, name, pin, hours, phone, services, photos.",
+        "Set up a simple routine for asking happy customers for reviews, and reply to any you haven't answered.",
+        "Write down your canonical business details and fix the three most important places they're wrong.",
+        "Check that your website states clearly where you are and who you serve — in text, on mobile.",
+      ]),
+      p(
+        "Local SEO rarely rewards one big push. It rewards getting the fundamentals right and then keeping them right. If you'd like a second pair of eyes on your local visibility, our [SEO services](/services/seo) cover exactly this — or [talk to our team](/contact) directly.",
+      ),
+    ],
+  },
+  {
+    slug: "generative-engine-optimization-geo",
+    category: "generative-engine-optimization",
+    secondaryCategories: ["answer-engine-optimization", "seo"],
+    tags: ["GEO", "Generative Engine Optimization", "AI Search", "AEO", "SEO", "Brand Visibility"],
+    contentType: "pillar",
+    locales: ["en"],
+    title: "Generative Engine Optimization (GEO): How Brands Get Into AI Answers",
+    seoTitle: "Generative Engine Optimization (GEO): A Practical Guide",
+    excerpt:
+      "When a buyer asks an AI assistant for a recommendation, the answer names a handful of brands and skips the rest. Generative Engine Optimization is the work of being one of the names — here's what it is and what actually moves it.",
+    metaDescription:
+      "What generative engine optimization (GEO) is, how AI answers choose which brands to mention, how GEO relates to SEO and AEO, and practical steps to improve your visibility.",
+    date: "4 Nov 2026",
+    readingTime: "10 min read",
+    image: "/images/insights/insights-banner-editorial-walk.jpg",
+    imageAlt:
+      "Black-and-white photograph of a woman in a wide-brimmed black hat and a sculptural black-and-white gown walking past a stone balustrade",
+    imageTopic: "Generative Engine Optimization",
+    faqs: [
+      {
+        q: "What does GEO stand for?",
+        a: "GEO stands for Generative Engine Optimization: the practice of improving how a brand, product or piece of content appears inside answers produced by generative AI systems such as ChatGPT, Gemini, Perplexity, Copilot and Google's AI Overviews and AI Mode.",
+      },
+      {
+        q: "Is GEO different from SEO?",
+        a: "GEO builds on SEO rather than replacing it. Many AI answer systems retrieve information from the web and rely on search indexes, so crawlable, useful, authoritative content remains the foundation. GEO adds a focus on how content is summarised and cited, and on how consistently your brand is described across the sources AI systems draw on.",
+      },
+      {
+        q: "What is the difference between GEO and AEO?",
+        a: "The two overlap heavily and there's no universally agreed boundary. AEO (Answer Engine Optimization) usually refers to being the direct answer to a question; GEO is often used more broadly for visibility within any AI-generated response, including recommendations and comparisons where several brands are mentioned.",
+      },
+      {
+        q: "Can I pay to appear in AI answers?",
+        a: "Some AI platforms are introducing advertising, but paid placements are labelled separately from the generated answer itself. Organic inclusion in AI answers can't be bought; it has to be earned through the content and reputation the systems draw on.",
+      },
+      {
+        q: "How do I measure GEO?",
+        a: "There's no single standard metric yet. Practical approaches include tracking a fixed set of buyer-style prompts across major AI assistants over time, noting whether and how your brand is mentioned and cited, and watching referral traffic from AI platforms in your analytics.",
+      },
+    ],
+    body: [
+      h2("Quick Answer"),
+      p(
+        "**Generative Engine Optimization (GEO) is the practice of improving how often — and how accurately — your brand appears in answers generated by AI systems** like ChatGPT, Gemini, Perplexity, Copilot and Google's AI Overviews. These systems tend to name a short list of brands and cite a handful of sources. GEO is about being on that list: publishing content that's easy to retrieve and quote, making your brand's facts consistent everywhere, and earning mentions from the independent sources AI systems trust. It builds on good SEO rather than replacing it.",
+      ),
+
+      h2("Why GEO Exists"),
+      p(
+        "A traditional search result shows ten links and lets the searcher decide. A generative answer does the deciding first. Ask an AI assistant for “the best CRM for a small real estate brokerage in Dubai” and it will typically recommend a few options, explain why, and perhaps cite some sources. Brands that aren't mentioned simply don't exist in that moment of consideration.",
+      ),
+      p(
+        "That shift is why GEO has become a term at all. The phrase was popularised by a 2023 academic paper from researchers at Princeton, Georgia Tech, the Allen Institute for AI and IIT Delhi, which tested how different content changes affected visibility in generative search responses. Their headline finding was intuitive but useful: content that adds evidence — cited sources, quotations, concrete statistics — tended to be represented more prominently than content that simply repeated keywords.",
+      ),
+      p(
+        "If you've read our guide to [Answer Engine Optimization](/insights/answer-engine-optimization), much of this will sound familiar. AEO focuses on being the answer to a question; GEO looks more broadly at how your brand shows up anywhere an AI system is generating a response — including recommendations, comparisons and shortlists.",
+      ),
+
+      h2("How AI Answers Decide What to Say"),
+      p(
+        "Different systems work differently, and none publishes a ranking formula. But most answers draw on some combination of two sources:",
+      ),
+      ul([
+        "**What the model learned during training** — a broad, somewhat dated picture of which brands exist, what they're known for, and how people talk about them.",
+        "**What it retrieves at the time of the question** — live search results and web pages fetched to ground the answer, which are often the pages it cites.",
+      ]),
+      p(
+        "This has two practical consequences. First, retrieval usually runs through search indexes, so if your pages aren't crawlable, indexable and genuinely useful, they're unlikely to be retrieved in the first place — which is why GEO starts with SEO. Second, the training-data side rewards **reputation across the web**, not just on your own site. What reviews, publications, directories, forums and comparison articles say about you shapes how an AI system describes you.",
+      ),
+      p(
+        "Google has said that its AI Overviews and AI Mode rely on its core search ranking and quality systems, and that there are no special technical requirements for appearing in them beyond being eligible to appear in Search. Treat that as the baseline for every platform: there is no secret tag. The fundamentals carry the weight.",
+      ),
+
+      h2("GEO, AEO and SEO: How They Fit Together"),
+      table(
+        ["", "SEO", "AEO", "GEO"],
+        [
+          ["Main goal", "Rank pages in search results", "Be the direct answer to a question", "Be mentioned and cited in AI-generated responses"],
+          ["Where it shows", "Search results pages", "Featured answers, voice and AI answers", "AI assistants, AI Overviews, AI Mode, chat-based search"],
+          ["Key signals", "Relevance, quality, links, technical health", "Clear answers, structure, question coverage", "Retrievable content, evidence, brand consistency, third-party mentions"],
+          ["Success looks like", "Rankings, clicks, traffic", "Answer placements, citations", "Brand mentions, accurate descriptions, citations, AI referral traffic"],
+        ],
+      ),
+      p(
+        "In practice, it's one strategy with three lenses. The work that improves one usually improves the others.",
+      ),
+
+      h2("What Actually Moves GEO"),
+      h3("1. Be retrievable"),
+      p(
+        "Make sure search engines and AI crawlers can actually reach and read your content. Check your robots.txt to see which AI crawlers you allow — blocking them can keep your pages out of some AI systems entirely. Avoid hiding key information inside images, PDFs or scripts that don't render, and keep important pages fast and indexable.",
+      ),
+      h3("2. Write content that's easy to quote"),
+      p(
+        "Generative systems extract and summarise. Content that leads with a clear, self-contained answer, then expands with specifics, is far easier to use than content that circles the point.",
+      ),
+      ul([
+        "Open sections with a direct, one-to-three sentence answer.",
+        "Use descriptive headings that mirror the questions buyers ask.",
+        "Include concrete details: numbers, timeframes, named methods, real examples.",
+        "Cite credible sources for claims, and say where your own data comes from.",
+        "Use tables for comparisons and lists for steps — structures that summarise cleanly.",
+      ]),
+      h3("3. Make your brand facts unambiguous"),
+      p(
+        "AI systems describe brands by stitching together what they find. If your website says you were founded in one year and your directory listings say another, or your services are described differently on every platform, the answer you get back will be muddled. Keep one consistent description of who you are, what you do, where you operate and who you serve — on your website, your Google Business Profile, LinkedIn, directories and press materials. Organization structured data on your website helps make those facts explicit.",
+      ),
+      h3("4. Earn mentions from sources AI systems trust"),
+      p(
+        "When an AI recommends brands in a category, it leans heavily on third-party sources: industry publications, review platforms, comparison articles, expert roundups, community discussions and reputable directories. Being genuinely present in those places — through PR, partnerships, real reviews and expert contributions — matters more for GEO than any on-page tweak. It's the modern version of building a reputation, and it can't be faked at scale.",
+      ),
+      h3("5. Cover the full buying conversation"),
+      p(
+        "People ask AI assistants longer, more specific questions than they type into a search box: comparisons, objections, pricing context, “is it right for my situation?”. Publish content that honestly answers those questions — including when your offer isn't the right fit. Pages that help a buyer decide are the ones that get drawn into decision-stage answers.",
+      ),
+      h3("6. Keep content current"),
+      p(
+        "Generative answers often favour recent information, especially for anything time-sensitive. Review key pages regularly, update figures and examples, and show clear publication or update dates.",
+      ),
+
+      h2("How to Measure GEO Today"),
+      p(
+        "Measurement is the least mature part of GEO. There's no equivalent of a rankings report that every platform shares. A pragmatic setup looks like this:",
+      ),
+      ol([
+        "**Build a prompt set.** Write 20–50 questions a real buyer would ask an AI assistant in your category, from broad (“best digital marketing agencies in Dubai”) to specific comparisons.",
+        "**Test them regularly** across the assistants your audience uses, and record whether your brand is mentioned, how it's described, which competitors appear, and which sources are cited.",
+        "**Track AI referral traffic** in your analytics. Visits from assistants such as ChatGPT, Perplexity and Copilot often show up as identifiable referrers.",
+        "**Watch for accuracy, not just presence.** Being mentioned with outdated services or the wrong location is a problem worth fixing at the source.",
+      ]),
+      p(
+        "Answers vary from one run to the next and between users, so look for trends over weeks and months rather than reacting to any single response.",
+      ),
+
+      h2("Common GEO Mistakes"),
+      ul([
+        "**Treating GEO as separate from SEO.** If your pages aren't found in search, they're rarely found by AI either.",
+        "**Mass-producing AI-written content.** Generic, unsourced pages add nothing a model doesn't already know, and search engines' spam policies target scaled low-value content.",
+        "**Chasing a single platform.** Your audience uses several assistants; the fundamentals that work across all of them are the safer investment.",
+        "**Ignoring off-site reputation.** Your own website is only one of the sources an AI reads about you.",
+        "**Expecting instant results.** Training data updates slowly. Retrieval-based visibility can move faster, but reputation builds over months.",
+      ]),
+
+      h2("Where to Start"),
+      p(
+        "Start by asking the AI assistants your customers use the questions your customers ask, and read the answers carefully. Note who is mentioned, what's said about you, and which sources are cited. That snapshot tells you whether your gap is content, consistency or reputation — and that, rather than a checklist, is what should set your GEO priorities.",
+      ),
+      p(
+        "For the wider picture of how AI search is changing visibility, read [Your Brand Is Being Searched by AI. Can It Be Found?](/insights/ai-search-optimization). And if you'd like help assessing how your brand shows up in AI answers today, [talk to our team](/contact).",
+      ),
+    ],
+  },
 ];
 
 export function getInsightArticle(slug: string): InsightArticle | undefined {
