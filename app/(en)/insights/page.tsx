@@ -7,6 +7,7 @@ import { Band, CtaBand, Heading, Hero, PillLink, SectionIntro } from "@/componen
 import {
   cta,
   getInsightCategory,
+  insightCategoryHasArticles,
   heroImages,
   insightArticles,
   insightCategories,
@@ -42,9 +43,14 @@ export async function generateMetadata({
   const title = category ? `${category.name} — Insights` : DEFAULT_TITLE;
   const description = category?.description ?? DEFAULT_DESCRIPTION;
 
+  // An empty category view is a thin page: keep it out of the index (and the
+  // sitemap) until it has an article — links on it are still followed.
+  const empty = category ? !insightCategoryHasArticles(category.slug, "en") : false;
+
   return {
     title,
     description,
+    ...(empty ? { robots: { index: false, follow: true } } : {}),
     alternates: {
       canonical,
       languages: { en: canonical, ar: arCanonical, ru: ruCanonical, "x-default": canonical },

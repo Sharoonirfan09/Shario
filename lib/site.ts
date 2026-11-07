@@ -8755,6 +8755,17 @@ export function insightArticlesForLocale(locale: Locale): InsightArticle[] {
 }
 
 /**
+ * Whether a category's `?category=` view has anything in it for `locale`.
+ * Empty ones are kept out of the sitemap and marked `noindex` — an empty
+ * filtered grid is a thin page, and listing two dozen of them was spending
+ * crawl budget the real pages need ("Discovered – currently not indexed").
+ * They rejoin automatically once an article in that category is added.
+ */
+export function insightCategoryHasArticles(slug: string, locale: Locale): boolean {
+  return insightArticlesForLocale(locale).some((article) => article.category === slug);
+}
+
+/**
  * The homepage's Insights band pulls from this rather than a hand-picked
  * list, so a new article added to `insightArticles` appears there on its
  * own the next time the homepage renders — no second place to remember to

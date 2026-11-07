@@ -1,7 +1,14 @@
 import type { MetadataRoute } from "next";
 import { healthcareServices, healthcareVerticals } from "@/lib/healthcare-cluster";
 import { servicePageSlugs } from "@/lib/real-estate-cluster";
-import { industries, insightArticles, insightCategories, services, site } from "@/lib/site";
+import {
+  industries,
+  insightArticles,
+  insightCategories,
+  insightCategoryHasArticles,
+  services,
+  site,
+} from "@/lib/site";
 
 const routes = ["/", "/services", "/industries", "/insights", "/work", "/about", "/contact", "/sitemap"];
 
@@ -90,17 +97,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // own title, meta description and canonical (see `generateMetadata` in
   // `app/(en)/insights/page.tsx`) — listed here so it's discoverable the same
   // way the rest of the site's real, indexable URLs are.
+  // Only locales where the category actually has articles — empty filtered
+  // grids are `noindex` (see `insightCategoryHasArticles`).
   const categoryPages = insightCategories.flatMap((category) => {
-    const enUrl = `${site.domain}/insights?category=${category.slug}`;
-    const arUrl = `${site.domain}/ar/insights?category=${category.slug}`;
-    const ruUrl = `${site.domain}/ru/insights?category=${category.slug}`;
-    const languages = { en: enUrl, ar: arUrl, ru: ruUrl, "x-default": enUrl };
+    const urls = {
+      en: `${site.domain}/insights?category=${category.slug}`,
+      ar: `${site.domain}/ar/insights?category=${category.slug}`,
+      ru: `${site.domain}/ru/insights?category=${category.slug}`,
+    };
+    const live = (["en", "ar", "ru"] as const).filter((locale) =>
+      insightCategoryHasArticles(category.slug, locale),
+    );
+    if (live.length === 0) return [];
+    const languages: Record<string, string> = Object.fromEntries(live.map((l) => [l, urls[l]]));
+    languages["x-default"] = urls[live.includes("en") ? "en" : live[0]];
 
-    return [
-      { url: enUrl, lastModified, changeFrequency: "monthly" as const, priority: 0.6, alternates: { languages } },
-      { url: arUrl, lastModified, changeFrequency: "monthly" as const, priority: 0.6, alternates: { languages } },
-      { url: ruUrl, lastModified, changeFrequency: "monthly" as const, priority: 0.6, alternates: { languages } },
-    ];
+    return live.map((locale) => ({
+      url: urls[locale],
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+      alternates: { languages },
+    }));
   });
 
   // The Real Estate pillar→cluster (see `lib/real-estate-cluster.ts`): the
