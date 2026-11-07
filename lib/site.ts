@@ -6771,7 +6771,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h3("05 — Keep Your Digital Identity Consistent"),
       p(
-        "Your website, social profiles, directories and professional platforms should communicate the same core positioning.",
+        "Your website, social profiles, directories and professional platforms should communicate the same core positioning. That includes your Google Business Profile — our [local SEO guide for Dubai](/insights/local-seo-dubai-google-maps-guide) covers it — and it's central to [Generative Engine Optimization](/insights/generative-engine-optimization-geo).",
       ),
       h2("The New Question"),
       p("For years, marketers asked: “Are we ranking on Google?” That question still matters."),
@@ -6870,7 +6870,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h3("05 — الحفاظ على اتساق هويتكم الرقمية"),
       p(
-        "يجب أن يتحدث موقعكم الإلكتروني وملفاتكم على وسائل التواصل الاجتماعي والدلائل والمنصات المهنية بنفس الموقع الأساسي للعلامة التجارية.",
+        "يجب أن يتحدث موقعكم الإلكتروني وملفاتكم على وسائل التواصل الاجتماعي والدلائل والمنصات المهنية بنفس الموقع الأساسي للعلامة التجارية. ويشمل ذلك ملفكم التجاري على جوجل — يغطيه [دليلنا لتحسين البحث المحلي في دبي](/ar/insights/local-seo-dubai-google-maps-guide) — وهو جوهر [تحسين المحركات التوليدية](/ar/insights/generative-engine-optimization-geo).",
       ),
       h2("السؤال الجديد"),
       p("لسنوات طويلة، كان المسوّقون يسألون: «هل نحتل ترتيباً جيداً على جوجل؟» وهذا السؤال لا يزال مهماً."),
@@ -6971,7 +6971,7 @@ export const insightArticles: InsightArticle[] = [
       ),
       h3("05 — Сохранять последовательность цифровой идентичности"),
       p(
-        "Сайт, профили в соцсетях, справочники и профессиональные платформы должны транслировать одно и то же ключевое позиционирование.",
+        "Сайт, профили в соцсетях, справочники и профессиональные платформы должны транслировать одно и то же ключевое позиционирование. Это касается и профиля компании в Google — о нём наше [руководство по локальному SEO в Дубае](/ru/insights/local-seo-dubai-google-maps-guide), — и это основа [оптимизации под генеративные системы](/ru/insights/generative-engine-optimization-geo).",
       ),
       h2("Новый вопрос"),
       p("Годами маркетологи спрашивали: «Ранжируемся ли мы в Google?» Этот вопрос по-прежнему важен."),
@@ -7528,7 +7528,9 @@ export const insightArticles: InsightArticle[] = [
       ),
       p("For most businesses, the practical work overlaps:"),
       p("**Clear content + strong entities + useful answers + technical accessibility + authority + monitoring.**"),
-      p("The terminology matters less than whether the strategy improves actual visibility and accuracy."),
+      p(
+        "The terminology matters less than whether the strategy improves actual visibility and accuracy. For a practical playbook focused on generative visibility, read our guide to [Generative Engine Optimization (GEO)](/insights/generative-engine-optimization-geo).",
+      ),
 
       h2("How to Implement Answer Engine Optimization"),
       p("A practical implementation process can be organized into seven steps."),
@@ -7845,10 +7847,10 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Most local buying journeys in Dubai start with a search on a phone and end on a map. Here's how Google decides which businesses appear — and what to fix first so yours is one of them.",
     metaDescription:
-      "A practical local SEO guide for Dubai businesses: Google Business Profile, reviews, bilingual listings, location pages and the fixes that move Google Maps visibility.",
+      "Local SEO guide for Dubai businesses: Google Business Profile, reviews, bilingual listings and location pages that lift your Google Maps visibility.",
     date: "7 Nov 2026",
     readingTime: "9 min read",
-    image: "/images/book/digital-phone.jpg",
+    image: "/images/insights/local-seo-dubai-smartphone-travertine.jpg",
     imageAlt:
       "A smartphone lying on a textured travertine surface in raking sunlight, between stone vessels and linen-bound books",
     imageTopic: "Local SEO in Dubai",
@@ -7877,15 +7879,15 @@ export const insightArticles: InsightArticle[] = [
     titleAr: "تحسين محركات البحث المحلي في دبي: كيف تظهرون عندما يبحث العملاء بالقرب منكم",
     titleRu: "Локальное SEO в Дубае: как появляться в поиске, когда клиенты ищут рядом",
     seoTitleAr: "تحسين محركات البحث المحلي في دبي: دليل عملي لخرائط جوجل",
-    seoTitleRu: "Локальное SEO в Дубае: практическое руководство по Google Картам",
+    seoTitleRu: "Локальное SEO в Дубае: руководство по Google Картам",
     excerptAr:
       "تبدأ معظم رحلات الشراء المحلية في دبي ببحث على الهاتف وتنتهي على الخريطة. إليكم كيف تقرر جوجل أي الأنشطة التجارية تظهر — وما الذي يجب إصلاحه أولاً ليكون نشاطكم من بينها.",
     excerptRu:
       "Большинство локальных покупок в Дубае начинается с поиска на телефоне и заканчивается на карте. Рассказываем, как Google решает, какие компании показать, — и что исправить в первую очередь, чтобы ваша оказалась среди них.",
     metaDescriptionAr:
-      "دليل عملي لتحسين محركات البحث المحلي للأنشطة التجارية في دبي: ملف جوجل التجاري، التقييمات، القوائم ثنائية اللغة، صفحات المواقع، والإصلاحات التي ترفع ظهوركم على خرائط جوجل.",
+      "دليل عملي لتحسين البحث المحلي في دبي: ملف جوجل التجاري، والتقييمات، والقوائم ثنائية اللغة، وصفحات المناطق التي ترفع ظهوركم على خرائط جوجل.",
     metaDescriptionRu:
-      "Практическое руководство по локальному SEO для бизнеса в Дубае: профиль компании в Google, отзывы, двуязычные данные, страницы районов и исправления, которые повышают видимость в Google Картах.",
+      "Локальное SEO для бизнеса в Дубае: профиль компании в Google, отзывы, двуязычные данные и страницы районов для роста видимости в Google Картах.",
     readingTimeAr: "9 دقائق قراءة",
     readingTimeRu: "9 мин чтения",
     imageAltAr:
@@ -7946,7 +7948,7 @@ export const insightArticles: InsightArticle[] = [
 
       h2("لماذا يهم البحث المحلي في دبي أكثر من معظم الأسواق"),
       p(
-        "دبي مدينة يتنقل فيها الناس عبر هواتفهم. فالأحياء متباعدة، وكثير من المباني معروفة بأسمائها لا بعناوين شوارعها، ونسبة كبيرة من السكان جدد نسبياً على المناطق التي يعيشون ويعملون فيها. وعندما يحتاج أحدهم إلى عيادة في جميرا، أو مقاول تجهيزات داخلية في الخليج التجاري، أو مطعم قرب دبي مارينا، فإن البحث يتم غالباً على الهاتف ويُتخذ القرار في أحيان كثيرة على الخريطة.",
+        "دبي مدينة يتنقل فيها الناس عبر هواتفهم. فالأحياء متباعدة، وكثير من المباني معروفة بأسمائها لا بعناوين شوارعها، ونسبة كبيرة من السكان جدد نسبياً على المناطق التي يعيشون ويعملون فيها. وعندما يحتاج أحدهم إلى [عيادة](/ar/industries/healthcare) في جميرا، أو مقاول تجهيزات داخلية في الخليج التجاري، أو مطعم قرب دبي مارينا، فإن البحث يتم غالباً على الهاتف ويُتخذ القرار في أحيان كثيرة على الخريطة.",
       ),
       p(
         "وهذا يجعل نتيجة الخريطة واجهة متجر قائمة بذاتها. فقد يتصل العميل بكم، أو يطلب الاتجاهات، أو ينتقل إلى موقعكم مباشرة من ملفكم — أو يختار منافساً يظهر أسفلكم بقائمتين دون أن يرى موقعكم أصلاً. وتحسين البحث المحلي هو ما يضمن أن تكون هذه الواجهة موجودة ودقيقة ومقنعة.",
@@ -8006,7 +8008,7 @@ export const insightArticles: InsightArticle[] = [
         "يظهر اسم نشاطكم وعنوانه ورقم هاتفه في أماكن كثيرة: موقعكم الإلكتروني، وجوجل، وخرائط آبل، وبينغ، وحساباتكم على وسائل التواصل، والأدلة المتخصصة في قطاعكم، ومنصات القوائم التي يستخدمها العملاء. وعندما تتعارض هذه البيانات — رقم هاتف قديم هنا، ومكتب سابق هناك — يصعب على محركات البحث التأكد من أنها كلها تخص النشاط نفسه.",
       ),
       p(
-        "اختاروا صيغة واحدة معتمدة لبياناتكم، ودوّنوها، واستخدموها حرفياً في كل مكان. ثم راجعوا الأماكن التي تُدرجون فيها حالياً، بدءاً بالأهم في قطاعكم، وصحّحوا كل ما هو قديم. ولا تنسوا خرائط آبل: فشريحة معتبرة من مستخدمي الهواتف الذكية في دبي تعتمد عليها افتراضياً، ولدى آبل أداتها الخاصة لإدارة قوائم الأنشطة التجارية.",
+        "اختاروا صيغة واحدة معتمدة لبياناتكم، ودوّنوها، واستخدموها حرفياً في كل مكان. ثم راجعوا الأماكن التي تُدرجون فيها حالياً، بدءاً بالأهم في قطاعكم، وصحّحوا كل ما هو قديم. ولا تنسوا خرائط آبل: فشريحة معتبرة من مستخدمي الهواتف الذكية في دبي تعتمد عليها افتراضياً، ولدى آبل أداتها الخاصة لإدارة قوائم الأنشطة التجارية. واتساق البيانات مهم خارج البحث أيضاً: فهو من أهم الإشارات التي يعتمد عليها مساعدو الذكاء الاصطناعي في وصفكم — اقرؤوا دليلنا إلى [تحسين المحركات التوليدية](/ar/insights/generative-engine-optimization-geo).",
       ),
 
       h2("الخطوة 4: امنحوا موقعكم الإلكتروني مضموناً محلياً حقيقياً"),
@@ -8016,7 +8018,7 @@ export const insightArticles: InsightArticle[] = [
       ul([
         "**اذكروا موقعكم بوضوح** في الموقع الإلكتروني — العنوان واسم المبنى والمناطق التي تخدمونها — كنص، لا داخل خريطة مضمّنة فقط.",
         "**أنشئوا صفحات للمناطق التي تعملون فيها فعلاً فقط.** فصفحة لكل مجتمع تخدمونه مفيدة إذا قالت كل منها شيئاً حقيقياً — المشاريع التي نفذتموها هناك، وكيف تتعاملون مع الدخول أو المواقف، وما الذي يميز خدمة تلك المنطقة. أما خمسون صفحة شبه متطابقة لا يتغير فيها سوى اسم المنطقة فهي المحتوى الضعيف الذي تحذّر منه إرشادات جوجل.",
-        "**أضيفوا بيانات LocalBusiness المنظمة** لتتمكن محركات البحث من قراءة اسمكم وعنوانكم وهاتفكم وساعات عملكم وإحداثياتكم دون لبس.",
+        "**أضيفوا بيانات LocalBusiness المنظمة** لتتمكن محركات البحث من قراءة اسمكم وعنوانكم وهاتفكم وساعات عملكم وإحداثياتكم دون لبس. وهي جزء أساسي من نهجنا في [تطوير المواقع الإلكترونية](/ar/services/website-development).",
         "**اجعلوا تجربة الهاتف سريعة وبسيطة.** فمعظم الزوار المحليين يصلون عبر الهاتف ويريدون رقم هاتف أو رابط خريطة أو زر حجز — بسرعة. ويشرح مقالنا عن [التكلفة الحقيقية للموقع البطيء](/ar/insights/real-cost-of-a-slow-website) لماذا تهم السرعة كثيراً هنا.",
       ]),
 
@@ -8055,7 +8057,7 @@ export const insightArticles: InsightArticle[] = [
         "تأكدوا من أن موقعكم يذكر بوضوح أين أنتم ومن تخدمون — كنص، وعلى الهاتف.",
       ]),
       p(
-        "نادراً ما يكافئ تحسين البحث المحلي دفعة كبيرة واحدة. بل يكافئ ضبط الأساسيات ثم الحفاظ عليها. وإذا رغبتم في رأي ثانٍ حول ظهوركم المحلي، فإن [خدماتنا في تحسين محركات البحث](/ar/services/seo) تغطي هذا تحديداً — أو [تحدثوا إلى فريقنا](/ar/contact) مباشرة.",
+        "نادراً ما يكافئ تحسين البحث المحلي دفعة كبيرة واحدة. بل يكافئ ضبط الأساسيات ثم الحفاظ عليها. والظهور المحلي مرحلة واحدة من القمع التسويقي؛ ولفحص بقية المراحل، اقرؤوا [كيفية تدقيق قمعكم التسويقي خلال بعد ظهر واحد](/ar/insights/audit-your-marketing-funnel-in-an-afternoon). وإذا رغبتم في رأي ثانٍ حول ظهوركم المحلي، فإن [خدماتنا في تحسين محركات البحث](/ar/services/seo) تغطي هذا تحديداً — أو [تحدثوا إلى فريقنا](/ar/contact) مباشرة.",
       ),
     ],
     bodyRu: [
@@ -8066,7 +8068,7 @@ export const insightArticles: InsightArticle[] = [
 
       h2("Почему локальный поиск в Дубае важнее, чем на большинстве рынков"),
       p(
-        "Дубай — город, по которому люди ориентируются с помощью телефона. Районы разбросаны, многие здания известны по названию, а не по адресу, а значительная часть жителей сравнительно недавно живёт и работает там, где живёт и работает. Когда кому-то нужна клиника в Джумейре, подрядчик по отделке в Бизнес-Бэй или ресторан рядом с Дубай Марина, поиск обычно происходит на телефоне, а решение часто принимается прямо на карте.",
+        "Дубай — город, по которому люди ориентируются с помощью телефона. Районы разбросаны, многие здания известны по названию, а не по адресу, а значительная часть жителей сравнительно недавно живёт и работает там, где живёт и работает. Когда кому-то нужна [клиника](/ru/industries/healthcare) в Джумейре, подрядчик по отделке в Бизнес-Бэй или ресторан рядом с Дубай Марина, поиск обычно происходит на телефоне, а решение часто принимается прямо на карте.",
       ),
       p(
         "Поэтому карточка на карте — это самостоятельная витрина. Клиент может позвонить, построить маршрут или перейти на сайт прямо из профиля — или выбрать конкурента двумя строками ниже, так и не увидев ваш сайт. Локальное SEO помогает сделать так, чтобы эта витрина была на месте, точной и убедительной.",
@@ -8126,7 +8128,7 @@ export const insightArticles: InsightArticle[] = [
         "Название, адрес и телефон компании публикуются во многих местах: на сайте, в Google, Apple Картах, Bing, соцсетях, отраслевых каталогах и на площадках, которыми пользуются клиенты в вашей сфере. Когда данные расходятся — здесь старый телефон, там прежний офис, — поисковым системам сложнее убедиться, что речь идёт об одной и той же компании.",
       ),
       p(
-        "Выберите один эталонный вариант данных, зафиксируйте его и используйте везде без изменений. Затем проверьте, где вы уже указаны, начиная с самых важных для вашей отрасли площадок, и исправьте всё устаревшее. Не забывайте об Apple Картах: заметная часть пользователей смартфонов в Дубае пользуется ими по умолчанию, а у Apple есть собственный инструмент для управления карточками компаний.",
+        "Выберите один эталонный вариант данных, зафиксируйте его и используйте везде без изменений. Затем проверьте, где вы уже указаны, начиная с самых важных для вашей отрасли площадок, и исправьте всё устаревшее. Не забывайте об Apple Картах: заметная часть пользователей смартфонов в Дубае пользуется ими по умолчанию, а у Apple есть собственный инструмент для управления карточками компаний. Единые данные важны не только для поиска: по ним ИИ-ассистенты во многом решают, как вас описать, — подробнее в нашем руководстве по [оптимизации под генеративные системы](/ru/insights/generative-engine-optimization-geo).",
       ),
 
       h2("Шаг 4: Наполните сайт настоящим локальным содержанием"),
@@ -8136,7 +8138,7 @@ export const insightArticles: InsightArticle[] = [
       ul([
         "**Чётко укажите местоположение** на сайте — адрес, название здания и районы, которые вы обслуживаете, — текстом, а не только во встроенной карте.",
         "**Создавайте страницы районов только там, где вы действительно работаете.** Страница для каждого обслуживаемого района полезна, если на каждой есть что-то настоящее: проекты, которые вы там выполнили, как вы решаете вопросы доступа или парковки, в чём особенность работы в этом районе. Пятьдесят почти одинаковых страниц с заменённым названием района — именно тот малоценный контент, о котором предупреждают правила Google.",
-        "**Добавьте структурированные данные LocalBusiness**, чтобы поисковые системы однозначно считывали название, адрес, телефон, часы работы и координаты.",
+        "**Добавьте структурированные данные LocalBusiness**, чтобы поисковые системы однозначно считывали название, адрес, телефон, часы работы и координаты. Это стандартная часть нашего подхода к [разработке сайтов](/ru/services/website-development).",
         "**Сделайте мобильную версию быстрой и простой.** Большинство локальных посетителей приходят с телефона, и им нужен номер телефона, ссылка на карту или кнопка записи — быстро. О том, почему скорость здесь так важна, мы писали в материале [о реальной цене медленного сайта](/ru/insights/real-cost-of-a-slow-website).",
       ]),
 
@@ -8175,7 +8177,7 @@ export const insightArticles: InsightArticle[] = [
         "Убедитесь, что сайт чётко сообщает, где вы находитесь и кого обслуживаете, — текстом и в мобильной версии.",
       ]),
       p(
-        "Локальное SEO редко вознаграждает за один большой рывок. Оно вознаграждает за правильно выстроенные основы, которые затем поддерживаются. Если вам нужен свежий взгляд на вашу локальную видимость, именно этим занимаются наши [услуги SEO](/ru/services/seo) — или [свяжитесь с нашей командой](/ru/contact) напрямую.",
+        "Локальное SEO редко вознаграждает за один большой рывок. Оно вознаграждает за правильно выстроенные основы, которые затем поддерживаются. Локальная видимость — лишь один этап воронки; чтобы проверить остальные, прочитайте [«Как провести аудит маркетинговой воронки за полдня»](/ru/insights/audit-your-marketing-funnel-in-an-afternoon). Если вам нужен свежий взгляд на вашу локальную видимость, именно этим занимаются наши [услуги SEO](/ru/services/seo) — или [свяжитесь с нашей командой](/ru/contact) напрямую.",
       ),
     ],
     body: [
@@ -8186,7 +8188,7 @@ export const insightArticles: InsightArticle[] = [
 
       h2("Why Local Search Matters More in Dubai Than Most Markets"),
       p(
-        "Dubai is a city people navigate by phone. Neighbourhoods are spread out, many buildings are known by name rather than by street address, and a large share of residents are relatively new to the areas they live and work in. When someone needs a clinic in Jumeirah, a fit-out contractor in Business Bay or a restaurant near Dubai Marina, the search usually happens on a phone and the decision is often made on the map.",
+        "Dubai is a city people navigate by phone. Neighbourhoods are spread out, many buildings are known by name rather than by street address, and a large share of residents are relatively new to the areas they live and work in. When someone needs a [clinic](/industries/healthcare) in Jumeirah, a fit-out contractor in Business Bay or a restaurant near Dubai Marina, the search usually happens on a phone and the decision is often made on the map.",
       ),
       p(
         "That makes the map result a storefront in its own right. A customer may call, request directions or tap through to your website straight from your profile — or choose a competitor two listings down without ever seeing your site. Local SEO is how you make sure the storefront is there, accurate and convincing.",
@@ -8246,7 +8248,7 @@ export const insightArticles: InsightArticle[] = [
         "Your business name, address and phone number appear in many places: your website, Google, Apple Maps, Bing, social profiles, industry directories and the listings platforms customers use in your sector. When those details disagree — an old phone number here, a former office there — it becomes harder for search engines to be confident they're all the same business.",
       ),
       p(
-        "Pick one canonical version of your details, write it down, and use it exactly everywhere. Then audit the places you're already listed, starting with the ones that matter most in your industry, and correct anything out of date. Don't forget Apple Maps: a meaningful share of Dubai's smartphone users default to it, and Apple runs its own business listing tool.",
+        "Pick one canonical version of your details, write it down, and use it exactly everywhere. Then audit the places you're already listed, starting with the ones that matter most in your industry, and correct anything out of date. Don't forget Apple Maps: a meaningful share of Dubai's smartphone users default to it, and Apple runs its own business listing tool. Consistent details matter beyond search, too: they're one of the main signals AI assistants use to decide how to describe you — see our guide to [Generative Engine Optimization](/insights/generative-engine-optimization-geo).",
       ),
 
       h2("Step 4: Give Your Website Real Local Substance"),
@@ -8256,7 +8258,7 @@ export const insightArticles: InsightArticle[] = [
       ul([
         "**State your location clearly** on the site — address, building name and the areas you serve — in text, not just inside an embedded map.",
         "**Build location pages only where you genuinely operate.** A page for each community you serve is useful if each one says something real — the projects you've done there, how you handle access or parking, what's different about serving that area. Fifty near-identical pages with the area name swapped out is the kind of thin content Google's guidelines warn against.",
-        "**Add LocalBusiness structured data** so search engines can read your name, address, phone, hours and coordinates unambiguously.",
+        "**Add LocalBusiness structured data** so search engines can read your name, address, phone, hours and coordinates unambiguously. It's a standard part of how we approach [website development](/services/website-development).",
         "**Make the mobile experience fast and simple.** Most local visitors arrive on a phone and want a phone number, a map link or a booking button — fast. Our piece on [the real cost of a slow website](/insights/real-cost-of-a-slow-website) covers why speed matters so much here.",
       ]),
 
@@ -8295,7 +8297,7 @@ export const insightArticles: InsightArticle[] = [
         "Check that your website states clearly where you are and who you serve — in text, on mobile.",
       ]),
       p(
-        "Local SEO rarely rewards one big push. It rewards getting the fundamentals right and then keeping them right. If you'd like a second pair of eyes on your local visibility, our [SEO services](/services/seo) cover exactly this — or [talk to our team](/contact) directly.",
+        "Local SEO rarely rewards one big push. It rewards getting the fundamentals right and then keeping them right. Local visibility is one stage of the funnel; to check the rest, see [how to audit your marketing funnel in one afternoon](/insights/audit-your-marketing-funnel-in-an-afternoon). If you'd like a second pair of eyes on your local visibility, our [SEO services](/services/seo) cover exactly this — or [talk to our team](/contact) directly.",
       ),
     ],
   },
@@ -8306,14 +8308,14 @@ export const insightArticles: InsightArticle[] = [
     tags: ["GEO", "Generative Engine Optimization", "AI Search", "AEO", "SEO", "Brand Visibility"],
     contentType: "pillar",
     title: "Generative Engine Optimization (GEO): How Brands Get Into AI Answers",
-    seoTitle: "Generative Engine Optimization (GEO): A Practical Guide",
+    seoTitle: "What Is GEO? Generative Engine Optimization Guide",
     excerpt:
       "When a buyer asks an AI assistant for a recommendation, the answer names a handful of brands and skips the rest. Generative Engine Optimization is the work of being one of the names — here's what it is and what actually moves it.",
     metaDescription:
-      "What generative engine optimization (GEO) is, how AI answers choose which brands to mention, how GEO relates to SEO and AEO, and practical steps to improve your visibility.",
+      "What generative engine optimization (GEO) is, how AI answers pick which brands to mention, how it relates to SEO and AEO, and how to improve visibility.",
     date: "4 Nov 2026",
     readingTime: "10 min read",
-    image: "/images/book/digital-monitor.jpg",
+    image: "/images/insights/generative-engine-optimization-website-monitor.jpg",
     imageAlt:
       "A desktop monitor on a walnut desk displaying the SHARIO website, with a city view through the window and design books on the shelf behind",
     imageTopic: "Generative Engine Optimization",
@@ -8342,15 +8344,15 @@ export const insightArticles: InsightArticle[] = [
     titleAr: "تحسين المحركات التوليدية (GEO): كيف تدخل العلامات التجارية إلى إجابات الذكاء الاصطناعي",
     titleRu: "Оптимизация под генеративные системы (GEO): как бренды попадают в ответы ИИ",
     seoTitleAr: "تحسين المحركات التوليدية (GEO): دليل عملي",
-    seoTitleRu: "Оптимизация под генеративные системы (GEO): практическое руководство",
+    seoTitleRu: "Что такое GEO? Оптимизация под генеративный ИИ",
     excerptAr:
       "عندما يطلب مشترٍ توصية من مساعد ذكاء اصطناعي، تذكر الإجابة عدداً قليلاً من العلامات التجارية وتتجاهل البقية. تحسين المحركات التوليدية هو العمل على أن تكونوا أحد هذه الأسماء — إليكم ماهيته وما الذي يحرّكه فعلاً.",
     excerptRu:
       "Когда покупатель просит ИИ-ассистента что-то порекомендовать, в ответе звучат несколько брендов, а остальные пропадают. Оптимизация под генеративные системы — это работа над тем, чтобы оказаться среди названных. Рассказываем, что это такое и что на самом деле даёт результат.",
     metaDescriptionAr:
-      "ما هو تحسين المحركات التوليدية (GEO)، وكيف تختار إجابات الذكاء الاصطناعي العلامات التي تذكرها، وعلاقته بتحسين محركات البحث وتحسين محركات الإجابة، وخطوات عملية لتحسين ظهوركم.",
+      "ما هو تحسين المحركات التوليدية (GEO)، وكيف تختار إجابات الذكاء الاصطناعي العلامات التي تذكرها، وعلاقته بـ SEO وAEO، وكيف تحسّنون ظهوركم.",
     metaDescriptionRu:
-      "Что такое оптимизация под генеративные системы (GEO), как ответы ИИ выбирают, какие бренды упомянуть, как GEO связана с SEO и AEO, и практические шаги для повышения видимости.",
+      "Что такое GEO, как ответы ИИ выбирают, какие бренды упомянуть, как GEO связана с SEO и AEO и как повысить видимость бренда в генеративном поиске.",
     readingTimeAr: "10 دقائق قراءة",
     readingTimeRu: "10 мин чтения",
     imageAltAr:
@@ -8411,7 +8413,7 @@ export const insightArticles: InsightArticle[] = [
 
       h2("لماذا ظهر GEO"),
       p(
-        "تعرض نتيجة البحث التقليدية عشرة روابط وتترك القرار للباحث. أما الإجابة التوليدية فتتخذ القرار أولاً. اسألوا مساعد ذكاء اصطناعي عن «أفضل نظام CRM لوكالة عقارية صغيرة في دبي» وسيوصي عادة ببضعة خيارات، ويشرح السبب، وربما يستشهد ببعض المصادر. والعلامات التي لا تُذكر ببساطة غير موجودة في لحظة المفاضلة تلك.",
+        "تعرض نتيجة البحث التقليدية عشرة روابط وتترك القرار للباحث. أما الإجابة التوليدية فتتخذ القرار أولاً. اسألوا مساعد ذكاء اصطناعي عن «أفضل نظام CRM لوكالة عقارية صغيرة في دبي» وسيوصي عادة ببضعة خيارات، ويشرح السبب، وربما يستشهد ببعض المصادر. والعلامات التي لا تُذكر ببساطة غير موجودة في لحظة المفاضلة تلك. وهو التحول نفسه الذي تناولناه في مقال [البحث بالذكاء الاصطناعي يغيّر معنى «الترتيب»](/ar/insights/ai-search-changing-what-ranking-means).",
       ),
       p(
         "هذا التحول هو سبب ظهور مصطلح GEO أصلاً. فقد انتشر المصطلح عبر ورقة بحثية أكاديمية صدرت عام 2023 لباحثين من برينستون وجورجيا تك ومعهد ألين للذكاء الاصطناعي والمعهد الهندي للتكنولوجيا في دلهي، اختبرت كيف تؤثر تغييرات المحتوى المختلفة على الظهور في استجابات البحث التوليدي. وكانت نتيجتها الأبرز بديهية لكنها مفيدة: المحتوى الذي يضيف أدلة — مصادر موثقة واقتباسات وإحصاءات ملموسة — كان يُمثَّل بشكل أبرز من المحتوى الذي يكتفي بتكرار الكلمات المفتاحية.",
@@ -8452,7 +8454,7 @@ export const insightArticles: InsightArticle[] = [
       h2("ما الذي يحرّك GEO فعلاً"),
       h3("1. كونوا قابلين للاسترجاع"),
       p(
-        "تأكدوا من أن محركات البحث وزواحف الذكاء الاصطناعي تستطيع الوصول إلى محتواكم وقراءته فعلاً. راجعوا ملف robots.txt لمعرفة زواحف الذكاء الاصطناعي التي تسمحون لها — فحظرها قد يُبقي صفحاتكم خارج بعض أنظمة الذكاء الاصطناعي تماماً. وتجنبوا إخفاء المعلومات الأساسية داخل صور أو ملفات PDF أو نصوص برمجية لا تُعرض، وحافظوا على سرعة الصفحات المهمة وقابليتها للفهرسة.",
+        "تأكدوا من أن محركات البحث وزواحف الذكاء الاصطناعي تستطيع الوصول إلى محتواكم وقراءته فعلاً. راجعوا ملف robots.txt لمعرفة زواحف الذكاء الاصطناعي التي تسمحون لها — فحظرها قد يُبقي صفحاتكم خارج بعض أنظمة الذكاء الاصطناعي تماماً. وتجنبوا إخفاء المعلومات الأساسية داخل صور أو ملفات PDF أو نصوص برمجية لا تُعرض، وحافظوا على [سرعة](/ar/insights/real-cost-of-a-slow-website) الصفحات المهمة وقابليتها للفهرسة — وهي أسس [تحسين محركات البحث التقني](/ar/services/seo) نفسها التي يعتمد عليها الترتيب في البحث.",
       ),
       h3("2. اكتبوا محتوى يسهل اقتباسه"),
       p(
@@ -8467,7 +8469,7 @@ export const insightArticles: InsightArticle[] = [
       ]),
       h3("3. اجعلوا حقائق علامتكم واضحة لا لبس فيها"),
       p(
-        "تصف أنظمة الذكاء الاصطناعي العلامات بتجميع ما تجده. فإذا ذكر موقعكم سنة تأسيس وذكرت الأدلة سنة أخرى، أو وُصفت خدماتكم بشكل مختلف على كل منصة، فستأتي الإجابة مشوشة. احتفظوا بوصف واحد متسق لهويتكم وما تقدمونه وأين تعملون ومن تخدمون — على موقعكم، وملفكم التجاري على جوجل، ولينكدإن، والأدلة، والمواد الصحفية. وتساعد بيانات Organization المنظمة على موقعكم في جعل هذه الحقائق صريحة.",
+        "تصف أنظمة الذكاء الاصطناعي العلامات بتجميع ما تجده. فإذا ذكر موقعكم سنة تأسيس وذكرت الأدلة سنة أخرى، أو وُصفت خدماتكم بشكل مختلف على كل منصة، فستأتي الإجابة مشوشة. احتفظوا بوصف واحد متسق لهويتكم وما تقدمونه وأين تعملون ومن تخدمون — على موقعكم، و[ملفكم التجاري على جوجل](/ar/insights/local-seo-dubai-google-maps-guide)، ولينكدإن، والأدلة، والمواد الصحفية. وتساعد بيانات Organization المنظمة على موقعكم في جعل هذه الحقائق صريحة، ويسهّل [تموضع العلامة التجارية](/ar/services/branding) الواضح الحفاظ عليها كثيراً.",
       ),
       h3("4. اكتسبوا الإشارات من مصادر تثق بها أنظمة الذكاء الاصطناعي"),
       p(
@@ -8521,7 +8523,7 @@ export const insightArticles: InsightArticle[] = [
 
       h2("Откуда взялось GEO"),
       p(
-        "Обычная поисковая выдача показывает десять ссылок и оставляет выбор пользователю. Генеративный ответ сначала выбирает сам. Спросите ИИ-ассистента о «лучшей CRM для небольшого агентства недвижимости в Дубае» — и он, как правило, порекомендует несколько вариантов, объяснит почему и, возможно, сошлётся на источники. Бренды, которые не названы, в этот момент выбора просто не существуют.",
+        "Обычная поисковая выдача показывает десять ссылок и оставляет выбор пользователю. Генеративный ответ сначала выбирает сам. Спросите ИИ-ассистента о «лучшей CRM для небольшого агентства недвижимости в Дубае» — и он, как правило, порекомендует несколько вариантов, объяснит почему и, возможно, сошлётся на источники. Бренды, которые не названы, в этот момент выбора просто не существуют. Это тот же сдвиг, о котором мы писали в материале [«ИИ-поиск меняет значение слова „ранжирование“»](/ru/insights/ai-search-changing-what-ranking-means).",
       ),
       p(
         "Именно из-за этого сдвига и появился термин GEO. Его популяризировала научная статья 2023 года исследователей из Принстона, Технологического института Джорджии, Института ИИ Аллена и Индийского технологического института в Дели, которые проверяли, как разные изменения контента влияют на видимость в ответах генеративного поиска. Главный вывод интуитивен, но полезен: контент с доказательствами — ссылками на источники, цитатами, конкретной статистикой — как правило, представлен заметнее, чем контент, который просто повторяет ключевые слова.",
@@ -8562,7 +8564,7 @@ export const insightArticles: InsightArticle[] = [
       h2("Что на самом деле работает в GEO"),
       h3("1. Будьте доступны"),
       p(
-        "Убедитесь, что поисковые системы и ИИ-краулеры действительно могут добраться до вашего контента и прочитать его. Проверьте в robots.txt, каким ИИ-краулерам вы разрешаете доступ: их блокировка может полностью исключить ваши страницы из некоторых ИИ-систем. Не прячьте ключевую информацию в изображениях, PDF или скриптах, которые не отрисовываются, и следите, чтобы важные страницы были быстрыми и индексируемыми.",
+        "Убедитесь, что поисковые системы и ИИ-краулеры действительно могут добраться до вашего контента и прочитать его. Проверьте в robots.txt, каким ИИ-краулерам вы разрешаете доступ: их блокировка может полностью исключить ваши страницы из некоторых ИИ-систем. Не прячьте ключевую информацию в изображениях, PDF или скриптах, которые не отрисовываются, и следите, чтобы важные страницы были [быстрыми](/ru/insights/real-cost-of-a-slow-website) и индексируемыми, — это те же основы [технического SEO](/ru/services/seo), на которых держатся позиции в поиске.",
       ),
       h3("2. Пишите так, чтобы вас было легко цитировать"),
       p(
@@ -8577,7 +8579,7 @@ export const insightArticles: InsightArticle[] = [
       ]),
       h3("3. Сделайте факты о бренде однозначными"),
       p(
-        "ИИ-системы описывают бренды, собирая воедино то, что находят. Если на сайте указан один год основания, а в каталогах — другой, или ваши услуги описаны по-разному на каждой платформе, ответ получится путаным. Держите одно единообразное описание того, кто вы, что делаете, где работаете и кого обслуживаете, — на сайте, в профиле компании в Google, в LinkedIn, в каталогах и пресс-материалах. Структурированные данные Organization на сайте помогают сделать эти факты явными.",
+        "ИИ-системы описывают бренды, собирая воедино то, что находят. Если на сайте указан один год основания, а в каталогах — другой, или ваши услуги описаны по-разному на каждой платформе, ответ получится путаным. Держите одно единообразное описание того, кто вы, что делаете, где работаете и кого обслуживаете, — на сайте, в [профиле компании в Google](/ru/insights/local-seo-dubai-google-maps-guide), в LinkedIn, в каталогах и пресс-материалах. Структурированные данные Organization на сайте помогают сделать эти факты явными, а чёткое [позиционирование бренда](/ru/services/branding) заметно упрощает задачу.",
       ),
       h3("4. Заслужите упоминания в источниках, которым доверяет ИИ"),
       p(
@@ -8631,7 +8633,7 @@ export const insightArticles: InsightArticle[] = [
 
       h2("Why GEO Exists"),
       p(
-        "A traditional search result shows ten links and lets the searcher decide. A generative answer does the deciding first. Ask an AI assistant for “the best CRM for a small real estate brokerage in Dubai” and it will typically recommend a few options, explain why, and perhaps cite some sources. Brands that aren't mentioned simply don't exist in that moment of consideration.",
+        "A traditional search result shows ten links and lets the searcher decide. A generative answer does the deciding first. Ask an AI assistant for “the best CRM for a small real estate brokerage in Dubai” and it will typically recommend a few options, explain why, and perhaps cite some sources. Brands that aren't mentioned simply don't exist in that moment of consideration. It's the same shift we described in [AI Search Is Changing What 'Ranking' Means](/insights/ai-search-changing-what-ranking-means).",
       ),
       p(
         "That shift is why GEO has become a term at all. The phrase was popularised by a 2023 academic paper from researchers at Princeton, Georgia Tech, the Allen Institute for AI and IIT Delhi, which tested how different content changes affected visibility in generative search responses. Their headline finding was intuitive but useful: content that adds evidence — cited sources, quotations, concrete statistics — tended to be represented more prominently than content that simply repeated keywords.",
@@ -8672,7 +8674,7 @@ export const insightArticles: InsightArticle[] = [
       h2("What Actually Moves GEO"),
       h3("1. Be retrievable"),
       p(
-        "Make sure search engines and AI crawlers can actually reach and read your content. Check your robots.txt to see which AI crawlers you allow — blocking them can keep your pages out of some AI systems entirely. Avoid hiding key information inside images, PDFs or scripts that don't render, and keep important pages fast and indexable.",
+        "Make sure search engines and AI crawlers can actually reach and read your content. Check your robots.txt to see which AI crawlers you allow — blocking them can keep your pages out of some AI systems entirely. Avoid hiding key information inside images, PDFs or scripts that don't render, and keep important pages [fast](/insights/real-cost-of-a-slow-website) and indexable — the same [technical SEO](/services/seo) foundations search rankings depend on.",
       ),
       h3("2. Write content that's easy to quote"),
       p(
@@ -8687,7 +8689,7 @@ export const insightArticles: InsightArticle[] = [
       ]),
       h3("3. Make your brand facts unambiguous"),
       p(
-        "AI systems describe brands by stitching together what they find. If your website says you were founded in one year and your directory listings say another, or your services are described differently on every platform, the answer you get back will be muddled. Keep one consistent description of who you are, what you do, where you operate and who you serve — on your website, your Google Business Profile, LinkedIn, directories and press materials. Organization structured data on your website helps make those facts explicit.",
+        "AI systems describe brands by stitching together what they find. If your website says you were founded in one year and your directory listings say another, or your services are described differently on every platform, the answer you get back will be muddled. Keep one consistent description of who you are, what you do, where you operate and who you serve — on your website, your [Google Business Profile](/insights/local-seo-dubai-google-maps-guide), LinkedIn, directories and press materials. Organization structured data on your website helps make those facts explicit, and a clear [brand positioning](/services/branding) makes them far easier to hold.",
       ),
       h3("4. Earn mentions from sources AI systems trust"),
       p(
