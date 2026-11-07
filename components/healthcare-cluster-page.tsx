@@ -17,7 +17,7 @@ import {
   SectionIntro,
   TypeHero,
 } from "@/components/ui";
-import { getIndustry, site } from "@/lib/site";
+import { getIndustry, heroImages, site } from "@/lib/site";
 import {
   getHealthcareService,
   getHealthcareVertical,
@@ -186,7 +186,7 @@ export function HealthcareHubPageBody() {
       />
 
       <Hero
-        src={industry?.heroImage ?? "/images/industries/healthcare.jpg"}
+        src={industry?.heroImage ?? heroImages.industries.src}
         alt={`${c.h1} — ${site.name}`}
         eyebrow={UI.industries}
         title={c.h1}
